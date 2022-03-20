@@ -21,4 +21,4 @@
   ShowFlames: false
   Breakable: false
   Conditions: []
-  ActiveMobs: 0
+  ActiveMobs: 5

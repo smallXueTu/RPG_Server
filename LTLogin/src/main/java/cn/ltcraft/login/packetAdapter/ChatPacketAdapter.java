@@ -20,14 +20,14 @@ public class ChatPacketAdapter extends PacketAdapter {
     public void onPacketSending(PacketEvent event) {
         Player player = event.getPlayer();
         boolean cancel =  Login.playerStatus.get(player.getName()) != PlayerStatus.NORMAL;
-        if (event.getPacketType() == PacketType.Play.Server.CHAT) {
+        if (cancel && event.getPacketType() == PacketType.Play.Server.CHAT) {
             PacketContainer packet = event.getPacket();
             List<Object> values = packet.getModifier().getValues();
             for (Object value : values) {
                 if (!(value instanceof IChatBaseComponent))continue;
                 IChatBaseComponent textComponent = (IChatBaseComponent) value;
                 String text = textComponent.toPlainText();
-                if (cancel && Login.allowReceiveChat.containsKey(player.getName()) && Login.allowReceiveChat.get(player.getName()).contains(text)){
+                if (Login.allowReceiveChat.containsKey(player.getName()) && Login.allowReceiveChat.get(player.getName()).contains(text)){
                     cancel = false;
                 }
             }

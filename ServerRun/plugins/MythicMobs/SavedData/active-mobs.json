@@ -869,10 +869,10 @@
       }
     },
     "b6da26f6-b984-4246-9e26-39d38e8548a2": {
-      "aliveTime": 296610,
+      "aliveTime": 363376,
       "uuid": "b6da26f6-b984-4246-9e26-39d38e8548a2",
       "mobType": "火焰粒子门1",
-      "lastSeen": 1647779138428,
+      "lastSeen": 1647787599874,
       "spawnLocation": {
         "world": {
           "uuid": "0de800c2-c86e-4d02-808e-a93cdb577b99",

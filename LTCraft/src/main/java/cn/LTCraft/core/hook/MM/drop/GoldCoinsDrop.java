@@ -18,7 +18,7 @@ public class GoldCoinsDrop extends Drop implements IIntangibleDrop {
     public GoldCoinsDrop(String line, MythicLineConfig config) {
         super(line, config);
         String conf = line.substring("GoldCoinsDrop ".length());
-        String[] split = conf.split(":");
+        String[] split = conf.split(" ")[0].split(":");
         gold = split[0];
         if (split.length >= 2) {
             radius = Integer.parseInt(split[1]);
