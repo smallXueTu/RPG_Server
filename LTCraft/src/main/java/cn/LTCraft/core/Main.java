@@ -1,10 +1,9 @@
 package cn.LTCraft.core;
 
 
-import cn.LTCraft.core.hook.BQ.event.ChangeClassEvent;
-import cn.LTCraft.core.hook.BQ.objective.NoTagObjective;
-import cn.LTCraft.core.hook.BQ.condition.ItemCondition;
-import cn.LTCraft.core.hook.BQ.condition.SkillAPILevelCondition;
+import cn.LTCraft.core.hook.BQ.event.*;
+import cn.LTCraft.core.hook.BQ.objective.*;
+import cn.LTCraft.core.hook.BQ.condition.*;
 import cn.LTCraft.core.commands.CommandLoader;
 import cn.LTCraft.core.dataBase.SQLManage;
 import cn.LTCraft.core.dataBase.SQLServer;
@@ -184,20 +183,20 @@ public class Main extends JavaPlugin {
     }
 
     private void initBQ() {
-        BetonQuest.getInstance().registerObjectives("pickup", cn.LTCraft.core.hook.BQ.objective.PickupObjective.class);
-        BetonQuest.getInstance().registerObjectives("item", cn.LTCraft.core.hook.BQ.objective.ItemObjective.class);
-        BetonQuest.getInstance().registerObjectives("tag", cn.LTCraft.core.hook.BQ.objective.TagObjective.class);
+        BetonQuest.getInstance().registerObjectives("pickup", PickupObjective.class);
+        BetonQuest.getInstance().registerObjectives("item", ItemObjective.class);
+        BetonQuest.getInstance().registerObjectives("tag", TagObjective.class);
         BetonQuest.getInstance().registerObjectives("notag", NoTagObjective.class);
-        BetonQuest.getInstance().registerObjectives("conditions", cn.LTCraft.core.hook.BQ.objective.ConditionObjective.class);
-        BetonQuest.getInstance().registerObjectives("enchante", cn.LTCraft.core.hook.BQ.objective.EnchantEObjective.class);
-        BetonQuest.getInstance().registerObjectives("dropitemrange", cn.LTCraft.core.hook.BQ.objective.DropItemRangeObjective.class);
+        BetonQuest.getInstance().registerObjectives("conditions", ConditionObjective.class);
+        BetonQuest.getInstance().registerObjectives("enchante", EnchantEObjective.class);
+        BetonQuest.getInstance().registerObjectives("dropitemrange", DropItemRangeObjective.class);
 
-        BetonQuest.getInstance().registerEvents("saveMainLine", cn.LTCraft.core.hook.BQ.event.SaveMainLineEvent.class);
+        BetonQuest.getInstance().registerEvents("saveMainLine", SaveMainLineEvent.class);
         BetonQuest.getInstance().registerEvents("changeClass", ChangeClassEvent.class);
-        BetonQuest.getInstance().registerEvents("delay", cn.LTCraft.core.hook.BQ.event.DelayEventEvent.class);
-        BetonQuest.getInstance().registerEvents("setClassLevel", cn.LTCraft.core.hook.BQ.event.SetClassLevelEvent.class);
-        BetonQuest.getInstance().registerEvents("give", cn.LTCraft.core.hook.BQ.event.GiveEvent.class);
-        BetonQuest.getInstance().registerEvents("take", cn.LTCraft.core.hook.BQ.event.TakeEvent.class);
+        BetonQuest.getInstance().registerEvents("delay", DelayEventEvent.class);
+        BetonQuest.getInstance().registerEvents("setClassLevel", SetClassLevelEvent.class);
+        BetonQuest.getInstance().registerEvents("give", GiveEvent.class);
+        BetonQuest.getInstance().registerEvents("take", TakeEvent.class);
 
         BetonQuest.getInstance().registerConditions("skillapiLevel", SkillAPILevelCondition.class);
         BetonQuest.getInstance().registerConditions("item", ItemCondition.class);
