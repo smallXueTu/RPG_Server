@@ -9,6 +9,8 @@ import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.task.ClientCheckTask;
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import cn.LTCraft.core.utils.EntityUtils;
+import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
 import cn.ltcraft.teleport.Home;
 import cn.ltcraft.teleport.Teleport;
@@ -448,9 +450,12 @@ public class PlayerListener  implements Listener {
         Item item = event.getItem();
         if (Temp.playerDropItem.containsKey(item)){
             if (
+                    EntityUtils.getItemAge(item) <= 600 && //30s * 20tick
                     !Temp.playerDropItem.get(item).equals(event.getPlayer().getName()) &&
                     Temp.discardOnly.contains(item.getEntityId())
-            )event.setCancelled(true);
+            ){
+                event.setCancelled(true);
+            }
         }
         ItemStack itemStack = item.getItemStack();
         Player player = event.getPlayer();
