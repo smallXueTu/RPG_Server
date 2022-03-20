@@ -41,12 +41,12 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerLoginEvent(PlayerLoginEvent event){
         Player player = event.getPlayer();
-        if (plugin.playerStatus.containsKey(player.getName())){
-            if (plugin.playerStatus.get(player.getName())==PlayerStatus.NORMAL){
+        if (Login.playerStatus.containsKey(player.getName())){
+            if (Login.playerStatus.get(player.getName())==PlayerStatus.NORMAL){
                 event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "§c相同ID的玩家已经登录！");
             }
         }else{
-            plugin.playerStatus.put(player.getName(), PlayerStatus.WAITING);//设置玩家为等待状态
+            Login.playerStatus.put(player.getName(), PlayerStatus.WAITING);//设置玩家为等待状态
             final int[] counter = {0};
             BukkitRunnable bukkitRunnable = new BukkitRunnable() {
                 @Override
@@ -79,7 +79,7 @@ public class PlayerListener implements Listener {
             bukkitRunnable.runTaskTimer(Login.getInstance(), 1, 1);
         }
         Bukkit.getScheduler().scheduleSyncDelayedTask(Login.getInstance(), () -> {
-            Login.getInstance().getInventoryPacketAdapter().sendBlankInventoryPacket(player);
+            Login.getInventoryPacketAdapter().sendBlankInventoryPacket(player);
         }, 1);
     }
 
@@ -90,7 +90,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerQuitEvent(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        plugin.playerStatus.remove(player.getName());
+        Login.playerStatus.remove(player.getName());
         Login.allowReceiveChat.remove(player.getName());
     }
 
@@ -132,11 +132,11 @@ public class PlayerListener implements Listener {
      * @param event 事件
      */
     public void check(Player player, String message, Cancellable event){
-        if (!plugin.playerStatus.containsKey(player.getName())){//这是不可能发生的事
+        if (!Login.playerStatus.containsKey(player.getName())){//这是不可能发生的事
             player.kickPlayer("§c无状态信息。");
             return;
         }
-        PlayerStatus playerStatus = plugin.playerStatus.get(player.getName());
+        PlayerStatus playerStatus = Login.playerStatus.get(player.getName());
         PlayerInfo playerInfo = PlayerConfig.getPlayerConfig(player).getPlayerInfo();
         switch (playerStatus){
             case LOGIN:
@@ -347,7 +347,7 @@ public class PlayerListener implements Listener {
      */
     public void cancelled(Cancellable event, Player player){
         if (event.isCancelled())return;
-        if (!plugin.playerStatus.containsKey(player.getName()) || plugin.playerStatus.get(player.getName())!= PlayerStatus.NORMAL){
+        if (!Login.playerStatus.containsKey(player.getName()) || Login.playerStatus.get(player.getName())!= PlayerStatus.NORMAL){
             event.setCancelled(true);//取消移动
         }
     }

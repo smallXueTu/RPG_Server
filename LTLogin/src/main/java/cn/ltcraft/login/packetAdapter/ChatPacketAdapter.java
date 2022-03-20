@@ -19,7 +19,7 @@ public class ChatPacketAdapter extends PacketAdapter {
     @Override
     public void onPacketSending(PacketEvent event) {
         Player player = event.getPlayer();
-        boolean cancel =  Login.getInstance().playerStatus.get(player.getName()) != PlayerStatus.NORMAL;
+        boolean cancel =  Login.playerStatus.get(player.getName()) != PlayerStatus.NORMAL;
         if (event.getPacketType() == PacketType.Play.Server.CHAT) {
             PacketContainer packet = event.getPacket();
             List<Object> values = packet.getModifier().getValues();

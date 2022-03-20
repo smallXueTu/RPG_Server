@@ -25,7 +25,7 @@ public class Login extends JavaPlugin {
      * 玩家的状态
      * @see cn.ltcraft.login.other.PlayerStatus
      */
-    public HashMap<String, PlayerStatus> playerStatus = new HashMap<>();
+    public static HashMap<String, PlayerStatus> playerStatus = new HashMap<>();
     /**
      * 内容就不做清理了，撑死也就那几条。
      */
@@ -37,9 +37,9 @@ public class Login extends JavaPlugin {
     /**
      * 不可修改List
      */
-    private List<PacketAdapter> adapters;
+    private static List<PacketAdapter> adapters;
     private static Login instance = null;
-    private ProtocolManager protocolManager = null;
+    private static ProtocolManager protocolManager = null;
 
     /**
      * 获取这个对象的实例
@@ -90,8 +90,7 @@ public class Login extends JavaPlugin {
      * @param ps 玩家的状态
      */
     public void setPlayerStatus(Player player, PlayerStatus ps){
-        this.playerStatus.remove(player.getName());
-        this.playerStatus.put(player.getName(), ps);
+        playerStatus.put(player.getName(), ps);
     }
 
     /**
@@ -107,11 +106,11 @@ public class Login extends JavaPlugin {
         return this.command.onCommand(sender, command, label, args);
     }
 
-    public InventoryPacketAdapter getInventoryPacketAdapter() {
+    public static InventoryPacketAdapter getInventoryPacketAdapter() {
         return (InventoryPacketAdapter) adapters.get(0);//必定是0
     }
 
-    public ProtocolManager getProtocolManager() {
+    public static ProtocolManager getProtocolManager() {
         return protocolManager;
     }
     public static void forceSendMessage(Player player, String message){

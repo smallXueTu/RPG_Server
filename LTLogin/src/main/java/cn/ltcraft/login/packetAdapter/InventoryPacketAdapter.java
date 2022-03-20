@@ -3,7 +3,6 @@ package cn.ltcraft.login.packetAdapter;
 import cn.ltcraft.login.Login;
 import cn.ltcraft.login.other.PlayerStatus;
 import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
@@ -25,7 +24,7 @@ public class InventoryPacketAdapter extends PacketAdapter {
         Player player = packetEvent.getPlayer();
         PacketContainer packet = packetEvent.getPacket();
         byte windowId = packet.getIntegers().read(0).byteValue();
-        if ((windowId == 0 || windowId == -1) && Login.getInstance().playerStatus.get(player.getName()) != PlayerStatus.NORMAL) {
+        if ((windowId == 0 || windowId == -1) && Login.playerStatus.get(player.getName()) != PlayerStatus.NORMAL) {
             packetEvent.setCancelled(true);
         }
     }
@@ -34,13 +33,13 @@ public class InventoryPacketAdapter extends PacketAdapter {
         Player player = packetEvent.getPlayer();
         PacketContainer packet = packetEvent.getPacket();
         byte windowId = packet.getIntegers().read(0).byteValue();
-        if ((windowId == 0 || windowId == -1) && Login.getInstance().playerStatus.get(player.getName()) != PlayerStatus.NORMAL) {
+        if ((windowId == 0 || windowId == -1) && Login.playerStatus.get(player.getName()) != PlayerStatus.NORMAL) {
             packetEvent.setCancelled(true);
         }
     }
 
     public void sendBlankInventoryPacket(Player player) {
-        PacketContainer inventoryPacket = Login.getInstance().getProtocolManager().createPacket(PacketType.Play.Server.WINDOW_ITEMS);
+        PacketContainer inventoryPacket = Login.getProtocolManager().createPacket(PacketType.Play.Server.WINDOW_ITEMS);
         inventoryPacket.getIntegers().write(0, 0);
         int inventorySize = 45;
         ItemStack[] blankInventory = new ItemStack[inventorySize];
@@ -54,7 +53,7 @@ public class InventoryPacketAdapter extends PacketAdapter {
         }
 
         try {
-            Login.getInstance().getProtocolManager().sendServerPacket(player, inventoryPacket, false);
+            Login.getProtocolManager().sendServerPacket(player, inventoryPacket, false);
         } catch (InvocationTargetException e) {
             plugin.getLogger().warning("发送空白库存时出错。");
         }
