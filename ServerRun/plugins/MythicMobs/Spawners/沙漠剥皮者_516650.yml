@@ -1,0 +1,24 @@
+沙漠剥皮者_516650:
+  MobName: 沙漠剥皮者
+  World: t1
+  X: 23
+  Y: 48
+  Z: 56
+  Radius: 2
+  UseTimer: true
+  MaxMobs: 5
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 0
+  CooldownTimer: 0
+  Warmup: 3
+  WarmupTimer: 0
+  CheckForPlayers: true
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions: []
+  ActiveMobs: 0

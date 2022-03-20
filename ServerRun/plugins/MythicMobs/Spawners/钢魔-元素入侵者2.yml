@@ -1,0 +1,25 @@
+钢魔-元素入侵者2:
+  SpawnerGroup: t2-神木庄
+  MobName: 钢魔-元素入侵者
+  World: t2
+  X: 1021
+  Y: 47
+  Z: 1326
+  Radius: 2
+  UseTimer: true
+  MaxMobs: 2
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 0
+  CooldownTimer: 0
+  Warmup: 10
+  WarmupTimer: 0
+  CheckForPlayers: true
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions: []
+  ActiveMobs: 0

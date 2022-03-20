@@ -1,0 +1,95 @@
+##■■■■■■■■■■■■■■■■■■■■■一些设置■■■■■■■■■■■■■■■■■■■■
+match: "hud"
+Functions:  #该处的方法可利用【方法.执行方法('xxx')】或【方法.异步执行方法('xxx')】来执行
+  open: |-      #界面打开时，会自动触发open方法
+    方法.异步执行方法('每秒更新变量');
+  每秒更新变量: |-
+    方法.更新变量值('lt_player_state1');
+    方法.更新变量值('lt_player_state2');
+    方法.更新变量值('lt_player_state3');
+    方法.更新变量值('lt_player_state4');
+    方法.更新变量值('lt_player_state5');
+    方法.更新变量值('lt_player_state6');
+    方法.更新变量值('lt_player_state7');
+    方法.更新变量值('lt_player_state8');
+    方法.延时(300);
+    方法.异步执行方法('每秒更新变量');
+##■■■■■■■■■■■■■■■■■■■■■状态贴图■■■■■■■■■■■■■■■■■■■
+计分板背景1_texture:
+  x: "取屏幕宽度-155"
+  y: "取屏幕高度-85"
+  width: 150
+  height: 80
+  texture: "0, 0, 0, 0"
+状态1_texture:
+  x: "取屏幕宽度-150"
+  y: "取屏幕高度-80"
+  scale: 1.0
+  width: 150
+  height: 10
+  texture: "0, 0, 0, 100"
+  visible: 方法.取文本长度(方法.取变量('lt_player_state1'))>0
+  text: "§6%lt_player_state1%"
+状态2_texture:
+  x: "取屏幕宽度-150"
+  y: "取屏幕高度-70"
+  scale: 1.0
+  width: 150
+  height: 10
+  texture: "0, 0, 0, 100"
+  visible: 方法.取文本长度(方法.取变量('lt_player_state2'))>0
+  text: "§6%lt_player_state2%"
+状态3_texture:
+  x: "取屏幕宽度-150"
+  y: "取屏幕高度-60"
+  scale: 1.0
+  width: 150
+  height: 10
+  texture: "0, 0, 0, 100"
+  visible: 方法.取文本长度(方法.取变量('lt_player_state3'))>0
+  text: "§6%lt_player_state3%"
+状态4_texture:
+  x: "取屏幕宽度-150"
+  y: "取屏幕高度-50"
+  scale: 1.0
+  width: 150
+  height: 10
+  texture: "0, 0, 0, 100"
+  visible: 方法.取文本长度(方法.取变量('lt_player_state4'))>0
+  text: "§6%lt_player_state4%"
+状态5_texture:
+  x: "取屏幕宽度-150"
+  y: "取屏幕高度-40"
+  scale: 1.0
+  width: 150
+  height: 10
+  texture: "0, 0, 0, 100"
+  visible: 方法.取文本长度(方法.取变量('lt_player_state5'))>0
+  text: "§6%lt_player_state5%"
+状态6_texture:
+  x: "取屏幕宽度-150"
+  y: "取屏幕高度-30"
+  scale: 1.0
+  width: 150
+  height: 10
+  visible: 方法.取文本长度(方法.取变量('lt_player_state6'))>0
+  texture: "0, 0, 0, 100"
+  text: "§6%lt_player_state6%"
+状态7_texture:
+  x: "取屏幕宽度-150"
+  y: "取屏幕高度-20"
+  scale: 1.0
+  width: 150
+  height: 10
+  visible: 方法.取文本长度(方法.取变量('lt_player_state7'))>0
+  texture: "0, 0, 0, 100"
+  text: "§6%lt_player_state7%"
+状态8_texture:
+  x: "取屏幕宽度-150"
+  y: "取屏幕高度-10"
+  scale: 1.0
+  width: 150
+  height: 10
+  visible: 方法.取文本长度(方法.取变量('lt_player_state8'))>0
+  texture: "0, 0, 0, 100"
+  text: "§6%lt_player_state8%"

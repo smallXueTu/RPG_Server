@@ -1,0 +1,40 @@
+quester: '现代城匠人助手'
+first: '有钢铁之刃,有事吗？'
+stop: 'false'
+NPC_options:
+  '有钢铁之刃':
+    text: '接下来你需要让匠人为你打造一套盔甲。\n大约需要60现币，不过现代城应该有很多需要帮忙的。\n帮助他们应该能获得现币...'
+    conditions: '有钢铁之刃'
+    pointer: '你知道有谁需要帮忙吗'
+    events: ''
+  '小晴公主':
+    text: '听城中公告，小晴公主应该下过一个求助。\n具体也不清楚，给你路线你去看一下吧！'
+    conditions: ''
+    pointer: '当然可以'
+    events: ''
+  '有事吗？':
+    text: 'Hi，你好啊，证明者，我有什么能帮到你吗？'
+    conditions: ''
+    pointer: '没事'
+    events: ''
+player_options:
+  '好的，谢谢':
+    text: '好的，谢谢！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '当然可以':
+    text: '当然可以！'
+    conditions: ''
+    pointer: ''
+    events: '添加待取小晴公主差事标签,找到小晴公主'
+  '你知道有谁需要帮忙吗':
+    text: '你知道有谁需要帮忙吗？'
+    conditions: ''
+    pointer: '小晴公主'
+    events: ''
+  '没事':
+    text: '我没事。'
+    conditions: ''
+    pointer: ''
+    events: ''

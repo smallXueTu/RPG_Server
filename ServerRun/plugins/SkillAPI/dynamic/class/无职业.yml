@@ -1,0 +1,29 @@
+无职业: 
+  name: '无职业'
+  prefix: '&6无职业'
+  group: '基础'
+  mana: '&2Mana'
+  max-level: 100
+  parent: ''
+  needs-permission: 'false'
+  attributes: 
+    health-base: '40'
+    spirit-scale: '0'
+    strength-base: '0'
+    dexterity-base: '0'
+    dexterity-scale: '0'
+    mana-base: '0'
+    health-scale: '1'
+    vitality-scale: '0'
+    spirit-base: '0'
+    intelligence-scale: '0'
+    strength-scale: '0'
+    mana-scale: '0'
+    vitality-base: '0'
+    intelligence-base: '0'
+  mana-regen: 1.0
+  tree: 'REQUIREMENT'
+  skills:  []
+  icon: 'GRASS'
+  icon-data: 0
+  exp-source: 269

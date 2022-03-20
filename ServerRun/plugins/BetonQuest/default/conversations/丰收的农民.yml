@@ -1,0 +1,80 @@
+quester: '丰收的农民'
+first: '没事了,询问差事,介绍'
+stop: 'false'
+NPC_options:
+  '没事了':
+    text: '这里的事已经不需要你帮忙了，你去找需要帮忙的人吧~'
+    conditions: '完成丰收的农民差事'
+    pointer: '好的'
+    events: ''
+  '介绍':
+    text: '你好证明者，又到了南瓜丰收的季节，这次种植的南瓜参量有点大\n收的干的有点累，你可以帮我收一会南瓜吗？'
+    conditions: ''
+    pointer: '当然可以,算了'
+    events: ''
+  '你确定吗':
+    text: '当然我不能让你白白干活，肯定会赐予你应有的报酬。\n比如：现币。你确定不帮忙吗？'
+    conditions: ''
+    pointer: '当然可以,还是算了吧'
+    events: ''
+  '接受差事1':
+    text: '太棒了，需要干的活不多，你收集32个南瓜就可以了！'
+    conditions: ''
+    pointer: '这还不多,还是算了吧'
+    events: ''
+  '询问差事':
+    text: '怎么样，收集的咋样了？'
+    conditions: '接受丰收的农民差事1'
+    pointer: '我不想收集了,还没收集到,收集到了'
+    events: ''
+  '太感谢了':
+    text: '哎呀，太感谢了，给你一些西瓜解解渴吧，另外给你一些现币！'
+    conditions: ''
+    pointer: '感谢'
+    events: '赐予10现币,赐予10西瓜,拿走32南瓜'
+player_options:
+  '当然可以':
+    text: '非常乐意。'
+    conditions: ''
+    pointer: '接受差事1'
+    events: ''
+  '这还不多':
+    text: '这还不多...'
+    conditions: ''
+    pointer: ''
+    events: '添加接受丰收的农民差事1标签,在现代城收集32个南瓜'
+  '还是算了吧':
+    text: '还是算了吧。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '算了':
+    text: '算了吧，没这个闲时间。'
+    conditions: ''
+    pointer: '你确定吗'
+    events: ''
+  '还没收集到':
+    text: '还没收集到。'
+    conditions: '!有32南瓜'
+    pointer: ''
+    events: ''
+  '好的':
+    text: '好的。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '感谢':
+    text: '感谢。感谢。'
+    conditions: ''
+    pointer: ''
+    events: '添加完成丰收的农民差事标签'
+  '收集到了':
+    text: '收集到了！'
+    conditions: '有32南瓜'
+    pointer: '太感谢了'
+    events: ''
+  '我不想收集了':
+    text: '我不想收集了。'
+    conditions: ''
+    pointer: ''
+    events: '放弃在现代城收集32个南瓜任务,删除接受丰收的农民差事1标签'

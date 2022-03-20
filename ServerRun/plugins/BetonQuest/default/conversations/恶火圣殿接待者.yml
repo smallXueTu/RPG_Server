@@ -1,0 +1,30 @@
+quester: '恶火圣殿接待者'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '证明者，是来试炼的吗？'
+    conditions: ''
+    pointer: '是的,不是'
+    events: ''
+  '进去吧':
+    text: '好的，那就送你进去吧，现在这里免费试炼。\n是个升级的好地方呢！'
+    conditions: ''
+    pointer: '太好了'
+    events: ''
+player_options:
+  '是的':
+    text: '是的。'
+    conditions: ''
+    pointer: '进去吧'
+    events: ''
+  '太好了':
+    text: '太好了。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '不是':
+    text: '不是。'
+    conditions: ''
+    pointer: ''
+    events: ''

@@ -1,0 +1,24 @@
+剧毒蜘蛛_417877:
+  MobName: 剧毒蜘蛛
+  World: t1
+  X: -148
+  Y: 67
+  Z: 122
+  Radius: 1
+  UseTimer: true
+  MaxMobs: 1
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 10
+  CooldownTimer: 0
+  Warmup: 0
+  WarmupTimer: 0
+  CheckForPlayers: true
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions: []
+  ActiveMobs: 0

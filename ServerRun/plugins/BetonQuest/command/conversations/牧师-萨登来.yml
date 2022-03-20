@@ -1,0 +1,35 @@
+quester: '牧师-萨登来'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text:
+      - 'Hi，要加入后援医疗阵的牧师吗？\n这个职业主要负者团队医疗，状态恢复等！\n是团队中不可缺少的一部分！'
+    conditions: 'default.选择职业'
+    pointer: '我考虑下吧,我要加入'
+    events: ''
+  '欢迎加入':
+    text:
+      - '太棒了，欢迎加入牧师！\n手续我已经帮你办好了，经过怎么久的试炼。\n你已经具备驾驭这个职业的能力了'
+    conditions: ''
+    pointer: '太棒了'
+    events: ''
+player_options:
+  '我考虑下吧':
+    text:
+      - '我考虑下吧。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '我要加入':
+    text:
+      - '就这个吧'
+    conditions: ''
+    pointer: '欢迎加入'
+    events: '选择牧师,default.已选择职业,重置等级'
+  '太棒了':
+    text:
+      - '太棒了'
+    conditions: ''
+    pointer: ''
+    events: ''

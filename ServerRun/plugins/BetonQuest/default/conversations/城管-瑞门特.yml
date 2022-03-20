@@ -1,0 +1,80 @@
+quester: '城管-瑞门特'
+first: '又见面了,认识'
+stop: 'false'
+NPC_options:
+  '又见面了':
+    text: '又见面了，证明者。试炼的咋样呢？'
+    conditions: '领取T3任务'
+    pointer: '已经完成了职业试炼'
+    events: ''
+  '认识':
+    text: '你好啊，勇士！\n看样子你像有什么事要做？'
+    conditions: ''
+    pointer: '我不是勇士,谢谢，我没事'
+    events: ''
+  '我不会看错人的':
+    text: '我还没看错过人，一眼就看出你是个适合做勇士的人！\n哦对了，我想你也是来这里锻炼的吧？'
+    conditions: ''
+    pointer: '是的'
+    events: ''
+  '去打怪':
+    text: '这还真是个提升自己的好地方！大部分从这出来的人都得到了明显的提升。\n城堡的魔法让附近的怪物都变的柔弱！\n当然距离城堡越远的怪物就越强！'
+    conditions: ''
+    pointer: '那挺好'
+    events: ''
+  '继续说':
+    text: '这个城堡连接着几个文明，你可以挨个挑战一下哪里的Boss！\n击败后拿到证明，然后你就可以证明你的能力了！'
+    conditions: ''
+    pointer: '太棒了'
+    events: ''
+  '指路':
+    text: '不一定，这段路可不好走，一定要小心！\n路上的怪物一定要多杀几只，捡取掉落物\n收集表和路线我已经给你了你点击导航即可。最后祝福你，加油！'
+    conditions: ''
+    pointer: '好的'
+    events: ''
+  '太棒了':
+    text: '那太棒了，完成职业试炼你就不需要再探索这个世界了！\n我觉得你的能力已经完全够做一个勇士了！\n找翟纳若领取你的荣耀吧！'
+    conditions: ''
+    pointer: '那太棒了'
+    events: ''
+player_options:
+  '我不是勇士':
+    text: '哈哈，我还不是勇士！'
+    conditions: '找到瑞门特'
+    pointer: '我不会看错人的'
+    events: ''
+  '谢谢，我没事':
+    text: '谢谢，我没事。'
+    conditions: '!找到瑞门特'
+    pointer: ''
+    events: ''
+  '是的':
+    text: '是的！我要提升自己！'
+    conditions: ''
+    pointer: '去打怪'
+    events: ''
+  '那挺好':
+    text: '那太好了！'
+    conditions: ''
+    pointer: '继续说'
+    events: ''
+  '已经完成了职业试炼':
+    text: '我已经完成了职业试炼！'
+    conditions: ''
+    pointer: '太棒了'
+    events: ''
+  '太棒了':
+    text: '那太棒了！'
+    conditions: ''
+    pointer: '指路'
+    events: ''
+  '那太棒了':
+    text: '那太棒了！'
+    conditions: ''
+    pointer: ''
+    events: '添加毕业T2标签,回城,继续找翟纳若领取T2任务'
+  '好的':
+    text: '好的。'
+    conditions: ''
+    pointer: ''
+    events: '通往现代城,收集20房地契,添加找到豪宅居民标签,删除找到瑞门特标签,保存主线位置到T2进度1'

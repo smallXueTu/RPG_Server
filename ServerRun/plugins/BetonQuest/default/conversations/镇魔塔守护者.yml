@@ -1,0 +1,30 @@
+quester: '镇魔塔守护者'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你好，证明者，这里可不能随便进入...'
+    conditions: ''
+    pointer: '怎么进入'
+    events: ''
+  '进入':
+    text: '哦对，你是证明者。\n目前规定是必须是证明者和有能力的才能进入！\n里面比较危险，你最好小心！你确定进入吗？'
+    conditions: '前往镇魔塔'
+    pointer: '确定'
+    events: ''
+  '这里不是你该来的地方':
+    text: '这里不是你该来的地方，你最好快点离开这里吧！'
+    conditions: ''
+    pointer: ''
+    events: ''
+player_options:
+  '怎么进入':
+    text: '那怎么进入？'
+    conditions: ''
+    pointer: '进入,这里不是你该来的地方'
+    events: ''
+  '确定':
+    text: '确定，我不怕危险!'
+    conditions: ''
+    pointer: '进入'
+    events: '传送至镇魔塔,找到接待者,保存主线位置到T2进度8'

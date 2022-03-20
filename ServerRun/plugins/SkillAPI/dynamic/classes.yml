@@ -1,0 +1,155 @@
+loaded: 'true'
+刺客: 
+  name: '刺客'
+  prefix: '&6刺客'
+  group: '基础'
+  mana: '&2Mana'
+  max-level: 100
+  parent: '无职业'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '40'
+    spirit-scale: '0'
+    strength-base: '0'
+    dexterity-base: '0'
+    dexterity-scale: '0'
+    mana-base: '20'
+    health-scale: '1'
+    vitality-scale: '0'
+    spirit-base: '0'
+    intelligence-scale: '0'
+    strength-scale: '0'
+    mana-scale: '1'
+    vitality-base: '0'
+    intelligence-base: '0'
+  mana-regen: 1.0
+  tree: 'REQUIREMENT'
+  skills:  []
+  icon: 'IRON_SWORD'
+  icon-data: 0
+  icon-lore: 
+  - '&4技能名称 : &2Class 1'
+  - '&a技能列表 : &b'
+  exp-source: 269
+战士: 
+  name: '战士'
+  prefix: '&6战士'
+  group: '基础'
+  mana: '&2Mana'
+  max-level: 100
+  parent: '无职业'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '40'
+    spirit-scale: '0'
+    strength-base: '0'
+    dexterity-base: '0'
+    dexterity-scale: '0'
+    mana-base: '20'
+    health-scale: '1.5'
+    vitality-scale: '0'
+    spirit-base: '0'
+    intelligence-scale: '0'
+    strength-scale: '0'
+    mana-scale: '0'
+    vitality-base: '0'
+    intelligence-base: '0'
+  mana-regen: 1.0
+  tree: 'REQUIREMENT'
+  skills:  []
+  icon: 'CHAINMAIL_HELMET'
+  icon-data: 0
+  icon-lore: 
+  - '&4技能名称 : &2Class 1'
+  - '&a技能列表 : &b'
+  exp-source: 269
+法师: 
+  name: '法师'
+  prefix: '&6法师'
+  group: '基础'
+  mana: '&2Mana'
+  max-level: 100
+  parent: '无职业'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '40'
+    spirit-scale: '0'
+    strength-base: '0'
+    dexterity-base: '0'
+    dexterity-scale: '0'
+    mana-base: '20'
+    health-scale: '1'
+    vitality-scale: '0'
+    spirit-base: '0'
+    intelligence-scale: '0'
+    strength-scale: '0'
+    mana-scale: '2'
+    vitality-base: '0'
+    intelligence-base: '0'
+  mana-regen: 2.0
+  tree: 'REQUIREMENT'
+  skills:  []
+  icon: 'ENCHANTED_BOOK'
+  icon-data: 0
+  icon-lore: 
+  - '&4技能名称 : &2Class 1'
+  - '&a技能列表 : &b'
+  exp-source: 269
+牧师: 
+  name: '牧师'
+  prefix: '&6牧师'
+  group: '基础'
+  mana: '&2Mana'
+  max-level: 100
+  parent: '无职业'
+  needs-permission: 'false'
+  attributes: 
+    health-base: '40'
+    spirit-scale: '0'
+    strength-base: '0'
+    dexterity-base: '0'
+    dexterity-scale: '0'
+    mana-base: '20'
+    health-scale: '1'
+    vitality-scale: '0'
+    spirit-base: '0'
+    intelligence-scale: '0'
+    strength-scale: '0'
+    mana-scale: '1'
+    vitality-base: '0'
+    intelligence-base: '0'
+  mana-regen: 1.5
+  tree: 'REQUIREMENT'
+  skills:  []
+  icon: 'JACK_O_LANTERN'
+  icon-data: 0
+  exp-source: 269
+无职业: 
+  name: '无职业'
+  prefix: '&6无职业'
+  group: '基础'
+  mana: '&2Mana'
+  max-level: 100
+  parent: ''
+  needs-permission: 'false'
+  attributes: 
+    health-base: '40'
+    spirit-scale: '0'
+    strength-base: '0'
+    dexterity-base: '0'
+    dexterity-scale: '0'
+    mana-base: '0'
+    health-scale: '1'
+    vitality-scale: '0'
+    spirit-base: '0'
+    intelligence-scale: '0'
+    strength-scale: '0'
+    mana-scale: '0'
+    vitality-base: '0'
+    intelligence-base: '0'
+  mana-regen: 1.0
+  tree: 'REQUIREMENT'
+  skills:  []
+  icon: 'GRASS'
+  icon-data: 0
+  exp-source: 269

@@ -1,0 +1,87 @@
+﻿冰天雪女出生:
+ Skills:
+ - sendtitle{title="&b&l冰天雪女";subtitle=" &b你体验过寒冷吗？";d=60;fi=10;fo=10} @PlayersInRadius{r=20}
+雪舞耀阳:
+ Skills:
+ - sendtitle{title="&b&l冰天雪女";subtitle=" &b来到我这里你还想跑吗？ &a雪舞耀阳！";d=60;fi=10;fo=10} @PlayersInRadius{r=20}
+ - potion{type=Slow;d=80;lvl=2} @PIR{r=10}
+ - potion{type=BLINDNESS;d=80;lvl=2} @PIR{r=10}
+ - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - delay 10
+ - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - delay 10
+ - damage{a=4000} @PIR{r=10}
+ - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - delay 10
+ - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - delay 10
+ - damage{a=4000} @PIR{r=10}
+ - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - delay 10
+ - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - delay 10
+ - damage{a=4000} @PIR{r=10}
+ - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - delay 10
+ - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - delay 10
+ - damage{a=4000} @PIR{r=10}
+ - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+ - effect:particlering{c=#00BFFF;amount=200;speed=3;hS=5;vS=0.2;r=3} @Self
+ - effect:particlering{c=#87CEFA;amount=200;speed=3;hS=5;vS=0.2;r=3} @Self
+大寒无雪:
+ Skills:
+ - sendtitle{title="&b&l冰天雪女";subtitle=" &b冰霜之力！ &c受死吧！";d=60;fi=10;fo=10} @PlayersInRadius{r=20}
+ - damage{a=40} @PIR{r=3}
+ - effect:particles{c=#00BFFF;amount=50;speed=0;hS=0.75;vS=0.2} @PIR{r=3}
+ - effect:particles{c=#87CEFA;amount=50;speed=0;hS=0.75;vS=0.2} @PIR{r=3}
+冰寒无双:
+ Skills:
+ - sendtitle{title="&b&l冰天雪女";subtitle=" &b飞舞吧！ &c冰寒无双！";d=60;fi=10;fo=10} @PlayersInRadius{r=20}
+ - potion{type=LEVITATION;d=100;lvl=3} @PIR{r=10}
+ - potion{type=SLOW;d=100;lvl=3} @PIR{r=10}
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @PIR{r=10}
+ - delay 10
+ - effect:particles{c=#00BFFF;amount=100;speed=6;hS=0.75;vS=0.2} @PIR{r=10}
+ - effect:particles{c=#87CEFA;amount=100;speed=6;hS=0.75;vS=0.2} @PIR{r=10}
+ - damage{a=7000} @PIR{r=10}
+冰天雪女死亡:
+ Skills:
+ - sendtitle{title="&b&l冰天雪女";subtitle="&b被<target.name>杀死了";d=60;fi=10;fo=10} @PlayersInRadius{r=20}

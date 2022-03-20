@@ -1,0 +1,25 @@
+炼狱炎火龟2:
+  SpawnerGroup: 炼狱炎火龟
+  MobName: 炼狱炎火龟
+  World: t3
+  X: 214
+  Y: 8
+  Z: 271
+  Radius: 0
+  UseTimer: true
+  MaxMobs: 2
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 0
+  CooldownTimer: 0
+  Warmup: 60
+  WarmupTimer: 0
+  CheckForPlayers: true
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions: []
+  ActiveMobs: 0

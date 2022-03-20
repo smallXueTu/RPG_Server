@@ -1,0 +1,80 @@
+quester: '求救的农民'
+first: '已获得奖励,完成任务,接受差事1,说明情况'
+stop: 'false'
+NPC_options:
+  '已获得奖励':
+    text: '救命恩人，有什么需要帮助的吗？'
+    conditions: '已获得求救的农民奖励'
+    pointer: '我没事'
+    events: ''
+  '完成任务':
+    text: '太棒了，救命恩人！太感谢你了！给你20代币作为感谢吧。\n希望这些小偷以后不会再来了'
+    conditions: '完成求救的农民'
+    pointer: '感谢贵人的现币,哈哈哈，举手之劳'
+    events: '赐予20现币,添加已获得求救的农民奖励标签,删除接受求救的农民差事1标签'
+  '接受差事1':
+    text: '怎么样，救命者？这些麦田小偷只有晚上会出现，白天就消失了，你们多加小心！'
+    conditions: '接受求救的农民差事1'
+    pointer: '好，我会的,放弃任务'
+    events: ''
+  '说明情况':
+    text: '证明者，哦 不 救命者，请帮帮我！please！\n我的麦田每天晚上都会有小偷来偷麦子！\n你能帮我抓到他们吗？他们好像还拿着武器！我不敢攻击他们！'
+    conditions: ''
+    pointer: '当然可以,我不敢'
+    events: ''
+  '太棒了':
+    text: '太棒了！！那交给你了！'
+    conditions: ''
+    pointer: '好的'
+    events: '添加接受求救的农民差事1标签,击杀30麦田小偷'
+  '那好吧':
+    text: '那好吧，还是谢谢了！'
+    conditions: ''
+    pointer: '好的'
+    events: ''
+  '放弃任务':
+    text: '那好吧，还是谢谢了！'
+    conditions: ''
+    pointer: '好的'
+    events: ''
+player_options:
+  '当然可以':
+    text: '我正要磨磨刀呢！'
+    conditions: ''
+    pointer: '太棒了'
+    events: ''
+  '我不敢':
+    text: '算了吧，我也害怕！'
+    conditions: ''
+    pointer: '那好吧'
+    events: ''
+  '哈哈哈，举手之劳':
+    text: '哈哈哈，举手之劳！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '好的':
+    text: '好的。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '好，我会的':
+    text: '好，我会的！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '我没事':
+    text: '我没事。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '感谢贵人的现币':
+    text: '感谢贵人的现币！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '放弃任务':
+    text: '我想放弃任务。'
+    conditions: ''
+    pointer: '放弃任务'
+    events: '删除接受求救的农民差事1标签,放弃击杀30麦田小偷'

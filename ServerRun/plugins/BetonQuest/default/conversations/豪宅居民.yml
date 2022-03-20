@@ -1,0 +1,55 @@
+quester: '豪宅居民'
+first: '询问装备,介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你好呀，证明者...看你急匆匆的，是不是在找什么？'
+    conditions: ''
+    pointer: '制作装备,没事'
+    events: ''
+  '询问装备':
+    text: '怎么样，装备集齐了吗？'
+    conditions: '收集现代城四件套'
+    pointer: '还没有,集齐了'
+    events: ''
+  '找现代城匠人':
+    text: '这个啊...我不太会锻造装备，你可以去找一下这里的匠人。\n他肯定能帮你锻造！'
+    conditions: ''
+    pointer: '我现在过去'
+    events: ''
+  '挑战镇魔塔':
+    text: '那太棒了，现在你可以试试挑战镇魔塔了，要去试试吗？'
+    conditions: ''
+    pointer: '要啊'
+    events: ''
+player_options:
+  '制作装备':
+    text: '是的!我在找哪里可以造装备。'
+    conditions: '找到豪宅居民'
+    pointer: '找现代城匠人'
+    events: ''
+  '没事':
+    text: '没事...'
+    conditions: '!找到豪宅居民'
+    pointer: ''
+    events: ''
+  '我现在过去':
+    text: '那我去问问吧。'
+    conditions: ''
+    pointer: ''
+    events: '找到现代城匠人,添加找到现代城匠人标签,添加收集现代城四件套标签,删除找到豪宅居民标签'
+  '还没有':
+    text: '还没有。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '集齐了':
+    text: '集齐了!'
+    conditions: '集齐现代城四件套'
+    pointer: '挑战镇魔塔'
+    events: ''
+  '要啊':
+    text: '我已经准备多时了！'
+    conditions: ''
+    pointer: ''
+    events: '添加前往镇魔塔标签,前往镇魔塔,删除收集现代城四件套标签'

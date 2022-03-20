@@ -1,0 +1,70 @@
+Options:
+  # High, Normal, Low
+  Running-Performance: Normal
+  Multi-Thread: true
+  Async-Load-Menus: true
+
+Database:
+  # Local: SQLITE
+  # External: SQL, MONGODB
+  Method: SQLITE
+  Type:
+    SQLite:
+      file-name: data
+      table: npc
+    SQL:
+      host: localhost
+      port: 3306
+      user: root
+      password: root
+      database: test
+      table: trmenu_user_data
+    MongoDB:
+      client: 'mongodb://localhost:3307'
+      database: trixey
+      collection: trplugins.menu
+  Index:
+    # UUID, USERNAME
+    Player: USERNAME
+
+Loader:
+  Menu-Files:
+    - 'plugins/TrMenu/menus'
+
+Menu:
+  Settings:
+    Bound-Item-Interval: 2000
+  Icon:
+    Inherit: false
+    Item:
+      Default-Name-Color: "&7"
+      Default-Lore-Color: "&7"
+      Pre-Color: false
+
+Action:
+  Inputer:
+    Cancel-Words:
+      - 'cancel|quit|end'
+      - 'q'
+  Kether:
+    Allow-Tolerance-Parser: false
+
+
+Shortcuts:
+  Offhand: [ ]
+  Sneaking-Offhand:
+    - condition: 'perm *trmenu.shortcut'
+      execute: 'open: Example'
+      deny: 'return'
+  Right-Click-Player: 'open: Profile'
+  Sneaking-Right-Click-Player: [ ]
+  PlayerInventory-Border-Left: [ ]
+  PlayerInventory-Border-Right: [ ]
+  PlayerInventory-Border-Middle: [ ]
+
+RegisterCommands:
+  menuMenu:
+    aliases: [ ]
+    permission: null
+    execute:
+      - 'open: menu'

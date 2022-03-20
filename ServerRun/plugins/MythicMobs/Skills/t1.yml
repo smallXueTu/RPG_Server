@@ -1,0 +1,23 @@
+mttx:
+  Conditions:
+    - IsSilence{}<&csp>false
+  Skills:
+    - effect:particlesphere{particle=flame;amount=3;hS=0.4}
+    - delay 15
+    - effect:particlesphere{particle=flame;amount=3;hS=0.4}
+    - delay 15
+    - effect:particlesphere{particle=flame;amount=3;hS=0.4}
+    - delay 15
+    - effect:particlesphere{particle=flame;amount=3;hS=0.4}
+    - delay 15
+    - effect:particlesphere{particle=flame;amount=3;hS=0.4}
+    - delay 15
+    - effect:particlesphere{particle=flame;amount=3;hS=0.4}
+    - delay 15
+    - effect:particlesphere{particle=flame;amount=3;hS=0.4}
+    - damage{a=3}
+荆棘:
+  Conditions:
+    - IsSilence{}<&csp>false
+  Skills:
+    - damage{amount=5}

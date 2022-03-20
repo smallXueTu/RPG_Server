@@ -1,0 +1,80 @@
+quester: '虚空时空圣殿守护门神'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '冒险者，我相信你来错地方了，你不属于这个时空。'
+    conditions: ''
+    pointer: '你咋知道'
+    events: ''
+  '这里是时空圣殿':
+    text: '这里是时空圣殿。我看过太多从外来时空来的任何生物。'
+    conditions: ''
+    pointer: '这里发生了什么？,那我应该怎么回去'
+    events: ''
+  '你需要借住中间的传送门':
+    text: '虚空圣殿的统治者为了自己的野心。\n不惜一切代价要制作能够传送时空的传送门，甚至吧整个世界都抛空要挖掘传送门的窗口框架。\n最后他成功了，但不幸的是由于挖掘太多惹怒了大地之神。'
+    conditions: ''
+    pointer: '。。'
+    events: ''
+  '。。':
+    text: '大地之神将整个圣殿给埋没到了地下。另所有生物不得从宫殿出入。\n虽然传送门已经造好并实验成功，但它还及其不稳定。\n统治者为了不受这个圣殿限制选择跳进了传送门！不幸的是他再也没有回来...'
+    conditions: ''
+    pointer: '。。。'
+    events: ''
+  '。。。':
+    text: '一些忠诚的士兵将军任然在等待统治者的归来。\n后来一位理性的将军为了防止其他人进入传送门，直接将其封锁了起来。\n并吧传送门的激活系统的房间改造成了地狱！'
+    conditions: ''
+    pointer: '。。。。'
+    events: ''
+  '。。。。':
+    text: '由于正是一个传送描点的原因，好多时空旅行者都被莫名传送到了这里！\n但神奇的是这个传送门可以将他们传送到自己原本的时空！'
+    conditions: ''
+    pointer: '或许我可以试一下？'
+    events: ''
+  '你需要':
+    text: '你需要借住中间的传送门才能传送时空。\n由于传送控制房间极高的高温，你可以需要一件耐高温的盔甲。 \n有两个房间内的两大神兽正好可以解决这个问题，不妨你试制作一下？'
+    conditions: ''
+    pointer: '好的'
+    events: ''
+player_options:
+  '你咋知道':
+    text: '你怎么知道。'
+    conditions: ''
+    pointer: '这里是时空圣殿'
+    events: ''
+  '那我应该怎么回去':
+    text: '那我应该怎么回去？'
+    conditions: ''
+    pointer: '你需要'
+    events: ''
+  '这里发生了什么？':
+    text: '这里发生了什么？'
+    conditions: ''
+    pointer: '你需要借住中间的传送门'
+    events: ''
+  '。。':
+    text: '点我继续...'
+    conditions: ''
+    pointer: '。。'
+    events: ''
+  '。。。':
+    text: '点我继续...'
+    conditions: ''
+    pointer: '。。。'
+    events: ''
+  '。。。。':
+    text: '点我继续...'
+    conditions: ''
+    pointer: '。。。。'
+    events: ''
+  '好的':
+    text: '好的'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '或许我可以试一下？':
+    text: '或许我可以试一下？'
+    conditions: ''
+    pointer: '你需要'
+    events: ''

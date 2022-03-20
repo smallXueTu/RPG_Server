@@ -1,0 +1,220 @@
+quester: '现代城匠人'
+first: '介绍,赚到了吗,需要制作什么装备呢'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你好啊，有什么需要帮忙的吗？'
+    conditions: '找到现代城匠人'
+    pointer: '制作装备'
+    events: ''
+  '赚到了吗':
+    text: '换到钱了吗？'
+    conditions: '现代城匠人对话2'
+    pointer: '还没有,我换到了'
+    events: ''
+  '当然可以':
+    text: '哈哈哈，当然可以，不过我不是做慈善的。\n你需要给我一些好处，比如货币...'
+    conditions: ''
+    pointer: '我正好有货币'
+    events: ''
+  '现币':
+    text: '你这货币在我们这里并不流通...\n我需要的是现币...\n没有的话你身上有什么值钱的东西也可以...'
+    conditions: ''
+    pointer: '一堆掉落物'
+    events: ''
+  '我看看':
+    text: '我看看都有啥...你这武器材料挺齐全啊\n看来是有备而来哈哈。不过唯一值钱的就是这几个房地契...\n应该是酒店老板丢的。最近还见他说过这事... 反正也不远，出门左转就看到了！要不你去问问？'
+    conditions: ''
+    pointer: '我去问问'
+    events: ''
+  '需要制作什么装备呢':
+    text: '需要制作什么装备呢？'
+    conditions: '可以制作与现代城匠人交易'
+    pointer: '武器,头盔,胸甲,护腿,靴子'
+    events: ''
+  '制作武器':
+    text: '需要制作什么装备呢？'
+    conditions: '可以制作与现代城匠人交易'
+    pointer: '武器'
+    events: ''
+  '现币不足':
+    text: '你的现币好像不足20个，要不先去去赚一下现币吧...'
+    conditions: '!有20现币'
+    pointer: '好吧，我去赚'
+    events: '现币获取提示'
+  '现币不足15':
+    text: '你的现币好像不足15个，要不先去去赚一下现币吧...'
+    conditions: '!有15现币'
+    pointer: '好吧，我去赚'
+    events: '现币获取提示'
+  '武器':
+    text: '检查下你的材料...  你需要：\n
+      [冤灵之力×18]和[腐烂木棍×4]和[被超度的灵魂×18]'
+    conditions: '有20现币'
+    pointer: '材料差缺,武器材料齐全'
+    events: ''
+  '头盔':
+    text: '检查下你的材料...  你需要：\n
+      [动物的皮毛×5]和[荧光结晶×8]'
+    conditions: '有15现币'
+    pointer: '材料差缺,头盔材料齐全'
+    events: ''
+  '胸甲':
+    text: '检查下你的材料...  你需要：\n
+      [动物的皮毛×8]和[荧光结晶×8]'
+    conditions: '有15现币'
+    pointer: '材料差缺,胸甲材料齐全'
+    events: ''
+  '护腿':
+    text: '检查下你的材料...  你需要：\n
+      [动物的皮毛×7]和[荧光结晶×8]'
+    conditions: '有15现币'
+    pointer: '材料差缺,护腿材料齐全'
+    events: ''
+  '靴子':
+    text: '检查下你的材料...  你需要：\n
+      [动物的皮毛×4]和[荧光结晶×8]'
+    conditions: '有15现币'
+    pointer: '材料差缺,靴子材料齐全'
+    events: ''
+  '开始制作武器':
+    text: '好的，带齐了就好！\n这武器需求挺大的，所以我一直有库存，我已经放你背包了。\n块去试试吧~'
+    conditions: ''
+    pointer: '太棒了！'
+    events: '拿走18冤灵之力,拿走4腐烂的木棍,拿走18被超度的灵魂,赐予钢铁之刃,拿走20现币,找现代城匠人助手'
+  '开始制作头盔':
+    text: '好的，带齐了就好！\n这装备需求挺大的，所以我一直有库存，我已经放你背包了。\n块去试试吧~'
+    conditions: ''
+    pointer: '太棒了2！'
+    events: '拿走5动物的皮毛,拿走8荧光结晶,赐予皮革头盔,拿走15现币'
+  '开始制作胸甲':
+    text: '好的，带齐了就好！\n这装备需求挺大的，所以我一直有库存，我已经放你背包了。\n块去试试吧~'
+    conditions: ''
+    pointer: '太棒了2！'
+    events: '拿走8动物的皮毛,拿走8荧光结晶,赐予皮革胸甲,拿走15现币'
+  '开始制作护腿':
+    text: '好的，带齐了就好！\n这装备需求挺大的，所以我一直有库存，我已经放你背包了。\n块去试试吧~'
+    conditions: ''
+    pointer: '太棒了2！'
+    events: '拿走7动物的皮毛,拿走8荧光结晶,赐予皮革护腿,拿走15现币'
+  '开始制作靴子':
+    text: '好的，带齐了就好！\n这装备需求挺大的，所以我一直有库存，我已经放你背包了。\n块去试试吧~'
+    conditions: ''
+    pointer: '太棒了2！'
+    events: '拿走4动物的皮毛,拿走8荧光结晶,赐予皮革靴子,拿走15现币'
+  '换医疗水晶':
+    text: '对了，你之前用的武器的医疗水晶可以拆下来换过去，送你一个卸除工具。\n具体你问一下我的助手吧。'
+    conditions: ''
+    pointer: '好的！'
+    events: ''
+player_options:
+  '制作装备':
+    text: '你可以打造装备吗？'
+    conditions: ''
+    pointer: '当然可以'
+    events: ''
+  '我正好有货币':
+    text: '是橙币吗？我正好有！'
+    conditions: ''
+    pointer: '现币'
+    events: ''
+  '我正好有现币':
+    text: '你说的是现币吗，刚好有！'
+    conditions: ''
+    pointer: '需要制作什么装备呢'
+    events: ''
+  '一堆掉落物':
+    text: '我有一堆战利品...'
+    conditions: ''
+    pointer: '我看看'
+    events: ''
+  '我去问问':
+    text: '好，那我去问问...'
+    conditions: ''
+    pointer: ''
+    events: '找到酒店老板,添加找酒店老板标签,删除找到现代城匠人标签,添加现代城匠人对话2标签'
+  '还没有':
+    text: '还没有...我再看看'
+    conditions: '!有20现币'
+    pointer: ''
+    events: ''
+  '我换到了':
+    text: '我换到了！'
+    conditions: '有20现币'
+    pointer: '需要制作什么装备呢'
+    events: '添加可以制作与现代城匠人交易标签,删除现代城匠人对话2标签'
+  '武器':
+    text: '制作武器'
+    conditions: '!已领取小晴奖赏'
+    pointer: '武器,现币不足'
+    events: ''
+  '头盔':
+    text: '制作头盔'
+    conditions: '已领取小晴奖赏,!拥有皮革头盔'
+    pointer: '头盔,现币不足15'
+    events: ''
+  '胸甲':
+    text: '制作胸甲'
+    conditions: '已领取小晴奖赏,!拥有皮革胸甲'
+    pointer: '胸甲,现币不足15'
+    events: ''
+  '护腿':
+    text: '制作护腿'
+    conditions: '已领取小晴奖赏,!拥有皮革护腿'
+    pointer: '护腿,现币不足15'
+    events: ''
+  '靴子':
+    text: '制作靴子'
+    conditions: '已领取小晴奖赏,!拥有皮革靴子'
+    pointer: '靴子,现币不足15'
+    events: ''
+  '武器材料齐全':
+    text: '正好，这材料我都带齐了！'
+    conditions: '拥有18冤灵之力,有4腐烂的木棍,拥有18被超度的灵魂'
+    pointer: '开始制作武器'
+    events: ''
+  '头盔材料齐全':
+    text: '正好，这材料我都带齐了！'
+    conditions: '拥有5动物的皮毛,拥有8荧光结晶'
+    pointer: '开始制作头盔'
+    events: ''
+  '胸甲材料齐全':
+    text: '正好，这材料我都带齐了！'
+    conditions: '拥有8动物的皮毛,拥有8荧光结晶'
+    pointer: '开始制作胸甲'
+    events: ''
+  '护腿材料齐全':
+    text: '正好，这材料我都带齐了！'
+    conditions: '拥有7动物的皮毛,拥有8荧光结晶'
+    pointer: '开始制作护腿'
+    events: ''
+  '靴子材料齐全':
+    text: '正好，这材料我都带齐了！'
+    conditions: '拥有4动物的皮毛,拥有8荧光结晶'
+    pointer: '开始制作靴子'
+    events: ''
+  '材料差缺':
+    text: '好像差缺了一些材料，我去收集收集吧...'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '好吧，我去赚':
+    text: '好吧，我去赚...'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '好的！':
+    text: '好的！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '太棒了！':
+    text: '太棒了！太棒了！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '太棒了2！':
+    text: '太棒了！'
+    conditions: ''
+    pointer: ''
+    events: ''

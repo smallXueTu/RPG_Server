@@ -1,0 +1,105 @@
+quester: '木洞神秘商人'
+first: '怎么,介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '嘿，证明者，我这有一把武器，我看你应该会需要，要看看吗？'
+    conditions: '!已和木洞神秘商人交易'
+    pointer: '看看'
+    events: ''
+  '怎么':
+    text: '怎么，你要找我干嘛！'
+    conditions: '已和木洞神秘商人交易,!已挑战木洞神秘商人'
+    pointer: '你骗我,我要杀了你'
+    events: ''
+  '我可没骗你':
+    text: '我可没骗你，我可没说武器的属性！'
+    conditions: ''
+    pointer: '我要杀了你,算我倒霉'
+    events: ''
+  '回答':
+    text: '说了你可能也不认识，五行之刃，不过你放心，这绝对是一个让你惊讶的武器！'
+    conditions: ''
+    pointer: '怎么卖,真的嘛,算了'
+    events: ''
+  '当然真的啊':
+    text: '肯定保真，假的你可以杀了我！'
+    conditions: ''
+    pointer: '那怎么卖,算了'
+    events: ''
+  '你肯定打不过我':
+    text: '就你这？还想杀了我？做梦吧，不服来挑战一下！'
+    conditions: ''
+    pointer: '算了,来就来'
+    events: ''
+  '只需要水土木火金四种结晶10个':
+    text: '只需要水土木火金四种结晶10个！'
+    conditions: ''
+    pointer: '那我买一把,算了,我材料不够'
+    events: ''
+  '交易愉快':
+    text: '好的，那交易愉快！'
+    conditions: ''
+    pointer: ''
+    events: '拿走10个水之结晶,拿走10个木之结晶,拿走10个火之结晶,拿走10个大地之结晶,拿走10个钢之结晶,赐予五行之刃,添加已和木洞神秘商人交易标签'
+player_options:
+  '看看':
+    text: '什么武器？'
+    conditions: ''
+    pointer: '回答'
+    events: ''
+  '那我买一把':
+    text: '那我买一把！'
+    conditions: '有10个水之结晶,有10个木之结晶,有10个火之结晶,有10个大地之结晶,有10个钢之结晶'
+    pointer: '交易愉快'
+    events: ''
+  '真的嘛':
+    text: '真的嘛？'
+    conditions: ''
+    pointer: '当然真的啊'
+    events: ''
+  '怎么卖':
+    text: '怎么卖？'
+    conditions: ''
+    pointer: '只需要水土木火金四种结晶10个'
+    events: ''
+  '那怎么卖':
+    text: '那怎么卖？'
+    conditions: ''
+    pointer: '只需要水土木火金四种结晶10个'
+    events: ''
+  '骗人的吧':
+    text: '什么武器？'
+    conditions: ''
+    pointer: '回答'
+    events: ''
+  '算了':
+    text: '算了。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '算我倒霉':
+    text: '算了，算我倒霉。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '你骗我':
+    text: '你骗我。'
+    conditions: ''
+    pointer: '我可没骗你'
+    events: ''
+  '来就来':
+    text: '来就来！'
+    conditions: ''
+    pointer: ''
+    events: '传送到木洞神秘商人挑战处,召唤木洞神秘商人,添加已挑战木洞神秘商人标签'
+  '我要杀了你':
+    text: '我要杀了你！！'
+    conditions: ''
+    pointer: '你肯定打不过我'
+    events: ''
+  '我材料不够':
+    text: '我材料不够...算了。'
+    conditions: ''
+    pointer: ''
+    events: ''

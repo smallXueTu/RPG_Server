@@ -1,0 +1,105 @@
+quester: '酿造师-威特'
+first: 'ask-purpose,主线-检查西瓜1,主线-检查西瓜2'
+stop: 'false'
+NPC_options:
+  'ask-purpose':
+    text: '你好，我会对士兵门免费酿造的，你需要酿造吗？'
+    conditions: '!收集西瓜制作闪烁的西瓜'
+    pointer: 'reply1,reply2'
+    events: ''
+  '询问类型':
+    text: '你要酿造什么药水呢'
+    conditions: ''
+    pointer: '生命药剂,生命药剂×64'
+    events: ''
+  '准备闪烁的西瓜':
+    text: '没问题，你有闪烁的西瓜×10吗？'
+    conditions: ''
+    pointer: '生命药剂-检查通过,生命药剂-检查不通过'
+    events: ''
+  '准备闪烁的西瓜×64':
+    text: '没问题，你有闪烁的西瓜×64吗？'
+    conditions: ''
+    pointer: '生命药剂-检查通过×64,生命药剂-检查不通过'
+    events: ''
+  '主线-检查物品':
+    text: '你要酿造小型生命药剂对吧，你需要准备闪烁的西瓜×10。\n你带来了吗？'
+    conditions: ''
+    pointer: '没带来'
+    events: ''
+  '主线-集齐材料':
+    text: '行吧，你去准备十片西瓜就行了，金粒就先算了。'
+    conditions: ''
+    pointer: '我这就去'
+    events: '添加收集西瓜制作闪烁的西瓜标签,收集10西瓜'
+  '主线-检查西瓜1':
+    text: '还不快去收集西瓜！'
+    conditions: '收集西瓜制作闪烁的西瓜,!拥有10片西瓜'
+    pointer: '我这就去'
+    events: ''
+  '赐予生命药剂':
+    text: '好的，我现在就给你做！'
+    conditions: '拥有10闪烁的西瓜'
+    pointer: '非常感谢'
+    events: '拿走10闪烁的西瓜,赐予10小型生命药剂'
+  '赐予生命药剂×64':
+    text: '好的，我现在就给你做！'
+    conditions: '拥有64闪烁的西瓜'
+    pointer: '非常感谢'
+    events: '拿走64闪烁的西瓜,赐予64小型生命药剂'
+  '主线-检查西瓜2':
+    text: '好的，我现在就给你做！'
+    conditions: '收集西瓜制作闪烁的西瓜,拥有10片西瓜'
+    pointer: '非常感谢'
+    events: '拿走10片西瓜,赐予10小型生命药剂,删除制作生命药剂标签,删除收集西瓜制作闪烁的西瓜标签,添加生命药剂制作完成标签,酿造完继续找伽德'
+player_options:
+  'reply1':
+    text: '是的！'
+    conditions: '制作生命药剂'
+    pointer: '主线-检查物品'
+    events: ''
+  'reply2':
+    text: '是的！'
+    conditions: '!制作生命药剂'
+    pointer: '询问类型'
+    events: ''
+  '生命药剂':
+    text: '我要酿造生命药剂×10。'
+    conditions: ''
+    pointer: '准备闪烁的西瓜'
+    events: ''
+  '生命药剂×64':
+    text: '我要酿造生命药剂×64。'
+    conditions: ''
+    pointer: '准备闪烁的西瓜×64'
+    events: ''
+  '没带来':
+    text: '我没带...'
+    conditions: ''
+    pointer: '主线-集齐材料'
+    events: ''
+  '我这就去':
+    text: '我这就去！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '非常感谢':
+    text: '非常感谢~~'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '生命药剂-检查不通过':
+    text: '没有呢，我去收集合成。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '生命药剂-检查通过':
+    text: '我带来了。'
+    conditions: '拥有10闪烁的西瓜'
+    pointer: '赐予生命药剂'
+    events: ''
+  '生命药剂-检查通过×64':
+    text: '我带来了。'
+    conditions: '拥有64闪烁的西瓜'
+    pointer: '赐予生命药剂×64'
+    events: ''

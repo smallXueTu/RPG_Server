@@ -1,0 +1,101 @@
+quester: '钓鱼的居民'
+first: '不需要钓鱼了,催钓鱼,询问购买鱼竿,介绍'
+stop: 'false'
+NPC_options:
+  '催钓鱼':
+    text: '怎么样，钓到五条了吗？'
+    conditions: '现代城钓鱼'
+    pointer: '没有呢,钓到了'
+    events: ''
+  '不需要钓鱼了':
+    text: '你已经陪过我了，不需要陪我了\n你还想听我朋友的故事吗，有点悲伤..'
+    conditions: '现代城已经钓到'
+    pointer: '好吧,没事，我还想继续听'
+    events: ''
+  '询问购买鱼竿':
+    text: '怎么样，鱼竿买到了吗？'
+    conditions: '购买鱼竿'
+    pointer: '还没有,算了,买到了'
+    events: ''
+  '介绍':
+    text: 'hi，冒险者，闲下来钓个鱼吗？\n我自己一个人钓太无聊了...'
+    conditions: ''
+    pointer: '好的,算了'
+    events: ''
+  '那你有鱼竿吗':
+    text: '那你有鱼竿吗？没有的话去旁边的商店可以购买一把吧！'
+    conditions: ''
+    pointer: '我有,我没有,算了'
+    events: ''
+  '开始钓鱼':
+    text: '好的，那开始陪我钓鱼吧...\n好久没人陪我钓鱼了...\n不需要你钓太多，五条就够了~'
+    conditions: ''
+    pointer: '太棒了,算了'
+    events: ''
+  '好，感谢帮忙！':
+    text: '感谢年轻人愉快的陪伴~\n又让我想起了那个陪我钓鱼的老朋友...\n哎 不谈悲伤 也不能让你白陪我，送你8现币吧！'
+    conditions: ''
+    pointer: '太感谢了！'
+#    pointer: '太感谢了！,没事，我还想继续听'
+    events: '删除现代城钓鱼标签,添加现代城已经钓到标签,赐予15现币'
+player_options:
+  '好的':
+    text: '好啊。'
+    conditions: ''
+    pointer: '那你有鱼竿吗'
+    events: ''
+  '我有':
+    text: '我有鱼竿。'
+    conditions: '有鱼竿'
+    pointer: '开始钓鱼'
+    events: ''
+  '好吧':
+    text: '好吧。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '买到了':
+    text: '买到了！'
+    conditions: '有鱼竿'
+    pointer: '开始钓鱼'
+    events: '删除购买鱼竿标签'
+  '我没有':
+    text: '好吧，那我去买鱼竿...'
+    conditions: '!有鱼竿'
+    pointer: ''
+    events: '购买鱼竿,添加购买鱼竿标签'
+  '没有呢':
+    text: '没有呢。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '钓到了':
+    text: '钓到了。'
+    conditions: '钓鱼完成'
+    pointer: '好，感谢帮忙！'
+    events: ''
+  '还没有':
+    text: '还没有，我现在去买...'
+    conditions: '!有鱼竿'
+    pointer: ''
+    events: '购买鱼竿,添加购买鱼竿标签'
+  '算了':
+    text: '算了吧...'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '没事，我还想继续听':
+    text: '没事，我想听。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '太棒了':
+    text: '太棒了！！我现在就钓'
+    conditions: ''
+    pointer: ''
+    events: '添加现代城钓鱼标签,钓到五条鱼'
+  '太感谢了！':
+    text: '太感谢了，正需要现币呢！'
+    conditions: ''
+    pointer: ''
+    events: ''

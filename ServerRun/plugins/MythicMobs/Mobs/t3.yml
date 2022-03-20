@@ -1,0 +1,273 @@
+火焰粒子门1:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    Despawn: false
+    Invincible: true
+  Skills:
+    - skill{s=火焰粒子门} @Self ~onTimer:15
+    - airDoor{location=154;f=true;x=false;d=BQTag:default.解开t3第一关谜团;mess=§c你需要解开谜团才能通过这道门！;s=skill:遇到虚空圣殿守护者} @Self ~onSpawn
+火焰粒子门2:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    Despawn: false
+    Invincible: true
+  Skills:
+    - skill{s=火焰粒子门} @Self ~onTimer:15
+    - airDoor{location=192;f=true;x=false;d=BQTag:default.已击杀虚空圣殿守护者;mess=§d虚空圣殿守护者§r>> §6想通过？从我的尸体上踏过去吧！;s=skill:遇到受伤的冒险者} @Self ~onSpawn
+火焰粒子门3:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    Despawn: false
+    Invincible: true
+  Skills:
+    - skill{s=火焰粒子门2} @Self ~onTimer:15
+    - airDoor{location=448;distance=3;f=true;x=false;d=BQTag:default.解开t3第二关谜团;mess=§c你需要启动它才能使用它！;} @Self ~onSpawn
+虚空圣殿守护者:
+  Type: Skeleton
+  Display: '&6虚空圣殿守护者'
+  Health: 5000
+  Damage: 30
+  Equipment:
+    - 虚空剑:HAND
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Disguise:
+    Type: Player
+    Skin: '&6虚空圣殿守护者'
+    Player: '&6虚空圣殿守护者'
+  Skills:
+    - skill{s=虚空粉碎攻击} @target ~onDamaged 0.2
+    - addBQTag{t=default.已击杀虚空圣殿守护者} @trigger ~onDeath
+    - message{m="&d虚空圣殿守护者&r>> &6我最后忠告你一次！里面都是一些无理性的怪物，你进去对你没什么好处！"} @trigger ~onDeath
+  Drops:
+    - skillapi-exp 15
+魔藤树:
+  Type: Skeleton
+  Display: '&6魔藤树'
+  Health: 500
+  Damage: 23
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Drops:
+    - skillapi-exp 15
+    - 魔腾树木棍 1 1
+虚空矿工:
+  Type: Skeleton
+  Display: '&6虚空矿工'
+  Health: 600
+  Damage: 30
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Equipment:
+    - 278 HAND
+  Disguise:
+    Type: Player
+    Skin: '&6虚空矿工'
+    Player: '&6虚空矿工'
+  Drops:
+    - skillapi-exp 15
+    - 虚空锭 1 1
+炼狱炎火龟:
+  Type: PIG_ZOMBIE
+  Display: '&6炼狱炎火龟'
+  Health: 600
+  Damage: 30
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Drops:
+    - skillapi-exp 15
+    - 炼狱火锭 1 1
+虚空毒蜥:
+  Type: Spider
+  Display: '&6虚空毒蜥'
+  Health: 800
+  Damage: 30
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Drops:
+    - skillapi-exp 15
+    - 绿光虚空粉 1 1
+虚空之灵:
+  Type: Skeleton
+  Display: '&6虚空之灵'
+  Health: 3000
+  Damage: 30
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - skeletonbowattack
+  Equipment:
+    - 虚焱弓 HAND
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Disguise:
+    Type: Player
+    Skin: '&6虚空之灵'
+    Player: '&6虚空之灵'
+  Skills:
+    - damage{a=20} @target ~onAttack
+  Drops:
+    - skillapi-exp 20
+    - 残破的虚焱弓 1 1
+    - 虚空之箭 2 1
+虚空寒晶鸟:
+  Type: Skeleton
+  Display: '&6虚空寒晶鸟'
+  Health: 1500
+  Damage: 30
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Drops:
+    - skillapi-exp 15
+    - 食火粉 1 1
+寒晶凤凰:
+  Type: Skeleton
+  Display: '&6寒晶凤凰'
+  Health: 5000
+  Damage: 50
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Drops:
+    - skillapi-exp 20
+    - 寒晶体 1 1
+虚空金虎:
+  Type: PIG_ZOMBIE
+  Display: '&6虚空金虎'
+  Health: 1600
+  Damage: 100
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  Skills:
+    - skill{s=金虎跃击} ~onDamaged
+    - message{cooldown=60;m="<mob.name>&d>><&co> &c不许打搅虎王的安宁！"} @PlayersInRadius{r=20} ~onCombat 0.3
+    - message{cooldown=60;m="<mob.name>&d>><&co> &c不我将永远对虎王忠臣！"} @PlayersInRadius{r=20} ~onCombat 0.3
+  AITargetSelectors:
+    - clear
+    - players
+  Drops:
+    - skillapi-exp 15
+    - 虚空之金 1 1
+虚空虎王:
+  Type: PIG_ZOMBIE
+  Display: '&6虚空虎王'
+  Health: 5000
+  Damage: 100
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.3
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  Skills:
+    - skill{s=金虎跃击} ~onDamaged
+  AITargetSelectors:
+    - clear
+    - players
+  Drops:
+    - skillapi-exp 25
+    - 虚空之金 1 3

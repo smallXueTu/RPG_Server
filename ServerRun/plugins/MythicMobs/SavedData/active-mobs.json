@@ -1,0 +1,1040 @@
+{
+  "persistentMobs": {
+    "ca2f821f-9b04-4a46-b535-1506ad928453": {
+      "aliveTime": 827894,
+      "uuid": "ca2f821f-9b04-4a46-b535-1506ad928453",
+      "mobType": "火之祭坛-青蜘符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "6d45ef20-93bc-4f52-9d16-9fcf31f1b821": {
+      "aliveTime": 828494,
+      "uuid": "6d45ef20-93bc-4f52-9d16-9fcf31f1b821",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "5ce34ba7-6aba-4a79-bf56-ea6ecf01a3b4": {
+      "aliveTime": 837062,
+      "uuid": "5ce34ba7-6aba-4a79-bf56-ea6ecf01a3b4",
+      "mobType": "火之祭坛-青蜘符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "cd585804-98a9-42b2-8271-c2c8e94fe73b": {
+      "aliveTime": 492439,
+      "uuid": "cd585804-98a9-42b2-8271-c2c8e94fe73b",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "133508da-3f44-4aa7-9a2c-4978a535e6e3": {
+      "aliveTime": 776444,
+      "uuid": "133508da-3f44-4aa7-9a2c-4978a535e6e3",
+      "mobType": "火之祭坛-晶蝎符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "a9100896-e28f-43da-9235-973b5c527bdf": {
+      "aliveTime": 777043,
+      "uuid": "a9100896-e28f-43da-9235-973b5c527bdf",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "bf3d965c-7342-4d78-bb06-157050bdb701": {
+      "aliveTime": 837062,
+      "uuid": "bf3d965c-7342-4d78-bb06-157050bdb701",
+      "mobType": "火之祭坛-青蜘符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "8379d98a-2c5b-4bd1-af29-38f1b747e8b5": {
+      "aliveTime": 837686,
+      "uuid": "8379d98a-2c5b-4bd1-af29-38f1b747e8b5",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "7cfc360c-6cb9-4c57-84c2-d18d6d518395": {
+      "aliveTime": 837062,
+      "uuid": "7cfc360c-6cb9-4c57-84c2-d18d6d518395",
+      "mobType": "火之祭坛-晶蝎符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "a52f66f2-c5aa-4d0b-942d-eb1892070c98": {
+      "aliveTime": 837062,
+      "uuid": "a52f66f2-c5aa-4d0b-942d-eb1892070c98",
+      "mobType": "火之祭坛-晶蝎符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "5f62bfc0-9152-4b1d-b1f5-460ccbc1930d": {
+      "aliveTime": 837062,
+      "uuid": "5f62bfc0-9152-4b1d-b1f5-460ccbc1930d",
+      "mobType": "火之祭坛-青蜘符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "dc35aa2c-76a8-4872-afd2-df947064bdf8": {
+      "aliveTime": 837062,
+      "uuid": "dc35aa2c-76a8-4872-afd2-df947064bdf8",
+      "mobType": "火之祭坛-晶蝎符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "102214a3-203b-43f9-9924-178ab55d096a": {
+      "aliveTime": 837686,
+      "uuid": "102214a3-203b-43f9-9924-178ab55d096a",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "6bc4077a-a9fc-4ab4-8f9f-234c90dbfce0": {
+      "aliveTime": 352722,
+      "uuid": "6bc4077a-a9fc-4ab4-8f9f-234c90dbfce0",
+      "mobType": "火之祭坛-晶蝎符文",
+      "lastSeen": 1643975421732,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "11338a46-3fe2-49bf-826b-367fb60935ea": {
+      "aliveTime": 837687,
+      "uuid": "11338a46-3fe2-49bf-826b-367fb60935ea",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "d8b93800-d281-4ab1-aebd-23ffeb08e021": {
+      "aliveTime": 837686,
+      "uuid": "d8b93800-d281-4ab1-aebd-23ffeb08e021",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "59759dc2-a3bf-4e23-aedc-c4a0e92f56dd": {
+      "aliveTime": 837062,
+      "uuid": "59759dc2-a3bf-4e23-aedc-c4a0e92f56dd",
+      "mobType": "火之祭坛-青蜘符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "5e67cf3b-56ad-46da-8eae-7d9104646855": {
+      "aliveTime": 837687,
+      "uuid": "5e67cf3b-56ad-46da-8eae-7d9104646855",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "fc9cf50f-988d-4483-97c2-49a67da73878": {
+      "aliveTime": 777044,
+      "uuid": "fc9cf50f-988d-4483-97c2-49a67da73878",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "58703b36-a40a-4d91-ac4e-18de04635849": {
+      "aliveTime": 837686,
+      "uuid": "58703b36-a40a-4d91-ac4e-18de04635849",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "429fe38f-8523-45b7-b9bf-9119b8d5ccde": {
+      "aliveTime": 827894,
+      "uuid": "429fe38f-8523-45b7-b9bf-9119b8d5ccde",
+      "mobType": "火之祭坛-晶蝎符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "3448bd5f-1eeb-4ca2-989c-8fee98e65a60": {
+      "aliveTime": 491870,
+      "uuid": "3448bd5f-1eeb-4ca2-989c-8fee98e65a60",
+      "mobType": "火之祭坛-青蜘符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "6409cb01-7d6b-45b9-bf53-e41a902ea812": {
+      "aliveTime": 828493,
+      "uuid": "6409cb01-7d6b-45b9-bf53-e41a902ea812",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "b5aa4367-938e-4c76-b0af-f107307febd3": {
+      "aliveTime": 352722,
+      "uuid": "b5aa4367-938e-4c76-b0af-f107307febd3",
+      "mobType": "火之祭坛-青蜘符文",
+      "lastSeen": 1643975421733,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "87a73a3d-9555-4570-97aa-395410430830": {
+      "aliveTime": 837687,
+      "uuid": "87a73a3d-9555-4570-97aa-395410430830",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "2a736fe6-2d3b-43d4-85aa-656493a703e1": {
+      "aliveTime": 837686,
+      "uuid": "2a736fe6-2d3b-43d4-85aa-656493a703e1",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "cf30ab5f-d939-41b8-8ae2-2448a730dc03": {
+      "aliveTime": 352722,
+      "uuid": "cf30ab5f-d939-41b8-8ae2-2448a730dc03",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975421733,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "a75f9edd-8d0e-4575-9320-a9b986584380": {
+      "aliveTime": 492566,
+      "uuid": "a75f9edd-8d0e-4575-9320-a9b986584380",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "a36a4f2f-626c-4d0f-a699-40e8d279ed16": {
+      "aliveTime": 352722,
+      "uuid": "a36a4f2f-626c-4d0f-a699-40e8d279ed16",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975421733,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "1a87b224-f9b8-4ac0-a042-4904d1005ca6": {
+      "aliveTime": 837687,
+      "uuid": "1a87b224-f9b8-4ac0-a042-4904d1005ca6",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "844fc1ef-780b-4f5b-bbb8-e94c4ffe4b86": {
+      "aliveTime": 837687,
+      "uuid": "844fc1ef-780b-4f5b-bbb8-e94c4ffe4b86",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "b6da26f6-b984-4246-9e26-39d38e8548a2": {
+      "aliveTime": 296610,
+      "uuid": "b6da26f6-b984-4246-9e26-39d38e8548a2",
+      "mobType": "火焰粒子门1",
+      "lastSeen": 1647779138428,
+      "spawnLocation": {
+        "world": {
+          "uuid": "0de800c2-c86e-4d02-808e-a93cdb577b99",
+          "name": "t3"
+        },
+        "x": 289.5,
+        "y": 9.0,
+        "z": 154.5,
+        "yaw": 0.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "1ad2e107-3f78-4381-9fd4-d06a8f9e8431": {
+      "aliveTime": 837687,
+      "uuid": "1ad2e107-3f78-4381-9fd4-d06a8f9e8431",
+      "mobType": "火之祭坛-遗迹符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "98a84241-d22b-40ef-baaa-d29d82b75090": {
+      "aliveTime": 491870,
+      "uuid": "98a84241-d22b-40ef-baaa-d29d82b75090",
+      "mobType": "火之祭坛-晶蝎符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "f45d7b22-9d83-49ad-9d5d-d1e3eeb125a0": {
+      "aliveTime": 837062,
+      "uuid": "f45d7b22-9d83-49ad-9d5d-d1e3eeb125a0",
+      "mobType": "火之祭坛-晶蝎符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 1011.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "3baff78a-0f99-4dc1-98af-07086de75743": {
+      "aliveTime": 776444,
+      "uuid": "3baff78a-0f99-4dc1-98af-07086de75743",
+      "mobType": "火之祭坛-青蜘符文",
+      "lastSeen": 1643975414777,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 3011.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    },
+    "72762a97-5107-4554-99d8-b106a78f41dc": {
+      "aliveTime": 837686,
+      "uuid": "72762a97-5107-4554-99d8-b106a78f41dc",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
+      "spawnLocation": {
+        "world": {
+          "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
+          "name": "t2"
+        },
+        "x": 989.5,
+        "y": 84.0,
+        "z": 2989.5,
+        "yaw": 180.0,
+        "pitch": 0.0
+      },
+      "level": 1,
+      "gcd": 0,
+      "faction": {},
+      "stance": "default",
+      "lastSignal": "CHUNKUNLOAD",
+      "playerkills": 0,
+      "cooldowns": {},
+      "owner": {},
+      "variables": {
+        "entries": {}
+      }
+    }
+  }
+}

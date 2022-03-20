@@ -1,0 +1,25 @@
+地狱-地狱护者2:
+  SpawnerGroup: 地狱-地狱护者
+  MobName: 地狱-地狱护者
+  World: t2
+  X: 481
+  Y: 162
+  Z: 53
+  Radius: 3
+  UseTimer: true
+  MaxMobs: 2
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 0
+  CooldownTimer: 0
+  Warmup: 10
+  WarmupTimer: 0
+  CheckForPlayers: true
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions: []
+  ActiveMobs: 0

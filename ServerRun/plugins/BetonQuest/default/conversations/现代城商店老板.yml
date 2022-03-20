@@ -1,0 +1,40 @@
+quester: '现代城商店老板'
+first: '欢迎'
+stop: 'false'
+NPC_options:
+  '欢迎':
+    text: '你好，有什么需要购买的吗？'
+    conditions: ''
+    pointer: '鱼竿,啥也不需要'
+    events: ''
+  '当然有了！':
+    text: '当然有了，售价是4现币，请问还需要购买吗？'
+    conditions: ''
+    pointer: '需要购买鱼竿,不需要,钱不够'
+    events: ''
+player_options:
+  '鱼竿':
+    text: '请问你这里有鱼竿吗？'
+    conditions: '已领取小晴奖赏'
+    pointer: '当然有了！'
+    events: ''
+  '钱不够':
+    text: '(钱不太够...默默离开)'
+    conditions: '!有4现币'
+    pointer: ''
+    events: ''
+  '需要购买鱼竿':
+    text: '需要!'
+    conditions: '有4现币'
+    pointer: ''
+    events: '拿走4现币,赐予鱼竿'
+  '不需要':
+    text: '(不需要购买...默默离开)'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '啥也不需要':
+    text: '(啥也不需要...默默离开)'
+    conditions: ''
+    pointer: ''
+    events: ''

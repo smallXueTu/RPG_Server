@@ -1,0 +1,175 @@
+﻿沙漠怪物出生:
+ Skills:
+ - sendtitle{title="&8&l※&0&k &a<mob.name>&0&k &8&l※";subtitle="&c◇ &f降临在&6沙漠孤城 &c◇";d=36;fi=21;fo=15} @PlayersInRadius{r=60}
+沙漠怪物死亡:
+ Skills:
+ - sendtitle{title="&8&l※&0&k &a<mob.name>&0&k &8&l※";subtitle="&c◇ &b已被<@targetdirection.name>消灭 &c◇";d=36;fi=21;fo=15} @PlayersInRadius{r=60}
+沙漠将军冲击波-Tick:
+ Skills:
+ - effect:particles{c=#DAA520;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+沙漠将军冲击波:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:远程"} @PlayersInRadius{r=10}
+ - delay 40
+ - projectile{onTick=沙漠将军冲击波-Tick;onHit=沙漠将军冲击波-Hit;onEnd=沙漠将军冲击波-Hit;v=8;i=1;hR=1;vR=1} @target
+ - projectile{onTick=沙漠将军冲击波-Tick;onHit=沙漠将军冲击波-Hit;onEnd=沙漠将军冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=30} @target
+ - projectile{onTick=沙漠将军冲击波-Tick;onHit=沙漠将军冲击波-Hit;onEnd=沙漠将军冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=-30} @target
+沙漠将军冲击波-Hit:
+ Skills:
+ - damage{a=6000}
+ - Effect:explosion
+七星聚首:
+ Skills:
+ - missile{onTick=七星聚首-Tick;onHit=七星聚首-Hit;v=20;mr=7;hnp=false;ht=false;StopAtEntity=false;StopAtBlock=false;hs=true;i=1;hR=1;vR=1;hO=180;HugSurface=true;in=33} @Self
+七星聚首-Tick:
+ Skills:
+ - effect:lightning @origin
+七星聚首-Hit:
+ Skills:
+ - damage{a=1}
+沙漠将军震击:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:范围"} @PlayersInRadius{r=10}
+ - delay 20
+ - effect:particles{c=#DAA520;amount=50;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:particlesphere{c=#DAA520;amount=400;radius=5} @Self
+ - effect:explosion @Self
+ - damage{a=10000} @PIR{r=5}
+ - throw{velocity=10;velocityY=3} @PIR{r=5}
+沙漠将军刺击:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型: 位移"} @PlayersInRadius{r=10}
+ - delay 20
+ - leap{v=300} @target
+ - effect:particles{c=#DAA520;amount=50;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:explosion @Self
+ - delay 5
+ - damage{a=15000} @PIR{r=3}
+ - throw{velocity=5;velocityY=0} @PIR{r=3}
+沙漠将领冲击波-Tick:
+ Skills:
+ - effect:particles{c=#DAA520;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+ - effect:particles{p=flame;amount=5;speed=0.1;hS=0.2;vS=0.2} @origin
+沙漠将领冲击波:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:远程"} @PlayersInRadius{r=10}
+ - delay 40
+ - projectile{onTick=沙漠将领冲击波-Tick;onHit=沙漠将领冲击波-Hit;onEnd=沙漠将领冲击波-Hit;v=8;i=1;hR=1;vR=1} @target
+ - projectile{onTick=沙漠将领冲击波-Tick;onHit=沙漠将领冲击波-Hit;onEnd=沙漠将领冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=30} @target
+ - projectile{onTick=沙漠将领冲击波-Tick;onHit=沙漠将领冲击波-Hit;onEnd=沙漠将领冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=-30} @target
+沙漠将领冲击波-Hit:
+ Skills:
+ - damage{a=8000}
+ - Effect:explosion
+沙漠将领震击:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:范围"} @PlayersInRadius{r=10}
+ - delay 20
+ - effect:particles{c=#DAA520;amount=50;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:particlesphere{c=#DAA520;amount=400;radius=5} @Self
+ - effect:particlesphere{p=flame;amount=400;radius=5} @Self
+ - effect:explosion @Self
+ - damage{a=14000} @PIR{r=5}
+ - throw{velocity=10;velocityY=3} @PIR{r=5}
+沙漠将领刺击:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:位移"} @PlayersInRadius{r=10}
+ - delay 20
+ - leap{v=300} @target
+ - effect:particles{c=#DAA520;amount=50;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:particles{p=flame;amount=50;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:explosion @Self
+ - delay 5
+ - damage{a=19000} @PIR{r=3}
+ - throw{velocity=5;velocityY=0} @PIR{r=3}
+沙漠统领冲击波-Tick:
+ Skills:
+ - effect:particles{c=#DAA520;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+ - effect:particles{p=flame;amount=5;speed=0.1;hS=0.2;vS=0.2} @origin
+ - effect:particles{p=lava;amount=5;speed=0.1;hS=0.2;vS=0.2} @origin
+沙漠统领冲击波:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:远程"} @PlayersInRadius{r=10}
+ - delay 40
+ - projectile{onTick=沙漠将领冲击波-Tick;onHit=沙漠将领冲击波-Hit;onEnd=沙漠将领冲击波-Hit;v=8;i=1;hR=1;vR=1} @target
+ - projectile{onTick=沙漠将领冲击波-Tick;onHit=沙漠将领冲击波-Hit;onEnd=沙漠将领冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=30} @target
+ - projectile{onTick=沙漠将领冲击波-Tick;onHit=沙漠将领冲击波-Hit;onEnd=沙漠将领冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=-30} @target
+沙漠统领冲击波-Hit:
+ Skills:
+ - damage{a=10000}
+ - Effect:explosion
+沙漠统领震击:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:范围"} @PlayersInRadius{r=10}
+ - delay 20
+ - effect:particles{c=#DAA520;amount=50;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:particles{p=lava;amount=50;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:particlesphere{c=#DAA520;amount=400;radius=5} @Self
+ - effect:particlesphere{p=flame;amount=400;radius=5} @Self
+ - effect:explosion @Self
+ - damage{a=20000} @PIR{r=5}
+ - throw{velocity=10;velocityY=3} @PIR{r=5}
+沙漠统领刺击:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:位移"} @PlayersInRadius{r=10}
+ - delay 20
+ - leap{v=300} @target
+ - effect:particles{p=lava;amount=10;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:particles{c=#DAA520;amount=50;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:particles{p=flame;amount=50;speed=0.1;hS=0.35;vS=0.25} @Self
+ - effect:explosion @Self
+ - delay 5
+ - damage{a=30000} @PIR{r=3}
+ - throw{velocity=5;velocityY=0} @PIR{r=3}
+沙漠统领沙漠葬送:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:范围"} @PlayersInRadius{r=10}
+ - delay 20
+ - effect:particles{p=lava;amount=10;speed=0.1;hS=0.35;vS=0.25} @PIR{r=5}
+ - effect:particles{c=#DAA520;amount=50;speed=0.1;hS=0.35;vS=0.25} @PIR{r=5}
+ - effect:particles{p=flame;amount=50;speed=0.1;hS=0.35;vS=0.25} @PIR{r=5}
+ - effect:particlering{particle=flame;radius=5;points=128;amount=1;hS=1;vS=0} @Self
+ - damage{a=10000} @PIR{r=5}
+ - delay 10
+ - effect:particles{p=lava;amount=10;speed=0.1;hS=0.35;vS=0.25} @PIR{r=5}
+ - effect:particles{c=#DAA520;amount=50;speed=0.1;hS=0.35;vS=0.25} @PIR{r=5}
+ - effect:particles{p=flame;amount=50;speed=0.1;hS=0.35;vS=0.25} @PIR{r=5}
+ - effect:particlering{particle=flame;radius=5;points=32;amount=1;hS=1;vS=0} @Self
+ - damage{a=10000} @PIR{r=5}
+ - delay 10
+ - effect:particles{p=lava;amount=10;speed=0.1;hS=0.35;vS=0.25} @PIR{r=5}
+ - effect:particles{c=#DAA520;amount=50;speed=0.1;hS=0.35;vS=0.25} @PIR{r=5}
+ - effect:particles{p=flame;amount=50;speed=0.1;hS=0.35;vS=0.25} @PIR{r=5}
+ - effect:particlering{particle=flame;radius=5;points=32;amount=1;hS=1;vS=0} @Self
+ - damage{a=10000} @PIR{r=5}
+沙漠统领大漠狂沙:
+ Skills:
+ - message{m="&8[&c破绽看穿&8] <mob.name>即将使用技能 &6类型:远程"} @PlayersInRadius{r=10}
+ - delay 20
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=30} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=-30} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=60} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=-60} @target
+ - delay 20
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=30} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=-30} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=60} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=-60} @target
+ - delay 20
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=30} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=-30} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=60} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=-60} @target
+ - delay 20
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=30} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=-30} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=60} @target
+ - projectile{onTick=沙漠统领大漠狂沙-Tick;onHit=沙漠统领大漠狂沙-Hit;onEnd=沙漠统领大漠狂沙-Hit;v=8;i=1;hR=1;vR=1;hO=-60} @target
+沙漠统领大漠狂沙-Tick:
+ Skills:
+ - effect:particles{c=#DAA520;amount=10;speed=0.1;hS=0.2;vS=0.2} @origin
+ - effect:particles{p=flame;amount=2;speed=0.1;hS=0.2;vS=0.2} @origin
+沙漠统领大漠狂沙-Hit:
+ Skills:
+ - damage{a=30000}
+ - Effect:explosion

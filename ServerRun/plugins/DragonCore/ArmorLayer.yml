@@ -1,0 +1,30 @@
+暗影盔甲:
+  match: "暗影盔甲"
+  texture: "t2/暗影盔甲"
+绿魔盔甲:
+  match: "绿魔盔甲"
+  texture: "t2/绿魔盔甲"
+未来盔甲:
+  match: "未来盔甲"
+  texture: "t2/未来盔甲"
+淬火盔甲:
+  match: "淬火盔甲"
+  texture: "t2/淬火盔甲"
+恶魔骑士:
+  match: "恶魔骑士"
+  texture: "t2/恶魔骑士"
+暗黑盔甲:
+  match: "暗黑盔甲"
+  texture: "t2/暗黑盔甲"
+地狱钢铁:
+  match: "地狱钢铁"
+  texture: "t2/地狱钢铁"
+恶火盔甲:
+  match: "恶火盔甲"
+  texture: "t2/恶火盔甲"
+虚空寒冰盔甲:
+  match: "虚空寒冰盔甲"
+  texture: "t3/虚空寒冰盔甲"
+test:
+  match: "TestArmor"
+  texture: "test"

@@ -1,0 +1,78 @@
+Title: 'T2兑换菜单'
+
+Title-Update: -1
+
+Layout:
+  - - '#       #'
+    - '#  `火灵体``解蜘蛛毒剂``火灵之刃`  #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '火灵体':
+    display:
+      material: 388
+      name: "&e火灵体"
+      lore:
+      - "&3<<&e兑换火灵体×1"
+      - "&3>>&e需要：火焰&e蜘蛛眼×1"
+      - "&3>>&e需要：水灵&e晶石×1"
+    actions:
+      all:
+        - 'LTExchange: 火灵体'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '解蜘蛛毒剂':
+    display:
+      material: 388
+      name: "&e解蜘蛛毒剂"
+      lore:
+      - "&3<<&e兑换解蜘蛛毒剂×1"
+      - "&3>>&e需要：蜘蛛&e腿×16"
+      - "&3>>&e需要：洞穴蜘蛛&e眼×16"
+    actions:
+      all:
+        - 'LTExchange: 解蜘蛛毒剂'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '火灵之刃':
+    display:
+      material: 276
+      name: "&e火灵之刃"
+      lore:
+      - "&3<<&e兑换火灵之刃×1"
+      - "&3>>&e需要：火灵&e体×10"
+      - "&3>>&e需要：钢铁&e之刃×1"
+    actions:
+      all:
+        - 'LTExchange: 火灵之刃'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'

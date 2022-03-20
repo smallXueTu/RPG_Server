@@ -1,0 +1,62 @@
+暗裔守卫者:
+  Type: Skeleton
+  Display: '&e【初级】&6暗裔守卫者'
+  Health: 2000
+  Damage: 30
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  Disguise:
+    Type: Player
+    Skin: '&e【初级】&6暗裔守卫者'
+    Player: '&e【初级】&6暗裔守卫者'
+  Equipment:
+    - 267 HAND
+  AITargetSelectors:
+    - clear
+    - players
+  Options:
+    FollowRange: 18
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Skills:
+    - dropGoldCoins{c=3;r=3;forcesync=true} @SelfLocation ~onDeath
+  Drops:
+    - skillapi-exp 15
+    - 力量宝石碎片 1 1
+暗裔守护:
+  Type: Skeleton
+  Display: '&e【初级】&6暗裔守护'
+  Health: 2000
+  Damage: 30
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  Disguise:
+    Type: Player
+    Skin: '&e【初级】&6暗裔守护'
+    Player: '&e【初级】&6暗裔守护'
+  Equipment:
+    - 267 HAND
+  AITargetSelectors:
+    - clear
+    - players
+  Skills:
+    - dropGoldCoins{c=3;r=3;forcesync=true} @SelfLocation ~onDeath
+  Options:
+    FollowRange: 18
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 15
+    - 力量宝石碎片 1 1

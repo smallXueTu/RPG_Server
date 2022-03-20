@@ -1,0 +1,25 @@
+base:
+  # Y轴偏移，默认是在脚的位置
+  offsetY: 2
+  # 血条背景
+  background:
+    path: "xt.png"
+    width: 60
+    height: 8
+  # 血条图片
+  health:
+    path: "bnb.png"
+    width: "60-(1-%h%/%hmax%)*60"
+    height: 8
+  # 变量:
+  #   per  -> 当前血条比例: 0.00-1.00
+  #   h    -> 当前血量
+  #   hmax -> 当前最大血量
+  #
+  string:
+    xx:
+      # 变量同上，以及%name% -> 怪物名   若为纯数字及计算符号，则为计算值
+      content: "卧槽无情"
+      x: 1
+      y: 1
+      scale: 0.5

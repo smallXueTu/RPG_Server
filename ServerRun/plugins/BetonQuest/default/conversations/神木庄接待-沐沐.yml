@@ -1,0 +1,80 @@
+quester: '沐沐'
+first: '告诉沐沐附魔完成,附魔,介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你好啊，我是神木庄的接待，沐沐。\n不过这段时间我可能无法正常接待引导你了，这边出了点情况...'
+    conditions: ''
+    pointer: '什么情况,我来错地方了'
+    events: ''
+  '附魔':
+    text: '先把你的击退附魔书附魔到你的武器上吧，左上角有提示。'
+    conditions: '附魔'
+    pointer: '好的'
+    events: ''
+  '告诉沐沐附魔完成':
+    text: '太棒了，你学习能力很强！\n现在去收集材料吧！'
+    conditions: '告诉沐沐附魔完成'
+    pointer: '没问题'
+    events: ''
+  '被入侵了':
+    text: '被元素怪物入侵了，好多路都没元素怪物的技能堵上了。\n我们勉强开了一条，比之前远了不少....'
+    conditions: ''
+    pointer: '那太悲惨了'
+    events: ''
+  '你来干嘛':
+    text: '对了，我还不知道你来干嘛的。'
+    conditions: ''
+    pointer: '我来帮忙的'
+    events: ''
+  '那太好了':
+    text: '&a你：我是来帮忙的，顺便询问一下职业装备的问题...&r\n沐沐：那太好了，这里有位大师正好可以制作装备。你先上去吧。\n不过现在可能不好上去，能顺便杀几只怪物吗？'
+    conditions: ''
+    pointer: '当然可以'
+    events: ''
+  '好':
+    text: '好的，怪物的战利品还挺有研究意义的，你每一种收集20种就行了！\n对了，这里的怪物凶猛，你可能需要把你的武器附魔一下。\n按下M找到锻造菜单，跟铁砧一样，附魔一下吧！'
+    conditions: ''
+    pointer: '马上'
+    events: ''
+player_options:
+  '什么情况':
+    text: '什么情况？'
+    conditions: '找到沐沐'
+    pointer: '被入侵了'
+    events: ''
+  '我来错地方了':
+    text: '我来错地方了..'
+    conditions: '!找到沐沐'
+    pointer: ''
+    events: ''
+  '那太悲惨了':
+    text: '那太悲惨了..'
+    conditions: ''
+    pointer: '你来干嘛'
+    events: ''
+  '我来帮忙的':
+    text: '我来帮忙的...'
+    conditions: ''
+    pointer: '那太好了'
+    events: ''
+  '当然可以':
+    text: '当然可以！'
+    conditions: ''
+    pointer: '好'
+    events: ''
+  '马上':
+    text: '好的，没问题！'
+    conditions: ''
+    pointer: ''
+    events: '附魔武器提示,添加附魔标签,赐予击退附魔书,添加可以锻造标签'
+  '好的':
+    text: '好的'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '没问题':
+    text: '没问题！'
+    conditions: ''
+    pointer: ''
+    events: '添加收集元素结晶标签,收集元素结晶,删除找到沐沐标签,删除告诉沐沐附魔完成标签'

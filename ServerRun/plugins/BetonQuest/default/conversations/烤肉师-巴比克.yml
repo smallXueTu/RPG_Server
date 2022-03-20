@@ -1,0 +1,70 @@
+quester: '烤肉师-巴比克'
+first: 'ask-purpose'
+stop: 'false'
+NPC_options:
+  'ask-purpose':
+    text: '你好，我会对士兵门免费烤肉的，你需要烤肉吗？'
+    conditions: ''
+    pointer: 'reply1'
+    events: ''
+  '询问需要做什么':
+    text: '你希望烤什么肉呢？只有十个烤肉台哦。\n(请选择你要做的类型，如果数量不够点击无任何反应。)'
+    conditions: ''
+    pointer: '鸡肉,主线-鸡肉,牛肉,猪肉,羊肉,鱼,兔子肉'
+    events: ''
+  '主线-鸡肉':
+    text: '好的，烤好了，另外看你一个刚来的就多送你几只鸡肉吧！'
+    conditions: '拥有10块鸡肉'
+    pointer: '非常感谢'
+    events: '拿走10块鸡肉,赐予64块熟鸡肉,烹饪完继续找伽德,添加烹饪标签'
+  '鸡肉':
+    text: '好的，烤好了！'
+    conditions: '拥有10块鸡肉'
+    pointer: '非常感谢'
+    events: '拿走10块鸡肉,赐予10块熟鸡肉'
+player_options:
+  'reply1':
+    text: '是的！'
+    conditions: ''
+    pointer: '询问需要做什么'
+    events: ''
+  '主线-鸡肉':
+    text: '我要烤鸡肉。'
+    conditions: '做鸡肉'
+    pointer: '主线-鸡肉'
+    events: ''
+  '鸡肉':
+    text: '我要烤鸡肉。'
+    conditions: '烹饪'
+    pointer: '鸡肉'
+    events: ''
+  '牛肉':
+    text: '我要烤牛肉！'
+    conditions: '烹饪'
+    pointer: ''
+    events: ''
+  '猪肉':
+    text: '我要烤猪肉！'
+    conditions: '烹饪'
+    pointer: ''
+    events: ''
+  '羊肉':
+    text: '我要烤羊肉！'
+    conditions: '烹饪'
+    pointer: ''
+    events: ''
+  '鱼':
+    text: '我要烤鱼！'
+    conditions: '烹饪'
+    pointer: ''
+    events: ''
+  '兔子肉':
+    text: '我要烤兔子肉！'
+    conditions: '烹饪'
+    pointer: ''
+    events: ''
+  '非常感谢':
+    text: '非常感谢！！'
+    conditions: ''
+    pointer: ''
+    events: ''

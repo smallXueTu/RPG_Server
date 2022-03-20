@@ -1,0 +1,25 @@
+符文蜘蛛3:
+  SpawnerGroup: 符文蜘蛛
+  MobName: 符文蜘蛛
+  World: t2
+  X: 1049
+  Y: 70
+  Z: 2549
+  Radius: 2
+  UseTimer: true
+  MaxMobs: 2
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 0
+  CooldownTimer: 0
+  Warmup: 10
+  WarmupTimer: 0
+  CheckForPlayers: true
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions: []
+  ActiveMobs: 0

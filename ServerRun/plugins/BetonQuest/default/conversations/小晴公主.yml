@@ -1,0 +1,75 @@
+quester: '小晴公主'
+first: '有何贵干,悬要奖赏,求救'
+stop: 'false'
+NPC_options:
+  '有何贵干':
+    text: '证明者，还有什么需要帮助的吗？'
+    conditions: '已领取小晴奖赏'
+    pointer: '没事'
+    events: ''
+  '悬要奖赏':
+    text: '太感谢了，放心奖赏少不了！不过还是感谢你！\n另外给你一个感应器吧！它能感应附近需要帮忙的人！'
+    conditions: '已救小暖'
+    pointer: '举手之劳'
+    events: ''
+  '求救':
+    text: '证明者，救救我的妹妹吧，他现在在下面生死未卜。\n城主肯定会好好感谢你的！'
+    conditions: ''
+    pointer: '非常乐意,你还是找别人吧,算了'
+    events: ''
+  '安排差事':
+    text: '好！谢谢勇士，先说声谢谢了！...\n跟你说下原因吧，事情比较紧急我也不敢说太多。\n我妹妹就在这个角落采花，没想到有个大坑，就滑下去了...'
+    conditions: ''
+    pointer: '。。。'
+    events: ''
+  '继续安排差事':
+    text: '下面好像有好多怪物，我也不敢下去...\n对了，先说好，我这个妹妹比较胆小，你要多杀几只怪物她可能才敢跟你上来！'
+    conditions: ''
+    pointer: '没问题，交给我吧！'
+    events: ''
+  '再次询问是否接受':
+    text: '证明者，啊不，救命者！救救我们这个家庭吧！\n城主肯定会给你好多现币的奖励的！！'
+    conditions: ''
+    pointer: '妥协,算了'
+    events: ''
+player_options:
+  '非常乐意':
+    text: '在哪？非常乐意！'
+    conditions: '待取小晴公主差事'
+    pointer: '安排差事'
+    events: ''
+  '妥协':
+    text: '行吧，勉强下吧！'
+    conditions: ''
+    pointer: '安排差事'
+    events: ''
+  '没问题，交给我吧！':
+    text: '没问题，交给我吧！'
+    conditions: ''
+    pointer: ''
+    events: '添加接受小晴公主差事标签,接受小晴公主差事,删除待取小晴公主差事标签,保存主线位置到T2进度6'
+  '。。。':
+    text: '。。。'
+    conditions: ''
+    pointer: '继续安排差事'
+    events: ''
+  '算了':
+    text: '算了。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '你还是找别人吧':
+    text: '你还是别人吧。'
+    conditions: ''
+    pointer: '再次询问是否接受'
+    events: ''
+  '举手之劳':
+    text: '我应该感谢你才对。'
+    conditions: ''
+    pointer: ''
+    events: '添加已领取小晴奖赏标签,删除已救小暖标签,赐予20现币,集齐现代城四件套,保存主线位置到T2进度7,赐予感应器'
+  '没事':
+    text: '没事...'
+    conditions: ''
+    pointer: ''
+    events: ''

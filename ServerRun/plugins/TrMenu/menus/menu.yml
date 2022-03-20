@@ -1,0 +1,105 @@
+Title: '§l§aLTCraft 总菜单'
+
+Title-Update: 0
+
+Layout:
+  - - '#  `teleport``rtp``mainline`  #'
+    - '#  `shop`    #'
+    - '#       #'
+    - '#       #'
+    - '`基础设置`   `forge`   `Close`'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  'teleport':
+    display:
+      material: 381
+      name: "&e打开传送菜单"
+      lore: "&3<<&e点我打开打开传送菜单&3>>"
+    actions:
+      all: 'open: teleport'
+  'shop':
+    display:
+      material: 264
+      name: "&e打开商店菜单"
+      lore: "&3<<&e点我打开打开商店菜单&3>>"
+    actions:
+      all: 'open: shop'
+  'rtp':
+    display:
+      material: 368
+      name: "&e点我随机传送"
+      lore: "&3<<&e点我随机传送&3>>"
+    actions:
+      all:
+        - close
+        - 'command: rtp'
+  'mainline':
+    display:
+      material: 267
+      shiny: 'true'
+      name: "&e继续主线"
+      lore: "&3<<&e传送到RPG主线存档点&3>>"
+    actions:
+      all:
+        - close
+        - 'command: home mainline'
+  '基础设置':
+    display:
+      material: 340
+      shiny: 'true'
+      name: "&e基础设置"
+      lore: "&3<<&e点我打开基础设置&3>>"
+    actions:
+      all:
+        - close
+        - 'OpenCoreGui: 设置'
+  'forge':
+    display:
+      material: 145
+      shiny: 'true'
+      name: "&e打开装备锻造界面"
+      lore: "&3<<&e点我打开装备锻造界面&3>>"
+#    icons:
+#      - condition: 'js: !bukkitServer.getPluginManager().getPlugin("LTCraft").api.hasBQTag(vars("%player_name%"), "default.可以锻造")'
+#        display:
+#          material: Air
+    actions:
+      all:
+        - 'close'
+        - 'OpenCoreGui: 锻造'
+  Close:
+    display:
+      material: Red Stained Glass Pane
+      name: '&c关闭'
+    actions:
+      all: close

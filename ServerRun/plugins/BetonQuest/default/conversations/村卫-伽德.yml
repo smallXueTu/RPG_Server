@@ -1,0 +1,212 @@
+quester: '村卫-伽德'
+first: 'ask-purpose,催收集西瓜,拿走西瓜,催找巴克门,验证铁制装备,催击杀蜘蛛,
+拿走剧毒,快去烹饪,回复生命,帮村民,询问宝石如何镶嵌,守卫前线,完成守卫后山,武器升级没完成,
+武器升级完成,还没完成击杀病毒母体,已击杀病毒母体,已击杀病毒原体'
+stop: 'false'
+NPC_options:
+  'ask-purpose':
+    text: '!你来这里干嘛，这里可不是什么安全的地方。'
+    conditions: '找到伽德'
+    pointer: 'reply1'
+    events: ''
+  '知道他的情况回复':
+    text: '这样啊，你这脆弱的小身板能干啥？'
+    conditions: ''
+    pointer: 'reply2'
+    events: ''
+  '要求干体力活':
+    text: '这样吧，你怎么远赶来，一定很渴吧，你去村里农田内摘30个西瓜解解渴。'
+    conditions: ''
+    pointer: 'reply3'
+    events: '收集西瓜,添加收集西瓜标签,删除找到伽德标签'
+  '催收集西瓜':
+    text: '快去收集西瓜，别在这瞎转了。\n找不到路？调出鼠标点击左上角导航！'
+    conditions: '收集西瓜,!拥有30片西瓜'
+    pointer: 'reply3'
+    events: ''
+  '拿走西瓜':
+    text: '可以，效率挺快，这西瓜在夏天真解渴啊。\n那我不客气拿走20个，剩下的送你当食物了。'
+    conditions: '收集西瓜,拥有30片西瓜'
+    pointer: 'reply4'
+    events: ''
+  '要求击杀蜘蛛':
+    text: '哦对了，后院经常繁衍出大量蜘蛛，这些蜘蛛没什么危害，\n但它的毒能治疗外来的病毒，你可以帮我杀15只带过来它的毒吗？'
+    conditions: ''
+    pointer: 'reply5'
+    events: ''
+  '获得武器':
+    text: '哦对，差点吧这事给忘了，你去找一下铁匠-巴克门，\n他是这里最厉害的匠人了，让他给你打造一把武器。'
+    conditions: ''
+    pointer: 'reply6'
+    events: '删除收集西瓜标签,拿走20片西瓜,添加找巴克门中标签,找巴克门'
+  '催找巴克门':
+    text: '你应该去找巴克门的，我给不了你武器...'
+    conditions: '找巴克门中,!拥有铁制装备'
+    pointer: 'reply6'
+    events: ''
+  '验证铁制装备':
+    text: '巴克门果然没让我失望，这装备一看就挺结实，应该不会损坏。\n不知道防御攻击效果咋样。你去杀15蜘蛛练练手吧！'
+    conditions: '拥有铁制装备,!击杀蜘蛛'
+    pointer: 'reply3'
+    events: '添加击杀15只蜘蛛任务,添加击杀蜘蛛标签,删除拥有铁制装备标签'
+  '催击杀蜘蛛':
+    text: '还不快去击杀蜘蛛集齐15个剧毒!'
+    conditions: '击杀蜘蛛,!拥有15剧毒'
+    pointer: 'reply3'
+    events: ''
+  '拿走剧毒':
+    text: '小伙子你很棒，我就知道翟纳若带来的人一定不会差的。\n想必你现在一定很饿了吧。\n去牧场杀几只鸡让巴比克烹饪一下填饱肚子吧。'
+    conditions: '!冷却对话,击杀蜘蛛,拥有15剧毒'
+    pointer: 'reply3'
+    events: '删除击杀蜘蛛标签,击杀10只鸡,添加做鸡肉标签,冷却对话10s,添加冷却对话标签,拿走15剧毒'
+  '快去烹饪':
+    text: '你应该去找巴比克烹饪你的鸡肉的！'
+    conditions: '!烹饪'
+    pointer: '好的'
+    events: ''
+  '回复生命':
+    text: '怎么样，鸡肉好吃吗？\n对了，我想你在打怪的时候生命值可能不够用，\n你可以去做一个瞬间恢复的药剂，可以在你没血的时候加血。'
+    conditions: '烹饪,做鸡肉'
+    pointer: 'reply3'
+    events: '删除做鸡肉标签,制作生命药剂,添加制作生命药剂标签'
+  '帮村民':
+    text: '好了，现在你已经是一个合格的战士了，现在不是闲聊的时候。\n门外那个农民好像在喊什么，你快去看看。'
+    conditions: '生命药剂制作完成'
+    pointer: 'reply8'
+    events: '删除生命药剂制作完成标签,帮村民,添加帮村民标签'
+  '询问宝石如何镶嵌':
+    text: '这个宝石看样子很神奇，我也不太懂。\n你去找一下姆斯特吧，他应该有所了解。'
+    conditions: '询问宝石如何镶嵌'
+    pointer: 'reply8'
+    events: '找到姆斯特'
+  '守卫前线':
+    text: '看着这宝石挺强，瞬间感觉提升了一个档次！\n好了，现在不是夸你的时候了。\n后山的丧尸要冲进来了，快去杀30只吧。'
+    conditions: '找伽德守卫前线,拥有铁剑'
+    pointer: 'reply3'
+    events: '删除找伽德守卫前线标签,添加守卫后山标签,击杀30只丧尸'
+  '完成守卫后山':
+    text: '怎么样，武器好用吗？'
+    conditions: '守卫后山,已击杀30只丧尸'
+    pointer: 'reply9'
+    events: ''
+  '附加伤害':
+    text: '伤害有点低了？\n你可以去找姆斯特请求他帮你打磨武器。\n至于他会不会帮你就不知道了...'
+    conditions: ''
+    pointer: '那我去问问他'
+    events: ''
+  '武器升级完成':
+    text: '我就知道这长辈肯定会帮你的，毕竟他当年也帮了我不少...\n现在武器规格可以了吧！'
+    conditions: '升级t1武器,拥有锋利的铁剑'
+    pointer: '很棒了'
+    events: ''
+  '击杀东边母体':
+    text: '好，给你展示的机会，东边的外来病毒砸过来了，繁衍了好多母体，你快去看看吧'
+    conditions: ''
+    pointer: 'reply3'
+    events: '击杀30只病毒母体,添加击杀病毒母体标签,删除升级t1武器标签'
+  '武器升级没完成':
+    text: '你怎么回来了，还不快去找姆斯特，还是他不帮你升级武器？'
+    conditions: '升级t1武器,!拥有锋利的铁剑'
+    pointer: 'reply6_1'
+    events: ''
+  '还没完成击杀病毒母体':
+    text: '怎么还在这里愣着不去击杀病毒母体？'
+    conditions: '击杀病毒母体,!已击杀病毒母体'
+    pointer: 'reply6_1'
+    events: ''
+  '已击杀病毒母体':
+    text: '怎么，又来找我索要任务了？\n现在怪物对于你来说小菜一碟了？'
+    conditions: '击杀病毒母体,已击杀病毒母体'
+    pointer: '确实'
+    events: ''
+  '安排更艰巨的':
+    text: '挺有勇气，我佩服你。既然你都说了，那就让你挑战下吧！\n东边的病毒原体拥有很强的毒性，你可以去挑战下！\n每次击杀都会村子都会安宁一段时间\n但并不能根除。'
+    conditions: ''
+    pointer: 'reply6_1'
+    events: '击杀3只病毒原体,添加击杀病毒原体标签,删除击杀病毒母体标签'
+  '已击杀病毒原体':
+    text: '太棒了，没想到你成长怎么快，你可以回去了。\n这里不需要你管了，有更需要的地方了！\n回去继续找翟纳若吧。'
+    conditions: '击杀病毒原体,已击杀病毒原体'
+    pointer: '感谢,感谢2'
+    events: ''
+player_options:
+  'reply1':
+    text: '<向他说明情况>'
+    conditions: ''
+    pointer: '知道他的情况回复'
+    events: ''
+  'reply2':
+    text: '<证明自己的强壮>'
+    conditions: ''
+    pointer: '要求干体力活'
+    events: ''
+  'reply3':
+    text: '好，我这就去！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  'reply4':
+    text: '感谢。'
+    conditions: ''
+    pointer: '要求击杀蜘蛛'
+    events: ''
+  '感谢':
+    text: '好的，感谢你们的包庇！'
+    conditions: '!接受翟纳若的任务2'
+    pointer: ''
+    events: '回城,五秒后继续找翟纳若领取T2任务,添加毕业T1标签,添加击杀病毒原体标签,删除击杀病毒母体标签'
+  '感谢2':
+    text: '好的，谢谢你们的照料！'
+    conditions: ''
+    pointer: ''
+    events: '回城,五秒后继续找翟纳若领取T2任务,添加毕业T1标签,添加击杀病毒原体标签,删除击杀病毒母体标签'
+  '那我去问问他':
+    text: '那我去问问他！'
+    conditions: ''
+    pointer: ''
+    events: '删除守卫后山标签,找姆斯特升级武器,添加升级t1武器标签'
+  'reply5':
+    text: '可是我没武器(小声BB)'
+    conditions: ''
+    pointer: '获得武器'
+    events: ''
+  'reply6':
+    text: '好的，我去问问。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  'reply6_1':
+    text: '我现在就去。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  'reply7':
+    text: '我已经迫不及待了！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  'reply8':
+    text: '那我去看看。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  'reply9':
+    text: '好用，就是感觉伤害有点低...'
+    conditions: ''
+    pointer: '附加伤害'
+    events: ''
+  '很棒了':
+    text: '我现在就想上手试试！'
+    conditions: ''
+    pointer: '击杀东边母体'
+    events: ''
+  '确实':
+    text: '确实有那么一点...'
+    conditions: ''
+    pointer: '安排更艰巨的'
+    events: ''
+  '好的':
+    text: '好的。'
+    conditions: ''
+    pointer: ''
+    events: ''

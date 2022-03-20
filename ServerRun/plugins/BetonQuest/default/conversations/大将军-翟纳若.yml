@@ -1,0 +1,100 @@
+quester: '大将军-翟纳若'
+first: '接受翟纳若的任务1,接受翟纳若的任务2,接受翟纳若的任务3,encourage'
+stop: 'false'
+NPC_options:
+  '接受翟纳若的任务1':
+    text: '你找我有什么事吗？还是要证明自己是个勇士的。'
+    conditions: '!接受翟纳若的任务1'
+    pointer: 'reply1'
+    events: ''
+  '接受翟纳若的任务2':
+    text: '可以啊，小伙子，你现在已经是超越大部分证明者了。'
+    conditions: '毕业T1,!接受翟纳若的任务2'
+    pointer: '可以给我证明吗'
+    events: ''
+  '接受翟纳若的任务3':
+    text: '看来我真的低估你了，这点小任务还真难不到你。\n这样吧，既然要做勇士，那至少不有一套像样的装备，虚无之境正好有很多的装备供你选择。\n你能拿到一套&c虚无·传说&r品质的装备，我就封你做勇士了！'
+    conditions: '毕业T2,!接受翟纳若的任务3'
+    pointer: '希望吧'
+    events: ''
+  '现在还不行':
+    text: '哈哈，我可没说帮过伽德之后就可以给你证明了!\n真正的勇士证明可不是随便颁发的。\n更何况现在你的能力还差得远...'
+    conditions: ''
+    pointer: '那该咋办'
+    events: ''
+  '不会的':
+    text: '哈哈，不会的，毕竟拿到这种装备的人不多。\n这是个好的锻炼机会，到指定地方会有人告诉你该怎么做的。\n去吧，证明者！祝你好运！'
+    conditions: ''
+    pointer: '带我过去'
+    events: ''
+  '锻炼自己':
+    text: '按照惯例，你应该去料峭北城锻炼一段时间的\n那里是既危险又安全的地方\n到哪里你绝对能提升自己的能力！'
+    conditions: ''
+    pointer: '快带我去'
+    events: ''
+  '指路':
+    text: '路线已经给你规划了，你点左边导航就行了！'
+    conditions: ''
+    pointer: '好的'
+    events: '接受翟纳若的任务2,添加寻找T2传送门'
+  'introduce':
+    text: '好，来的正是时候，我朋友伽德的村子遭遇了入侵，他应该需要你们！\n你可以去帮下忙，我好给你勇士的证明。'
+    conditions: ''
+    pointer: 'reply2'
+    events: ''
+  'come':
+    text: '我给你路线，你顺着过去就行了。'
+    conditions: ''
+    pointer: '好的'
+    events: '接受翟纳若的任务1,添加寻找T1传送门,删除寻找翟纳若标签,五秒后提示个人设置'
+  'encourage':
+    text: '继续加油哦，你可以成为勇士的！'
+    conditions: '!勇士'
+    pointer: 'reply3'
+    events: ''
+player_options:
+  'reply1':
+    text: '是的！'
+    conditions: ''
+    pointer: 'introduce'
+    events: ''
+  'reply2':
+    text: '非常乐意！'
+    conditions: ''
+    pointer: 'come'
+    events: ''
+  'reply3':
+    text: '我一定会的！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '可以给我证明吗':
+    text: '那你可以给我证明吗？'
+    conditions: ''
+    pointer: '现在还不行'
+    events: ''
+  '那该咋办':
+    text: '那该咋办...'
+    conditions: ''
+    pointer: '锻炼自己'
+    events: ''
+  '快带我去':
+    text: '快带我去！'
+    conditions: ''
+    pointer: '指路'
+    events: ''
+  '带我过去':
+    text: '带我过去！'
+    conditions: ''
+    pointer: ''
+    events: '找到T3传送门,添加请求凯特开往指定方向标签'
+  '好的':
+    text: '好的！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '希望吧':
+    text: '希望吧 别再有新要求了...'
+    conditions: ''
+    pointer: '不会的'
+    events: ''

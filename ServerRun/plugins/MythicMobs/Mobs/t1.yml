@@ -1,0 +1,147 @@
+西瓜:
+  Type: pig
+  Display: '&c西瓜'
+  Health: 1000000
+  Damage: 1000000
+  AIGoalSelectors:
+    - clear
+  Disguise:
+    Type: BLOCK
+    Block: MELON_BLOCK
+    BlockData: 0
+    ShowName: true
+  Skills:
+    - skill{s=检测采集} ~onInteract
+    - skill{s=收集西瓜} ~onInteract
+    - message{cooldown=4;m="&f*&c请使用右键进行采集哦"} ~onDamaged
+  Options:
+    FollowRange: 0
+    MovementSpeed: 0
+    KnockbackResistance: 0
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Drops:
+    - 西瓜 1 1
+鸡:
+  Type: chicken
+  Display: '&6鸡'
+  Health: 1
+  Damage: 1
+  Modules:
+    ThreatTable: true
+  Drops:
+    - 鸡肉 1 1
+  Disguise:
+  Equipment:
+  Skills:
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+剧毒蜘蛛:
+  Type: CAVE_SPIDER
+  Display: '&6剧毒蜘蛛'
+  Health: 30
+  Damage: 1
+  Modules:
+    ThreatTable: true
+  Drops:
+    - 剧毒 1 1
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.1
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+沙漠剥皮者:
+  Type: HUSK
+  Display: '&6沙漠剥皮者'
+  Health: 30
+  Damage: 1
+  Modules:
+    ThreatTable: true
+  Options:
+    FollowRange: 20
+    MovementSpeed: 0.15
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+丧尸:
+  Type: ZOMBIE_VILLAGER
+  Display: '&6入侵者-丧尸'
+  Health: 35
+  Damage: 4
+  Modules:
+    ThreatTable: true
+  Options:
+    FollowRange: 20
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+野牛:
+  Type: PIG_ZOMBIE
+  Display: '&6野牛'
+  Health: 10
+  Damage: 2
+  Drops:
+    - 牛肉 1 1
+  Modules:
+    ThreatTable: true
+  Disguise:
+    Type: cow
+    ShowName: true
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+入侵母体:
+  Type: ZOMBIE
+  Display: '&6入侵母体'
+  Health: 40
+  Damage: 5
+  Modules:
+    ThreatTable: true
+  Options:
+    FollowRange: 20
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+病毒原体:
+  Type: ZOMBIE
+  Display: '&6病毒原体'
+  Health: 300
+  Damage: 5
+  AIGoalSelectors:
+    - 0 clear
+    - 1 meleeattack
+    - 2 lookatplayer
+  AITargetSelectors:
+    - 0 clear
+    - 1 players
+  Modules:
+    ThreatTable: true
+  Skills:
+    - skill{s=mttx} @PIR{r=5} ~onTimer:200
+    - sendtitle{title="&l&c荆棘护甲";subtitle="&l&8现在攻击<mob.name>&c有机会触发荆棘！";d=100} =60% ~onDamage
+    - skill{s=荆棘} @Target ~onDamage <60% 0.2
+  Options:
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Collidable: true
+    FollowRange: 10
+    KnockbackResistance: 1
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true

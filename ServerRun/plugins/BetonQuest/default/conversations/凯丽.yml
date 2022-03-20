@@ -1,0 +1,55 @@
+quester: '凯丽'
+first: '太棒了,介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你好啊，证明者！\n下面的试炼对你来说是不是小菜一碟？'
+    conditions: '完成镇魔塔试炼'
+    pointer: '是的,太难了'
+    events: ''
+  '太棒了':
+    text: '太棒了，你现在也算是拥有职业的人了！\n现代城已经没什么值得你留下的东西了！\n去找一下城长吧，他肯定会感谢你的！'
+    conditions: '已选择职业'
+    pointer: '好的，我这就过去'
+    events: ''
+  '职业1':
+    text: '就怕试炼难着你，看来你的能力挺强。\n要不先学一门职业吧，好提升自己的能力！'
+    conditions: ''
+    pointer: '怎么学'
+    events: ''
+  '职业2':
+    text: '哈哈哈，能完成试炼就很棒了！\n要不先学一门职业吧，好提升自己的能力！'
+    conditions: ''
+    pointer: '怎么学'
+    events: ''
+  '怎么学':
+    text: '哈哈哈，旁边四位先辈已经在这里等候多时了！\n你直接找他们就行了！'
+    conditions: ''
+    pointer: '好的'
+    events: ''
+player_options:
+  '是的':
+    text: '太简单了，没挑战性！'
+    conditions: ''
+    pointer: '职业1'
+    events: ''
+  '太难了':
+    text: '太难了！'
+    conditions: ''
+    pointer: '职业2'
+    events: ''
+  '怎么学':
+    text: '好的，怎么学呢？'
+    conditions: ''
+    pointer: '怎么学'
+    events: ''
+  '好的':
+    text: '好的！'
+    conditions: ''
+    pointer: ''
+    events: '选择一门职业,更改为第二个账户,选择无职业,添加选择职业标签'
+  '好的，我这就过去':
+    text: '好的，我这就过去.'
+    conditions: ''
+    pointer: ''
+    events: '添加可以领取现代城城长奖励标签,传送到现代城城长位置,找到现代城城长领取奖励,删除选择职业标签'

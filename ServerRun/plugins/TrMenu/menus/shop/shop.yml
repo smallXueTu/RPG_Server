@@ -1,0 +1,51 @@
+Title: '服务器商店'
+
+Title-Update: -1
+
+Layout:
+  - - '#       #'
+    - '# `RPG商店`    #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  'RPG商店':
+    display:
+      material: 267
+      shiny: 'true'
+      name: "&eRPG商店"
+      lore: "&3<<&e打开RPG商店&3>>"
+    actions:
+      all:
+        - 'open: RPGShop'

@@ -1,0 +1,24 @@
+虚空寒晶鸟:
+  MobName: 虚空寒晶鸟
+  World: t3
+  X: 241
+  Y: 5
+  Z: 435
+  Radius: 3
+  UseTimer: true
+  MaxMobs: 3
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 0
+  CooldownTimer: 0
+  Warmup: 30
+  WarmupTimer: 0
+  CheckForPlayers: true
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions: []
+  ActiveMobs: 0

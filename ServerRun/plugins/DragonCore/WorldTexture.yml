@@ -1,0 +1,27 @@
+# 该文件存放世界贴图数据
+# 可通过/core createTexture生成配置
+#
+
+随便一个名字:
+  # 世界名
+  world: "world"
+  # 中心坐标
+  x: 1
+  y: 1
+  z: 1
+  # 旋转角
+  rotateX: 50
+  rotateY: 50
+  rotateZ: 0
+  # 图片地址
+  path: "backpack.png"
+  # 显示的宽度高度
+  width: 5
+  height: 5
+  # 透明度
+  alpha: 0.1
+  # 跟随玩家视角
+  follow: false
+  # 是否自发光(晚上也能清楚看见)
+  glow: true
+

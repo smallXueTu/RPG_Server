@@ -1,0 +1,35 @@
+quester: '探险家-布尔'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '怎么证明者，找我有啥事吗？'
+    conditions: ''
+    pointer: '告诉他情况'
+    events: ''
+  '回答':
+    text: '&a你：我在找神木庄的大师打造装备，但我发现路好像塌了...&r\n布尔：这样啊，没事。已经开好了路。不过为了你的安全，你需要证明下自己能力。\n我才敢让你上去，你有水土土火金结晶每种20个吗？'
+    conditions: ''
+    pointer: '正好我有,被骗了,好吧'
+    events: ''
+player_options:
+  '告诉他情况':
+    text: '告诉他情况。'
+    conditions: ''
+    pointer: '回答'
+    events: ''
+  '正好我有':
+    text: '太好了，我正好有。'
+    conditions: '有20个水之结晶,有20个木之结晶,有20个火之结晶,有20个大地之结晶,有20个钢之结晶'
+    pointer: ''
+    events: '传送到元素猎人入口,探险家提示,保存主线位置到T2进度16'
+  '被骗了':
+    text: '该死，被骗了，我再去收集。'
+    conditions: '已和木洞神秘商人交易'
+    pointer: ''
+    events: ''
+  '好吧':
+    text: '好吧，我去收集。'
+    conditions: ''
+    pointer: ''
+    events: ''

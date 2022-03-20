@@ -1,0 +1,34 @@
+1: "%lt_server_name%"
+2: "&b生命值&f: &d%lt_health%/%lt_max_health%"
+3: "&bLv.&e%lt_class_level% &c%lt_class%"
+4: "&b经验&f: &d%lt_class_exp%/%lt_class_exp_full%"
+5: "&bMana&f: &d%skillapi_mana%/%skillapi_max_mana%"
+6: "&b护甲&f: &d%lt_armor% (%lt_injuryFree%%)"
+7: "&b橙币&f: &d%vault_eco_balance%"
+8: "&b金币&f: &d%lt_gold_coins%"
+9: "&b官方群&f: &d&l597051387"
+10: "&l&e按下“M”打开菜单"
+##■■■■■■■■■■■■■■■■■■■■■一些设置■■■■■■■■■■■■■■■■■■■■
+match: "hud"
+##■■■■■■■■■■■■■■■■■■■■■计分版贴图■■■■■■■■■■■■■■■■■■■
+计分板背景1_texture:
+  x: "取屏幕宽度-85"
+  y: "(取屏幕高度-180)/2+25"
+  width: 90
+  height: 110
+  texture: "0, 0, 0, 100"
+计分板内容_label:
+  x: "取屏幕宽度-80"
+  y: "(取屏幕高度-180)/2+30"
+  scale: 1.0
+  texts:
+    - "方法.替换变量(方法.取Yaml值('1'))"
+    - "方法.替换变量(方法.取Yaml值('2'))"
+    - "方法.替换变量(方法.取Yaml值('3'))"
+    - "方法.替换变量(方法.取Yaml值('4'))"
+    - "方法.替换变量(方法.取Yaml值('5'))"
+    - "方法.替换变量(方法.取Yaml值('6'))"
+    - "方法.替换变量(方法.取Yaml值('7'))"
+    - "方法.替换变量(方法.取Yaml值('8'))"
+    - "方法.替换变量(方法.取Yaml值('9'))"
+    - "方法.替换变量(方法.取Yaml值('10'))"

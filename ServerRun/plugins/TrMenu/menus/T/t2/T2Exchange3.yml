@@ -1,0 +1,106 @@
+Title: 'T2兑换菜单'
+
+Title-Update: -1
+
+Layout:
+  - - '#       #'
+    - '# `恶火头盔``恶火胸甲``恶火护腿``恶火靴子``焱火三尺` #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '恶火头盔':
+    display:
+      material: 306
+      name: "&e恶火头盔"
+      lore:
+        - "&3<<&e兑换恶火头盔×1"
+        - "&3>>&e需要：稳定寒冰&e钢质×10"
+        - "&3>>&e需要：非稳定&e钢质×5"
+        - "&3>>&e需要：恶火&e之瓶×1"
+    actions:
+      all:
+        - 'LTExchange: 恶火头盔'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '恶火胸甲':
+    display:
+      material: 307
+      name: "&e恶火胸甲"
+      lore:
+        - "&3<<&e兑换恶火胸甲×1"
+        - "&3>>&e需要：稳定寒冰&e钢质×16"
+        - "&3>>&e需要：非稳定&e钢质×8"
+        - "&3>>&e需要：恶火&e之瓶×1"
+    actions:
+      all:
+        - 'LTExchange: 恶火胸甲'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '恶火护腿':
+    display:
+      material: 308
+      name: "&e恶火护腿"
+      lore:
+        - "&3<<&e兑换恶火护腿×1"
+        - "&3>>&e需要：稳定寒冰&e钢质×14"
+        - "&3>>&e需要：非稳定&e钢质×7"
+        - "&3>>&e需要：恶火&e之瓶×1"
+    actions:
+      all:
+        - 'LTExchange: 恶火护腿'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '恶火靴子':
+    display:
+      material: 309
+      name: "&e恶火靴子"
+      lore:
+        - "&3<<&e兑换恶火靴子×1"
+        - "&3>>&e需要：稳定寒冰&e钢质×8"
+        - "&3>>&e需要：非稳定&e钢质×4"
+        - "&3>>&e需要：恶火&e之瓶×1"
+    actions:
+      all:
+        - 'LTExchange: 恶火靴子'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '焱火三尺':
+    display:
+      material: 267
+      name: "&e焱火三尺"
+      lore:
+        - "&3<<&e兑换焱火三尺×1"
+        - "&3>>&e需要：稳定焱火&e钢质×30"
+        - "&3>>&e需要：恶火&e之瓶×1"
+    actions:
+      all:
+        - 'LTExchange: 焱火三尺'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'

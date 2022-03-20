@@ -1,0 +1,104 @@
+Title: 'LTCraft 传送菜单'
+
+Title-Update: 0
+
+Layout:
+  - - '#       #'
+    - '#  `主城`    #'
+    - '#  `资源世界``地狱``末地`  #'
+    - '#  `新手地皮``普通地皮`   #'
+    - '#       `Close`'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  主城:
+    display:
+      material: 138
+      name: "&e传送到主城"
+      lore: "&3<<&e点我传送到主城&3>>"
+    actions:
+      all:
+        - close
+        - "command: warp zc"
+  新手地皮:
+    display:
+      material: 5
+      name: "&e传送新手地皮"
+      lore: "&3<<&e新手免费领取&3>>"
+    actions:
+      all:
+        - close
+        - "command: warp novice"
+  普通地皮:
+    display:
+      material: 45
+      name: "&e传送普通地皮"
+      lore: "&3<<&e64×64大地皮&3>>"
+    actions:
+      all:
+        - close
+        - "command: warp general"
+  资源世界:
+    display:
+      material: 56
+      name: "&e传送到资源世界"
+      lore: "&3<<&e每次重启服务器刷新&3>>"
+    actions:
+      all:
+        - close
+        - "command: warp zy"
+  地狱:
+    display:
+      material: 87
+      name: "&e传送到地狱"
+      lore:
+        - "&3<<&e长时间不定时刷新&3>>"
+    actions:
+      all:
+        - close
+        - "command: warp nether"
+  末地:
+    display:
+      material: 121
+      name: "&e传送到末地"
+      lore:
+        - "&3<<&e长时间不定时刷新&3>>"
+    actions:
+      all:
+        - close
+        - "command: warp ender"
+  Close:
+    display:
+      material: Red Stained Glass Pane
+      name: '&c关闭'
+    actions:
+      all: close

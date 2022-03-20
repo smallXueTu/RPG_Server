@@ -1,0 +1,78 @@
+好鲲鲲:
+  Mobtype: villagezombie
+  Display: '&a一只好鲲鲲'
+  Health: 50
+  Damage: 4
+  Faction: 好鲲鲲派系
+  AIGoalSelectors:
+    - 0 clear
+    - 1 opendoors
+    - 2 meleeattack
+  AITargetSelectors:
+    - 0 clear
+    - 1 hurtbytarget
+    - 2 specificfactionmonsters 坏鲲鲲派系
+    - 3 players
+  Equipment:
+  Options:
+    Despawn: true
+    FollowRange: 10
+    AlwaysShowName: false
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    KnockbackResistance: 0.25
+    PreventMobKillDrops: true
+坏鲲鲲:
+  Mobtype: zombie
+  Display: '&a一只坏鲲鲲'
+  Health: 80
+  Damage: 4
+  Faction: 坏鲲鲲派系
+  AIGoalSelectors:
+    - 0 clear
+    - 1 opendoors
+    - 2 meleeattack
+  AITargetSelectors:
+    - 0 clear
+    - 1 hurtbytarget
+    - 2 specificfactionmonsters 好鲲鲲派系
+    - 3 players
+  Equipment:
+  Skills:
+    - skill 坏鲲鲲 ~onAttack >0 0.25
+  Options:
+    Despawn: true
+    FollowRange: 10
+    AlwaysShowName: false
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    KnockbackResistance: 0.4
+    PreventMobKillDrops: true
+
+test:
+  Type: ZOMBIE
+  Display: '&atest'
+  Health: 5
+  Damage: 2
+  Drops:
+    - skillapi-exp 1000
+    - ltitem 近战:铁剑 1
+    - goldCoinsDrop 金币:5 1-5 1
+  Disguise:
+    Type: Player
+    Skin: 'test'
+    Player: 'test'
+  Skills:
+#    - dropGoldCoins{c=500;r=2;forcesync=true;d=5金币} @SelfLocation ~onDeath
+  Options:
+    FollowRange: 32
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Equipment:
+    - 292 HAND
+    - 268 OFFHAND

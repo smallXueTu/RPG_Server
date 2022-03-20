@@ -1,0 +1,8 @@
+name: LTLogin
+main: cn.ltcraft.login.Login
+version: 0.0.1
+depend: [LTCraft, ProtocolLib]
+commands:
+  login:
+    description: 登录相关指令
+    usage: /login

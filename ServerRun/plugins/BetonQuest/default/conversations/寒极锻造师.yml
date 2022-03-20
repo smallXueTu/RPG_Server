@@ -1,0 +1,85 @@
+quester: '寒极锻造师'
+first: '可以领取寒冰三尺,等待领取寒冰三尺,介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '冒险者，你是要打造寒冰三尺吗？'
+    conditions: ''
+    pointer: '是的,不是'
+    events: ''
+  '等待领取寒冰三尺':
+    text: '冒险者不要着急哦，还没锻造好呢。'
+    conditions: '等待领取寒冰三尺'
+    pointer: '超过三分钟了还没好,好的'
+    events: ''
+  '可以领取寒冰三尺':
+    text: '冒险者，你来了啊。你的武器我已经帮你锻造好了，快去试试吧！'
+    conditions: '可以领取寒冰三尺'
+    pointer: '太棒了'
+    events: ''
+  '你带齐材料了吗':
+    text: '我可以免费帮你锻造，但你需要带够你需要的材料：\n§e非稳定钢质×20§r你带齐材料了吗？'
+    conditions: ''
+    pointer: '带齐了,没有'
+    events: ''
+  '稍等三分钟':
+    text: '好的，你可以在原地等待三分钟...'
+    conditions: ''
+    pointer: '好的三分钟后我再来'
+    events: ''
+  '那你下线了':
+    text: '那可能在我锻造的时候遇到意外导致失败了...\n那你现在只能重新交付材料等待了...'
+    conditions: ''
+    pointer: '行吧'
+    events: ''
+player_options:
+  '不是':
+    text: '不是。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '好的':
+    text: '好的。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '带齐了':
+    text: '带齐了。'
+    conditions: '有20非稳定钢质'
+    pointer: '稍等三分钟'
+    events: ''
+  '没有':
+    text: '没有...'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '还没超过三分钟':
+    text: '还没超过三分钟'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '行吧':
+    text: '行吧...'
+    conditions: ''
+    pointer: '你带齐材料了吗'
+    events: ''
+  '太棒了':
+    text: '太棒了！'
+    conditions: ''
+    pointer: ''
+    events: '赐予寒冰三尺,删除可以领取寒冰三尺标签,删除等待领取寒冰三尺标签,添加已拥有寒冰三尺标签'
+  '好的三分钟后我再来':
+    text: '好的三分钟后我再来'
+    conditions: ''
+    pointer: ''
+    events: '三分钟后领取寒冰三尺,添加等待领取寒冰三尺标签,拿走有20非稳定钢质'
+  '是的':
+    text: '是的。'
+    conditions: ''
+    pointer: '你带齐材料了吗'
+    events: ''
+  '超过三分钟了还没好':
+    text: '已经超过三分钟了还没好！'
+    conditions: ''
+    pointer: '那你下线了'
+    events: ''

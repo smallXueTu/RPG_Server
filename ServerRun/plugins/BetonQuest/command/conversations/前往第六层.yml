@@ -1,0 +1,23 @@
+quester: '提示'
+first: '条件满足,条件不满足'
+stop: 'false'
+NPC_options:
+  '条件不满足':
+    text:
+      - '你还没达到&e16&r级，无法进入到下一层！'
+    conditions: '!是否16级'
+    pointer: '关闭'
+    events: ''
+  '条件满足':
+    text:
+      - ''
+    conditions: '是否16级'
+    pointer: ''
+    events: '传送到第六层楼梯,default.保存主线位置到T2进度101'
+player_options:
+  '关闭':
+    text:
+      - '关闭'
+    conditions: ''
+    pointer: ''
+    events: ''

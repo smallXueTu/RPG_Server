@@ -1,0 +1,15 @@
+quester: '失控劫持者'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '想从这里出去你只能找一下这个房间有没有线索。我还有自己的使命我帮不了你...\n我相信你！'
+    conditions: ''
+    pointer: '好吧'
+    events: ''
+player_options:
+  '好吧':
+    text: '好吧。'
+    conditions: ''
+    pointer: ''
+    events: ''

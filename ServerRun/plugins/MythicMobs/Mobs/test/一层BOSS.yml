@@ -1,0 +1,166 @@
+﻿沙漠守卫:
+  Type: zombie
+  Display: '&c沙漠守卫'
+  Disguise:
+    Type: player
+    Player: '&c沙漠守卫'
+    Skin: AnderXL
+  Health: 30000
+  Damage: 5
+  BossBar:
+    Enabled: false
+    Range: 10
+    Color: BLUE
+    Style: SEGMENTED_20
+  DamageModifiers:
+  - FIRE_TICK 0
+  - FIRE 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 lookatplayers
+  AITargetSelectors:
+  - 0 clear
+  - 1 hurtbytarget
+  Modules:
+    ThreatTable: true
+    ImmunityTable: true
+  KillMessages:
+  - '&7[&b<target.name>&7] &6被 &c<mob.name>&6 砍死了'
+  Options:
+    AlwaysShowName: true
+    KnockbackResistance: 1
+    MovementSpeed: 0.3
+    FollowRange: 15
+    MaxCombatDistance: 50
+    PreventOtherDrops: true
+  Drops:
+  - money 500
+  - exp 50
+沙漠将军:
+  Type: zombie
+  Display: '&c沙漠将军'
+  Disguise:
+    Type: player
+    Player: '&c沙漠将军'
+    Skin: AnderXL
+  Health: 50000
+  Damage: 0
+  BossBar:
+    Enabled: false
+    Range: 10
+    Color: BLUE
+    Style: SEGMENTED_20
+  DamageModifiers:
+  - FIRE_TICK 0
+  - FIRE 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 lookatplayers
+  AITargetSelectors:
+  - 0 clear
+  - 1 hurtbytarget
+  KillMessages:
+  - '&7[&b<target.name>&7] &6被 &c<mob.name>&6 砍死了'
+  Skills:
+  - skill{s=沙漠怪物出生} @Self ~onSpawn
+  - skill{s=沙漠将军冲击波} @Self =50% ~onDamage
+  - skill{s=沙漠将军冲击波} @Self =80% ~onDamage
+  - skill{s=沙漠将军冲击波} @Self =20% ~onDamage
+  - skill{s=沙漠将军震击} @Self =60% ~onDamage
+  - skill{s=沙漠将军震击} @Self =30% ~onDamage
+  - skill{s=沙漠将军刺击} @Self =100% ~onDamage
+  - skill{s=沙漠怪物死亡} @Self ~onDeath
+  Options:
+    AlwaysShowName: true
+    KnockbackResistance: 1
+    MovementSpeed: 0.3
+    NoDamageTicks: 10
+    PreventOtherDrops: true
+  Drops:
+  - money 1000
+  - exp 100
+沙漠将领:
+  Type: zombie
+  Display: '&c沙漠将领'
+  Disguise:
+    Type: player
+    Player: '&c沙漠将领'
+    Skin: AnderXL
+  Health: 60000
+  Damage: 3000
+  BossBar:
+    Enabled: false
+    Range: 10
+    Color: BLUE
+    Style: SEGMENTED_20
+  DamageModifiers:
+  - FIRE_TICK 0
+  - FIRE 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 lookatplayers
+  AITargetSelectors:
+  - 0 clear
+  - 1 hurtbytarget
+  KillMessages:
+  - '&7[&b<target.name>&7] &6被 &c<mob.name>&6 砍死了'
+  Skills:
+  - skill{s=沙漠怪物出生} @Self ~onSpawn
+  - skill{s=沙漠将领冲击波} @Self =50% ~onDamage
+  - skill{s=沙漠将领冲击波} @Self =80% ~onDamage
+  - skill{s=沙漠将领冲击波} @Self =20% ~onDamage
+  - skill{s=沙漠将领震击} @Self =60% ~onDamage
+  - skill{s=沙漠将领震击} @Self =30% ~onDamage
+  - skill{s=沙漠将领刺击} @Self =40% ~onDamage
+  - skill{s=沙漠怪物死亡} @Self ~onDeath
+  Options:
+    AlwaysShowName: true
+    KnockbackResistance: 1
+    MovementSpeed: 0.3
+    NoDamageTicks: 10
+    PreventOtherDrops: true
+沙漠统领:
+  Type: zombie
+  Display: '&c沙漠统领'
+  Disguise:
+    Type: player
+    Player: '&c沙漠统领'
+    Skin: AnderXL
+  Health: 80000
+  Damage: 3000
+  BossBar:
+    Enabled: false
+    Range: 10
+    Color: BLUE
+    Style: SEGMENTED_20
+  DamageModifiers:
+  - FIRE_TICK 0
+  - FIRE 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 lookatplayers
+  AITargetSelectors:
+  - 0 clear
+  - 1 hurtbytarget
+  KillMessages:
+  - '&7[&b<target.name>&7] &6被 &c<mob.name>&6 砍死了'
+  Skills:
+  - skill{s=沙漠将领震击} @Self ~onTimer:20
+  - skill{s=沙漠怪物出生} @Self ~onSpawn
+  - skill{s=沙漠统领冲击波} @Self =50% ~onDamage
+  - skill{s=沙漠统领沙漠葬送} @Self =80% ~onDamage
+  - skill{s=沙漠统领大漠狂沙} @Self =20% ~onDamage
+  - skill{s=沙漠统领震击} @Self =100% ~onDamage
+  - skill{s=沙漠统领沙漠葬送} @Self =30% ~onDamage
+  - skill{s=沙漠统领刺击} @Self =40% ~onDamage
+  - skill{s=沙漠怪物死亡} @Self ~onDeath
+  Options:
+    AlwaysShowName: true
+    KnockbackResistance: 1
+    MovementSpeed: 0.3
+    NoDamageTicks: 10
+    PreventOtherDrops: true

@@ -1,0 +1,40 @@
+西瓜:
+  Id: 360
+  Data: 0
+  Display: '&6西瓜'
+  Lore:
+  - '&6清凉可口的西瓜'
+鸡肉:
+  Id: 365
+  Data: 0
+  Display: '&6鸡肉'
+  Lore:
+  - '&6生鸡肉，或许需要烤一下。'
+熟鸡肉:
+  Id: 366
+  Data: 0
+  Display: '&6熟鸡肉'
+  Lore:
+  - '&6熟鸡肉，放心食用。'
+铁矿石:
+  Id: 15
+  Data: 0
+  Display: '&6铁矿石'
+  Lore:
+  - '&6烧制后可变为铁锭'
+南瓜:
+  Id: 86
+  Data: 0
+  Display: '&6南瓜'
+  Lore:
+    - '&6大南瓜'
+金粒:
+  Id: 371
+  Data: 0
+  Display: '&6金粒'
+牛肉:
+  Id: 363
+  Data: 0
+  Display: '&6牛肉'
+  Lore:
+    - '&6丰富的蛋白质来源。'

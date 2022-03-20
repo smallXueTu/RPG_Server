@@ -1,0 +1,1071 @@
+雪地暴民:
+  Type: ZOMBIE
+  Display: '&6雪地暴民'
+  Health: 60
+  Damage: 1
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Equipment:
+    - 被偷走的房地契 HAND
+  Drops:
+    - 被偷走的房地契 1 1
+地底人:
+  Type: ZOMBIE
+  Display: '&6地底人'
+  Health: 60
+  Damage: 1
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Equipment:
+    - 奇怪的石头 OFFHAND
+    - 荧光结晶 HAND
+  Drops:
+    - 奇怪的石头 1 1
+    - 荧光结晶 1 1
+小喽啰:
+  Type: BABY_ZOMBIE
+  Display: '&6小喽啰'
+  Health: 25
+  Damage: 0.4
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Equipment:
+    - 小喽啰的小零嘴 HAND
+    - 小喽啰的小斧头 OFFHAND
+  Drops:
+    - 小喽啰的小零嘴 1 1
+    - 动物的皮毛 1 1
+    - ltitem 近战:小喽啰的小斧头 1 0.1
+废区冤灵:
+  Type: ZOMBIE
+  Display: '&6废区冤灵'
+  Health: 65
+  Damage: 2
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Equipment:
+    - 腐烂的木棍 HAND
+  Drops:
+    - 被超度的灵魂 1 1
+    - 冤灵之力 1 1
+    - 腐烂的木棍 1 0.2
+麦田小偷:
+  Type: ZOMBIE
+  Display: '&6麦田小偷'
+  Health: 150
+  Damage: 2
+  Disguise:
+    Type: Player
+    Skin: 'thief'
+    Player: '&a麦田小偷'
+  Options:
+    FollowRange: 32
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Equipment:
+    - 292 HAND
+    - 268 OFFHAND
+  Skills:
+    - skill{s=白天死亡} ~onTimer:20
+岩浆人:
+  Type: BLAZE
+  Display: '&6岩浆人'
+  Health: 20
+  Damage: 2
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.4
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+小蜘蛛:
+  Type: CAVE_SPIDER
+  Display: '&6小蜘蛛'
+  Health: 80
+  Damage: 0.5
+#  AIGoalSelectors:
+#    - clear
+#    - spiderattack
+  Options:
+    FollowRange: 5
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - 蜘蛛腿 1 1
+洞穴蜘蛛:
+  Type: CAVE_SPIDER
+  Display: '&6洞穴蜘蛛'
+  Health: 80
+  Damage: 0.5
+#  AIGoalSelectors:
+#    - clear
+#    - spiderattack
+  Options:
+    FollowRange: 5
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - 洞穴蜘蛛之眼 1 1
+火焰蜘蛛:
+  Type: CAVE_SPIDER
+  Display: '&6火焰蜘蛛'
+  Health: 120
+  Damage: 1
+#  AIGoalSelectors:
+#    - clear
+#    - spiderattack
+  DamageModifiers:
+    - FIRE -1
+    - LAVA -1
+    - FIRE_TICK 0
+  Options:
+    FollowRange: 5
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - 火焰蜘蛛眼 1 1
+水灵蜘蛛:
+  Type: CAVE_SPIDER
+  Display: '&6水灵蜘蛛'
+  Health: 120
+  Damage: 1
+  AIGoalSelectors:
+#    - clear
+#    - spiderattack
+    - float
+  DamageModifiers:
+    - DROWNING -1
+    - FIRE 5
+    - LAVA 10
+    - FIRE_TICK 3
+  Options:
+    FollowRange: 5
+    MovementSpeed: 0.2
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - 水灵晶石 1 1
+蜘蛛之主:
+  Type: ZOMBIE
+  Display: '&6蜘蛛之主'
+  Health: 1000
+  Damage: 2
+  Disguise:
+    Type: Player
+    Skin: '&6蜘蛛之主'
+    Player: '&6蜘蛛之主'
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Equipment:
+    - 283 HAND
+    - 268 OFFHAND
+    - GOLD_HELMET HEAD
+  Skills:
+    - message{cooldown=20;m="<mob.name>&d>><&co> &c蜘蛛峡谷岂是你敢来的地方？"} @PlayersInRadius{r=40} ~onCombat >0 0.2
+    - message{m="<mob.name>&d>><&co> &c死亡，颓废下去吧, <trigger.name>!"} @PlayersInRadius{r=40} ~onPlayerKill >0 1
+    - skill{s=粉碎攻击} @target >0 0.2
+#    - shootskull{y=1;v=4} @target >0 0.2
+#    - BlockWave{duration=100;r=10} @Target ~onDamaged
+  Drops:
+    - 蜘蛛之主的头 1 1
+南瓜:
+  Type: pig
+  Display: '&c南瓜'
+  Health: 1000000
+  Damage: 1
+  AIGoalSelectors:
+    - clear
+  Disguise:
+    Type: BLOCK
+    Block: PUMPKIN
+    BlockData: 0
+    ShowName: true
+  Skills:
+    - skill{s=检测采集} ~onInteract
+    - skill{s=收集南瓜} ~onInteract
+    - message{cooldown=4;m="&f*&c请使用右键进行采集哦"} ~onDamaged
+  Options:
+    FollowRange: 32
+    MovementSpeed: 0.0001
+    KnockbackResistance: 0
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Drops:
+    - 南瓜 1 1
+入门-丧尸:
+  Type: ZOMBIE
+  Display: '&e【入门】&6丧尸'
+  Health: 150
+  Damage: 2.5
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.30
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 3
+初级-丧魔:
+  Type: ZOMBIE
+  Display: '&e【初级】&6丧魔'
+  Health: 200
+  Damage: 3
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.30
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 5
+初级-丧尸博士:
+  Type: ZOMBIE
+  Display: '&e【初级】&6丧尸博士'
+  Health: 200
+  Damage: 5
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.30
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 8
+中级-黑化的工程师:
+  Type: villagezombie
+  Display: '&e【中级】&6黑化的工程师'
+  Health: 200
+  Damage: 8
+  Equipment:
+    - 339 HAND
+    - 工程师的扳手 OFFHAND
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.30
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 13
+    - 工程师的扳手 1 0.3
+中级-博士的试验品:
+  Type: villagezombie
+  Display: '&e【中级】&6博士的试验品'
+  Health: 200
+  Damage: 6
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.4
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 13
+高级-暗影人:
+  Type: Skeleton
+  Display: '&e【高级】&6暗影人'
+  Health: 300
+  Damage: 6
+  Equipment:
+    - 暗影之刃:HAND
+#    - 268 OFFHAND
+    - 暗影头盔:HEAD
+    - 暗影胸甲:3
+#    - 暗影头盔 LEGGINGS
+#    - 暗影头盔 BOOTS
+  Disguise:
+    Type: Player
+    Skin: '&e【高级】&6暗影人'
+    Player: '&e【高级】&6暗影人'
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 13
+    - 暗影头盔 1 0.3
+    - 暗影之刃 1 0.1
+高级-暗影使者:
+  Type: Skeleton
+  Display: '&e【高级】&6暗影使者'
+  Health: 300
+  Damage: 6
+  Equipment:
+    - 暗影之锤:HAND
+    #    - 268 OFFHAND
+    - 暗影头盔:HEAD
+    - 暗影胸甲:3
+  #    - 暗影头盔 LEGGINGS
+  #    - 暗影头盔 BOOTS
+  Disguise:
+    Type: Player
+    Skin: '&e【高级】&6暗影使者'
+    Player: '&e【高级】&6暗影使者'
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 13
+    - 暗影之锤 1 0.1
+    - 暗影胸甲 1 0.2
+恶魔-武器缴械者:
+  Type: Skeleton
+  Display: '&e【恶魔】&6武器缴械者'
+  Health: 200
+  Damage: 6
+  Skills:
+    - dropinventory{item="where=HAND,material=ANY,amount=1";nodrop=false} @trigger ~onDamaged 0.02
+  Equipment:
+    - 骑士的圣剑:HAND
+    #    - 268 OFFHAND
+    - 暗影靴子:1
+    - 暗影护腿:2
+  Disguise:
+    Type: Player
+    Skin: '&e【恶魔】&6武器缴械者'
+    Player: '&e【恶魔】&6武器缴械者'
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 18
+    - 暗影靴子 1 0.2
+    - 暗影护腿 1 0.2
+    - 骑士的圣剑 1 0.5
+    - 金铁剑 1 0.3
+    - 砧板剑 1 0.05
+    - 风暴之主的短剑 1 0.1
+    - 风暴者的短剑 1 0.16
+    - 毁灭者的匕首 1 0.18
+恶魔-装备缴械者:
+  Type: Skeleton
+  Display: '&e【恶魔】&6装备缴械者'
+  Health: 230
+  Damage: 7
+  Equipment:
+    - 砧板剑:HAND
+    #    - 268 OFFHAND
+    - 暗黑靴子:1
+    - 暗黑护腿:2
+    - 暗黑头盔:HEAD
+    - 暗黑胸甲:3
+  Disguise:
+    Type: Player
+    Skin: '&e【恶魔】&6装备缴械者'
+    Player: '&e【恶魔】&6装备缴械者'
+  Skills:
+    - dropinventory{item="where=BOOTS,material=ANY,amount=1";nodrop=false} @trigger ~onDamaged 0.02
+    - dropinventory{item="where=HELMET,material=ANY,amount=1";nodrop=false} @trigger ~onDamaged 0.02
+    - dropinventory{item="where=CHESTPLATE,material=ANY,amount=1";nodrop=false} @trigger ~onDamaged 0.02
+    - dropinventory{item="where=LEGGINGS,material=ANY,amount=1";nodrop=false} @trigger ~onDamaged 0.02
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 25
+    - 砧板剑 1 0.2
+    - 暗黑靴子 1 0.1
+    - 暗黑护腿 1 0.1
+    - 暗黑头盔 1 0.1
+    - 暗黑胸甲 1 0.1
+    - 恶魔骑士头盔 1 0.05
+    - 恶魔骑士胸甲 1 0.03
+    - 恶魔骑士护腿 1 0.05
+    - 恶魔骑士靴子 1 0.05
+    - 绿魔头盔 1 0.07
+    - 绿魔胸甲 1 0.05
+    - 绿魔护腿 1 0.07
+    - 绿魔靴子 1 0.07
+地狱-地狱之主:
+  Type: Skeleton
+  Display: '&e【地狱】&6地狱之主'
+  Health: 800
+  Damage: 20
+  Equipment:
+    - 地狱之镰:HAND
+    #    - 268 OFFHAND
+    - 地狱淬火头盔:1
+    - 地狱淬火护腿:2
+    - 地狱淬火头盔:HEAD
+    - 地狱淬火胸甲:3
+  Disguise:
+    Type: Player
+    Skin: '&e【地狱】&6地狱之主'
+    Player: '&e【地狱】&6地狱之主'
+  Skills:
+    - skill{s=地狱刺击} @Self <80% ~onDamaged
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 40
+    - 地狱淬火靴子-未激活 1 0.3
+    - 地狱淬火护腿-未激活 1 0.3
+    - 地狱淬火头盔-未激活 1 0.3
+    - 地狱淬火胸甲-未激活 1 0.3
+地狱-地狱护者:
+  Type: Skeleton
+  Display: '&e【地狱】&6地狱护者'
+  Health: 300
+  Damage: 15
+  Equipment:
+    - 地狱之镰:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【地狱】&6地狱护者'
+    Player: '&e【地狱】&6地狱护者'
+  Skills:
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 地狱守护者之心 1 0.2
+地狱-地狱卫者:
+  Type: Skeleton
+  Display: '&e【地狱】&6地狱卫者'
+  Health: 300
+  Damage: 15
+  Equipment:
+    - 地狱之镰:HAND
+    - 地狱钢铁胸甲:3
+    - 地狱钢铁护腿:2
+  Disguise:
+    Type: Player
+    Skin: '&e【地狱】&6地狱卫者'
+    Player: '&e【地狱】&6地狱卫者'
+  Skills:
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 地狱钢铁 1 1
+地狱-地狱统治者:
+  Type: Skeleton
+  Display: '&e【地狱】&6地狱统治者'
+  Health: 1000
+  Damage: 25
+  Equipment:
+    - 地狱之镰:HAND
+    - 地狱钢铁头盔:HEAD
+    - 地狱钢铁靴子:1
+    - 地狱钢铁胸甲:3
+    - 地狱钢铁护腿:2
+  Disguise:
+    Type: Player
+    Skin: '&e【地狱】&6地狱统治者'
+    Player: '&e【地狱】&6地狱统治者'
+  Skills:
+    - skill{s=地狱刺击} @Self <80% ~onDamaged
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 地狱石 1 1
+BOSS-魔塔统治者-资格分身:
+  Type: Skeleton
+  Display: '&e【BOSS】&6魔塔统治者'
+  Health: 1500
+  Damage: 20
+  DamageModifiers:
+    - FIRE 0
+    - FIRE_TICK 0
+  Equipment:
+    - 地狱之镰:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【BOSS】&6魔塔统治者'
+    Player: '&e【BOSS】&6魔塔统治者'
+  Skills:
+    - skill{s=魔塔统治者冲击波} @Self <60% ~onDamaged
+    - skill{s=爆炸护盾} @Self <80% ~onDamaged
+    - skill{s=护盾;sync=true} ~onDamaged
+    - setvariable{type=STRING;var=caster.hasShield;value="false";} @Self ~onSpawn
+    - message{cooldown=50;m="<mob.name>&d>><&co> &c就这点实力请不要来侮辱镇魔塔了！"} @PlayersInRadius{r=20} ~onCombat <100% 0.3
+    - message{cooldown=30;m="<mob.name>&d>><&co> &c无知的证明者，我会撕碎你的皮囊！然后捏碎你的骸骨！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
+    - message{cooldown=50;m="<mob.name>&d>><&co> &c这里岂是你这种令人作呕的人能来这种地方？Hahaah，你还是继续颓废下去吧！"} @PlayersInRadius{r=20} ~onCombat <80% 0.1
+    - message{m="<mob.name>&d>><&co> &c很强的证明者，恭喜你，你获得了挑战我真身的资格，捡起挑战券去下一层挑战我吧 <trigger.name>!"} @PlayersInRadius{r=20} ~onDeath
+#    - message{m="<mob.name>&d>><&co> &c丢尽证明者的脸，你简直侮辱了这个魔塔, <trigger.name>!"} @PlayersInRadius{r=40} ~onPlayerKill >0 1
+  Options:
+    FollowRange: 15
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 50
+    - 魔塔统治者挑战券 1 1
+BOSS-魔塔统治者:
+  Type: Skeleton
+  Display: '&e【BOSS】&6魔塔统治者'
+  Health: 2000
+  Damage: 20
+  DamageModifiers:
+    - FIRE 0
+    - FIRE_TICK 0
+  Equipment:
+    - 地狱之镰:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【BOSS】&6魔塔统治者'
+    Player: '&e【BOSS】&6魔塔统治者'
+  Skills:
+    - skill{s=魔塔统治者冲击波} @Self <60% ~onDamaged
+    - skill{s=爆炸护盾} @Self <80% ~onDamaged
+    - skill{s=护盾;sync=true} ~onDamaged
+    - setvariable{type=STRING;var=caster.hasShield;value="false";} @Self ~onSpawn
+    - message{cooldown=50;m="<mob.name>&d>><&co> &c就这点实力请不要来侮辱镇魔塔了！"} @PlayersInRadius{r=20} ~onCombat <100% 0.3
+    - message{cooldown=30;m="<mob.name>&d>><&co> &c无知的证明者，我会撕碎你的皮囊！然后捏碎你的骸骨！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
+    - message{cooldown=50;m="<mob.name>&d>><&co> &c这里岂是你这种令人作呕的人能来这种地方？Hahaah，你还是继续颓废下去吧！"} @PlayersInRadius{r=20} ~onCombat <80% 0.1
+    - message{m="<mob.name>&d>><&co> &c丢尽证明者的脸，你简直侮辱了这个魔塔，你怎么可能击败我的分身的！ <trigger.name>!"} @PlayersInRadius{r=40} ~onPlayerKill >0 1
+  Options:
+    FollowRange: 15
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 60
+    - 魔塔统治者的头 1 1
+水魔-元素入侵者:
+  Type: Skeleton
+  Display: '&e【水魔】&6元素入侵者'
+  Health: 400
+  Damage: 6
+  Equipment:
+    - 水之法杖:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【水魔】&6元素入侵者'
+    Player: '&e【水魔】&6元素入侵者'
+  DamageModifiers:
+    - FIRE 80
+    - LAVA 100
+    - HOT_FLOOR 80
+    - FIRE_TICK 50
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - 水之石 1 1
+土魔-元素入侵者:
+  Type: Skeleton
+  Display: '&e【土魔】&6元素入侵者'
+  Health: 150
+  Damage: 6
+  Equipment:
+    - 大地法杖:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【土魔】&6元素入侵者'
+    Player: '&e【土魔】&6元素入侵者'
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+    KnockbackResistance: 0.5
+  Drops:
+    - 大地之球 1 1
+木魔-元素入侵者:
+  Type: Skeleton
+  Display: '&e【木魔】&6元素入侵者'
+  Health: 400
+  Damage: 6
+  Equipment:
+    - 280:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【木魔】&6元素入侵者'
+    Player: '&e【木魔】&6元素入侵者'
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+    KnockbackResistance: 0.5
+  Drops:
+    - 木之球 1 1
+火魔-元素入侵者:
+  Type: Skeleton
+  Display: '&e【火魔】&6元素入侵者'
+  Health: 400
+  Damage: 8
+  Equipment:
+    - 火之法杖:HAND
+  DamageModifiers:
+    - FIRE 0
+    - LAVA 0
+    - HOT_FLOOR 0
+    - FIRE_TICK 0
+  Disguise:
+    Type: Player
+    Skin: '&e【火魔】&6元素入侵者'
+    Player: '&e【火魔】&6元素入侵者'
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    KnockbackResistance: 0.5
+    PreventSunburn: true
+  Skills:
+    - skill{s=水下掉血} ~onTimer:10
+    - skill{s=燃烧} ~onTimer:10
+    - potion{type=FIRE_RESISTANCE;duration=2109999999;level=1} @Self ~onSpawn
+  Drops:
+    - 火之石 1 1
+钢魔-元素入侵者:
+  Type: Skeleton
+  Display: '&e【钢魔】&6元素入侵者'
+  Health: 500
+  Damage: 8
+  Equipment:
+    - 铁棍:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【钢魔】&6元素入侵者'
+    Player: '&e【钢魔】&6元素入侵者'
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+    KnockbackResistance: 0.9
+  Skills:
+    - sound{s=block.anvil.land} @self ~onDamaged
+  Drops:
+    - 钢之球 1 1
+元素-元素猎人:
+  Type: Skeleton
+  Display: '&e【元素】&6元素猎人'
+  Health: 400
+  Damage: 8
+  Equipment:
+    - 元素之刃:HAND
+  DamageModifiers:
+    - FIRE 0
+    - LAVA 0
+    - HOT_FLOOR 0
+    - FIRE_TICK 0
+  Disguise:
+    Type: Player
+    Skin: '&e【元素】&6元素猎人'
+    Player: '&e【元素】&6元素猎人'
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    KnockbackResistance: 0.5
+    PreventSunburn: true
+  Skills:
+    - skill{s=元素猎人冲击波} @Self <80% ~onDamaged
+  Drops:
+    - 元素之球 1 1
+    - 五行之刃 1 0.3
+木洞神秘商人:
+  Type: Skeleton
+  Display: '&6木洞神秘商人'
+  Health: 1000
+  Damage: 5
+  Equipment:
+    - 元素之刃:HAND
+  Disguise:
+    Type: Player
+    Skin: '木洞神秘商人'
+    Player: '木洞神秘商人'
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    KnockbackResistance: 0.5
+    PreventSunburn: true
+  Skills:
+    - skill{s=木洞神秘商人冲击波} @Self <80% ~onDamaged
+    - skill{s=护盾;sync=true} ~onDamaged 0.3
+    - setvariable{type=STRING;var=caster.hasShield;value="false";} @Self ~onSpawn
+    - message{cooldown=50;m="<mob.name>&d>><&co> &c就你这点不痛不痒的攻击还想杀了我？"} @PlayersInRadius{r=20} ~onCombat <100% 0.3
+    - message{cooldown=30;m="<mob.name>&d>><&co> &c小心点，我要动真格的了！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
+    - message{cooldown=50;m="<mob.name>&d>><&co> &c有点实力嘛"} @PlayersInRadius{r=20} ~onCombat <80% 0.1
+    - skill{s=逃跑} ~onDamaged <20%
+  Drops:
+    - 钢之球 5 1
+    - 火之石 5 1
+    - 大地之球 5 1
+    - 水之石 5 1
+    - 木之球 5 1
+符文蜘蛛:
+  Type: Spider
+  Display: '&e【入门】&6符文蜘蛛'
+  Health: 150
+  Damage: 10
+  Options:
+    FollowRange: 18
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 3
+    - 青蜘符文 1 1
+    - 符文之刃 1 0.2
+水晶蝎子:
+  Type: Spider
+  Display: '&e【初级】&6水晶蝎子'
+  Health: 150
+  Damage: 12
+  Options:
+    FollowRange: 18
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 4
+    - 晶蝎符文 1 1
+    - 水晶匕首 1 0.2
+魔化蜘蛛:
+  Type: Spider
+  Display: '&e【中级】&6魔化蜘蛛'
+  Health: 150
+  Damage: 15
+  Options:
+    FollowRange: 18
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Skills:
+    - skill{s=魔化战刃} ~onDamaged
+  Drops:
+    - skillapi-exp 5
+    - 魔力符文 1 1
+遗迹蜘蛛:
+  Type: Spider
+  Display: '&e【高级】&6遗迹蜘蛛'
+  Health: 200
+  Damage: 20
+  Options:
+    FollowRange: 18
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 8
+    - 遗迹符文 1 1
+火之祭坛-青蜘符文:
+  Type: Shulker
+  Display: '&6火之祭坛-青蜘'
+  Health: 2048000
+  Damage: 0
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0
+    NoAI: true
+#    Persistent: true
+    Despawn: false
+    Invincible: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Skills:
+    - DropCheckS{i=青蜘符文} @Self ~onTimer:20
+火之祭坛-晶蝎符文:
+  Type: Shulker
+  Display: '&6火之祭坛-晶蝎'
+  Health: 2048000
+  Damage: 0
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0
+    NoAI: true
+#    Persistent: true
+    Despawn: false
+    PreventOtherDrops: true
+    Invincible: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Skills:
+    - DropCheckS{i=晶蝎符文} @Self ~onTimer:20
+火之祭坛-魔力符文:
+  Type: Shulker
+  Display: '&6火之祭坛-魔力'
+  Health: 2048000
+  Damage: 0
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0
+    NoAI: true
+#    Persistent: true
+    Despawn: false
+    PreventOtherDrops: true
+    Invincible: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Skills:
+    - DropCheckS{i=魔力符文} @Self ~onTimer:20
+火之祭坛-遗迹符文:
+  Type: Shulker
+  Display: '&6火之祭坛-遗迹'
+  Health: 2048000
+  Damage: 0
+  Options:
+    FollowRange: 6
+    MovementSpeed: 0
+    NoAI: true
+#    Persistent: true
+    Despawn: false
+    PreventOtherDrops: true
+    Invincible: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Skills:
+    - DropCheckS{i=遗迹符文} @Self ~onTimer:20
+恶火翼兽:
+  Type: Skeleton
+  Display: '&e【高级】&6恶火翼兽'
+  Health: 300
+  Damage: 20
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+    - golems
+  Options:
+    FollowRange: 18
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Skills:
+    - potion{type=FIRE_RESISTANCE;duration=1000000;} @Self ~onSpawn
+  Drops:
+    - skillapi-exp 8
+    - ltitem 非稳定钢质 1 1
+恶火兽:
+  Type: Skeleton
+  Display: '&e【高级】&6恶火兽'
+  Health: 400
+  Damage: 20
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+  Options:
+    FollowRange: 18
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Skills:
+    - potion{type=FIRE_RESISTANCE;duration=1000000;} @Self ~onSpawn
+  Drops:
+    - skillapi-exp 8
+    - 稳定寒冰钢质 1 0.5
+    - 稳定焱火钢质 1 0.5
+焱火三尺剑体:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+    ItemHand: 焱火三尺
+  Pose:
+    RightArm: -10,7,-40
+焱火三尺等待发色剑体:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+    ItemHand: 焱火三尺
+  Pose:
+    RightArm: -10,7,-40
+  Skills:
+    - skill{s=焱火三尺启动} @NearestPlayer{r=50} ~onSpawn
+焱火三尺替身:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+  Pose:
+    RightArm: -10,7,-40
+  Skills:
+    - skill{s=焱火三尺发射} @NearestPlayer{r=50} ~onSpawn
+BOSS-恶火圣殿统治者:
+  Type: Skeleton
+  Display: '&e【BOSS】&6恶火统治者'
+  Health: 5000
+  Damage: 25
+  DamageModifiers:
+    - FIRE 0
+    - FIRE_TICK 0
+  Equipment:
+    - 焱火三尺:HAND
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.5
+    AlwaysShowName: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+    - clear
+    - players
+    - golems
+  Disguise:
+    Type: Player
+    Skin: '&e【BOSS】&6恶火统治者'
+    Player: '&e【BOSS】&6恶火圣治者'
+  Skills:
+    - skill{s=火之护盾;sync=true} ~onDamaged
+    - skill{s=护盾损坏;} ~onDamaged
+    - skill{s=恶火斩击;} <40% ~onDamaged 0.2
+    - skill{s=准备发发射焱火三尺;} <80% ~onDamaged 0.5
+    - skill{s=小提示;} ~onDamaged
+    - skill{s=锻造寒冰三尺;} ~onDamaged
+    - potion{type=FIRE_RESISTANCE;duration=1000000;} @Self ~onSpawn
+  Drops:
+    - skillapi-exp 30
+    - ltitem 恶火之瓶 1 1
+焱火三尺插地剑体1:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    ItemHand: 焱火三尺
+    HasGravity: true
+  Pose:
+    RightArm: -130,90,180
+  Skills:
+    - remove{delay=100} @self ~onSpawn
+焱火三尺插地剑体2:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    ItemHand: 焱火三尺
+    HasGravity: true
+  Pose:
+    RightArm: -130,5,180
+  Skills:
+    - remove{delay=100} @self ~onSpawn

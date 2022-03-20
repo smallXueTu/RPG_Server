@@ -1,0 +1,26 @@
+麦田小偷3:
+  SpawnerGroup: 麦田小偷
+  MobName: 麦田小偷
+  World: t2
+  X: 126
+  Y: 79
+  Z: -71
+  Radius: 0
+  UseTimer: true
+  MaxMobs: 1
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 0
+  CooldownTimer: 0
+  Warmup: 10
+  WarmupTimer: 0
+  CheckForPlayers: false
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions:
+  - night true
+  ActiveMobs: 0

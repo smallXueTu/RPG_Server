@@ -1,0 +1,40 @@
+quester: '舰长-凯特'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你好，我是虚无舰舰长，请问你要去哪里？'
+    conditions: ''
+    pointer: '向他说明情况,我可能来错地方了'
+    events: ''
+  '这样啊':
+    text: '这样啊，那我先敬佩一下你，我运送过很多向你这样的人，但我没见几个能安全回来的！\n你确定要继续吗？'
+    conditions: ''
+    pointer: '确定'
+    events: ''
+  '那走吧':
+    text: '那走吧'
+    conditions: ''
+    pointer: '出发'
+    events: ''
+player_options:
+  '向他说明情况':
+    text: '<向他说明情况>'
+    conditions: '请求凯特开往指定方向'
+    pointer: '这样啊'
+    events: ''
+  '确定':
+    text: '确定'
+    conditions: ''
+    pointer: '那走吧'
+    events: ''
+  '出发':
+    text: '出发'
+    conditions: ''
+    pointer: ''
+    events: '触发特效'
+  '我可能来错地方了':
+    text: '我可能来错地方了'
+    conditions: ''
+    pointer: ''
+    events: ''

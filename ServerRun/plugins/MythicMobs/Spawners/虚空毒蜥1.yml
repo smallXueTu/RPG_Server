@@ -1,0 +1,25 @@
+虚空毒蜥1:
+  SpawnerGroup: 虚空毒蜥
+  MobName: 虚空毒蜥
+  World: t3
+  X: 331
+  Y: 9
+  Z: 303
+  Radius: 0
+  UseTimer: true
+  MaxMobs: 2
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 0
+  CooldownTimer: 0
+  Warmup: 60
+  WarmupTimer: 0
+  CheckForPlayers: true
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions: []
+  ActiveMobs: 0

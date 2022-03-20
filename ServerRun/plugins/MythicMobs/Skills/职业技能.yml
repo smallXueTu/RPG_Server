@@ -1,0 +1,3 @@
+能量护盾:
+  Skills:
+   - effect:particlesphere{c=#cccc00;amount=250;radius=1.5} @SelfLocation{yoffset=1}

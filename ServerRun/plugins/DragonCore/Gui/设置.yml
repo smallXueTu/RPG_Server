@@ -1,0 +1,89 @@
+# 匹配打开的界面名，若一致时会替换界面
+match: "设置"
+Functions:
+  # 通过判断按键，异步执行下面的这个【延时关闭界面】，它会延时100毫秒后才关闭，延时的这段时间是用来做背包的关闭动画的
+  # 判断的格式是  (条件)?{达成执行;}:{否则执行;};  如果没有否则执行  可以用0代替 写成 (条件)?{达成执行;}:0;
+  # || 是或的意思，也就是说当 当前的按键为 E或ESC,就关闭界面   && 则是且的意思
+  keyPress: "(方法.取当前按下键=='E' || 方法.取当前按下键=='ESCAPE')?{方法.关闭界面;}:0"
+  # 界面开启之后会自动执行open，此时就可以开始更新变量啦
+  open: "方法.异步执行方法('更新变量');"
+
+  # 由于功能完全是在客户端实现的，所以客户端并不能直接知道变量的值，我们需要通过【方法.更新变量值】来向服务端同步变量值到客户端内
+  # 文本内容需要用 ''包裹,不然mod无法识别这条公式
+  更新变量: |-
+    方法.更新变量值('lt_hastag_自动导航');
+    方法.延时(1000);
+    方法.设置组件值('自动导航开_texture','visible', 方法.取变量('lt_hastag_自动导航') == 'true');
+    方法.设置组件值('自动导航关_texture','visible', 方法.取变量('lt_hastag_自动导航') == 'false');
+背包背景_texture:
+  x: "w * 0.25"
+  y: "h * 0.1"
+  width: "w * 0.5"
+  # 图片显示的高度
+  height: "h * 0.8"
+  # 贴图的文件路径
+  texture: "0,0,0,230"
+
+title_texture:
+  x: "w / 2"
+  y: "h * 0.1 + 10"
+  scale: 1.3
+  center: true
+  color: "100,255,255,255"
+  text: 以下是你的个人设置，请根据你的需求设置
+  texture: "0,0,0,150"
+title2_texture:
+  x: "w / 2"
+  y: "h * 0.1 + 30"
+  scale: 1.3
+  center: true
+  color: "100,255,255,255"
+  text: 点击右方图标来修改你的设置
+  texture: "0,0,0,150"
+
+自动导航_texture:
+  x: "w * 0.25 + 50 "
+  y: "h * 0.1 + 50"
+  scale: 1.3
+  color: "255,255,255,255"
+  text: "§6自动导航:"
+  texture: "0,0,0,150"
+
+自动导航开_texture:
+  x: "w * 0.75 - 50"
+  y: "h * 0.1 + 45"
+  width: "10"
+  height: "10"
+  scale: 1.3
+  texture: "gui/全局素材/right.png"
+  textureHovered: "gui/全局素材/right_h.png"
+  visible: "false"
+  actions:
+    click:
+        方法.发包('autoGPS', 'false');
+        方法.播放声音;
+        方法.设置组件值('自动导航开_texture','visible',false);
+        方法.设置组件值('自动导航关_texture','visible',true);
+自动导航关_texture:
+  x: "w * 0.75 - 50"
+  y: "h * 0.1 + 45"
+  width: "10"
+  height: "10"
+  scale: 1.3
+  texture: "gui/全局素材/wrong.png"
+  textureHovered: "gui/全局素材/wrong_h.png"
+  visible: "false"
+  actions:
+    click:
+      方法.发包('autoGPS', 'true');
+      方法.播放声音;
+      方法.设置组件值('自动导航开_texture','visible',true);
+      方法.设置组件值('自动导航关_texture','visible',false);
+
+分割线_texture:
+  x: "w * 0.27"
+  y: "h * 0.1 + 60"
+  width: "w * 0.46"
+  height: "1"
+  scale: 1
+  texture: "255,255,255,255"

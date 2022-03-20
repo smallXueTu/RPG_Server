@@ -1,0 +1,23 @@
+quester: '提示'
+first: '条件满足,条件不满足'
+stop: 'false'
+NPC_options:
+  '条件不满足':
+    text:
+      - '你没有挑战资格，你需要获得&e魔塔统治者挑战券&r，才可以挑战我！'
+    conditions: ''
+    pointer: '关闭'
+    events: ''
+  '条件满足':
+    text:
+      - ''
+    conditions: '有魔塔统治者挑战券'
+    pointer: ''
+    events: '传送到BOOS入口,拿走魔塔统治者挑战券,挑战魔塔统治者提示'
+player_options:
+  '关闭':
+    text:
+      - '关闭'
+    conditions: ''
+    pointer: ''
+    events: ''

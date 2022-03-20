@@ -1,0 +1,134 @@
+# 可使用变量如下
+# questio_name      为npc名称
+# questio_response  为npc回复语句
+# questio_size      为可回答语句数量
+# qusetio_1_option  为第一句回答
+# questio_2_option  为第二句回答，以此类推
+
+# 匹配界面名
+match: "DragonQuestIO"
+
+
+# 界面背景
+界面背景_texture:
+  x: "0"
+  y: "0"
+  width: "w"
+  height: "h"
+  # 背景，此处为rgba颜色，也可换成图片
+  texture: "gui/qb/bq.png"
+
+
+# 鼠标指着的NPC模型
+npc模型_entity:
+  x: "w*0.075"
+  y: "h*0.97"
+  entity: "firstaim"
+  scale: "h*0.005"
+npc名称_label:
+  x: w*0.02
+  y: h*0.55
+  texts: "§6%questio_name%"
+  scale: "h*0.007"
+# NPC的语句
+NPC语句_label:
+  x: w*0.15
+  y: h*0.75
+  texts: "%questio_response%"
+  scale: "h*0.004"
+
+
+回复1_texture:
+  x: "w*0.70"
+  y: "h*0.58"
+  width: "w*0.30"
+  height: "w*0.03"
+  # 回答句子的背景，此处为rgba颜色，也可换成图片
+  texture: "gui/qb/qipao.png"
+  textureHovered: "gui/qb/deqipao.png"
+  visible: "方法.取变量('questio_size')>=1"
+  text: "§6§a§l%questio_1_option%"
+  actions:
+    click: "方法.发包('questio',1);方法.播放声音;"
+    enter: "方法.播放声音;"
+回复2_texture:
+  # 继承于另一个配置的各个设置
+  extends: "回复1_texture"
+  y: "h * 0.58 - (w * 0.03 + 5) * 1"
+  visible: "方法.取变量('questio_size')>=2"
+  text: "§6§a§l%questio_2_option%"
+  actions:
+    click: "方法.发包('questio',2);方法.播放声音;"
+    enter: "方法.播放声音;"
+回复3_texture:
+  # 继承于另一个配置的各个设置
+  extends: "回复1_texture"
+  y: "h * 0.58 - (w * 0.03 + 5) * 2"
+  visible: "方法.取变量('questio_size')>=3"
+  text: "§6§a§l%questio_3_option%"
+  actions:
+    click: "方法.发包('questio',3);方法.播放声音;"
+    enter: "方法.播放声音;"
+回复4_texture:
+  # 继承于另一个配置的各个设置
+  extends: "回复1_texture"
+  y: "h * 0.58 - (w * 0.03 + 5) * 3"
+  visible: "方法.取变量('questio_size')>=4"
+  text: "§6§a§l%questio_4_option%"
+  actions:
+    click: "方法.发包('questio',4);方法.播放声音;"
+    enter: "方法.播放声音;"
+回复5_texture:
+  # 继承于另一个配置的各个设置
+  extends: "回复1_texture"
+  y: "h * 0.58 - (w * 0.03 + 5) * 4"
+  visible: "方法.取变量('questio_size')>=5"
+  text: "§6§a§l%questio_5_option%"
+  actions:
+    click: "方法.发包('questio',5);方法.播放声音;"
+    enter: "方法.播放声音;"
+回复6_texture:
+  # 继承于另一个配置的各个设置
+  extends: "回复1_texture"
+  y: "h * 0.58 - (w * 0.03 + 5) * 5"
+  visible: "方法.取变量('questio_size')>=6"
+  text: "§6§a§l%questio_6_option%"
+  actions:
+    click: "方法.发包('questio',6);方法.播放声音;"
+    enter: "方法.播放声音;"
+回复7_texture:
+  # 继承于另一个配置的各个设置
+  extends: "回复1_texture"
+  y: "h * 0.58 - (w * 0.03 + 5) * 6"
+  visible: "方法.取变量('questio_size')>=7"
+  text: "§6§a§l%questio_7_option%"
+  actions:
+    click: "方法.发包('questio',7);方法.播放声音;"
+    enter: "方法.播放声音;"
+回复8_texture:
+  # 继承于另一个配置的各个设置
+  extends: "回复1_texture"
+  y: "h * 0.58 - (w * 0.03 + 5) * 7"
+  visible: "方法.取变量('questio_size')>=8"
+  text: "§6§a§l%questio_8_option%"
+  actions:
+    click: "方法.发包('questio',8);方法.播放声音;"
+    enter: "方法.播放声音;"
+回复9_texture:
+  # 继承于另一个配置的各个设置
+  extends: "回复1_texture"
+  y: "h * 0.58 - (w * 0.03 + 5) * 8"
+  visible: "方法.取变量('questio_size')>=9"
+  text: "§6§a§l%questio_9_option%"
+  actions:
+    click: "方法.发包('questio',9);方法.播放声音;"
+    enter: "方法.播放声音;"
+回复10_texture:
+  # 继承于另一个配置的各个设置
+  extends: "回复1_texture"
+  y: "h * 0.58 - (w * 0.03 + 5) * 9"
+  visible: "方法.取变量('questio_size')>=10"
+  text: "§6§a§l%questio_10_option%"
+  actions:
+    click: "方法.发包('questio',10);方法.播放声音;"
+    enter: "方法.播放声音;"

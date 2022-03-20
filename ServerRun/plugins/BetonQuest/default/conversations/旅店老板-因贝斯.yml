@@ -1,0 +1,65 @@
+quester: '旅店老板-因贝斯'
+first: '询问差事,介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你好，旅行者，需要什么帮助吗？'
+    conditions: ''
+    pointer: '房地契,我就看看'
+    events: ''
+  '询问差事':
+    text: '怎么样，房地契收集到20个了吗？'
+    conditions: '旅店老板差事'
+    pointer: '我没带,收集到了'
+    events: ''
+  '房地契':
+    text: '说起房地契...我找好几天了，不知道被啥东西偷走了。\n看你怎么有备而来肯定找到线索了吧！'
+    conditions: ''
+    pointer: '是的，我有线索。'
+    events: ''
+  '那太好了！':
+    text: '那太好了了，你能帮我找回吗？我愿意悬赏你一些现币！'
+    conditions: ''
+    pointer: '我带了,我没带'
+    events: ''
+  '我带了':
+    text: '太棒了，太感谢你了，很愉快的交易！'
+    conditions: ''
+    pointer: '交易愉快'
+    events: '拿走20房地契,赐予20现币,继续找现代城匠人'
+player_options:
+  '房地契':
+    text: '关于房地契的问题...'
+    conditions: '找酒店老板'
+    pointer: '房地契'
+    events: ''
+  '是的，我有线索。':
+    text: '是的，我有线索。...'
+    conditions: ''
+    pointer: '那太好了！'
+    events: ''
+  '交易愉快':
+    text: '交易愉快。  '
+    conditions: ''
+    pointer: ''
+    events: '删除找酒店老板标签'
+  '我带了':
+    text: '正好，我带来了。'
+    conditions: '拥有20房地契'
+    pointer: '我带了'
+    events: ''
+  '收集到了':
+    text: '我收集到了。'
+    conditions: '拥有20房地契'
+    pointer: '我带了'
+    events: '删除旅店老板差事标签'
+  '我没带':
+    text: '好，我去收集。'
+    conditions: '!拥有20房地契'
+    pointer: ''
+    events: '房地契说明,添加旅店老板差事标签'
+  '我就看看':
+    text: '没事，我就看看'
+    conditions: '!找酒店老板'
+    pointer: ''
+    events: ''

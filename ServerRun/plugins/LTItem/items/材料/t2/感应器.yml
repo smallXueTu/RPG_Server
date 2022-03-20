@@ -1,0 +1,13 @@
+模型: '345'
+名字: 感应器
+品质: 未知
+右键动作: sudo:dt waypoint add %player% 丰收的农民&sudo:dt waypoint add %player% 求救的农民&sudo:dt waypoint add %player% 钓鱼的居民&sudo:dt waypoint add %player% 现代城酿造师
+左键动作: sudo:dt waypoint remove %player% 丰收的农民&sudo:dt waypoint remove %player% 求救的农民&sudo:dt waypoint remove %player% 钓鱼的居民&sudo:dt waypoint remove %player% 现代城酿造师
+显示名字: §6感应器
+说明:
+  - '§6右键感应附近需要求救的人'
+  - '§6左键关闭感应。'
+  - ''
+  - ''
+  - '§e非常神秘的原理，无法解释...'
+  - '§e材料 主线材料'

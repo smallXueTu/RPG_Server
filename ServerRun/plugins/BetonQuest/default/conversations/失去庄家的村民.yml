@@ -1,0 +1,70 @@
+quester: '失去庄家的村民'
+first: '加油成长,感谢,ask-purpose,小心点'
+stop: 'false'
+NPC_options:
+  'ask-purpose':
+    text: '我的庄家都被下面的尸壳踩踏了，你有什么办法能帮我吗？'
+    conditions: '!击杀踩踏尸壳'
+    pointer: 'reply1,reply2'
+    events: ''
+  '好吧':
+    text: '好吧，你可以变的更强的！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '太棒了':
+    text: '太棒了！你可以下去杀30只吗？'
+    conditions: ''
+    pointer: 'reply3'
+    events: ''
+  '提示小心点':
+    text: '太感谢你了，小心点战士...'
+    conditions: ''
+    pointer: '当然可以'
+    events: ''
+  '感谢':
+    text: '虽然没根除...\n真的不知道怎么感谢你......\n这样吧，我这有一颗粉色石头，我应该用不到。还有64个金粒\n就为了感谢送给你了！'
+    conditions: '继续找失去庄家的村民'
+    pointer: 'reply4'
+    events: ''
+  '小心点':
+    text: '就在下面，下去小心点！'
+    conditions: '!继续找失去庄家的村民'
+    pointer: '好的'
+    events: ''
+  '加油成长':
+    text: '我已经不需要你帮忙了，你继续加油变强吧！'
+    conditions: '帮助失去庄家的村民'
+    pointer: '好的'
+    events: ''
+player_options:
+  'reply1':
+    text: '我可能打不过他们..'
+    conditions: '!帮村民'
+    pointer: ''
+    events: ''
+  'reply2':
+    text: '当然可以！'
+    conditions: '帮村民'
+    pointer: '太棒了'
+    events: ''
+  'reply3':
+    text: '好的，非常乐意！'
+    conditions: ''
+    pointer: '提示小心点'
+    events: ''
+  '好的':
+    text: '好的。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '当然可以':
+    text: '当然可以！'
+    conditions: ''
+    pointer: ''
+    events: '击杀踩踏尸壳,添加击杀踩踏尸壳标签'
+  'reply4':
+    text: '客气了。'
+    conditions: ''
+    pointer: ''
+    events: '删除继续找失去庄家的村民标签,赐予小型医疗水晶,赐予64金粒,添加询问宝石如何镶嵌标签,询问宝石如何镶嵌,添加帮助失去庄家的村民标签'

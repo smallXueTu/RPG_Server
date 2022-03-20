@@ -1,0 +1,60 @@
+quester: '铁匠-巴克门'
+first: 'ask-purpose,encourage,making'
+stop: 'false'
+NPC_options:
+  'ask-purpose':
+    text: '你找我有什么事吗？'
+    conditions: '找巴克门中'
+    pointer: 'reply1'
+    events: ''
+  'introduce':
+    text: '你要做装备啊，真不巧，这里的铁正好用完....'
+    conditions: ''
+    pointer: 'reply2'
+    events: ''
+  'collect':
+    text: '你去收集一些铁原矿石吧，打开菜单去资源挖30个吧。'
+    conditions: ''
+    pointer: 'reply3'
+    events: '添加采铁矿石标签,采30块铁矿石,删除找巴克门中标签'
+  'encourage':
+    text: '你不去采矿石我也很难帮你做武器...'
+    conditions: '采铁矿石,!拥有30块铁矿石'
+    pointer: 'reply3'
+    events: ''
+  'making':
+    text: '好样的，我现在就给你做！'
+    conditions: '采铁矿石,拥有30块铁矿石'
+    pointer: 'reply4'
+    events: ''
+  'completed':
+    text: 'nice！做好了！来我现在送给你！'
+    conditions: ''
+    pointer: 'reply5'
+    events: '删除采铁矿石标签,继续跟伽德对话,添加拥有铁制装备标签,赐予铁剑,赐予铁头盔,赐予铁胸甲,赐予铁护腿,赐予铁靴子,拿走30铁矿石'
+player_options:
+  'reply1':
+    text: '我想打造一把武器！'
+    conditions: ''
+    pointer: 'introduce'
+    events: ''
+  'reply2':
+    text: '那该咋办..'
+    conditions: ''
+    pointer: 'collect'
+    events: ''
+  'reply3':
+    text: '马上就去！！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  'reply4':
+    text: '期待。'
+    conditions: ''
+    pointer: 'completed'
+    events: ''
+  'reply5':
+    text: '非常感谢！！'
+    conditions: ''
+    pointer: ''
+    events: ''

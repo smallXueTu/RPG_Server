@@ -1,0 +1,14 @@
+name: LTItem
+main: cn.ltcraft.item.LTItemSystem
+version: 0.0.1
+commands:
+  lti:
+    description: LT物品系统
+    usage: /lti
+  i:
+    description: LT物品系统
+    usage: /i
+permissions:
+  LTItem.lti.cmd:
+    description: LT物品系统
+    default: true

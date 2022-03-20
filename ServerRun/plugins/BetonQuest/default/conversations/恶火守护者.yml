@@ -1,0 +1,60 @@
+quester: '恶火守护者'
+first: '不相信,介绍,正在放置符文祭品'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你好，证明者，我是恶火圣殿的守护者，恶火圣殿一直被称为统治者的一个生物统治。\n它在这里摆放了四个祭坛，经过大量研究发现，需要青蜘/晶蝎/魔力/遗迹四种符文各30个\n才能打开通往他栖息地的通道，击败他就靠你了！证明你自己实力的时候到了！'
+    conditions: '!正在放置符文祭品'
+    pointer: '我为什么要听你的,好的我这就击败他'
+    events: ''
+  '正在放置符文祭品':
+    text: '祭品放完了吗？'
+    conditions: '正在放置符文祭品'
+    pointer: '放完了,还没有'
+    events: ''
+  '不相信':
+    text: '怎么，你反悔了吗？'
+    conditions: '不相信恶火守护者'
+    pointer: '你能再介绍一下吗,没有'
+    events: ''
+  '解释':
+    text: '除了前功尽弃，这是你唯一的出路，不相信我时间会告诉你答案的！'
+    conditions: ''
+    pointer: '好的我这就击败他,我才不相信你'
+    events: ''
+player_options:
+  '我为什么要听你的':
+    text: '我为什么要听你的?'
+    conditions: ''
+    pointer: '解释'
+    events: ''
+  '放完了':
+    text: '放完了'
+    conditions: '完成符文祭奠'
+    pointer: ''
+    events: '传送到通往恶火统治者地,删除正在放置符文祭品标签,删除完成符文祭奠标签,保存主线位置到T2进度22,击杀五次恶火圣殿统治者,添加待获得恶火装备标签'
+  '你能再介绍一下吗':
+    text: '你能再介绍一下吗'
+    conditions: ''
+    pointer: '介绍'
+    events: ''
+  '还没有':
+    text: '还没有'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '没有':
+    text: '没有，我才不会！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '好的我这就击败他':
+    text: '好的我这就击败他！'
+    conditions: ''
+    pointer: ''
+    events: '丢弃30青蜘符文,添加正在放置符文祭品标签,删除不相信恶火守护者标签'
+  '我才不相信你':
+    text: '我才不相信你！'
+    conditions: ''
+    pointer: ''
+    events: '添加不相信恶火守护者标签'

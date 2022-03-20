@@ -1,0 +1,86 @@
+测试模型1:
+  Id: 264
+  Data: 0
+  Display: '&2测试模型1'
+  Lore:
+    - ''
+    - ''
+    - '&f&d装备材料。'
+测试模型2:
+  Id: 264
+  Data: 0
+  Display: '&2测试模型2'
+  Lore:
+    - ''
+    - ''
+    - '&f&d装备材料。'
+模型3:
+  Id: 264
+  Data: 0
+  Display: '&2测试模型3'
+  Lore:
+    - ''
+    - ''
+    - '&f&d装备材料。'
+测试盔甲:
+  Id: 299
+  Data: 0
+  Display: '&6皮革胸甲'
+  Lore:
+    - '&8护甲值:2 &|'
+    - '&6皮革胸甲，平凡的外表。'
+    - '&6但附加了荧光结晶使它拥有更好的韧性。'
+  Options:
+    Unbreakable: true
+测试头盔:
+  Id: 306
+  Data: 0
+  Display: '&6测试头盔'
+  Lore:
+    - ''
+    - ''
+    - '&eTestArmor。'
+  Options:
+    Unbreakable: true
+测试胸甲:
+  Id: 307
+  Data: 0
+  Display: '&6测试胸甲'
+  Lore:
+    - ''
+    - ''
+    - '&eTestArmor。'
+  Options:
+    Unbreakable: true
+测试护腿:
+  Id: 308
+  Data: 0
+  Display: '&6测试护腿'
+  Lore:
+    - ''
+    - ''
+    - '&eTestArmor。'
+  Options:
+    Unbreakable: true
+测试靴子:
+  Id: 309
+  Data: 0
+  Display: '&6测试靴子'
+  Lore:
+    - ''
+    - ''
+    - '&eTestArmor。'
+  Options:
+    Unbreakable: true
+测试武器:
+  Id: 267
+  Data: 0
+  Display: '&6测试武器'
+  Lore:
+    - '&8PVE伤害:30 &|'
+    - '&8灵魂绑定:?'
+    - ''
+    - ''
+    - '&eTestWeapon。'
+  Options:
+    Unbreakable: true

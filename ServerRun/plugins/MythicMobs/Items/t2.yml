@@ -1,0 +1,769 @@
+被偷走的房地契:
+  Id: 339
+  Data: 0
+  Display: '&6被偷走的房地契'
+  Lore:
+    - ''
+    - ''
+    - '&e任务道具。'
+荧光结晶:
+  Id: 348
+  Data: 0
+  Display: '&6荧光结晶'
+  Lore:
+    - ''
+    - ''
+    - '&e装备材料。'
+奇怪的石头:
+  Id: 318
+  Data: 0
+  Display: '&6奇怪的石头'
+  Lore:
+    - '&6奇怪的石头，不知道有什么用。'
+    - ''
+    - '&e卖钱材料。'
+小喽啰的小零嘴:
+  Id: 357
+  Data: 0
+  Display: '&6小喽啰的小零嘴'
+  Lore:
+    - '&6可以食用。'
+    - ''
+    - '&0抢小朋友的零食是不是有点不要脸...'
+    - '&e食品。'
+小喽啰的小斧头:
+  Id: 271
+  Data: 0
+  Display: '&6小喽啰的小斧头'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+动物的皮毛:
+  Id: 415
+  Data: 0
+  Display: '&6动物的皮毛'
+  Lore:
+    - ''
+    - ''
+    - '&e装备材料。'
+冤灵之力:
+  Id: 452
+  Data: 0
+  Display: '&6冤灵之力'
+  Lore:
+    - ''
+    - ''
+    - '&e装备材料。'
+洞穴蜘蛛之眼:
+  Id: 375
+  Data: 0
+  Display: '&6洞穴蜘蛛之眼'
+  Lore:
+    - ''
+    - ''
+    - '&e主线拆料。'
+被超度的灵魂:
+  Id: 437
+  Data: 0
+  Display: '&6被超度的灵魂'
+  Lore:
+    - ''
+    - ''
+    - '&e装备材料。'
+腐烂的木棍:
+  Id: 280
+  Data: 0
+  Display: '&6腐烂的木棍'
+  Lore:
+    - ''
+    - ''
+    - '&e装备材料。'
+蜘蛛腿:
+  Id: 375
+  Data: 0
+  Display: '&6蜘蛛腿'
+  Lore:
+    - ''
+    - ''
+    - '&e主线材料。'
+火焰蜘蛛眼:
+  Id: 375
+  Data: 0
+  Display: '&6火焰蜘蛛眼'
+  Lore:
+    - ''
+    - ''
+    - '&e主线材料。'
+水灵晶石:
+  Id: 388
+  Data: 0
+  Display: '&6水灵晶石'
+  Lore:
+    - ''
+    - ''
+    - '&e主线材料。'
+火灵体:
+  Id: 388
+  Data: 0
+  Display: '&6火灵体'
+  Lore:
+    - ''
+    - ''
+    - '&e主线材料。'
+解蜘蛛毒剂:
+  Id: 374
+  Data: 0
+  Display: '&6解蜘蛛毒剂'
+  Lore:
+    - ''
+    - ''
+    - '&e主线材料。'
+现币:
+  Id: 337
+  Data: 0
+  Display: '&6现币'
+  Lore:
+    - ''
+    - ''
+    - '&e任务道具。'
+蜘蛛之主的头:
+  Id: 397
+  Data: 3
+  Options:
+    Player: '§a蜘蛛之主'
+工程师的扳手:
+  Id: 352
+  Data: 0
+  Display: '&6工程师的扳手'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+骑士的圣剑:
+  Id: 267
+  Data: 0
+  Display: '&6骑士的圣剑'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗影头盔:
+  Id: 306
+  Data: 0
+  Display: '&6暗影头盔'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗影胸甲:
+  Id: 307
+  Data: 0
+  Display: '&6暗影胸甲'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗影护腿:
+  Id: 308
+  Data: 0
+  Display: '&6暗影护腿'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗影靴子:
+  Id: 309
+  Data: 0
+  Display: '&6暗影靴子'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗影之刃:
+  Id: 267
+  Data: 0
+  Display: '&6暗影之刃'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+金铁剑:
+  Id: 267
+  Data: 0
+  Display: '&6金铁剑'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+砧板剑:
+  Id: 267
+  Data: 0
+  Display: '&6砧板剑'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+风暴之主的短剑:
+  Id: 267
+  Data: 0
+  Display: '&6风暴之主的短剑'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+风暴者的短剑:
+  Id: 267
+  Data: 0
+  Display: '&6风暴者的短剑'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗影之锤:
+  Id: 292
+  Data: 0
+  Display: '&6暗影之锤'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+毁灭者的匕首:
+  Id: 293
+  Data: 0
+  Display: '&6毁灭者的匕首'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗黑靴子:
+  Id: 309
+  Data: 0
+  Display: '&6暗黑靴子'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗黑头盔:
+  Id: 306
+  Data: 0
+  Display: '&6暗黑头盔'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+绿魔头盔:
+  Id: 306
+  Data: 0
+  Display: '&6绿魔头盔'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+绿魔胸甲:
+  Id: 307
+  Data: 0
+  Display: '&6绿魔胸甲'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗黑胸甲:
+  Id: 307
+  Data: 0
+  Display: '&6暗黑胸甲'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+绿魔护腿:
+  Id: 308
+  Data: 0
+  Display: '&6绿魔护腿'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+绿魔靴子:
+  Id: 309
+  Data: 0
+  Display: '&6绿魔靴子'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+暗黑护腿:
+  Id: 308
+  Data: 0
+  Display: '&6暗黑护腿'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+恶魔骑士头盔:
+  Id: 306
+  Data: 0
+  Display: '&6恶魔骑士头盔'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+恶魔骑士胸甲:
+  Id: 307
+  Data: 0
+  Display: '&6恶魔骑士胸甲'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+恶魔骑士护腿:
+  Id: 308
+  Data: 0
+  Display: '&6恶魔骑士护腿'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+恶魔骑士靴子:
+  Id: 309
+  Data: 0
+  Display: '&6恶魔骑士靴子'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+地狱淬火胸甲:
+  Id: 307
+  Data: 0
+  Display: '&6地狱淬火胸甲'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+地狱淬火护腿:
+  Id: 308
+  Data: 0
+  Display: '&6地狱淬火护腿'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+地狱之镰:
+  Id: 292
+  Data: 0
+  Display: '&6地狱之镰'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+地狱淬火头盔:
+  Id: 306
+  Data: 0
+  Display: '&6地狱淬火头盔'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+地狱守护者之心:
+  Id: 375
+  Data: 0
+  Display: '&6地狱守护者之心'
+  Lore:
+    - '&6地狱守护者之心是由一颗神奇泯灭的宝石组成，可以抹去一些物品的诅咒'
+    - ''
+    - '&e主线材料。'
+地狱淬火头盔-未激活:
+  Id: 306
+  Data: 0
+  Display: '&6地狱淬火头盔'
+  Lore:
+    - '&c未激活，需要抹去诅咒。'
+    - '&6地狱淬火头盔，只有号令地狱万物的人才配穿戴出效果。'
+    - ''
+    - ''
+    - '&e地狱淬火头盔。'
+    - '&e淬火盔甲。'
+  Options:
+    Unbreakable: true
+地狱淬火胸甲-未激活:
+  Id: 307
+  Data: 0
+  Display: '&6地狱淬火胸甲'
+  Lore:
+    - '&c未激活，需要抹去诅咒。'
+    - '&6地狱淬火胸甲，只有号令地狱万物的人才配穿戴出效果。'
+    - ''
+    - ''
+    - '&e地狱淬火胸甲。'
+    - '&e淬火盔甲。'
+  Options:
+    Unbreakable: true
+地狱淬火护腿-未激活:
+  Id: 308
+  Data: 0
+  Display: '&6地狱淬火护腿'
+  Lore:
+    - '&c未激活，需要抹去诅咒。'
+    - '&6地狱淬火护腿，只有号令地狱万物的人才配穿戴出效果。'
+    - ''
+    - ''
+    - '&e地狱淬火护腿。'
+    - '&e淬火盔甲。'
+  Options:
+    Unbreakable: true
+地狱淬火靴子-未激活:
+  Id: 309
+  Data: 0
+  Display: '&6地狱淬火靴子'
+  Lore:
+    - '&c未激活，需要抹去诅咒。'
+    - '&6地狱淬火靴子，只有号令地狱万物的人才配穿戴出效果。'
+    - ''
+    - ''
+    - '&e地狱淬火靴子。'
+    - '&e淬火盔甲。'
+  Options:
+    Unbreakable: true
+地狱钢铁头盔:
+  Id: 306
+  Data: 0
+  Display: '&6地狱钢铁头盔'
+  Lore:
+    - ''
+    - ''
+    - '&e地狱钢铁头盔。'
+    - '&e地狱钢铁。'
+  Options:
+    Unbreakable: true
+地狱钢铁胸甲:
+  Id: 307
+  Data: 0
+  Display: '&6地狱钢铁胸甲'
+  Lore:
+    - ''
+    - ''
+    - '&e地狱钢铁胸甲。'
+    - '&e地狱钢铁。'
+  Options:
+    Unbreakable: true
+地狱钢铁护腿:
+  Id: 308
+  Data: 0
+  Display: '&6地狱钢铁护腿'
+  Lore:
+    - ''
+    - ''
+    - '&e地狱钢铁护腿。'
+    - '&e地狱钢铁。'
+  Options:
+    Unbreakable: true
+地狱钢铁靴子:
+  Id: 309
+  Data: 0
+  Display: '&6地狱钢铁靴子'
+  Lore:
+    - ''
+    - ''
+    - '&e地狱钢铁靴子。'
+    - '&e地狱钢铁。'
+  Options:
+    Unbreakable: true
+地狱钢铁:
+  Id: 265
+  Data: 0
+  Display: '&6地狱钢铁'
+  Lore:
+    - '&6地狱钢铁甲掉落碎片。'
+    - ''
+    - ''
+    - '&e主线材料。'
+地狱石:
+  Id: 265
+  Data: 0
+  Display: '&6地狱石'
+  Lore:
+    - '&6地狱&6之镰掉落碎片。'
+    - ''
+    - ''
+    - '&e主线材料。'
+魔塔统治者的头:
+  Id: 397
+  Data: 3
+  Options:
+    Player: '§e【BOSS】§6魔塔统治者'
+魔塔统治者挑战券:
+  Id: 339
+  Data: 0
+  Display: '&6魔塔统治者挑战券'
+  Lore:
+    - '&6挑战统治者分身后即可获得挑战真身的机会！'
+    - '&6把握好这次机会，一旦你挑战失败将失去一次挑战机会！'
+    - ''
+    - ''
+    - '&e主线材料。'
+水之法杖:
+  Id: 280
+  Data: 0
+  Display: '&6水之法杖'
+  Lore:
+    - ''
+    - ''
+    - '&e未知。'
+大地法杖:
+  Id: 280
+  Data: 0
+  Display: '&6大地法杖'
+  Lore:
+    - ''
+    - ''
+    - '&e未知。'
+火之法杖:
+  Id: 280
+  Data: 0
+  Display: '&6火之法杖'
+  Lore:
+    - ''
+    - ''
+    - '&e未知。'
+铁棍:
+  Id: 280
+  Data: 0
+  Display: '&6铁棍'
+  Lore:
+    - ''
+    - ''
+    - '&e未知。'
+元素之刃:
+  Id: 267
+  Data: 0
+  Display: '&6元素之刃'
+  Lore:
+    - ''
+    - ''
+    - '&e未知。'
+木之球:
+  Id: 337
+  Data: 0
+  Display: '&6木之球'
+  Lore:
+    - '&6木元素的结晶！'
+    - ''
+    - ''
+    - '&e主线材料。'
+水之石:
+  Id: 337
+  Data: 0
+  Display: '&6水之石'
+  Lore:
+    - '&6水元素的结晶！'
+    - ''
+    - ''
+    - '&e主线材料。'
+火之石:
+  Id: 337
+  Data: 0
+  Display: '&6火之石'
+  Lore:
+    - '&6水元素的结晶！'
+    - ''
+    - ''
+    - '&e主线材料。'
+钢之球:
+  Id: 337
+  Data: 0
+  Display: '&6钢之球'
+  Lore:
+    - '&6金元素的结晶！'
+    - ''
+    - ''
+    - '&e主线材料。'
+    - '&e大约一吨吧。'
+大地之球:
+  Id: 337
+  Data: 0
+  Display: '&6大地之球'
+  Lore:
+    - '&6有了它，不怕世界没有生机！'
+    - ''
+    - ''
+    - '&e主线材料。'
+元素之球:
+  Id: 337
+  Data: 0
+  Display: '&6元素之球'
+  Lore:
+    - '&6元素结合的结晶！'
+    - ''
+    - ''
+    - '&e主线材料。'
+五行之刃:
+  Id: 283
+  Data: 0
+  Display: '&6五行之刃'
+  Lore:
+    - '§bPVE伤害:30'
+    - '§bPVE吸血:20%'
+    - '§6五行之刃，融合了五种结晶的元素武器。'
+    - ''
+    - ''
+    - '§6品质:初级'
+    - '§e近战武器 主线武器'
+青蜘符文:
+  Id: 337
+  Data: 0
+  Display: '&6青蜘符文'
+  Lore:
+    - '&6符文蜘蛛的战利品！'
+    - ''
+    - ''
+    - '&e主线材料。'
+符文之刃:
+  Id: 267
+  Data: 0
+  Display: '&6符文之刃'
+  Lore:
+    - '&6符文蜘蛛的战利品！'
+    - ''
+    - ''
+    - '&e主线材料。'
+  Options:
+    Unbreakable: true
+水晶匕首:
+  Id: 267
+  Data: 0
+  Display: '&6水晶匕首'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+晶蝎符文:
+  Id: 337
+  Data: 0
+  Display: '&6晶蝎符文'
+  Lore:
+    - '&6水晶蝎子的战利品！'
+    - ''
+    - ''
+    - '&e主线材料。'
+魔力符文:
+  Id: 337
+  Data: 0
+  Display: '&6魔力符文'
+  Lore:
+    - '&6魔化蜘蛛的战利品！'
+    - ''
+    - ''
+    - '&e主线材料。'
+遗迹符文:
+  Id: 337
+  Data: 0
+  Display: '&6遗迹符文'
+  Lore:
+    - '&6遗迹蜘蛛的战利品！'
+    - ''
+    - ''
+    - '&e主线材料。'
+稳定寒冰钢质:
+  Id: 265
+  Data: 0
+  Display: '&6稳定寒冰钢质'
+  Lore:
+    - '&6稳定下来的钢制品！'
+    - '&c物极必反，否极泰来&6。&1&l极寒&r&d极至&5及是&4&l炎火&r&6！'
+    - ''
+    - ''
+    - '&a不知道用它制作武器是什么效果？'
+    - '&e主线材料。'
+稳定焱火钢质:
+  Id: 265
+  Data: 0
+  Display: '&6稳定焱火钢质'
+  Lore:
+    - '&6稳定下来的钢制品！'
+    - '&c物极必反，否极泰来&6。&4&l炎火&r&d极至&5及是&1&l极寒&r&6！'
+    - ''
+    - ''
+    - '&a不知道用它制作护甲是什么效果？'
+    - '&e主线材料。'
+焱火三尺:
+  Id: 267
+  Data: 0
+  Display: '&6焱火三尺'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+寒冰三尺:
+  Id: 267
+  Data: 0
+  Display: '&6寒冰三尺'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true

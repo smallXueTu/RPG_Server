@@ -1,0 +1,70 @@
+quester: '接待员-琪琪'
+first: 'welcome,寻找翟纳若,encourage'
+stop: 'false'
+NPC_options:
+  'welcome':
+    text: '你好呀%player%，我是你们的接待员安琪，你可以叫我琪琪。'
+    conditions: '!被接待完成'
+    pointer: 'reply1'
+    events: ''
+  'introduce':
+    text: '对了，\n拥有勇士的证明后可以在这个地方拥有很好的待遇和福利。\n我想必你也很想证明自己是个勇士吧？'
+    conditions: ''
+    pointer: 'reply2'
+    events: ''
+  'start':
+    text: '说怎么多也没用，不如先证明一下自己吧！\n是不是已经迫不及待了？'
+    conditions: ''
+    pointer: 'reply3'
+    events: ''
+  'prove':
+    text: '你可以出去找下大将军\n他就是一个真正的勇士，看你能不能得到他的认可了。'
+    conditions: ''
+    pointer: 'reply5'
+    events: ''
+  '寻找翟纳若':
+    text: '你应该去找翟纳若的，按回车调出鼠标点击左上角"导航"开始导航。'
+    conditions: '寻找翟纳若'
+    pointer: 'reply6'
+    events: ''
+  encourage:
+    text: '我相信你是个勇士，加油！'
+    conditions: ''
+    events: ''
+    pointers: '是的'
+player_options:
+  'reply1':
+    text: '好的，琪琪。'
+    conditions: ''
+    pointer: 'introduce'
+    events: ''
+  'reply2':
+    text: '是的！'
+    conditions: ''
+    pointer: 'start'
+    events: ''
+  'reply3':
+    text: '我应该怎么证明？'
+    conditions: ''
+    pointer: 'prove'
+    events: ''
+  'reply4':
+    text: '嗯，我一定会的！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  'reply5':
+    text: '好的！'
+    conditions: ''
+    pointer: ''
+    events: '添加被接待完成标签,添加寻找翟纳若标签,添加寻找翟纳若,两秒后呼出导航教程'
+  '是的':
+    text: '是的！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  'reply6':
+    text: '我这就去！'
+    conditions: ''
+    pointer: ''
+    events: ''

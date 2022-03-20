@@ -1,0 +1,60 @@
+quester: '现代城城长'
+first: '感谢,你有什么事吗'
+stop: 'false'
+NPC_options:
+  '你有什么事吗':
+    text: '你好啊，证明者，有什么事吗？'
+    conditions: ''
+    pointer: '没有'
+    events: ''
+  '感谢':
+    text: '你好啊，勇士，听说你完成了试炼，听到这件事我已经非常吃惊了。\n你是不是已经学了一门职业了啊？\n请问你学了什么职业呢？'
+    conditions: '可以领取现代城城长奖励'
+    pointer: '战士,刺客,法师,牧师'
+    events: ''
+  '获得职业装备':
+    text: '职业都已经选了，怎么能没有职业装备呢！\n推荐你一个地方，哪里可以获得你职业的装备！'
+    conditions: ''
+    pointer: '什么地方'
+    events: ''
+  '神木庄':
+    text: '当然是神木庄了！哪里有强大的魔法气息，所以那边的树都是非常巨大的！\n不过那边好像正经历元素入侵，正需要你这样的人才呢！\n你过去看看吧！一定会有意想不到的收获！'
+    conditions: ''
+    pointer: '好'
+    events: ''
+player_options:
+  '没有':
+    text: '没有。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '战士':
+    text: '战士。'
+    conditions: '是战士'
+    pointer: '获得职业装备'
+    events: ''
+  '刺客':
+    text: '刺客。'
+    conditions: '是刺客'
+    pointer: '获得职业装备'
+    events: ''
+  '法师':
+    text: '法师。'
+    conditions: '是法师'
+    pointer: '获得职业装备'
+    events: ''
+  '牧师':
+    text: '牧师。'
+    conditions: '是牧师'
+    pointer: '获得职业装备'
+    events: ''
+  '什么地方':
+    text: '什么地方？'
+    conditions: ''
+    pointer: '神木庄'
+    events: ''
+  '好':
+    text: '好！我现在就去！'
+    conditions: ''
+    pointer: ''
+    events: '删除可以领取现代城城长奖励标签,传送到神木庄,添加找到沐沐标签,找到沐沐,保存主线位置到T2进度15'

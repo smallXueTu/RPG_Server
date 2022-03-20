@@ -1,0 +1,24 @@
+入门-丧尸:
+  MobName: 入门-丧尸
+  World: t2
+  X: 474
+  Y: 85
+  Z: 55
+  Radius: 5
+  UseTimer: true
+  MaxMobs: 5
+  MobLevel: '1'
+  MobsPerSpawn: 1
+  Cooldown: 0
+  CooldownTimer: 0
+  Warmup: 10
+  WarmupTimer: 0
+  CheckForPlayers: true
+  ActivationRange: 40
+  LeashRange: 32
+  HealOnLeash: false
+  ResetThreatOnLeash: false
+  ShowFlames: false
+  Breakable: false
+  Conditions: []
+  ActiveMobs: 0

@@ -1,0 +1,75 @@
+quester: '武器大师-姆斯特'
+first: 'welcome,welcome2'
+stop: 'false'
+NPC_options:
+  'welcome':
+    text: '咋了，冒险者。你找我有什么事吗？'
+    conditions: '!询问宝石如何镶嵌'
+    pointer: '宝石怎么镶嵌,如何升级铁剑'
+    events: ''
+  'welcome2':
+    text: '咋了，冒险者。你找我有什么事吗？'
+    conditions: '询问宝石如何镶嵌'
+    pointer: '宝石怎么镶嵌2'
+    events: ''
+  '宝石怎么镶嵌':
+    text: '按M打开菜单，然后找到锻造菜单的选择即可打开镶嵌界面！'
+    conditions: ''
+    pointer: '好的，谢谢！'
+    events: ''
+  '宝石怎么镶嵌2':
+    text: '按§eM§f打开菜单，然后打开锻造界面。\n左边放置武器，右边放置宝石！'
+    conditions: ''
+    pointer: '好的，谢谢！'
+    events: '学习镶嵌宝石'
+  '帮个忙1':
+    text: '你想升级你的武器呀，我现在武器也不多了，不过我可以给你打磨。\n但我也不能无偿给你打磨... 这样吧，现在村子正处于危机的状态，人们都不敢去打猎。\n左山上有经常有野牛出没，我看你身体强壮去杀几只吧牛肉带过来以表心意吧！'
+    conditions: '!拥有30牛肉'
+    pointer: '好的，谢谢！'
+    events: '击杀30只野牛,添加击杀30只牛标签'
+  '帮个忙2':
+    text: '不错，挺新鲜的牛肉，武器我已经帮你打磨好了，收下吧！'
+    conditions: '拥有30牛肉,拥有铁剑'
+    pointer: '哇，这武器感觉又高了一个档次！'
+    events: '拿走30牛肉,拿走铁剑,赐予锋利的铁剑'
+  '帮个忙3':
+    text: '牛肉集齐了，但你好像没有铁剑！\n要不找一下管理员吧...'
+    conditions: '拥有30牛肉,!拥有铁剑'
+    pointer: '好的'
+    events: ''
+player_options:
+  '宝石怎么镶嵌':
+    text: '我想问一下宝石怎么镶嵌。'
+    conditions: ''
+    pointer: '宝石怎么镶嵌'
+    events: ''
+  '宝石怎么镶嵌2':
+    text: '我想问一下宝石怎么镶嵌。'
+    conditions: ''
+    pointer: '宝石怎么镶嵌2'
+    events: ''
+  '如何升级铁剑':
+    text: '如何升级铁剑？'
+    conditions: '升级t1武器'
+    pointer: '帮个忙1,帮个忙2,帮个忙3'
+    events: ''
+  '好的，谢谢！':
+    text: '好的，谢谢！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '好的':
+    text: '好的。！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '我马上去':
+    text: '我马上去！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '哇，这武器感觉又高了一个档次！':
+    text: '哇，这武器感觉又高了一个档次！'
+    conditions: ''
+    pointer: ''
+    events: ''

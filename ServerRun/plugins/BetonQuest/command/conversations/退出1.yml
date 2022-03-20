@@ -1,0 +1,11 @@
+quester: '提示'
+first: '传送'
+stop: 'false'
+NPC_options:
+  '传送':
+    text:
+      - ''
+    conditions: ''
+    pointer: ''
+    events: '退出1'
+player_options:

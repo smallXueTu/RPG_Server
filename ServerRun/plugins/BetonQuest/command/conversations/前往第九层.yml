@@ -1,0 +1,23 @@
+quester: '提示'
+first: '条件满足,条件不满足'
+stop: 'false'
+NPC_options:
+  '条件不满足':
+    text:
+      - '你需要集齐&e地狱淬火套&r，才可以进入下一层！\n地狱之主掉落诅咒未激活的盔甲，你需要用守护者之心抹去诅咒激活，具体看&e交易盘&r。\n否者你的能力可能不及魔塔统治者'
+    conditions: ''
+    pointer: '关闭'
+    events: ''
+  '条件满足':
+    text:
+      - ''
+    conditions: '有地狱淬火头盔,有地狱淬火胸甲,有地狱淬火护腿,有地狱淬火靴子'
+    pointer: ''
+    events: '传送到第九层楼梯,default.保存主线位置到T2进度12'
+player_options:
+  '关闭':
+    text:
+      - '关闭'
+    conditions: ''
+    pointer: ''
+    events: ''

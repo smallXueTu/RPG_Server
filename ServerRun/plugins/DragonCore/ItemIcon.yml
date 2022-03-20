@@ -1,0 +1,250 @@
+#---------------------- t1 ----------------------
+剧毒:
+  match: "剧毒"
+  texture: "t1/剧毒.png"
+解蜘蛛毒剂:
+  match: "解蜘蛛毒剂"
+  texture: "t1/解蜘蛛毒剂.png"
+#---------------------- t2 ----------------------
+房地契:
+  match: "房地契"
+  texture: "t2/房地契.png"
+现币:
+  match: "现币"
+  texture: "t2/现币.png"
+蜘蛛腿:
+  match: "蜘蛛腿"
+  texture: "t2/蜘蛛腿.png"
+火焰蜘蛛眼:
+  match: "火焰蜘蛛眼"
+  texture: "t2/火焰蜘蛛眼.png"
+水灵晶石:
+  match: "水灵晶石"
+  texture: "t2/水灵晶石.png"
+火灵体:
+  match: "火灵体"
+  texture: "t2/火灵体.png"
+暗影头盔:
+  match: "暗影头盔"
+  texture: "t2/暗影头盔.png"
+暗影胸甲:
+  match: "暗影胸甲"
+  texture: "t2/暗影胸甲.png"
+暗影护腿:
+  match: "暗影护腿"
+  texture: "t2/暗影护腿.png"
+暗影靴子:
+  match: "暗影靴子"
+  texture: "t2/暗影靴子.png"
+淬火头盔:
+  match: "淬火头盔"
+  texture: "t2/淬火头盔.png"
+淬火胸甲:
+  match: "淬火胸甲"
+  texture: "t2/淬火胸甲.png"
+淬火护腿:
+  match: "淬火护腿"
+  texture: "t2/淬火护腿.png"
+淬火靴子:
+  match: "淬火靴子"
+  texture: "t2/淬火靴子.png"
+未来头盔:
+  match: "未来头盔"
+  texture: "t2/未来头盔.png"
+未来胸甲:
+  match: "未来胸甲"
+  texture: "t2/未来胸甲.png"
+未来护腿:
+  match: "未来护腿"
+  texture: "t2/淬火护腿.png"
+未来靴子:
+  match: "未来靴子"
+  texture: "t2/未来靴子.png"
+绿魔头盔:
+  match: "绿魔头盔"
+  texture: "t2/绿魔头盔.png"
+绿魔胸甲:
+  match: "绿魔胸甲"
+  texture: "t2/绿魔胸甲.png"
+绿魔护腿:
+  match: "绿魔护腿"
+  texture: "t2/绿魔护腿.png"
+绿魔靴子:
+  match: "绿魔靴子"
+  texture: "t2/绿魔靴子.png"
+暗黑头盔:
+  match: "暗黑头盔"
+  texture: "t2/暗黑头盔.png"
+暗黑胸甲:
+  match: "暗黑胸甲"
+  texture: "t2/暗黑胸甲.png"
+暗黑护腿:
+  match: "暗黑护腿"
+  texture: "t2/暗黑护腿.png"
+暗黑靴子:
+  match: "暗黑靴子"
+  texture: "t2/暗黑靴子.png"
+恶魔骑士头盔:
+  match: "恶魔骑士头盔"
+  texture: "t2/恶魔骑士头盔.png"
+恶魔骑士胸甲:
+  match: "恶魔骑士胸甲"
+  texture: "t2/恶魔骑士胸甲.png"
+恶魔骑士护腿:
+  match: "恶魔骑士护腿"
+  texture: "t2/恶魔骑士护腿.png"
+恶魔骑士靴子:
+  match: "恶魔骑士靴子"
+  texture: "t2/恶魔骑士靴子.png"
+地狱守护者之心:
+  match: "地狱守护者之心"
+  texture: "t2/地狱守护者之心.png"
+地狱钢铁:
+  match: "地狱钢铁"
+  texture: "t2/地狱钢铁.png"
+地狱石:
+  match: "地狱石"
+  texture: "t2/地狱石.png"
+魔塔统治者挑战券:
+  match: "魔塔统治者挑战券"
+  texture: "t2/魔塔统治者挑战券.png"
+木之球:
+  match: "木之球"
+  texture: "t2/木之球.png"
+水之石:
+  match: "水之石"
+  texture: "t2/水之石.png"
+火之石:
+  match: "火之石"
+  texture: "t2/火之石.png"
+钢之球:
+  match: "钢之球"
+  texture: "t2/钢之球.png"
+大地之球:
+  match: "大地之球"
+  texture: "t2/大地之球.png"
+元素之球:
+  match: "元素之球"
+  texture: "t2/元素之球.png"
+青蜘符文:
+  match: "青蜘符文"
+  texture: "t2/青蜘符文.png"
+晶蝎符文:
+  match: "晶蝎符文"
+  texture: "t2/晶蝎符文.png"
+魔力符文:
+  match: "魔力符文"
+  texture: "t2/魔力符文.png"
+遗迹符文:
+  match: "遗迹符文"
+  texture: "t2/遗迹符文.png"
+稳定寒冰钢质:
+  match: "稳定寒冰钢质"
+  texture: "t2/稳定寒冰钢质.png"
+稳定焱火钢质:
+  match: "稳定焱火钢质"
+  texture: "t2/稳定焱火钢质.png"
+恶火靴子:
+  match: "恶火靴子"
+  texture: "t2/恶火靴子.png"
+恶火胸甲:
+  match: "恶火胸甲"
+  texture: "t2/恶火胸甲.png"
+恶火护腿:
+  match: "恶火护腿"
+  texture: "t2/恶火护腿.png"
+恶火头盔:
+  match: "恶火头盔"
+  texture: "t2/恶火头盔.png"
+#---------------------- t3 ----------------------
+炼狱火锭:
+  match: "炼狱火锭"
+  texture: "t3/炼狱火锭.png"
+魔腾树木棍:
+  match: "魔腾树木棍"
+  texture: "t3/魔腾树木棍.png"
+虚空锭:
+  match: "虚空锭"
+  texture: "t3/虚空锭.png"
+虚空之箭:
+  match: "虚空之箭"
+  texture: "t3/虚空之箭.png"
+绿光虚空粉:
+  match: "绿光虚空粉"
+  texture: "t3/绿光虚空粉.png"
+虚空寒冰头盔:
+  match: "虚空寒冰头盔"
+  texture: "t3/虚空寒冰头盔.png"
+虚空寒冰胸甲:
+  match: "虚空寒冰胸甲"
+  texture: "t3/虚空寒冰胸甲.png"
+虚空寒冰护膝:
+  match: "虚空寒冰护膝"
+  texture: "t3/虚空寒冰护膝.png"
+虚空寒冰靴子:
+  match: "虚空寒冰靴子"
+  texture: "t3/虚空寒冰靴子.png"
+食火粉:
+  match: "食火粉"
+  texture: "t3/食火粉.png"
+虚空之金:
+  match: "虚空之金"
+  texture: "t3/虚空之金.png"
+#---------------------- f1 ----------------------
+知识卷轴章节:
+  match: "知识卷轴章节"
+  texture: "f1/知识卷轴章节.png"
+法杖知识卷轴:
+  match: "法杖知识卷轴"
+  texture: "f1/法杖知识卷轴.png"
+凝固经验块:
+  match: "凝固经验块"
+  texture: "f1/凝固经验块.png"
+知识之瓶:
+  match: "知识之瓶"
+  texture: "f1/知识之瓶.png"
+刺客知识精髓:
+  match: "刺客知识精髓"
+  texture: "f1/知识精髓.png"
+战士知识精髓:
+  match: "战士知识精髓"
+  texture: "f1/知识精髓.png"
+法师知识精髓:
+  match: "法师知识精髓"
+  texture: "f1/知识精髓.png"
+牧师知识精髓:
+  match: "牧师知识精髓"
+  texture: "f1/知识精髓.png"
+#---------------------- 药剂 ----------------------
+小型生命药剂:
+  match: "小型生命药剂"
+  texture: "药剂/小型生命药剂.png"
+#---------------------- 宝石 ----------------------
+小型医疗水晶:
+  match: "§6小型医疗水晶"
+  texture: "宝石/小型医疗水晶.png"
+宝石卸除工具:
+  match: "宝石卸除工具"
+  texture: "宝石/宝石卸除工具.png"
+力量宝石碎片:
+  match: "力量宝石碎片"
+  texture: "宝石/碎片/力量宝石碎片.png"
+宝石力量载体:
+  match: "宝石力量载体"
+  texture: "宝石/碎片/宝石力量载体.png"
+水晶宝石:
+  match: "宝石镶嵌界面"
+  texture: "宝石/水晶宝石.png"
+力量宝石:
+  match: "§6力量宝石"
+  texture: "宝石/力量宝石.png"
+宝石卸除菜单:
+  match: "宝石卸除菜单"
+  texture: "宝石/宝石卸除工具.png"
+#---------------------- 全局 ----------------------
+交易盘:
+  match: "交易盘"
+  texture: "全局/交易盘.png"
+金币:
+  match: "§6金币"
+  texture: "全局/金币.png"

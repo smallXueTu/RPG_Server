@@ -1,0 +1,241 @@
+#---------------------- t2 ----------------------
+火焰蜘蛛:
+  entity: "火焰蜘蛛"
+  model: "t2/火焰蜘蛛/model.json"
+  texture: "t2/火焰蜘蛛/texture.png"
+  animation: "t2/火焰蜘蛛/model.animation.json"
+  height: 0.8
+  width: 1
+  scale: 0.9
+水灵蜘蛛:
+  entity: "水灵蜘蛛"
+  model: "t2/水灵蜘蛛/model.json"
+  texture: "t2/水灵蜘蛛/texture.png"
+  animation: "t2/水灵蜘蛛/model.animation.json"
+  height: 0.8
+  width: 1
+  scale: 0.9
+符文蜘蛛:
+  entity: "【入门】符文蜘蛛"
+  model: "t2/符文蜘蛛/model.json"
+  texture: "t2/符文蜘蛛/texture.png"
+  animation: "t2/符文蜘蛛/model.animation.json"
+  height: 1
+  width: 1
+  scale: 1.2
+蜘蛛网:
+  entity: "蜘蛛网"
+  model: "t2/蜘蛛网/model.json"
+  texture: "t2/蜘蛛网/texture.png"
+  height: 1
+  width: 1
+  scale: 1
+水晶蝎子:
+  entity: "【初级】水晶蝎子"
+  model: "t2/水晶蝎子/model.json"
+  texture: "t2/水晶蝎子/texture.png"
+  animation: "t2/水晶蝎子/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 1
+树精:
+  entity: "树精"
+  model: "t2/树精/model.json"
+  texture: "t2/树精/texture.png"
+  animation: "t2/树精/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 1
+魔化蜘蛛:
+  entity: "【中级】魔化蜘蛛"
+  model: "t2/魔化蜘蛛/model.json"
+  texture: "t2/魔化蜘蛛/texture.png"
+  animation: "t2/魔化蜘蛛/model.animation.json"
+  height: 1.5
+  width: 1.5
+  # 对于obj模型可采用缩放功能
+  scale: 1.5
+遗迹蜘蛛:
+  entity: "【高级】遗迹蜘蛛"
+  model: "t2/遗迹蜘蛛/model.json"
+  texture: "t2/遗迹蜘蛛/texture.png"
+  animation: "t2/遗迹蜘蛛/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 1
+功能1:
+  entity: "【功能】前往更深处"
+  model: "t2/植物1/model.json"
+  texture: "t2/植物1/texture.png"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.6
+功能2:
+  entity: "【功能】进入恶火圣殿"
+  model: "t2/植物1/model.json"
+  texture: "t2/植物1/texture.png"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.6
+火之祭坛-遗迹:
+  entity: "火之祭坛-遗迹"
+  model: "t2/火之祭坛/model.json"
+  texture: "t2/火之祭坛/texture.png"
+  glowTexture: "t2/火之祭坛/texture.glow.png"
+  animation: "t2/火之祭坛/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.6
+火之祭坛-魔力:
+  entity: "火之祭坛-魔力"
+  model: "t2/火之祭坛/model.json"
+  texture: "t2/火之祭坛/texture.png"
+  glowTexture: "t2/火之祭坛/texture.glow.png"
+  animation: "t2/火之祭坛/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.6
+火之祭坛-青蜘:
+  entity: "火之祭坛-青蜘"
+  model: "t2/火之祭坛/model.json"
+  texture: "t2/火之祭坛/texture.png"
+  glowTexture: "t2/火之祭坛/texture.glow.png"
+  animation: "t2/火之祭坛/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.6
+火之祭坛-晶蝎:
+  entity: "火之祭坛-晶蝎"
+  model: "t2/火之祭坛/model.json"
+  texture: "t2/火之祭坛/texture.png"
+  glowTexture: "t2/火之祭坛/texture.glow.png"
+  animation: "t2/火之祭坛/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.6
+恶火翼兽:
+  entity: "【高级】恶火翼兽"
+  model: "t2/恶火翼兽/model.json"
+  texture: "t2/恶火翼兽/texture.png"
+  animation: "t2/恶火翼兽/model.animation.json"
+  height: 2
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 1
+恶火兽:
+  entity: "【高级】恶火兽"
+  model: "t2/恶火兽/model.json"
+  texture: "t2/恶火兽/texture.png"
+  animation: "t2/恶火兽/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 1
+寒极锻造师:
+  entity: "【主线】寒极锻造师"
+  model: "t2/寒极锻造师/model.json"
+  texture: "t2/寒极锻造师/texture.png"
+  animation: "t2/寒极锻造师/model.animation.json"
+  height: 2
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.8
+#---------------------- t3 ----------------------
+魔藤树:
+  entity: "魔藤树"
+  model: "t3/魔藤树/model.json"
+  texture: "t3/魔藤树/texture.png"
+  animation: "t3/魔藤树/model.animation.json"
+  height: 2.5
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.8
+炼狱炎火龟:
+  entity: "炼狱炎火龟"
+  model: "t3/炼狱炎火龟/model.json"
+  texture: "t3/炼狱炎火龟/texture.png"
+  animation: "t3/炼狱炎火龟/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.8
+虚空毒蜥:
+  entity: "虚空毒蜥"
+  model: "t3/虚空毒蜥/model.json"
+  texture: "t3/虚空毒蜥/texture.png"
+  glowTexture: "t3/虚空毒蜥/texture.glow.png"
+  animation: "t3/虚空毒蜥/model.animation.json"
+  height: 1.5
+  width: 1.5
+  # 对于obj模型可采用缩放功能
+  scale: 0.8
+虚空寒晶鸟:
+  entity: "虚空寒晶鸟"
+  model: "t3/虚空寒晶鸟/model.json"
+  texture: "t3/虚空寒晶鸟/texture.png"
+  animation: "t3/虚空寒晶鸟/model.animation.json"
+  height: 2.5
+  width: 1.5
+  # 对于obj模型可采用缩放功能
+  scale: 0.6
+寒晶凤凰:
+  entity: "寒晶凤凰"
+  model: "t3/虚空寒晶鸟/model.json"
+  texture: "t3/虚空寒晶鸟/texture.png"
+  animation: "t3/虚空寒晶鸟/model.animation.json"
+  height: 2.5
+  width: 1.5
+  # 对于obj模型可采用缩放功能
+  scale: 0.8
+虚空金虎:
+  entity: "虚空金虎"
+  model: "t3/虚空金虎/model.json"
+  texture: "t3/虚空金虎/texture.png"
+  animation: "t3/虚空金虎/model.animation.json"
+  height: 1.5
+  width: 2
+  # 对于obj模型可采用缩放功能
+  scale: 0.8
+虚空虎王:
+  entity: "虚空虎王"
+  model: "t3/虚空虎王/model.json"
+  texture: "t3/虚空虎王/texture.png"
+  animation: "t3/虚空虎王/model.animation.json"
+  height: 1.5
+  width: 2
+  # 对于obj模型可采用缩放功能
+  scale: 0.8
+#---------------------- 全局 ----------------------
+退出:
+  entity: "退出"
+  model: "全局/退出/model.json"
+  texture: "全局/退出/texture.png"
+  height: 1.6
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 1
+接待员-琪琪:
+  entity: "【主线】接待员-琪琪-old"
+  model: "全局/接待员-琪琪/model.json"
+  texture: "全局/接待员-琪琪/texture.png"
+  height: 1.6
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 1
+主城雕像:
+  entity: "主城雕像"
+  model: "全局/主城雕像/model.json"
+  texture: "全局/主城雕像/texture.png"
+  height: 1.6
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 1

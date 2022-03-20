@@ -1,0 +1,131 @@
+火焰粒子门:
+  Skills:
+    - particleDoor{y=180;q=17;yi=0.8;i=0.3;r=10;yq=3}
+火焰粒子门2:
+  Skills:
+    - particleDoor{y=180;q=11;yi=0.8;i=0.3;r=10;yq=3}
+t3test:
+  Skills:
+    - execBQEvent{e=test}
+虚空舰出现意外:
+  Cooldown: 30
+  TargetConditions:
+    - HasBQTag{t=default.请求凯特开往指定方向}
+  Skills:
+    - message{m="&d航程监视员-黑涅托&r>> &6我将要负责你们的安全问题。"} @Self
+    - delay 20
+    - message{m="&d航程监视员-黑涅托&r>> &6准备好，我们要出发咯！"} @Self
+    - delay 20
+    - sendtitle{title="&6目的地&r：&d虚无之境";subtitle="&6气压：&a正常 &6燃料：&a正常 &6雷达：&a正常 &6天线：&a正常";d=60;fi=20;o=20} @Self
+    - delay 60
+    - sendtitle{title="&6目的地&r：&d虚无之境";subtitle="&6天气：&a正常 &6波咒：&e少量. &6诅咒：&e少量 &6综合：&e一般";d=60;fi=20;o=20} @Self
+    - delay 60
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="&6当前波咒不太正常，极小可能发生未知事变，请注意。开始起飞。";d=60;fi=20;o=20} @Self
+    - delay 30
+    - message{m="&d航程监视员-黑涅托&r>> &6波咒有点不正常，不过问题不大，发生异常的几率很小！"} @Self
+    - delay 30
+    - sendAction{"type":"shakeScreen","time":300}
+    - delay 30
+    - message{m="&d航程监视员-黑涅托&r>> &6起飞了，抓稳哦！"} @Self
+    - delay 30
+    - message{m="&d<trigger.name>&r>> &a怎么震动怎么严重，你们之前都是这种幅度吗？"} @Self
+    - delay 30
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="&6航舰对比平日表演异常，正在紧急返&kasdasds";d=60;fi=20;o=20} @Self
+    - delay 30
+    - sendtitle{title="&c&8[&kWARNINH&8]";subtitle="&c航舰失去控，能源系统异常...&kasdasasdasdds";d=60;fi=20;o=20} @Self
+    - sendAction{"type":"blackScreen","time":400}
+    - delay 100
+    - sendtitle{title="&c&8[&kWARNINH&8]";subtitle="&c通讯备用电源启动成功...正在尝试重新连...&kasdasasdasdds";d=60;fi=20;o=20} @Self
+    - delay 60
+    - sendtitle{title="&c&8[&kWARNINH&8]";subtitle="&c正在尝试重新连...&kasdasasdasdds";d=60;fi=20;o=20} @Self
+    - delay 60
+    - sendtitle{title="&c&8[&aSUCCESS&8]";subtitle="&a通讯回复，成功连接到总部";d=60;fi=20;o=20} @Self
+    - delay 40
+    - sendtitle{title="&c&8[&cWARNINH&8]";subtitle="&a收到总部通知：航舰遇到未知虫洞，你们可能会被传送到不同时空！";d=60;fi=20;o=20} @Self
+    - sound{s=block.portal.travel;p=1;v=1;} @Self
+    - delay 40
+    - execBQEvent{e=保存主线位置到T3进度1}
+    - execBQEvent{e=删除请求凯特开往指定方向标签}
+    - teleport @Location{c=289.5,10,127.5}
+    - delay 40
+    - message{m="&d时空号劫持者&r>> &6嘿，醒醒"} @Self
+    - delay 10
+    - message{m="&d时空号劫持者&r>> &6我是时空劫持者06号，负责拉回时空混乱的人。"} @Self
+    - delay 10
+    - message{m="&d时空号劫持者&r>> &6我在混乱时空发现了你，就把你带到最近的虫洞穿越过来了。"} @Self
+    - delay 10
+    - message{m="&d<trigger.name>&r>> &a时空劫持者？这什么地方，干嘛要把我带到这里？"} @Self
+    - delay 10
+    - message{m="&d时空号劫持者&r>> &6这是26号虚空内的圣殿，我觉得这个圣殿已经有很久的历史了，已经被沙土沉没了"} @Self
+    - delay 10
+    - message{m="&d<trigger.name>&r>> &a我应该怎么回去呢？"} @Self
+    - delay 10
+    - message{m="&d时空号劫持者&r>> &6除非在传说空间隧道中，否者我可没有传送你们的能力，你想回哪？"} @Self
+    - delay 10
+    - message{m="&d<trigger.name>&r>> &a我....我也不知道我能去哪，刚刚我记得是有个人带我去虚无之境的。"} @Self
+    - delay 10
+    - message{m="&d时空号劫持者&r>> &6虚无之境？我没听说过，它应该不属于这个时空！"} @Self
+    - delay 10
+    - message{m="&d<trigger.name>&r>> &a我应该怎么回去？"} @Self
+    - delay 10
+    - message{m="&d时空号劫持者&r>> &6我只能劫持混乱时空的人，并不能运送他们...你只能靠你自己了！"} @Self
+    - message{m="&d时空号劫持者&r>> &6并且这个地方为了防止外人靠近圣殿有好多机关，可能需要你自己探索！"} @Self
+    - message{m="&d时空号劫持者&r>> &6待在这里也不是办法，你最好找一下出去的方法！"} @Self
+    - message{m="&d时空号劫持者&r>> &6而我也是有使命的，不能擅自行动！"} @Self
+遇到虚空圣殿守护者:
+  Cooldown: 60
+  TargetConditions:
+    - HasBQTag{t=default.已击杀虚空圣殿守护者}<&csp>false
+  Skills:
+    - delay 20
+    - message{m="&d虚空圣殿守护者&r>> &6我已经在这里沉睡了几百年了，没想到刚醒迷途的羔羊会来到这里！"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &a我刚听说这里已经沉寂了几百年，没想到居然还有活着的生命，不对，你到底是不是一条生命！"} @Self
+    - delay 20
+    - message{m="&d虚空圣殿守护者&r>> &6我不管你是谁，你最好哪来的回哪去，不然我可对你不客气！"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &a这么硬气，这让我更加好奇里面到底有什么宝物了！"} @Self
+    - delay 20
+    - message{m="&d虚空圣殿守护者&r>> &6我可在为你着想。里面可没什么宝藏，都是一些无理智的怪物。"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &a我可不怕你，够胆就出来让我见识见识，毕竟我现在也是无路可去！"} @Self
+    - delay 20
+    - execBQEvent{e=保存主线位置到T3进度1-1}
+    - summon{type=虚空圣殿守护者;amount=1;sio=false;sip=false} @Location{c=289.5,9,179.5}
+    - message{m="&d虚空圣殿守护者&r>> &6即便如此，我也不能让你从这里通过，我是守护这个地方的人，你作为擅自进入这个地方的人，理应被驱逐！"} @Self
+    - message{m="&d虚空圣殿守护者&r>> &6想从这里出去你只能从我的尸体上踏过去！"} @Self
+虚空粉碎攻击:
+  Cooldown: 8
+  Conditions:
+    - IsSilence{}<&csp>false
+    - targetwithin 25
+  Skills:
+    - teleport @target
+    - effect:sound{s=mob.endermen.portal;volume=1.0;pitch=0.5}
+    - delay 10
+    - damage{amount=30;ignorearmor=true} @target
+    - throw{velocity=10;velocityY=5} @target
+    - effect:explosion @Self
+遇到受伤的冒险者:
+  Cooldown: 60
+  TargetConditions:
+    - HasBQTag{t=default.已和受伤的冒险者对话}<&csp>false
+  Skills:
+    - delay 20
+    - message{m="&d受伤的冒险者&r>> &6是不是有人来了？"} @Self
+    - delay 20
+    - message{m="&d受伤的冒险者&r>> &6谁来救救我啊！"} @Self
+    - delay 20
+    - message{m="&d受伤的冒险者&r>> &6我就在前方右手边的房间内！"} @Self
+    - execBQEvent{e=保存主线位置到T3进度2}
+    - execBQEvent{e=到达到T3进度3地点}
+金虎跃击:
+  Cooldown: 10
+  Conditions:
+    - IsSilence{}<&csp>false
+  Skills:
+    - potion{type=SLOW;duration=50;level=255} @Self
+    - startAnimation{a=JumpShot} @Self ~onSpawn
+    - delay 50
+    - leap{velocity=500} @target
+    - runaitargetselector{target=players}

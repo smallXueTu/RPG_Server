@@ -1,0 +1,45 @@
+quester: '镇魔塔接待者'
+first: '介绍,拒绝'
+stop: 'false'
+NPC_options:
+  '拒绝':
+    text: '这不是你该来的地方，你还是哪里来的就哪里去吧！'
+    conditions: ''
+    pointer: '好吧'
+    events: ''
+  '介绍':
+    text: '你好证明者，欢迎来到镇魔塔，守卫者能让你进来一定不简单。\n这座塔用魔法镇压这好多在外面难以控制拥有再生能力的怪魔。\n通过魔塔魔法限制了他们的能力。不过怪物拥有很强的再升能力。'
+    conditions: '前往镇魔塔'
+    pointer: '那太棒了'
+    events: ''
+  '继续说':
+    text: '所以说在这里强化自己是最好的选择。\n所以你可以在这里累计经验，并强化自己的能力。\n到达顶层了还能学一门职业哦~'
+    conditions: ''
+    pointer: '我该怎么做'
+    events: ''
+  '考验':
+    text: '你只需要完成一层一层的考验！慢慢到达顶层就好了。\n没事，别害怕，很简单的考验，'
+    conditions: ''
+    pointer: '迫不及待'
+    events: ''
+player_options:
+  '那太棒了':
+    text: '那太棒了！'
+    conditions: ''
+    pointer: '继续说'
+    events: ''
+  '我该怎么做':
+    text: '我该怎么做？'
+    conditions: ''
+    pointer: '考验'
+    events: ''
+  '好吧':
+    text: '好吧。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '迫不及待':
+    text: '我已经迫不及待了！'
+    conditions: ''
+    pointer: ''
+    events: '前往第二层,选择无职业,删除前往镇魔塔标签'

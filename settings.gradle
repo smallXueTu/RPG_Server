@@ -1,0 +1,6 @@
+rootProject.name = 'RPG_Server'
+include 'LTCraft'
+include 'LTTeleport'
+include 'LTSpawn'
+include 'LTItem'
+include 'LTLogin'

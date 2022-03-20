@@ -1,0 +1,23 @@
+quester: '豪宅居民'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text:
+      - '内容'
+    conditions: ''
+    pointer: '回复'
+    events: ''
+  '回答':
+    text:
+      - '回答内容。'
+    conditions: ''
+    pointer: ''
+    events: ''
+player_options:
+  '回复':
+    text:
+      - '回复内容。'
+    conditions: ''
+    pointer: '回答'
+    events: ''

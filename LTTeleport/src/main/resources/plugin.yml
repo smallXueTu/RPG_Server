@@ -1,0 +1,57 @@
+name: LTTeleport
+main: cn.ltcraft.teleport.Teleport
+version: 0.0.1
+commands:
+  tpa:
+    description: 请求传送到一个玩家身边
+    usage: /tpa 玩家ID
+  tpahere:
+    description: 请求让一个玩家传送到自己身边
+    usage: /tpahere 玩家ID
+  sethome:
+    description: 设置一个家
+    usage: /sethome 家名字
+  delhome:
+    description: 删除一个家
+    usage: /delhome 家名字
+  home:
+    description: 回家
+    usage: /home 家名字
+  warp:
+    description: 传送一个地标
+    usage: /warp 地标名字
+  w:
+    description: 切换世界
+    usage: /w 世界名字
+  warps:
+    description: 查看所有地标
+    usage: /warps
+  homes:
+    description: 查看所有家
+    usage: /homes
+  tpaccept:
+    description: 接受一个tpa
+    usage: /tpaccept 玩家ID 不填写默认上一个
+  back:
+    description: 回上次死亡点
+    usage: /back
+  setwarp:
+    description: 设置一个地标
+    permission: op
+    usage: /setwarp 地标名字
+  delwarp:
+    description: 删除一个地标
+    permission: op
+    usage: /delwarp 地标名字
+  setspawn:
+    description: 设置重生点到自己的坐标
+    permission: op
+    usage: /setspawn
+  bt:
+    description: 退到上次传前的位置
+    permission: LTTeleport.bt.cmd
+    usage: /bt
+permissions:
+  LTTeleport.bt.cmd:
+    description: 退到上次传前的位置
+    default: true

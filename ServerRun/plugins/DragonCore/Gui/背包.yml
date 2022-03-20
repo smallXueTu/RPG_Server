@@ -1,0 +1,388 @@
+
+
+# 匹配界面名,hud为自动开启
+# GuiInventory可以替换背包
+# GuiIngameMenu可以替换ESC
+# 或者直接填写箱子界面名称，即可替换箱子界面(颜色符号需写为§)
+# PS：当你打开任意界面时，客户端的log内会提示本次打开的界面名哦
+match: "GuiInventoryAAA"
+
+# 禁止ESC直接关闭界面，采用Functions的按键监听来关闭界面
+allowEscClose: false
+
+Functions:
+  # 通过判断按键，异步执行下面的这个【延时关闭界面】，它会延时100毫秒后才关闭，延时的这段时间是用来做背包的关闭动画的
+  # 判断的格式是  (条件)?{达成执行;}:{否则执行;};  如果没有否则执行  可以用0代替 写成 (条件)?{达成执行;}:0;
+  # || 是或的意思，也就是说当 当前的按键为 E或ESC,就关闭界面   && 则是且的意思
+  keyPress: "(方法.取当前按下键=='E' || 方法.取当前按下键=='ESCAPE')?{方法.关闭界面;}:0"
+
+  # 界面开启之后会自动执行open，此时就可以开始更新变量啦
+  open: "方法.异步执行方法('每秒更新变量')"
+
+  # 由于功能完全是在客户端实现的，所以客户端并不能直接知道变量的值，我们需要通过【方法.更新变量值】来向服务端同步变量值到客户端内
+  # 文本内容需要用 ''包裹,不然mod无法识别这条公式
+  每秒更新变量: |-
+    方法.更新变量值('vault_eco_balance','playerpoints_points');
+    方法.延时(1000);
+    方法.异步执行方法('每秒更新变量');
+
+背包背景_texture:
+  # x和y指组件的显示位置，组件将会从x,y开始，绘制一个width,height的图形
+  # w指屏幕宽度  h指屏幕高度, 通过这种 (屏幕宽度-组件宽度)/2 的格式来设定xy，可以让组件在屏幕处于居中的位置
+  # 你也可以用  方法.取屏幕宽度  来获取屏幕宽度进行计算
+  x: "(w-背包背景_texture.width)/2"
+  y: "(h-背包背景_texture.height)/2"
+  # 透明度, 界面的存活时间是打开界面后,由0不断递增的毫秒数,通过计算我们就可以获取一个由0.0一直增加到1.0的值
+  # 当然由于透明度的区间为 0.00-1.00 所以这里即便它到达了2也是跟1一样的透明度
+  alpha: "方法.取界面存活时间/700"
+  # 图片显示的宽度
+  width: "468.5"
+  # 图片显示的高度
+  height: "290"
+  # 贴图的文件路径
+  texture: "inventory.png"
+  # 鼠标悬浮于组件上时显示的贴图
+  # textureHovered: "inventory.png"
+
+
+# 设置4个装备槽和副手槽
+头部槽位_slot:
+  x: "背包背景_texture.x+83"
+  y: "背包背景_texture.y+61.5"
+  # identifier是指槽位ID,当它以container_开头,则是获取玩家槽位,否则 则是获取拓展槽位
+  # 至于后面的编号你可以参考我的配置来看，比如这个5就是头部槽
+  identifier: "container_5"
+  alpha: "方法.取界面存活时间/700"
+  # 设置槽位的宽高,如果你不设置的话，它也是默认为16x16
+  width: 16
+  height: 16
+胸部槽位_slot:
+  x: "背包背景_texture.x+83"
+  y: "背包背景_texture.y+90"
+  identifier: "container_6"
+  alpha: "方法.取界面存活时间/700"
+腿部槽位_slot:
+  x: "背包背景_texture.x+83"
+  y: "背包背景_texture.y+118.5"
+  identifier: "container_7"
+  alpha: "方法.取界面存活时间/700"
+脚部槽位_slot:
+  x: "背包背景_texture.x+83"
+  y: "背包背景_texture.y+147.5"
+  identifier: "container_8"
+  alpha: "方法.取界面存活时间/700"
+副手槽_slot:
+  x: "背包背景_texture.x+173"
+  y: "背包背景_texture.y+147.5"
+  identifier: "container_45"
+  alpha: "方法.取界面存活时间/700"
+# 设置5个合成栏的槽位
+合成槽位0_slot:
+  x: "背包背景_texture.x+256"
+  y: "背包背景_texture.y+86"
+  identifier: "container_0"
+  alpha: "方法.取界面存活时间/700"
+合成槽位1_slot:
+  x: "背包背景_texture.x+241"
+  y: "背包背景_texture.y+24"
+  identifier: "container_1"
+  alpha: "方法.取界面存活时间/700"
+合成槽位2_slot:
+  x: "背包背景_texture.x+269"
+  y: "背包背景_texture.y+24"
+  identifier: "container_2"
+  alpha: "方法.取界面存活时间/700"
+合成槽位3_slot:
+  x: "背包背景_texture.x+241"
+  y: "背包背景_texture.y+51.5"
+  identifier: "container_3"
+  alpha: "方法.取界面存活时间/700"
+合成槽位4_slot:
+  x: "背包背景_texture.x+269"
+  y: "背包背景_texture.y+51.5"
+  identifier: "container_4"
+  alpha: "方法.取界面存活时间/700"
+# 背包36个格子（第一行）
+背包格子1-1_slot:
+  x: "背包背景_texture.x+238"
+  y: "背包背景_texture.y+171"
+  identifier: "container_9"
+  alpha: "方法.取界面存活时间/700"
+背包格子1-2_slot:
+  x: "背包背景_texture.x+261.5"
+  y: "背包背景_texture.y+171"
+  identifier: "container_10"
+  alpha: "方法.取界面存活时间/700"
+背包格子1-3_slot:
+  x: "背包背景_texture.x+285"
+  y: "背包背景_texture.y+171"
+  identifier: "container_11"
+  alpha: "方法.取界面存活时间/700"
+背包格子1-4_slot:
+  x: "背包背景_texture.x+308.5"
+  y: "背包背景_texture.y+171"
+  identifier: "container_12"
+  alpha: "方法.取界面存活时间/700"
+背包格子1-5_slot:
+  x: "背包背景_texture.x+332"
+  y: "背包背景_texture.y+171"
+  identifier: "container_13"
+  alpha: "方法.取界面存活时间/700"
+背包格子1-6_slot:
+  x: "背包背景_texture.x+355.5"
+  y: "背包背景_texture.y+171"
+  identifier: "container_14"
+  alpha: "方法.取界面存活时间/700"
+背包格子1-7_slot:
+  x: "背包背景_texture.x+379"
+  y: "背包背景_texture.y+171"
+  identifier: "container_15"
+  alpha: "方法.取界面存活时间/700"
+背包格子1-8_slot:
+  x: "背包背景_texture.x+402.5"
+  y: "背包背景_texture.y+171"
+  identifier: "container_16"
+  alpha: "方法.取界面存活时间/700"
+背包格子1-9_slot:
+  x: "背包背景_texture.x+426"
+  y: "背包背景_texture.y+171"
+  identifier: "container_17"
+  alpha: "方法.取界面存活时间/700"
+# 背包36个格子（第二行）
+背包格子2-1_slot:
+  x: "背包背景_texture.x+238"
+  y: "背包背景_texture.y+191.5"
+  identifier: "container_18"
+  alpha: "方法.取界面存活时间/700"
+背包格子2-2_slot:
+  x: "背包背景_texture.x+261.5"
+  y: "背包背景_texture.y+191.5"
+  identifier: "container_19"
+  alpha: "方法.取界面存活时间/700"
+背包格子2-3_slot:
+  x: "背包背景_texture.x+285"
+  y: "背包背景_texture.y+191.5"
+  identifier: "container_20"
+  alpha: "方法.取界面存活时间/700"
+背包格子2-4_slot:
+  x: "背包背景_texture.x+308.5"
+  y: "背包背景_texture.y+191.5"
+  identifier: "container_21"
+  alpha: "方法.取界面存活时间/700"
+背包格子2-5_slot:
+  x: "背包背景_texture.x+332"
+  y: "背包背景_texture.y+191.5"
+  identifier: "container_22"
+  alpha: "方法.取界面存活时间/700"
+背包格子2-6_slot:
+  x: "背包背景_texture.x+355.5"
+  y: "背包背景_texture.y+191.5"
+  identifier: "container_23"
+  alpha: "方法.取界面存活时间/700"
+背包格子2-7_slot:
+  x: "背包背景_texture.x+379"
+  y: "背包背景_texture.y+191.5"
+  identifier: "container_24"
+  alpha: "方法.取界面存活时间/700"
+背包格子2-8_slot:
+  x: "背包背景_texture.x+402.5"
+  y: "背包背景_texture.y+191.5"
+  identifier: "container_25"
+  alpha: "方法.取界面存活时间/700"
+背包格子2-9_slot:
+  x: "背包背景_texture.x+426"
+  y: "背包背景_texture.y+191.5"
+  identifier: "container_26"
+  alpha: "方法.取界面存活时间/700"
+# 背包36个格子（第三行）
+背包格子3-1_slot:
+  x: "背包背景_texture.x+238"
+  y: "背包背景_texture.y+212"
+  identifier: "container_27"
+  alpha: "方法.取界面存活时间/700"
+背包格子3-2_slot:
+  x: "背包背景_texture.x+261.5"
+  y: "背包背景_texture.y+212"
+  identifier: "container_28"
+  alpha: "方法.取界面存活时间/700"
+背包格子3-3_slot:
+  x: "背包背景_texture.x+285"
+  y: "背包背景_texture.y+212"
+  identifier: "container_29"
+  alpha: "方法.取界面存活时间/700"
+背包格子3-4_slot:
+  x: "背包背景_texture.x+308.5"
+  y: "背包背景_texture.y+212"
+  identifier: "container_30"
+  alpha: "方法.取界面存活时间/700"
+背包格子3-5_slot:
+  x: "背包背景_texture.x+332"
+  y: "背包背景_texture.y+212"
+  identifier: "container_31"
+  alpha: "方法.取界面存活时间/700"
+背包格子3-6_slot:
+  x: "背包背景_texture.x+355.5"
+  y: "背包背景_texture.y+212"
+  identifier: "container_32"
+  alpha: "方法.取界面存活时间/700"
+背包格子3-7_slot:
+  x: "背包背景_texture.x+379"
+  y: "背包背景_texture.y+212"
+  identifier: "container_33"
+  alpha: "方法.取界面存活时间/700"
+背包格子3-8_slot:
+  x: "背包背景_texture.x+402.5"
+  y: "背包背景_texture.y+212"
+  identifier: "container_34"
+  alpha: "方法.取界面存活时间/700"
+背包格子3-9_slot:
+  x: "背包背景_texture.x+426"
+  y: "背包背景_texture.y+212"
+  identifier: "container_35"
+  alpha: "方法.取界面存活时间/700"
+# 背包36个格子（第四行）
+背包格子4-1_slot:
+  x: "背包背景_texture.x+238"
+  y: "背包背景_texture.y+241.5"
+  identifier: "container_36"
+  alpha: "方法.取界面存活时间/700"
+背包格子4-2_slot:
+  x: "背包背景_texture.x+261.5"
+  y: "背包背景_texture.y+241.5"
+  identifier: "container_37"
+  alpha: "方法.取界面存活时间/700"
+背包格子4-3_slot:
+  x: "背包背景_texture.x+285"
+  y: "背包背景_texture.y+241.5"
+  identifier: "container_38"
+  alpha: "方法.取界面存活时间/700"
+背包格子4-4_slot:
+  x: "背包背景_texture.x+308.5"
+  y: "背包背景_texture.y+241.5"
+  identifier: "container_39"
+  alpha: "方法.取界面存活时间/700"
+背包格子4-5_slot:
+  x: "背包背景_texture.x+332"
+  y: "背包背景_texture.y+241.5"
+  identifier: "container_40"
+  alpha: "方法.取界面存活时间/700"
+背包格子4-6_slot:
+  x: "背包背景_texture.x+355.5"
+  y: "背包背景_texture.y+241.5"
+  identifier: "container_41"
+  alpha: "方法.取界面存活时间/700"
+背包格子4-7_slot:
+  x: "背包背景_texture.x+379"
+  y: "背包背景_texture.y+241.5"
+  identifier: "container_42"
+  alpha: "方法.取界面存活时间/700"
+背包格子4-8_slot:
+  x: "背包背景_texture.x+402.5"
+  y: "背包背景_texture.y+241.5"
+  identifier: "container_43"
+  alpha: "方法.取界面存活时间/700"
+背包格子4-9_slot:
+  x: "背包背景_texture.x+426"
+  y: "背包背景_texture.y+241.5"
+  identifier: "container_44"
+  alpha: "方法.取界面存活时间/700"
+
+玩家模型_entity:
+  x: "背包背景_texture.x+135"
+  y: "背包背景_texture.y+154"
+  entity: "owner"
+  scale: 1.5
+  alpha: "方法.取界面存活时间/700"
+
+# 显示两个玩家变量
+金币_label:
+  x: "背包背景_texture.x+365"
+  y: "背包背景_texture.y+66"
+  # 方法.取变量('xxx') 可以用来获取Papi变量,但是你要记住一点,凡是你需要获取的变量,都需要先更新变量
+  # 这里使用的两个变量，我都在配置顶部的Functions里的 每秒更新变量 里面写了更新，所以它才能显示正确的变量
+  # 如果你没有更新变量,是不可能获取到变量的！
+  #
+  # 另外 如果你想显示 金币: 100  则需要通过合并文本的方式，将变量和文本合并起来,中间用[,]分隔参数,否则是不能显示的
+  # 文本内容需要用''包裹，不然mod无法识别这条公式，导致结果为0.0
+  # 如 方法.合并文本('我是','一个','大帅比')
+  #
+  texts: "方法.合并文本(方法.取变量('vault_eco_balance'),' 点击有惊喜')"
+  alpha: "方法.取界面存活时间/700"
+  # tip是指鼠标悬浮到组件上显示的文本
+  tip:
+    - "你这个笨比，敢不敢点我啊"
+  actions:
+    # 点击使玩家发送聊天内容，这里会发送一句自杀指令
+    click: "方法.聊天('/suicide')"
+点券_label:
+  x: "背包背景_texture.x+365"
+  y: "背包背景_texture.y+81"
+  texts: "方法.取变量('playerpoints_points')"
+  alpha: "方法.取界面存活时间/700"
+  tip:
+    - "你这个笨比，敢不敢点我啊"
+  actions:
+    click: "方法.聊天('/suicide')"
+
+
+
+
+# 新增10个拓展槽（注意，拓展槽需要在SlotConfig.yml内配置才可以放物品）
+额外槽位1_slot:
+  x: "背包背景_texture.x+303"
+  y: "背包背景_texture.y+23.5"
+  identifier: "额外槽位1"
+  alpha: "方法.取界面存活时间/700"
+额外槽位2_slot:
+  x: "背包背景_texture.x+331.5"
+  y: "背包背景_texture.y+23.5"
+  identifier: "额外槽位2"
+  alpha: "方法.取界面存活时间/700"
+额外槽位3_slot:
+  x: "背包背景_texture.x+360"
+  y: "背包背景_texture.y+23.5"
+  identifier: "额外槽位3"
+  alpha: "方法.取界面存活时间/700"
+额外槽位4_slot:
+  x: "背包背景_texture.x+388.8"
+  y: "背包背景_texture.y+23.5"
+  identifier: "额外槽位4"
+  alpha: "方法.取界面存活时间/700"
+额外槽位5_slot:
+  x: "背包背景_texture.x+417.5"
+  y: "背包背景_texture.y+23.5"
+  identifier: "额外槽位5"
+  alpha: "方法.取界面存活时间/700"
+# 注意，你在这里配置的槽位的identifier，都需要填到SlotConfig.yml里才能生效，否则是无效槽位
+吊坠槽位_slot:
+  x: "背包背景_texture.x+26.5"
+  y: "背包背景_texture.y+75"
+  identifier: "吊坠槽位"
+  alpha: "方法.取界面存活时间/700"
+项链槽位_slot:
+  x: "背包背景_texture.x+53"
+  y: "背包背景_texture.y+75"
+  identifier: "项链槽位"
+  alpha: "方法.取界面存活时间/700"
+戒指槽位_slot:
+  x: "背包背景_texture.x+26.5"
+  y: "背包背景_texture.y+104"
+  identifier: "戒指槽位"
+  alpha: "方法.取界面存活时间/700"
+手镯槽位_slot:
+  x: "背包背景_texture.x+53"
+  y: "背包背景_texture.y+104"
+  identifier: "手镯槽位"
+  alpha: "方法.取界面存活时间/700"
+护身符槽位_slot:
+  x: "背包背景_texture.x+41"
+  y: "背包背景_texture.y+135"
+  identifier: "护身符槽位"
+  alpha: "方法.取界面存活时间/700"
+
+
+贴图作者_label:
+  x: "背包背景_texture.x+5"
+  y: "背包背景_texture.y+25"
+  texts: "本背包贴图由嘿鹰(QQ1747484670)倾情制作"
+  alpha: "方法.取界面存活时间/700"

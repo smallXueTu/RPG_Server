@@ -1,0 +1,55 @@
+quester: '现代城酿造师'
+first: '询问差事,介绍,有事吗'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你好证明者，我正在酿造药水，但我旁边的水不太够用了，你能帮我打桶水吗?\n我行动不太方便... 拜托了！'
+    conditions: '!已帮现代城酿造师'
+    pointer: '当然可以'
+    events: ''
+  '有事吗':
+    text: '你好，有什么可以帮你吗？'
+    conditions: '已帮现代城酿造师'
+    pointer: '没事'
+    events: ''
+  '询问差事':
+    text: '打到了吗？'
+    conditions: '打水'
+    pointer: '还没有,打到了'
+    events: ''
+  '感谢':
+    text: '感谢，太感谢了！\n给你一点小报酬。'
+    conditions: '打水'
+    pointer: '感谢'
+    events: '赐予10现币,拿走水桶,删除打水标签,添加已帮现代城酿造师标签'
+player_options:
+  '当然可以':
+    text: '当然可以。'
+    conditions: ''
+    pointer: ''
+    events: '赐予桶,打桶水,添加打水标签'
+  '我拒绝':
+    text: '不好意思。抱歉...'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '没事':
+    text: '没事。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '还没有':
+    text: '还没有...'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '打到了':
+    text: '打到了！'
+    conditions: '拥有水桶'
+    pointer: '感谢'
+    events: ''
+  '感谢':
+    text: '感谢！'
+    conditions: ''
+    pointer: ''
+    events: ''

@@ -1,0 +1,41 @@
+name: LTCraft
+main: cn.LTCraft.core.Main
+version: 1.0.0
+author: Angel、
+commands:
+  lt:
+    description: LTCraft核心命令
+    permission: op
+    usage: /lt
+  mmskills:
+    description: 释放mm技能
+    permission: op
+    usage: /mmskills 技能名字
+  lte:
+    description: 兑换的物品
+    permission: op
+    usage: /lte 需要兑换的物品
+  prefix:
+    description: 称号命令
+    permission: LTCraft.prefix
+    usage: /prefix 称号
+  sign:
+    description: 编辑木牌
+    permission: LTCraft.sign
+    usage: /sign 第一行 第二行 第三行 第四行
+  clear:
+    description: 清理垃圾
+    permission: op
+    usage: /clear [?all]
+  rtp:
+    description: 随机传送
+    permission: LTCraft.rtp
+    usage: /rtp
+  cinfo:
+    description: 个人信息
+    permission: true
+    usage: /cinfo
+permissions:
+  LTCraft.openT:
+    description: 交易盘
+    default: true

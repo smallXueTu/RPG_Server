@@ -1,0 +1,65 @@
+quester: '隐居洞人'
+first: '赐予材料,没事,询问差事,介绍'
+stop: 'false'
+NPC_options:
+  '没事':
+    text: '还有什么需要帮忙的吗？'
+    conditions: '完成隐居洞人差事1'
+    pointer: '没事'
+    events: ''
+  '介绍':
+    text: '你好啊，冒险者，我已经在这里隐居几十年了。\n有无数人从这里掉了下来，我当时也不幸掉了下来。后来我在这里逐渐强大，\n我知道一定还有人会从这里掉下去，就没想着出去了了。'
+    conditions: '!完成隐居洞人差事1,接受小晴公主差事'
+    pointer: '。。。'
+    events: ''
+  '介绍2':
+    text: '好久没上去过了，也不知道上面啥情况了。\n不过幸好你没掉最下面。你也是不小心掉下来的吗？'
+    conditions: ''
+    pointer: '我不是'
+    events: ''
+  '那正好':
+    text: '哎，下面可危险了，ta可能生死未卜了...\n我看你这架势应该能应付，不过先别急着下去，那边的岩浆人太烦人了。\n可以帮忙杀几只吗，我给你一个交易盘。'
+    conditions: ''
+    pointer: '好的'
+    events: ''
+  '赐予材料':
+    text: '太感谢你了，冒险者！\n交易盘已经给你了，你应该用得到！'
+    conditions: '接受隐居洞人差事1,完成隐居洞人差事1'
+    pointer: '感谢'
+    events: '删除接受隐居洞人差事1标签,赐予交易盘,救小晴妹妹'
+  '询问差事':
+    text: '你还没杀够吗？'
+    conditions: '接受隐居洞人差事1,!完成隐居洞人差事1'
+    pointer: '还没呢'
+    events: ''
+player_options:
+  '我不是':
+    text: '我不是，我是来救人的！'
+    conditions: ''
+    pointer: '那正好'
+    events: ''
+  '。。。':
+    text: '。。。'
+    conditions: ''
+    pointer: '介绍2'
+    events: ''
+  '还没呢':
+    text: '还没有...'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '好的':
+    text: '好的，当然可以！'
+    conditions: ''
+    pointer: ''
+    events: '添加接受隐居洞人差事1标签,击杀16岩浆人'
+  '感谢':
+    text: '感谢贵人相助！'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '没事':
+    text: '没有...谢谢.'
+    conditions: ''
+    pointer: ''
+    events: ''

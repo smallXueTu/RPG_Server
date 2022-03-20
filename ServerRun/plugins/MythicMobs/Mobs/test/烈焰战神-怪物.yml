@@ -1,0 +1,75 @@
+烈焰战神:
+  Type: Zombie
+  Display: '烈焰战神'
+  Health: 100
+  Damage: 0
+  Skills:
+#  - skill{s=囧大大技能} @Target ~onTimer:20
+#  - skill{s=是否被攻击检测} @Self ~onDamaged
+#  - skill{s=无玩家攻击计分增加} @Self ~onTimer:20
+#  - skill{s=加血检测} @Self ~onTimer:5
+  Options:
+    KnockbackResistance: 1
+烈焰笼罩连线1:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+  Skills:
+  - skill{s=烈焰笼罩连线} @MIR{r=30;type=烈焰笼罩连线2} ~onTimer:5
+  - skill{s=烈焰笼罩连线清除} @Self ~onSpawn
+烈焰笼罩连线2:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+  Skills:
+  - skill{s=烈焰笼罩连线清除} @Self ~onSpawn
+烈焰笼罩连线3:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+  Skills:
+  - skill{s=烈焰笼罩连线} @MIR{r=30;type=烈焰笼罩连线4} ~onTimer:5
+  - skill{s=烈焰笼罩连线清除} @Self ~onSpawn
+烈焰笼罩连线4:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+  Skills:
+  - skill{s=烈焰笼罩连线清除} @Self ~onSpawn
+烈焰笼罩粒子弹射:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+  Skills:
+  - skill{s=烈焰笼罩粒子弹射} @MIR{r=30;type=烈焰笼罩粒子弹射1} ~onSpawn
+烈焰笼罩粒子弹射1:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+烈焰喷发:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+  Skills:
+  - skill{s=烈焰喷发爆炸} @Self ~onSpawn

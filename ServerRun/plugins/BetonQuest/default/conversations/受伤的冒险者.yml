@@ -1,0 +1,110 @@
+quester: '受伤的冒险者'
+first: '加油,介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '冒险者，你也是来收集传说中的虚无之刃的吗？'
+    conditions: ''
+    pointer: '我只是想出去'
+    events: ''
+  '加油':
+    text: '加油，希望托付给你了！'
+    conditions: '已和受伤的冒险者对话'
+    pointer: '加油'
+    events: ''
+  '我只是想出去':
+    text: '&a你：什么虚无之剑，我没听说过这个传说，我是被时空劫持者劫持到这里的。\n受伤的冒险者：你居然不知道？可能因为你不是这个时空的人吧。\n那我简单说一下吧，在这个时空中流传一个相当知名的传说。'
+    conditions: ''
+    pointer: '。。'
+    events: ''
+  '。。。':
+    text: '虚空圣殿是几千年前一个史诗级文明的圣殿，不知道为啥这个文明在一夜之间就消失到地下了。\n据流传这个文明的圣殿中有很多宝物和武器装备，其中最有名的就是虚空之刃\n据说拥有它的人可以获得号召陆地万物的能力。'
+    conditions: ''
+    pointer: '这让我想起了亚特兰蒂斯'
+    events: ''
+  '这让我想起了亚特兰蒂斯':
+    text: '&a你：这让我想起了亚特兰蒂斯，会不会亚特兰蒂斯也是真的并不是传说呢...\n受伤的冒险者：我也以为这个是个传说，直到我亲自发现这个圣殿我才知道这不是传说。\n我相信虚无之剑也是真实存在的。\n于是我就踏上了寻找虚无之剑的道路。'
+    conditions: ''
+    pointer: '。。。'
+    events: ''
+  '寻找路上':
+    text: '可是这条路上并不顺利，可能是这里蕴含着超标的魔法能量。\n导致这里的万物都可能获得生命，不过我发现他们身上的东西都可以制作比较强力的武器或装备。\n具体制作配方我先告诉你把...'
+    conditions: ''
+    pointer: '配方怎么用'
+    events: ''
+  '交易盘':
+    text: '当然是交易盘啊，我先给你拿一个。\n这个东西拥有这里魔法的能量。它甚至知道任何东西的配方。'
+    conditions: ''
+    pointer: '我有,我没有'
+    events: ''
+  '有':
+    text: '&a你：我正好有这个东西！！他居然属于这个时空。\n&a我记得是我那个时空一个地洞内的一个人送我的。\n受伤的冒险者：我居然不是第一个发现这个物品的人！那可能也是个穿越者！'
+    conditions: ''
+    pointer: '不管这个'
+    events: ''
+  '丢了':
+    text: '&a你：我记得我有这个东西，不过好像丢了。\n&a我记得是我那个时空一个地洞内的一个人送我的。\n受伤的冒险者：我居然不是第一个发现这个物品的人！那可能也是个穿越者！'
+    conditions: ''
+    pointer: '不管这个'
+    events: ''
+  '兑换':
+    text: '嗯，我在这里战斗的时候不小心受了重伤，行走都困难。\n希望你成功拿到武器的时候能救我出去，可能这是唯一出去的办法了！'
+    conditions: ''
+    pointer: '一定会的1,一定会的2'
+    events: ''
+player_options:
+  '我只是想出去':
+    text: '我只是想出去。'
+    conditions: ''
+    pointer: '我只是想出去'
+    events: ''
+  '。。':
+    text: '点我继续...'
+    conditions: ''
+    pointer: '。。。'
+    events: ''
+  '。。。':
+    text: '点我继续...'
+    conditions: ''
+    pointer: '寻找路上'
+    events: ''
+  '配方怎么用':
+    text: '这些配方应该怎么用？'
+    conditions: ''
+    pointer: '交易盘'
+    events: ''
+  '我有':
+    text: '这个东西我正好有'
+    conditions: '拥有交易盘'
+    pointer: '有'
+    events: ''
+  '我没有':
+    text: '我记得我有来着'
+    conditions: '!拥有交易盘'
+    pointer: '丢了'
+    events: ''
+  '不管这个':
+    text: '算了，不管这个'
+    conditions: ''
+    pointer: '兑换'
+    events: ''
+  '一定会的1':
+    text: '一定会的'
+    conditions: '拥有交易盘'
+    pointer: ''
+    events: '添加已和受伤的冒险者对话标签'
+  '一定会的2':
+    text: '一定会的'
+    conditions: '!拥有交易盘'
+    pointer: ''
+    events: '添加已和受伤的冒险者对话标签,赐予交易盘'
+  '这让我想起了亚特兰蒂斯':
+    text: '这让我想起了亚特兰蒂斯'
+    conditions: ''
+    pointer: '这让我想起了亚特兰蒂斯'
+    events: ''
+  '加油':
+    text: '加油！'
+    conditions: ''
+    pointer: ''
+    events: ''

@@ -1,0 +1,36 @@
+初级试炼士兵1:
+  mobName: 初级试炼士兵
+  world: f1
+  x: 967.5
+  cooling: 10
+  y: 68
+  z: -1082.5
+  maxMobs: 2
+  range: 26
+初级试炼士兵2:
+  mobName: 初级试炼士兵
+  world: f1
+  x: 1013.5
+  cooling: 10
+  y: 68
+  z: -1082.5
+  maxMobs: 2
+  range: 26
+中级试炼士兵1:
+  mobName: 中级试炼士兵
+  world: f1
+  x: 955.5
+  cooling: 10
+  y: 68
+  z: -1110.5
+  maxMobs: 2
+  range: 26
+中级试炼士兵2:
+  mobName: 中级试炼士兵
+  world: f1
+  x: 1025.5
+  cooling: 10
+  y: 68
+  z: -1110.5
+  maxMobs: 2
+  range: 26

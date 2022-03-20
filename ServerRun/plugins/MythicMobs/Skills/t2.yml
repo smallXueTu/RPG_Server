@@ -1,0 +1,251 @@
+粉碎攻击:
+  Cooldown: 8
+  Conditions:
+    - IsSilence{}<&csp>false
+    - targetwithin 25
+  Skills:
+    - message{cooldown=30;m="<mob.name><&co> Hahahah! 我会粉碎你的, 无知的东西!"} @PlayersInRadius{r=40}
+    - teleport @target
+    - effect:sound{s=mob.endermen.portal;volume=1.0;pitch=0.5}
+    - delay 10
+    - damage{amount=20;ignorearmor=true} @PlayersInRadius{r=5}
+    - throw{velocity=10;velocityY=5} @Player  sInRadius{r=5}
+    - effect:explosion @Self
+木洞神秘商人冲击波:
+  Conditions:
+    - IsSilence{}<&csp>false
+  Cooldown: 10
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d三秒后&e使用技能&c冲击波 &d类型:远程 &c远离ta！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
+    - delay 60
+    - projectile{syo = 1;onTick=木洞神秘商人冲击波-Tick;onHit=木洞神秘商人冲击波-Hit;v=8;i=1;hR=1;vR=1} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=木洞神秘商人冲击波-Tick;onHit=木洞神秘商人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=30} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=木洞神秘商人冲击波-Tick;onHit=木洞神秘商人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=60} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=木洞神秘商人冲击波-Tick;onHit=木洞神秘商人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=90} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=木洞神秘商人冲击波-Tick;onHit=木洞神秘商人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=120} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=木洞神秘商人冲击波-Tick;onHit=木洞神秘商人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=150} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=木洞神秘商人冲击波-Tick;onHit=木洞神秘商人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=210} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=木洞神秘商人冲击波-Tick;onHit=木洞神秘商人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=240} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=木洞神秘商人冲击波-Tick;onHit=木洞神秘商人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=270} @TargetLocation{yoffset=1}
+木洞神秘商人冲击波-Tick:
+  Skills:
+    - effect:particles{c=#000000;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+木洞神秘商人冲击波-Hit:
+  Skills:
+    - damage{a=30}
+    - Effect:explosion
+魔塔统治者冲击波:
+  Conditions:
+    - IsSilence{}<&csp>false
+  Cooldown: 30
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d三秒后&e使用技能&c冲击波 &d类型:远程 &c远离ta！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
+    - delay 60
+    - projectile{syo = 1;onTick=魔塔统治者冲击波-Tick;onHit=魔塔统治者冲击波-Hit;onEnd=魔塔统治者冲击波-Hit;v=8;i=1;hR=1;vR=1} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=魔塔统治者冲击波-Tick;onHit=魔塔统治者冲击波-Hit;onEnd=魔塔统治者冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=30} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=魔塔统治者冲击波-Tick;onHit=魔塔统治者冲击波-Hit;onEnd=魔塔统治者冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=-30} @TargetLocation{yoffset=1}
+地狱刺击:
+  Cooldown: 8
+  Conditions:
+    - IsSilence{}<&csp>false
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d一秒后&e使用技能&c刺击 &d类型:位移 &c无法躲避！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
+    - delay 20
+    - leap{v=250} @target
+    - sound{s=entity.endermen.teleport} @self
+    - effect:explosion @Self
+    - delay 5
+    - damage{a=20} @PIR{r=3}
+    - throw{velocity=5;velocityY=0} @PIR{r=3}
+魔塔统治者冲击波-Tick:
+  Skills:
+    - effect:particles{c=#FF0000;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+魔塔统治者冲击波-Hit:
+  Skills:
+    - damage{a=20}
+    - Effect:explosion
+爆炸护盾:
+  Cooldown: 30
+  Conditions:
+    - IsSilence{}<&csp>false
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&e触发&c护盾&e，&c护盾&d五秒后&c爆炸 &d类型:远程 &c远离ta！";d=60;fi=20;o=20} @PlayersInRadius{r=5}
+    - setvariable{type=STRING;var=caster.hasShield;value="true";}
+    - effect:particlesphere{c=#ffcc00;amount=250;radius=1.5} @SelfLocation{yoffset=1}
+    - sound{s=entity.evocation_illager.prepare_summon;p=1.2} @Self
+    - delay 20
+    - effect:particlesphere{c=#ffcc00;amount=250;radius=1.5} @SelfLocation{yoffset=1}
+    - sound{s=entity.evocation_illager.prepare_summon;p=1.2} @Self
+    - delay 20
+    - effect:particlesphere{c=#ffcc00;amount=250;radius=1.5} @SelfLocation{yoffset=1}
+    - sound{s=entity.evocation_illager.prepare_summon;p=1.2} @Self
+    - delay 20
+    - effect:particlesphere{c=#ffcc00;amount=250;radius=1.5} @SelfLocation{yoffset=1}
+    - sound{s=entity.evocation_illager.prepare_summon;p=1.2} @Self
+    - delay 20
+    - effect:particlesphere{c=#ffcc00;amount=250;radius=1.5} @SelfLocation{yoffset=1}
+    - sound{s=entity.evocation_illager.prepare_summon;p=1.2} @Self
+    - delay 20
+    - effect:particlesphere{c=#ffcc00;amount=350;radius=2.5} @SelfLocation{yoffset=1}
+    - sound{s=entity.evocation_illager.prepare_summon;p=2} @Self
+    - delay 10
+    - effect:particlesphere{c=#ffcc00;amount=400;radius=3.5} @SelfLocation{yoffset=1}
+    - effect:explosion{y=1} @SelfLocation{yoffset=1}
+    - damage{a=25} @PIR{r=3.5}
+    - setvariable{type=STRING;var=caster.hasShield;value="false";}
+护盾:
+  Conditions:
+    - varEquals{var=caster.hasShield;value="true"}
+  Skills:
+    - CancelEvent
+    - message{m = <mob.name>&c处于护盾保护状态，免疫伤害！} @Trigger
+    - sound{s=entity.zombie.attack_iron_door} @self
+#    - sound{s=block.anvil.land} @self
+逃跑:
+  Skills:
+    - message{m="<mob.name>&d>><&co> &c算你厉害！"} @Trigger ~onDamaged <20%
+    - message{m="<mob.name>&6逃跑了，但留下了骗你的物品！"} @Trigger
+    - damage{amount=1000000} @Self
+    - remove @self
+元素猎人冲击波:
+  Cooldown: 20
+  Conditions:
+    - IsSilence{}<&csp>false
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d三秒后&e使用技能&c冲击波 &d类型:远程 &c远离ta！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
+    - delay 60
+    - projectile{syo = 1;onTick=元素猎人冲击波-Tick-水;onHit=元素猎人冲击波-Hit;onEnd=元素猎人冲击波-Hit;v=8;i=1;hR=1;vR=1} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=元素猎人冲击波-Tick-土;onHit=元素猎人冲击波-Hit;onEnd=元素猎人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=72} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=元素猎人冲击波-Tick-木;onHit=元素猎人冲击波-Hit;onEnd=元素猎人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=144} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=元素猎人冲击波-Tick-火;onHit=元素猎人冲击波-Hit;onEnd=元素猎人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=216} @TargetLocation{yoffset=1}
+    - projectile{syo = 1;onTick=元素猎人冲击波-Tick-金;onHit=元素猎人冲击波-Hit;onEnd=元素猎人冲击波-Hit;v=8;i=1;hR=1;vR=1;hO=288} @TargetLocation{yoffset=1}
+元素猎人冲击波-Tick-水:
+  Skills:
+    - effect:particles{c=#0000FF;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+元素猎人冲击波-Tick-土:
+  Skills:
+    - effect:particles{c=#66FF33;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+元素猎人冲击波-Tick-木:
+  Skills:
+    - effect:particles{c=#996600;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+元素猎人冲击波-Tick-火:
+  Skills:
+    - effect:particles{c=#ff6600;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+元素猎人冲击波-Tick-金:
+  Skills:
+    - effect:particles{c=#ffff66;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
+元素猎人冲击波-Hit:
+  Skills:
+    - damage{a=30}
+    - Effect:explosion
+白天死亡:
+  Conditions:
+    - day true
+  Skills:
+    - remove @self
+水下掉血:
+  Conditions:
+    - BlockType WATER,STATIONARY_WATER
+  Skills:
+    - damage{a=20;ia=true} @self
+    - sound{s=block.fire.extinguish} @self
+燃烧:
+  Conditions:
+    - BlockType LOG,STONE,AIR
+  Skills:
+    - ignite{ticks=2109999999} @Self ~onSpawn
+魔化战刃:
+  TargetConditions:
+    - WeaponDamage{d=<25}
+  Skills:
+    - message{m="&6你的武器被黑魔法感染了！"} @Trigger
+    - effect:sound{s=entity.zombie.attack_iron_door;p=0} @Trigger
+    - modifySlotItem{i=魔化的战刃;s=HAND} @Trigger
+火之护盾:
+  TargetConditions:
+    - wearing{s=mainhand;m=寒冰三尺} false
+  Skills:
+    - CancelEvent
+    - message{m = <mob.name>&c你的攻击被恶火护盾抵消了！} @Trigger
+    - effect:particlesphere{amount=100;radius=1.2;particle=flame;} @SelfLocation{yoffset=1}
+    - sound{s=entity.zombie.attack_iron_door;p=2} @self
+小提示:
+  TargetConditions:
+    - wearing{s=mainhand;m=寒冰三尺} false
+  Skills:
+    - message{m="&e小提示&d>> &6你的武器无法对&c恶火统治者&6造成伤害，建议你使用&d寒冰三尺&6武器来对付他！"} @Target
+锻造寒冰三尺:
+  TargetConditions:
+    - HasObjective{o=default.【主线-过程】收集22个非稳定钢质}<&csp>false
+    - HasItem{i=寒冰三尺}<&csp>false
+    - HasBQTag{t=default.待获得恶火装备}
+    - HasBQTag{t=default.已拥有寒冰三尺}<&csp>false
+    - wearing{s=mainhand;m=寒冰三尺} false
+  Skills:
+    - targetCommand{c="bq objective <trigger.name> add 【主线-过程】收集22个非稳定钢质";op=true;} @Trigger
+    - sendtitle{title="&8[&e任务触发&8]";subtitle="&6锻造武器：&d寒冰三尺&6，请注意任务进展！";d=40;fi=20;o=20} @Trigger
+护盾损坏:
+  TargetConditions:
+    - wearing{s=mainhand;m=寒冰三尺}
+  Skills:
+    - effect:particlesphere{amount=20;radius=1.2;particle=flame;} @SelfLocation{yoffset=1}
+    - sound{s=block.fire.extinguish;p=2} @self
+准备发发射焱火三尺:
+  Conditions:
+    - IsSilence{}<&csp>false
+  Cooldown: 10
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d五秒后&e使用技能&c焱火三尺之力 &d类型:远程 &c注意躲避！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
+    - roundSummon{type=焱火三尺等待发色剑体;amount=1;radius=2;angle=0} @SelfLocation
+    - roundSummon{type=焱火三尺等待发色剑体;amount=1;radius=2;angle=1} @SelfLocation
+    - roundSummon{type=焱火三尺等待发色剑体;amount=1;radius=2;angle=2} @SelfLocation
+焱火三尺启动:
+  Skills:
+    - summon{type=焱火三尺替身;amount=1;radius=0} @SelfLocation
+    - delay 100
+    - remove @Self
+焱火三尺发射:
+  Skills:
+    - delay 100
+    - mythicprojectile{pobject=焱火三尺剑体;ontick=焱火三尺剑体tick;onhit=焱火三尺剑体Hit;onend=焱火三尺剑体end;v=15;i=1;hR=1;pfacedir=true}
+    - delay 100
+    - remove @Self
+焱火三尺剑体tick:
+  Skills:
+    - particles{p=reddust;amount=1;speed=0;y=1} @origin
+焱火三尺剑体Hit:
+  Skills:
+    - effect:particles{p=lava;amount=10;speed=0;hR=0.2;vR=0.2} @origin
+    - effect:particles{p=flame;amount=20;speed=0;hR=0.2;vR=0.2} @origin
+    - effect:sound{s=entity.arrow.hit;v=1;p=0}
+    - damage{a=20}
+焱火三尺剑体end:
+  Skills:
+    - effect:particles{p=lava;amount=10;speed=0;hR=0.2;vR=0.2} @origin
+    - effect:particles{p=flame;amount=20;speed=0;hR=0.2;vR=0.2} @origin
+    - randomskill{skills=焱火三尺姿势1,焱火三尺姿势2}
+焱火三尺姿势1:
+  Skills:
+    - summon{type=焱火三尺插地剑体1;amount=1}
+焱火三尺姿势2:
+  Skills:
+    - summon{type=焱火三尺插地剑体2;amount=1}
+恶火斩击:
+  Cooldown: 15
+  Conditions:
+    - IsSilence{}<&csp>false
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d五秒后&e使用技能&c恶火斩击 &d类型:近战 &c远离他！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
+    - message{m="&8[&5千年&8]&f-&6恶火统治者&5即将发动&6命运之眼！"} @PlayersInRadius{r=30}
+    - delay 15
+    - effect:particlering{p=sweepAttack;points=10;radius=1;amount=3;hS=0.5;y=0.2;} @Self
+    - effect:particlering{p=flame;points=10;radius=1;amount=3;hS=0.5;y=0.6;} @Self
+    - effect:particlering{p=sweepAttack;points=10;radius=1;amount=3;hS=0.5;y=0.9;} @Self
+    - delay 1
+    - damage{a=20} @PlayersInRadius{r=10}
+    - effect:sound{s=block.fire.ambient;v=2;p=1} @Self
+    - effect:sound{s=entity.player.attack.sweep;v=1;p=1} @Self
+    - delay 1
+    - effect:sound{s=entity.player.attack.sweep;v=1;p=1} @Self
+    - delay 1
+    - effect:sound{s=entity.player.attack.sweep;v=1;p=1} @Self

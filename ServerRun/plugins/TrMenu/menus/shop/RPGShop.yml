@@ -1,0 +1,70 @@
+Title: 'RPG商店'
+
+Title-Update: -1
+
+Layout:
+  - - '#`交易盘``丢弃物`     #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '交易盘':
+    display:
+      material: 341
+      name: "&e交易盘"
+      lore:
+        - "&6价格：100橙币"
+        - "&6可交易极大多数材料。"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: ${js: varInt(100)}'
+            - 'GetClutterItem: 交易盘'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '丢弃物':
+    display:
+      material: 295
+      name: "&e丢弃物"
+      lore:
+        - "&6价格：1橙币"
+        - "&6丢弃防止合并。"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 1)'
+          actions:
+            - 'take-money: ${js: varInt(1)}'
+            - 'GetClutterItem: 丢弃物'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'

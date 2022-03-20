@@ -1,0 +1,29 @@
+quester: '提示'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text:
+      - '你好，证明者，我是被赋予生命的生灵之花，只是我的样子有点古怪。\n我可以帮你穿过屏障让你进入更深处的深林。但你可能需要达到以下需求：\n职业等级达到§a8级§r，收集§a30晶蝎符文§r'
+    conditions: ''
+    pointer: '条件不满足,条件满足'
+    events: ''
+player_options:
+  '条件不满足':
+    text:
+      - '条件不满足'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '条件满足':
+    text:
+      - '条件满足'
+    conditions: '是否职业8级,有30晶蝎符文'
+    pointer: ''
+    events: '传送到深处2,default.保存主线位置到T2进度20'
+  '关闭':
+    text:
+      - '关闭'
+    conditions: ''
+    pointer: ''
+    events: ''

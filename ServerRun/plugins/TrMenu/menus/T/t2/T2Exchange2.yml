@@ -1,0 +1,102 @@
+Title: 'T2兑换菜单'
+
+Title-Update: -1
+
+Layout:
+  - - '#       #'
+    - '# `地狱淬火头盔``地狱淬火胸甲``地狱淬火护腿``地狱淬火靴子``地狱之镰` #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '地狱淬火头盔':
+    display:
+      material: 306
+      name: "&e地狱淬火头盔"
+      lore:
+      - "&3<<&e兑换地狱淬火头盔×1"
+      - "&3>>&e需要：地狱淬火&e靴子-未激活×1"
+      - "&3>>&e需要：地狱守护者&e之心×1"
+    actions:
+      all:
+        - 'LTExchange: 地狱淬火头盔'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '地狱淬火胸甲':
+    display:
+      material: 307
+      name: "&e地狱淬火胸甲"
+      lore:
+      - "&3<<&e兑换地狱淬火胸甲×1"
+      - "&3>>&e需要：地狱淬火&e胸甲-未激活×1"
+      - "&3>>&e需要：地狱守护者&e之心×1"
+    actions:
+      all:
+        - 'LTExchange: 地狱淬火胸甲'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '地狱淬火护腿':
+    display:
+      material: 308
+      name: "&e地狱淬火护腿"
+      lore:
+      - "&3<<&e兑换地狱淬火护腿×1"
+      - "&3>>&e需要：地狱淬火&e护腿-未激活×1"
+      - "&3>>&e需要：地狱守护者&e之心×1"
+    actions:
+      all:
+        - 'LTExchange: 地狱淬火护腿'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '地狱淬火靴子':
+    display:
+      material: 309
+      name: "&e地狱淬火靴子"
+      lore:
+      - "&3<<&e兑换地狱淬火靴子×1"
+      - "&3>>&e需要：地狱淬火&e靴子-未激活×1"
+      - "&3>>&e需要：地狱守护者&e之心×1"
+    actions:
+      all:
+        - 'LTExchange: 地狱淬火靴子'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '地狱之镰':
+    display:
+      material: 292
+      name: "&e地狱之镰"
+      lore:
+      - "&3<<&e兑换地狱之镰×1"
+      - "&3>>&e需要：地狱&e钢铁×25"
+      - "&3>>&e需要：地狱&e石×5"
+    actions:
+      all:
+        - 'LTExchange: 地狱之镰'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
