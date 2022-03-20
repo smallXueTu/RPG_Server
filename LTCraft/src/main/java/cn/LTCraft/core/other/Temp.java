@@ -4,6 +4,7 @@ import cn.LTCraft.core.entityClass.PlayerState;
 import cn.LTCraft.core.game.skills.shields.BaseShield;
 import cn.LTCraft.core.game.skills.shields.Shield;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -11,15 +12,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * TODO: remove it
+ */
 public class Temp {
     /**
      * 玩家丢弃的物品
+     * K:丢弃物
+     * V:玩家名字
+     * 考虑到玩家可能退出游戏，所以更适合使用玩家名字
      */
     public static final Map<Entity, String> playerDropItem = new HashMap<>();
     /**
      * 仅丢弃者可以捡起的物品
      */
-    public static final List<Integer> discardOnly = new ArrayList<>();
+    public static final List<Item> discardOnly = new ArrayList<>();
     /**
      * 重伤
      */
@@ -80,5 +87,15 @@ public class Temp {
             playerStates.get(entity).add(new PlayerState(((Player) entity), "沉默 %s%S", () -> silence.get(entity) / 20d));
         }
         silence.put(entity, s);
+    }
+
+    /**
+     * 保护这个掉落物
+     * @param player 可以捡起的玩家
+     * @param item 掉落物
+     */
+    public static void protectItem(Player player, Item item){
+        discardOnly.add(item);
+        playerDropItem.put(item, player.getName());
     }
 }

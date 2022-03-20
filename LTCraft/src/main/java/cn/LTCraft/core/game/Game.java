@@ -220,7 +220,7 @@ public class Game {
             case "custom1":
                 poses = new double[][]{{262.5, 9.5, 159.5}, {258.5, 9.5, 159.5}, {258.5, 9.5, 137.5}, {260.5, 9.5, 137.5}};
                 for (double[] pos : poses) {
-                    if (world.getNearbyEntities(new Location(world, pos[0], pos[1], pos[2]), 0.5, 1, 0.5).stream().noneMatch(entity -> Temp.playerDropItem.get(entity).equals(player.getName()))){
+                    if (world.getNearbyEntities(new Location(world, pos[0], pos[1], pos[2]), 0.5, 1, 0.5).stream().noneMatch(entity -> Temp.playerDropItem.getOrDefault(entity, "").equals(player.getName()))){
                         sign = false;
                         break;
                     }
@@ -304,7 +304,7 @@ public class Game {
                             item.setGravity(false);
                             ((CraftEntity) item).setMomentum(new Vector(0, 0, 0));
                             Temp.playerDropItem.put(item, "Angel_XX");
-                            Temp.discardOnly.add(item.getEntityId());
+                            Temp.discardOnly.add(item);
                             for (int i = 0; i < 10; i++) {
                                 Bukkit.getScheduler().scheduleSyncDelayedTask(cn.LTCraft.core.Main.getInstance(), () -> {
                                     block.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, block.getLocation().add(0.5, 2, 0.5), 300, 0, 0, 0, 5);

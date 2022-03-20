@@ -7,7 +7,7 @@ import cn.LTCraft.core.hook.MM.drop.*;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicConditionLoadEvent;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicDropLoadEvent;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMechanicLoadEvent;
-import org.bukkit.event.EventHandler;
+import org.bukkit.entity.Player;import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 
@@ -54,6 +54,12 @@ public class MMListener implements Listener {
             event.register(new DropGoldCoins(event.getContainer().getConfigLine(), event.getConfig()));
         }
     }
+
+    /**
+     * TODO: 重写MythicMobs掉落系统，保护带掉落物仅能被击杀者捡起
+     * {@link cn.LTCraft.core.other.Temp#protectItem(org.bukkit.entity.Player, org.bukkit.entity.Item)}
+     * @param event 事件
+     */
     @EventHandler
     public void onMythicDropLoad(MythicDropLoadEvent event) {
         if (event.getDropName().equalsIgnoreCase("LTItem")){

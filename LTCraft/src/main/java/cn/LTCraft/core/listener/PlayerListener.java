@@ -452,7 +452,7 @@ public class PlayerListener  implements Listener {
             if (
                     EntityUtils.getItemAge(item) <= 600 && //30s * 20tick
                     !Temp.playerDropItem.get(item).equals(event.getPlayer().getName()) &&
-                    Temp.discardOnly.contains(item.getEntityId())
+                    Temp.discardOnly.contains(item)
             ){
                 event.setCancelled(true);
             }

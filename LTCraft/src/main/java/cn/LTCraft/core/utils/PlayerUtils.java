@@ -197,7 +197,7 @@ public class PlayerUtils {
         for (ItemStack itemStack : left) {
             Item entityItem = player.getWorld().dropItem(player.getLocation(), itemStack);
             Temp.playerDropItem.put(entityItem, player.getName());
-            Temp.discardOnly.add(entityItem.getEntityId());
+            Temp.discardOnly.add(entityItem);
         }
     }
 
@@ -213,7 +213,7 @@ public class PlayerUtils {
         for (ItemStack itemStack : stacks) {
             Item entityItem = location.getWorld().dropItem(location, itemStack);
             Temp.playerDropItem.put(entityItem, player.getName());
-            Temp.discardOnly.add(entityItem.getEntityId());
+            Temp.discardOnly.add(entityItem);
         }
     }
 
@@ -229,7 +229,7 @@ public class PlayerUtils {
         for (ItemStack itemStack : stacks) {
             CraftItem craftItem = (CraftItem) location.getWorld().dropItem(location, itemStack);
             Temp.playerDropItem.put(craftItem, player.getName());
-            Temp.discardOnly.add(craftItem.getEntityId());
+            Temp.discardOnly.add(craftItem);
             craftItem.setMomentum(new Vector(0, 0, 0));
             craftItem.setGravity(false);
         }

@@ -52,7 +52,7 @@ public class EntityListener implements Listener {
     public void onEntityDeath(EntityDeathEvent event){
         if (event.getEntity() instanceof Item){
             Temp.playerDropItem.remove(event.getEntity());
-            Temp.discardOnly.remove(event.getEntity().getEntityId());
+            Temp.discardOnly.remove((Item) event.getEntity());
         }
     }
     @EventHandler(
