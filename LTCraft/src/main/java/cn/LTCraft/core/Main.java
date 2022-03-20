@@ -67,7 +67,6 @@ public class Main extends JavaPlugin {
      */
     public void onEnable() {
         super.onEnable();
-        loadLib();
         instance = this;
         config = Config.getInstance();
         /*
@@ -210,19 +209,6 @@ public class Main extends JavaPlugin {
         actionHandle.register(new LTExchange(actionHandle));
         actionHandle.register(new GetClutterItem(actionHandle));
         actionHandle.register(new OpenCoreGui(actionHandle));
-    }
-    public void loadLib(){
-        String dir = System.getProperty("user.dir");
-        File file = new File(dir + File.separator + "libs");
-        List<File> files = FileUtil.getFiles(file).stream().filter(file1 -> file1.getName().endsWith(".jar")).collect(Collectors.toList());
-        URL[] urls = new URL[files.size()];
-        for (int i = 0; i < files.size(); i++) {
-            try {
-                urls[i] = files.get(i).toURI().toURL();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        }
     }
     public Config getConfigOBJ() {
         return config;
