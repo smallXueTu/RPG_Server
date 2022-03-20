@@ -27,7 +27,7 @@ public class GoldCoinsDrop extends Drop implements IIntangibleDrop {
     }
     @Override
     public void giveDrop(AbstractPlayer abstractPlayer, DropMetadata dropMetadata) {
-        Location location = abstractPlayer.getBukkitEntity().getLocation();
+        Location location = dropMetadata.getCaster().getEntity().getBukkitEntity().getLocation();
         World world = Bukkit.getWorld(abstractPlayer.getWorld().getName());
         for (int i = 0; i < getAmount(); i++) {
             double x = Utils.getRandom().nextDouble() * radius;
