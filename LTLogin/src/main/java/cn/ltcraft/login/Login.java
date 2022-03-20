@@ -1,27 +1,43 @@
 package cn.ltcraft.login;
 
+import cn.LTCraft.core.utils.Utils;
 import cn.ltcraft.login.listener.PlayerListener;
-import cn.ltcraft.login.other.InventoryPacketAdapter;
+import cn.ltcraft.login.packetAdapter.ChatPacketAdapter;
+import cn.ltcraft.login.packetAdapter.InventoryPacketAdapter;
 import cn.ltcraft.login.other.PlayerStatus;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.PacketAdapter;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.minecraft.server.v1_12_R1.ChatBaseComponent;
+import net.minecraft.server.v1_12_R1.ChatComponentText;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Login extends JavaPlugin {
     /**
      * 玩家的状态
      * @see cn.ltcraft.login.other.PlayerStatus
      */
-    public HashMap<String, cn.ltcraft.login.other.PlayerStatus> playerStatus = new HashMap<String, cn.ltcraft.login.other.PlayerStatus>();
+    public HashMap<String, PlayerStatus> playerStatus = new HashMap<>();
+    /**
+     * 内容就不做清理了，撑死也就那几条。
+     */
+    public static HashMap<String, List<String>> allowReceiveChat = new HashMap<>();
     /**
      * 命令对象 用来解析玩家的命令
      */
     private Command command;
-    private InventoryPacketAdapter inventoryPacketAdapter;
+    /**
+     * 不可修改List
+     */
+    private List<PacketAdapter> adapters;
     private static Login instance = null;
     private ProtocolManager protocolManager = null;
 
@@ -51,15 +67,21 @@ public class Login extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         command = new Command(this);
         protocolManager = ProtocolLibrary.getProtocolManager();
-        inventoryPacketAdapter = new InventoryPacketAdapter(this);
-        protocolManager.addPacketListener(inventoryPacketAdapter);
-        inventoryPacketAdapter.register();
+        List<PacketAdapter> packetAdapterList = new ArrayList<>();
+        packetAdapterList.add(new InventoryPacketAdapter(this));
+        packetAdapterList.add(new ChatPacketAdapter(this));
+        adapters = Collections.unmodifiableList(packetAdapterList);
+        for (PacketAdapter adapter : adapters) {
+            protocolManager.addPacketListener(adapter);
+        }
     }
 
     @Override
     public void onDisable() {
         super.onDisable();
-        inventoryPacketAdapter.unregister();
+        for (PacketAdapter adapter : adapters) {
+            protocolManager.removePacketListener(adapter);
+        }
     }
 
     /**
@@ -86,10 +108,19 @@ public class Login extends JavaPlugin {
     }
 
     public InventoryPacketAdapter getInventoryPacketAdapter() {
-        return inventoryPacketAdapter;
+        return (InventoryPacketAdapter) adapters.get(0);//必定是0
     }
 
     public ProtocolManager getProtocolManager() {
         return protocolManager;
+    }
+    public static void forceSendMessage(Player player, String message){
+        String name = player.getName();
+        if (allowReceiveChat.containsKey(name)){
+            allowReceiveChat.get(name).add(Utils.clearColor(message));
+        }else {
+            allowReceiveChat.put(name, Stream.of(Utils.clearColor(message)).collect(Collectors.toList()));
+        }
+        player.sendMessage(message);
     }
 }

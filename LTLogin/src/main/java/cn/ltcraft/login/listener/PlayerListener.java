@@ -61,11 +61,11 @@ public class PlayerListener implements Listener {
                         PlayerInfo playerInfo = playerConfig.getPlayerInfo();
                         if (playerInfo.getPassword() == null) {//没记录
                             plugin.setPlayerStatus(player, PlayerStatus.REGISTER);
-                            player.sendMessage("§l§e感谢你在千万服务器选择LTCraft。");
-                            player.sendMessage("§l§e这个账户还没有注册，请直接发送密码来注册。");
+                            Login.forceSendMessage(player, "§l§e感谢你在千万服务器选择LTCraft。");
+                            Login.forceSendMessage(player, "§l§e这个账户还没有注册，请直接发送密码来注册。");
                         } else {//有记录
                             plugin.setPlayerStatus(player, PlayerStatus.LOGIN);
-                            player.sendMessage("§l§e欢迎回来，请输入密码~");
+                            Login.forceSendMessage(player, "§l§e欢迎回来，请输入密码~");
                         }
                         Bukkit.getScheduler().cancelTask(getTaskId());
                     }else {
@@ -91,6 +91,7 @@ public class PlayerListener implements Listener {
     public void onPlayerQuitEvent(PlayerQuitEvent event){
         Player player = event.getPlayer();
         plugin.playerStatus.remove(player.getName());
+        Login.allowReceiveChat.remove(player.getName());
     }
 
     /**
@@ -141,15 +142,15 @@ public class PlayerListener implements Listener {
             case LOGIN:
                 event.setCancelled(true);
                 if (message.equals(playerInfo.getPassword())){
-                    player.sendMessage("§l§a恭喜你，登录成功啦~");
+                    Login.forceSendMessage(player, "§l§a恭喜你，登录成功啦~");
                     plugin.setPlayerStatus(player, PlayerStatus.NORMAL);
                     player.updateInventory();
                     playerInfo.setIp(player.getAddress().toString().substring(1).split(":")[0]);
                     playerInfo.commitChanges();
                 }else{
-                    player.sendMessage("§l§c抱歉，密码不对哦~");
+                    Login.forceSendMessage(player, "§l§c抱歉，密码不对哦~");
                     if(message.startsWith("/")){
-                        player.sendMessage("§l§c注意，你输入的密码可能为命令，在此服务器你应该§d直接输入密码§c来的登录！");
+                        Login.forceSendMessage(player, "§l§c注意，你输入的密码可能为命令，在此服务器你应该§d直接输入密码§c来的登录！");
                     }
                 }
             break;
@@ -160,11 +161,11 @@ public class PlayerListener implements Listener {
                         player.sendMessage("§l§c"+check);
                     }else {
                         playerInfo.setConfirmPassword(message);
-                        player.sendMessage("§l§e请再输入一遍密码来确认~");
+                        Login.forceSendMessage(player, "§l§e请再输入一遍密码来确认~");
                     }
                 }else{//再次验证玩家密码..
                     if (message.equals("top")){//回到上一步
-                        player.sendMessage("§l§e请直接发送密码来注册。");
+                        Login.forceSendMessage(player, "§l§e请直接发送密码来注册。");
                         playerInfo.setConfirmPassword(null);
                     }else {
                         if (message.equals(playerInfo.getConfirmPassword())) {
@@ -174,17 +175,18 @@ public class PlayerListener implements Listener {
                             Main.getInstance().getSQLManage().getQueue().add(new SQLQueue(sqlSession, () -> mapper.insert(playerInfo),
                                 sqlQueue -> {
                                     if (sqlQueue.getStatus()== SQLQueue.STATUS.DONE){
-                                        player.sendMessage("§l§a恭喜你！注册成功了~");
-                                        player.sendMessage("§l§a现在。你可以开始游戏啦~");
+                                        Login.forceSendMessage(player, "§l§a恭喜你！注册成功了~");
+                                        Login.forceSendMessage(player, "§l§a现在。你可以开始游戏啦~");
                                         plugin.setPlayerStatus(player, PlayerStatus.NORMAL);
                                         player.updateInventory();
                                     }else{
-                                        player.sendMessage("§l§c哎呀，注册失败，清联系管理员。");
+                                        Login.forceSendMessage(player, "§l§c哎呀，注册失败，清联系管理员。");
                                     }
                                 })
                             );//插入到队列
                         } else {
-                            player.sendMessage("§l§c两次密码不符合，回到上一步请输入top。");
+                            Login.forceSendMessage(player, "§l§c两次密码不符合，请重新输入：");
+                            playerInfo.setConfirmPassword(null);
                         }
                     }
                 }
