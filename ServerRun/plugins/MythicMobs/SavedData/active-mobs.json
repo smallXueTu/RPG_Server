@@ -56,11 +56,11 @@
         "entries": {}
       }
     },
-    "5ce34ba7-6aba-4a79-bf56-ea6ecf01a3b4": {
-      "aliveTime": 837062,
-      "uuid": "5ce34ba7-6aba-4a79-bf56-ea6ecf01a3b4",
-      "mobType": "火之祭坛-青蜘符文",
-      "lastSeen": 1643975414777,
+    "cd585804-98a9-42b2-8271-c2c8e94fe73b": {
+      "aliveTime": 492439,
+      "uuid": "cd585804-98a9-42b2-8271-c2c8e94fe73b",
+      "mobType": "火之祭坛-魔力符文",
+      "lastSeen": 1643975386156,
       "spawnLocation": {
         "world": {
           "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
@@ -68,7 +68,7 @@
         },
         "x": 989.5,
         "y": 84.0,
-        "z": 3011.5,
+        "z": 2989.5,
         "yaw": 180.0,
         "pitch": 0.0
       },
@@ -84,11 +84,11 @@
         "entries": {}
       }
     },
-    "cd585804-98a9-42b2-8271-c2c8e94fe73b": {
-      "aliveTime": 492439,
-      "uuid": "cd585804-98a9-42b2-8271-c2c8e94fe73b",
-      "mobType": "火之祭坛-魔力符文",
-      "lastSeen": 1643975386156,
+    "5ce34ba7-6aba-4a79-bf56-ea6ecf01a3b4": {
+      "aliveTime": 837062,
+      "uuid": "5ce34ba7-6aba-4a79-bf56-ea6ecf01a3b4",
+      "mobType": "火之祭坛-青蜘符文",
+      "lastSeen": 1643975414777,
       "spawnLocation": {
         "world": {
           "uuid": "50fb4f4e-295c-4dfd-a0de-b3bdff11442b",
@@ -96,7 +96,7 @@
         },
         "x": 989.5,
         "y": 84.0,
-        "z": 2989.5,
+        "z": 3011.5,
         "yaw": 180.0,
         "pitch": 0.0
       },
@@ -869,10 +869,10 @@
       }
     },
     "b6da26f6-b984-4246-9e26-39d38e8548a2": {
-      "aliveTime": 376346,
+      "aliveTime": 392559,
       "uuid": "b6da26f6-b984-4246-9e26-39d38e8548a2",
       "mobType": "火焰粒子门1",
-      "lastSeen": 1647787599874,
+      "lastSeen": 1647791251442,
       "spawnLocation": {
         "world": {
           "uuid": "0de800c2-c86e-4d02-808e-a93cdb577b99",

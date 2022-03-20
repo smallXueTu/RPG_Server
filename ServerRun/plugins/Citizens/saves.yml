@@ -36,7 +36,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -76,7 +76,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -116,7 +116,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -156,7 +156,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -196,7 +196,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -236,7 +236,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -276,7 +276,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -316,7 +316,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -419,7 +419,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,text,mounttrait,owner,lookclose,speech,gravity,scoreboardtrait,inventory,type,spawned,location,equipment
+    traitnames: lookclose,speech,scoreboardtrait,location,mounttrait,owner,spawned,skintrait,gravity,type,inventory,equipment,text
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -548,7 +548,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,text,mounttrait,owner,lookclose,speech,gravity,scoreboardtrait,inventory,type,spawned,location,equipment
+    traitnames: lookclose,speech,scoreboardtrait,location,mounttrait,owner,spawned,skintrait,gravity,type,inventory,equipment,text
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -559,12 +559,12 @@ npc:
     traits:
       location:
         world: t2
-        x: '-204.1038'
+        x: '-202.4975'
         y: '178.0'
-        z: '233.9782'
-        yaw: '-172.0458'
+        z: '246.2685'
+        yaw: '0.6041'
         pitch: '0.0'
-        bodyYaw: 187.95422
+        bodyYaw: 0.60414124
       inventory:
         '0':
           type: IRON_SWORD
@@ -828,7 +828,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,text,mounttrait,owner,lookclose,speech,gravity,scoreboardtrait,inventory,waypoints,type,location,spawned,equipment
+    traitnames: lookclose,speech,scoreboardtrait,location,mounttrait,owner,spawned,skintrait,gravity,waypoints,type,equipment,inventory,text
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -868,7 +868,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -914,7 +914,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,text,mounttrait,owner,lookclose,speech,gravity,scoreboardtrait,inventory,type,location,spawned,equipment
+    traitnames: lookclose,speech,scoreboardtrait,location,mounttrait,owner,spawned,skintrait,gravity,type,inventory,equipment,text
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -948,7 +948,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -982,7 +982,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1038,7 +1038,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,text,mounttrait,owner,lookclose,speech,gravity,scoreboardtrait,inventory,type,location,spawned,equipment
+    traitnames: lookclose,speech,scoreboardtrait,location,mounttrait,owner,spawned,skintrait,gravity,type,inventory,equipment,text
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1072,7 +1072,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1106,7 +1106,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1208,7 +1208,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,text,mounttrait,owner,lookclose,speech,gravity,scoreboardtrait,inventory,waypoints,type,spawned,location,equipment
+    traitnames: lookclose,speech,scoreboardtrait,location,mounttrait,owner,spawned,skintrait,gravity,waypoints,type,inventory,equipment,text
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1242,7 +1242,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1276,7 +1276,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1310,7 +1310,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1344,7 +1344,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1378,7 +1378,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1412,7 +1412,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1446,7 +1446,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1480,7 +1480,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: mounttrait,owner,inventory,sheeptrait,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,gravity,type,sheeptrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1514,7 +1514,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: mounttrait,owner,sheeptrait,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,gravity,type,sheeptrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1548,7 +1548,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: mounttrait,owner,inventory,sheeptrait,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,gravity,type,sheeptrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1582,7 +1582,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: mounttrait,owner,sheeptrait,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,gravity,type,sheeptrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1616,7 +1616,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: mounttrait,owner,sheeptrait,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,gravity,type,sheeptrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1650,7 +1650,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: mounttrait,owner,sheeptrait,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,gravity,type,sheeptrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1684,7 +1684,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: mounttrait,owner,sheeptrait,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,gravity,type,sheeptrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1718,7 +1718,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: mounttrait,owner,sheeptrait,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,gravity,type,sheeptrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1752,7 +1752,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1786,7 +1786,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1820,7 +1820,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -1938,7 +1938,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2056,7 +2056,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2174,7 +2174,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2292,7 +2292,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2332,7 +2332,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2372,7 +2372,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2478,7 +2478,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,waypoints,lookclose,type,spawned,location,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,waypoints,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2518,7 +2518,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment,gravity
+    traitnames: spawned,lookclose,skintrait,gravity,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2555,7 +2555,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2592,7 +2592,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2648,7 +2648,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,type,spawned,location,equipment,armorstandtrait
+    traitnames: spawned,skintrait,type,scoreboardtrait,armorstandtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2704,7 +2704,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,type,spawned,location,equipment,armorstandtrait
+    traitnames: spawned,skintrait,type,scoreboardtrait,armorstandtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2760,7 +2760,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,type,spawned,location,equipment,armorstandtrait
+    traitnames: spawned,skintrait,type,scoreboardtrait,armorstandtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2816,7 +2816,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,type,spawned,location,equipment,armorstandtrait
+    traitnames: spawned,skintrait,type,scoreboardtrait,armorstandtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2884,7 +2884,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,armorstandtrait
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,armorstandtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2940,7 +2940,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,type,spawned,location,equipment,armorstandtrait
+    traitnames: spawned,skintrait,type,scoreboardtrait,armorstandtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -2996,7 +2996,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,type,spawned,location,equipment,armorstandtrait
+    traitnames: spawned,skintrait,type,scoreboardtrait,armorstandtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3033,7 +3033,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: scoreboardtrait,skintrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3070,7 +3070,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3107,7 +3107,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3183,12 +3183,12 @@ npc:
                   type: delay
         provider: linear
       location:
-        bodyYaw: 283.1071
+        bodyYaw: 12.906761
         world: t3
-        x: '401.4699'
+        x: '402.558'
         y: '105.0'
-        z: '87.2601'
-        yaw: '-76.8929'
+        z: '88.3727'
+        yaw: '12.9068'
         pitch: '0.0'
       skintrait:
         fetchDefaultSkin: true
@@ -3196,7 +3196,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,waypoints,type,location,spawned,equipment
+    traitnames: spawned,skintrait,waypoints,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3233,7 +3233,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3245,7 +3245,7 @@ npc:
     uuid: f6783656-705e-4ea4-a55a-825f12ae62b3
     traits:
       mounttrait:
-        mountedon: 8638e01d-5981-4338-aa50-d15b5000b8c0
+        mountedon: ab4b8b39-bf6d-4817-bf8a-b25066a148eb
       location:
         bodyYaw: 269.8955
         world: t3
@@ -3301,7 +3301,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,waypoints,type,spawned,location,equipment
+    traitnames: spawned,lookclose,skintrait,waypoints,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3341,7 +3341,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,hologramtrait,owner,inventory,lookclose,type,spawned,location,equipment
+    traitnames: spawned,lookclose,skintrait,type,hologramtrait,scoreboardtrait,equipment,inventory,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3387,7 +3387,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,text,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,inventory,equipment,location,text,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3434,7 +3434,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,text,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment,speech
+    traitnames: spawned,lookclose,skintrait,speech,type,scoreboardtrait,equipment,inventory,location,text,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3471,7 +3471,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,spawned,location,equipment
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false
@@ -3508,7 +3508,7 @@ npc:
       owner:
         owner: Angel_XX
         uuid: a1651b53-af15-3484-a683-9301473be29b
-    traitnames: skintrait,scoreboardtrait,mounttrait,owner,inventory,lookclose,type,location,spawned,equipment
+    traitnames: spawned,lookclose,skintrait,type,scoreboardtrait,inventory,equipment,location,mounttrait,owner
     navigator:
       speedmodifier: '1.0'
       avoidwater: false

@@ -60,7 +60,7 @@ test:
     - skillapi-exp 1000
     - ltitem 近战:铁剑 1
     - goldCoinsDrop 金币:1 1-5 1
-    - goldCoins 金币:1 1-5 1
+    - goldCoins 1-5 0.1
   Disguise:
     Type: Player
     Skin: 'test'
