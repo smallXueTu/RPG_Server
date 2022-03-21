@@ -244,6 +244,9 @@
 火之宝石:
   match: "§6火之宝石"
   texture: "宝石/火之宝石.png"
+宝石载体:
+  match: "§6宝石载体"
+  texture: "宝石/宝石载体.png"
 宝石卸除菜单:
   match: "宝石卸除菜单"
   texture: "宝石/宝石卸除工具.png"

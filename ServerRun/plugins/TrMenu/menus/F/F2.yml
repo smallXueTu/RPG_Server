@@ -4,7 +4,7 @@ Title-Update: -1
 
 Layout:
   - - '#       #'
-    - '#   `力量宝石``医疗宝石`   #'
+    - '#  `宝石载体``力量宝石``医疗宝石`   #'
     - '#       #'
     - '#       #'
     - '#       #'
@@ -58,3 +58,17 @@ Icons:
         - "&3>>&e需要：医疗宝石&e碎片×3"
     actions:
       all: 'LTExchange: 医疗宝石'
+  '宝石载体':
+    display:
+      material: 388
+      name: "&6宝石载体"
+      lore:
+        - "&3<<&e兑换宝石载体×1"
+        - "&3>>&e需要：金币×3"
+    actions:
+      all:
+        - condition: 'js: LTCraftUtils.hasGoldCoins(player, 10)'
+          actions:
+            - 'TackGoldCoins: 10'
+            - 'GetClutterItem: 宝石载体'
+            - 'tell: §a兑换成功！'
