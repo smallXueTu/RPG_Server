@@ -59,8 +59,8 @@ public class LTSpawn extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length < 1)return false;
-        if (!(sender instanceof Player))return false;
-        Player player = (Player)sender;
+        Player player = null;
+        if (sender instanceof Player) player = (Player)sender;
         switch (args[0]){
             case "create":
             case "c":

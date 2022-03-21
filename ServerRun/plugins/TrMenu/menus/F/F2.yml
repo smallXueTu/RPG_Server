@@ -4,7 +4,7 @@ Title-Update: -1
 
 Layout:
   - - '#       #'
-    - '#   `力量宝石`   #'
+    - '#   `力量宝石``医疗宝石`   #'
     - '#       #'
     - '#       #'
     - '#       #'
@@ -49,3 +49,12 @@ Icons:
         - "&3>>&e需要：力量宝石&e碎片×3"
     actions:
       all: 'LTExchange: 力量宝石'
+  '医疗宝石':
+    display:
+      material: 388
+      name: "&6医疗宝石"
+      lore:
+        - "&3<<&e兑换医疗宝石×1"
+        - "&3>>&e需要：医疗宝石&e碎片×3"
+    actions:
+      all: 'LTExchange: 医疗宝石'

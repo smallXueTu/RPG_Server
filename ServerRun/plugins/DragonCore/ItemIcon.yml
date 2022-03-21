@@ -229,15 +229,21 @@
 力量宝石碎片:
   match: "力量宝石碎片"
   texture: "宝石/碎片/力量宝石碎片.png"
+医疗宝石碎片:
+  match: "医疗宝石碎片"
+  texture: "宝石/碎片/医疗宝石碎片.png"
+医疗宝石:
+  match: "§6医疗宝石"
+  texture: "宝石/医疗宝石.png"
 宝石力量载体:
   match: "宝石力量载体"
   texture: "宝石/碎片/宝石力量载体.png"
-水晶宝石:
-  match: "宝石镶嵌界面"
-  texture: "宝石/水晶宝石.png"
 力量宝石:
   match: "§6力量宝石"
   texture: "宝石/力量宝石.png"
+火之宝石:
+  match: "§6火之宝石"
+  texture: "宝石/火之宝石.png"
 宝石卸除菜单:
   match: "宝石卸除菜单"
   texture: "宝石/宝石卸除工具.png"

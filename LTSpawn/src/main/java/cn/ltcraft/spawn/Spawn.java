@@ -1,5 +1,6 @@
 package cn.ltcraft.spawn;
 
+import cn.LTCraft.core.entityClass.ClutterItem;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.api.placeholder.PlaceholderReplacer;
@@ -41,10 +42,11 @@ public class Spawn {
         ltSpawn = LTSpawn.getInstance();
         config = new MythicConfig(insideName, ltSpawn.getSpawnConfig());
         World world = Bukkit.getWorld(config.getString("world"));
-        this.location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1.5, config.getDouble("z"));
+        mobName = config.getString("mobName");
+        MythicMob mm = MythicMobs.inst().getMobManager().getMythicMob(mobName);
+        this.location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + mm.getDrops().size() * 0.3, config.getDouble("z"));
         this.abstractLocation = new AbstractLocation(new BukkitWorld(world), config.getDouble("x"), config.getDouble("y") + 2, config.getDouble("z"));
         cooling = config.getInteger("cooling", 10);
-        mobName = config.getString("mobName");
         maxMobs = config.getInteger("maxMobs", 3);
         range = config.getInteger("range", 16);
         hologram = HologramsAPI.createHologram(LTSpawn.getInstance(), location);
@@ -55,14 +57,21 @@ public class Spawn {
                 return Math.max(0, cooling - timer) +"S刷新！";
         });
         HologramsAPI.registerPlaceholder(LTSpawn.getInstance(), "LTSpawn:" + insideName + ":mobCount", 1, () -> String.valueOf(mobs.size()));
-        MythicMob mm = MythicMobs.inst().getMobManager().getMythicMob(mobName);
         hologram.appendTextLine("§a=========[" + insideName + "§a]=========");
         hologram.appendTextLine("§6名字:§3"+ mobName +"§d还有:LTSpawn:"+insideName+":colling");
         hologram.appendTextLine("§e当前怪物数量:LTSpawn:"+insideName+":mobCount/" + maxMobs);
         for (int i = 0; i < mm.getDrops().size(); i++) {
             String drop = mm.getDrops().get(i);
             String[] drops = MythicLineConfig.unparseBlock(drop).split(" ");
-            if (drops.length >= 3) {
+            if (drops[0].startsWith("LTItem")){
+                hologram.appendTextLine("§e掉落:" + ClutterItem.spawnClutterItem(drops[1], ClutterItem.ItemSource.LTCraft) + "×" + (drops.length >= 3?drops[2]:1) + " " +(Integer.parseInt(drops.length >= 4?drops[3]:"1") * 100) + "%");
+            }else if (drops[0].startsWith("goldCoinsDrop")){
+                hologram.appendTextLine("§e掉落:" + drops[1].split(":")[0] + "×" + (drops.length >= 3?drops[2]:1) + " " +(Integer.parseInt(drops.length >= 4?drops[3]:"1") * 100) + "%");
+            }else if (drops[0].startsWith("goldCoins")){
+                hologram.appendTextLine("§e掉落:金币×" + (drops.length >= 2?drops[1]:1) + " " +(Integer.parseInt(drops.length >= 3?drops[2]:"1") * 100) + "%");
+            }else if (drops[0].startsWith("skillapi-exp")){
+                hologram.appendTextLine("§e掉落:经验×" + (drops.length >= 2?drops[1]:1) + " " +(Integer.parseInt(drops.length >= 3?drops[2]:"1") * 100) + "%");
+            }else if (drops.length >= 3) {
                 hologram.appendTextLine("§e掉落:" + drops[0] + "×" + drops[1] + " " +(Integer.parseInt(drops[2]) * 100) + "%");
             }
         }
@@ -88,6 +97,7 @@ public class Spawn {
         }
     }
     public void close(){
+        hologram.setAllowPlaceholders(false);
         hologram.delete();
         for (ActiveMob mob : mobs) {
             mob.setDead();

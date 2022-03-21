@@ -27,6 +27,7 @@
   Drops:
     - skillapi-exp 15
     - 力量宝石碎片 1 1
+    - goldCoinsDrop 金币:1 1-3 1
 暗裔守护:
   Type: Skeleton
   Display: '&e【初级】&6暗裔守护'
@@ -55,4 +56,5 @@
     PreventSunburn: true
   Drops:
     - skillapi-exp 15
-    - 力量宝石碎片 1 1
+    - 医疗宝石碎片 1 1
+    - goldCoinsDrop 金币:1 1-3 1
