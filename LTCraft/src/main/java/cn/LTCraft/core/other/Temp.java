@@ -28,6 +28,10 @@ public class Temp {
      */
     public static final List<Item> discardOnly = new ArrayList<>();
     /**
+     * 垃圾计数器
+     */
+    public static Map<Player, Integer> dropCount = new HashMap<>();
+    /**
      * 重伤
      */
     public static final Map<Entity, Integer> injured = new HashMap<>();

@@ -408,15 +408,16 @@ public class PlayerListener  implements Listener {
                 }
             }
         }
-        if (itemStack.getItemMeta()!=null && itemStack.getItemMeta().getLore()!=null && itemStack.getItemMeta().getLore().stream().anyMatch(s -> s.contains("丢弃防止合并")) && itemStack.getItemMeta().getLore().stream().noneMatch(s -> s.contains("sign"))){
-            ItemMeta itemMeta = itemStack.getItemMeta();
-            List<String> lore = new ArrayList<>(itemMeta.getLore());
-            lore.add("sign" + UUID.randomUUID());
-            itemMeta.setLore(lore);
-            itemStack.setItemMeta(itemMeta);
-            event.getItemDrop().setItemStack(itemStack);
+        if (Temp.dropCount.get(player) >= 60){
+            player.sendMessage("§c一分钟内最大丢弃物品数：60。");
+            event.setCancelled(true);
+            return;
         }
         Temp.playerDropItem.put(event.getItemDrop(), player.getName());
+        if (Temp.dropCount.containsKey(player))
+            Temp.dropCount.put(player, Temp.dropCount.get(player) + 1);
+        else
+            Temp.dropCount.put(player, 1);
         if (player.getWorld().getName().equals("t3") && player.getLocation().distance(new Location(player.getWorld(), 258.5, 9, 148.5)) < 20){
             Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {
                 if (player.isOnline() && Game.demand(player, "custom1")){

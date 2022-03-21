@@ -79,6 +79,9 @@ public class GlobalRefresh {
         if (tick % 6000 == 0){
             Teleport.getInstance().save();
         }
+        if (tick % 1200 == 0){
+            Temp.dropCount = new HashMap<>();
+        }
         //效果
         Temp.injured.replaceAll((k, v) -> v - 1);
         Temp.injured.entrySet().removeIf(entry -> entry.getValue() <= 0);
