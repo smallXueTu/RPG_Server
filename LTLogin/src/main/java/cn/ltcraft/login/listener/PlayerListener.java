@@ -293,7 +293,7 @@ public class PlayerListener implements Listener {
     public void onPlayerEvent(PlayerMoveEvent event){
         if (
                 event.getFrom().getX()!=event.getTo().getX() ||
-                event.getFrom().getY()!=event.getTo().getY() ||
+                event.getFrom().getY()<event.getTo().getY() ||
                 event.getFrom().getZ()!=event.getTo().getZ()
         )
         cancelled(event, event.getPlayer());
@@ -332,10 +332,12 @@ public class PlayerListener implements Listener {
         ){
             EntityDamageByEntityEvent e = (EntityDamageByEntityEvent)event;
             if (e.getDamager() instanceof Player)
-                cancelled((Cancellable)event, (Player) e.getDamager());
+                cancelled(event, (Player) e.getDamager());
+            if (e.getEntity() instanceof Player)
+                cancelled(event, (Player) e.getEntity());
         }else{
             if (event.getEntity() instanceof Player)
-                cancelled((Cancellable) event, (Player) event.getEntity());
+                cancelled(event, (Player) event.getEntity());
         }
     }
 
