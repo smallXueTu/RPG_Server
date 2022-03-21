@@ -213,6 +213,15 @@ public class AllListener implements Listener {
         }
     }
     @EventHandler
+    public void onDropItemEvent(PlayerDropItemEvent event){
+        ItemStack itemStack = event.getItemDrop().getItemStack();
+        NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
+        LTItem ltItem = Utils.getLTItems(nbt);
+        if (ltItem instanceof ConfigurableLTItem && ((ConfigurableLTItem)ltItem).getConfig().isBoolean("不可叠加")){
+            event.getItemDrop().setItemStack(ltItem.generate(itemStack.getAmount()));
+        }
+    }
+    @EventHandler
     public void onPickupItemEvent(PlayerPickupItemEvent event){
         ItemStack itemStack = event.getItem().getItemStack();
         Player player = event.getPlayer();

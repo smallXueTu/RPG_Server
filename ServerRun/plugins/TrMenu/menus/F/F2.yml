@@ -72,3 +72,5 @@ Icons:
             - 'TackGoldCoins: 10'
             - 'GetClutterItem: 宝石载体'
             - 'tell: §a兑换成功！'
+          deny:
+            - 'tell: §c兑换失败，你的金币不足！'
