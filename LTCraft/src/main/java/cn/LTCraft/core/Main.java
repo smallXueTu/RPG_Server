@@ -7,6 +7,7 @@ import cn.LTCraft.core.hook.BQ.condition.*;
 import cn.LTCraft.core.commands.CommandLoader;
 import cn.LTCraft.core.dataBase.SQLManage;
 import cn.LTCraft.core.dataBase.SQLServer;
+import cn.LTCraft.core.hook.TrMenu.actions.TackGoldCoins;
 import cn.LTCraft.core.listener.*;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.game.Game;
@@ -20,9 +21,11 @@ import cn.LTCraft.core.hook.TrMenu.actions.OpenCoreGui;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.utils.FileUtil;
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import cn.LTCraft.core.utils.TrMenuUtils;
 import com.earth2me.essentials.Essentials;
 import me.arasple.mc.trmenu.TrMenu;
 import me.arasple.mc.trmenu.api.action.ActionHandle;
+import me.arasple.mc.trmenu.module.internal.script.js.JavaScriptAgent;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -34,10 +37,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.betoncraft.betonquest.BetonQuest;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -209,6 +214,17 @@ public class Main extends JavaPlugin {
         actionHandle.register(new LTExchange(actionHandle));
         actionHandle.register(new GetClutterItem(actionHandle));
         actionHandle.register(new OpenCoreGui(actionHandle));
+        actionHandle.register(new TackGoldCoins(actionHandle));
+        Class<JavaScriptAgent> javaScriptAgentClass = JavaScriptAgent.class;
+        try {
+            Field bindings = javaScriptAgentClass.getDeclaredField("bindings");
+            bindings.setAccessible(true);
+            Map<String, Object> map = (Map)bindings.get(null);
+            map.put("LTCraftUtils", TrMenuUtils.getInstance());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
     }
     public Config getConfigOBJ() {
         return config;

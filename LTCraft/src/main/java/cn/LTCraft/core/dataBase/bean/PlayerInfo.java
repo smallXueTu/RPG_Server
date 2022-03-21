@@ -173,7 +173,7 @@ public class PlayerInfo {
      * 赐予玩家金币
      * @param balance 金币
      */
-    public void addGold(int balance){
+    public void addGold(double balance){
         gold += balance;
         gold = Math.max(0, gold);
     }
@@ -182,7 +182,7 @@ public class PlayerInfo {
      * 扣除玩家金币
      * @param balance 金币
      */
-    public void reduceGold(int balance){
+    public void reduceGold(double balance){
         gold -= balance;
         gold = Math.max(0, gold);
     }
