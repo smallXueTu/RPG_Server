@@ -161,6 +161,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗影盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -171,6 +172,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗影盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -181,6 +183,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗影盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -191,6 +194,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗影盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -271,6 +275,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗黑盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -281,6 +286,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗黑盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -291,6 +297,7 @@
   Lore:
     - ''
     - ''
+    - '&e绿魔盔甲。'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -301,6 +308,7 @@
   Lore:
     - ''
     - ''
+    - '&e绿魔盔甲。'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -311,6 +319,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗黑盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -321,6 +330,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗黑盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -331,6 +341,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗黑盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -341,6 +352,7 @@
   Lore:
     - ''
     - ''
+    - '&e暗黑盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -351,6 +363,7 @@
   Lore:
     - ''
     - ''
+    - '&e恶魔骑士'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -361,6 +374,7 @@
   Lore:
     - ''
     - ''
+    - '&e恶魔骑士'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -371,6 +385,7 @@
   Lore:
     - ''
     - ''
+    - '&e恶魔骑士'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -381,6 +396,7 @@
   Lore:
     - ''
     - ''
+    - '&e恶魔骑士'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -391,6 +407,7 @@
   Lore:
     - ''
     - ''
+    - '&e淬火盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -401,6 +418,7 @@
   Lore:
     - ''
     - ''
+    - '&e淬火盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -421,6 +439,7 @@
   Lore:
     - ''
     - ''
+    - '&e淬火盔甲'
     - '&e怪物装备。'
   Options:
     Unbreakable: true
@@ -491,8 +510,8 @@
   Lore:
     - ''
     - ''
-    - '&e地狱钢铁头盔。'
     - '&e地狱钢铁。'
+    - '&e怪物装备。'
   Options:
     Unbreakable: true
 地狱钢铁胸甲:
@@ -502,8 +521,8 @@
   Lore:
     - ''
     - ''
-    - '&e地狱钢铁胸甲。'
     - '&e地狱钢铁。'
+    - '&e怪物装备。'
   Options:
     Unbreakable: true
 地狱钢铁护腿:
@@ -513,8 +532,8 @@
   Lore:
     - ''
     - ''
-    - '&e地狱钢铁护腿。'
     - '&e地狱钢铁。'
+    - '&e怪物装备。'
   Options:
     Unbreakable: true
 地狱钢铁靴子:
@@ -524,8 +543,8 @@
   Lore:
     - ''
     - ''
-    - '&e地狱钢铁靴子。'
     - '&e地狱钢铁。'
+    - '&e怪物装备。'
   Options:
     Unbreakable: true
 地狱钢铁:
@@ -686,16 +705,6 @@
     - ''
     - ''
     - '&e主线材料。'
-  Options:
-    Unbreakable: true
-水晶匕首:
-  Id: 267
-  Data: 0
-  Display: '&6水晶匕首'
-  Lore:
-    - ''
-    - ''
-    - '&e怪物装备。'
   Options:
     Unbreakable: true
 晶蝎符文:

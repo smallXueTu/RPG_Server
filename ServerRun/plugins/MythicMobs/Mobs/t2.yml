@@ -291,7 +291,7 @@
     PreventSunburn: true
   Drops:
     - skillapi-exp 13
-    - 工程师的扳手 1 0.3
+    - ltitem 工程师的扳手 1 0.3
 中级-博士的试验品:
   Type: villagezombie
   Display: '&e【中级】&6博士的试验品'
@@ -331,8 +331,8 @@
     PreventSunburn: true
   Drops:
     - skillapi-exp 13
-    - 暗影头盔 1 0.3
-    - 暗影之刃 1 0.1
+    - ltitem 暗影头盔 1 0.3
+    - ltitem 暗影之刃 1 0.1
 高级-暗影使者:
   Type: Skeleton
   Display: '&e【高级】&6暗影使者'
@@ -358,8 +358,8 @@
     PreventSunburn: true
   Drops:
     - skillapi-exp 13
-    - 暗影之锤 1 0.1
-    - 暗影胸甲 1 0.2
+    - ltitem 暗影之锤 1 0.1
+    - ltitem 暗影胸甲 1 0.2
 恶魔-武器缴械者:
   Type: Skeleton
   Display: '&e【恶魔】&6武器缴械者'
@@ -385,14 +385,14 @@
     PreventSunburn: true
   Drops:
     - skillapi-exp 18
-    - 暗影靴子 1 0.2
-    - 暗影护腿 1 0.2
-    - 骑士的圣剑 1 0.5
-    - 金铁剑 1 0.3
-    - 砧板剑 1 0.05
-    - 风暴之主的短剑 1 0.1
-    - 风暴者的短剑 1 0.16
-    - 毁灭者的匕首 1 0.18
+    - ltitem 暗影靴子 1 0.2
+    - ltitem 暗影护腿 1 0.2
+    - ltitem 骑士的圣剑 1 0.5
+    - ltitem 金铁剑 1 0.3
+    - ltitem 砧板剑 1 0.05
+    - ltitem 风暴之主的短剑 1 0.1
+    - ltitem 风暴者的短剑 1 0.16
+    - ltitem 毁灭者的匕首 1 0.18
 恶魔-装备缴械者:
   Type: Skeleton
   Display: '&e【恶魔】&6装备缴械者'
@@ -423,19 +423,19 @@
     PreventSunburn: true
   Drops:
     - skillapi-exp 25
-    - 砧板剑 1 0.2
-    - 暗黑靴子 1 0.1
-    - 暗黑护腿 1 0.1
-    - 暗黑头盔 1 0.1
-    - 暗黑胸甲 1 0.1
-    - 恶魔骑士头盔 1 0.05
-    - 恶魔骑士胸甲 1 0.03
-    - 恶魔骑士护腿 1 0.05
-    - 恶魔骑士靴子 1 0.05
-    - 绿魔头盔 1 0.07
-    - 绿魔胸甲 1 0.05
-    - 绿魔护腿 1 0.07
-    - 绿魔靴子 1 0.07
+    - ltitem 砧板剑 1 0.2
+    - ltitem 暗黑靴子 1 0.1
+    - ltitem 暗黑护腿 1 0.1
+    - ltitem 暗黑头盔 1 0.1
+    - ltitem 暗黑胸甲 1 0.1
+    - ltitem 恶魔骑士头盔 1 0.05
+    - ltitem 恶魔骑士胸甲 1 0.03
+    - ltitem 恶魔骑士护腿 1 0.05
+    - ltitem 恶魔骑士靴子 1 0.05
+    - ltitem 绿魔头盔 1 0.07
+    - ltitem 绿魔胸甲 1 0.05
+    - ltitem 绿魔护腿 1 0.07
+    - ltitem 绿魔靴子 1 0.07
 地狱-地狱之主:
   Type: Skeleton
   Display: '&e【地狱】&6地狱之主'
@@ -755,7 +755,7 @@ BOSS-魔塔统治者:
     - skill{s=元素猎人冲击波} @Self <80% ~onDamaged
   Drops:
     - 元素之球 1 1
-    - 五行之刃 1 0.3
+    - ltitem 五行之刃 1 0.3
 木洞神秘商人:
   Type: Skeleton
   Display: '&6木洞神秘商人'
@@ -804,7 +804,7 @@ BOSS-魔塔统治者:
   Drops:
     - skillapi-exp 3
     - 青蜘符文 1 1
-    - 符文之刃 1 0.2
+    - ltitem 符文之刃 1 0.2
 水晶蝎子:
   Type: Spider
   Display: '&e【初级】&6水晶蝎子'
@@ -820,7 +820,7 @@ BOSS-魔塔统治者:
   Drops:
     - skillapi-exp 4
     - 晶蝎符文 1 1
-    - 水晶匕首 1 0.2
+    - ltitem 水晶匕首 1 0.2
 魔化蜘蛛:
   Type: Spider
   Display: '&e【中级】&6魔化蜘蛛'
