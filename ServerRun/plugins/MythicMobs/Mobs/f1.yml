@@ -1,7 +1,7 @@
 初级试炼士兵:
   Type: Skeleton
   Display: '&e【初级】&6试炼士兵'
-  Health: 1000
+  Health: 500
   Damage: 10
   AIGoalSelectors:
     - clear
@@ -31,7 +31,7 @@
 中级试炼士兵:
   Type: Skeleton
   Display: '&e【中级】&6试炼士兵'
-  Health: 2000
+  Health: 1000
   Damage: 30
   AIGoalSelectors:
     - clear

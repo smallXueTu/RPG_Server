@@ -56,7 +56,7 @@
   texture: "t2/未来胸甲.png"
 未来护腿:
   match: "未来护腿"
-  texture: "t2/淬火护腿.png"
+  texture: "t2/未来护腿.png"
 未来靴子:
   match: "未来靴子"
   texture: "t2/未来靴子.png"

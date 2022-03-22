@@ -6,6 +6,7 @@ import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.PlayerUtils;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -51,7 +52,13 @@ public class EntityListener implements Listener {
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event){
         if (event.getEntity() instanceof Item){
-            Temp.playerDropItem.remove(event.getEntity());
+            if(Temp.playerDropItem.containsKey(event.getEntity())){
+                Player player = Bukkit.getPlayerExact(Temp.playerDropItem.get(event.getEntity()));
+                if (Temp.dropCount.containsKey(player)){
+                    Temp.dropCount.put(player, Temp.dropCount.get(player) - 1 );
+                }
+                Temp.playerDropItem.remove(event.getEntity());
+            }
             Temp.discardOnly.remove((Item) event.getEntity());
         }
     }

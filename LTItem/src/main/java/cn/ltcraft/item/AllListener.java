@@ -183,7 +183,7 @@ public class AllListener implements Listener {
     public void onPrepareAnvil(PrepareAnvilEvent event){
         ItemStack item = event.getInventory().getItem(0);
         ItemStack result = event.getResult();
-        if (item != null && result != null && item.getTypeId() != 0 && result.getTypeId() != 0 && !item.getItemMeta().getDisplayName().equals(result.getItemMeta().getDisplayName())) {
+        if (item != null && result != null && item.getTypeId() != 0 && result.getTypeId() != 0 && item.hasItemMeta() && !item.getItemMeta().getDisplayName().equals(result.getItemMeta().getDisplayName())) {
             if (Utils.getLTItems(result) != null) {
                 event.setResult(new ItemStack(Material.AIR));
                 event.getView().getPlayer().sendMessage("§c特殊物品不支持改名！");
