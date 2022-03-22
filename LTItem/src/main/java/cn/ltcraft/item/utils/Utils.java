@@ -313,4 +313,23 @@ public class Utils {
             }
         }
     }
+    public static int getMaxSet(String quality){
+        switch (cn.LTCraft.core.utils.Utils.clearColor(quality)){
+            case "中级":
+                return 4;
+            case "高级":
+            case "稀有":
+            case "传说":
+                return 5;
+            case "终极":
+                return 6;
+            case "史诗":
+                return 8;
+            case "神话":
+            case "至臻":
+                return 10;
+            default:
+                return 3;
+        }
+    }
 }

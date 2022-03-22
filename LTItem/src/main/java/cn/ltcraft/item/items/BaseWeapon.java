@@ -61,7 +61,7 @@ public abstract class BaseWeapon extends AICLA {
         PVEAttackSkill = GameUtils.analyticalSkill(config.getString("PVE.攻击技能"));
         PVPAttackSkill = GameUtils.analyticalSkill(config.getString("PVP.攻击技能"));
         lore = config.getStringList("说明");
-        maxSet = config.getInt("宝石槽位", 3);
+        maxSet = config.getInt("宝石槽位", Utils.getMaxSet(config.getString("quality", "")));
     }
     @Override
     public String getName() {
