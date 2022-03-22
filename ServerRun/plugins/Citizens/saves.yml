@@ -559,12 +559,12 @@ npc:
     traits:
       location:
         world: t2
-        x: '-202.4975'
+        x: '-201.5105'
         y: '178.0'
-        z: '246.2685'
-        yaw: '0.6032'
+        z: '237.3346'
+        yaw: '130.1441'
         pitch: '0.0'
-        bodyYaw: 0.6031723
+        bodyYaw: 130.14412
       inventory:
         '0':
           type: IRON_SWORD

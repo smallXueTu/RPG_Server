@@ -3,10 +3,10 @@ Title: 'F2兑换菜单'
 Title-Update: -1
 
 Layout:
-  - - '#       #'
-    - '#  `宝石载体``力量宝石``医疗宝石`  #'
-    - '#   `火之宝石`   #'
-    - '#       #'
+  - - '#  `宝石载体``进阶宝石载体``高级宝石载体`  #'
+    - '#  `火之宝石``力量宝石``医疗宝石`  #'
+    - '#  `进阶火之宝石``进阶力量宝石``进阶医疗宝石`  #'
+    - '#  `高级火之宝石``高级力量宝石``高级医疗宝石`  #'
     - '#       #'
 
 PlayerInventory:
@@ -68,19 +68,111 @@ Icons:
         - "&3>>&e需要：宝石&e载体×1"
     actions:
       all: 'LTExchange: 火之宝石'
+  '进阶火之宝石':
+    display:
+      material: 388
+      name: "&6进阶火之宝石"
+      lore:
+        - "&3<<&e兑换进阶火之宝石×1"
+        - "&3>>&e需要：火之&e宝石×3"
+        - "&3>>&e需要：进阶宝&e石载体×1"
+    actions:
+      all: 'LTExchange: 进阶火之宝石'
+  '进阶力量宝石':
+    display:
+      material: 388
+      name: "&6进阶力量宝石"
+      lore:
+        - "&3<<&e兑换进阶力量宝石×1"
+        - "&3>>&e需要：力量&e宝石×3"
+        - "&3>>&e需要：进阶宝&e石载体×1"
+    actions:
+      all: 'LTExchange: 进阶力量宝石'
+  '进阶医疗宝石':
+    display:
+      material: 388
+      name: "&6进阶医疗宝石"
+      lore:
+        - "&3<<&e兑换进阶医疗宝石×1"
+        - "&3>>&e需要：医疗&e宝石×3"
+        - "&3>>&e需要：进阶宝&e石载体×1"
+    actions:
+      all: 'LTExchange: 进阶医疗宝石'
+  '高级火之宝石':
+    display:
+      material: 388
+      name: "&6高级火之宝石"
+      lore:
+        - "&3<<&e兑换高级火之宝石×1"
+        - "&3>>&e需要：进阶火之&e宝石×3"
+        - "&3>>&e需要：高级宝&e石载体×1"
+    actions:
+      all: 'LTExchange: 高级火之宝石'
+  '高级力量宝石':
+    display:
+      material: 388
+      name: "&6高级力量宝石"
+      lore:
+        - "&3<<&e兑换高级力量宝石×1"
+        - "&3>>&e需要：进阶力量&e宝石×3"
+        - "&3>>&e需要：高级宝&e石载体×1"
+    actions:
+      all: 'LTExchange: 高级力量宝石'
+  '高级医疗宝石':
+    display:
+      material: 388
+      name: "&6进阶医疗宝石"
+      lore:
+        - "&3<<&e兑换高级医疗宝石×1"
+        - "&3>>&e需要：进阶医疗&e宝石×3"
+        - "&3>>&e需要：高级宝&e石载体×1"
+    actions:
+      all: 'LTExchange: 高级医疗宝石'
   '宝石载体':
     display:
       material: 388
       name: "&6宝石载体"
       lore:
         - "&3<<&e兑换宝石载体×1"
-        - "&3>>&e需要：金币×3"
+        - "&3>>&e需要：金币×10"
     actions:
       all:
         - condition: 'js: LTCraftUtils.hasGoldCoins(player, 10)'
           actions:
             - 'TackGoldCoins: 10'
             - 'GetClutterItem: 宝石载体'
+            - 'tell: §a兑换成功！'
+          deny:
+            - 'tell: §c兑换失败，你的金币不足！'
+  '进阶宝石载体':
+    display:
+      material: 388
+      name: "&6进阶宝石载体"
+      lore:
+        - "&3<<&e兑换进阶宝石载体×1"
+        - "&3>>&e需要：金币×30"
+    actions:
+      all:
+        - condition: 'js: LTCraftUtils.hasGoldCoins(player, 30)'
+          actions:
+            - 'TackGoldCoins: 30'
+            - 'GetClutterItem: 进阶宝石载体'
+            - 'tell: §a兑换成功！'
+          deny:
+            - 'tell: §c兑换失败，你的金币不足！'
+  '高级宝石载体':
+    display:
+      material: 388
+      name: "&6高级宝石载体"
+      lore:
+        - "&3<<&e兑换高级宝石载体×1"
+        - "&3>>&e需要：金币×50"
+    actions:
+      all:
+        - condition: 'js: LTCraftUtils.hasGoldCoins(player, 50)'
+          actions:
+            - 'TackGoldCoins: 50'
+            - 'GetClutterItem: 高级宝石载体'
             - 'tell: §a兑换成功！'
           deny:
             - 'tell: §c兑换失败，你的金币不足！'

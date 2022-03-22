@@ -232,9 +232,6 @@
 医疗宝石碎片:
   match: "医疗宝石碎片"
   texture: "宝石/碎片/医疗宝石碎片.png"
-医疗宝石:
-  match: "§6医疗宝石"
-  texture: "宝石/医疗宝石.png"
 宝石力量载体:
   match: "宝石力量载体"
   texture: "宝石/碎片/宝石力量载体.png"
@@ -244,8 +241,35 @@
 火之宝石:
   match: "§6火之宝石"
   texture: "宝石/火之宝石.png"
+医疗宝石:
+  match: "§6医疗宝石"
+  texture: "宝石/医疗宝石.png"
+高级力量宝石:
+  match: "§6高级力量宝石"
+  texture: "宝石/力量宝石.png"
+高级火之宝石:
+  match: "§6高级火之宝石"
+  texture: "宝石/火之宝石.png"
+高级医疗宝石:
+  match: "§6高级医疗宝石"
+  texture: "宝石/医疗宝石.png"
+进阶力量宝石:
+  match: "§6进阶力量宝石"
+  texture: "宝石/力量宝石.png"
+进阶火之宝石:
+  match: "§6进阶火之宝石"
+  texture: "宝石/火之宝石.png"
+进阶医疗宝石:
+  match: "§6进阶医疗宝石"
+  texture: "宝石/医疗宝石.png"
 宝石载体:
   match: "§6宝石载体"
+  texture: "宝石/宝石载体.png"
+进阶宝石载体:
+  match: "§6进阶宝石载体"
+  texture: "宝石/宝石载体.png"
+高级宝石载体:
+  match: "§6高级宝石载体"
   texture: "宝石/宝石载体.png"
 宝石卸除菜单:
   match: "宝石卸除菜单"
