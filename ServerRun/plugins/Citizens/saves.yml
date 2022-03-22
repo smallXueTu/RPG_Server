@@ -66,9 +66,9 @@ npc:
         x: '26.4588'
         y: '20.0'
         z: '6.3704'
-        yaw: '171.0474'
-        pitch: '-19.3258'
-        bodyYaw: 171.0474
+        yaw: '164.6628'
+        pitch: '-17.6714'
+        bodyYaw: 164.66281
       spawned: true
       skintrait:
         fetchDefaultSkin: true
@@ -91,9 +91,9 @@ npc:
         x: '-46.4673'
         y: '67.0'
         z: '-18.6935'
-        yaw: '-4.3779'
-        pitch: '-6.1218'
-        bodyYaw: -4.3779373
+        yaw: '-50.8737'
+        pitch: '0.0'
+        bodyYaw: -50.87369
       spawned: true
       gravity:
         enabled: false
@@ -130,9 +130,9 @@ npc:
         x: '-123.4504'
         y: '68.0'
         z: '-11.2637'
-        yaw: '-63.1328'
+        yaw: '-11.0875'
         pitch: '0.0'
-        bodyYaw: -63.13276
+        bodyYaw: -11.087502
       type: PLAYER
       spawned: true
       gravity:
@@ -559,12 +559,12 @@ npc:
     traits:
       location:
         world: t2
-        x: '-201.5105'
+        x: '-201.3221'
         y: '178.0'
-        z: '237.3346'
-        yaw: '130.1441'
+        z: '231.5818'
+        yaw: '52.0627'
         pitch: '0.0'
-        bodyYaw: 130.14412
+        bodyYaw: 52.062683
       inventory:
         '0':
           type: IRON_SWORD
@@ -3082,12 +3082,12 @@ npc:
       type: PLAYER
       spawned: true
       location:
-        bodyYaw: -113.82935
+        bodyYaw: 127.630615
         world: t3
         x: '405.523'
         y: '105.0'
         z: '83.475'
-        yaw: '-113.8294'
+        yaw: '127.6306'
         pitch: '0.0'
       skintrait:
         fetchDefaultSkin: true
@@ -3183,12 +3183,12 @@ npc:
                   type: delay
         provider: linear
       location:
-        bodyYaw: 170.03702
+        bodyYaw: -97.26999
         world: t3
-        x: '400.5587'
+        x: '402.3238'
         y: '105.0'
-        z: '86.8341'
-        yaw: '170.037'
+        z: '87.5484'
+        yaw: '-97.27'
         pitch: '0.0'
       skintrait:
         fetchDefaultSkin: true
@@ -3211,13 +3211,13 @@ npc:
       type: PLAYER
       spawned: true
       location:
-        bodyYaw: -113.51146
+        bodyYaw: -55.356316
         world: t3
         x: '286.428'
         y: '9.5'
         z: '132.4912'
-        yaw: '-113.5115'
-        pitch: '0.0'
+        yaw: '-55.3563'
+        pitch: '-14.6967'
       lookclose:
         range: '5.0'
         enabled: true
@@ -3311,13 +3311,13 @@ npc:
     uuid: ed0b8419-0be9-4bb9-b582-19b6692340b8
     traits:
       location:
-        bodyYaw: -136.202
+        bodyYaw: -181.58559
         world: t3
         x: '287.4371'
         y: '6.0'
         z: '485.4885'
-        yaw: '-136.202'
-        pitch: '0.0'
+        yaw: '178.4144'
+        pitch: '-22.9472'
       lookclose:
         range: '5.0'
         enabled: true

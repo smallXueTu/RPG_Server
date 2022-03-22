@@ -2915,3 +2915,5 @@
 [20.03.2022 18:57:43] ERROR: Error in 'command.有地狱淬火护腿' condition (item): Error while parsing 1 argument: Error while parsing '地狱淬火护腿' item: Error while parsing 1 argument: Error while loading item: Item 'command.地狱淬火护腿' is not defined
 [20.03.2022 18:57:43] ERROR: Error in 'command.有地狱淬火靴子' condition (item): Error while parsing 1 argument: Error while parsing '地狱淬火靴子' item: Error while parsing 1 argument: Error while loading item: Item 'command.地狱淬火靴子' is not defined
 [20.03.2022 18:57:43] ERROR: Error in 'command.有地狱之镰' condition (item): Error while parsing 1 argument: Error while parsing '地狱之镰' item: Error while parsing 1 argument: Error while loading item: Item 'command.地狱之镰' is not defined
+[22.03.2022 23:36:12] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
+[22.03.2022 23:38:50] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.

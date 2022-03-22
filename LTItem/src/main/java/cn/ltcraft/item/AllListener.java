@@ -212,7 +212,10 @@ public class AllListener implements Listener {
             Utils.action(player, configurable, click);
         }
     }
-    @EventHandler
+    @EventHandler(
+            ignoreCancelled = true,
+            priority = EventPriority.HIGHEST
+    )
     public void onDropItemEvent(PlayerDropItemEvent event){
         ItemStack itemStack = event.getItemDrop().getItemStack();
         NBTTagCompound nbt = ItemUtils.getNBT(itemStack);

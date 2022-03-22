@@ -152,13 +152,23 @@ public class PlayerListener implements Listener {
                     if(message.startsWith("/")){
                         Login.forceSendMessage(player, "§l§c注意，你输入的密码可能为命令，在此服务器你应该§d直接输入密码§c来的登录！");
                     }
+                    if (Login.errorCount.containsKey(player.getName())){
+                        if (Login.errorCount.get(player.getName()) >= 5){
+                            player.kickPlayer("§c多次密码错误！");
+                            event.setCancelled(true);
+                            return;
+                        }
+                        Login.errorCount.put(player.getName(), Login.errorCount.get(player.getName()) + 1);
+                    }else {
+                        Login.errorCount.put(player.getName(), 1);
+                    }
                 }
             break;
             case REGISTER:
                 if (playerInfo.getConfirmPassword()==null) {//玩家在第一步
                     String check = Utils.checkPassword(message);
                     if (!check.equals("true")){
-                        player.sendMessage("§l§c"+check);
+                        Login.forceSendMessage(player, "§l§c"+check);
                     }else {
                         playerInfo.setConfirmPassword(message);
                         Login.forceSendMessage(player, "§l§e请再输入一遍密码来确认~");

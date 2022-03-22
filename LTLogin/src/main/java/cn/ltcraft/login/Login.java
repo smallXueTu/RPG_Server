@@ -22,6 +22,10 @@ import java.util.stream.Stream;
 
 public class Login extends JavaPlugin {
     /**
+     * 错误次数
+     */
+    public static HashMap<String, Integer> errorCount = new HashMap<>();
+    /**
      * 玩家的状态
      * @see cn.ltcraft.login.other.PlayerStatus
      */
