@@ -276,7 +276,8 @@ public class Utils {
                         Bukkit.getServer().dispatchCommand(player, cmd);
                         break;
                     case "use":
-                        count = UseItemEffect.onUse(player, ltItem.getName());
+                        System.out.println(split[1]);
+                        count = UseItemEffect.onUse(player, split[1]);
                         break;
                     case "增加金币":
                         number = Integer.parseInt(split[1]);

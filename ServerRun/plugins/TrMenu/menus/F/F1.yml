@@ -48,4 +48,6 @@ Icons:
         - "&3<<&e兑换法杖知识卷轴×1"
         - "&3>>&e需要：知识卷轴&e章节×32"
     actions:
-      all: 'LTExchange: 法杖知识卷轴'
+      all:
+         - 'LTExchange: 法杖知识卷轴'
+         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'

@@ -87,7 +87,7 @@ player_options:
     text: '带我过去！'
     conditions: ''
     pointer: ''
-    events: '找到T3传送门,添加请求凯特开往指定方向标签'
+    events: '找到T3传送门,添加请求凯特开往指定方向标签,添加接受翟纳若的任务3标签'
   '好的':
     text: '好的！'
     conditions: ''

@@ -61,7 +61,7 @@ player_options:
   '行吧':
     text: '行吧...'
     conditions: ''
-    pointer: '你带齐材料了吗'
+    pointer: ''
     events: ''
   '太棒了':
     text: '太棒了！'

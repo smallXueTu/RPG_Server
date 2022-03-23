@@ -163,7 +163,7 @@
     - modifySlotItem{i=魔化的战刃;s=HAND} @Trigger
 火之护盾:
   TargetConditions:
-    - LTWearing{s=mainhand;m=寒冰三尺} false
+    - LTWearing{s=mainhand;m=寒冰三尺}<&csp>false
   Skills:
     - CancelEvent
     - message{m = <mob.name>&c你的攻击被恶火护盾抵消了！} @Trigger
@@ -171,7 +171,7 @@
     - sound{s=entity.zombie.attack_iron_door;p=2} @self
 小提示:
   TargetConditions:
-    - LTWearing{s=mainhand;m=寒冰三尺} false
+    - LTWearing{s=mainhand;m=寒冰三尺}<&csp>false
   Skills:
     - message{m="&e小提示&d>> &6你的武器无法对&c恶火统治者&6造成伤害，建议你使用&d寒冰三尺&6武器来对付他！"} @Target
 锻造寒冰三尺:
@@ -180,7 +180,7 @@
     - HasItem{i=寒冰三尺}<&csp>false
     - HasBQTag{t=default.待获得恶火装备}
     - HasBQTag{t=default.已拥有寒冰三尺}<&csp>false
-    - LTWearing{s=mainhand;m=寒冰三尺} false
+    - LTWearing{s=mainhand;m=寒冰三尺}<&csp>false
   Skills:
     - targetCommand{c="bq objective <trigger.name> add 【主线-过程】收集22个非稳定钢质";op=true;} @Trigger
     - sendtitle{title="&8[&e任务触发&8]";subtitle="&6锻造武器：&d寒冰三尺&6，请注意任务进展！";d=40;fi=20;o=20} @Trigger
