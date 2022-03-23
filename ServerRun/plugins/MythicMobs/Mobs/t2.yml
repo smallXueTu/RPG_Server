@@ -677,7 +677,7 @@ BOSS-魔塔统治者:
 火魔-元素入侵者:
   Type: Skeleton
   Display: '&e【火魔】&6元素入侵者'
-  Health: 400
+  Health: 1000
   Damage: 8
   Equipment:
     - 火之法杖:HAND

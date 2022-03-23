@@ -98,6 +98,11 @@ public class ItemUtils {
     public static ItemStack cleanVar(ItemStack itemStack){
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta == null)return itemStack;
+        List<String> lore = itemMeta.getLore();
+        if (lore != null && lore.size() > 0 && lore.get(lore.size() - 1).startsWith("sign")){
+            lore.remove(lore.size() - 1);
+            itemMeta.setLore(lore);
+        }
         itemMeta.removeItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ATTRIBUTES);
         itemStack.setItemMeta(itemMeta);
         return itemStack;

@@ -49,7 +49,6 @@ public class LTWearingCondition extends SkillCondition implements IEntityConditi
                     MythicLogger.debug(MythicLogger.DebugLevel.MECHANIC, "Invalid slot used: {0}", this.slot);
                     break;
             }
-
             if (slotItem == null) {
                 MythicLogger.debug(MythicLogger.DebugLevel.MECHANIC, "Slot item was null, returning false");
                 return false;

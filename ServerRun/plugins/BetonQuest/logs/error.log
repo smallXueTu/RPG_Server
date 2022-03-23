@@ -2917,3 +2917,9 @@
 [20.03.2022 18:57:43] ERROR: Error in 'command.有地狱之镰' condition (item): Error while parsing 1 argument: Error while parsing '地狱之镰' item: Error while parsing 1 argument: Error while loading item: Item 'command.地狱之镰' is not defined
 [22.03.2022 23:36:12] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
 [22.03.2022 23:38:50] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
+[23.03.2022 12:30:39] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
+[23.03.2022 13:08:14] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
+[23.03.2022 14:33:27] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
+[23.03.2022 14:59:06] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
+[23.03.2022 17:29:16] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
+[23.03.2022 22:54:23] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.

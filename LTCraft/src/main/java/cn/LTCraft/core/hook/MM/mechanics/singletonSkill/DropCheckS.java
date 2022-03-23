@@ -2,6 +2,7 @@ package cn.LTCraft.core.hook.MM.mechanics.singletonSkill;
 
 import cn.LTCraft.core.hook.MM.other.ItemRotating;
 import cn.LTCraft.core.entityClass.ClutterItem;
+import cn.LTCraft.core.utils.ItemUtils;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.io.MythicLineConfig;
 import io.lumine.xikage.mythicmobs.skills.ITargetedEntitySkill;
@@ -31,7 +32,7 @@ public class DropCheckS extends SkillMechanic implements ITargetedEntitySkill {
         World world = abstractEntity.getBukkitEntity().getWorld();
         Collection<Entity> entities = world.getNearbyEntities(abstractEntity.getBukkitEntity().getLocation(), 2, 2, 2);
         for (Entity entity : entities) {
-            if (entity instanceof Item && clutterItem.isSimilar(((Item)entity).getItemStack())){
+            if (entity instanceof Item && clutterItem.isSimilar(ItemUtils.cleanVar(((Item)entity).getItemStack().clone()))){
                 map.get(abstractEntity.getBukkitEntity().getEntityId()).addEntity((Item) entity);
             }
         }

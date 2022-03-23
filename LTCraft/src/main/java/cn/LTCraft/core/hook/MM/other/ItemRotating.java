@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemRotating implements Runnable {
-    private List<Item> itemEntities = new ArrayList<>();
+    private final List<Item> itemEntities = new ArrayList<>();
     private final static int speed = 1;
     private int angle;
     private int progress = 0;
@@ -24,9 +24,11 @@ public class ItemRotating implements Runnable {
     @Override
     public void run() {
         progress += speed;
-        if(itemEntities.removeIf(Entity::isDead) && itemEntities.size() > 0){
-            angle = Math.max(360 / itemEntities.size(), 1);
-            progress = 1;
+        synchronized (itemEntities) {
+            if (itemEntities.removeIf(Entity::isDead) && itemEntities.size() > 0) {
+                angle = Math.max(360 / itemEntities.size(), 1);
+                progress = 1;
+            }
         }
         for (int i = 1; i <= itemEntities.size(); i++) {
             CraftItem craftItem = (CraftItem)itemEntities.get(i - 1);
@@ -48,7 +50,9 @@ public class ItemRotating implements Runnable {
         List<String> lore = item.getItemStack().getItemMeta().getLore();
         if (!lore.get(lore.size() - 1).startsWith("sign"))return;
         (((CraftEntity)item).getHandle()).setNoGravity(true);
-        itemEntities.add(item);
+        synchronized (itemEntities) {
+            itemEntities.add(item);
+        }
         angle = Math.max(360 / itemEntities.size(), 1);
         progress = 1;
         resetPosition();

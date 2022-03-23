@@ -51,3 +51,4 @@ test: STICK durability:0 name:§6test lore:§6test-test-test。
 稳定寒冰钢质: IRON_INGOT durability:0 name:§6稳定寒冰钢质 lore:§6稳定下来的钢制品！;§c物极必反，否极泰来§6。§1§l极寒§r§d极至§5及是§4§l炎火§r§6！;;;§a不知道用它制作武器是什么效果？;§e主线材料。
 稳定焱火钢质: IRON_INGOT durability:0 name:§6稳定焱火钢质 lore:§6稳定下来的钢制品！;§c物极必反，否极泰来§6。§4§l炎火§r§d极至§5及是§1§l极寒§r§6！;;;§a不知道用它制作护甲是什么效果？;§e主线材料。
 木头: LOG durability:0
+假五行之刃: GOLD_SWORD durability:0 name:§6五行之刃 lore:§bPVE伤害:30;§bPVE吸血:20%;§6五行之刃，融合了五种结晶的元素武器。;;;§6品质:初级;§e近战武器_主线武器
