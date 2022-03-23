@@ -408,8 +408,8 @@ public class PlayerListener  implements Listener {
                 }
             }
         }
-        if (Temp.dropCount.containsKey(player) && Temp.dropCount.get(player) >= 60){
-            player.sendMessage("§c一分钟内最大丢弃物品数：60。");
+        if (Temp.dropCount.containsKey(player) && Temp.dropCount.get(player) >= 120){
+            player.sendMessage("§c一分钟内最大丢弃物品数：120。");
             event.setCancelled(true);
             return;
         }
