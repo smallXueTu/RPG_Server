@@ -62,7 +62,7 @@ public class PlayerListener  implements Listener {
     public void onJoinEvent(PlayerJoinEvent e){
         final Player player = e.getPlayer();
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () ->{
-            player.setHealth(player.getMaxHealth());
+            if (player.getHealth() > 0)player.setHealth(player.getMaxHealth());
             String s = (char)2 + "" + Main.id;
             player.sendPluginMessage(Main.getInstance(), "LTCraft", s.getBytes());
             Main.getInstance().addTack(Main.id, new ClientCheckTask(Main.id, "check", player));
@@ -409,7 +409,7 @@ public class PlayerListener  implements Listener {
             }
         }
         if (Temp.dropCount.containsKey(player) && Temp.dropCount.get(player) >= 120){
-            player.sendMessage("§c一分钟内最大丢弃物品数：120。");
+            player.sendMessage("§c五分钟内最大丢弃物品数：120。");
             event.setCancelled(true);
             return;
         }
