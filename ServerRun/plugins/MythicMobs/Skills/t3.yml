@@ -7,7 +7,7 @@
 t3test:
   Skills:
     - execBQEvent{e=test}
-虚空舰出现意外:
+虚无舰出现意外:
   Cooldown: 30
   TargetConditions:
     - HasBQTag{t=default.请求凯特开往指定方向}

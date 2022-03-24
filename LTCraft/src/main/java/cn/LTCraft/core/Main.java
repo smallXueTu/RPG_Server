@@ -201,6 +201,7 @@ public class Main extends JavaPlugin {
         BetonQuest.getInstance().registerEvents("setClassLevel", SetClassLevelEvent.class);
         BetonQuest.getInstance().registerEvents("give", GiveEvent.class);
         BetonQuest.getInstance().registerEvents("take", TakeEvent.class);
+        BetonQuest.getInstance().registerEvents("castMMSkill", CastMMSkillEvent.class);
 
         BetonQuest.getInstance().registerConditions("skillapiLevel", SkillAPILevelCondition.class);
         BetonQuest.getInstance().registerConditions("item", ItemCondition.class);

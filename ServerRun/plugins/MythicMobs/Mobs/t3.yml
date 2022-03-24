@@ -155,7 +155,7 @@
   Type: Skeleton
   Display: '&6虚空之灵'
   Health: 3000
-  Damage: 30
+  Damage: 20
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -184,7 +184,7 @@
 虚空寒晶鸟:
   Type: Skeleton
   Display: '&6虚空寒晶鸟'
-  Health: 1500
+  Health: 1000
   Damage: 30
   Options:
     FollowRange: 16
@@ -205,7 +205,7 @@
 寒晶凤凰:
   Type: Skeleton
   Display: '&6寒晶凤凰'
-  Health: 5000
+  Health: 3000
   Damage: 50
   Options:
     FollowRange: 16
@@ -226,7 +226,7 @@
 虚空金虎:
   Type: PIG_ZOMBIE
   Display: '&6虚空金虎'
-  Health: 1600
+  Health: 1000
   Damage: 100
   Options:
     FollowRange: 16
@@ -251,7 +251,7 @@
 虚空虎王:
   Type: PIG_ZOMBIE
   Display: '&6虚空虎王'
-  Health: 5000
+  Health: 3000
   Damage: 100
   Options:
     FollowRange: 16

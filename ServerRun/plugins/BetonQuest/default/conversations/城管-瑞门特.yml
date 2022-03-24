@@ -72,7 +72,7 @@ player_options:
     text: '那太棒了！'
     conditions: ''
     pointer: ''
-    events: '添加毕业T2标签,回城,继续找翟纳若领取T3任务'
+    events: '添加毕业T2标签,回城,继续找翟纳若领取T3任务,删除找到瑞门特标签'
   '好的':
     text: '好的。'
     conditions: ''

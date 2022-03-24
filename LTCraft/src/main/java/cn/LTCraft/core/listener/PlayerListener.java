@@ -424,7 +424,7 @@ public class PlayerListener  implements Listener {
                     player.sendTitle("§8[§a恭喜§8]", "§6解开T3第一关谜团！");
                     player.sendMessage("§a你现在可以通过火焰粒子门了！");
                     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
-                    ((CraftWorld)player.getWorld()).spawnParticle(Particle.END_ROD, player.getLocation(), 100);
+                    player.getWorld().spawnParticle(Particle.END_ROD, player.getLocation(), 100);
                     playerData.addTag("default.解开t3第一关谜团");
                 }
             }, 20);
@@ -434,7 +434,7 @@ public class PlayerListener  implements Listener {
                     player.sendTitle("§8[§a恭喜§8]", "§6解开T3第二关谜团！");
                     player.sendMessage("§a你现在可以通过火焰粒子门了！");
                     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
-                    ((CraftWorld)player.getWorld()).spawnParticle(Particle.END_ROD, player.getLocation(), 100);
+                    player.getWorld().spawnParticle(Particle.END_ROD, player.getLocation(), 100);
                     playerData.addTag("default.解开t3第二关谜团");
                 }
             }, 100);
@@ -540,7 +540,7 @@ public class PlayerListener  implements Listener {
                 if (Game.burningBlocks.contains(block.getTypeId())) {
                     sign = false;
                     for (ItemStack armorContent : ((Player) player).getInventory().getArmorContents()) {
-                        if (armorContent == null || armorContent.getItemMeta() == null || !armorContent.getItemMeta().getDisplayName().startsWith("§e虚空寒冰")) sign = true;
+                        if (armorContent == null || armorContent.getItemMeta() == null || !armorContent.getItemMeta().getDisplayName().startsWith("§6虚空寒冰")) sign = true;
                     }
                     if (sign) {
                         ((CraftPlayer) player).getHandle().setHealth(0);
