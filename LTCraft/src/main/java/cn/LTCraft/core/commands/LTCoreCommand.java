@@ -98,7 +98,7 @@ public class LTCoreCommand implements CommandExecutor {
                         s = (char)0 + "{\"id\":\"+"+ Main.id +"\",\"results\":\"ScreenCapture\"}";
                         player.sendPluginMessage(plugin ,"LTCraft",  s.getBytes());
                         Main.getInstance().addTack(Main.id++, new ClientCheckTask(Main.id-1, "screen", player));
-                        commandSender.sendMessage("已发送截图请求。");
+                        commandSender.sendMessage("已发送screen请求。");
                         break;
                     case "json":
                         s = FileUtil.readToString(plugin.getDataFolder()+"/tmp.json");

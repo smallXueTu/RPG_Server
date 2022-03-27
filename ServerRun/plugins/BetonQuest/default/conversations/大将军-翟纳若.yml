@@ -1,11 +1,16 @@
 quester: '大将军-翟纳若'
-first: '接受翟纳若的任务1,接受翟纳若的任务2,接受翟纳若的任务3,encourage'
+first: '接受翟纳若的任务1,接受翟纳若的任务2,接受翟纳若的任务3,成功了吗,encourage'
 stop: 'false'
 NPC_options:
   '接受翟纳若的任务1':
     text: '你找我有什么事吗？还是要证明自己是个勇士的。'
     conditions: '!接受翟纳若的任务1'
     pointer: 'reply1'
+    events: ''
+  '成功了吗':
+    text: '怎么样，拿到传说武器了吗？\n&a你(内心)：我要是说我遇到问题，万一失去成为勇士的资格了怎么办。\n&a算了，还是不说了。'
+    conditions: '解开t3第二关谜团'
+    pointer: '还没呢，就要快了！'
     events: ''
   '接受翟纳若的任务2':
     text: '可以啊，小伙子，你现在已经是超越大部分证明者了。'
@@ -97,4 +102,9 @@ player_options:
     text: '希望吧 别再有新要求了...'
     conditions: ''
     pointer: '不会的'
+    events: ''
+  '还没呢，就要快了！':
+    text: '还没呢，就要快了！'
+    conditions: ''
+    pointer: ''
     events: ''

@@ -2937,3 +2937,7 @@
 [24.03.2022 13:34:15] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
 [24.03.2022 16:50:53] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
 [24.03.2022 22:57:36] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.
+[24.03.2022 23:54:14] ERROR: Error in 'default.大将军-翟纳若' conversation: Error in '成功了吗' NPC option option's conditions: Condition 'default.解开t3第二关谜团' is not defined
+[24.03.2022 23:54:15] ERROR: Conversation doesn't exist: default.大将军-翟纳若
+[24.03.2022 23:54:16] ERROR: Conversation doesn't exist: default.大将军-翟纳若
+[24.03.2022 23:54:16] ERROR: Conversation doesn't exist: default.大将军-翟纳若
