@@ -1,6 +1,7 @@
 package cn.LTCraft.core;
 
 
+import cn.LTCraft.core.game.SpawnManager;
 import cn.LTCraft.core.hook.BQ.event.*;
 import cn.LTCraft.core.hook.BQ.objective.*;
 import cn.LTCraft.core.hook.BQ.condition.*;
@@ -83,7 +84,6 @@ public class Main extends JavaPlugin {
         SQLManage = new SQLManage(SQLServer);
         GlobalRefresh.init(this);
         getServer().getScheduler().runTaskTimer(this, GlobalRefresh::refresh, 1, 1);
-        getServer().getScheduler().runTaskTimer(this, GarbageClear.getInstance(), 20, 20);
 
         initVault();
         initBQ();
@@ -101,6 +101,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new MMListener(), this);
         Bukkit.getPluginManager().registerEvents(new CitizensListener(), this);
         Bukkit.getPluginManager().registerEvents(new Cooling(), this);
+
         new CommandLoader();
 
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
@@ -111,6 +112,7 @@ public class Main extends JavaPlugin {
             }) {
                 GarbageClear.skips.add(new ClutterItem(string));
             }
+            SpawnManager.getInstance().init();
         }, 1);
     }
 
@@ -225,7 +227,6 @@ public class Main extends JavaPlugin {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
-
     }
     public Config getConfigOBJ() {
         return config;

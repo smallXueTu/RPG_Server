@@ -5,6 +5,8 @@ import cn.LTCraft.core.dataBase.SQLQueue;
 import cn.LTCraft.core.dataBase.SQLServer;
 import cn.LTCraft.core.entityClass.PlayerState;
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.entityClass.Spawn;
+import cn.LTCraft.core.game.SpawnManager;
 import cn.LTCraft.core.game.skills.BaseSkill;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.PlayerUtils;
@@ -68,6 +70,8 @@ public class GlobalRefresh {
                 });
             }
             Temp.playerStates.forEach((player, playerStates) -> playerStates.removeIf(PlayerState::complete));
+            GarbageClear.getInstance().onTick();
+            SpawnManager.getInstance().getSpawns().forEach(Spawn::onUpdate);
         }
 //        if(tick % 200 == 0){
 //            File dir = new File(plugin.getDataFolder().getParentFile(), "DragonGPS");

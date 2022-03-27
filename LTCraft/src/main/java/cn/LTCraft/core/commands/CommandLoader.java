@@ -9,8 +9,8 @@ public class CommandLoader {
         new MMSkillsCommand();
         new PrefixCommand();
         new SignCommand();
-//        new UseItemCommand();
-        new RtpCommand();
+        new LTSCommand();
+        new RTPCommand();
         new CInfoCommand();
         new LTECommand();
         new ClearCommand();

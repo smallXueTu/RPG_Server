@@ -10,7 +10,7 @@ import org.bukkit.entity.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GarbageClear implements Runnable {
+public class GarbageClear{
     private static GarbageClear instance = null;
     public static GarbageClear getInstance(){
         if (instance == null){
@@ -23,8 +23,7 @@ public class GarbageClear implements Runnable {
     private GarbageClear(){
         instance = this;
     }
-    @Override
-    public void run() {
+    public void onTick() {
         remainingTime--;
         if (remainingTime == 60 || remainingTime == 20 || remainingTime == 10 || remainingTime == 5){
             if (remainingTime == 60){

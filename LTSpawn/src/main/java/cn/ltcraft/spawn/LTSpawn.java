@@ -13,8 +13,8 @@ import java.util.*;
 
 public class LTSpawn extends JavaPlugin {
     private YamlConfiguration spawnConfig = null;
-    private static LTSpawn instance = null;
     private List<Spawn> spawns = new ArrayList<>();
+    private static LTSpawn instance = null;
 
     private File spawnFile = null;
     public static LTSpawn getInstance() {

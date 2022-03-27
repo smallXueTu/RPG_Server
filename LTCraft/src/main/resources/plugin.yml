@@ -35,7 +35,7 @@ commands:
     description: 个人信息
     permission: true
     usage: /cinfo
-permissions:
-  LTCraft.openT:
-    description: 交易盘
-    default: true
+  lts:
+    description: 刷怪点管理
+    usage: /lts args...
+    permission: op

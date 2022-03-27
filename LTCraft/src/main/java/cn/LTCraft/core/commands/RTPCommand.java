@@ -17,10 +17,10 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 import java.util.List;
 
-public class RtpCommand implements CommandExecutor {
+public class RTPCommand implements CommandExecutor {
     private final Main plugin;
     private final static List<String> allowWorld = Arrays.asList("zy", "world_nether", "world_the_end");
-    public RtpCommand(){
+    public RTPCommand(){
         plugin = Main.getInstance();
         plugin.getCommand("rtp").setExecutor(this);
     }
