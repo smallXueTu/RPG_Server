@@ -3,6 +3,9 @@ package cn.LTCraft.core.utils;
 import cn.ltcraft.item.base.subAttrbute.PotionAttribute;
 import cn.ltcraft.item.base.subAttrbute.PotionMap;
 import cn.ltcraft.item.base.subAttrbute.SkillMap;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.Map;
@@ -56,5 +59,84 @@ public class GameUtils {
             }
         }
         return map;
+    }
+    public static String getPotionName(PotionEffectType type){
+        if (PotionEffectType.SPEED.equals(type)) {
+            return "速度";
+        }else if (PotionEffectType.SLOW.equals(type)) {
+            return "缓慢";
+        }else if (PotionEffectType.FAST_DIGGING.equals(type)) {
+            return "挖掘迅速";
+        }else if (PotionEffectType.SLOW_DIGGING.equals(type)) {
+            return "挖掘缓慢";
+        }else if (PotionEffectType.INCREASE_DAMAGE.equals(type)) {
+            return "力量";
+        }else if (PotionEffectType.HEAL.equals(type)) {
+            return "瞬间治疗";
+        }else if (PotionEffectType.HARM.equals(type)) {
+            return "瞬间伤害";
+        }else if (PotionEffectType.JUMP.equals(type)) {
+            return "跳跃提升";
+        }else if (PotionEffectType.CONFUSION.equals(type)) {
+            return "反胃";
+        }else if (PotionEffectType.REGENERATION.equals(type)) {
+            return "生命恢复";
+        }else if (PotionEffectType.DAMAGE_RESISTANCE.equals(type)) {
+            return "抗性提升";
+        }else if (PotionEffectType.FIRE_RESISTANCE.equals(type)) {
+            return "抗火";
+        }else if (PotionEffectType.WATER_BREATHING.equals(type)) {
+            return "水下呼吸";
+        }else if (PotionEffectType.INVISIBILITY.equals(type)) {
+            return "隐身";
+        }else if (PotionEffectType.BLINDNESS.equals(type)) {
+            return "失明";
+        }else if (PotionEffectType.NIGHT_VISION.equals(type)) {
+            return "夜市";
+        }else if (PotionEffectType.HUNGER.equals(type)) {
+            return "饥饿";
+        }else if (PotionEffectType.WEAKNESS.equals(type)) {
+            return "虚弱";
+        }else if (PotionEffectType.POISON.equals(type)) {
+            return "中毒";
+        }else if (PotionEffectType.WITHER.equals(type)) {
+            return "凋零";
+        }else if (PotionEffectType.HEALTH_BOOST.equals(type)) {
+            return "生命提升";
+        }else if (PotionEffectType.ABSORPTION.equals(type)) {
+            return "伤害吸收";
+        }else if (PotionEffectType.SATURATION.equals(type)) {
+            return "饱和";
+        }else if (PotionEffectType.GLOWING.equals(type)) {
+            return "发光";
+        }else if (PotionEffectType.LEVITATION.equals(type)) {
+            return "漂浮";
+        }else if (PotionEffectType.LUCK.equals(type)) {
+            return "幸运";
+        }else if (PotionEffectType.UNLUCK.equals(type)) {
+            return "霉运";
+        }
+        return "未知";
+    }
+
+    /**
+     * 解析位置
+     * @param location x:y:z:世界
+     * @return 位置 如果世界不存在返回Null
+     */
+    public static Location spawnLocation(String location){
+        String[] split = location.split(":");
+        World world = Bukkit.getWorld(split[3]);
+        if (world == null)return null;
+        return new Location(world, Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+    }
+
+    /**
+     * 从位置解析为String
+     * @param location 位置
+     * @return x:y:z:世界
+     */
+    public static String spawnLocationString(Location location){
+        return location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ() + ":" + location.getWorld().getName();
     }
 }

@@ -1,5 +1,6 @@
 package cn.ltcraft.item.base.subAttrbute;
 
+import cn.LTCraft.core.utils.GameUtils;
 import cn.LTCraft.core.utils.Utils;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -17,7 +18,7 @@ public class PotionAttribute extends PotionEffect {
 
     @Override
     public String toString() {
-        return Utils.getPotionName(getType()) + Utils.getLevelStr(getAmplifier()) + " " + Utils.formatNumber(getDuration() / 20d) + "s " + Utils.formatNumber(probability * 100) + "%";
+        return GameUtils.getPotionName(getType()) + Utils.getLevelStr(getAmplifier()) + " " + Utils.formatNumber(getDuration() / 20d) + "s " + Utils.formatNumber(probability * 100) + "%";
     }
     public String toMapString(){
         return super.toString();

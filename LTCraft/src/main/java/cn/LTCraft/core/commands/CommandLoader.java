@@ -10,6 +10,7 @@ public class CommandLoader {
         new PrefixCommand();
         new SignCommand();
         new LTSCommand();
+        new LTGCommand();
         new RTPCommand();
         new CInfoCommand();
         new LTECommand();

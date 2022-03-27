@@ -2,7 +2,7 @@ package cn.LTCraft.core.commands;
 
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
-import cn.LTCraft.core.entityClass.Spawn;
+import cn.LTCraft.core.entityClass.MobSpawn;
 import cn.LTCraft.core.game.SpawnManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -42,7 +42,7 @@ public class LTSCommand implements CommandExecutor {
                 Config.getInstance().getSpawnYaml().set(args[1], map);
                 Config.getInstance().save();
                 Config.getInstance().reload();
-                SpawnManager.getInstance().getSpawns().add(new Spawn(args[1]));
+                SpawnManager.getInstance().getSpawns().add(new MobSpawn(args[1]));
                 sender.sendMessage("§a添加成功！");
                 break;
             case "delete":
@@ -51,9 +51,9 @@ public class LTSCommand implements CommandExecutor {
             case "del":
                 Config.getInstance().getSpawnYaml().set(args[1], null);
                 Config.getInstance().save();
-                SpawnManager.getInstance().getSpawns().removeIf(spawn -> {
-                    if (spawn.getInsideName().equals(args[1])){
-                        spawn.close();
+                SpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
+                    if (mobSpawn.getInsideName().equals(args[1])){
+                        mobSpawn.close();
                         return true;
                     }else return false;
                 });

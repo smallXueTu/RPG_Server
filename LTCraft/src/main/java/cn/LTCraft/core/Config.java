@@ -18,10 +18,12 @@ public class Config {
     private final File MySQLInfoFile;
     private final File itemsFile;
     private final File spawnFile;
+    private final File gateFile;
 
     private YamlConfiguration NPCClickYaml;
     private YamlConfiguration MySQLInfoYaml;
     private YamlConfiguration itemsYaml;
+    private io.lumine.utils.config.file.YamlConfiguration gateYaml;
     private io.lumine.utils.config.file.YamlConfiguration spawnYaml;
     private Config(Main plugin){
         this.plugin = plugin;
@@ -30,6 +32,9 @@ public class Config {
 
         NPCClickFile = new File(plugin.getDataFolder(), "NPCClick.yml");
         NPCClickYaml = YamlConfiguration.loadConfiguration(NPCClickFile);
+
+        gateFile = new File(plugin.getDataFolder(), "gates.yml");
+        gateYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(gateFile);
 
         itemsFile = new File(plugin.getDataFolder(), "items.yml");
         itemsYaml = YamlConfiguration.loadConfiguration(itemsFile);
@@ -61,6 +66,10 @@ public class Config {
         return spawnYaml;
     }
 
+    public io.lumine.utils.config.file.YamlConfiguration getGateYaml() {
+        return gateYaml;
+    }
+
     /**
      * 重新加载
      */
@@ -69,6 +78,7 @@ public class Config {
         NPCClickYaml = YamlConfiguration.loadConfiguration(NPCClickFile);
         itemsYaml = YamlConfiguration.loadConfiguration(itemsFile);
         spawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(spawnFile);
+        gateYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(gateFile);
     }
 
     /**
@@ -77,6 +87,7 @@ public class Config {
     public void save(){
         try {
             spawnYaml.save(spawnFile);
+            gateYaml.save(gateFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

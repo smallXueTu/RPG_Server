@@ -1,5 +1,8 @@
 package cn.LTCraft.core.listener;
 
+import cn.LTCraft.core.commands.LTGCommand;
+import cn.LTCraft.core.entityClass.TeleportGate;
+import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.game.Game;
@@ -10,6 +13,7 @@ import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.task.ClientCheckTask;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.utils.EntityUtils;
+import cn.LTCraft.core.utils.GameUtils;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
 import cn.ltcraft.teleport.Home;
@@ -19,6 +23,7 @@ import com.sucy.skill.api.event.PlayerAccountChangeEvent;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
@@ -32,6 +37,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -267,6 +273,8 @@ public class PlayerListener  implements Listener {
             if (((CraftWorld)event.getFrom().getWorld()).getHandle().dimension == 1 || ((CraftWorld)event.getFrom().getWorld()).getHandle().dimension == -1){
                 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> player.teleport(Bukkit.getWorld("world").getSpawnLocation()));
                 event.setTo(Bukkit.getWorld("world").getSpawnLocation());
+            }else {
+                event.setCancelled(true);
             }
         }
     }
@@ -322,6 +330,8 @@ public class PlayerListener  implements Listener {
         Temp.onPlayerQuit(player);
         PlayerConfig.getConfigMap().get(player.getName()).save();
         PlayerConfig.getConfigMap().remove(player.getName());
+        LTGCommand.mapList.remove(player);
+        LTGCommand.mapGate.remove(player);
     }
 
     /**
@@ -384,13 +394,11 @@ public class PlayerListener  implements Listener {
         event.setCancelled(true);
         event.getPlayer().sendMessage("§c服务器禁止F交换物品！");
     }
-    private static List<String> notDrop = Arrays.stream(new String[]
-            {
-                    "铁剑", "小型医疗水晶", "锋利的铁剑", "现币", "钢铁之刃",
-                    "鱼竿", "钢铁之刃", "交易盘", "皮革头盔", "皮革胸甲",
-                    "皮革护腿", "皮革靴子", "感应器"
-            }
-    ).collect(Collectors.toList());
+    private static final List<String> notDrop = Arrays.asList(
+        "铁剑", "小型医疗水晶", "锋利的铁剑", "现币", "钢铁之刃",
+        "鱼竿", "钢铁之刃", "交易盘", "皮革头盔", "皮革胸甲",
+        "皮革护腿", "皮革靴子", "感应器"
+    );
     @EventHandler(
             priority = EventPriority.HIGHEST,
             ignoreCancelled = true
@@ -502,52 +510,62 @@ public class PlayerListener  implements Listener {
      */
     @EventHandler
     public void onMoveEvent(PlayerMoveEvent event){
-        if (Game.rpgWorlds.contains(event.getPlayer().getWorld().getName()) && event.getTo().getWorld() == event.getFrom().getWorld()){
+        if (event.getTo().getWorld() == event.getFrom().getWorld()){
             Player player = event.getPlayer();
             Location from = event.getFrom();
             Location to = event.getTo();
-            boolean sign = false;
-            AirDoor airDoor = null;
-            for (Iterator<AirDoor> iterator = AirDoor.getAirDoors().iterator();iterator.hasNext();) {
-                airDoor = iterator.next();
-                if (airDoor.getBukkitEntity().isDead()){
-                    iterator.remove();
-                    continue;
-                }
-                if (airDoor.getBukkitEntity().getWorld() != player.getWorld() || airDoor.getBukkitEntity().getLocation().distance(player.getLocation()) > airDoor.getDistance())continue;
-                double fLocation = airDoor.isX()?from.getX():from.getZ();
-                double tLocation = airDoor.isX()?to.getX():to.getZ();
-                if (airDoor.isForward()){
-                    if (fLocation <= airDoor.getLocation() && tLocation > airDoor.getLocation()){
-                        sign = true;
+            if (Game.rpgWorlds.contains(event.getPlayer().getWorld().getName())) {
+                boolean sign = false;
+                AirDoor airDoor = null;
+                for (Iterator<AirDoor> iterator = AirDoor.getAirDoors().iterator(); iterator.hasNext(); ) {
+                    airDoor = iterator.next();
+                    if (airDoor.getBukkitEntity().isDead()) {
+                        iterator.remove();
+                        continue;
                     }
-                }else {
-                    if (fLocation >= airDoor.getLocation() && tLocation < airDoor.getLocation()){
-                        sign = true;
+                    if (airDoor.getBukkitEntity().getWorld() != player.getWorld() || airDoor.getBukkitEntity().getLocation().distance(player.getLocation()) > airDoor.getDistance())
+                        continue;
+                    double fLocation = airDoor.isX() ? from.getX() : from.getZ();
+                    double tLocation = airDoor.isX() ? to.getX() : to.getZ();
+                    if (airDoor.isForward()) {
+                        if (fLocation <= airDoor.getLocation() && tLocation > airDoor.getLocation()) {
+                            sign = true;
+                        }
+                    } else {
+                        if (fLocation >= airDoor.getLocation() && tLocation < airDoor.getLocation()) {
+                            sign = true;
+                        }
+                    }
+                    if (sign) {
+                        if (Game.demand(player, airDoor.getDemand())) {
+                            Game.execute(player, airDoor.getSuccess());
+                        } else {
+                            Game.execute(player, airDoor.getFail(), event, airDoor);
+                            break;
+                        }
                     }
                 }
-                if (sign){
-                    if (Game.demand(player, airDoor.getDemand())){
-                        Game.execute(player, airDoor.getSuccess());
-                    }else {
-                        Game.execute(player, airDoor.getFail(), event, airDoor);
-                        break;
+                if (new Location(player.getWorld(), 198, 9, 474).distance(player.getLocation()) < 100) {
+                    Block block = player.getWorld().getBlockAt(event.getTo());
+                    if (Game.burningBlocks.contains(block.getTypeId())) {
+                        sign = false;
+                        for (ItemStack armorContent : ((Player) player).getInventory().getArmorContents()) {
+                            if (armorContent == null || armorContent.getItemMeta() == null || !armorContent.getItemMeta().getDisplayName().startsWith("§6虚空寒冰"))
+                                sign = true;
+                        }
+                        if (sign) {
+                            ((CraftPlayer) player).getHandle().setHealth(0);
+                            ((CraftPlayer) player).getHandle().getCombatTracker().trackDamage(DamageSource.BURN, 0f, 0f);
+                            ((CraftPlayer) player).getHandle().die(DamageSource.BURN);
+                        }
                     }
                 }
             }
-            if (new Location(player.getWorld(), 198, 9, 474).distance(player.getLocation()) < 100){
-                Block block = player.getWorld().getBlockAt(event.getTo());
-                if (Game.burningBlocks.contains(block.getTypeId())) {
-                    sign = false;
-                    for (ItemStack armorContent : ((Player) player).getInventory().getArmorContents()) {
-                        if (armorContent == null || armorContent.getItemMeta() == null || !armorContent.getItemMeta().getDisplayName().startsWith("§6虚空寒冰")) sign = true;
-                    }
-                    if (sign) {
-                        ((CraftPlayer) player).getHandle().setHealth(0);
-                        ((CraftPlayer) player).getHandle().getCombatTracker().trackDamage(DamageSource.BURN, 0f, 0f);
-                        ((CraftPlayer) player).getHandle().die(DamageSource.BURN);
-                    }
-                }
+            /*
+            传送门
+             */
+            if (TeleportGate.blockIDs.contains(to.getBlock().getTypeId())){
+                TeleportGateManager.getInstance().onAfter(player);
             }
         }
     }
@@ -577,6 +595,14 @@ public class PlayerListener  implements Listener {
                     player.sendMessage("§c这个时空因为重力问题普通弓无法射出箭...");
                 }
             }
+        }
+    }
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event){
+        Block block = event.getBlock();
+        Player player = event.getPlayer();
+        if (LTGCommand.mapGate.containsKey(player)) {
+            LTGCommand.mapList.get(player).add(block.getLocation());
         }
     }
 }

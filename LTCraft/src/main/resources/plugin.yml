@@ -39,3 +39,7 @@ commands:
     description: 刷怪点管理
     usage: /lts args...
     permission: op
+  ltg:
+    description: 传送门管理
+    usage: /ltg args...
+    permission: op

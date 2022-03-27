@@ -562,7 +562,8 @@ public class Teleport extends JavaPlugin implements Listener {
             ignoreCancelled = true
     )
     public void onTeleportEvent(PlayerTeleportEvent event){
-        if (!event.getPlayer().getWorld().getName().startsWith("t") && !(event.getFrom().getWorld() == event.getTo().getWorld() && event.getTo().distance(event.getFrom()) < 5)){
+        if (!Game.rpgWorlds.contains(event.getFrom().getWorld().getName()) && !(event.getFrom().getWorld() == event.getTo().getWorld() && event.getTo().distance(event.getFrom()) < 5) &&
+                (event.getCause() == PlayerTeleportEvent.TeleportCause.COMMAND || event.getCause() == PlayerTeleportEvent.TeleportCause.PLUGIN)){
             lastLocation.put(event.getPlayer().getName(), event.getFrom());
             event.getPlayer().sendMessage("§e输入/bt传送到上次传送前的坐标.");
         }

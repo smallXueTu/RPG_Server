@@ -1,5 +1,7 @@
 package cn.LTCraft.core.utils;
 
+import org.bukkit.Location;
+
 public class MathUtils {
     /**
      * 几率
@@ -20,5 +22,18 @@ public class MathUtils {
      */
     public static double getInjuryFreePercentage(int armorValue){
         return armorValue / (armorValue + 200d);
+    }
+
+    /**
+     * 坐标Hash
+     * @return Hash
+     */
+    public static int blockHash(int x, int y, int z)
+    {
+        return ((x & 0xFFFFFFF) << 4) | ((y & 0xFF) << 28) | (z & 0xFFFFFFF);
+    }
+    public static int blockHash(Location location)
+    {
+        return (((int)location.getX() & 0xFFFFFFF) << 4) | (((int)location.getY() & 0xFF) << 28) | ((int)location.getZ() & 0xFFFFFFF);
     }
 }

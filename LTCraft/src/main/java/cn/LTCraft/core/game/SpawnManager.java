@@ -1,7 +1,7 @@
 package cn.LTCraft.core.game;
 
 import cn.LTCraft.core.Config;
-import cn.LTCraft.core.entityClass.Spawn;
+import cn.LTCraft.core.entityClass.MobSpawn;
 import io.lumine.utils.config.file.YamlConfiguration;
 
 import java.util.ArrayList;
@@ -19,9 +19,10 @@ public class SpawnManager {
         }
         return instance;
     }
-    private List<Spawn> spawns = new ArrayList<>();
+    private List<MobSpawn> mobSpawns = new ArrayList<>();
 
     private SpawnManager(){
+
     }
 
     public void init(){
@@ -34,18 +35,18 @@ public class SpawnManager {
     private void loadSpawns(){
         YamlConfiguration spawnYaml = Config.getInstance().getSpawnYaml();
         for (String key : spawnYaml.getKeys(false)) {
-            Spawn spawn = new Spawn(key);
-            spawns.add(spawn);
+            MobSpawn mobSpawn = new MobSpawn(key);
+            mobSpawns.add(mobSpawn);
         }
     }
     public void reload(){
-        spawns.removeIf(spawn -> {
-            spawn.close();
+        mobSpawns.removeIf(mobSpawn -> {
+            mobSpawn.close();
             return true;
         });
         init();
     }
-    public List<Spawn> getSpawns() {
-        return spawns;
+    public List<MobSpawn> getSpawns() {
+        return mobSpawns;
     }
 }

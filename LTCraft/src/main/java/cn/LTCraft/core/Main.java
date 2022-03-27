@@ -2,6 +2,7 @@ package cn.LTCraft.core;
 
 
 import cn.LTCraft.core.game.SpawnManager;
+import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.hook.BQ.event.*;
 import cn.LTCraft.core.hook.BQ.objective.*;
 import cn.LTCraft.core.hook.BQ.condition.*;
@@ -113,6 +114,7 @@ public class Main extends JavaPlugin {
                 GarbageClear.skips.add(new ClutterItem(string));
             }
             SpawnManager.getInstance().init();
+            TeleportGateManager.getInstance().init();
         }, 1);
     }
 
