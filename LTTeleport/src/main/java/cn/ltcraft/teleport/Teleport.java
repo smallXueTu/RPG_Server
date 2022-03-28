@@ -347,8 +347,11 @@ public class Teleport extends JavaPlugin implements Listener {
                 }
                 world = Bukkit.getWorld(args[0]);
                 if (world == null){
-                    sender.sendMessage("§c世界"+args[0]+"不存在！");
-                    return true;
+                    world = Bukkit.getWorld(Game.worldNames.get(args[0]));
+                    if (world == null) {
+                        sender.sendMessage("§c世界" + args[0] + "不存在！");
+                        return true;
+                    }
                 }
                 sp.teleport(world.getSpawnLocation());
                 sender.sendMessage("§a传送成功！");

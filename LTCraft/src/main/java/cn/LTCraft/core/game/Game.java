@@ -65,6 +65,7 @@ public class Game {
             this.add("t3");
             this.add("f1");
             this.add("f2");
+            this.add("rpg");
         }
     };
     public static final Map<String, String> worldNames = new HashMap<String, String>(){
@@ -72,6 +73,7 @@ public class Game {
             put("zy", "zy");
             put("world_nether", "nether");
             put("world_the_end", "ender");
+            put("world", "zc");
         }
     };
     public static final List<Integer> mines = new ArrayList<Integer>(){{
