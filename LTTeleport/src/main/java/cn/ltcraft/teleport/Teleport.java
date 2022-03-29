@@ -1,12 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * projectName: RPG
- * fileName: Teleport.java
- * packageName: cn.ltcraft.Teleport
- * date: 2020-07-15 12:22
- *
- * @Auther: Angel、
- */
 package cn.ltcraft.teleport;
 
 import cn.LTCraft.core.game.Game;
@@ -47,9 +38,9 @@ import java.util.stream.Collectors;
  */
 
 public class Teleport extends JavaPlugin implements Listener {
-    private final HashMap<String, HashMap<String, Request>> requests = new HashMap<String, HashMap<String, Request>>();
-    private final HashMap<String, HashMap<String, Home>> playerHomes = new HashMap<String, HashMap<String, Home>>();
-    private final HashMap<String, Location> deathLocation = new HashMap<String, Location>();
+    private final HashMap<String, HashMap<String, Request>> requests = new HashMap<>();
+    private final HashMap<String, HashMap<String, Home>> playerHomes = new HashMap<>();
+    private final HashMap<String, Location> deathLocation = new HashMap<>();
     private YamlConfiguration warps;
     private final File playersData = new File(getDataFolder()+File.separator+"players");
     HashMap<String, Warp> tmpWarps = new HashMap<String, Warp>();
@@ -347,7 +338,7 @@ public class Teleport extends JavaPlugin implements Listener {
                 }
                 world = Bukkit.getWorld(args[0]);
                 if (world == null){
-                    world = Bukkit.getWorld(Game.worldNames.get(args[0]));
+                    world = Bukkit.getWorld(Game.remarks.get(args[0]));
                     if (world == null) {
                         sender.sendMessage("§c世界" + args[0] + "不存在！");
                         return true;

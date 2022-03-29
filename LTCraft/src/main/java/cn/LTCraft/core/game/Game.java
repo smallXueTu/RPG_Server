@@ -38,10 +38,7 @@ import pl.betoncraft.betonquest.BetonQuest;
 import pl.betoncraft.betonquest.database.PlayerData;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Game {
     public static final List<String> resourcesWorlds = new ArrayList<String>() {
@@ -74,6 +71,13 @@ public class Game {
             put("world_nether", "nether");
             put("world_the_end", "ender");
             put("world", "zc");
+        }
+    };
+    public static final Map<String, String> remarks = new HashMap<String, String>(){
+        {
+            worldNames.forEach((s, s2) -> {
+                put(s2, s);
+            });
         }
     };
     public static final List<Integer> mines = new ArrayList<Integer>(){{

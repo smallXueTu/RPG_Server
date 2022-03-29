@@ -8,7 +8,6 @@ import org.bukkit.Location;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,6 +20,7 @@ public class TeleportGate {
     private String worldName = null;
     private final Location to;
     private boolean invalid = false;
+    private final List<String> mythicSkills;
     public TeleportGate(String gateName){
         this.gateName = gateName;
         MythicConfig config = new MythicConfig(gateName, Config.getInstance().getGateYaml());
@@ -36,6 +36,7 @@ public class TeleportGate {
                 this.locations.add(GameUtils.spawnLocationString(loc));
             }
         }
+        mythicSkills = config.getStringList("mythicSkills");
     }
 
     /**
@@ -56,6 +57,10 @@ public class TeleportGate {
 
     public Location getTo() {
         return to;
+    }
+
+    public List<String> getMythicSkills() {
+        return mythicSkills;
     }
 
     public boolean isInvalid() {

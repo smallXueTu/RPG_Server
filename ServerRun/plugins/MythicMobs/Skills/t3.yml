@@ -129,3 +129,21 @@ t3test:
     - delay 50
     - leap{velocity=500} @target
     - runaitargetselector{target=players}
+从虚无时空圣殿传送出来:
+  Cooldown: 30
+  Skills:
+    - sound{s=block.portal.travel;p=1;v=1;} @Self
+    - sendAction{"type":"blackScreen","time":200}
+    - message{m="&d<trigger.name>&r>> &6哇，终于要出来了。"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6我记得守护门神好像说过会传送到我这个时空的随机一个锚点，不知道会是哪里。"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6说实话我又害怕又期待..."} @Self
+    - delay 60
+    - teleportto{c=43.5,72,671.5;w=RPG}
+    - delay 80
+    - message{m="&d<trigger.name>&r>> &6终于到了，这是哪里呢..."} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6看样子像是个遗迹，不过这个世界的地形好奇怪。"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6不过好多传送门啊，感觉想是发现了新大陆！"} @Self

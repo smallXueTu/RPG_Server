@@ -2,6 +2,8 @@ package cn.LTCraft.core.game;
 
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.entityClass.TeleportGate;
+import cn.LTCraft.core.utils.PlayerUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -15,6 +17,10 @@ import java.util.Set;
  */
 public class TeleportGateManager {
     private static TeleportGateManager instance = null;
+    /**
+     * prevent 阻止传送
+     */
+    private Location prevent = new Location(Bukkit.getWorld("world"), 0, 0, 0);
 
     public static TeleportGateManager getInstance() {
         if (instance == null){
@@ -57,9 +63,15 @@ public class TeleportGateManager {
         for (TeleportGate gate : gates) {
             if (gate.isAfter(location)){
                 Location to = gate.getTo().clone();
-                to.setYaw(player.getLocation().getYaw());
-                to.setPitch(player.getLocation().getPitch());
-                player.teleport(to, PlayerTeleportEvent.TeleportCause.ENDER_PEARL);
+                if (!to.getWorld().getName().equals(prevent.getWorld().getName()) || to.distance(prevent) > 3) {
+                    to.setYaw(player.getLocation().getYaw());
+                    to.setPitch(player.getLocation().getPitch());
+                    player.teleport(to, PlayerTeleportEvent.TeleportCause.ENDER_PEARL);
+                }
+                List<String> list = gate.getMythicSkills();
+                for (String s : list) {
+                    PlayerUtils.castMMSkill(player, s);
+                }
             }
         }
     }
