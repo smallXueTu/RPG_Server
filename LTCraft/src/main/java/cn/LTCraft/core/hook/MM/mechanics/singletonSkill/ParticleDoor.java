@@ -11,6 +11,9 @@ import org.bukkit.entity.Player;
 
 public class ParticleDoor extends SkillMechanic implements ITargetedEntitySkill {
     private float yaw = 0;
+    private float offsetX = 0;
+    private float offsetY = 0;
+    private float offsetZ = 0;
     private int quantity = 0;
     private int radius = 20;
     private int yQuantity = 0;
@@ -21,11 +24,20 @@ public class ParticleDoor extends SkillMechanic implements ITargetedEntitySkill 
     public ParticleDoor(String skill, MythicLineConfig mlc){
         super(skill, mlc);
         yaw = mlc.getFloat(new String[]{"yaw", "y"}, 0);
+        offsetX = mlc.getFloat(new String[]{"offsetx", "ox"}, 0);
+        offsetY = mlc.getFloat(new String[]{"offsety", "oy"}, 0);
+        offsetZ = mlc.getFloat(new String[]{"offsetz", "oz"}, 0);
+        //每行有几个
         quantity = mlc.getInteger(new String[]{"quantity", "q"}, 10);
+        //每个间隔
         interval = mlc.getDouble(new String[]{"interval", "i"}, 0.1);
+        //高度间隔
         yInterval = mlc.getDouble(new String[]{"yInterval", "yi"}, 0.3);
+        //高度行数
         yQuantity = mlc.getInteger(new String[]{"yQuantity", "yq"}, 4);
+        //检测半径
         radius = mlc.getInteger(new String[]{"radius", "r"}, 20);
+        //粒子
         effect = Effect.valueOf(mlc.getString(new String[]{"effect", "e"}, "FLAME").toUpperCase());
         if (yaw == 0 || yaw == 180)xChange = true;
     }
@@ -33,7 +45,7 @@ public class ParticleDoor extends SkillMechanic implements ITargetedEntitySkill 
     public boolean castAtEntity(SkillMetadata skillMetadata, AbstractEntity abstractEntity) {
         if (quantity == 0 || yQuantity == 0)return false;
         double y;
-        Location location = abstractEntity.getBukkitEntity().getLocation();
+        Location location = abstractEntity.getBukkitEntity().getLocation().add(offsetX, offsetY, offsetZ);
         if (location.getWorld().getNearbyEntities(location, radius, radius, radius).stream().noneMatch(e -> e instanceof Player))return false;
         Location tempLocation;
         for (int i = 1; i <= yQuantity; i++) {

@@ -26,14 +26,16 @@ public class DropCheckS extends SkillMechanic implements ITargetedEntitySkill {
     }
     @Override
     public boolean castAtEntity(SkillMetadata skillMetadata, AbstractEntity abstractEntity) {
-        if (!map.containsKey(abstractEntity.getBukkitEntity().getEntityId())){
-            map.put(abstractEntity.getBukkitEntity().getEntityId(), new ItemRotating(abstractEntity.getBukkitEntity()));
+        Entity bukkitEntity = abstractEntity.getBukkitEntity();
+        if (!map.containsKey(bukkitEntity.getEntityId())){
+            map.put(bukkitEntity.getEntityId(), new ItemRotating(bukkitEntity));
         }
-        World world = abstractEntity.getBukkitEntity().getWorld();
-        Collection<Entity> entities = world.getNearbyEntities(abstractEntity.getBukkitEntity().getLocation(), 2, 2, 2);
+        World world = bukkitEntity.getWorld();
+        Collection<Entity> entities = world.getNearbyEntities(bukkitEntity.getLocation(), 2, 2, 2);
         for (Entity entity : entities) {
+            if (entity.getCustomName().equals(bukkitEntity.getCustomName()) && entity != bukkitEntity)entity.remove();
             if (entity instanceof Item && clutterItem.isSimilar(ItemUtils.cleanVar(((Item)entity).getItemStack().clone()))){
-                map.get(abstractEntity.getBukkitEntity().getEntityId()).addEntity((Item) entity);
+                map.get(bukkitEntity.getEntityId()).addEntity((Item) entity);
             }
         }
         return false;

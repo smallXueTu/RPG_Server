@@ -1,0 +1,35 @@
+quester: '恶火古堡守护者'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text:
+      - '证明者，我没有收到翟纳若通知说你可以来这里了，你现在是非法闯入这个地方。\n你最好先从哪里来就从那里去！\n不然你会失去证明的机会！'
+    conditions: ''
+    pointer: '好吧,硬闯进去'
+    events: ''
+  '那你先过我这一关吧！':
+    text:
+      - '那你先过我这一关吧！'
+    conditions: ''
+    pointer: '单挑他'
+    events: ''
+player_options:
+  '好吧':
+    text:
+      - '好吧。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '硬闯进去':
+    text:
+      - '那我只能硬闯进去了。'
+    conditions: ''
+    pointer: '那你先过我这一关吧！'
+    events: ''
+  '单挑他':
+    text:
+      - '<单挑他>'
+    conditions: ''
+    pointer: ''
+    events: ''

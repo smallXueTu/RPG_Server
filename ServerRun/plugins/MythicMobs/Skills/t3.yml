@@ -1,7 +1,7 @@
-火焰粒子门:
+t3火焰粒子门1:
   Skills:
     - particleDoor{y=180;q=17;yi=0.8;i=0.3;r=10;yq=3}
-火焰粒子门2:
+t3火焰粒子门2:
   Skills:
     - particleDoor{y=180;q=11;yi=0.8;i=0.3;r=10;yq=3}
 t3test:
