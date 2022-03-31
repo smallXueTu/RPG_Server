@@ -10,16 +10,22 @@ t4火焰粒子门1:
     - skill{s=t4火焰粒子门1} @Self ~onTimer:15
     - airDoor{location=-927;f=true;x=false;d=BQTag:default.解开aat3第一关谜团;mess=§c你需要解开谜团才能通过这道门！;s=skill:遇到虚空圣殿守护者} @Self ~onSpawn
 恶火古堡守护者:
-  Type: Skeleton
+  Type: ZOMBIE
   Display: '&6恶火古堡守护者'
   Health: 5000
-  Damage: 50
+  Damage: 20
   Equipment:
     - 元素之刃:HAND
   Disguise:
     Type: Player
     Skin: '&6恶火古堡守护者'
     Player: '&6恶火古堡守护者'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  AITargetSelectors:
+    - clear
+    - players
   Options:
     FollowRange: 6
     MovementSpeed: 0.3
@@ -33,4 +39,4 @@ t4火焰粒子门1:
     - message{cooldown=50;m="<mob.name>&d>><&co> &c我劝你还是哪来的回哪去吧！"} @PlayersInRadius{r=20} ~onCombat <100% 0.3
     - message{cooldown=30;m="<mob.name>&d>><&co> &c布你已经丧失了证明的机会！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
     - message{cooldown=50;m="<mob.name>&d>><&co> &c有点实力嘛!"} @PlayersInRadius{r=20} ~onCombat <30% 0.1
-    - skill{s=逃跑} ~onDamaged <10%
+    - skill{s=古堡守护者逃跑} ~onDamaged <10%

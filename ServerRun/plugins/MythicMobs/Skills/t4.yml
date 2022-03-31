@@ -2,7 +2,7 @@ t4火焰粒子门1:
   Skills:
     - particleDoor{y=180;q=19;yi=0.8;i=0.3;r=10;yq=3;ox=-0.5}
 古堡守护者粉碎攻击:
-  Cooldown: 8
+  Cooldown: 12
   Conditions:
     - IsSilence{}<&csp>false
     - targetwithin 25
@@ -10,6 +10,12 @@ t4火焰粒子门1:
     - teleport @target
     - effect:sound{s=mob.endermen.portal;volume=1.0;pitch=0.5}
     - delay 5
-    - damage{amount=80;ignorearmor=true} @target
+    - damage{amount=30;ignorearmor=true} @target
     - throw{velocity=10;velocityY=5} @target
     - effect:explosion @Self
+古堡守护者逃跑:
+  Skills:
+    - message{m="<mob.name>&d>><&co> &c算你厉害！"} @Trigger ~onDamaged <20%
+    - message{m="<mob.name>&6逃跑了，你可以进入古堡了！"} @Trigger
+    - damage{amount=1000000} @Self
+    - remove @self
