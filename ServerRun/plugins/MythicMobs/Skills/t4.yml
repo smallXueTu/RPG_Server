@@ -10,12 +10,13 @@ t4火焰粒子门1:
     - teleport @target
     - effect:sound{s=mob.endermen.portal;volume=1.0;pitch=0.5}
     - delay 5
-    - damage{amount=30;ignorearmor=true} @target
+    - damage{amount=50;ignorearmor=true} @target
     - throw{velocity=10;velocityY=5} @target
     - effect:explosion @Self
 古堡守护者逃跑:
   Skills:
     - message{m="<mob.name>&d>><&co> &c算你厉害！"} @Trigger ~onDamaged <20%
     - message{m="<mob.name>&6逃跑了，你可以进入古堡了！"} @Trigger
+    - addBQTag{t=default.已击杀古堡守护者} @trigger
     - damage{amount=1000000} @Self
     - remove @self

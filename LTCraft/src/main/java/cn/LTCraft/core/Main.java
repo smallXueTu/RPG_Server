@@ -21,7 +21,6 @@ import cn.LTCraft.core.hook.TrMenu.actions.GetClutterItem;
 import cn.LTCraft.core.hook.TrMenu.actions.LTExchange;
 import cn.LTCraft.core.hook.TrMenu.actions.OpenCoreGui;
 import cn.LTCraft.core.entityClass.Cooling;
-import cn.LTCraft.core.utils.FileUtil;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.utils.TrMenuUtils;
 import com.earth2me.essentials.Essentials;
@@ -40,12 +39,8 @@ import pl.betoncraft.betonquest.BetonQuest;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class Main extends JavaPlugin {
@@ -206,9 +201,11 @@ public class Main extends JavaPlugin {
         BetonQuest.getInstance().registerEvents("give", GiveEvent.class);
         BetonQuest.getInstance().registerEvents("take", TakeEvent.class);
         BetonQuest.getInstance().registerEvents("castMMSkill", CastMMSkillEvent.class);
+        BetonQuest.getInstance().registerEvents("stealGold", StealGoldEvent.class);
 
         BetonQuest.getInstance().registerConditions("skillapiLevel", SkillAPILevelCondition.class);
         BetonQuest.getInstance().registerConditions("item", ItemCondition.class);
+        BetonQuest.getInstance().registerConditions("agold", AdequateGoldCondition.class);
     }
     private void initEss() {
         essentials = ((Essentials)Bukkit.getPluginManager().getPlugin("Essentials"));

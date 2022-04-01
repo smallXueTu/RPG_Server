@@ -256,6 +256,13 @@ public class PlayerListener  implements Listener {
                             event.getPlayer().sendMessage("§c你需要选择一门职业才能前往F1！");
                         }
                     break;
+                    case "RPG":
+                        PlayerData playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
+                        if (!playerData.hasTag("default.毕业T3")){
+                            event.setCancelled(true);
+                            player.sendMessage("§c你需要完成T3才能前往RPG！");
+                        }
+                    break;
                 }
             }
         }else if (Game.rpgWorlds.contains(player.getWorld().getName())){
