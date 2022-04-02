@@ -141,6 +141,7 @@ t3test:
     - message{m="&d<trigger.name>&r>> &6说实话我又害怕又期待..."} @Self
     - delay 60
     - execBQEvent{e=添加毕业T3标签}
+    - execBQEvent{e=击杀古堡守护者进入恶魔古堡}
     - teleportto{c=43.5,72,671.5;w=RPG}
     - delay 80
     - message{m="&d<trigger.name>&r>> &6终于到了，这是哪里呢..."} @Self

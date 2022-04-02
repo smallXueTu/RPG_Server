@@ -64,7 +64,7 @@ public class LTGCommand implements CommandExecutor, Listener {
                 if (args.length < 2)return false;
                 mapList.put(player, new ArrayList<Location>());
                 mapGate.put(player, args[1]);
-                sender.sendMessage("§a请放置任意方块来设置(1-3槽位对应不同方块)！");
+                sender.sendMessage("§a请放置任意方块来设置，放置完成后输入/lts done 90/119/209");
             break;
             case "d":
             case "done":
