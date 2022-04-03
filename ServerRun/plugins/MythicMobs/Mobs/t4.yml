@@ -9,17 +9,17 @@ t4火焰粒子门1:
   Skills:
     - skill{s=t4火焰粒子门1} @Self ~onTimer:15
     - airDoor{location=-927;f=true;x=false;d=BQTag:default.已击杀古堡守护者;mess=§c你需要击杀古堡守护者才能通过这道门！;} @Self ~onSpawn
-恶火古堡守护者:
+恶魔古堡守护者:
   Type: Skeleton
-  Display: '&6恶火古堡守护者'
+  Display: '&6恶魔古堡守护者'
   Health: 5000
   Damage: 20
   Equipment:
     - Air:HAND
   Disguise:
     Type: Player
-    Skin: '&6恶火古堡守护者'
-    Player: '&6恶火古堡守护者'
+    Skin: '&6恶魔古堡守护者'
+    Player: '&6恶魔古堡守护者'
   AIGoalSelectors:
     - clear
     - meleeattack
@@ -37,6 +37,6 @@ t4火焰粒子门1:
   Skills:
     - skill{s=古堡守护者粉碎攻击} @Self <80% ~onDamaged
     - message{cooldown=50;m="<mob.name>&d>><&co> &c我劝你还是哪来的回哪去吧！"} @PlayersInRadius{r=20} ~onCombat <100% 0.3
-    - message{cooldown=30;m="<mob.name>&d>><&co> &c布你已经丧失了证明的机会！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
+    - message{cooldown=30;m="<mob.name>&d>><&co> &c我可要使出全力了！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
     - message{cooldown=50;m="<mob.name>&d>><&co> &c有点实力嘛!"} @PlayersInRadius{r=20} ~onCombat <30% 0.1
     - skill{s=古堡守护者逃跑} ~onDamaged <10%

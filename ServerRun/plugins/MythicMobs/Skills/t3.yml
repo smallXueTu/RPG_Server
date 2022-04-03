@@ -149,3 +149,5 @@ t3test:
     - message{m="&d<trigger.name>&r>> &6看样子像是个遗迹，不过这个世界的地形好奇怪。"} @Self
     - delay 20
     - message{m="&d<trigger.name>&r>> &6不过好多传送门啊，感觉想是发现了新大陆！"} @Self
+    - sendtitle{title="&6新的传送点&r：&dRPG世界";subtitle="&d你可以在菜单->传送菜单->RPG世界找到它！";d=60;fi=20;o=20} @Self
+    - sound{s=ui.toast.challenge_completep=1;v=1;} @Self

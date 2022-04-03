@@ -1,5 +1,6 @@
 package cn.LTCraft.core.listener;
 
+import cn.LTCraft.core.Config;
 import cn.LTCraft.core.commands.LTGCommand;
 import cn.LTCraft.core.entityClass.TeleportGate;
 import cn.LTCraft.core.game.TeleportGateManager;
@@ -239,9 +240,8 @@ public class PlayerListener  implements Listener {
             if (toWorld.startsWith("t")){
                 try {
                     int level = Integer.parseInt(toWorld.substring(1));
-                    if (level <= 1)return;
                     PlayerData playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
-                    if (!playerData.hasTag("default.毕业T" + (level - 1))){
+                    if (level > 1 && !playerData.hasTag("default.毕业T" + (level - 1))){
                         event.setCancelled(true);
                         player.sendMessage("§c你需要完成T"+ (level - 1) + "才能前往" + toWorld + "！");
                     }
@@ -264,6 +264,11 @@ public class PlayerListener  implements Listener {
                         }
                     break;
                 }
+            }
+            System.out.println(Config.getInstance().getWorldTitleYaml().getKeys(false));
+            if (Config.getInstance().getWorldTitleYaml().contains(toWorld)){
+                List<String> list = Config.getInstance().getWorldTitleYaml().getStringList(toWorld);
+                player.sendTitle(list.get(0), list.get(1), 60, 20, 20);
             }
         }else if (Game.rpgWorlds.contains(player.getWorld().getName())){
             if (

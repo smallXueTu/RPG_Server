@@ -1,22 +1,22 @@
-quester: '恶火古堡守护者'
+quester: '恶魔古堡守护者'
 first: '介绍'
 stop: 'false'
 NPC_options:
   '介绍':
     text:
-      - '证明者，我没有收到翟纳若通知说你可以来这里了，你现在是非法闯入这个地方。\n你最好先从哪里来就从那里去！\n不然你会失去证明的机会！'
+      - '证明者，我没有收到翟纳若通知说你可以来这里了，你现在是非法闯入这个地方。\n你最好先从哪里来就从那里去！'
     conditions: ''
-    pointer: '好吧,硬闯进去'
+    pointer: '好吧,我能怎么进去'
     events: ''
   '那你先过我这一关吧！':
     text:
-      - '那你先过我这一关吧！'
+      - '里面的怪物及其凶悍，你进去就是找死！\n只有翟纳若允许你才能进入！'
     conditions: ''
     pointer: '单挑他'
     events: ''
-  '你有资格吗':
+  '其他办法呢？':
     text:
-      - '单挑场入场费200金币，你有资格吗！'
+      - '除非你能证明自己的强壮，你可以试试击败我。\n击败我你就能正自己的强壮了！\n不过你需要拿200金币的决赛场入场费！'
     conditions: ''
     pointer: '我有，来吧,没有'
     events: ''
@@ -27,7 +27,7 @@ player_options:
     conditions: ''
     pointer: ''
     events: ''
-  '硬闯进去':
+  '我能怎么进去':
     text:
       - '那我只能硬闯进去了。'
     conditions: ''
@@ -35,9 +35,9 @@ player_options:
     events: ''
   '单挑他':
     text:
-      - '<单挑他>'
+      - '其他办法呢？'
     conditions: ''
-    pointer: '你有资格吗'
+    pointer: '其他办法呢？'
     events: ''
   '没有':
     text:

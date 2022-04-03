@@ -15,11 +15,21 @@ public class TrMenuUtils {
         }
         return instance;
     }
-    public boolean test(){
-        System.out.println("This is test...");
-        return true;
-    }
+
+    /**
+     * 是否拥有指定数量的金币
+     * @param player 玩家
+     * @param quantity 金币
+     * @return 是否满足
+     */
     public boolean hasGoldCoins(Player player, double quantity){
         return PlayerConfig.getPlayerConfig(player).getPlayerInfo().getGold() >= quantity;
+    }
+
+    /**
+     * @see PlayerUtils#hasBQTag(Player, String)
+     */
+    public boolean hasBQTag(Player player, String tag){
+        return PlayerUtils.hasBQTag(player, tag);
     }
 }

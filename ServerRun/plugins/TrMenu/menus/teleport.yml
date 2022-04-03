@@ -3,10 +3,10 @@ Title: 'LTCraft 传送菜单'
 Title-Update: 0
 
 Layout:
-  - - '#       #'
-    - '#  `主城`    #'
+  - - '#   `主城`   #'
     - '#  `资源世界``地狱``末地`  #'
     - '#  `新手地皮``普通地皮`   #'
+    - '#   `RPG世界`   #'
     - '#       `Close`'
 
 PlayerInventory:
@@ -96,6 +96,21 @@ Icons:
       all:
         - close
         - "command: warp ender"
+  RPG世界:
+    display:
+      material: 267
+      name: "&e传送到RPG"
+      lore:
+        - "&3<<&eRPG世界&3>>"
+        - "&3<<&e丰富宝箱资源，更多的世界传送门&3>>"
+    icons:
+      - condition: 'js: !LTCraftUtils.hasBQTag(player, "default.毕业T3")'
+        display:
+          material: Air
+    actions:
+      all:
+        - close
+        - "command: warp rpg"
   Close:
     display:
       material: Red Stained Glass Pane
