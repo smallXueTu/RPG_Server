@@ -265,9 +265,8 @@ public class PlayerListener  implements Listener {
                     break;
                 }
             }
-            System.out.println(Config.getInstance().getWorldTitleYaml().getKeys(false));
-            if (Config.getInstance().getWorldTitleYaml().contains(toWorld)){
-                List<String> list = Config.getInstance().getWorldTitleYaml().getStringList(toWorld);
+            if (Config.getInstance().getWorldTitleYaml().contains(toWorld.toLowerCase())){
+                List<String> list = Config.getInstance().getWorldTitleYaml().getStringList(toWorld.toLowerCase());
                 player.sendTitle(list.get(0), list.get(1), 60, 20, 20);
             }
         }else if (Game.rpgWorlds.contains(player.getWorld().getName())){
