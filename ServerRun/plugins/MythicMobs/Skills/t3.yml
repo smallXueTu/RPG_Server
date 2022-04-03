@@ -7,6 +7,16 @@ t3火焰粒子门2:
 t3test:
   Skills:
     - execBQEvent{e=test}
+传送到航舰上:
+  TargetConditions:
+    - HasBQTag{t=default.请求凯特开往指定方向}
+  Skills:
+    - teleportto{c=410,100,92;w=t3}
+传送到T3:
+  TargetConditions:
+    - HasBQTag{t=default.请求凯特开往指定方向}<&csp>false
+  Skills:
+    - teleportto{c=289,10,127;w=t3}
 虚无舰出现意外:
   Cooldown: 30
   TargetConditions:

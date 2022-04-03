@@ -1,6 +1,0 @@
-test:
-  Skills:
-    - effect:sound{s=entity.zombie.attack_iron_door;p=1} @self
-丢弃100金币:
-  Skills:
-    - dropGoldCoins{c=100;r=5;d="金币"} @SelfLocation

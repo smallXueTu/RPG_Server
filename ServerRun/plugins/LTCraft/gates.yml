@@ -34,7 +34,10 @@ t3:
   - -13:22:-49:world
   - -13:22:-48:world
   - -13:22:-47:world
-  to: 289:10:127:t3
+  to: 0:0:0:world
+  mythicSkills:
+  - 传送到T3
+  - 传送到航舰上
 f1:
   locations:
   - 36:20:-41:world
@@ -47,7 +50,7 @@ f1:
   - 35:22:-41:world
   - 36:22:-41:world
   to: 990:64:-1031:f1
-t3-rpg:
+t3_rpg:
   locations:
   - 288:2:455:t3
   - 289:2:455:t3
