@@ -22,6 +22,7 @@ import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Item;
@@ -174,12 +175,32 @@ public class Game {
      * @param worldName 世界名字
      */
     public static void resetWorld(String worldName){
+        MultiverseCore multiverseCore = (MultiverseCore) Bukkit.getPluginManager().getPlugin("Multiverse-Core");
         World world = Bukkit.getWorld(worldName);
+        if (world != null){
+            multiverseCore.getMVWorldManager().deleteWorld(worldName, true, true);
+        }
+        World.Environment environment = null;
+        WorldType worldType = null;
+        if (worldName.equals("world_nether")){
+            environment = World.Environment.NETHER;
+            worldType = WorldType.NORMAL;
+        }else if(worldName.equals("world_the_end")){
+            environment = World.Environment.THE_END;
+            worldType = WorldType.NORMAL;
+        }else {
+            environment = World.Environment.NORMAL;
+            worldType = WorldType.NORMAL;
+        }
+        boolean success = multiverseCore.getMVWorldManager().addWorld(worldName, environment, null, worldType, true, null, true);
+        if (!success)return;
+        world = Bukkit.getWorld(worldName);
+        multiverseCore.getMVWorldManager().getMVWorld(worldName).setKeepSpawnInMemory(true);
+        multiverseCore.getMVWorldManager().getMVWorld(worldName).setDifficulty(Difficulty.HARD);
         world.setGameRuleValue("keepInventory", "true");
         world.setDifficulty(Difficulty.HARD);
         Location location = world.getSpawnLocation();
-        if (location.getY() <= 1){
-            MultiverseCore multiverseCore = (MultiverseCore) Bukkit.getPluginManager().getPlugin("Multiverse-Core");
+        if (location.getY() <= 1) {
             DestinationFactory df = multiverseCore.getDestFactory();
             MVDestination d = df.getDestination(worldName);
             location = d.getLocation(null);
@@ -187,7 +208,7 @@ public class Game {
         if (location.getY() > 120 && worldName.equals("world_nether")) {
             location.add(0.0D, -20, 0.0D);
             world.setSpawnLocation(location);
-        }else if(worldName.equals("world_the_end")){
+        } else if (worldName.equals("world_the_end")) {
             location.add(5.0D, 0.0D, 5.0D);
             location = world.getHighestBlockAt(location).getLocation();
             world.setSpawnLocation(location);
