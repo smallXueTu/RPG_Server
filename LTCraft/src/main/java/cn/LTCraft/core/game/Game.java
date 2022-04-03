@@ -448,7 +448,7 @@ public class Game {
                 result = cn.ltcraft.item.utils.Utils.updateNameAndLore(result, aicla, aicla.getConfig().getStringList("说明"));
                 return result;
             }
-        }else if (material.getType()  == Material.ENCHANTED_BOOK){
+        }else if (material != null && material.getType()  == Material.ENCHANTED_BOOK){
             ItemStack result = equipment.clone();
             ItemMeta meta = material.getItemMeta();
             EnchantmentStorageMeta storageMeta = (EnchantmentStorageMeta) meta;
@@ -468,7 +468,7 @@ public class Game {
                 player.playSound(player.getLocation(), "block.anvil.use", SoundCategory.BLOCKS, 2, 1);
                 return true;
             }
-        }else if (material.getType()  == Material.ENCHANTED_BOOK){
+        }else if (material != null && material.getType()  == Material.ENCHANTED_BOOK){
             ItemMeta meta = material.getItemMeta();
             EnchantmentStorageMeta storageMeta = (EnchantmentStorageMeta) meta;
             EnchantItemEvent enchantItemEvent = new EnchantItemEvent(player, player.getOpenInventory(), null, equipment, 1, storageMeta.getStoredEnchants(), 0);
