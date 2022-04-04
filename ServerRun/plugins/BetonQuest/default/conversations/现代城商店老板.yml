@@ -15,7 +15,7 @@ NPC_options:
 player_options:
   '鱼竿':
     text: '请问你这里有鱼竿吗？'
-    conditions: '已领取小晴奖赏'
+    conditions: '购买鱼竿'
     pointer: '当然有了！'
     events: ''
   '钱不够':

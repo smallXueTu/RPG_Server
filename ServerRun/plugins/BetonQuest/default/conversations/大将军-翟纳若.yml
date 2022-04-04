@@ -9,7 +9,7 @@ NPC_options:
     events: ''
   '成功了吗':
     text: '怎么样，拿到传说武器了吗？\n&a你(内心)：我要是说我遇到问题，万一失去成为勇士的资格了怎么办。\n&a算了，还是不说了。'
-    conditions: '解开t3第二关谜团'
+    conditions: '毕业T2'
     pointer: '还没呢，就要快了！'
     events: ''
   '接受翟纳若的任务2':

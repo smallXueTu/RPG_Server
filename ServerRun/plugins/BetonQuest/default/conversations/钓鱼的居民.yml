@@ -78,7 +78,7 @@ player_options:
     text: '还没有，我现在去买...'
     conditions: '!有鱼竿'
     pointer: ''
-    events: '购买鱼竿,添加购买鱼竿标签'
+    events: '购买鱼竿'
   '算了':
     text: '算了吧...'
     conditions: ''
