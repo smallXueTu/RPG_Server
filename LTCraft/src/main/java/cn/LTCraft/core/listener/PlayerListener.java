@@ -315,26 +315,6 @@ public class PlayerListener  implements Listener {
         event.setFormat("§f[§bLv.§e" + level + " §c" + clazz + "§f]" + prefix + "§e" + player.getName() + "§f: §r%2$s");
 //        event.setMessage("§f[§bLv.§e" + level + " §c" + clazz + "§f]§e" + player.getName() + "§f: §e" + event.getMessage());
     }
-    /*
-    @EventHandler
-    public void onInteractEvent(PlayerInteractEvent event){
-        if(event.getClickedBlock()!=null && event.getClickedBlock().getTypeId() != 0) {
-            Player player = event.getPlayer();
-            int id = event.getClickedBlock().getTypeId();
-            int data = event.getClickedBlock().getData();
-            if ((player.hasPermission("LTCraft.banInteract."+id) || player.hasPermission("LTCraft.banInteract."+id+":*") || player.hasPermission("LTCraft.banInteract."+id+":"+data)) && !player.hasPermission("LTCraft.interact.*")){
-                event.setCancelled(true);
-            }
-        }
-        if (event.getMaterial().getId()==286 && event.getPlayer().isOp()){
-            Player player = event.getPlayer();
-            int id = event.getClickedBlock().getTypeId();
-            int data = event.getClickedBlock().getData();
-            player.sendMessage("你点击的方块："+id+":"+data);
-        }
-    }
-
-     */
     @EventHandler
     public void onQuitEvent(PlayerQuitEvent e){
         Player player = e.getPlayer();
