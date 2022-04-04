@@ -694,7 +694,7 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
         //伤害
         RandomValue PVEAttackDamage = new RandomValue(getDamage(Type.PVE).getMin() + attribute.getDamage(Type.PVE).getMin(), getDamage(Type.PVE).getMax() + attribute.getDamage(Type.PVE).getMax());
         setDamage(Type.PVE, PVEAttackDamage);
-        RandomValue PVPAttackDamage = new RandomValue(getDamage(Type.PVP).getMax() + attribute.getDamage(Type.PVP).getMin(), getDamage(Type.PVP).getMax() + attribute.getDamage(Type.PVP).getMax());
+        RandomValue PVPAttackDamage = new RandomValue(getDamage(Type.PVP).getMin() + attribute.getDamage(Type.PVP).getMin(), getDamage(Type.PVP).getMax() + attribute.getDamage(Type.PVP).getMax());
         setDamage(Type.PVP, PVPAttackDamage);
         //吸血
         setSuckingBlood(Type.PVE, getSuckingBlood(Type.PVE) + attribute.getSuckingBlood(Type.PVE));

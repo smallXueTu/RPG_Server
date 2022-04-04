@@ -21,4 +21,4 @@ t3火焰粒子门1:
   ShowFlames: false
   Breakable: false
   Conditions: []
-  ActiveMobs: 1
+  ActiveMobs: 0

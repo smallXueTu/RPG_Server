@@ -2943,3 +2943,4 @@
 [24.03.2022 23:54:16] ERROR: Conversation doesn't exist: default.大将军-翟纳若
 [31.03.2022 23:14:03] ERROR: Error in 'default.恶火古堡守护者' conversation: Error in '单挑他' player option option's events: Event 'default.单挑恶火古堡守护者' is not defined
 [01.04.2022 15:53:59] ERROR: Condition type agold is not registered, check if it's spelled correctly in 'default.拥有200金币' condition.
+[04.04.2022 16:26:32] ERROR: Loaded 'default.【支线】击杀岩浆人' objective from the database, but it is not defined in configuration. Skipping.

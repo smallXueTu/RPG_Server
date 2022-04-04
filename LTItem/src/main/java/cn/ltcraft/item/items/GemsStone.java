@@ -36,7 +36,7 @@ public class GemsStone extends AbstractAttribute implements ConfigurableLTItem {
             String[] split = pvpAD.split("-");
             PVPDamage = new RandomValue(Double.parseDouble(split[0]), Double.parseDouble(split[1]));
         }else {
-            PVPDamage = new RandomValue(Double.parseDouble(pveAD));
+            PVPDamage = new RandomValue(Double.parseDouble(pvpAD));
         }
         PVESuckingBlood = config.getDouble("PVE.吸血");
         PVPSuckingBlood = config.getDouble("PVP.吸血");

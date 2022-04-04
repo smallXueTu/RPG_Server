@@ -37,7 +37,7 @@ public abstract class BaseWeapon extends AICLA {
             String[] split = pvpAD.split("-");
             PVPDamage = new RandomValue(Double.parseDouble(split[0]), Double.parseDouble(split[1]));
         }else {
-            PVPDamage = new RandomValue(Double.parseDouble(pveAD));
+            PVPDamage = new RandomValue(Double.parseDouble(pvpAD));
         }
         PVPSuckingBlood = config.getDouble("PVP.吸血");
         PVEBurning = config.getInt("PVE.燃烧");
