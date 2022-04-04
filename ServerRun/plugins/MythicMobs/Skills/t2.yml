@@ -1,5 +1,5 @@
 粉碎攻击:
-  Cooldown: 8
+  Cooldown: 10
   Conditions:
     - IsSilence{}<&csp>false
     - targetwithin 25
@@ -8,7 +8,7 @@
     - teleport @target
     - effect:sound{s=mob.endermen.portal;volume=1.0;pitch=0.5}
     - delay 10
-    - damage{amount=20;ignorearmor=true} @PlayersInRadius{r=5}
+    - damage{amount=12;ignorearmor=true} @PlayersInRadius{r=5}
     - throw{velocity=10;velocityY=5} @Player  sInRadius{r=5}
     - effect:explosion @Self
 木洞神秘商人冲击波:
@@ -55,14 +55,14 @@
     - sound{s=entity.endermen.teleport} @self
     - effect:explosion @Self
     - delay 5
-    - damage{a=20} @PIR{r=3}
+    - damage{a=15} @PIR{r=3}
     - throw{velocity=5;velocityY=0} @PIR{r=3}
 魔塔统治者冲击波-Tick:
   Skills:
     - effect:particles{c=#FF0000;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
 魔塔统治者冲击波-Hit:
   Skills:
-    - damage{a=20}
+    - damage{a=15}
     - Effect:explosion
 爆炸护盾:
   Cooldown: 30
@@ -91,7 +91,7 @@
     - delay 10
     - effect:particlesphere{c=#ffcc00;amount=400;radius=3.5} @SelfLocation{yoffset=1}
     - effect:explosion{y=1} @SelfLocation{yoffset=1}
-    - damage{a=25} @PIR{r=3.5}
+    - damage{a=18} @PIR{r=3.5}
     - setvariable{type=STRING;var=caster.hasShield;value="false";}
 护盾:
   Conditions:
@@ -218,7 +218,7 @@
     - effect:particles{p=lava;amount=10;speed=0;hR=0.2;vR=0.2} @origin
     - effect:particles{p=flame;amount=20;speed=0;hR=0.2;vR=0.2} @origin
     - effect:sound{s=entity.arrow.hit;v=1;p=0}
-    - damage{a=20}
+    - damage{a=15}
 焱火三尺剑体end:
   Skills:
     - effect:particles{p=lava;amount=10;speed=0;hR=0.2;vR=0.2} @origin
@@ -242,7 +242,7 @@
     - effect:particlering{p=flame;points=10;radius=1;amount=3;hS=0.5;y=0.6;} @Self
     - effect:particlering{p=sweepAttack;points=10;radius=1;amount=3;hS=0.5;y=0.9;} @Self
     - delay 1
-    - damage{a=20} @PlayersInRadius{r=10}
+    - damage{a=12} @PlayersInRadius{r=10}
     - effect:sound{s=block.fire.ambient;v=2;p=1} @Self
     - effect:sound{s=entity.player.attack.sweep;v=1;p=1} @Self
     - delay 1

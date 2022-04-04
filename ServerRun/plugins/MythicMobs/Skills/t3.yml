@@ -105,7 +105,7 @@ t3test:
     - message{m="&d虚空圣殿守护者&r>> &6即便如此，我也不能让你从这里通过，我是守护这个地方的人，你作为擅自进入这个地方的人，理应被驱逐！"} @Self
     - message{m="&d虚空圣殿守护者&r>> &6想从这里出去你只能从我的尸体上踏过去！"} @Self
 虚空粉碎攻击:
-  Cooldown: 8
+  Cooldown: 10
   Conditions:
     - IsSilence{}<&csp>false
     - targetwithin 25
@@ -113,7 +113,7 @@ t3test:
     - teleport @target
     - effect:sound{s=mob.endermen.portal;volume=1.0;pitch=0.5}
     - delay 10
-    - damage{amount=30;ignorearmor=true} @target
+    - damage{amount=20;ignorearmor=true} @target
     - throw{velocity=10;velocityY=5} @target
     - effect:explosion @Self
 遇到受伤的冒险者:

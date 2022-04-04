@@ -35,7 +35,7 @@ t3火焰粒子门3:
   Type: Skeleton
   Display: '&6虚空圣殿守护者'
   Health: 5000
-  Damage: 30
+  Damage: 16
   Equipment:
     - 虚空剑:HAND
   Options:
@@ -65,7 +65,7 @@ t3火焰粒子门3:
   Type: Skeleton
   Display: '&6魔藤树'
   Health: 500
-  Damage: 23
+  Damage: 13
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -86,7 +86,7 @@ t3火焰粒子门3:
   Type: Skeleton
   Display: '&6虚空矿工'
   Health: 600
-  Damage: 30
+  Damage: 16
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -113,7 +113,7 @@ t3火焰粒子门3:
   Type: PIG_ZOMBIE
   Display: '&6炼狱炎火龟'
   Health: 600
-  Damage: 30
+  Damage: 20
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -134,7 +134,7 @@ t3火焰粒子门3:
   Type: Spider
   Display: '&6虚空毒蜥'
   Health: 800
-  Damage: 30
+  Damage: 20
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -155,7 +155,7 @@ t3火焰粒子门3:
   Type: Skeleton
   Display: '&6虚空之灵'
   Health: 3000
-  Damage: 20
+  Damage: 12
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -184,8 +184,8 @@ t3火焰粒子门3:
 虚空寒晶鸟:
   Type: Skeleton
   Display: '&6虚空寒晶鸟'
-  Health: 1000
-  Damage: 30
+  Health: 800
+  Damage: 20
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -206,7 +206,7 @@ t3火焰粒子门3:
   Type: Skeleton
   Display: '&6寒晶凤凰'
   Health: 3000
-  Damage: 50
+  Damage: 20
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -230,7 +230,7 @@ t3火焰粒子门3:
   Damage: 60
   Options:
     FollowRange: 16
-    MovementSpeed: 0.3
+    MovementSpeed: 0.2
     AlwaysShowName: true
     PreventOtherDrops: true
   AIGoalSelectors:
@@ -255,7 +255,7 @@ t3火焰粒子门3:
   Damage: 60
   Options:
     FollowRange: 16
-    MovementSpeed: 0.3
+    MovementSpeed: 0.2
     AlwaysShowName: true
     PreventOtherDrops: true
   AIGoalSelectors:
