@@ -227,7 +227,7 @@ t3火焰粒子门3:
   Type: PIG_ZOMBIE
   Display: '&6虚空金虎'
   Health: 1000
-  Damage: 60
+  Damage: 30
   Options:
     FollowRange: 16
     MovementSpeed: 0.2
@@ -252,7 +252,7 @@ t3火焰粒子门3:
   Type: PIG_ZOMBIE
   Display: '&6虚空虎王'
   Health: 3000
-  Damage: 60
+  Damage: 30
   Options:
     FollowRange: 16
     MovementSpeed: 0.2
