@@ -1,0 +1,111 @@
+classShow:
+  location: world, 92.587, 24.129, -10.518
+  lines:
+  - ICON:IRON_SWORD {ench:[{id:1,lvl:1}]}
+  - §a职业展示
+  - §e右键对应职业显示职业介绍！
+  - §e职业会在主线进行过程中提供选择。
+t1-info:
+  location: world, 2.500, 23.500, -64.500
+  lines:
+  - ICON:IRON_SWORD {ench:[{id:1,lvl:1}]}
+  - §a主线副本 T1
+  - §d催纳诺朋友加德的家园遭遇外来丧尸的入侵
+  - §d现在急需战士帮忙，你能解决解救他的家园吗？
+t2-info:
+  location: world, -10.500, 23.500, -59.500
+  lines:
+  - ICON:IRON_SWORD {ench:[{id:1,lvl:1}]}
+  - §a主线副本 T2
+  - §d完成解救后催纳诺现在对你有很高的认可了。
+  - §d但他还是觉得你缺少一些职业能力。
+  - §d这里正是最值得试炼的地方！
+t3-info:
+  location: world, -10.500, 23.500, -47.500
+  lines:
+  - ICON:IRON_SWORD {ench:[{id:1,lvl:1}]}
+  - §a主线副本 T3
+  - §d现在催纳诺现在对你非常认可了。
+  - §d但作为一个勇士，怎么会没一套像样的装备？
+  - §d或许这一路上你会遇到非常多得坎坷！
+  - §d你能拿到证明自己的装备吗...
+t4-info:
+  location: world, 2.500, 23.500, -42.500
+  lines:
+  - ICON:IRON_SWORD {ench:[{id:1,lvl:1}]}
+  - §a主线副本 T4
+  - §d你在到达虚无之境途中遇到虚无舰了意外。
+  - §d现在你已经无法前往虚无之境了。
+  - §d你只能先跳过虚无之境先看一下恶魔古堡了！
+  - §c开发中...
+essence_activation:
+  location: f1, 990.500, 69.500, -1190.500
+  lines:
+  - ICON:ENCHANTED_BOOK
+  - §a使用说明：§e右键附魔台一次性消耗32个§d知识之瓶§e
+  - §e会识别出两个§d职业精髓§e和两个无法识别的§d未知知识之瓶§e。
+  - §e职业精髓右键使用可以激活职业基础技能。
+  - §e法杖注魔升级：
+  - §a觉醒前：§e每级消耗§d技能等级*2§e个§d法杖知识卷轴§e
+  - §a觉醒后：§e每级消耗§d觉醒等级*4§e个§d法杖知识卷轴§e
+  - §c顺序说明：识别->激活->升级->觉醒。
+f1-info:
+  location: world, 35.500, 23.500, -41.500
+  lines:
+  - ICON:IRON_SWORD {ench:[{id:1,lvl:1}]}
+  - §a职业副本 F1
+  - §d四大职业代表联合打造供证明者试炼。
+  - §d职业技能快速成长，需要拥有职业才可以进入！
+f2-info:
+  location: RPG, 36.5, 76, 669.5
+  lines:
+  - ICON:IRON_SWORD {ench:[{id:1,lvl:1}]}
+  - §a宝石副本 F2
+  - §d获取更多可镶嵌的宝石。
+  - §d来强化你的武器！
+teleport_area:
+  location: world, 19, 23.0, -35.5
+  lines:
+  - ICON:ENDER_PEARL {ench:[{id:1,lvl:1}]}
+  - '&u§n§l传送区域'
+shop_area:
+  location: world, 19.000, 23.0, 50.5
+  lines:
+  - ICON:DIAMOND {ench:[{id:1,lvl:1}]}
+  - '&u§n§l商店区域'
+start:
+  location: world, 119.5, 25, 18.5
+  lines:
+  - ICON:COMPASS {ench:[{id:1,lvl:1}]}
+  - '&e§n§l新手先跟她对话'
+  - '&e§n§l开启职业生涯'
+ann:
+  location: world, 109.5, 26, 41.5
+  lines:
+  - ICON:NETHER_STAR
+  - '&u§n§l服务器公告'
+  - '&e§n§l欢迎体验LTCraft服务器，由于服务器采用严格主线玩法。'
+  - '&e§n§l请尽量按主线说明游玩，不建议丢弃主线物品。'
+  - '&e§n§l游玩中可能会遇到一些卡主线的bug，记得加群反馈~'
+  - '&e§n§l服务器现处于公测状态，QQ群：§d§n§l597051387'
+milestone:
+  location: world, 109.5, 27, -23.5
+  lines:
+  - ICON:384
+  - '&u§n§l服主的心声'
+  - '&e§n§l为了更好的耦合性，LTCraft坚持严格原则：'
+  - '&e§n§l不随意采用外部插件，除常用插件。'
+  - '&e§n§l这大大提高了开发难度。因此附加的玩法和功能将在后续慢慢迭代。'
+  - '&e§n§l所以你将在LTCraft见到更加新颖的玩法和功能！'
+  - '&u§n§l未来计划'
+  - '&d§n§l未来计划包括：'
+  - '&d§n§l组队怪物系统、宝石拆卸系统、工会系统、武器锻造系统等...'
+ms:
+  location: world, 127, 25, 2.5
+  lines:
+    - ICON:322
+    - '&u§n§l新手必看'
+    - '&e§n§l请使用专属客户端进行游戏。'
+    - '&e§n§l否者可能无法显示任务信息和武器模型等。'
+    - '&e§n§l严重影响玩法！'
+    - '&e§n§l加群597051387下载客户端。'
