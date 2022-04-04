@@ -22,6 +22,8 @@ import cn.ltcraft.teleport.Teleport;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
 import net.minecraft.server.v1_12_R1.DamageSource;
+import net.minecraft.server.v1_12_R1.NBTBase;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -209,7 +211,18 @@ public class PlayerListener  implements Listener {
                 Game.onRightClickBlock(event);
             case RIGHT_CLICK_AIR:
                 Game.onRightClick(player);
-            break;
+                ItemStack item = event.getItem();
+                if (item!=null) {
+                    NBTTagCompound nbt = ItemUtils.getNBT(item);
+                    if (nbt != null && nbt.hasKey("Potion")){
+                        String potions = nbt.getString("Potion");
+                        if (potions.contains("strong_strength")){
+                            player.sendMessage("§c力量药水在这个服务器是禁用的！");
+                            event.setCancelled(true);
+                        }
+                    }
+                }
+                break;
         }
         if (event.isCancelled())return;
         if (block != null && block.getState() instanceof Sign){
@@ -590,6 +603,19 @@ public class PlayerListener  implements Listener {
         Player player = event.getPlayer();
         if (LTGCommand.mapGate.containsKey(player)) {
             LTGCommand.mapList.get(player).add(block.getLocation());
+        }
+    }
+    @EventHandler
+    public void onItemConsume(PlayerItemConsumeEvent event){
+        Player player = event.getPlayer();
+        ItemStack item = event.getItem();
+        NBTTagCompound nbt = ItemUtils.getNBT(item);
+        if (nbt != null && nbt.hasKey("Potion")){
+            String potions = nbt.getString("Potion");
+            if (potions.contains("strong_strength")){
+                player.sendMessage("§c力量药水在这个服务器是禁用的！");
+                event.setCancelled(true);
+            }
         }
     }
 }
