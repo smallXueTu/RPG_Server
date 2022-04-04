@@ -346,37 +346,6 @@ public class PlayerListener  implements Listener {
         LTGCommand.mapList.remove(player);
         LTGCommand.mapGate.remove(player);
     }
-
-    /**
-     * 如果玩家副手存在物品丢弃玩家副手的物品
-     * @param event
-     */
-    @EventHandler(
-            priority = EventPriority.LOWEST
-    )
-    public void onEntityDamageByEntityHigh(EntityDamageByEntityEvent event){
-        CraftPlayer[] craftPlayers = new CraftPlayer[2];
-        if (event.getEntity() instanceof Player) {
-            craftPlayers[1] = ((CraftPlayer)event.getEntity());
-        }
-        for (CraftPlayer craftPlayer : craftPlayers) {
-            if (craftPlayer == null)continue;
-            ItemStack itemStack = craftPlayer.getInventory().getItemInOffHand();
-            if (itemStack == null)continue;
-//            double damage = craftPlayer.getHandle().getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).getValue();
-            if (
-                    itemStack.getItemMeta() != null &&
-                    itemStack.getItemMeta().getLore() != null &&
-                    itemStack.getItemMeta().getLore().size() >0 &&
-                    itemStack.getItemMeta().getLore().stream().anyMatch(lore -> lore.contains("&|"))
-            ){
-//            ) || damage > 1){
-                craftPlayer.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-                PlayerUtils.securityAddItem(craftPlayer, itemStack);
-                craftPlayer.sendMessage("§c拥有属性的物品禁止安装到副手！");
-            }
-        }
-    }
     /**
      * 伤害计算
      * @param event
