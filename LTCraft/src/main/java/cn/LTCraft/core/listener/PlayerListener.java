@@ -579,6 +579,31 @@ public class PlayerListener  implements Listener {
             }
         }
     }
+
+    /**
+     * TODO: 玩家格挡后冷却盾牌
+     */
+    @EventHandler(
+            priority = EventPriority.LOWEST
+    )
+    public void onEntityDamageByEntityHigh(EntityDamageByEntityEvent event){
+        CraftPlayer[] craftPlayers = new CraftPlayer[2];
+        if (event.getEntity() instanceof Player) {
+            craftPlayers[1] = ((CraftPlayer)event.getEntity());
+        }
+        for (CraftPlayer craftPlayer : craftPlayers) {
+            if (craftPlayer == null)continue;
+            ItemStack itemStack = craftPlayer.getInventory().getItemInOffHand();
+            if (itemStack == null)continue;
+            if (
+                    itemStack.getTypeId() == 442
+            ){
+                craftPlayer.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
+                PlayerUtils.securityAddItem(craftPlayer, itemStack);
+                craftPlayer.sendMessage("§c服务器暂时不支持盾牌！");
+            }
+        }
+    }
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event){
         Block block = event.getBlock();
