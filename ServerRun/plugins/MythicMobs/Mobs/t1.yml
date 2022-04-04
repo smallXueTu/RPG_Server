@@ -41,10 +41,13 @@
     PreventOtherDrops: true
     AlwaysShowName: true
 剧毒蜘蛛:
-  Type: CAVE_SPIDER
+  Type: SPIDER
   Display: '&6剧毒蜘蛛'
   Health: 30
   Damage: 1
+  Disguise:
+    Type: CAVE_SPIDER
+    ShowName: true
   Modules:
     ThreatTable: true
   Drops:
