@@ -32,7 +32,7 @@
     - effect:particles{c=#000000;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
 木洞神秘商人冲击波-Hit:
   Skills:
-    - damage{a=30}
+    - damage{a=15}
     - Effect:explosion
 魔塔统治者冲击波:
   Conditions:
@@ -106,6 +106,7 @@
     - message{m="<mob.name>&d>><&co> &c算你厉害！"} @Trigger ~onDamaged <20%
     - message{m="<mob.name>&6逃跑了，但留下了骗你的物品！"} @Trigger
     - damage{amount=1000000} @Self
+    - delay 10
     - remove @self
 元素猎人冲击波:
   Cooldown: 20

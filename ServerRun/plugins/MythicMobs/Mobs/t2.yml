@@ -777,7 +777,6 @@ BOSS-魔塔统治者:
     PreventSunburn: true
   Skills:
     - skill{s=木洞神秘商人冲击波} @Self <80% ~onDamaged
-    - skill{s=护盾;sync=true} ~onDamaged 0.3
     - message{cooldown=50;m="<mob.name>&d>><&co> &c就你这点不痛不痒的攻击还想杀了我？"} @PlayersInRadius{r=20} ~onCombat <100% 0.3
     - message{cooldown=30;m="<mob.name>&d>><&co> &c小心点，我要动真格的了！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
     - message{cooldown=50;m="<mob.name>&d>><&co> &c有点实力嘛"} @PlayersInRadius{r=20} ~onCombat <80% 0.1
