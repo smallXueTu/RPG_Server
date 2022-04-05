@@ -76,7 +76,7 @@ public class Temp {
      */
     public static void addInjured(Entity entity, int s){
         if (!injured.containsKey(entity) && entity instanceof Player) {
-            playerStates.get(entity).add(new cn.LTCraft.core.entityClass.PlayerState(((Player) entity), "沉默 %s%S", () -> injured.get(entity) / 20d));
+            playerStates.get(entity).add(new cn.LTCraft.core.entityClass.PlayerState(((Player) entity), "沉默 %s%S", () -> injured.getOrDefault(entity, 0) / 20d));
         }
         injured.put(entity, s);
     }
@@ -88,7 +88,7 @@ public class Temp {
      */
     public static void addSilence(Entity entity, int s){
         if (!silence.containsKey(entity) && entity instanceof Player) {
-            playerStates.get(entity).add(new PlayerState(((Player) entity), "沉默 %s%S", () -> silence.get(entity) / 20d));
+            playerStates.get(entity).add(new PlayerState(((Player) entity), "沉默 %s%S", () -> silence.getOrDefault(entity, 0) / 20d));
         }
         silence.put(entity, s);
     }
