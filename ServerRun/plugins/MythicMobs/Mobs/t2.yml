@@ -273,12 +273,12 @@
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 8
+    - skillapi-exp 8-13
 中级-黑化的工程师:
   Type: villagezombie
   Display: '&e【中级】&6黑化的工程师'
   Health: 200
-  Damage: 5
+  Damage: 4
   Equipment:
     - 339 HAND
     - 工程师的扳手 OFFHAND
@@ -310,7 +310,7 @@
   Type: Skeleton
   Display: '&e【高级】&6暗影人'
   Health: 300
-  Damage: 4
+  Damage: 3
   Equipment:
     - 暗影之刃:HAND
 #    - 268 OFFHAND
@@ -324,20 +324,20 @@
     Player: '&e【高级】&6暗影人'
   Options:
     FollowRange: 6
-    MovementSpeed: 0.35
+    MovementSpeed: 0.3
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 13
+    - skillapi-exp 13-18
     - ltitem 暗影头盔 1 0.3
     - ltitem 暗影之刃 1 0.1
 高级-暗影使者:
   Type: Skeleton
   Display: '&e【高级】&6暗影使者'
   Health: 300
-  Damage: 4
+  Damage: 3
   Equipment:
     - 暗影之锤:HAND
     #    - 268 OFFHAND
@@ -351,20 +351,20 @@
     Player: '&e【高级】&6暗影使者'
   Options:
     FollowRange: 6
-    MovementSpeed: 0.35
+    MovementSpeed: 0.3
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 13
+    - skillapi-exp 13-18
     - ltitem 暗影之锤 1 0.1
     - ltitem 暗影胸甲 1 0.2
 恶魔-武器缴械者:
   Type: Skeleton
   Display: '&e【恶魔】&6武器缴械者'
   Health: 200
-  Damage: 4
+  Damage: 3
   Skills:
     - dropinventory{item="where=HAND,material=ANY,amount=1";nodrop=false} @trigger ~onDamaged 0.02
   Equipment:
@@ -378,13 +378,13 @@
     Player: '&e【恶魔】&6武器缴械者'
   Options:
     FollowRange: 6
-    MovementSpeed: 0.35
+    MovementSpeed: 0.3
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 18
+    - skillapi-exp 18-25
     - ltitem 暗影靴子 1 0.2
     - ltitem 暗影护腿 1 0.2
     - ltitem 骑士的圣剑 1 0.5
@@ -397,7 +397,7 @@
   Type: Skeleton
   Display: '&e【恶魔】&6装备缴械者'
   Health: 230
-  Damage: 5
+  Damage: 4
   Equipment:
     - 砧板剑:HAND
     #    - 268 OFFHAND
@@ -422,7 +422,7 @@
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 25
+    - skillapi-exp 25-30
     - ltitem 砧板剑 1 0.2
     - ltitem 暗黑靴子 1 0.1
     - ltitem 暗黑护腿 1 0.1
@@ -440,7 +440,7 @@
   Type: Skeleton
   Display: '&e【地狱】&6地狱之主'
   Health: 800
-  Damage: 12
+  Damage: 10
   Equipment:
     - 地狱之镰:HAND
     #    - 268 OFFHAND
@@ -471,7 +471,7 @@
   Type: Skeleton
   Display: '&e【地狱】&6地狱护者'
   Health: 300
-  Damage: 10
+  Damage: 9
   Equipment:
     - 地狱之镰:HAND
   Disguise:
@@ -493,7 +493,7 @@
   Type: Skeleton
   Display: '&e【地狱】&6地狱卫者'
   Health: 300
-  Damage: 10
+  Damage: 9
   Equipment:
     - 地狱之镰:HAND
     - 地狱钢铁胸甲:3
@@ -517,7 +517,7 @@
   Type: Skeleton
   Display: '&e【地狱】&6地狱统治者'
   Health: 1000
-  Damage: 15
+  Damage: 13
   Equipment:
     - 地狱之镰:HAND
     - 地狱钢铁头盔:HEAD
