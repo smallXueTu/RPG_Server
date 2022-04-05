@@ -101,12 +101,16 @@ public class PlayerListener  implements Listener {
             EntityDamageByEntityEvent entityDamageByEntityEvent = (EntityDamageByEntityEvent) player.getLastDamageCause();
             if (entityDamageByEntityEvent.getDamager() instanceof Player)sign = false;
         }
+        World world = player.getWorld();
         if (sign) {
             try {
                 Home home = Teleport.getInstance().getPlayerHomes().get(player.getName()).get("mainline");
                 if (home != null && home.getWorld().equals(player.getWorld())) {
                     event.setRespawnLocation(home.getLocation());
-                }else{
+                }else if (Game.rpgWorlds.contains(world.getName())){
+
+                    event.setRespawnLocation(player.getWorld().getSpawnLocation());
+                }else {
                     sign = false;
                 }
             } catch (Exception e) {
@@ -114,7 +118,7 @@ public class PlayerListener  implements Listener {
             }
         }
         if (!sign){
-            World world = Bukkit.getWorld("world");
+            world = Bukkit.getWorld("world");
             event.setRespawnLocation(world.getSpawnLocation());
         }
     }
@@ -420,7 +424,7 @@ public class PlayerListener  implements Listener {
                     player.getWorld().spawnParticle(Particle.END_ROD, player.getLocation(), 100);
                     playerData.addTag("default.解开t3第二关谜团");
                 }
-            }, 100);
+            }, 200);
         }
     }
 
