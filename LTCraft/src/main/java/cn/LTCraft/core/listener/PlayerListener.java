@@ -294,7 +294,7 @@ public class PlayerListener  implements Listener {
                     break;
                 }
             }
-            if (Config.getInstance().getWorldTitleYaml().contains(toWorld.toLowerCase())){
+            if (!event.isCancelled() && Config.getInstance().getWorldTitleYaml().contains(toWorld.toLowerCase())){
                 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {
                     List<String> list = Config.getInstance().getWorldTitleYaml().getStringList(toWorld.toLowerCase());
                     player.sendTitle(list.get(0), list.get(1), 60, 20, 20);
@@ -306,6 +306,7 @@ public class PlayerListener  implements Listener {
                     event.getCause() == PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT
             ){
                 event.setCancelled(true);
+                return;
             }
         }
         if (
