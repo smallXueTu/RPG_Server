@@ -21,7 +21,7 @@ public interface PlayerMapper {
      * @param playerInfo 要更新的信息
      * @return 如果成功
      */
-    @Update("update user set name = #{name}, password = #{password}, email = #{email}, qq = #{qq}, ip = #{ip}, gold = #{gold}, cumulative = #{cumulative}, last_play_time = #{lastPlayTime} where id = #{id}")
+    @Update("update user set name = #{name}, password = #{password}, email = #{email}, qq = #{qq}, ip = #{ip}, gold = #{gold}, cumulative = #{cumulative}, vip = #{vip}, last_play_time = #{lastPlayTime} where id = #{id}")
     boolean update(PlayerInfo playerInfo);
 
     /**

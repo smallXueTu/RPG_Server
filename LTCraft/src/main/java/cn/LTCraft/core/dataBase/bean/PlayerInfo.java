@@ -8,9 +8,9 @@
  */
 package cn.LTCraft.core.dataBase.bean;
 
-import cn.LTCraft.core.dataBase.mappers.PlayerMapper;
-import cn.LTCraft.core.dataBase.SQLQueue;
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.dataBase.SQLQueue;
+import cn.LTCraft.core.dataBase.mappers.PlayerMapper;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.Date;
@@ -52,7 +52,13 @@ public class PlayerInfo {
      */
     private double cumulative;
     /**
-     * 累计金额
+     * VIP
+     * FIXME
+     */
+    private String vip;
+    private VIP vipStatus = null;
+    /**
+     * 金币
      */
     private double gold;
     /**
@@ -144,6 +150,26 @@ public class PlayerInfo {
      */
     public String getConfirmPassword() {
         return confirmPassword;
+    }
+
+    /**
+     * 获取VIP状态
+     * @return VIP状态
+     */
+    public String getVip() {
+        return vip;
+    }
+
+    public VIP getVipStatus() {
+        if (vipStatus == null){
+            vipStatus = new VIP(vip);
+        }
+        return vipStatus;
+    }
+
+    public void setVipStatus(VIP vipStatus) {
+        this.vipStatus = vipStatus;
+        vip = vipStatus.toString();
     }
 
     /**
@@ -253,10 +279,46 @@ public class PlayerInfo {
                 ", qq=" + qq +
                 ", ip='" + ip + '\'' +
                 ", cumulative=" + cumulative +
+                ", vip=" + vip +
                 ", gold=" + gold +
                 ", registerDate='" + registerDate + '\'' +
                 ", lastPlayTime='" + lastPlayTime + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
+    }
+    static public class VIP {
+        static enum Level{
+            NONE,
+            VIP,
+            SVIP,
+            MVIP
+        }
+        private Level level = Level.NONE;
+        private Date expirationTime = new Date(-1L);
+        public VIP(String vip){
+            if (vip!=null && !vip.isEmpty()) {
+                String[] split = vip.split(":");
+                level = Level.valueOf(split[0].toUpperCase());
+                expirationTime = new Date(Long.parseLong(split[1]));
+            }
+        }
+        public VIP(Level level, long time){
+            this.level = level;
+            expirationTime = new Date(time);
+        }
+
+        public Level getLevel() {
+            return level;
+        }
+
+        public Date getExpirationTime() {
+            return expirationTime;
+        }
+
+        @Override
+        public String toString() {
+            if (level == Level.NONE)return null;
+            return level + ":" + expirationTime.getTime();
+        }
     }
 }
