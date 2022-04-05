@@ -58,7 +58,6 @@ public class BlockListener implements Listener{
             }
         }
     }
-
     @EventHandler
     public void onPlaceEvent(BlockPlaceEvent e) {
         Player player = e.getPlayer();
@@ -81,6 +80,10 @@ public class BlockListener implements Listener{
         }
     }
 
+    /**
+     * 阻止流体在资源世界保护点流动
+     * @param e .
+     */
     @EventHandler
     public void onPlaceEvent(BlockFromToEvent e) {
         Block block = e.getBlock();
@@ -96,6 +99,10 @@ public class BlockListener implements Listener{
 
     }
 
+    /**
+     * 修复潜影盒向-1或大于256方向延伸
+     * @param e .
+     */
     @EventHandler
     public void onBlockDispense(BlockDispenseEvent e) {
         Block b = e.getBlock();

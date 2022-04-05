@@ -65,6 +65,7 @@ public class Game {
             this.add("f1");
             this.add("f2");
             this.add("rpg");
+            this.add("RPG");
         }
     };
     public static final Map<String, String> worldNames = new HashMap<String, String>(){

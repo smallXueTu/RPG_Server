@@ -26,6 +26,7 @@ import net.minecraft.server.v1_12_R1.NBTBase;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
@@ -205,6 +206,7 @@ public class PlayerListener  implements Listener {
         Player player = event.getPlayer();
         Action action = event.getAction();
         Block block = event.getClickedBlock();
+        World world = player.getWorld();
         switch (action){
             case PHYSICAL:
                 if (event.getClickedBlock().getType() == Material.SOIL){
@@ -227,6 +229,16 @@ public class PlayerListener  implements Listener {
                     }
                 }
                 break;
+            case LEFT_CLICK_BLOCK:
+                if (block != null && Game.rpgWorlds.contains(world.getName())) {
+                    BlockFace blockFace = event.getBlockFace();
+                    Location add = block.getLocation().add(blockFace.getModX(), blockFace.getModY(), blockFace.getModZ());
+                    Block blockAt = world.getBlockAt(add);
+                    if (blockAt.getTypeId() == 51){
+                        event.setCancelled(true);
+                    }
+                }
+            break;
         }
         if (event.isCancelled())return;
         if (block != null && block.getState() instanceof Sign){
