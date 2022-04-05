@@ -2,7 +2,7 @@
   Type: Skeleton
   Display: '&e【初级】&6暗裔守卫者'
   Health: 600
-  Damage: 30
+  Damage: 25
   AIGoalSelectors:
     - clear
     - meleeattack
@@ -32,7 +32,7 @@
   Type: Skeleton
   Display: '&e【初级】&6暗裔守护'
   Health: 600
-  Damage: 30
+  Damage: 25
   AIGoalSelectors:
     - clear
     - meleeattack
@@ -62,7 +62,7 @@
   Type: Skeleton
   Display: '&e【中级】&6暗裔恶火'
   Health: 800
-  Damage: 30
+  Damage: 25
   AIGoalSelectors:
     - clear
     - meleeattack
