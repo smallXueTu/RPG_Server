@@ -1,11 +1,17 @@
 package cn.LTCraft.core.utils;
 
+import cn.LTCraft.core.Main;
 import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.game.skills.BaseSkill;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import com.earth2me.essentials.Essentials;
+import com.earth2me.essentials.I18n;
+import com.earth2me.essentials.Kit;
+import com.earth2me.essentials.User;
+import com.earth2me.essentials.commands.NoChargeException;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.player.PlayerData;
 import io.lumine.xikage.mythicmobs.MythicMobs;
@@ -24,8 +30,10 @@ import pl.betoncraft.betonquest.BetonQuest;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
 
 public class PlayerUtils {
     /**
@@ -232,6 +240,31 @@ public class PlayerUtils {
             Temp.discardOnly.add(craftItem);
             craftItem.setMomentum(new Vector(0, 0, 0));
             craftItem.setGravity(false);
+        }
+    }
+
+    /**
+     * 赐予玩家 ESS工具包
+     * @param player 玩家
+     * @param kitNames 工具包名字 以,分割
+     */
+    public static void giveKits(Player player, String kitNames) {
+        String[] kitList = kitNames.split(",");
+        Essentials essentials = Main.getInstance().getEssentials();
+        User user = new User(player, essentials);
+        for (String kitName : kitList) {
+            try {
+                if (kitName.isEmpty())continue;
+                Kit kit = new Kit(kitName, essentials);
+                kit.checkPerms(user);
+                kit.checkDelay(user);
+                kit.checkAffordable(user);
+                kit.setTime(user);
+                kit.expandItems(user);
+                kit.chargeUser(user);
+            } catch (Exception ignore) {
+
+            }
         }
     }
 }

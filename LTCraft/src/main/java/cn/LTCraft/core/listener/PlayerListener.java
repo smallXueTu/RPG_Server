@@ -82,6 +82,7 @@ public class PlayerListener  implements Listener {
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () ->
                 player.teleport(player.getWorld().getSpawnLocation())
             , 1);
+            PlayerUtils.giveKits(player, "tools");
         }
         Temp.onPlayerJoin(player);
         new PlayerConfig(player);
