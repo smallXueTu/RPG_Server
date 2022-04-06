@@ -354,6 +354,7 @@ public class PlayerListener  implements Listener {
         PlayerConfig.getConfigMap().remove(player.getName());
         LTGCommand.mapList.remove(player);
         LTGCommand.mapGate.remove(player);
+        e.setQuitMessage(null);
         PlayerUtils.sendActionMessage("§e" + player.getName() + "退出了游戏。");
     }
     /**
