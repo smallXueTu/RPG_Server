@@ -80,7 +80,7 @@ public class LTCoreCommand implements CommandExecutor {
                 }
                 break;
             case "test":
-                System.out.println("qwqqwq");
+                PlayerUtils.sendActionMessage(player, "123");
                 break;
             case "add":
                 if (args.length<3){

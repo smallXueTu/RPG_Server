@@ -15,9 +15,16 @@ import com.earth2me.essentials.commands.NoChargeException;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.player.PlayerData;
 import io.lumine.xikage.mythicmobs.MythicMobs;
+import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
+import net.minecraft.server.v1_12_R1.ChatComponentText;
+import net.minecraft.server.v1_12_R1.ChatMessageType;
+import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
+import net.minecraft.server.v1_12_R1.PlayerConnection;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftItem;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -29,10 +36,7 @@ import org.bukkit.util.Vector;
 import pl.betoncraft.betonquest.BetonQuest;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 
 public class PlayerUtils {
@@ -266,5 +270,20 @@ public class PlayerUtils {
 
             }
         }
+    }
+    public static void sendActionMessage(Player player, String message){
+        PlayerConnection conn = ((CraftPlayer)player).getHandle().playerConnection;
+        PacketPlayOutChat packet = new PacketPlayOutChat(new ChatComponentText(message), ChatMessageType.GAME_INFO);
+        conn.sendPacket(packet);
+    }
+    public static void sendActionMessage(Collection<? extends Player> players, String message){
+        for (Player player : players) {
+            PlayerConnection conn = ((CraftPlayer)player).getHandle().playerConnection;
+            PacketPlayOutChat packet = new PacketPlayOutChat(new ChatComponentText(message), ChatMessageType.GAME_INFO);
+            conn.sendPacket(packet);
+        }
+    }
+    public static void sendActionMessage(String message){
+        sendActionMessage(Bukkit.getOnlinePlayers(), message);
     }
 }

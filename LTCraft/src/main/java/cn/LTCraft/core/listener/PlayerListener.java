@@ -42,10 +42,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityCombustEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -86,6 +83,7 @@ public class PlayerListener  implements Listener {
         }
         Temp.onPlayerJoin(player);
         new PlayerConfig(player);
+        PlayerUtils.sendActionMessage("§e" + player.getName() + "加入了游戏。");
     }
 
     /**
@@ -356,6 +354,7 @@ public class PlayerListener  implements Listener {
         PlayerConfig.getConfigMap().remove(player.getName());
         LTGCommand.mapList.remove(player);
         LTGCommand.mapGate.remove(player);
+        PlayerUtils.sendActionMessage("§e" + player.getName() + "退出了游戏。");
     }
     /**
      * 伤害计算
@@ -604,13 +603,22 @@ public class PlayerListener  implements Listener {
         }
         for (CraftPlayer craftPlayer : craftPlayers) {
             if (craftPlayer == null)continue;
-            ItemStack itemStack = craftPlayer.getInventory().getItemInOffHand();
-            if (itemStack == null)continue;
+            ItemStack itemInOffHand = craftPlayer.getInventory().getItemInOffHand();
             if (
-                    itemStack.getTypeId() == 442
+                    itemInOffHand != null &&
+                    itemInOffHand.getTypeId() == 442
             ){
+                PlayerUtils.securityAddItem(craftPlayer, itemInOffHand.clone());
                 craftPlayer.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-                PlayerUtils.securityAddItem(craftPlayer, itemStack);
+                craftPlayer.sendMessage("§c服务器暂时不支持盾牌！");
+            }
+            ItemStack itemInMainHand = craftPlayer.getInventory().getItemInMainHand();
+            if (
+                    itemInMainHand != null &&
+                    itemInMainHand.getTypeId() == 442
+            ){
+                PlayerUtils.securityAddItem(craftPlayer, itemInMainHand.clone());
+                craftPlayer.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
                 craftPlayer.sendMessage("§c服务器暂时不支持盾牌！");
             }
         }
@@ -636,4 +644,22 @@ public class PlayerListener  implements Listener {
             }
         }
     }
+    /*
+     * TODO 翻译死亡消息
+     */
+    /*
+    @EventHandler
+    public void onDeathEvent(PlayerDeathEvent event){
+        Player player = event.getEntity();
+        EntityDamageEvent lastDamageCause = player.getLastDamageCause();
+        if (lastDamageCause instanceof EntityDamageByEntityEvent) {
+            EntityDamageByEntityEvent lastDamageCause1 = (EntityDamageByEntityEvent) lastDamageCause;
+            if (!(lastDamageCause1.getDamager() instanceof Player)) {
+                PlayerUtils.sendActionMessage(event.getDeathMessage());
+                event.setDeathMessage(null);
+            }
+        }
+    }
+
+     */
 }
