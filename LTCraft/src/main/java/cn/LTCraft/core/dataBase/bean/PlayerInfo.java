@@ -288,9 +288,9 @@ public class PlayerInfo {
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
     }
-    static public class VIP implements Comparable<VIP.Level>{
+    static public class VIP implements Comparable<VIP.Level>, Cloneable{
 
-        static enum Level{
+        public static enum Level{
             NONE(0),
             VIP(1),
             SVIP(2),
@@ -325,6 +325,15 @@ public class PlayerInfo {
         public Date getExpirationTime() {
             return expirationTime;
         }
+
+        public void setLevel(Level level) {
+            this.level = level;
+        }
+
+        public void setExpirationTime(Date expirationTime) {
+            this.expirationTime = expirationTime;
+        }
+
         @Override
         public int compareTo(@NotNull Level o) {
             return getLevel().grade - o.grade;
@@ -333,6 +342,11 @@ public class PlayerInfo {
         public String toString() {
             if (level == Level.NONE)return null;
             return level + ":" + expirationTime.getTime();
+        }
+
+        @Override
+        public VIP clone() {
+            return new VIP(level, expirationTime.getTime());
         }
     }
 }

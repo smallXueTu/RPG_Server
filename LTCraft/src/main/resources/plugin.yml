@@ -43,3 +43,7 @@ commands:
     description: 传送门管理
     usage: /ltg args...
     permission: op
+  vip:
+    description: VIP管理
+    usage: /vip args...
+    permission: true

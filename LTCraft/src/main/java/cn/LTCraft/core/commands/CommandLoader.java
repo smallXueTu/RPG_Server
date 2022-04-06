@@ -15,5 +15,6 @@ public class CommandLoader {
         new CInfoCommand();
         new LTECommand();
         new ClearCommand();
+        new VIPCommand();
     }
 }
