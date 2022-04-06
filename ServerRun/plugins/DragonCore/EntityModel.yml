@@ -175,7 +175,7 @@
   glowTexture: "t3/虚空毒蜥/texture.glow.png"
   animation: "t3/虚空毒蜥/model.animation.json"
   height: 1.5
-  width: 1.5
+  width: 2
   # 对于obj模型可采用缩放功能
   scale: 0.8
 虚空寒晶鸟:
