@@ -12,8 +12,10 @@ import cn.LTCraft.core.Main;
 import cn.LTCraft.core.dataBase.SQLQueue;
 import cn.LTCraft.core.dataBase.mappers.PlayerMapper;
 import org.apache.ibatis.session.SqlSession;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
+import java.util.logging.Level;
 
 /**
  * Created with IntelliJ IDEA.
@@ -286,12 +288,21 @@ public class PlayerInfo {
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
     }
-    static public class VIP {
+    static public class VIP implements Comparable<VIP.Level>{
+
         static enum Level{
-            NONE,
-            VIP,
-            SVIP,
-            MVIP
+            NONE(0),
+            VIP(1),
+            SVIP(2),
+            MVIP(3);
+            private int grade;
+            Level(int grade){
+                this.grade = grade;
+            }
+
+            public int getGrade() {
+                return grade;
+            }
         }
         private Level level = Level.NONE;
         private Date expirationTime = new Date(-1L);
@@ -314,7 +325,10 @@ public class PlayerInfo {
         public Date getExpirationTime() {
             return expirationTime;
         }
-
+        @Override
+        public int compareTo(@NotNull Level o) {
+            return getLevel().grade - o.grade;
+        }
         @Override
         public String toString() {
             if (level == Level.NONE)return null;
