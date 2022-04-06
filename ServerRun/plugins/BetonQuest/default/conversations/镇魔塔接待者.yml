@@ -42,4 +42,4 @@ player_options:
     text: '我已经迫不及待了！'
     conditions: ''
     pointer: ''
-    events: '前往第二层,选择无职业,删除前往镇魔塔标签'
+    events: '前往第二层,command.选择无职业,删除前往镇魔塔标签'

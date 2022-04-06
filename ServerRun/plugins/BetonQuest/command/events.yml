@@ -20,11 +20,11 @@
 #--------------- 拿 ---------------
 拿走魔塔统治者挑战券: take default.魔塔统治者挑战券
 #--------------- 其他 ---------------
-选择无职业: changeClass 基础 无职业
-选择刺客: changeClass 基础 刺客
-选择法师: changeClass 基础 法师
-选择战士: changeClass 基础 战士
-选择牧师: changeClass 基础 牧师
+选择无职业: changeClass 无职业
+选择刺客: changeClass 刺客
+选择法师: changeClass 法师
+选择战士: changeClass 战士
+选择牧师: changeClass 牧师
 重置等级: setClassLevel 1
 挑战魔塔统治者提示: message §l§a你消耗了一张魔塔统治者挑战券，挑战失败意味着你需要重新获取魔塔统治者挑战券再次挑战~
 #############################   t2 结束   #############################

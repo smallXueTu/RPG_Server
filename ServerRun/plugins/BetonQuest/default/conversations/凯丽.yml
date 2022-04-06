@@ -47,7 +47,7 @@ player_options:
     text: '好的！'
     conditions: ''
     pointer: ''
-    events: '选择一门职业,更改为第二个账户,选择无职业,添加选择职业标签'
+    events: '选择一门职业,更改为第二个账户,command.选择无职业,添加选择职业标签'
   '好的，我这就过去':
     text: '好的，我这就过去.'
     conditions: ''
