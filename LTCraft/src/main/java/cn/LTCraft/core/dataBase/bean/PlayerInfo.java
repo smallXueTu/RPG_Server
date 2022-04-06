@@ -11,6 +11,7 @@ package cn.LTCraft.core.dataBase.bean;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.dataBase.SQLQueue;
 import cn.LTCraft.core.dataBase.mappers.PlayerMapper;
+import cn.LTCraft.core.utils.Utils;
 import org.apache.ibatis.session.SqlSession;
 import org.jetbrains.annotations.NotNull;
 
@@ -291,17 +292,27 @@ public class PlayerInfo {
     static public class VIP implements Comparable<VIP.Level>, Cloneable{
 
         public static enum Level{
-            NONE(0),
-            VIP(1),
-            SVIP(2),
-            MVIP(3);
+            NONE(0, ""),
+            VIP(1, "§a"),
+            SVIP(2, "§c"),
+            MVIP(3, "§d");
             private int grade;
-            Level(int grade){
+            private String color;
+            Level(int grade, String color){
                 this.grade = grade;
+                this.color = color;
             }
 
             public int getGrade() {
                 return grade;
+            }
+
+            @Override
+            public String toString() {
+                return color + super.toString();
+            }
+            public String toStringClean() {
+                return color + super.toString();
             }
         }
         private Level level = Level.NONE;
@@ -310,12 +321,12 @@ public class PlayerInfo {
             if (vip!=null && !vip.isEmpty()) {
                 String[] split = vip.split(":");
                 level = Level.valueOf(split[0].toUpperCase());
-                expirationTime = new Date(Long.parseLong(split[1]));
+                expirationTime = new Date(Long.parseLong(split[1]) * 1000);
             }
         }
         public VIP(Level level, long time){
             this.level = level;
-            expirationTime = new Date(time);
+            expirationTime = new Date(time * 1000);
         }
 
         public Level getLevel() {
@@ -341,7 +352,7 @@ public class PlayerInfo {
         @Override
         public String toString() {
             if (level == Level.NONE)return null;
-            return level + ":" + expirationTime.getTime();
+            return Utils.clearColor(level.toString()) + ":" + expirationTime.getTime();
         }
 
         @Override

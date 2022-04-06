@@ -30,6 +30,7 @@ import me.arasple.mc.trmenu.module.internal.script.js.JavaScriptAgent;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
+import org.anjocaido.groupmanager.GroupManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -54,6 +55,7 @@ public class Main extends JavaPlugin {
     Essentials essentials;
     private LTCraftMessageHandler messageHandler;
     private Economy economy;
+    private GroupManager groupManager;
 
     public static Main getInstance(){
         return instance;
@@ -80,11 +82,12 @@ public class Main extends JavaPlugin {
         SQLManage = new SQLManage(SQLServer);
         GlobalRefresh.init(this);
         getServer().getScheduler().runTaskTimer(this, GlobalRefresh::refresh, 1, 1);
-
+        //hooks
         initVault();
         initBQ();
         initEss();
         initTrMenu();
+        initGM();
 
         this.messageHandler = new LTCraftMessageHandler();
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "LTCraft");
@@ -227,6 +230,14 @@ public class Main extends JavaPlugin {
             e.printStackTrace();
         }
     }
+    private void initGM(){
+        groupManager = ((GroupManager)Bukkit.getPluginManager().getPlugin("GroupManager"));
+    }
+
+    public GroupManager getGroupManager() {
+        return groupManager;
+    }
+
     public Config getConfigOBJ() {
         return config;
     }

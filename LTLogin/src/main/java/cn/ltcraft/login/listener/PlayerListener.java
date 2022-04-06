@@ -5,6 +5,8 @@ import cn.LTCraft.core.dataBase.SQLQueue;
 import cn.LTCraft.core.dataBase.bean.PlayerInfo;
 import cn.LTCraft.core.dataBase.mappers.PlayerMapper;
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import cn.LTCraft.core.utils.DateUtils;
+import cn.LTCraft.core.utils.PlayerUtils;
 import cn.LTCraft.core.utils.Utils;
 import cn.ltcraft.login.Login;
 import cn.ltcraft.login.other.PlayerStatus;
@@ -147,6 +149,17 @@ public class PlayerListener implements Listener {
                     player.updateInventory();
                     playerInfo.setIp(player.getAddress().toString().substring(1).split(":")[0]);
                     playerInfo.commitChanges();
+                    PlayerInfo.VIP vipStatus = playerInfo.getVipStatus();
+                    if (vipStatus.getLevel().getGrade() > 0 && !player.isOp()){
+                        if (vipStatus.getExpirationTime().getTime() < System.currentTimeMillis()){
+                            player.sendMessage("§l§e你的" + vipStatus.getLevel().toString() + "§e已到达期限，从现在起你无法再享受" + vipStatus.getLevel().toString() + "§e带来的权益！");
+                            playerInfo.setVipStatus(new PlayerInfo.VIP(null));
+                            PlayerUtils.setGroup(player, "default");
+                        }else {
+                            player.sendMessage("§l§e尊贵的" + vipStatus.getLevel().toString() + "§e，你的" + vipStatus.getLevel().toString() + "§e截止到" + DateUtils.simpleDateFormat.format(vipStatus.getExpirationTime()));
+                            PlayerUtils.setGroup(player, vipStatus.getLevel().toStringClean().toLowerCase());
+                        }
+                    }
                 }else{
                     Login.forceSendMessage(player, "§l§c抱歉，密码不对哦~");
                     if(message.startsWith("/")){

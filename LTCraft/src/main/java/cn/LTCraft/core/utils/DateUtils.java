@@ -1,9 +1,12 @@
 package cn.LTCraft.core.utils;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by Angel、 on 2022/4/6 11:02
  */
 public class DateUtils {
+    public final static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * 获取时间戳的天数
      * @param timeStamp 时间戳 秒 不是微妙！

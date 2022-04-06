@@ -21,8 +21,12 @@ import net.minecraft.server.v1_12_R1.ChatComponentText;
 import net.minecraft.server.v1_12_R1.ChatMessageType;
 import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
 import net.minecraft.server.v1_12_R1.PlayerConnection;
+import org.anjocaido.groupmanager.GroupManager;
+import org.anjocaido.groupmanager.data.Group;
+import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftItem;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
@@ -271,6 +275,12 @@ public class PlayerUtils {
             }
         }
     }
+
+    /**
+     * 发送动作 玩家物品栏上方显示
+     * @param player 玩家
+     * @param message 消息
+     */
     public static void sendActionMessage(Player player, String message){
         PlayerConnection conn = ((CraftPlayer)player).getHandle().playerConnection;
         PacketPlayOutChat packet = new PacketPlayOutChat(new ChatComponentText(message), ChatMessageType.GAME_INFO);
@@ -285,5 +295,18 @@ public class PlayerUtils {
     }
     public static void sendActionMessage(String message){
         sendActionMessage(Bukkit.getOnlinePlayers(), message);
+    }
+    public static void setGroup(Player player, String group, String world){
+        GroupManager groupManager = Main.getInstance().getGroupManager();
+        OverloadedWorldHolder worldData = groupManager.getWorldsHolder().getWorldData(world);
+        Group groupObj = worldData.getGroup(group);
+        if (groupObj != null) {
+            org.anjocaido.groupmanager.data.User user = worldData.getUser(player.getName());
+            user.setGroup(groupObj);
+        }
+    }
+    public static void setGroup(Player player, String group){
+        setGroup(player, group, "world");
+        setGroup(player, group, "zy");
     }
 }
