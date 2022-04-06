@@ -58,6 +58,16 @@ public class PlayerConfig {
         classAttConfig = getMythicConfig("classAtt." + PlayerUtils.getAccount(owner));
         try {
             classAttConfig.getKeys("skills");
+            config.save(file);
+        }catch (Exception e){
+            classAttConfig.set("skills", new HashMap<>());
+        }
+    }
+    public void updateClassAttConfig(int id){
+        classAttConfig = getMythicConfig("classAtt." + id);
+        try {
+            classAttConfig.getKeys("skills");
+            config.save(file);
         }catch (Exception e){
             classAttConfig.set("skills", new HashMap<>());
         }

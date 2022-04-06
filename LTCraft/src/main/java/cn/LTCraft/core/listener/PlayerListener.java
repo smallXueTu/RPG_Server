@@ -51,19 +51,18 @@ import pl.betoncraft.betonquest.database.PlayerData;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class PlayerListener  implements Listener {
     public static Map<String, String[]> signEdit = new HashMap<>();
 
     /**
-     * 玩家职业更新时间
+     * 玩家职业更新事件
      * @param event .
      */
     @EventHandler
     public void onAccountChange(PlayerAccountChangeEvent event){
         final Player player = event.getAccountData().getPlayer();
-        PlayerConfig.getPlayerConfig(player).updateClassAttConfig();
+        PlayerConfig.getPlayerConfig(player).updateClassAttConfig(event.getNewID());
     }
     @EventHandler
     public void onJoinEvent(PlayerJoinEvent e){

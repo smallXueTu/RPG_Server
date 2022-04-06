@@ -112,13 +112,9 @@ public class UseItemEffect {
                         }
                         classAtt.set("skills." + skillName + ".maxLevel", classAtt.getInteger("skills." + skillName + ".maxLevel") + 1);
                     }else {
-                        classAtt.set("skills." + skillName, new HashMap<String, Integer>(){
-                            {
-                                put("maxLevel", 1);
-                                put("level", 1);
-                                put("awakenLevel", 0);
-                            }
-                        });
+                        classAtt.set("skills." + skillName + ".maxLevel", 1);
+                        classAtt.set("skills." + skillName + ".level", 1);
+                        classAtt.set("skills." + skillName + ".awakenLevel", 0);
                     }
                     player.sendMessage("§a使用成功！");
                     count++;

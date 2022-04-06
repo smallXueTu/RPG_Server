@@ -24,8 +24,8 @@ public class CInfoCommand implements CommandExecutor{
         MythicConfig classAttConfig = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
         for (String skill : classAttConfig.getKeys("skills")) {
             player.sendMessage("§a" + skill + ":");
-            player.sendMessage("   §6技能等级:" + classAttConfig.getString("skills." + skill + ".level") + "/" +  classAttConfig.getString("skills." + skill + ".maxLevel"));
-            player.sendMessage("   §6觉醒等级:" + classAttConfig.getString("skills." + skill + ".awakenLevel") + "/5");
+            player.sendMessage("   §6技能等级:" + classAttConfig.getInteger("skills." + skill + ".level") + "/" +  classAttConfig.getInteger("skills." + skill + ".maxLevel"));
+            player.sendMessage("   §6觉醒等级:" + classAttConfig.getInteger("skills." + skill + ".awakenLevel") + "/5");
         }
         return true;
     }
