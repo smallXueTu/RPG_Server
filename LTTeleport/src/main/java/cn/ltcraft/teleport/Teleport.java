@@ -563,7 +563,9 @@ public class Teleport extends JavaPlugin implements Listener {
         }
     }
     public int getHomeMaxCount(Player player){
-        if (player.hasPermission("LTCraft.svip"))
+        if (player.hasPermission("LTCraft.mvip"))
+            return 10;
+        else if (player.hasPermission("LTCraft.svip"))
             return 7;
         else if (player.hasPermission("LTCraft.vip"))
             return 5;

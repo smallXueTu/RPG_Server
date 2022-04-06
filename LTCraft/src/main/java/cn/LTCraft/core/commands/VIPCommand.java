@@ -2,12 +2,14 @@ package cn.LTCraft.core.commands;
 
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.dataBase.bean.PlayerInfo;
+import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.utils.DateUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Player;
 
 import java.util.Date;
@@ -47,6 +49,7 @@ public class VIPCommand implements CommandExecutor {
         PlayerInfo.VIP.Level level;
         switch (args[0]){
             case "add":
+                if (!commandSender.isOp())return true;
                 if (args.length < 3){
                     commandSender.sendMessage("§c用法/vip add [player] [天数] [level]");
                     return true;
@@ -85,11 +88,12 @@ public class VIPCommand implements CommandExecutor {
                 commandSender.sendMessage("§c添加成功！");
             break;
             case "del":
+                if (!commandSender.isOp())return true;
                 if (args.length < 2){
                     commandSender.sendMessage("§c用法/vip del [player]");
                     return true;
                 }
-                target = Bukkit.getPlayerExact(args[1]);
+                target = Bukkit.getPlayer(args[1]);
                 if (target == null){
                     commandSender.sendMessage("§c玩家不在线" + args[1] + "！");
                     return true;
@@ -100,7 +104,21 @@ public class VIPCommand implements CommandExecutor {
                 playerInfo.setVipStatus(vipStatus);
                 playerInfo.commitChanges();
                 commandSender.sendMessage("§c删除成功！");
-                break;
+            break;
+            case "电击":
+                if (args.length < 2){
+                    commandSender.sendMessage("§c用法/vip 电击 [player]");
+                    return true;
+                }
+                if (player != null && Cooling.isCooling(player, "VIP电击")) {
+                    return true;
+                }
+                target = Bukkit.getPlayer(args[1]);
+                LightningStrike strike = target.getWorld().strikeLightningEffect(target.getLocation());
+                target.damage(0, strike);
+                target.getWorld().playSound(target.getLocation(), "entity.lightning.impact", 2f, 0.5f);
+                commandSender.sendMessage("§e玩家" + target.getName() + "受到了玩家" + commandSender.getName() + "的电击！");
+            break;
         }
         return true;
     }
