@@ -62,7 +62,7 @@
     - effect:particles{c=#FF0000;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
 魔塔统治者冲击波-Hit:
   Skills:
-    - damage{a=15}
+    - damage{a=12}
     - Effect:explosion
 爆炸护盾:
   Cooldown: 30
@@ -219,7 +219,7 @@
     - effect:particles{p=lava;amount=10;speed=0;hR=0.2;vR=0.2} @origin
     - effect:particles{p=flame;amount=20;speed=0;hR=0.2;vR=0.2} @origin
     - effect:sound{s=entity.arrow.hit;v=1;p=0}
-    - damage{a=15}
+    - damage{a=10}
 焱火三尺剑体end:
   Skills:
     - effect:particles{p=lava;amount=10;speed=0;hR=0.2;vR=0.2} @origin
@@ -243,7 +243,7 @@
     - effect:particlering{p=flame;points=10;radius=1;amount=3;hS=0.5;y=0.6;} @Self
     - effect:particlering{p=sweepAttack;points=10;radius=1;amount=3;hS=0.5;y=0.9;} @Self
     - delay 1
-    - damage{a=12} @PlayersInRadius{r=10}
+    - damage{a=8} @PlayersInRadius{r=10}
     - effect:sound{s=block.fire.ambient;v=2;p=1} @Self
     - effect:sound{s=entity.player.attack.sweep;v=1;p=1} @Self
     - delay 1

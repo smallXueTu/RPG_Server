@@ -1,0 +1,10 @@
+暗魔:
+  Id: 267
+  Data: 0
+  Display: '&6暗魔'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true

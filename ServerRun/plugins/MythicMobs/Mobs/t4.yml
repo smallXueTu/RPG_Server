@@ -15,7 +15,7 @@ t4火焰粒子门1:
   Health: 5000
   Damage: 20
   Equipment:
-    - Air:HAND
+    - 暗魔:HAND
   Disguise:
     Type: Player
     Skin: '&6恶魔古堡守护者'

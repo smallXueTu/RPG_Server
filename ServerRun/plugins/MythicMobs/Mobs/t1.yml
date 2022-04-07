@@ -43,7 +43,7 @@
 剧毒蜘蛛:
   Type: SPIDER
   Display: '&6剧毒蜘蛛'
-  Health: 30
+  Health: 20
   Damage: 1
   Disguise:
     Type: CAVE_SPIDER
@@ -61,7 +61,7 @@
 沙漠剥皮者:
   Type: HUSK
   Display: '&6沙漠剥皮者'
-  Health: 30
+  Health: 20
   Damage: 1
   Modules:
     ThreatTable: true
@@ -107,7 +107,7 @@
 入侵母体:
   Type: ZOMBIE
   Display: '&6入侵母体'
-  Health: 40
+  Health: 30
   Damage: 5
   Modules:
     ThreatTable: true
@@ -121,7 +121,7 @@
 病毒原体:
   Type: ZOMBIE
   Display: '&6病毒原体'
-  Health: 300
+  Health: 200
   Damage: 5
   AIGoalSelectors:
     - 0 clear

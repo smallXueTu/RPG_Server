@@ -20,3 +20,14 @@ t4火焰粒子门1:
     - addBQTag{t=default.已击杀古堡守护者} @trigger
     - damage{amount=1000000} @Self
     - remove @self
+触发T4对话1:
+  Skills:
+    - message{m="&d<trigger.name>&r>> &6终于进来了，看这里的怪物都好凶啊。"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6谁知道翟纳若搞这个传送门是干嘛的。"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6应该是又是什么锻炼自己的地方..."} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6不管了，先看看有什么厉害的武器和装备，好回虚无之境拿到传说武器！"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6最好还是小心点吧，先看看交易盘有什么吧。"} @Self

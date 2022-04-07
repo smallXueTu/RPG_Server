@@ -18,7 +18,7 @@ t3test:
   Skills:
     - teleportto{c=289,10,127;w=t3}
 虚无舰出现意外:
-  Cooldown: 30
+  Cooldown: 120
   TargetConditions:
     - HasBQTag{t=default.请求凯特开往指定方向}
   Skills:
@@ -83,7 +83,7 @@ t3test:
     - message{m="&d时空号劫持者&r>> &6待在这里也不是办法，你最好找一下出去的方法！"} @Self
     - message{m="&d时空号劫持者&r>> &6而我也是有使命的，不能擅自行动！"} @Self
 遇到虚空圣殿守护者:
-  Cooldown: 60
+  Cooldown: 120
   TargetConditions:
     - HasBQTag{t=default.已击杀虚空圣殿守护者}<&csp>false
   Skills:
@@ -140,7 +140,7 @@ t3test:
     - leap{velocity=500} @target
     - runaitargetselector{target=players}
 从虚无时空圣殿传送出来:
-  Cooldown: 30
+  Cooldown: 120
   Skills:
     - sound{s=block.portal.travel;p=1;v=1;} @Self
     - sendAction{"type":"blackScreen","time":200}
@@ -161,3 +161,4 @@ t3test:
     - message{m="&d<trigger.name>&r>> &6不过好多传送门啊，感觉想是发现了新大陆！"} @Self
     - sendtitle{title="&6新的传送点&r：&dRPG世界";subtitle="&d你可以在菜单->传送菜单->RPG世界找到它！";d=60;fi=20;o=20} @Self
     - sound{s=ui.toast.challenge_completep=1;v=1;} @Self
+    - execBQEvent{e=保存主线位置到T4进度1}

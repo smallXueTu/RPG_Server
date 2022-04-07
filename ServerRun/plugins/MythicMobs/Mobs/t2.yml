@@ -1,7 +1,7 @@
 雪地暴民:
   Type: ZOMBIE
   Display: '&6雪地暴民'
-  Health: 60
+  Health: 40
   Damage: 1
   Options:
     FollowRange: 10
@@ -17,7 +17,7 @@
 地底人:
   Type: ZOMBIE
   Display: '&6地底人'
-  Health: 60
+  Health: 40
   Damage: 1
   Options:
     FollowRange: 10
@@ -54,7 +54,7 @@
 废区冤灵:
   Type: ZOMBIE
   Display: '&6废区冤灵'
-  Health: 65
+  Health: 45
   Damage: 2
   Options:
     FollowRange: 10
@@ -72,7 +72,7 @@
 麦田小偷:
   Type: ZOMBIE
   Display: '&6麦田小偷'
-  Health: 150
+  Health: 100
   Damage: 2
   Disguise:
     Type: Player
@@ -93,7 +93,7 @@
 岩浆人:
   Type: BLAZE
   Display: '&6岩浆人'
-  Health: 20
+  Health: 15
   Damage: 2
   Options:
     FollowRange: 10
@@ -105,7 +105,7 @@
 小蜘蛛:
   Type: CAVE_SPIDER
   Display: '&6小蜘蛛'
-  Health: 80
+  Health: 50
   Damage: 0.5
 #  AIGoalSelectors:
 #    - clear
@@ -122,7 +122,7 @@
 洞穴蜘蛛:
   Type: CAVE_SPIDER
   Display: '&6洞穴蜘蛛'
-  Health: 80
+  Health: 50
   Damage: 0.5
 #  AIGoalSelectors:
 #    - clear
@@ -139,7 +139,7 @@
 火焰蜘蛛:
   Type: SPIDER
   Display: '&6火焰蜘蛛'
-  Health: 120
+  Health: 80
   Damage: 1
 #  AIGoalSelectors:
 #    - clear
@@ -160,7 +160,7 @@
 水灵蜘蛛:
   Type: SPIDER
   Display: '&6水灵蜘蛛'
-  Health: 120
+  Health: 80
   Damage: 1
   AIGoalSelectors:
 #    - clear
@@ -183,7 +183,7 @@
 蜘蛛之主:
   Type: ZOMBIE
   Display: '&6蜘蛛之主'
-  Health: 1000
+  Health: 800
   Damage: 2
   Disguise:
     Type: Player
@@ -235,7 +235,7 @@
 入门-丧尸:
   Type: ZOMBIE
   Display: '&e【入门】&6丧尸'
-  Health: 150
+  Health: 120
   Damage: 2
   Options:
     FollowRange: 6
@@ -249,7 +249,7 @@
 初级-丧魔:
   Type: ZOMBIE
   Display: '&e【初级】&6丧魔'
-  Health: 200
+  Health: 150
   Damage: 2.5
   Options:
     FollowRange: 6
@@ -263,7 +263,7 @@
 初级-丧尸博士:
   Type: ZOMBIE
   Display: '&e【初级】&6丧尸博士'
-  Health: 200
+  Health: 150
   Damage: 3
   Options:
     FollowRange: 6
@@ -277,7 +277,7 @@
 中级-黑化的工程师:
   Type: villagezombie
   Display: '&e【中级】&6黑化的工程师'
-  Health: 200
+  Health: 150
   Damage: 4
   Equipment:
     - 339 HAND
@@ -295,7 +295,7 @@
 中级-博士的试验品:
   Type: villagezombie
   Display: '&e【中级】&6博士的试验品'
-  Health: 200
+  Health: 150
   Damage: 4
   Options:
     FollowRange: 6
@@ -309,7 +309,7 @@
 高级-暗影人:
   Type: Skeleton
   Display: '&e【高级】&6暗影人'
-  Health: 300
+  Health: 200
   Damage: 3
   Equipment:
     - 暗影之刃:HAND
@@ -336,7 +336,7 @@
 高级-暗影使者:
   Type: Skeleton
   Display: '&e【高级】&6暗影使者'
-  Health: 300
+  Health: 200
   Damage: 3
   Equipment:
     - 暗影之锤:HAND
@@ -363,7 +363,7 @@
 恶魔-武器缴械者:
   Type: Skeleton
   Display: '&e【恶魔】&6武器缴械者'
-  Health: 200
+  Health: 150
   Damage: 3
   Skills:
     - dropinventory{item="where=HAND,material=ANY,amount=1";nodrop=false} @trigger ~onDamaged 0.02
@@ -396,7 +396,7 @@
 恶魔-装备缴械者:
   Type: Skeleton
   Display: '&e【恶魔】&6装备缴械者'
-  Health: 230
+  Health: 180
   Damage: 4
   Equipment:
     - 砧板剑:HAND
@@ -440,7 +440,7 @@
   Type: Skeleton
   Display: '&e【地狱】&6地狱之主'
   Health: 800
-  Damage: 10
+  Damage: 8
   Equipment:
     - 地狱之镰:HAND
     #    - 268 OFFHAND
@@ -470,8 +470,8 @@
 地狱-地狱护者:
   Type: Skeleton
   Display: '&e【地狱】&6地狱护者'
-  Health: 300
-  Damage: 9
+  Health: 250
+  Damage: 6
   Equipment:
     - 地狱之镰:HAND
   Disguise:
@@ -493,7 +493,7 @@
   Type: Skeleton
   Display: '&e【地狱】&6地狱卫者'
   Health: 300
-  Damage: 9
+  Damage: 6
   Equipment:
     - 地狱之镰:HAND
     - 地狱钢铁胸甲:3
@@ -517,7 +517,7 @@
   Type: Skeleton
   Display: '&e【地狱】&6地狱统治者'
   Health: 1000
-  Damage: 13
+  Damage: 8
   Equipment:
     - 地狱之镰:HAND
     - 地狱钢铁头盔:HEAD
@@ -543,8 +543,8 @@
 BOSS-魔塔统治者-资格分身:
   Type: Skeleton
   Display: '&e【BOSS】&6魔塔统治者'
-  Health: 1500
-  Damage: 10
+  Health: 1200
+  Damage: 9
   DamageModifiers:
     - FIRE 0
     - FIRE_TICK 0
@@ -577,7 +577,7 @@ BOSS-魔塔统治者-资格分身:
 BOSS-魔塔统治者:
   Type: Skeleton
   Display: '&e【BOSS】&6魔塔统治者'
-  Health: 2000
+  Health: 1500
   Damage: 10
   DamageModifiers:
     - FIRE 0
@@ -610,7 +610,7 @@ BOSS-魔塔统治者:
 水魔-元素入侵者:
   Type: Skeleton
   Display: '&e【水魔】&6元素入侵者'
-  Health: 400
+  Health: 300
   Damage: 3
   Equipment:
     - 水之法杖:HAND
@@ -656,8 +656,8 @@ BOSS-魔塔统治者:
 木魔-元素入侵者:
   Type: Skeleton
   Display: '&e【木魔】&6元素入侵者'
-  Health: 400
-  Damage: 5
+  Health: 250
+  Damage: 1
   Equipment:
     - 280:HAND
   Disguise:
@@ -677,7 +677,7 @@ BOSS-魔塔统治者:
 火魔-元素入侵者:
   Type: Skeleton
   Display: '&e【火魔】&6元素入侵者'
-  Health: 1000
+  Health: 500
   Damage: 6
   Equipment:
     - 火之法杖:HAND
@@ -707,7 +707,7 @@ BOSS-魔塔统治者:
 钢魔-元素入侵者:
   Type: Skeleton
   Display: '&e【钢魔】&6元素入侵者'
-  Health: 500
+  Health: 350
   Damage: 6
   Equipment:
     - 铁棍:HAND
@@ -730,7 +730,7 @@ BOSS-魔塔统治者:
 元素-元素猎人:
   Type: Skeleton
   Display: '&e【元素】&6元素猎人'
-  Health: 400
+  Health: 300
   Damage: 6
   Equipment:
     - 元素之刃:HAND
@@ -790,8 +790,8 @@ BOSS-魔塔统治者:
 符文蜘蛛:
   Type: Spider
   Display: '&e【入门】&6符文蜘蛛'
-  Health: 150
-  Damage: 8
+  Health: 100
+  Damage: 6
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
@@ -806,8 +806,8 @@ BOSS-魔塔统治者:
 水晶蝎子:
   Type: Spider
   Display: '&e【初级】&6水晶蝎子'
-  Health: 150
-  Damage: 9
+  Health: 100
+  Damage: 7
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
@@ -822,8 +822,8 @@ BOSS-魔塔统治者:
 魔化蜘蛛:
   Type: Spider
   Display: '&e【中级】&6魔化蜘蛛'
-  Health: 150
-  Damage: 11
+  Health: 100
+  Damage: 8
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
@@ -839,8 +839,8 @@ BOSS-魔塔统治者:
 遗迹蜘蛛:
   Type: Spider
   Display: '&e【高级】&6遗迹蜘蛛'
-  Health: 200
-  Damage: 12
+  Health: 130
+  Damage: 9
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
@@ -922,8 +922,8 @@ BOSS-魔塔统治者:
 恶火翼兽:
   Type: Skeleton
   Display: '&e【高级】&6恶火翼兽'
-  Health: 300
-  Damage: 15
+  Health: 200
+  Damage: 10
   AIGoalSelectors:
     - clear
     - meleeattack
@@ -948,8 +948,8 @@ BOSS-魔塔统治者:
 恶火兽:
   Type: Skeleton
   Display: '&e【高级】&6恶火兽'
-  Health: 400
-  Damage: 15
+  Health: 250
+  Damage: 10
   AIGoalSelectors:
     - clear
     - meleeattack
@@ -1008,7 +1008,7 @@ BOSS-恶火圣殿统治者:
   Type: Skeleton
   Display: '&e【BOSS】&6恶火统治者'
   Health: 5000
-  Damage: 16
+  Damage: 10
   DamageModifiers:
     - FIRE 0
     - FIRE_TICK 0

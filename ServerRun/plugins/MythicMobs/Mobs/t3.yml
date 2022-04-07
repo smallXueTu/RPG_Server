@@ -34,8 +34,8 @@ t3火焰粒子门3:
 虚空圣殿守护者:
   Type: Skeleton
   Display: '&6虚空圣殿守护者'
-  Health: 5000
-  Damage: 16
+  Health: 3000
+  Damage: 10
   Equipment:
     - 虚空剑:HAND
   Options:
@@ -64,8 +64,8 @@ t3火焰粒子门3:
 魔藤树:
   Type: Skeleton
   Display: '&6魔藤树'
-  Health: 500
-  Damage: 13
+  Health: 300
+  Damage: 10
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -85,8 +85,8 @@ t3火焰粒子门3:
 虚空矿工:
   Type: Skeleton
   Display: '&6虚空矿工'
-  Health: 600
-  Damage: 16
+  Health: 400
+  Damage: 10
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -112,8 +112,8 @@ t3火焰粒子门3:
 炼狱炎火龟:
   Type: PIG_ZOMBIE
   Display: '&6炼狱炎火龟'
-  Health: 600
-  Damage: 20
+  Health: 400
+  Damage: 12
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -133,7 +133,7 @@ t3火焰粒子门3:
 虚空毒蜥:
   Type: Spider
   Display: '&6虚空毒蜥'
-  Health: 800
+  Health: 500
   Damage: 10
   Options:
     FollowRange: 8
@@ -154,8 +154,8 @@ t3火焰粒子门3:
 虚空之灵:
   Type: Skeleton
   Display: '&6虚空之灵'
-  Health: 3000
-  Damage: 8
+  Health: 2000
+  Damage: 6
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -184,8 +184,8 @@ t3火焰粒子门3:
 虚空寒晶鸟:
   Type: Skeleton
   Display: '&6虚空寒晶鸟'
-  Health: 800
-  Damage: 20
+  Health: 600
+  Damage: 15
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -205,8 +205,8 @@ t3火焰粒子门3:
 寒晶凤凰:
   Type: Skeleton
   Display: '&6寒晶凤凰'
-  Health: 3000
-  Damage: 20
+  Health: 2000
+  Damage: 15
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -226,8 +226,8 @@ t3火焰粒子门3:
 虚空金虎:
   Type: PIG_ZOMBIE
   Display: '&6虚空金虎'
-  Health: 1000
-  Damage: 30
+  Health: 700
+  Damage: 25
   Options:
     FollowRange: 16
     MovementSpeed: 0.2
@@ -251,7 +251,7 @@ t3火焰粒子门3:
 虚空虎王:
   Type: PIG_ZOMBIE
   Display: '&6虚空虎王'
-  Health: 3000
+  Health: 2000
   Damage: 30
   Options:
     FollowRange: 16
