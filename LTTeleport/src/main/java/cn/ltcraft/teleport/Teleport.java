@@ -251,12 +251,15 @@ public class Teleport extends JavaPlugin implements Listener {
      */
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        System.out.println(Arrays.toString(args));
         switch (command.getName()) {
             case "warp":
             case "delwarp":
                 return tmpWarps.keySet().stream().filter(s -> s.startsWith(args.length <= 1?"":args[1])).collect(Collectors.toList());
             case "home":
             case "delhome":
+                System.out.println(args.length <= 1?"":args[1]);
+                System.out.println(playerHomes.get(sender.getName()).keySet().stream().filter(s -> s.startsWith(args.length <= 1?"":args[1])).collect(Collectors.toList()));
                 return playerHomes.get(sender.getName()).keySet().stream().filter(s -> s.startsWith(args.length <= 1?"":args[1])).collect(Collectors.toList());
         }
         return null;
@@ -294,10 +297,11 @@ public class Teleport extends JavaPlugin implements Listener {
             if (Cooling.isCooling(sp, "传送命令")) {
                 return true;
             }
-            Cooling.cooling(sp, "传送命令", 5, "随机命令剩余冷却时间：%s%S");
+            Cooling.cooling(sp, "传送命令", 5, "传送命令剩余冷却时间：%s%S");
         }
         switch (command.getName()){
             case "tpa":
+                if (sp == null)return true;
                 if (args.length==0){
                     sender.sendMessage("§c用法/tpa 目标玩家ID");
                     return true;
@@ -315,6 +319,10 @@ public class Teleport extends JavaPlugin implements Listener {
                     sender.sendMessage("§c你们两个已经存在一个请求了请等待处理或者到期！");
                     return true;
                 }
+                if (Cooling.isCooling(sp, "TPA命令")) {
+                    return true;
+                }
+                Cooling.cooling(sp, "TPA命令", 10, "TPA命令剩余冷却时间：%s%S");
                 message = new TextComponent("§e玩家"+sender.getName()+"想往你这瞧瞧，你可以在30秒内做出决定：");
                 accept = new TextComponent("[点我接受]");
                 accept.setColor(ChatColor.GREEN);
@@ -375,6 +383,7 @@ public class Teleport extends JavaPlugin implements Listener {
                 request.getPlayer().sendMessage("§a"+sender.getName()+"接受了你的请求~");
             break;
             case "tpahere":
+                if (sp == null)return true;
                 if (args.length==0){
                     sender.sendMessage("§c用法/tpahere 目标玩家ID");
                     return true;
@@ -392,6 +401,10 @@ public class Teleport extends JavaPlugin implements Listener {
                     sender.sendMessage("§c你们两个已经存在一个请求了请等待处理或者到期！");
                     return true;
                 }
+                if (Cooling.isCooling(sp, "TPA命令")) {
+                    return true;
+                }
+                Cooling.cooling(sp, "TPA命令", 10, "TPA命令剩余冷却时间：%s%S");
                 message = new TextComponent("§e玩家"+sender.getName()+"邀请你过去喝茶，你可以在30秒内做出决定：");
                 accept = new TextComponent("[点我接受]");
                 accept.setColor(ChatColor.GREEN);
