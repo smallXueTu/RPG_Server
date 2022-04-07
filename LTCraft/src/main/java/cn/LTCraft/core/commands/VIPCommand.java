@@ -99,9 +99,9 @@ public class VIPCommand implements CommandExecutor {
                     return true;
                 }
                 playerInfo = PlayerConfig.getPlayerConfig(target).getPlayerInfo();
-                PlayerInfo.VIP vipStatus = playerInfo.getVipStatus().clone();
-                vipStatus.setLevel(PlayerInfo.VIP.Level.NONE);
-                playerInfo.setVipStatus(vipStatus);
+                vip = playerInfo.getVipStatus().clone();
+                vip.setLevel(PlayerInfo.VIP.Level.NONE);
+                playerInfo.setVipStatus(vip);
                 playerInfo.commitChanges();
                 commandSender.sendMessage("§c删除成功！");
             break;
@@ -110,14 +110,21 @@ public class VIPCommand implements CommandExecutor {
                     commandSender.sendMessage("§c用法/vip 电击 [player]");
                     return true;
                 }
-                if (player != null && Cooling.isCooling(player, "VIP电击")) {
+                if (player == null || Cooling.isCooling(player, "VIP电击")) {
+                    return true;
+                }
+                playerInfo = PlayerConfig.getPlayerConfig(player).getPlayerInfo();
+                vip = playerInfo.getVipStatus();
+                if (vip.compareTo(PlayerInfo.VIP.Level.VIP) < 0){
+                    commandSender.sendMessage("§c你没有VIP权益！");
                     return true;
                 }
                 target = Bukkit.getPlayer(args[1]);
                 LightningStrike strike = target.getWorld().strikeLightningEffect(target.getLocation());
                 target.damage(0, strike);
                 target.getWorld().playSound(target.getLocation(), "entity.lightning.impact", 2f, 0.5f);
-                commandSender.sendMessage("§e玩家" + target.getName() + "受到了玩家" + commandSender.getName() + "的电击！");
+                commandSender.sendMessage("§e玩家" + target.getName() + "受到了" +  vip.getLevel().toString() + "§e玩家" + commandSender.getName() + "的电击！");
+                Cooling.cooling(player, "VIP电击", 30 - vip.getLevel().getGrade() * 10L, "VIP电击剩余冷却时间：%s%S");
             break;
         }
         return true;
