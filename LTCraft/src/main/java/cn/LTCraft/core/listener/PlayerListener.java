@@ -82,6 +82,7 @@ public class PlayerListener  implements Listener {
         }
         Temp.onPlayerJoin(player);
         new PlayerConfig(player);
+        e.setJoinMessage(null);
         PlayerUtils.sendActionMessage("§e" + player.getName() + "加入了游戏。");
 
     }
