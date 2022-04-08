@@ -613,23 +613,25 @@ public class PlayerListener  implements Listener {
         }
         for (CraftPlayer craftPlayer : craftPlayers) {
             if (craftPlayer == null)continue;
-            ItemStack itemInOffHand = craftPlayer.getInventory().getItemInOffHand();
-            if (
-                    itemInOffHand != null &&
-                    itemInOffHand.getTypeId() == 442
-            ){
-                PlayerUtils.securityAddItem(craftPlayer, itemInOffHand.clone());
-                craftPlayer.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-                craftPlayer.sendMessage("§c服务器暂时不支持盾牌！");
-            }
-            ItemStack itemInMainHand = craftPlayer.getInventory().getItemInMainHand();
-            if (
-                    itemInMainHand != null &&
-                    itemInMainHand.getTypeId() == 442
-            ){
-                PlayerUtils.securityAddItem(craftPlayer, itemInMainHand.clone());
-                craftPlayer.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
-                craftPlayer.sendMessage("§c服务器暂时不支持盾牌！");
+            if (Game.rpgWorlds.contains(craftPlayer.getWorld().getName())) {
+                ItemStack itemInOffHand = craftPlayer.getInventory().getItemInOffHand();
+                if (
+                        itemInOffHand != null &&
+                                itemInOffHand.getTypeId() == 442
+                ) {
+                    PlayerUtils.securityAddItem(craftPlayer, itemInOffHand.clone());
+                    craftPlayer.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
+                    craftPlayer.sendMessage("§cRPG世界暂时不支持盾牌！");
+                }
+                ItemStack itemInMainHand = craftPlayer.getInventory().getItemInMainHand();
+                if (
+                        itemInMainHand != null &&
+                                itemInMainHand.getTypeId() == 442
+                ) {
+                    PlayerUtils.securityAddItem(craftPlayer, itemInMainHand.clone());
+                    craftPlayer.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
+                    craftPlayer.sendMessage("§cRPG世界暂时不支持盾牌！");
+                }
             }
         }
         if (damager instanceof Player){
