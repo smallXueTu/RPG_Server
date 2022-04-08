@@ -1,5 +1,6 @@
 package cn.LTCraft.core.hook.MM.mechanics;
 
+import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.entityClass.RandomValue;
 import cn.LTCraft.core.utils.Utils;
@@ -11,6 +12,8 @@ import io.lumine.xikage.mythicmobs.skills.SkillMetadata;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+
+import java.util.concurrent.Future;
 
 public class DropGoldCoins  extends SkillMechanic implements ITargetedLocationSkill {
     private final RandomValue count;
@@ -25,15 +28,17 @@ public class DropGoldCoins  extends SkillMechanic implements ITargetedLocationSk
     @Override
     public boolean castAtLocation(SkillMetadata skillMetadata, AbstractLocation abstractLocation) {
         World world = Bukkit.getWorld(abstractLocation.getWorld().getName());
-        int count = (int) this.count.getValue();
-        for (int i = 0; i < count; i++) {
-            double x = Utils.getRandom().nextDouble() * radius;
-            double z = Utils.getRandom().nextDouble() * radius;
-            world.dropItem(new Location(world,
-                    abstractLocation.getX() + (Utils.getRandom().nextBoolean()?x:0-x),
-                    abstractLocation.getY(),
-                    abstractLocation.getZ() + (Utils.getRandom().nextBoolean()?z:0-z)), new ClutterItem(drop, ClutterItem.ItemSource.LTCraft).generate());
-        }
+        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+            int count = (int) this.count.getValue();
+            for (int i = 0; i < count; i++) {
+                double x = Utils.getRandom().nextDouble() * radius;
+                double z = Utils.getRandom().nextDouble() * radius;
+                world.dropItem(new Location(world,
+                        abstractLocation.getX() + (Utils.getRandom().nextBoolean() ? x : 0 - x),
+                        abstractLocation.getY(),
+                        abstractLocation.getZ() + (Utils.getRandom().nextBoolean() ? z : 0 - z)), new ClutterItem(drop, ClutterItem.ItemSource.LTCraft).generate());
+            }
+        }, 0);
         return true;
     }
 }

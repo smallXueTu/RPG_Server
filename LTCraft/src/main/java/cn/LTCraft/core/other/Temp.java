@@ -3,6 +3,7 @@ package cn.LTCraft.core.other;
 import cn.LTCraft.core.entityClass.PlayerState;
 import cn.LTCraft.core.game.skills.shields.BaseShield;
 import cn.LTCraft.core.game.skills.shields.Shield;
+import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;

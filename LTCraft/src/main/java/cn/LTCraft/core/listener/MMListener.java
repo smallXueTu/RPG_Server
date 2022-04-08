@@ -52,6 +52,8 @@ public class MMListener implements Listener {
             event.register(new Disarm(event.getContainer().getConfigLine(), event.getConfig()));
         }else if (event.getMechanicName().equalsIgnoreCase("dropGoldCoins")){
             event.register(new DropGoldCoins(event.getContainer().getConfigLine(), event.getConfig()));
+        }else if (event.getMechanicName().equalsIgnoreCase("summonTheEnemy")){
+            event.register(new SummonForMob(event.getContainer().getConfigLine(), event.getConfig()));
         }
     }
 

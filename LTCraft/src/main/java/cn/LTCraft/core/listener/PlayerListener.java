@@ -3,6 +3,7 @@ package cn.LTCraft.core.listener;
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.commands.LTGCommand;
 import cn.LTCraft.core.entityClass.TeleportGate;
+import cn.LTCraft.core.game.TargetOnlyMobsManager;
 import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.Main;
@@ -21,6 +22,9 @@ import cn.ltcraft.teleport.Home;
 import cn.ltcraft.teleport.Teleport;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
+import io.lumine.xikage.mythicmobs.MythicMobs;
+import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
+import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.NBTBase;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
@@ -84,7 +88,6 @@ public class PlayerListener  implements Listener {
         new PlayerConfig(player);
         e.setJoinMessage(null);
         PlayerUtils.sendActionMessage("§e" + player.getName() + "加入了游戏。");
-
     }
 
     /**
@@ -600,8 +603,13 @@ public class PlayerListener  implements Listener {
     )
     public void onEntityDamageByEntityHigh(EntityDamageByEntityEvent event){
         CraftPlayer[] craftPlayers = new CraftPlayer[2];
-        if (event.getEntity() instanceof Player) {
-            craftPlayers[1] = ((CraftPlayer)event.getEntity());
+        Entity damager = event.getDamager();
+        Entity entity = event.getEntity();
+        if (damager instanceof Player){
+            craftPlayers[0] = ((CraftPlayer) damager);
+        }
+        if (entity instanceof Player) {
+            craftPlayers[1] = ((CraftPlayer) entity);
         }
         for (CraftPlayer craftPlayer : craftPlayers) {
             if (craftPlayer == null)continue;
@@ -622,6 +630,13 @@ public class PlayerListener  implements Listener {
                 PlayerUtils.securityAddItem(craftPlayer, itemInMainHand.clone());
                 craftPlayer.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
                 craftPlayer.sendMessage("§c服务器暂时不支持盾牌！");
+            }
+        }
+        if (damager instanceof Player){
+            AbstractEntity mobTargetOnly = TargetOnlyMobsManager.getMobTargetOnly(entity);
+            if (mobTargetOnly != null && mobTargetOnly.getBukkitEntity() != damager){
+                damager.sendMessage("§c这个怪物是针对性怪物，只有它的目标" + mobTargetOnly.getBukkitEntity().getName() + "才能对他造成伤害！");
+                event.setCancelled(true);
             }
         }
     }

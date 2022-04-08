@@ -62,9 +62,8 @@ public class RoundSummon extends SkillMechanic implements ITargetedEntitySkill, 
 
     public boolean castAtLocation(SkillMetadata data, AbstractLocation target) {
         AbstractLocation l;
-        int i;
         ActiveMob ams;
-        for(i = 1; i <= this.amount; ++i) {
+        for(int i = 1; i <= this.amount; ++i) {
             getPlugin().getMobManager();
             float leftYaw = target.getYaw() + 90 % 360;
             float rightYaw = target.getYaw() - 90 % 360;

@@ -7,6 +7,7 @@ import cn.LTCraft.core.entityClass.PlayerState;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.MobSpawn;
 import cn.LTCraft.core.game.SpawnManager;
+import cn.LTCraft.core.game.TargetOnlyMobsManager;
 import cn.LTCraft.core.game.skills.BaseSkill;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.PlayerUtils;
@@ -90,18 +91,13 @@ public class GlobalRefresh {
             Teleport.getInstance().save();
             Temp.dropCount = new HashMap<>();
         }
-        /*
-        if (tick % 200 == 0){
-            rabbit();
-        }
-
-         */
         //效果
         Temp.injured.replaceAll((k, v) -> v - 1);
         Temp.injured.entrySet().removeIf(entry -> entry.getValue() <= 0);
         Temp.silence.replaceAll((k, v) -> v - 1);
         Temp.silence.entrySet().removeIf(entry -> entry.getValue() <= 0);
         Temp.shield.entrySet().removeIf(entry -> !entry.getValue().doTick(tick));
+        TargetOnlyMobsManager.getInstance().doTick();
     }
 
     public static Map<String, List<String>> getLastObj() {
@@ -118,56 +114,4 @@ public class GlobalRefresh {
         SQLServer sqlServer = plugin.getSQLServer();
         sqlServer.getConfiguration().addMapper(PlayerMapper.class);
     }
-    /*
-    public static void rabbit(){
-        if (rabbits.size() == 0){
-            rabbits.add(new Rabbit("rabbits" + 0));
-        }
-        for (Rabbit rabbit : rabbits) {
-            rabbit.tick();
-        }
-        rabbits.addAll(newRabbits);
-        for (Rabbit newRabbit : newRabbits) {
-            newRabbit.tick();
-        }
-        newRabbits.clear();
-        long m = tick / 20 / 10;
-        Bukkit.broadcastMessage("第" + m + "个月有" + rabbits.size() + "对兔子");
-    }
-    static List<Rabbit> rabbits = new ArrayList<>();
-    static List<Rabbit> newRabbits = new ArrayList<>();
-    static class Rabbit{
-        private String sign;
-        public Rabbit(String sign){
-            this.sign = sign;
-            World world = Bukkit.getWorld("zy");
-            Location spawnLocation = world.getSpawnLocation();
-            Location add = spawnLocation.add(-5 + Utils.getRandom().nextInt(10), 0, -5 + Utils.getRandom().nextInt(10));
-            entity = world.spawnEntity(add, EntityType.RABBIT);
-            entity.setCustomName(sign);
-        }
-        int age = 0;
-        boolean died = false;
-        Entity entity = null;
-        public void tick(){
-            age ++;
-            if (age >= 3){
-                Rabbit rabbit = new Rabbit("rabbit" + rabbits.size() + newRabbits.size());
-                newRabbits.add(rabbit);
-            }
-//            if (age == 12){
-//                kill();
-//            }
-        }
-        public void kill(){
-            entity.remove();
-            died = true;
-        }
-
-        public boolean isDied() {
-            return died;
-        }
-    }
-
-     */
 }
