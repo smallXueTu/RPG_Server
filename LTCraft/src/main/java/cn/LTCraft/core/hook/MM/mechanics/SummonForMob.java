@@ -25,11 +25,13 @@ public class SummonForMob extends SkillMechanic implements ITargetedEntitySkill,
     protected MythicEntity me;
     protected String strType;
     protected int amount;
+    protected boolean immediately;
     public SummonForMob(String skill, MythicLineConfig mlc) {
         super(skill, mlc);
         this.ASYNC_SAFE = false;
         this.strType = mlc.getString(new String[]{"type", "t", "mob", "m"}, "SKELETON");
         this.amount = mlc.getInteger(new String[]{"amount", "a"}, 1);//数量
+        this.immediately = mlc.getBoolean(new String[]{"immediately", "im", "i"}, false);//数量
         Scheduler.runLaterSync(() -> {
             this.mm = MythicMobs.inst().getMobManager().getMythicMob(this.strType);
             if (this.mm == null) {
@@ -49,9 +51,11 @@ public class SummonForMob extends SkillMechanic implements ITargetedEntitySkill,
                 ams = this.mm.spawn(target, data.getCaster().getLevel());
                 if (ams != null) {
                     getPlugin().getEntityManager().registerMob(ams.getEntity().getWorld(), ams.getEntity());
-                    ams.getThreatTable().Taunt(data.getCaster().getEntity());
+                    if (immediately) {
+                        ams.getThreatTable().Taunt(data.getCaster().getEntity());
+                    }
                     Entity bukkitEntity = data.getCaster().getEntity().getBukkitEntity();
-                    if (bukkitEntity instanceof Player){
+                    if (bukkitEntity instanceof Player) {
                         TargetOnlyMobsManager.getInstance().add(ams, (Player) bukkitEntity);
                     }
                 }

@@ -87,7 +87,6 @@ public class PlayerListener  implements Listener {
         Temp.onPlayerJoin(player);
         new PlayerConfig(player);
         e.setJoinMessage(null);
-        PlayerUtils.sendActionMessage("§e" + player.getName() + "加入了游戏。");
     }
 
     /**
@@ -359,7 +358,6 @@ public class PlayerListener  implements Listener {
         LTGCommand.mapList.remove(player);
         LTGCommand.mapGate.remove(player);
         e.setQuitMessage(null);
-        PlayerUtils.sendActionMessage("§e" + player.getName() + "退出了游戏。");
     }
     /**
      * 伤害计算

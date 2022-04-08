@@ -94,7 +94,7 @@ public class EntityListener implements Listener {
     public void onTargetLivingEntity(EntityTargetLivingEntityEvent event){
         Entity entity = event.getEntity();
         ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
-        if (mythicMob != null){
+        if (mythicMob != null && event.getTarget() != null){
             if (TargetOnlyMobsManager.targetOnlyMobs.containsKey(mythicMob) && !event.getTarget().equals(TargetOnlyMobsManager.targetOnlyMobs.get(mythicMob))) {
                 event.setCancelled(true);
             }
