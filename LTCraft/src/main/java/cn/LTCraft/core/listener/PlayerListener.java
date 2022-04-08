@@ -633,9 +633,9 @@ public class PlayerListener  implements Listener {
             }
         }
         if (damager instanceof Player){
-            AbstractEntity mobTargetOnly = TargetOnlyMobsManager.getMobTargetOnly(entity);
-            if (mobTargetOnly != null && mobTargetOnly.getBukkitEntity() != damager){
-                damager.sendMessage("§c这个怪物是针对性怪物，只有它的目标" + mobTargetOnly.getBukkitEntity().getName() + "才能对他造成伤害！");
+            ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
+            if (TargetOnlyMobsManager.targetOnlyMobs.containsKey(mythicMob) && TargetOnlyMobsManager.targetOnlyMobs.get(mythicMob) != damager){
+                damager.sendMessage("§c这个怪物是针对性怪物，只有它的目标" + TargetOnlyMobsManager.targetOnlyMobs.get(mythicMob).getName() + "才能对他造成伤害！");
                 event.setCancelled(true);
             }
         }

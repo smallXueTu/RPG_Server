@@ -1,9 +1,12 @@
 package cn.LTCraft.core.game;
 
+import cn.LTCraft.core.utils.EntityUtils;
+import com.google.common.primitives.Ints;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
+import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
@@ -52,16 +55,16 @@ public class TargetOnlyMobsManager {
             }else {
                 ActiveMob.ThreatTable threatTable = activeMob.getThreatTable();
                 AbstractEntity topThreatHolder = threatTable.getTopThreatHolder();
-                if (topThreatHolder == null || topThreatHolder.getBukkitEntity() != player) {
+                if (topThreatHolder != null && topThreatHolder.getBukkitEntity() != player) {
                     threatTable.Taunt(BukkitAdapter.adapt(player));
-                    if (player.isDead()) {
-                        freeTick.put(activeMob, freeTick.get(activeMob) + 1);
-                        if (freeTick.get(activeMob) >= 20 * 60) {
-                            kill = true;
-                        }
-                    } else {
-                        freeTick.put(activeMob, 0);
+                }
+                if (player.isDead()) {
+                    freeTick.put(activeMob, freeTick.get(activeMob) + 1);
+                    if (freeTick.get(activeMob) >= 20 * 60) {
+                        kill = true;
                     }
+                } else {
+                    freeTick.put(activeMob, 0);
                 }
             }
             if (kill){
@@ -78,11 +81,10 @@ public class TargetOnlyMobsManager {
      * @return 如果返回null说明不是针对怪物
      */
     public static AbstractEntity getMobTargetOnly(Entity entity){
-        Optional<ActiveMob> activeMob = MythicMobs.inst().getMobManager().getActiveMob(entity.getUniqueId());
-        if (activeMob.isPresent()){
-            ActiveMob am = activeMob.get();
-            if (targetOnlyMobs.containsKey(am)){
-                return am.getThreatTable().getTopThreatHolder();
+        ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
+        if (mythicMob != null){
+            if (targetOnlyMobs.containsKey(mythicMob)){
+                return mythicMob.getThreatTable().getTopThreatHolder();
             }
             return null;
         }

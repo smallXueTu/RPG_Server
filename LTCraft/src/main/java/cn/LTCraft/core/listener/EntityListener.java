@@ -1,10 +1,13 @@
 package cn.LTCraft.core.listener;
 
 import cn.LTCraft.core.game.Game;
+import cn.LTCraft.core.game.TargetOnlyMobsManager;
 import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.other.Temp;
+import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
 import io.lumine.xikage.mythicmobs.MythicMobs;
+import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.*;
@@ -85,6 +88,16 @@ public class EntityListener implements Listener {
     public void onEntitySpawn(EntitySpawnEvent event){
         if ((event.getEntityType() == EntityType.WITHER) && !Game.resourcesWorlds.contains(event.getEntity().getWorld().getName())) {
             event.setCancelled(true);
+        }
+    }
+    @EventHandler
+    public void onTargetLivingEntity(EntityTargetLivingEntityEvent event){
+        Entity entity = event.getEntity();
+        ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
+        if (mythicMob != null){
+            if (TargetOnlyMobsManager.targetOnlyMobs.containsKey(mythicMob) && !event.getTarget().equals(TargetOnlyMobsManager.targetOnlyMobs.get(mythicMob))) {
+                event.setCancelled(true);
+            }
         }
     }
 }

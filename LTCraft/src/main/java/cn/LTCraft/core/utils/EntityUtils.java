@@ -1,6 +1,8 @@
 package cn.LTCraft.core.utils;
 
 import cn.ltcraft.item.objs.PlayerAttribute;
+import io.lumine.xikage.mythicmobs.MythicMobs;
+import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import net.minecraft.server.v1_12_R1.EntityItem;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
@@ -12,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public class EntityUtils {
 
@@ -63,5 +66,14 @@ public class EntityUtils {
             age = -1;
         }
         return age;
+    }
+
+    /**
+     * 获取MythicMobs实体的类
+     * @return ActiveMob
+     */
+    public static ActiveMob getMythicMob(Entity entity){
+        Optional<ActiveMob> activeMob = MythicMobs.inst().getMobManager().getActiveMob(entity.getUniqueId());
+        return activeMob.orElse(null);
     }
 }
