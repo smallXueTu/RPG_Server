@@ -27,12 +27,14 @@ public class TargetOnlyMobsManager {
      * 仅限目标怪物
      */
     public static final Map<ActiveMob, Player> targetOnlyMobs = new HashMap<>();
+    public static final Map<ActiveMob, Integer> freeTick = new HashMap<>();
     private TargetOnlyMobsManager(){
 
     }
 
     public void add(ActiveMob activeMob, Player player){
         targetOnlyMobs.put(activeMob, player);
+        freeTick.put(activeMob, 0);
     }
 
     /**
@@ -44,16 +46,29 @@ public class TargetOnlyMobsManager {
             Map.Entry<ActiveMob, Player> next = iterator.next();
             Player player = next.getValue();
             ActiveMob activeMob = next.getKey();
-            if (!player.isOnline() || !player.getWorld().equals(activeMob.getEntity().getBukkitEntity().getWorld()) || activeMob.getEntity().getBukkitEntity().getLocation().distance(player.getLocation()) > 32) {
+            boolean kill = activeMob.isDead();
+            if (kill || !player.isOnline() || !player.getWorld().equals(activeMob.getEntity().getBukkitEntity().getWorld()) || activeMob.getEntity().getBukkitEntity().getLocation().distance(player.getLocation()) > 32) {
+                kill = true;
+            }else {
+                ActiveMob.ThreatTable threatTable = activeMob.getThreatTable();
+                AbstractEntity topThreatHolder = threatTable.getTopThreatHolder();
+                if (topThreatHolder == null || topThreatHolder.getBukkitEntity() != player) {
+                    threatTable.Taunt(BukkitAdapter.adapt(player));
+                    if (player.isDead()) {
+                        freeTick.put(activeMob, freeTick.get(activeMob) + 1);
+                        if (freeTick.get(activeMob) >= 20 * 60) {
+                            kill = true;
+                        }
+                    } else {
+                        freeTick.put(activeMob, 0);
+                    }
+                }
+            }
+            if (kill){
                 activeMob.getEntity().remove();
                 activeMob.setDead();
                 iterator.remove();
-                return;
-            }
-            ActiveMob.ThreatTable threatTable = activeMob.getThreatTable();
-            AbstractEntity topThreatHolder = threatTable.getTopThreatHolder();
-            if(topThreatHolder == null || topThreatHolder.getBukkitEntity() != player){
-                threatTable.Taunt(BukkitAdapter.adapt(player));
+                freeTick.remove(activeMob);
             }
         }
     }
