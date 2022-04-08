@@ -60,7 +60,7 @@ public class TargetOnlyMobsManager {
                 }
                 if (player.isDead()) {
                     freeTick.put(activeMob, freeTick.get(activeMob) + 1);
-                    if (freeTick.get(activeMob) >= 20 * 60) {
+                    if (freeTick.get(activeMob) >= 60) {
                         kill = true;
                     }
                 } else {

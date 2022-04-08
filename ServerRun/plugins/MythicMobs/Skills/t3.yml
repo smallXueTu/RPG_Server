@@ -135,7 +135,7 @@ t3test:
     - IsSilence{}<&csp>false
   Skills:
     - potion{type=SLOW;duration=50;level=255} @Self
-    - startAnimation{a=JumpShot} @Self ~onSpawn
+    - startAnimation{a=JumpShot} @Self
     - delay 50
     - leap{velocity=500} @target
     - runaitargetselector{target=players}

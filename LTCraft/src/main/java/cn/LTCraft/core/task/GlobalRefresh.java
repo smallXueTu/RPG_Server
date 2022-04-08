@@ -48,6 +48,10 @@ public class GlobalRefresh {
         }
         if (tick % 20 == 0) {
             /*
+             * 针对怪物
+             */
+            TargetOnlyMobsManager.getInstance().doTick();
+            /*
             任务
              */
             ClientCheckTask.checkTask();
@@ -97,7 +101,6 @@ public class GlobalRefresh {
         Temp.silence.replaceAll((k, v) -> v - 1);
         Temp.silence.entrySet().removeIf(entry -> entry.getValue() <= 0);
         Temp.shield.entrySet().removeIf(entry -> !entry.getValue().doTick(tick));
-        TargetOnlyMobsManager.getInstance().doTick();
     }
 
     public static Map<String, List<String>> getLastObj() {

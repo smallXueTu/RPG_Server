@@ -1,0 +1,3 @@
+test:
+  Skills:
+    - summonTheEnemy{type=恶魔古堡守护者;amount=1;} @SelfLocation
