@@ -17,8 +17,9 @@ import io.lumine.xikage.mythicmobs.skills.SkillMechanic;
 import io.lumine.xikage.mythicmobs.skills.SkillMetadata;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
+import org.bukkit.entity.Entity;
 
-public class RoundSummon  extends SkillMechanic implements ITargetedEntitySkill, ITargetedLocationSkill {
+public class RoundSummon extends SkillMechanic implements ITargetedEntitySkill, ITargetedLocationSkill {
     protected MythicMob mm;
     protected MythicEntity me;
     protected String strType;
@@ -63,29 +64,29 @@ public class RoundSummon  extends SkillMechanic implements ITargetedEntitySkill,
         AbstractLocation l;
         int i;
         ActiveMob ams;
-        if (this.mm != null) {
-            for(i = 1; i <= this.amount; ++i) {
-                getPlugin().getMobManager();
-                float leftYaw = target.getYaw() + 90 % 360;
-                float rightYaw = target.getYaw() - 90 % 360;
-                double x = 0,z = 0, y = radius;
-                if (angle == 0){
-                    x = -Math.sin(leftYaw / 180 * Math.PI) * radius;//计算X
-                    z = Math.cos(leftYaw / 180 * Math.PI) * radius;//计算Z
-                    y -= Math.sqrt(y);
-                }else if(angle == 2){
-                    x = -Math.sin(rightYaw / 180 * Math.PI) * radius;//计算X
-                    z = Math.cos(rightYaw / 180 * Math.PI) * radius;//计算Z
-                    y -= Math.sqrt(y);
-                }
-                l = new AbstractLocation(target.getWorld(), target.getX() + x, target.getY() + y, target.getZ() + z, target.getYaw(), target.getPitch());
+        for(i = 1; i <= this.amount; ++i) {
+            getPlugin().getMobManager();
+            float leftYaw = target.getYaw() + 90 % 360;
+            float rightYaw = target.getYaw() - 90 % 360;
+            double x = 0,z = 0, y = radius;
+            if (angle == 0){
+                x = -Math.sin(leftYaw / 180 * Math.PI) * radius;//计算X
+                z = Math.cos(leftYaw / 180 * Math.PI) * radius;//计算Z
+                y -= Math.sqrt(y);
+            }else if(angle == 2){
+                x = -Math.sin(rightYaw / 180 * Math.PI) * radius;//计算X
+                z = Math.cos(rightYaw / 180 * Math.PI) * radius;//计算Z
+                y -= Math.sqrt(y);
+            }
+            l = new AbstractLocation(target.getWorld(), target.getX() + x, target.getY() + y, target.getZ() + z, target.getYaw(), target.getPitch());
+            if (this.mm != null) {
                 ams = this.mm.spawn(l, data.getCaster().getLevel());
                 if (ams != null) {
                     getPlugin().getEntityManager().registerMob(ams.getEntity().getWorld(), ams.getEntity());
-//                    ((CraftEntity)ams.getEntity().getBukkitEntity()).getHandle().yaw = target.getYaw();
-//                    ((CraftEntity)ams.getEntity().getBukkitEntity()).getHandle().pitch = target.getPitch();
+//                       ((CraftEntity)ams.getEntity().getBukkitEntity()).getHandle().yaw = target.getYaw();
+//                       ((CraftEntity)ams.getEntity().getBukkitEntity()).getHandle().pitch = target.getPitch();
                     if (data.getCaster() instanceof ActiveMob) {
-                        ActiveMob am = (ActiveMob)data.getCaster();
+                        ActiveMob am = (ActiveMob) data.getCaster();
                         if (this.summonerIsOwner) {
                             ams.setParent(am);
                             ams.setFaction(am.getFaction());
@@ -94,8 +95,8 @@ public class RoundSummon  extends SkillMechanic implements ITargetedEntitySkill,
                             try {
                                 ams.importThreatTable(am.getThreatTable().clone());
                                 ams.getThreatTable().targetHighestThreat();
-                            } catch (CloneNotSupportedException var9) {
-                                var9.printStackTrace();
+                            } catch (CloneNotSupportedException e) {
+                                e.printStackTrace();
                             }
                         } else if (this.inheritThreatTable) {
                             ams.importThreatTable(am.getThreatTable());
@@ -105,15 +106,11 @@ public class RoundSummon  extends SkillMechanic implements ITargetedEntitySkill,
                         ams.setOwner(data.getCaster().getEntity().getUniqueId());
                     }
                 }
+            }else {
+                this.me.spawn(BukkitAdapter.adapt(l));
             }
-            return true;
-        } else if (this.me != null) {
-            for(i = 1; i <= this.amount; ++i) {
-                this.me.spawn(BukkitAdapter.adapt(target));
-            }
-            return true;
         }
-        return false;
+        return true;
     }
 
     public boolean castAtEntity(SkillMetadata data, AbstractEntity target) {
