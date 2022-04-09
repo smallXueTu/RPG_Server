@@ -40,3 +40,39 @@ t4火焰粒子门1:
     - message{cooldown=30;m="<mob.name>&d>><&co> &c我可要使出全力了！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
     - message{cooldown=50;m="<mob.name>&d>><&co> &c有点实力嘛!"} @PlayersInRadius{r=20} ~onCombat <30% 0.1
     - skill{s=古堡守护者逃跑} ~onDamaged <10%
+恶魔古堡门卫:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    Despawn: false
+    Invincible: true
+  Skills:
+    - skill{s=t4火焰粒子门2} @Self ~onTimer:15
+    - airDoor{location=-840;f=true;x=false;d=BQTag:default.完成击杀恶魔古堡士兵任务;mess=§l§e[恶魔古堡士兵]§c想进去？先过我们这一关吧！;} @Self ~onSpawn
+恶魔古堡士兵:
+  Type: Skeleton
+  Display: '&6恶魔古堡士兵'
+  Health: 500
+  Damage: 6
+  Equipment:
+    - 暗魔:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6恶魔古堡士兵'
+    Player: '&6恶魔古堡士兵'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+  AITargetSelectors:
+    - clear
+  Options:
+    FollowRange: 26
+    MovementSpeed: 0.3
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30

@@ -1,6 +1,7 @@
 package cn.LTCraft.core.utils;
 
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -26,5 +27,18 @@ public class WorldUtils {
         }
         if (b == null)return null;
         return b.getType() == Material.AIR?b:null;
+    }
+
+    /**
+     * 范围随机
+     * @param location 要随机的中心
+     * @param range 随机的半径
+     * @return 随机后的坐标
+     * 2022年4月10日01:27:34 睡不着耶
+     */
+    public static Location rangeLocation(Location location, double range){
+        double x = (Utils.getRandom().nextInt((int) (range * 200)) - range * 100) / 100;
+        double z = (Utils.getRandom().nextInt((int) (range * 200)) - range * 100) / 100;
+        return location.add(x, 0, z);
     }
 }

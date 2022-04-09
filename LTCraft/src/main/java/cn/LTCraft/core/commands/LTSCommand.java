@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +39,9 @@ public class LTSCommand implements CommandExecutor {
                 map.put("maxMobs", 3);
                 map.put("cooling", 10);
                 map.put("range", 16);
+                map.put("spawnRange", 1);
                 map.put("mobName", args[2]);
+                map.put("locations", new ArrayList<>());
                 Config.getInstance().getSpawnYaml().set(args[1], map);
                 Config.getInstance().save();
                 Config.getInstance().reload();

@@ -2,7 +2,10 @@ package cn.LTCraft.core.entityClass;
 
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.utils.GameUtils;
+import cn.LTCraft.core.utils.MathUtils;
 import cn.LTCraft.core.utils.Utils;
+import cn.LTCraft.core.utils.WorldUtils;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
@@ -29,29 +32,39 @@ public class MobSpawn {
     private int timer = 0;
     private int range = 0;
     private int cooling = 0;
+    private int spawnRange = 1;
     private final String mobName;
     private int maxMobs = 0;
-    private final List<ActiveMob> mobs = new ArrayList<>();
+    private Location[] locations;
+    private ActiveMob[] mobs;
+    private int mobSize = 0;
     public MobSpawn(String insideName){
         this.insideName = insideName;
         Main main = Main.getInstance();
         MythicConfig config = new MythicConfig(insideName, Config.getInstance().getSpawnYaml());
         World world = Bukkit.getWorld(config.getString("world"));
         mobName = config.getString("mobName");
+        spawnRange = config.getInteger("spawnRange", 1);
         MythicMob mm = MythicMobs.inst().getMobManager().getMythicMob(mobName);
         this.location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + mm.getDrops().size() * 0.3, config.getDouble("z"));
         this.abstractLocation = new AbstractLocation(new BukkitWorld(world), config.getDouble("x"), config.getDouble("y") + 2, config.getDouble("z"));
         cooling = config.getInteger("cooling", 10);
         maxMobs = config.getInteger("maxMobs", 3);
+        mobs = new ActiveMob[maxMobs];
         range = config.getInteger("range", 16);
+        List<String> locations = config.getStringList("locations");
+        this.locations = new Location[locations.size()];
+        for (int i = 0; i < locations.size(); i++) {
+            this.locations[i] = GameUtils.spawnLocation(locations.get(i));
+        }
         hologram = HologramsAPI.createHologram(main, location);
         HologramsAPI.registerPlaceholder(main, "LTSpawn:" + insideName + ":colling", 1, () -> {
-            if (mobs.size() >= maxMobs)
+            if (mobSize >= maxMobs)
                 return "怪物已达最大数量！";
             else
                 return Math.max(0, cooling - timer) +"S刷新！";
         });
-        HologramsAPI.registerPlaceholder(main, "LTSpawn:" + insideName + ":mobCount", 1, () -> String.valueOf(mobs.size()));
+        HologramsAPI.registerPlaceholder(main, "LTSpawn:" + insideName + ":mobCount", 1, () -> String.valueOf(mobSize));
         hologram.appendTextLine("§a=========[" + insideName + "§a]=========");
         hologram.appendTextLine("§6名字:§3"+ mobName +"§d还有:LTSpawn:"+insideName+":colling");
         hologram.appendTextLine("§e当前怪物数量:LTSpawn:"+insideName+":mobCount/" + maxMobs);
@@ -73,21 +86,37 @@ public class MobSpawn {
         hologram.setAllowPlaceholders(true);
     }
     public void onUpdate(){
-        int lastSize = mobs.size();
+        int lastSize = mobSize;
         int lastTimer = timer;
-        if (mobs.size() < maxMobs) {
+        if (mobSize < maxMobs) {
             if (
                 timer++ >= cooling
                 &&
                 location.getWorld().getPlayers().stream().anyMatch(player -> player.getLocation().distance(location) <= range)
             ) {
-                ActiveMob am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, location);
-                mobs.add(am);
+                int index = getIndex();
+                if (index == -1){
+                    Bukkit.getLogger().warning("未知错误，打印堆栈用于分析！");
+                    try {
+                        throw new Exception();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    return;
+                }
+                ActiveMob am;
+                if (locations.length > index){
+                    am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, locations[index]);
+                }else {
+                    am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, WorldUtils.rangeLocation(location, spawnRange));
+                }
+                mobs[index] = am;
                 timer = 0;
+                mobSize++;
             }
         }
         checkMobs();
-        if (lastSize != mobs.size() || lastTimer != timer) {
+        if (lastSize != mobSize || lastTimer != timer) {
             ((CraftHologram) hologram).refreshSingleLines();
         }
     }
@@ -95,17 +124,23 @@ public class MobSpawn {
         hologram.setAllowPlaceholders(false);
         hologram.delete();
         for (ActiveMob mob : mobs) {
-            mob.setDead();
-            mob.getEntity().remove();
+            if (mob != null) {
+                mob.setDead();
+                mob.getEntity().remove();
+            }
         }
-        mobs.clear();
+        mobs = null;
         HologramsAPI.unregisterPlaceholder(Main.getInstance(), "LTSpawn:" + insideName + ":colling");
         HologramsAPI.unregisterPlaceholder(Main.getInstance(), "LTSpawn:" + insideName + ":mobCount");
     }
     public void checkMobs(){
-        for (Iterator<ActiveMob> iterator = mobs.iterator();iterator.hasNext();) {
-            ActiveMob mob = iterator.next();
-            if (mob.isDead() || mob.getEntity().isDead() || mob.getEntity().getBukkitEntity().isDead())iterator.remove();
+        for (int i = 0; i < mobs.length; i++) {
+            ActiveMob mob = mobs[i];
+            if (mob == null)continue;
+            if (mob.isDead() || mob.getEntity().isDead() || mob.getEntity().getBukkitEntity().isDead()){
+                mobs[i] = null;
+                mobSize--;
+            }
             if (mob.getLocation().distance(abstractLocation) > mob.getType().getConfig().getDouble("Options.FollowRange", 16)){
                 Hologram hologram = HologramsAPI.createHologram(Main.getInstance(), mob.getEntity().getBukkitEntity().getLocation().add(0, 1.5, 0));
                 hologram.appendTextLine("§c怪物超出范围，拉回怪物！");
@@ -117,5 +152,14 @@ public class MobSpawn {
 
     public String getInsideName() {
         return insideName;
+    }
+    public int getIndex(){
+        for (int i = 0; i < mobs.length; i++) {
+            ActiveMob mob = mobs[i];
+            if (mob == null || mob.isDead() || mob.getEntity().getBukkitEntity().isDead()){
+                return i;
+            }
+        }
+        return -1;
     }
 }

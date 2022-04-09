@@ -129,7 +129,7 @@ public class GameUtils {
         String[] split = location.split(":");
         World world = Bukkit.getWorld(split[3]);
         if (world == null)return null;
-        return new Location(world, Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+        return new Location(world, Double.parseDouble(split[0]), Double.parseDouble(split[1]), Double.parseDouble(split[2]));
     }
 
     /**
