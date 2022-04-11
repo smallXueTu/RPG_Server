@@ -42,11 +42,7 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
                 double z = livingEntityLocation.getZ() - location.getZ();
                 double diff = Math.abs(x) + Math.abs(z);
                 double yaw = (-Math.atan2(x / diff, z / diff) * 180 / Math.PI + 360) % 360;
-                System.out.println(yaw);
-                System.out.println(location.getYaw());
                 double v = MathUtils.getMinAngle(yaw, location.getYaw());
-                System.out.println(v);
-                System.out.println(distance);
                 if (v < 120d / 2){
                     if ((player.isSneaking() && distance < 3) || (distance < 8 && !player.isSneaking()) || (player.isSprinting() && distance < 15)) {
                         activeMob.setTarget(livingEntity);
