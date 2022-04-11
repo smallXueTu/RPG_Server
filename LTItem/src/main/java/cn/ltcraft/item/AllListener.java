@@ -16,6 +16,7 @@ import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.GenericAttributes;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
@@ -93,6 +94,18 @@ public class AllListener implements Listener {
             double p = Math.min(event.getDamage() / originalDamage, 1.2);
             double damage = damagerAttribute.getDamage(entity).getValue();
             if (damage != -1)event.setDamage(damage * p);
+            ItemStack inHand = damagerPlayer.getItemInHand();
+            NBTTagCompound nbt = ItemUtils.getNBT(inHand);
+            LTItem ltItem = Utils.getLTItems(nbt);
+            if (ltItem != null && ltItem.binding()) {
+                if (!ItemUtils.canUse(nbt, damagerPlayer)){
+                    return;
+                }
+            }
+            if (ltItem instanceof ConfigurableLTItem){
+                ConfigurableLTItem configurable = (ConfigurableLTItem) ltItem;
+                Utils.action(damagerPlayer, configurable, "攻击技能", event);
+            }
         }
         if (event.getEntity() instanceof Player){
             Player entityPlayer = ((Player) event.getEntity()).getPlayer();

@@ -33,5 +33,6 @@ t4火焰粒子门2:
     - delay 20
     - message{m="&d<trigger.name>&r>> &6不管了，先看看有什么厉害的武器和装备，好回虚无之境拿到传说武器！"} @Self
     - delay 20
-    - message{m="&d<trigger.name>&r>> &6最好还是小心点吧，先看看交易盘有什么吧。"} @Self
+    - message{m="&d<trigger.name>&r>> &6最好还是小心点吧。"} @Self
     - execBQEvent{e=保存主线位置到T4进度2}
+    - execBQEvent{e=击杀12个恶魔古堡士兵}

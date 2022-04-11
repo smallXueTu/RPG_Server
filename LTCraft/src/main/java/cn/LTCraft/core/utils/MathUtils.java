@@ -36,4 +36,16 @@ public class MathUtils {
     {
         return (((int)location.getX() & 0xFFFFFFF) << 4) | (((int)location.getY() & 0xFF) << 28) | ((int)location.getZ() & 0xFFFFFFF);
     }
+
+    /**
+     * 获取最小的yaw
+     * @param a1
+     * @param a2
+     * @return
+     */
+    public static double getMinAngle(double a1, double a2){
+        double max = Math.max(a1, a2);
+        double min = Math.min(a1, a2);
+        return max - min > 180 ? min + 360 - max:max - min;
+    }
 }

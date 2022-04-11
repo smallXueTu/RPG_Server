@@ -1,3 +1,6 @@
 缴械自己:
   Skills:
     - disarm{} @Self
+刺杀特效:
+  Skills:
+    - effect:explosion @SelfLocation{yoffset=1.5}

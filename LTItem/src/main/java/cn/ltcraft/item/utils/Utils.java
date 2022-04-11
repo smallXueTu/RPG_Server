@@ -2,6 +2,7 @@ package cn.ltcraft.item.utils;
 
 import cn.LTCraft.core.other.UseItemEffect;
 import cn.LTCraft.core.entityClass.Cooling;
+import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
 import cn.ltcraft.item.base.*;
@@ -12,9 +13,13 @@ import cn.ltcraft.item.objs.ItemObjs;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.v1_12_R1.util.CraftMagicNumbers;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -244,7 +249,7 @@ public class Utils {
         aicla.addAttribute(new JsonAttribute(json));
         return aicla;
     }
-    public static void action(Player player, ConfigurableLTItem ltItem, String key){
+    public static void action(Player player, ConfigurableLTItem ltItem, String key, Object ...objects){
         String action = ltItem.getConfig().getString(key, "无");
         for (String s : action.split("&")) {
             if (!s.equals("无")){
@@ -289,6 +294,24 @@ public class Utils {
                         cn.LTCraft.core.Main.getInstance().getEconomy().withdrawPlayer(player, number);
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1, 1);
                     break;
+                    case "刺杀":
+                        if (!player.isSneaking()) {
+                            return;
+                        }
+                        EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) objects[0];
+                        LivingEntity entity = ((LivingEntity) event.getEntity());
+                        Location location = entity.getLocation();
+                        if (location.distance(player.getLocation()) < 1.2){
+                            if (Math.abs(location.getYaw() - player.getLocation().getYaw()) < 90) {
+                                //满足再背后要求
+                                int max = Integer.parseInt(split[1]);
+                                if (entity.getHealth() <= max){
+                                    event.setDamage(Integer.MAX_VALUE);
+                                    EntityUtils.castMMSkill(entity, "刺杀特效");
+                                }
+                            }
+                        }
+                        break;
                     case "sudo":
                         boolean isOp = player.isOp();
                         player.setOp(true);

@@ -154,7 +154,7 @@ public class MobSpawn {
         return insideName;
     }
     public int getIndex(){
-        for (int i = 0; i < mobs.length; i++) {
+        for (int i = mobs.length - 1; i >= 0; i--) {
             ActiveMob mob = mobs[i];
             if (mob == null || mob.isDead() || mob.getEntity().getBukkitEntity().isDead()){
                 return i;

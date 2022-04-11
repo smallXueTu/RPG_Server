@@ -13,7 +13,9 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public class EntityUtils {
@@ -75,5 +77,17 @@ public class EntityUtils {
     public static ActiveMob getMythicMob(Entity entity){
         Optional<ActiveMob> activeMob = MythicMobs.inst().getMobManager().getActiveMob(entity.getUniqueId());
         return activeMob.orElse(null);
+    }
+
+
+    /**
+     * 释放MM技能
+     * @param entity 实体
+     * @param skillName 技能名字
+     */
+    public static void castMMSkill(Entity entity, String skillName){
+        List<Entity> targets = new ArrayList<Entity>();
+        targets.add(entity);
+        MythicMobs.inst().getAPIHelper().castSkill(entity, skillName, entity, entity.getLocation(), targets, null, 1.0F);
     }
 }
