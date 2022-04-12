@@ -31,7 +31,7 @@ public class GameUtils {
                 if (pInfo.length > 2){
                     duration = Integer.parseInt(pInfo[1]);
                     amplifier = Integer.parseInt(pInfo[2]);
-                    probability = Double.parseDouble(pInfo[2]) / 100;
+                    probability = Double.parseDouble(pInfo[3]) / 100;
                 }else {
                     amplifier = Integer.parseInt(pInfo[1]);
                 }
