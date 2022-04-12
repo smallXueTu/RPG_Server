@@ -41,4 +41,14 @@ public class WorldUtils {
         double z = (Utils.getRandom().nextInt((int) (range * 200)) - range * 100) / 100;
         return location.add(x, 0, z);
     }
+
+    public static void main(String[] args) {
+        int xx = 0;
+        int zz = 0;
+        for (int i = 0; i < 100; i++) {
+            double x = (Utils.getRandom().nextInt((int) (5 * 200)) - 5d * 100) / 100;
+            double z = (Utils.getRandom().nextInt((int) (5 * 200)) - 5d * 100) / 100;
+            System.out.println("x:" + (xx + x) + ", z:" + (zz + z));
+        }
+    }
 }

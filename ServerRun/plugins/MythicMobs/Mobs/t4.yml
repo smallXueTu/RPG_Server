@@ -54,7 +54,7 @@ t4火焰粒子门1:
 恶魔古堡士兵:
   Type: Skeleton
   Display: '&6恶魔古堡士兵'
-  Health: 500
+  Health: 800
   Damage: 6
   Equipment:
     - 暗魔:HAND
@@ -79,7 +79,7 @@ t4火焰粒子门1:
 古堡一层护卫:
   Type: Skeleton
   Display: '&6古堡一层0'
-  Health: 600
+  Health: 1000
   Damage: 6
   Equipment:
     - 暗魔:HAND
@@ -94,7 +94,7 @@ t4火焰粒子门1:
   AITargetSelectors:
     - clear
   Options:
-    FollowRange: 26
+    FollowRange: 36
     MovementSpeed: 0.35
     UseThreatTable: true
     PreventOtherDrops: true

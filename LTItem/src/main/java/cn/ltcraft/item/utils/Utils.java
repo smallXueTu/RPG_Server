@@ -297,6 +297,7 @@ public class Utils {
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1, 1);
                     break;
                     case "刺杀":
+                        cooling = 0;
                         if (!player.isSneaking()) {
                             return;
                         }
@@ -304,13 +305,14 @@ public class Utils {
                         LivingEntity entity = ((LivingEntity) event.getEntity());
                         Location location = entity.getLocation();
                         ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
-                        if (mythicMob != null && (mythicMob.getDisplayName().endsWith("守卫") || mythicMob.getDisplayName().endsWith("士兵")) && location.distance(player.getLocation()) < 1.5){
+                        if (mythicMob != null && (mythicMob.getType().getInternalName().endsWith("护卫") || mythicMob.getType().getInternalName().endsWith("士兵")) && location.distance(player.getLocation()) < 1.5){
                             if (MathUtils.getMinAngle(location.getYaw(), player.getLocation().getYaw()) < 90) {
                                 //满足再背后要求
                                 int max = Integer.parseInt(split[1]);
                                 if (entity.getHealth() <= max){
                                     event.setDamage(Integer.MAX_VALUE);
                                     EntityUtils.castMMSkill(entity, "刺杀特效");
+                                    cooling = Integer.parseInt(split[2].split("\\|")[0]);
                                 }
                             }
                         }
