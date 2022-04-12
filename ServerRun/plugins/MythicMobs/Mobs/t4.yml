@@ -102,5 +102,6 @@ t4火焰粒子门1:
     PreventSunburn: true
   Skills:
     - escort{} ~onTimer:20
+    - callVigilant{} ~onDamaged
   Drops:
     - skillapi-exp 30
