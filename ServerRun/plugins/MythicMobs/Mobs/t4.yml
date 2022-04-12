@@ -95,7 +95,7 @@ t4火焰粒子门1:
     - clear
   Options:
     FollowRange: 26
-    MovementSpeed: 0.3
+    MovementSpeed: 0.35
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true

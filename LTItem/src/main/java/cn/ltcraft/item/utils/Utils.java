@@ -4,6 +4,7 @@ import cn.LTCraft.core.other.UseItemEffect;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.ItemUtils;
+import cn.LTCraft.core.utils.MathUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
 import cn.ltcraft.item.base.*;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
@@ -11,6 +12,7 @@ import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.items.GemsStone;
 import cn.ltcraft.item.objs.ItemObjs;
 import com.google.gson.JsonSyntaxException;
+import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -301,8 +303,9 @@ public class Utils {
                         EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) objects[0];
                         LivingEntity entity = ((LivingEntity) event.getEntity());
                         Location location = entity.getLocation();
-                        if (location.distance(player.getLocation()) < 1.2){
-                            if (Math.abs(location.getYaw() - player.getLocation().getYaw()) < 90) {
+                        ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
+                        if (mythicMob != null && mythicMob.getDisplayName().endsWith("守卫") && location.distance(player.getLocation()) < 1.5){
+                            if (MathUtils.getMinAngle(location.getYaw(), player.getLocation().getYaw()) < 90) {
                                 //满足再背后要求
                                 int max = Integer.parseInt(split[1]);
                                 if (entity.getHealth() <= max){
