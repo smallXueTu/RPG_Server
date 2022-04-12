@@ -105,7 +105,7 @@ public class MobSpawn {
                     return;
                 }
                 ActiveMob am;
-                if (locations.length > index){
+                if (mobSize > index){
                     am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, locations[index]);
                 }else {
                     am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, WorldUtils.rangeLocation(location, spawnRange));
