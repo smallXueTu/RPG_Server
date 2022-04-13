@@ -74,6 +74,8 @@ public class MMListener implements Listener {
             event.register(new GoldCoinsDrop(event.getContainer().getConfigLine(), event.getConfig()));
         }else if (event.getDropName().equalsIgnoreCase("GoldCoins")){
             event.register(new GoldCoins(event.getContainer().getConfigLine(), event.getConfig()));
+        }else if (event.getDropName().equalsIgnoreCase("PseudorandomDrop")){
+            event.register(new PseudorandomDrop(event.getContainer().getConfigLine(), event.getConfig()));
         }
     }
 }

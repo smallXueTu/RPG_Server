@@ -18,6 +18,7 @@ import java.util.Map;
 
 public class PlayerConfig {
     private static final Map<String, PlayerConfig> configMap = new HashMap<>();
+    private static final Map<String, Map<String, Integer>> counter = new HashMap<>();
 
     /**
      * 获取玩家配置文件
@@ -112,5 +113,17 @@ public class PlayerConfig {
 
     public void setClassAttConfig(MythicConfig classAttConfig) {
         this.classAttConfig = classAttConfig;
+    }
+
+    /**
+     * 获取玩家的计数器
+     * @param player 玩家对象
+     * @return 计数器 Map
+     */
+    public static Map<String, Integer> getCounter(Player player) {
+        return counter.getOrDefault(player.getName(), new HashMap<>());
+    }
+    public static Map<String, Integer> getCounter(String playerName) {
+        return counter.getOrDefault(playerName, new HashMap<>());
     }
 }
