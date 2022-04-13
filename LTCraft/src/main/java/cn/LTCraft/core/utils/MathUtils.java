@@ -48,4 +48,17 @@ public class MathUtils {
         double min = Math.min(a1, a2);
         return max - min > 180 ? min + 360 - max:max - min;
     }
+
+    /**
+     * 获取两个坐标的yaw 即点1对于点2而的
+     * @param location1
+     * @param location2
+     * @return
+     */
+    public static double getYaw(Location location1, Location location2){
+        double x = location1.getX() - location2.getX();
+        double z = location1.getZ() - location2.getZ();
+        double diff = Math.abs(x) + Math.abs(z);
+        return (-Math.atan2(x / diff, z / diff) * 180 / Math.PI + 360) % 360;
+    }
 }

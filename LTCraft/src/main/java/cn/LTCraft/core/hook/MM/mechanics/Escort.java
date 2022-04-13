@@ -6,6 +6,7 @@ import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.adapters.AbstractLocation;
 import io.lumine.xikage.mythicmobs.adapters.AbstractWorld;
+import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
 import io.lumine.xikage.mythicmobs.io.MythicLineConfig;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import io.lumine.xikage.mythicmobs.mobs.MythicMob;
@@ -45,10 +46,7 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
                 if (distance > 15 || Math.abs(livingEntity.getLocation().getY() - entity.getLocation().getY()) > 3)continue;
                 Player player = (Player) livingEntity.getBukkitEntity();
                 AbstractLocation livingEntityLocation = livingEntity.getLocation();
-                double x = livingEntityLocation.getX() - location.getX();
-                double z = livingEntityLocation.getZ() - location.getZ();
-                double diff = Math.abs(x) + Math.abs(z);
-                double yaw = (-Math.atan2(x / diff, z / diff) * 180 / Math.PI + 360) % 360;
+                double yaw = MathUtils.getYaw(BukkitAdapter.adapt(livingEntityLocation), BukkitAdapter.adapt(location));
                 double v = MathUtils.getMinAngle(yaw, location.getYaw());
                 if (player.getGameMode().equals(GameMode.SURVIVAL) && v < 120d / 2){
                     if ((player.isSneaking() && distance < 3) || (distance < 8 && !player.isSneaking()) || (player.isSprinting() && distance < 15)) {
@@ -74,7 +72,7 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
         World world = entity.getWorld();
         ActiveMob activeMob = EntityUtils.getMythicMob(entity);
         Location location = entity.getLocation();
-        Collection<Entity> nearbyEntities = world.getNearbyEntities(location, 5, 3, 5);
+        Collection<Entity> nearbyEntities = world.getNearbyEntities(location, 4, 3, 4);
         for (Entity next : nearbyEntities) {
             ActiveMob mythicMob = EntityUtils.getMythicMob(next);
             if (mythicMob != null) {
