@@ -79,6 +79,8 @@ public class MobSpawn {
                 hologram.appendTextLine("§e掉落:金币×" + (drops.length >= 2?drops[1]:1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 3?drops[2]:"1") * 100) + "%");
             }else if (drops[0].startsWith("skillapi-exp")){
                 hologram.appendTextLine("§e掉落:经验×" + (drops.length >= 2?drops[1]:1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 3?drops[2]:"1") * 100) + "%");
+            }else if (drops[0].startsWith("PseudorandomDrop")){
+                hologram.appendTextLine("§e伪随机掉落:" + drops[1].split("%")[0] + "×" + (drops.length >= 3?drops[2]:1) + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1?drops[1].split("%")[1]:"1") * 100) + "%");
             }else if (drops.length >= 3) {
                 hologram.appendTextLine("§e掉落:" + drops[0] + "×" + drops[1] + " " + Utils.formatNumber(Double.parseDouble(drops[2]) * 100) + "%");
             }
