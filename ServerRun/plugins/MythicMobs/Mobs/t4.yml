@@ -78,7 +78,7 @@ t4火焰粒子门1:
     - skillapi-exp 30
 古堡一层护卫:
   Type: Skeleton
-  Display: '&6古堡一层0'
+  Display: '&6古堡一层护卫'
   Health: 1000
   Damage: 6
   Equipment:
@@ -106,3 +106,30 @@ t4火焰粒子门1:
   Drops:
     - skillapi-exp 30
     - PseudorandomDrop 恶魔古堡通行证%0.01
+恶魔能量原体:
+  Type: Skeleton
+  Display: '&6恶魔能量原体'
+  Health: 1000
+  Damage: 8
+  Equipment:
+    - 暗魔:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6恶魔能量原体'
+    Player: '&6恶魔能量原体'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  AITargetSelectors:
+    - clear
+    - players
+  Options:
+    FollowRange: 8
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30

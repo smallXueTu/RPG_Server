@@ -1,0 +1,25 @@
+quester: '古堡守门人'
+first: '介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '我是这座城的守门人，我不管你来自哪里只要有通行证都能通过！'
+    conditions: ''
+    pointer: '我有，让我通过！,好吧'
+    events: ''
+  '回答':
+    text: '回答内容。'
+    conditions: ''
+    pointer: ''
+    events: ''
+player_options:
+  '我有，让我通过！':
+    text: '我有，让我通过！'
+    conditions: '拥有恶魔古堡通行证'
+    pointer: ''
+    events: '拿走恶魔古堡通行证,传送到古堡第二层'
+  '好吧':
+    text: '好吧！'
+    conditions: ''
+    pointer: ''
+    events: ''
