@@ -121,9 +121,13 @@ public class PlayerConfig {
      * @return 计数器 Map
      */
     public static Map<String, Integer> getCounter(Player player) {
-        return counter.getOrDefault(player.getName(), new HashMap<>());
+        return counter.computeIfAbsent(player.getName(), k -> new HashMap<>());
     }
     public static Map<String, Integer> getCounter(String playerName) {
-        return counter.getOrDefault(playerName, new HashMap<>());
+        return counter.computeIfAbsent(playerName, k -> new HashMap<>());
+    }
+
+    public static Map<String, Map<String, Integer>> getCounter() {
+        return counter;
     }
 }

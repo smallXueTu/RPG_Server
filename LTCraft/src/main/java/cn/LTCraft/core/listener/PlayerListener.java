@@ -357,6 +357,7 @@ public class PlayerListener  implements Listener {
         PlayerConfig.getConfigMap().remove(player.getName());
         LTGCommand.mapList.remove(player);
         LTGCommand.mapGate.remove(player);
+        PlayerConfig.getCounter().remove(player.getName());
         e.setQuitMessage(null);
     }
     /**
