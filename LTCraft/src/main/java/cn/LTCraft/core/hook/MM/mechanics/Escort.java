@@ -2,6 +2,7 @@ package cn.LTCraft.core.hook.MM.mechanics;
 
 import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.MathUtils;
+import cn.LTCraft.core.utils.PlayerUtils;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.adapters.AbstractLocation;
@@ -41,7 +42,7 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
         AbstractLocation location = entity.getLocation();
         AbstractWorld world = location.getWorld();
         for (AbstractEntity livingEntity : world.getLivingEntities()) {
-            if (livingEntity.isPlayer()) {
+            if (livingEntity.isPlayer() && PlayerUtils.isLegitimateName(livingEntity.getName())) {
                 double distance = livingEntity.getLocation().distance(entity.getLocation());
                 if (distance > 15 || Math.abs(livingEntity.getLocation().getY() - entity.getLocation().getY()) > 3)continue;
                 Player player = (Player) livingEntity.getBukkitEntity();

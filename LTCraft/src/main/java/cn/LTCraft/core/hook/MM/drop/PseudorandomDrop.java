@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * 伪随机掉落
  * Created by Angel、 on 2022/4/13 20:27
- * 每随机失败一次增加1%的掉落几率，防止玩家多次未掉落
+ * 每随机失败一次增加一倍的掉落几率，防止玩家多次未掉落
  */
 public class PseudorandomDrop extends Drop implements IIntangibleDrop {
     private final String itemName;

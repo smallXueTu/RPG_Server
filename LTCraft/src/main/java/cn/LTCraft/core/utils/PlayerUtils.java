@@ -42,6 +42,7 @@ import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 import java.util.*;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 
 public class PlayerUtils {
     /**
@@ -308,5 +309,14 @@ public class PlayerUtils {
     public static void setGroup(Player player, String group){
         setGroup(player, group, "world");
         setGroup(player, group, "zy");
+    }
+
+    /**
+     * 判断一个ID是否合法
+     * @param name ID
+     * @return 是否合法
+     */
+    public static boolean isLegitimateName(String name){
+        return Pattern.matches("^\\w{3,}$", name);
     }
 }
