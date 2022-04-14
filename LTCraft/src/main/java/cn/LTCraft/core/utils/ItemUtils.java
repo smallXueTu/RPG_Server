@@ -2,6 +2,7 @@ package cn.LTCraft.core.utils;
 
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
+import cn.ltcraft.item.utils.Utils;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
@@ -67,6 +68,15 @@ public class ItemUtils {
     public static boolean isSimilar(ClutterItem clutterItems, ItemStack itemStack){
         return clutterItems.isSimilar(itemStack);
     }
+    /**
+     * 一个 杂物 和一个NBT 比较
+     * @param clutterItems 杂物
+     * @param nbtTagCompound NBT
+     * @return 如果是一个物品
+     */
+    public static boolean isSimilar(ClutterItem clutterItems, NBTTagCompound nbtTagCompound){
+        return clutterItems.isSimilar(nbtTagCompound);
+    }
 
     /**
      * 一个 LTItem 和一个物品堆 比较
@@ -76,6 +86,16 @@ public class ItemUtils {
      */
     public static boolean isSimilar(LTItem ltItems1, ItemStack itemStack){
         return isSimilar(ltItems1, cn.ltcraft.item.utils.Utils.getLTItems(itemStack));
+    }
+
+    /**
+     * 一个 LTItem 和一个NBT 比较
+     * @param ltItems1 LTItem
+     * @param nbtTagCompound NBT 物品的nbt
+     * @return 如果是同一个
+     */
+    public static boolean isSimilar(LTItem ltItems1, NBTTagCompound nbtTagCompound){
+        return isSimilar(ltItems1, cn.ltcraft.item.utils.Utils.getLTItems(nbtTagCompound));
     }
 
     /**
@@ -280,25 +300,31 @@ public class ItemUtils {
             removeItem(items, itemStack);
         }
     }
-    public static void removeItems(ItemStack[] items, ClutterItem[] clutterItems) {
+    public static void removeItems(ItemStack[] items, ClutterItem[] clutterItems, Player player) {
         for (ClutterItem clutterItem : clutterItems) {
-            removeItem(items, clutterItem);
+            removeItem(items, clutterItem, player);
         }
     }
     public static boolean sufficientItem(ClutterItem[] items, Player player){
         ItemStack[] contents = clone(player.getInventory().getContents());
         for (ClutterItem item : items) {
-            if (removeItem(contents, item) > 0){
+            if (removeItem(contents, item, player) > 0){
                 return false;
             }
         }
         return true;
     }
-    public static int removeItem(ItemStack[] items, ClutterItem clutterItem) {
+    public static int removeItem(ItemStack[] items, ClutterItem clutterItem, Player player) {
         int counter = clutterItem.getNumber();
         for(int i = 0; i < items.length; ++i) {
             if (items[i] == null)continue;
-            if (ItemUtils.isSimilar(clutterItem, items[i])) {
+            NBTTagCompound nbt = ItemUtils.getNBT(items[i]);
+            if (ItemUtils.isSimilar(clutterItem, nbt)) {
+                if (clutterItem.getItemSource() == ClutterItem.ItemSource.LTCraft) {
+                    if (!ItemUtils.canUse(nbt, player)) {
+                        continue;
+                    }
+                }
                 if (items[i].getAmount() - counter <= 0) {
                     counter -= items[i].getAmount();
                     items[i] = null;

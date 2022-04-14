@@ -9,6 +9,7 @@ import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractItemStack;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitItemStack;
 import io.lumine.xikage.mythicmobs.items.MythicItem;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import pl.betoncraft.betonquest.InstructionParseException;
@@ -158,6 +159,22 @@ public class ClutterItem {
             return ItemUtils.isSimilar(getLtItems(), itemStack);
         }
         return ItemUtils.isSimilar(generate, itemStack);
+    }
+
+    /**
+     * 是否相似
+     * @param nbtTagCompound nbt
+     * @return 是否相识
+     * 注意 NBT只能和 {@link ItemSource#LTCraft} 比较
+     */
+    public boolean isSimilar(NBTTagCompound nbtTagCompound){
+        ItemStack generate = generate();
+        if (generate == null && nbtTagCompound == null)return true;
+        if (generate == null)return false;
+        if (itemSource == ItemSource.LTCraft) {
+            return ItemUtils.isSimilar(getLtItems(), nbtTagCompound);
+        }
+        return false;
     }
 
     /**

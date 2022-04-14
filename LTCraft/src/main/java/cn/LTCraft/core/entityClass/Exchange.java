@@ -50,7 +50,7 @@ public class Exchange {
         ClutterItem[] clutterItems = getNeedItems(itemName);
         if (clutterItems==null)return;
         ItemStack[] contents = player.getInventory().getContents();
-        ItemUtils.removeItems(contents, clutterItems);
+        ItemUtils.removeItems(contents, clutterItems, player);
         player.getInventory().setContents(contents);
         PlayerUtils.securityAddItem(player, ClutterItem.spawnClutterItem(itemName).generate());
     }
