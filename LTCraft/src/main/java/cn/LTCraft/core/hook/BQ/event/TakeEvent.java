@@ -33,11 +33,11 @@ public class TakeEvent extends QuestEvent {
             }
             PlayerInventory inventory = player.getInventory();
             ItemStack[] contents = inventory.getContents();
-            int amount = ItemUtils.removeItem(contents, item);
+            int amount = ItemUtils.removeItem(contents, item, player);
             inventory.setContents(contents);
             if (amount > 0) {
                 ItemStack[] armorContents = player.getInventory().getArmorContents();
-                ItemUtils.removeItem(armorContents, item);
+                ItemUtils.removeItem(armorContents, item, player);
                 player.getInventory().setArmorContents(armorContents);
             }
         }

@@ -11,4 +11,5 @@ repositories {
 
 dependencies {
     compile 'com.baomidou:mybatis-plus:3.5.1'
+    compile "org.openjdk.jol:jol-core:0.10"
 }

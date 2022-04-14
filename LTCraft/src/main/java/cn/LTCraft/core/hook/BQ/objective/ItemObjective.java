@@ -41,7 +41,7 @@ public class ItemObjective extends Objective implements Listener {
                 ItemStack[] contents = ItemUtils.clone(player.getInventory().getContents());
                 int sum = 0;
                 for (ClutterItem item : items) {
-                    int i = ItemUtils.removeItem(contents, item);
+                    int i = ItemUtils.removeItem(contents, item, player);
                     sum += Math.max(i, 0);
                 }
                 playerData.setAmount(sum);

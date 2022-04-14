@@ -105,3 +105,4 @@ t4火焰粒子门1:
     - callVigilant{} ~onDamaged
   Drops:
     - skillapi-exp 30
+    - PseudorandomDrop 恶魔古堡通行证%0.01
