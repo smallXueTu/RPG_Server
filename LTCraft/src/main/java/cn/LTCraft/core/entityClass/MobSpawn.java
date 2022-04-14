@@ -11,6 +11,7 @@ import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractLocation;
+import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitWorld;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
 import io.lumine.xikage.mythicmobs.io.MythicLineConfig;
@@ -143,10 +144,10 @@ public class MobSpawn {
                 mobs[i] = null;
                 mobSize--;
             }
-            if (mob.getLocation().distance(abstractLocation) > mob.getType().getConfig().getDouble("Options.FollowRange", 16)){
+            if (mob.getLocation().distance(i >= locations.length ? abstractLocation: BukkitAdapter.adapt(locations[i])) > mob.getType().getConfig().getDouble("Options.FollowRange", 16)){
                 Hologram hologram = HologramsAPI.createHologram(Main.getInstance(), mob.getEntity().getBukkitEntity().getLocation().add(0, 1.5, 0));
                 hologram.appendTextLine("§c怪物超出范围，拉回怪物！");
-                mob.getEntity().teleport(abstractLocation);
+                mob.getEntity().teleport(i >= locations.length ? abstractLocation: BukkitAdapter.adapt(locations[i]));
                 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), hologram::delete, 40);
             }
         }
