@@ -46,10 +46,13 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
                 double distance = livingEntity.getLocation().distance(entity.getLocation());
                 if (distance > 15 || Math.abs(livingEntity.getLocation().getY() - entity.getLocation().getY()) > 3)continue;
                 Player player = (Player) livingEntity.getBukkitEntity();
+                if (!player.getGameMode().equals(GameMode.SURVIVAL)) {
+                    continue;
+                }
                 AbstractLocation livingEntityLocation = livingEntity.getLocation();
                 double yaw = MathUtils.getYaw(BukkitAdapter.adapt(livingEntityLocation), BukkitAdapter.adapt(location));
                 double v = MathUtils.getMinAngle(yaw, location.getYaw());
-                if (player.getGameMode().equals(GameMode.SURVIVAL) && v < 120d / 2){
+                if (v < 120d / 2){
                     if ((player.isSneaking() && distance < 3) || (distance < 8 && !player.isSneaking()) || (player.isSprinting() && distance < 15)) {
                         activeMob.setTarget(livingEntity);
                         informNearbyCompanions(entity.getBukkitEntity());
