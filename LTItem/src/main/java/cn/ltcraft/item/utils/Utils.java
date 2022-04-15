@@ -305,7 +305,7 @@ public class Utils {
                         LivingEntity entity = ((LivingEntity) event.getEntity());
                         Location location = entity.getLocation();
                         ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
-                        if (mythicMob != null && (mythicMob.getType().getInternalName().endsWith("护卫") || mythicMob.getType().getInternalName().endsWith("士兵")) && location.distance(player.getLocation()) < 1.5){
+                        if (mythicMob != null && (mythicMob.getType().getInternalName().endsWith("护卫") || mythicMob.getType().getInternalName().endsWith("士兵")) && location.distance(player.getLocation()) < 1.5 && mythicMob.getEntity().getTarget() == null){
                             if (MathUtils.getMinAngle(location.getYaw(), player.getLocation().getYaw()) < 90) {
                                 //满足再背后要求
                                 int max = Integer.parseInt(split[1]);
