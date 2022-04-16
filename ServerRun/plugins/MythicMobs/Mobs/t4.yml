@@ -76,13 +76,15 @@ t4火焰粒子门1:
     PreventSunburn: true
   Drops:
     - skillapi-exp 30
+    - ltitem 近战:刺杀匕首 1 0.1
+    - ltitem 近战:暗魔 1 0.1
 古堡一层护卫:
   Type: Skeleton
   Display: '&6古堡一层护卫'
   Health: 1000
   Damage: 6
   Equipment:
-    - 暗魔:HAND
+    - 魔星:HAND
   Disguise:
     Type: Player
     Skin: '&6古堡一层护卫'
@@ -106,11 +108,13 @@ t4火焰粒子门1:
   Drops:
     - skillapi-exp 30
     - PseudorandomDrop 恶魔古堡通行证%0.01
+    - ltitem 近战:魔星 1 0.02
+    - ltitem 近战:魔星 1 0.02
 恶魔能量原体:
   Type: Skeleton
   Display: '&6恶魔能量原体'
   Health: 1000
-  Damage: 8
+  Damage: 10
   Equipment:
     - 暗魔:HAND
   Disguise:
@@ -133,3 +137,32 @@ t4火焰粒子门1:
     PreventSunburn: true
   Drops:
     - skillapi-exp 30
+    - 能量水晶 1 1
+恶魔力量原体:
+  Type: Skeleton
+  Display: '&6恶魔力量原体'
+  Health: 1500
+  Damage: 6
+  Equipment:
+    - 暗魔:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6恶魔力量原体'
+    Player: '&6恶魔力量原体'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  AITargetSelectors:
+    - clear
+    - players
+  Options:
+    FollowRange: 8
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 力量水晶 1 1
