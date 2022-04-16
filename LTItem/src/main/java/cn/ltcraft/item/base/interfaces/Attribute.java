@@ -1,5 +1,6 @@
 package cn.ltcraft.item.base.interfaces;
 
+import cn.LTCraft.core.entityClass.Additional;
 import cn.LTCraft.core.entityClass.RandomValue;
 import cn.ltcraft.item.base.subAttrbute.PotionAttribute;
 import org.bukkit.entity.Entity;
@@ -163,6 +164,14 @@ public interface Attribute extends Cloneable{
     double getSpeed();
     void setSpeed(double value);
 
+    /**
+     * 获取暴击
+     * @param entity 被攻击的实体
+     * @return 暴击
+     */
+    Additional getCritical(Entity entity);
+    Additional getCritical(Type type);
+    void setCritical(Type type, Additional additional);
     /**
      * 攻击触发的技能
      * @return 攻击触发的技能

@@ -1,5 +1,6 @@
 package cn.ltcraft.item.base;
 
+import cn.LTCraft.core.entityClass.Additional;
 import cn.LTCraft.core.entityClass.RandomValue;
 import cn.ltcraft.item.base.interfaces.Attribute;
 import cn.ltcraft.item.base.subAttrbute.PotionAttribute;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfaces.Attribute {
     public final static RandomValue negative = new RandomValue(-1);
+    public final static Additional negativeCritical = new Additional();
     /**
      * 伤害
      */
@@ -62,6 +64,11 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
      */
     protected double PVEInjuryFree = 0;
     protected double PVPInjuryFree = 0;
+    /**
+     * 暴击
+     */
+    protected Additional PVECritical = new Additional();
+    protected Additional PVPCritical = new Additional();
     /**
      * 群回
      */
@@ -251,6 +258,37 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
             return PVPRepel;
         }else {
             return 0;
+        }
+    }
+
+    @Override
+    public Additional getCritical(Entity entity) {
+        if (MythicMobs.inst().getMobManager().isActiveMob(entity.getUniqueId())){
+            return PVECritical;
+        }else if (entity instanceof Player){
+            return PVPCritical;
+        }else {
+            return negativeCritical;
+        }
+    }
+
+    @Override
+    public Additional getCritical(Type type) {
+        if (type == Type.PVE){
+            return PVECritical;
+        }else if (type == Type.PVP){
+            return PVPCritical;
+        }else {
+            return negativeCritical;
+        }
+    }
+
+    @Override
+    public void setCritical(Type type, Additional additional) {
+        if (type == Type.PVE){
+            PVECritical = additional;
+        }else if (type == Type.PVP){
+            PVPCritical = additional;
         }
     }
 
@@ -719,6 +757,9 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
         //自身药水
         getSelfPotion(Type.PVE).putAll(attribute.getSelfPotion(Type.PVE));
         getSelfPotion(Type.PVP).putAll(attribute.getSelfPotion(Type.PVP));
+        //暴击
+        getCritical(Type.PVE).addAdditional(attribute.getCritical(Type.PVE));
+        getCritical(Type.PVP).addAdditional(attribute.getCritical(Type.PVP));
         //目标药水
         getEntityPotion(Type.PVE).putAll(attribute.getEntityPotion(Type.PVE));
         getEntityPotion(Type.PVP).putAll(attribute.getEntityPotion(Type.PVP));
@@ -836,6 +877,9 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
         //穿甲
         setNailPiercing(Type.PVE, getNailPiercing(Type.PVE) - attribute.getNailPiercing(Type.PVE));
         setNailPiercing(Type.PVP, getNailPiercing(Type.PVP) - attribute.getNailPiercing(Type.PVP));
+        //暴击
+        getCritical(Type.PVE).removeAdditional(attribute.getCritical(Type.PVE));
+        getCritical(Type.PVP).removeAdditional(attribute.getCritical(Type.PVP));
         //自身药水
         getSelfPotion(Type.PVE).keySet().removeIf(k -> attribute.getSelfPotion(Type.PVE).containsKey(k));
         getSelfPotion(Type.PVP).keySet().removeIf(k -> attribute.getSelfPotion(Type.PVP).containsKey(k));
