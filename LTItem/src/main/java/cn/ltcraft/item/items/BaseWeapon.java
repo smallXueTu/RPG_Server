@@ -1,5 +1,6 @@
 package cn.ltcraft.item.items;
 
+import cn.LTCraft.core.entityClass.Additional;
 import cn.LTCraft.core.entityClass.RandomValue;
 import cn.LTCraft.core.utils.GameUtils;
 import cn.ltcraft.item.base.*;
@@ -60,6 +61,18 @@ public abstract class BaseWeapon extends AICLA {
         PVPEntityPotion = GameUtils.analyticalPotion(config.getString("PVP.对方药水"));
         PVEAttackSkill = GameUtils.analyticalSkill(config.getString("PVE.攻击技能"));
         PVPAttackSkill = GameUtils.analyticalSkill(config.getString("PVP.攻击技能"));
+        String PVPCriticalStr = config.getString("PVP.暴击", "");
+        if (!PVPCriticalStr.isEmpty()){
+            String[] criticalSplit = PVPCriticalStr.split(":");
+            PVPCritical.addAdditional(new Additional.Value(criticalSplit[0]));
+            PVPCriticalRate = Double.parseDouble(criticalSplit[1]);
+        }
+        String PVECriticalStr = config.getString("PVE.暴击", "");
+        if (!PVECriticalStr.isEmpty()){
+            String[] criticalSplit = PVECriticalStr.split(":");
+            PVECritical.addAdditional(new Additional.Value(criticalSplit[0]));
+            PVECriticalRate = Double.parseDouble(criticalSplit[1]);
+        }
         lore = config.getStringList("说明");
         maxSet = config.getInt("宝石槽位", Utils.getMaxSet(config.getString("quality", "")));
     }

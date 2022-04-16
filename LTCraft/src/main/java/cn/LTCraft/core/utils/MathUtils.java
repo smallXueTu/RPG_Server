@@ -8,6 +8,7 @@ public class MathUtils {
      * @return 如果通过
      */
     public static boolean ifAdopt(double p){
+        if (p > 1)p = p / 100;
         return Utils.getRandom().nextInt(101) < p * 100;
     }
     /**

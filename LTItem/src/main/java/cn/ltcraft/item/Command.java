@@ -204,6 +204,7 @@ public class Command implements CommandExecutor {
             put("击退", 0);
             put("穿甲", 0);
             put("攻击恢复", 0);
+            put("暴击", "");
             put("自身药水", "");
             put("攻击技能", "");
             put("对方药水", "");
@@ -220,6 +221,7 @@ public class Command implements CommandExecutor {
             put("穿甲", 0);
             put("攻击恢复", 0);
             put("自身药水", "");
+            put("暴击", "");
             put("对方药水", "");
             put("攻击技能", "");
             put("击杀信息", "");

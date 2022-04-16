@@ -300,9 +300,9 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
     @Override
     public double getCriticalRate(Entity entity) {
         if (MythicMobs.inst().getMobManager().isActiveMob(entity.getUniqueId())){
-            return PVECriticalRate;
+            return PVECriticalRate / 100;
         }else if (entity instanceof Player){
-            return PVPCriticalRate;
+            return PVPCriticalRate / 100;
         }else {
             return 0;
         }
@@ -311,9 +311,9 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
     @Override
     public double getCriticalRate(Type type) {
         if (type == Type.PVE){
-            return PVECriticalRate;
+            return PVECriticalRate / 100;
         }else if (type == Type.PVP){
-            return PVPCriticalRate;
+            return PVPCriticalRate / 100;
         }else {
             return 0;
         }
@@ -322,9 +322,9 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
     @Override
     public void setCriticalRate(Type type, double additionalRate) {
         if (type == Type.PVE){
-            PVECriticalRate = additionalRate;
+            PVECriticalRate = additionalRate * 100;
         }else if (type == Type.PVP){
-            PVPCriticalRate = additionalRate;
+            PVPCriticalRate = additionalRate * 100;
         }
     }
 

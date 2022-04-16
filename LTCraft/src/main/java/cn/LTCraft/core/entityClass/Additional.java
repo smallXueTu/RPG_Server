@@ -24,7 +24,7 @@ public class Additional implements Cloneable{
     public double getValue(double finalValue){
         for (Value value : additional) {
             if (value.isPercentage()){
-                finalValue += finalValue * value.getValue();
+                finalValue += finalValue * value.getValue() / 100;
             }else {
                 finalValue += value.getValue();
             }
@@ -71,7 +71,7 @@ public class Additional implements Cloneable{
         return Joiner.on("+").join(additional);
     }
 
-    static class Value implements Comparable {
+    public static class Value implements Comparable {
         /**
          * 附加值 可能是百分比
          */
