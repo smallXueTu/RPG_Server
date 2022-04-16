@@ -172,6 +172,16 @@ public interface Attribute extends Cloneable{
     Additional getCritical(Entity entity);
     Additional getCritical(Type type);
     void setCritical(Type type, Additional additional);
+
+    /**
+     * 获取暴击率
+     * @param entity 被攻击的实体
+     * @return 暴击率
+     */
+    double getCriticalRate(Entity entity);
+    double getCriticalRate(Type type);
+    void setCriticalRate(Type type, double value);
+
     /**
      * 攻击触发的技能
      * @return 攻击触发的技能

@@ -1,5 +1,7 @@
 package cn.LTCraft.core.entityClass;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Lists;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -18,6 +20,16 @@ public class Additional implements Cloneable{
     public List<Value> getAdditional() {
         Collections.sort(additional);
         return additional;
+    }
+    public double getValue(double finalValue){
+        for (Value value : additional) {
+            if (value.isPercentage()){
+                finalValue += finalValue * value.getValue();
+            }else {
+                finalValue += value.getValue();
+            }
+        }
+        return finalValue;
     }
 
     /**
@@ -52,6 +64,11 @@ public class Additional implements Cloneable{
         }
         a.additional = new ArrayList<>(a.additional);
         return a;
+    }
+
+    @Override
+    public String toString() {
+        return Joiner.on("+").join(additional);
     }
 
     static class Value implements Comparable {

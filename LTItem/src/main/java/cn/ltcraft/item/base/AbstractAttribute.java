@@ -70,6 +70,11 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
     protected Additional PVECritical = new Additional();
     protected Additional PVPCritical = new Additional();
     /**
+     * 暴击率
+     */
+    protected double PVECriticalRate = 0;
+    protected double PVPCriticalRate = 0;
+    /**
      * 群回
      */
     protected int groupGyrus = 0;
@@ -289,6 +294,37 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
             PVECritical = additional;
         }else if (type == Type.PVP){
             PVPCritical = additional;
+        }
+    }
+
+    @Override
+    public double getCriticalRate(Entity entity) {
+        if (MythicMobs.inst().getMobManager().isActiveMob(entity.getUniqueId())){
+            return PVECriticalRate;
+        }else if (entity instanceof Player){
+            return PVPCriticalRate;
+        }else {
+            return 0;
+        }
+    }
+
+    @Override
+    public double getCriticalRate(Type type) {
+        if (type == Type.PVE){
+            return PVECriticalRate;
+        }else if (type == Type.PVP){
+            return PVPCriticalRate;
+        }else {
+            return 0;
+        }
+    }
+
+    @Override
+    public void setCriticalRate(Type type, double additionalRate) {
+        if (type == Type.PVE){
+            PVECriticalRate = additionalRate;
+        }else if (type == Type.PVP){
+            PVPCriticalRate = additionalRate;
         }
     }
 
@@ -760,6 +796,9 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
         //暴击
         getCritical(Type.PVE).addAdditional(attribute.getCritical(Type.PVE));
         getCritical(Type.PVP).addAdditional(attribute.getCritical(Type.PVP));
+        //暴击率
+        setCriticalRate(Type.PVE, getCriticalRate(Type.PVE) + attribute.getCriticalRate(Type.PVE));
+        setCriticalRate(Type.PVP, getCriticalRate(Type.PVP) + attribute.getCriticalRate(Type.PVP));
         //目标药水
         getEntityPotion(Type.PVE).putAll(attribute.getEntityPotion(Type.PVE));
         getEntityPotion(Type.PVP).putAll(attribute.getEntityPotion(Type.PVP));
@@ -880,6 +919,9 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
         //暴击
         getCritical(Type.PVE).removeAdditional(attribute.getCritical(Type.PVE));
         getCritical(Type.PVP).removeAdditional(attribute.getCritical(Type.PVP));
+        //暴击率
+        setCriticalRate(Type.PVE, getCriticalRate(Type.PVE) - attribute.getCriticalRate(Type.PVE));
+        setCriticalRate(Type.PVP, getCriticalRate(Type.PVP) - attribute.getCriticalRate(Type.PVP));
         //自身药水
         getSelfPotion(Type.PVE).keySet().removeIf(k -> attribute.getSelfPotion(Type.PVE).containsKey(k));
         getSelfPotion(Type.PVP).keySet().removeIf(k -> attribute.getSelfPotion(Type.PVP).containsKey(k));
@@ -999,6 +1041,8 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
         PVEAttackSkill = new SkillMap<>();
         PVEInjuredSkill = new SkillMap<>();
         PVPInjuredSkill = new SkillMap<>();
+        PVPCritical = new Additional();
+        PVECritical = new Additional();
         potion = new PotionMap<>();
     }
     @Override
