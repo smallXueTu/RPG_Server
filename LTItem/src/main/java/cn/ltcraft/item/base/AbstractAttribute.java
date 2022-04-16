@@ -1018,6 +1018,8 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
         attribute.PVPInjuredSkill = new SkillMap<>(PVPInjuredSkill);
         attribute.PVEInjuredSkill = new SkillMap<>(PVEInjuredSkill);
         attribute.potion = new PotionMap<>(potion);
+        attribute.PVPCritical = attribute.PVPCritical.clone();
+        attribute.PVECritical = attribute.PVECritical.clone();
         return attribute;
     }
 

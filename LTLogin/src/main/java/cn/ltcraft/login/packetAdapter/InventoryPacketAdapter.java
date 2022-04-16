@@ -56,6 +56,7 @@ public class InventoryPacketAdapter extends PacketAdapter {
             Login.getProtocolManager().sendServerPacket(player, inventoryPacket, false);
         } catch (InvocationTargetException e) {
             plugin.getLogger().warning("发送空白库存时出错。");
+
         }
 
     }
