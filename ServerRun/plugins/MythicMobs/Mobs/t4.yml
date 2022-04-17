@@ -109,7 +109,7 @@ t4火焰粒子门1:
     - skillapi-exp 30
     - PseudorandomDrop 恶魔古堡通行证%0.01
     - ltitem 近战:魔星 1 0.02
-    - ltitem 近战:魔星 1 0.02
+    - ltitem 近战:晶魔 1 0.02
 恶魔能量原体:
   Type: Skeleton
   Display: '&6恶魔能量原体'
