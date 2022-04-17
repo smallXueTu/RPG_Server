@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Cooling implements Listener {
     /**
-     * 随机TP
+     * 冷却
      */
     public static Map<String, Map<String, Long>> cooling = new HashMap<>();
 

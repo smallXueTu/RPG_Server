@@ -2,6 +2,11 @@ package cn.LTCraft.core.entityClass;
 
 import cn.LTCraft.core.utils.Utils;
 
+/**
+ * 可变随机值
+ * 提供一个最大值和最小值
+ * 或固定值 在{@link this#getValue()}会返回一个可变或固定值
+ */
 public class RandomValue {
     private final double min;
     private final double max;

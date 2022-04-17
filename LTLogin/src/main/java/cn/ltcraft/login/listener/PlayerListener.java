@@ -222,6 +222,12 @@ public class PlayerListener implements Listener {
             case WAITING:
                 event.setCancelled(true);
             break;
+            case NORMAL:
+                if (message.trim().equals(playerInfo.getPassword())){
+                    event.setCancelled(true);
+                    Login.forceSendMessage(player, "§l§c你差点泄露密码！");
+                }
+            break;
         }
     }
 
@@ -323,7 +329,7 @@ public class PlayerListener implements Listener {
                 event.getFrom().getY()<event.getTo().getY() ||
                 event.getFrom().getZ()!=event.getTo().getZ()
         )
-        cancelled(event, event.getPlayer());
+         cancelled(event, event.getPlayer());
     }
 
     /**
