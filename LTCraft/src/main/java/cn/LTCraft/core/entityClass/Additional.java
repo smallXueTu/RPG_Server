@@ -71,7 +71,7 @@ public class Additional implements Cloneable{
         return Joiner.on("+").join(additional);
     }
 
-    public static class Value implements Comparable {
+    public static class Value implements Comparable<Value> {
         /**
          * 附加值 可能是百分比
          */
@@ -127,7 +127,7 @@ public class Additional implements Cloneable{
             return percentage?value + "%" : value + "";
         }
         @Override
-        public int compareTo(@NotNull Object o) {
+        public int compareTo(@NotNull Value o) {
             return this.hashCode() - o.hashCode();
         }
 

@@ -66,6 +66,7 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
     protected double PVPInjuryFree = 0;
     /**
      * 暴击
+     * TODO 删除原版暴击 增加暴击效果
      */
     protected Additional PVECritical = new Additional();
     protected Additional PVPCritical = new Additional();

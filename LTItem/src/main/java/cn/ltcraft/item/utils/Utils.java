@@ -2,10 +2,7 @@ package cn.ltcraft.item.utils;
 
 import cn.LTCraft.core.other.UseItemEffect;
 import cn.LTCraft.core.entityClass.Cooling;
-import cn.LTCraft.core.utils.EntityUtils;
-import cn.LTCraft.core.utils.ItemUtils;
-import cn.LTCraft.core.utils.MathUtils;
-import cn.LTCraft.core.utils.PlayerUtils;
+import cn.LTCraft.core.utils.*;
 import cn.ltcraft.item.base.*;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
@@ -216,7 +213,8 @@ public class Utils {
         }
         if (abstractAttribute instanceof ConfigurableLTItem && loreStr.contains("%quality%")){
             ConfigurableLTItem configurableLTItems = (ConfigurableLTItem) abstractAttribute;
-            loreStr = loreStr.replace("%quality%", configurableLTItems.getConfig().getString("品质", "无品质") + "");
+            String level = configurableLTItems.getConfig().getString("品质", "无品质");
+            loreStr = loreStr.replace("%quality%", GameUtils.getLevelPrefix(level) + level + "");
         }
         if (abstractAttribute instanceof ConfigurableLTItem && loreStr.contains("%binding%")){
             ConfigurableLTItem configurableLTItems = (ConfigurableLTItem) abstractAttribute;

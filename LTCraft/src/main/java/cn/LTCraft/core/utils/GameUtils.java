@@ -140,4 +140,37 @@ public class GameUtils {
     public static String spawnLocationString(Location location){
         return location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ() + ":" + location.getWorld().getName();
     }
+
+    /**
+     * 获取指定等级的颜色前缀 TODO: 改为枚举
+     * 以下品质从低到高
+     * @param level 等级
+     * @return 颜色前缀
+     */
+    public static String getLevelPrefix(String level){
+        switch (level){
+            case "入门":
+            case "初级":
+            case "普通":
+                return "";
+            case "中级":
+                return "§r";//白色
+            case "高级":
+                return "§b";//浅蓝色
+            case "终极":
+                return "§4";//深红色
+            case "史诗":
+                return "§c";//浅红色
+            case "传说":
+                return "§1";//深蓝色
+            case "神话":
+                return "§9";//浅蓝色
+            case "至臻":
+                return "§e";//黄色
+            case "稀有":
+                return "§a";//浅绿色
+            default:
+                return "";
+        }
+    }
 }
