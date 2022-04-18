@@ -125,7 +125,7 @@ public class GameUtils {
      * @return 位置 如果世界不存在返回Null
      */
     public static Location spawnLocation(String location){
-        if (location == null)return null;
+        if (location == null || location.isEmpty())return null;
         String[] split = location.split(":");
         World world = Bukkit.getWorld(split[3]);
         if (world == null)return null;

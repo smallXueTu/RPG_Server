@@ -24,6 +24,8 @@ public class MMListener implements Listener {
             event.register(new IsSilence(event.getConfig().getLine(), event.getConfig()));
         }else if (event.getConditionName().equalsIgnoreCase("LTWearing")){
             event.register(new LTWearingCondition(event.getConfig().getLine(), event.getConfig()));
+        }else if (event.getConditionName().equalsIgnoreCase("MainLinePositionDistance")){
+            event.register(new MainLinePositionDistance(event.getConfig().getLine(), event.getConfig()));
         }
     }
     @EventHandler

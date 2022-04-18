@@ -1,5 +1,6 @@
 package cn.LTCraft.core.game;
 
+import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.other.exceptions.BlockCeilingException;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
@@ -36,6 +37,9 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 import pl.betoncraft.betonquest.BetonQuest;
+import pl.betoncraft.betonquest.EventID;
+import pl.betoncraft.betonquest.ObjectNotFoundException;
+import pl.betoncraft.betonquest.config.ConfigPackage;
 import pl.betoncraft.betonquest.database.PlayerData;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
@@ -304,6 +308,14 @@ public class Game {
             break;
             case "skill":
                 PlayerUtils.castMMSkill(player, info[1]);
+            break;
+            case "BQEvent":
+                try {
+                    EventID eventID = new EventID(null, info[1]);
+                    BetonQuest.event(PlayerConverter.getID(player), eventID);
+                } catch (ObjectNotFoundException e) {
+                    Main.getInstance().getLogger().warning("找不到BQEvent：" + info[1]);
+                }
             break;
         }
     }
