@@ -22,8 +22,6 @@ public class CastMMSkillEvent extends QuestEvent {
     }
     @Override
     public void run(String playerID) throws QuestRuntimeException {
-        Player player =  PlayerConverter.getPlayer(playerID);
-        SkillManager skillManager = MythicMobs.inst().getSkillManager();
-        PlayerUtils.castMMSkill(player, skillName);
+        PlayerUtils.castMMSkill(PlayerConverter.getPlayer(playerID), skillName);
     }
 }
