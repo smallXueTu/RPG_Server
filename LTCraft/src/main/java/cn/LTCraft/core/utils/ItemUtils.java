@@ -316,25 +316,22 @@ public class ItemUtils {
     }
     public static int removeItem(ItemStack[] items, ClutterItem clutterItem, Player player) {
         int counter = clutterItem.getNumber();
+        NBTTagCompound nbt;
         for(int i = 0; i < items.length; ++i) {
             if (items[i] == null)continue;
-            NBTTagCompound nbt = ItemUtils.getNBT(items[i]);
-            if (ItemUtils.isSimilar(clutterItem, nbt)) {
-                if (clutterItem.getItemSource() == ClutterItem.ItemSource.LTCraft) {
-                    if (!ItemUtils.canUse(nbt, player)) {
-                        continue;
-                    }
-                }
-                if (items[i].getAmount() - counter <= 0) {
-                    counter -= items[i].getAmount();
-                    items[i] = null;
-                } else {
-                    items[i].setAmount(items[i].getAmount() - counter);
-                    counter = 0;
-                }
-                if (counter <= 0) {
-                    break;
-                }
+            if (clutterItem.getItemSource() == ClutterItem.ItemSource.LTCraft){
+                nbt = ItemUtils.getNBT(items[i]);
+                if (!ItemUtils.isSimilar(clutterItem, nbt) || !ItemUtils.canUse(nbt, player))continue;
+            }else if (!ItemUtils.isSimilar(clutterItem, items[i]))continue;
+            if (items[i].getAmount() - counter <= 0) {
+                counter -= items[i].getAmount();
+                items[i] = null;
+            } else {
+                items[i].setAmount(items[i].getAmount() - counter);
+                counter = 0;
+            }
+            if (counter <= 0) {
+                break;
             }
         }
         return counter;
