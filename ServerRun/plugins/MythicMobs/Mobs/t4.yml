@@ -169,10 +169,10 @@ t4火焰粒子门1:
 古堡统治者-雷电之主:
   Type: Skeleton
   Display: '&6古堡统治者-雷电之主'
-  Health: 1500
-  Damage: 6
+  Health: 5000
+  Damage: 12
   Equipment:
-    - 暗魔:HAND
+    - 雷电弯刃:HAND
   Disguise:
     Type: Player
     Skin: '&6古堡统治者-雷电之主'
@@ -192,15 +192,15 @@ t4火焰粒子门1:
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 30
+    - skillapi-exp 50
     - 雷电碎片 1 0.5
 古堡统治者-恶魔之主:
   Type: Skeleton
   Display: '&6古堡统治者-恶魔之主'
-  Health: 1500
-  Damage: 6
+  Health: 5000
+  Damage: 12
   Equipment:
-    - 暗魔:HAND
+    - 恶魔弯刀:HAND
   Disguise:
     Type: Player
     Skin: '&6古堡统治者-恶魔之主'
@@ -220,15 +220,15 @@ t4火焰粒子门1:
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 30
-    - 力量水晶 1 1
+    - skillapi-exp 50
+    - 恶魔能量碎片 1 0.5
 古堡统治者-火魔之主:
   Type: Skeleton
   Display: '&6古堡统治者-火魔之主'
-  Health: 1500
-  Damage: 6
+  Health: 5000
+  Damage: 12
   Equipment:
-    - 暗魔:HAND
+    - 法火:HAND
   Disguise:
     Type: Player
     Skin: '&6古堡统治者-火魔之主'
@@ -248,5 +248,5 @@ t4火焰粒子门1:
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 30
-    - 力量水晶 1 1
+    - skillapi-exp 50
+    - 火魔 1 0.5

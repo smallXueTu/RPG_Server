@@ -77,3 +77,43 @@
     - ''
     - ''
     - '§e材料 主线材料'
+恶魔弯刀:
+  Id: 257
+  Data: 0
+  Display: '&6恶魔弯刀'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+雷电弯刃:
+  Id: 257
+  Data: 0
+  Display: '&6雷电弯刃'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+魔金之锤:
+  Id: 257
+  Data: 0
+  Display: '&6魔金之锤'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
+法火:
+  Id: 267
+  Data: 0
+  Display: '&6法火'
+  Lore:
+    - ''
+    - ''
+    - '&e怪物装备。'
+  Options:
+    Unbreakable: true
