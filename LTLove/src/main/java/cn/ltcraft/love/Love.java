@@ -25,6 +25,12 @@ public class Love extends JavaPlugin {
         Female("女"),
         Secrecy("保密");
         private static final Map<String, Sex> BY_NAME = new HashMap();
+        static {
+            Sex[] classes = values();
+            for (Sex aClass : classes) {
+                BY_NAME.put(aClass.getName(), aClass);
+            }
+        }
         private String name;
         Sex(String name){
             this.name = name;
