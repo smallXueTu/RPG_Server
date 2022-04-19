@@ -2,6 +2,7 @@ package cn.LTCraft.core.game;
 
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.ClutterItem;
+import cn.LTCraft.core.entityClass.messy.ItemAction;
 import cn.LTCraft.core.other.exceptions.BlockCeilingException;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
@@ -10,15 +11,19 @@ import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
 import cn.LTCraft.core.utils.Utils;
 import cn.ltcraft.item.base.AICLA;
+import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.items.Armor;
 import cn.ltcraft.item.items.BaseWeapon;
 import cn.ltcraft.item.items.GemsStone;
 import cn.ltcraft.teleport.Teleport;
 import cn.ltcraft.teleport.Warp;
+import com.google.common.collect.ObjectArrays;
+import com.google.common.primitives.Ints;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVDestination;
 import com.onarandombox.MultiverseCore.destination.DestinationFactory;
+import io.lumine.utils.tasks.Scheduler;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.*;
@@ -512,5 +517,42 @@ public class Game {
             return true;
         }
         return false;
+    }
+
+    private static final List<ItemAction> ItemActions = new ArrayList<>();
+    /**
+     * tick装备
+     */
+    public static void tickEquipment(long tick){
+        synchronized (ItemActions) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                ItemStack[] itemStacks = ObjectArrays.concat(player.getInventory().getItemInOffHand(), ObjectArrays.concat(player.getItemInHand(), player.getInventory().getArmorContents()));
+                for (ItemStack itemStack : itemStacks) {
+                    NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
+                    LTItem ltItem = cn.ltcraft.item.utils.Utils.getLTItems(nbt);
+                    if (ltItem != null && ltItem.binding()) {
+                        if (!ItemUtils.canUse(nbt, player)) {
+                            continue;
+                        }
+                    }
+                    if (ltItem instanceof ConfigurableLTItem) {
+                        ConfigurableLTItem configurable = (ConfigurableLTItem) ltItem;
+                        int tickInterval = configurable.getConfig().getInt("TICK间隔", 10);
+                        String tickAction = configurable.getConfig().getString("TICK动作", "无");
+                        if (!tickAction.equals("无") && tick % tickInterval == 0) {
+                            ItemActions.add(() -> cn.ltcraft.item.utils.Utils.action(player, configurable, "TICK动作"));
+                        }
+                    }
+                }
+            }
+            if (ItemActions.size() > 0) {
+                Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+                    synchronized (ItemActions) {
+                        ItemActions.forEach(ItemAction::run);
+                        ItemActions.clear();
+                    }
+                }, 0);
+            }
+        }
     }
 }

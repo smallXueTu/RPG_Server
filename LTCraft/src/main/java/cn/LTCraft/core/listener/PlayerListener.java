@@ -176,7 +176,8 @@ public class PlayerListener  implements Listener {
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event){
         Entity entity = event.getEntity();
-        if (entity instanceof Player && entity.hasPermission("LTCraft.antiBurning") && (event.getCause() == EntityDamageEvent.DamageCause.FIRE || event.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK)){
+        //小于2的才是真正的火烧伤害
+        if (event.getDamage() < 2 && entity instanceof Player && entity.hasPermission("LTCraft.antiBurning") && (event.getCause() == EntityDamageEvent.DamageCause.FIRE || event.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK)){
             entity.setFireTicks(0);
             event.setCancelled(true);
         }
@@ -357,7 +358,7 @@ public class PlayerListener  implements Listener {
         PlayerConfig.getConfigMap().remove(player.getName());
         LTGCommand.mapList.remove(player);
         LTGCommand.mapGate.remove(player);
-        PlayerConfig.getCounter().remove(player.getName());
+        PlayerConfig.getCounter().rowMap().remove(player.getName());
         e.setQuitMessage(null);
     }
     /**

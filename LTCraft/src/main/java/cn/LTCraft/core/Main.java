@@ -43,7 +43,14 @@ import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
+/**
+ * 核心的主类，目前大部分功能都是图方便临时实现的
+ * 内部逻辑可能不太尽人意。
+ * 当然有重写它们的想法，但现在还没必要那么做，由于经济压力和时间精力关系，为了更快上线游戏。
+ * 等游戏上线稳定了再考虑重构它们...
+ * 2022年4月19日13:35:22
+ * TODO above
+ */
 public class Main extends JavaPlugin {
     private SQLServer SQLServer;
     private SQLManage SQLManage;

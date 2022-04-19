@@ -6,6 +6,7 @@ import cn.LTCraft.core.dataBase.SQLServer;
 import cn.LTCraft.core.entityClass.PlayerState;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.MobSpawn;
+import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.game.SpawnManager;
 import cn.LTCraft.core.game.TargetOnlyMobsManager;
 import cn.LTCraft.core.game.skills.BaseSkill;
@@ -107,6 +108,9 @@ public class GlobalRefresh {
         return lastObj;
     }
     public static void init(Main plugin) {
+        Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> {
+            Game.tickEquipment(tick);
+        }, 1, 1);
         GlobalRefresh.plugin = plugin;
         File dir = new File(plugin.getDataFolder().getParentFile(), "DragonGPS");
         waypoint = YamlConfiguration.loadConfiguration(new File(dir, "waypoint.yml"));

@@ -53,6 +53,9 @@ public class UseItemEffect {
                 ((CraftPlayer)player).getHandle().die(DamageSource.BURN);
                 count++;
                 break;
+            case "火魔":
+                ((CraftPlayer)player).getHandle().damageEntity(DamageSource.BURN, 2);
+                break;
             case "交易盘":
                 World world = player.getWorld();
                 String menuName = "";
