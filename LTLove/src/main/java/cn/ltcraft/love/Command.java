@@ -39,7 +39,7 @@ public class Command implements CommandExecutor {
                 }
                 String targetName = args[1];
                 Player player = Bukkit.getPlayer(targetName);
-                if (!player.isOnline()){
+                if (player == null || !player.isOnline()){
                     sender.sendMessage("§e玩家" + targetName + "不在线！");
                     return true;
                 }
