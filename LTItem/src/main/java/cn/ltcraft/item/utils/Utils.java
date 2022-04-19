@@ -144,7 +144,7 @@ public class Utils {
         }else {
             ltAttribute.setString("binding", "*");
         }
-        if (configurableLTItems.getConfig().isBoolean("不可叠加")){
+        if (configurableLTItems.getConfig().getBoolean("不可叠加")){
             ltAttribute.setString("sign", String.valueOf(UUID.randomUUID()));
         }
         all.set("ltAttribute", ltAttribute);

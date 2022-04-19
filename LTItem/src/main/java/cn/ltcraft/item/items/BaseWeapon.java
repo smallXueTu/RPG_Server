@@ -89,7 +89,7 @@ public abstract class BaseWeapon extends AICLA {
 
     @Override
     public ItemStack getItemStack() {
-        if (!config.isBoolean("不可叠加")) {
+        if (!config.getBoolean("不可叠加")) {
             if (this.itemStack == null) {
                 itemStack = Utils.getItem(this);
             }

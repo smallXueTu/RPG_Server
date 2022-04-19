@@ -241,7 +241,7 @@ public class AllListener implements Listener {
         ItemStack itemStack = event.getItemDrop().getItemStack();
         NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
         LTItem ltItem = Utils.getLTItems(nbt);
-        if (ltItem instanceof ConfigurableLTItem && ((ConfigurableLTItem)ltItem).getConfig().isBoolean("不可叠加")){
+        if (ltItem instanceof ConfigurableLTItem && ((ConfigurableLTItem)ltItem).getConfig().getBoolean("不可叠加")){
             event.getItemDrop().setItemStack(ltItem.generate(itemStack.getAmount()));
         }
     }
