@@ -1,0 +1,8 @@
+name: LTLove
+main: cn.ltcraft.love.Love
+version: 0.0.1
+depend: [LTCraft]
+commands:
+  结婚:
+    description: 结婚相关指令
+    usage: /结婚
