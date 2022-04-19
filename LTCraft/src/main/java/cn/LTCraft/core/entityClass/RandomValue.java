@@ -25,7 +25,7 @@ public class RandomValue {
         }
         diff = (int) Math.round(max - min);
     }
-    public RandomValue(double max, double min){
+    public RandomValue(double min, double max){
         this.max = max;
         this.min = min;
         diff = (int) Math.round(max - min);

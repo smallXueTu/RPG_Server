@@ -36,3 +36,13 @@ t4火焰粒子门2:
     - message{m="&d<trigger.name>&r>> &6最好还是小心点吧。"} @Self
     - execBQEvent{e=保存主线位置到T4进度2}
     - execBQEvent{e=击杀12个恶魔古堡士兵}
+保存主线位置到T4进度3:
+  TargetConditions:
+    - MainLinePositionDistance{range=3;loc=-378:8:-875:t4}
+  Skills:
+    - execBQEvent{e=保存主线位置到T4进度3}
+保存主线位置到T4进度4:
+  TargetConditions:
+    - MainLinePositionDistance{range=3;loc=-379:8:-835:t4}
+  Skills:
+    - execBQEvent{e=保存主线位置到T4进度4}

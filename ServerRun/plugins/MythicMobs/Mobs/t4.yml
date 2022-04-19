@@ -50,7 +50,7 @@ t4火焰粒子门1:
     Invincible: true
   Skills:
     - skill{s=t4火焰粒子门2} @Self ~onTimer:15
-    - airDoor{location=-840;f=true;x=false;d=BQTag:default.完成击杀恶魔古堡士兵任务;mess=§l§e[恶魔古堡士兵]§c想进去？只有杀了我们12个你才能通过！;} @Self ~onSpawn
+    - airDoor{location=-840;f=true;x=false;d=BQTag:default.完成击杀恶魔古堡士兵任务;mess=§l§e[恶魔古堡士兵]§c想进去？只有杀了我们12个你才能通过！;s=skill:保存主线位置到T4进度3} @Self ~onSpawn
 恶魔古堡士兵:
   Type: Skeleton
   Display: '&6恶魔古堡士兵'
@@ -149,6 +149,90 @@ t4火焰粒子门1:
     Type: Player
     Skin: '&6恶魔力量原体'
     Player: '&6恶魔力量原体'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  AITargetSelectors:
+    - clear
+    - players
+  Options:
+    FollowRange: 8
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 力量水晶 1 1
+古堡统治者-雷电之主:
+  Type: Skeleton
+  Display: '&6古堡统治者-雷电之主'
+  Health: 1500
+  Damage: 6
+  Equipment:
+    - 暗魔:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6古堡统治者-雷电之主'
+    Player: '&6古堡统治者-雷电之主'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  AITargetSelectors:
+    - clear
+    - players
+  Options:
+    FollowRange: 8
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 雷电碎片 1 0.5
+古堡统治者-恶魔之主:
+  Type: Skeleton
+  Display: '&6古堡统治者-恶魔之主'
+  Health: 1500
+  Damage: 6
+  Equipment:
+    - 暗魔:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6古堡统治者-恶魔之主'
+    Player: '&6古堡统治者-恶魔之主'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  AITargetSelectors:
+    - clear
+    - players
+  Options:
+    FollowRange: 8
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 力量水晶 1 1
+古堡统治者-火魔之主:
+  Type: Skeleton
+  Display: '&6古堡统治者-火魔之主'
+  Health: 1500
+  Damage: 6
+  Equipment:
+    - 暗魔:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6古堡统治者-火魔之主'
+    Player: '&6古堡统治者-火魔之主'
   AIGoalSelectors:
     - clear
     - meleeattack
