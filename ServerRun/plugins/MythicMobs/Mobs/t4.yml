@@ -249,4 +249,4 @@ t4火焰粒子门1:
     PreventSunburn: true
   Drops:
     - skillapi-exp 50
-    - 火魔 1 0.5
+    - ltitem 火魔 1 0.5
