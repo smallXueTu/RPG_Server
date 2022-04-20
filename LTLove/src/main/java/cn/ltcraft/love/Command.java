@@ -85,7 +85,8 @@ public class Command implements CommandExecutor {
                     return true;
                 }
                 request.put(target.getName(), player.getName());
-                target.sendMessage("§c玩家" + player.getName() + "想你求婚了！");
+                sender.sendMessage("§a求婚成功，等待回应......");
+                target.sendMessage("§c玩家" + player.getName() + "向你求婚了！");
                 target.sendMessage("§c输入§d/结婚 同意§c来同意这个请求！");
                 target.sendMessage("§c输入§d/结婚 拒绝§c来拒绝这个请求！");
                 break;
@@ -111,7 +112,58 @@ public class Command implements CommandExecutor {
                     return true;
                 }
                 playerConfig.getConfig().set("性别",sex1.getName());
-                sender.sendMessage("§e成功选择性别!");
+                sender.sendMessage("§a成功选择性别!");
+                break;
+            case "同意":
+                if (!(sender instanceof Player)){
+                    sender.sendMessage("§c你不是一个玩家！");
+                    return true;
+                }
+                targetName = request.get(player.getName());
+                if (targetName ==null){
+                    sender.sendMessage("§c还没有玩家向你发起求婚！");
+                }
+                target = Bukkit.getPlayer(targetName);
+                if (target == null || !target.isOnline()){
+                    sender.sendMessage("§e求婚者" + targetName + "已经离线！");
+                    return true;
+                }
+                targetConfig = PlayerConfig.getPlayerConfig(player);
+                playerConfig = PlayerConfig.getPlayerConfig(player);
+                targetConfig.getConfig().set("伴侣",player.getName());
+                playerConfig.getConfig().set("伴侣",target.getName());
+                Bukkit.broadcastMessage("§a恭喜"+targetName+"和"+player.getName()+"§c成为情侣，一起为他们送上最真挚的祝福吧");
+                Bukkit.broadcastMessage("§c相思相见知何日，此时此夜难为情");
+                Bukkit.broadcastMessage("§a温馨提示不可以闹洞房哦！");
+            case "拒绝":
+                if (!(sender instanceof Player)){
+                    sender.sendMessage("§c你不是一个玩家！");
+                    return true;
+                }
+                targetName = request.get(player.getName());
+                if (targetName ==null){
+                    sender.sendMessage("§c还没有玩家向你发起求婚！");
+                }
+
+                target = Bukkit.getPlayer(targetName);
+                if (target != null && target.isOnline()) {
+                    target.sendMessage("§c" + player.getName() + "拒绝了你的求婚！");
+                    target.sendMessage("§c不要灰心哦！");
+                    target.sendMessage("§c 舍却爱难留，情丝断遥夜!");
+                }
+                request.remove(player.getName());
+                player.sendMessage("§c拒绝成功！");
+                break;
+            case "离婚":
+                if (!(sender instanceof Player)){
+                    sender.sendMessage("§c你不是一个玩家！");
+                    return true;
+                }
+                if (!(sender instanceof Player)){
+                    sender.sendMessage("§c你不是一个玩家！");
+                    return true;
+                }
+                sender.sendMessage("§c相识满天下，知己有几人！");
                 break;
             case "帮助":
             default:
