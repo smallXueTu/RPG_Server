@@ -1,6 +1,7 @@
 package cn.ltcraft.love;
 
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import io.lumine.utils.config.file.YamlConfiguration;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -149,25 +150,44 @@ public class Command implements CommandExecutor {
                 if (target != null && target.isOnline()) {
                     target.sendMessage("§c" + player.getName() + "拒绝了你的求婚！");
                     target.sendMessage("§c不要灰心哦！");
-                    target.sendMessage("§c 舍却爱难留，情丝断遥夜!");
+                    target.sendMessage("§c舍却爱难留，情丝断遥夜!");
                 }
                 request.remove(player.getName());
-                player.sendMessage("§c拒绝成功！");
+                player.sendMessage("§a拒绝成功！");
                 break;
             case "离婚":
                 if (!(sender instanceof Player)){
                     sender.sendMessage("§c你不是一个玩家！");
                     return true;
                 }
-                if (!(sender instanceof Player)){
-                    sender.sendMessage("§c你不是一个玩家！");
+                playerConfig = PlayerConfig.getPlayerConfig(player);
+                love = playerConfig.getConfig().getString("伴侣");
+                if (love == null || love.isEmpty()){
+                    sender.sendMessage("§c你还没结婚呢！");
                     return true;
                 }
-                sender.sendMessage("§c相识满天下，知己有几人！");
+                if (args.length >= 2 && args[1].equals("确认离婚")){
+                    target = Bukkit.getPlayer(love);
+                    if (target != null && target.isOnline()) {
+                        target.sendMessage("§c" + player.getName() + "跟你离婚了！");
+                        target.sendMessage("§c舍却爱难留，情丝断遥夜!");
+                    }
+                    YamlConfiguration config = PlayerConfig.getPlayerConfig(love);
+                    config.set("伴侣", "");
+                    PlayerConfig.savePlayerConfig(love, config);
+                    playerConfig.getConfig().set("伴侣", "");
+                    sender.sendMessage("§a离婚成功！");
+                }else {
+                    sender.sendMessage("§c相识满天下，知己有几人！");
+                    sender.sendMessage("§c请三思而后行！");
+                    sender.sendMessage("§c再次输入§d/结婚 离婚 确认离婚§c来确认离婚！");
+                }
                 break;
             case "帮助":
             default:
                 sender.sendMessage("§e输入§d/结婚 求婚 目标ID§e来向一个玩家求婚！");
+                sender.sendMessage("§e输入§d/结婚 同意§e来同意一个求婚！");
+                sender.sendMessage("§e输入§d/结婚 拒绝§e来拒绝一个求婚！");
                 sender.sendMessage("§e输入§d/结婚 离婚§e向自己的伴侣提出离婚！");
                 sender.sendMessage("§e输入§d/结婚 性别 [男/女]§e选择自己的性别！");
                 break;

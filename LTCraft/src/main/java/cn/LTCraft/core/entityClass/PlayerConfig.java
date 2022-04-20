@@ -44,6 +44,20 @@ public class PlayerConfig {
         File file = new File(Main.getInstance().getDataFolder()  + File.separator + "playerData" + File.separator + playerName.toLowerCase() + ".yml");
         return YamlConfiguration.loadConfiguration(file);
     }
+
+    /**
+     * 保存配置文件
+     * @param playerName 玩家姓名
+     * @param config 配置文件
+     */
+    public static void savePlayerConfig(String playerName, YamlConfiguration config){
+        File file = new File(Main.getInstance().getDataFolder()  + File.separator + "playerData" + File.separator + playerName.toLowerCase() + ".yml");
+        try {
+            config.save(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private final YamlConfiguration config;
     private final Player owner;
     private final File file;
