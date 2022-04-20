@@ -30,6 +30,20 @@ public class PlayerConfig {
     public static PlayerConfig getPlayerConfig(Player player){
         return configMap.get(player.getName());
     }
+
+    /**
+     * 离线玩家只能获取Config
+     * 并且需要你手动保存
+     * @param playerName 玩家名字
+     * @return Config
+     */
+    public static YamlConfiguration getPlayerConfig(String playerName){
+        if (configMap.containsKey(playerName)) {
+            return configMap.get(playerName).getConfig();
+        }
+        File file = new File(Main.getInstance().getDataFolder()  + File.separator + "playerData" + File.separator + playerName.toLowerCase() + ".yml");
+        return YamlConfiguration.loadConfiguration(file);
+    }
     private final YamlConfiguration config;
     private final Player owner;
     private final File file;
