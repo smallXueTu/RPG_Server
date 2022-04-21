@@ -16,14 +16,12 @@ public class Love extends JavaPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
-        Bukkit.getPluginManager().registerEvents(new Listener(), this);
         getCommand("结婚").setExecutor(new Command());
     }
     public static enum Sex{
-        NONE(""),
-        Male("男"),
-        Female("女"),
-        Secrecy("保密");
+        NONE("无性别", "ta", ""),
+        Male("男", "他", "父"),
+        Female("女", "她", "妻");
         private static final Map<String, Sex> BY_NAME = new HashMap();
         static {
             Sex[] classes = values();
@@ -32,14 +30,25 @@ public class Love extends JavaPlugin {
             }
         }
         private String name;
-        Sex(String name){
+        private String prefix;
+        private String suffix;
+        Sex(String name, String prefix, String suffix){
             this.name = name;
+            this.prefix = prefix;
+            this.suffix = suffix;
         }
 
         public String getName() {
             return name;
         }
 
+        public String getSuffix() {
+            return suffix;
+        }
+
+        public String getPrefix() {
+            return prefix;
+        }
 
         @Override
         public String toString() {
@@ -54,5 +63,19 @@ public class Love extends JavaPlugin {
         public static Sex byName(String name){
             return BY_NAME.getOrDefault(name, NONE);
         }
+    }
+
+    /**
+     * 获取一对人的称呼
+     * @param sex1 玩家1
+     * @param sex2 玩家2
+     * @return 称呼
+     */
+    public static String getCall(Sex sex1, Sex sex2){
+        if (sex1 == Sex.Male && sex2 == Sex.Male)return "基佬";
+        if (sex1 == Sex.Female && sex2 == Sex.Male)return "夫妻";
+        if (sex1 == Sex.Male && sex2 == Sex.Female)return "夫妻";
+        if (sex1 == Sex.Female && sex2 == Sex.Female)return "百合";
+        return "玩家";
     }
 }
