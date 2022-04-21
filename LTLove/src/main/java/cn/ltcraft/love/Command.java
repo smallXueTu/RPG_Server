@@ -187,9 +187,9 @@ public class Command implements CommandExecutor {
                     sender.sendMessage("§a离婚成功！");
                     Bukkit.broadcastMessage("§a" + player.getName() + "和" + love + "离婚了，一片悲伤☹...");
                 }else {
-                    sender.sendMessage("§c相识满天下，知己有几人！");
-                    sender.sendMessage("§c请三思而后行！");
-                    sender.sendMessage("§c再次输入§d/结婚 离婚 确认离婚§c来确认离婚！");
+                    sender.sendMessage("§e相识满天下，知己有几人！");
+                    sender.sendMessage("§e请三思而后行！");
+                    sender.sendMessage("§e再次输入§d/结婚 离婚 确认离婚§e来确认离婚！");
                 }
                 break;
             case "帮助":
