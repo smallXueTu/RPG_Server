@@ -70,7 +70,11 @@ public class Command implements CommandExecutor {
                     sender.sendMessage("§e玩家" + targetName + "不在线！");
                     return true;
                 }
-                targetConfig = PlayerConfig.getPlayerConfig(player);
+                if (player == target){
+                    sender.sendMessage("§e你不能跟自己结婚！");
+                    return true;
+                }
+                targetConfig = PlayerConfig.getPlayerConfig(target);
                 Love.Sex targetSex = Love.Sex.byName(targetConfig.getConfig().getString("性别"));
                 if (targetSex == Love.Sex.NONE){
                     sender.sendMessage("§e你还不知道对方性别，你敢结婚吗！");
@@ -83,8 +87,8 @@ public class Command implements CommandExecutor {
                 }
                 request.put(target.getName(), player.getName());
                 sender.sendMessage("§a求婚成功，等待你的" + targetSex.getName() + "神回应吧(≧ω≦)！");
-                Bukkit.broadcastMessage("§a" + Love.getCall(sex, targetSex) + "" + player.getName() + "向" + target.getName() + "求婚了！");
-                target.sendMessage("§a" + Love.getCall(sex, targetSex) + player.getName() + "向你求婚了！");
+                Bukkit.broadcastMessage("§a" + Love.getUnmarriedCall(sex, targetSex) + "" + player.getName() + "向" + target.getName() + "求婚了！");
+                target.sendMessage("§a" + Love.getUnmarriedCall(sex, targetSex) + player.getName() + "向你求婚了！");
                 target.sendMessage("§a输入§d/结婚 同意§c来同意跟" + sex.getPrefix() + "成为"+ Love.getCall(sex, targetSex) +"！");
                 target.sendMessage("§a输入§d/结婚 拒绝§c来拒绝跟" + sex.getPrefix() + "成为"+ Love.getCall(sex, targetSex) +"！");
                 break;
@@ -126,7 +130,7 @@ public class Command implements CommandExecutor {
                     sender.sendMessage("§e你的" + targetName + "已经离线，你必须等它上线！");
                     return true;
                 }
-                targetConfig = PlayerConfig.getPlayerConfig(player);
+                targetConfig = PlayerConfig.getPlayerConfig(target);
                 playerConfig = PlayerConfig.getPlayerConfig(player);
                 targetConfig.getConfig().set("伴侣",player.getName());
                 playerConfig.getConfig().set("伴侣",target.getName());
@@ -136,6 +140,7 @@ public class Command implements CommandExecutor {
                 Bukkit.broadcastMessage("§a温馨提示不可以闹洞房哦！");
                 player.sendMessage("§c相思相见知何日，此时此夜难为情");
                 target.sendMessage("§c相思相见知何日，此时此夜难为情");
+                break;
             case "拒绝":
                 if (!(sender instanceof Player)){
                     sender.sendMessage("§c你不是一个玩家！");

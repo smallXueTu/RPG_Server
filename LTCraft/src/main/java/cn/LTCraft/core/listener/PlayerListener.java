@@ -354,7 +354,7 @@ public class PlayerListener  implements Listener {
         if (!sex.equals("")){
             sex = " §d" + sex;
         }
-        event.setFormat("§f[§bLv.§e" + level + " §c" + clazz + "§f]" + prefix + "§e" + player.getName() + "§f: §r%2$s");
+        event.setFormat("§f[§bLv.§e" + level + sex + love + " §c" + clazz + "§f]" + prefix + "§e" + player.getName() + "§f: §r%2$s");
 //        event.setMessage("§f[§bLv.§e" + level + " §c" + clazz + "§f]§e" + player.getName() + "§f: §e" + event.getMessage());
     }
     @EventHandler

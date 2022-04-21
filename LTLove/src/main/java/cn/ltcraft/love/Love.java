@@ -78,4 +78,11 @@ public class Love extends JavaPlugin {
         if (sex1 == Sex.Female && sex2 == Sex.Female)return "百合";
         return "玩家";
     }
+    public static String getUnmarriedCall(Sex sex1, Sex sex2){
+        if (sex1 == Sex.Male && sex2 == Sex.Male)return "基佬";
+        if (sex1 == Sex.Female && sex2 == Sex.Male)return "玩家";
+        if (sex1 == Sex.Male && sex2 == Sex.Female)return "玩家";
+        if (sex1 == Sex.Female && sex2 == Sex.Female)return "百合";
+        return "玩家";
+    }
 }
