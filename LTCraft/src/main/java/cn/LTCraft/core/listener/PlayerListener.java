@@ -349,12 +349,12 @@ public class PlayerListener  implements Listener {
         String sex = playerConfig.getConfig().getString("性别", "");
         String love = playerConfig.getConfig().getString("伴侣", "");
         if (!love.equals("")){
-            love = "§3伴侣§c♥§3" + love;
+            love = " §3伴侣§c♥§3" + love;
         }
         if (!sex.equals("")){
-            sex = "§d" + sex;
+            sex = " §d" + sex;
         }
-        event.setFormat("§f[§bLv.§e" + level + " " + sex + " " + love + " §c" + clazz + "§f]" + prefix + "§e" + player.getName() + "§f: §r%2$s");
+        event.setFormat("§f[§bLv.§e" + level + " §c" + clazz + "§f]" + prefix + "§e" + player.getName() + "§f: §r%2$s");
 //        event.setMessage("§f[§bLv.§e" + level + " §c" + clazz + "§f]§e" + player.getName() + "§f: §e" + event.getMessage());
     }
     @EventHandler
