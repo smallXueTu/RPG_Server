@@ -13,11 +13,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * TODO: remove it
  */
 public class Temp {
+    //以下所有字段的锁
+    //对于get的代码 没必要进行锁机制
+    public static final ReentrantLock lock = new ReentrantLock();
     /**
      * 玩家丢弃的物品
      * K:丢弃物
@@ -62,10 +66,12 @@ public class Temp {
      */
     public static final Map<Player, List<cn.LTCraft.core.entityClass.PlayerState>> playerStates = new HashMap<>();
     public static void onPlayerQuit(Player player){
+        Temp.lock.lock();
         injured.remove(player);
         silence.remove(player);
         shield.remove(player);
         playerStates.remove(player);
+        Temp.lock.unlock();
     }
     public static void onPlayerJoin(Player player){
         Temp.playerStates.put(player, new ArrayList<>());
@@ -77,10 +83,12 @@ public class Temp {
      * @param s 时间 tick
      */
     public static void addShield(Entity entity, Shield s){
+        Temp.lock.lock();
         if (!shield.containsKey(entity) && entity instanceof Player) {
             playerStates.get(entity).add(new cn.LTCraft.core.entityClass.PlayerState(((Player) entity), "护盾 %s%S", () -> shield.get(entity)==null?0:((BaseShield)shield.get(entity)).getRemainingTick() / 20d));
         }
         shield.put(entity, s);
+        Temp.lock.unlock();
     }
 
     /**
@@ -89,10 +97,12 @@ public class Temp {
      * @param s 时间 tick
      */
     public static void addInjured(Entity entity, int s){
+        Temp.lock.lock();
         if (!injured.containsKey(entity) && entity instanceof Player) {
             playerStates.get(entity).add(new cn.LTCraft.core.entityClass.PlayerState(((Player) entity), "沉默 %s%S", () -> injured.getOrDefault(entity, 0) / 20d));
         }
         injured.put(entity, s);
+        Temp.lock.unlock();
     }
 
     /**
@@ -101,10 +111,12 @@ public class Temp {
      * @param s 时间 tick
      */
     public static void addSilence(Entity entity, int s){
+        Temp.lock.lock();
         if (!silence.containsKey(entity) && entity instanceof Player) {
             playerStates.get(entity).add(new PlayerState(((Player) entity), "沉默 %s%S", () -> silence.getOrDefault(entity, 0) / 20d));
         }
         silence.put(entity, s);
+        Temp.lock.unlock();
     }
 
     /**
@@ -114,10 +126,12 @@ public class Temp {
      * @see ArmorBreaking
      */
     public static void addArmorBreaking(Entity entity, ArmorBreaking armorBreaking){
+        Temp.lock.lock();
         if (!Temp.armorBreaking.containsKey(entity) && entity instanceof Player) {
             playerStates.get(entity).add(new PlayerState(((Player) entity), "破甲 " + Utils.formatNumber((armorBreaking.value * 100)) + "% %s%S", () -> Temp.armorBreaking.getOrDefault(entity, new ArmorBreaking(0, 0)).surplusTick / 20d));
         }
         Temp.armorBreaking.put(entity, armorBreaking);
+        Temp.lock.unlock();
     }
 
     /**

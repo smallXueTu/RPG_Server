@@ -97,12 +97,6 @@ public class GlobalRefresh {
             Temp.dropCount = new HashMap<>();
         }
         //效果
-        Temp.injured.replaceAll((k, v) -> v - 1);
-        Temp.injured.entrySet().removeIf(entry -> entry.getValue() <= 0);
-        Temp.silence.replaceAll((k, v) -> v - 1);
-        Temp.armorBreaking.values().removeIf(v -> v.surplusTick -- <= 0);
-        Temp.silence.entrySet().removeIf(entry -> entry.getValue() <= 0);
-        Temp.shield.entrySet().removeIf(entry -> !entry.getValue().doTick(tick));
     }
 
     public static Map<String, List<String>> getLastObj() {
@@ -111,6 +105,15 @@ public class GlobalRefresh {
     public static void init(Main plugin) {
         Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> {
             Game.tickEquipment(tick);
+            //玩家状态
+            Temp.lock.lock();
+            Temp.injured.replaceAll((k, v) -> v - 1);
+            Temp.injured.entrySet().removeIf(entry -> entry.getValue() <= 0);
+            Temp.silence.replaceAll((k, v) -> v - 1);
+            Temp.armorBreaking.values().removeIf(v -> v.surplusTick -- <= 0);
+            Temp.silence.entrySet().removeIf(entry -> entry.getValue() <= 0);
+            Temp.shield.entrySet().removeIf(entry -> !entry.getValue().doTick(tick));
+            Temp.lock.unlock();
         }, 1, 1);
         GlobalRefresh.plugin = plugin;
         File dir = new File(plugin.getDataFolder().getParentFile(), "DragonGPS");
