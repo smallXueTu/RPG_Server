@@ -208,6 +208,7 @@ public class AllListener implements Listener {
                     List<Entity> targets = new ArrayList<>();
                     targets.add(entity);
                     PlayerUtils.castSkill(finalDamagerPlayer, skill, targets, event);
+
                 }
             });
         }

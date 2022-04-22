@@ -1,5 +1,6 @@
 package cn.ltcraft.item.utils;
 
+import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.other.UseItemEffect;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.utils.*;
@@ -268,6 +269,8 @@ public class Utils {
                 String cmd;
                 int count = 1;
                 int number = 1;
+                String[] split1;
+                EntityDamageByEntityEvent event;
                 switch (split[0]){
                     case "MMSkill":
                         PlayerUtils.castMMSkill(player, split[1]);
@@ -289,6 +292,13 @@ public class Utils {
                         playerInfo.addGold(number);
                         player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1, 1);
                     break;
+                    case "破甲":
+                        split1 = split[1].split("\\|");
+                        double aDouble = Double.parseDouble(split1[0]);
+                        int tick = Integer.parseInt(split1[1]);
+                        event = (EntityDamageByEntityEvent) objects[0];
+                        Temp.addArmorBreaking(event.getEntity(), new Temp.ArmorBreaking(aDouble, tick));
+                        break;
                     case "增加橙币":
                         number = Integer.parseInt(split[1]);
                         cn.LTCraft.core.Main.getInstance().getEconomy().withdrawPlayer(player, number);
@@ -299,7 +309,7 @@ public class Utils {
                         if (!player.isSneaking()) {
                             return;
                         }
-                        EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) objects[0];
+                        event = (EntityDamageByEntityEvent) objects[0];
                         LivingEntity entity = ((LivingEntity) event.getEntity());
                         Location location = entity.getLocation();
                         ActiveMob mythicMob = EntityUtils.getMythicMob(entity);

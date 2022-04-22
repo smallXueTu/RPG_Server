@@ -3,6 +3,7 @@ package cn.LTCraft.core.other;
 import cn.LTCraft.core.entityClass.PlayerState;
 import cn.LTCraft.core.game.skills.shields.BaseShield;
 import cn.LTCraft.core.game.skills.shields.Shield;
+import cn.LTCraft.core.utils.Utils;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -36,6 +37,18 @@ public class Temp {
      * 重伤
      */
     public static final Map<Entity, Integer> injured = new HashMap<>();
+    /**
+     * 破甲
+     */
+    public static final Map<Entity, ArmorBreaking> armorBreaking = new HashMap<>();
+    public static class ArmorBreaking{
+        public int surplusTick = 0;//剩余tick
+        public double value = 0;//破甲百分比
+        public ArmorBreaking(double value, int surplusTick){
+            this.value = value;
+            this.surplusTick = surplusTick;
+        }
+    }
     /**
      * 沉默
      */
@@ -92,6 +105,19 @@ public class Temp {
             playerStates.get(entity).add(new PlayerState(((Player) entity), "沉默 %s%S", () -> silence.getOrDefault(entity, 0) / 20d));
         }
         silence.put(entity, s);
+    }
+
+    /**
+     * 为一个实体添加破甲效果 新的效果会覆盖旧的效果
+     * @param entity 实体
+     * @param armorBreaking 破甲
+     * @see ArmorBreaking
+     */
+    public static void addArmorBreaking(Entity entity, ArmorBreaking armorBreaking){
+        if (!Temp.armorBreaking.containsKey(entity) && entity instanceof Player) {
+            playerStates.get(entity).add(new PlayerState(((Player) entity), "破甲 " + Utils.formatNumber((armorBreaking.value * 100)) + "% %s%S", () -> Temp.armorBreaking.getOrDefault(entity, new ArmorBreaking(0, 0)).surplusTick / 20d));
+        }
+        Temp.armorBreaking.put(entity, armorBreaking);
     }
 
     /**
