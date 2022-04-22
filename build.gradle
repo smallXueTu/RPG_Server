@@ -24,6 +24,7 @@ subprojects {
         compile fileTree(dir: '../ServerRun/plugins/', includes: ['*.jar'])
         compile fileTree(dir: '../ServerRun/plugins/PlaceholderAPI/expansions/', includes: ['*.jar'])
         compile fileTree(dir: '../ServerRun/libs/', includes: ['*.jar'])
+        compile fileTree(dir: '../ServerRun/plugins/PxTools/lib', includes: ['*.jar'])
         compile "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
     }
     task createDirs(){

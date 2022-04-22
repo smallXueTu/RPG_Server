@@ -1,0 +1,55 @@
+Title: 'T4兑换菜单'
+
+Title-Update: -1
+
+Layout:
+  - - '#       #'
+    - '#   `魔金之锤`   #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '魔金之锤':
+    display:
+      material: 257
+      shiny: 'true'
+      name: "&e魔金之锤"
+      lore:
+      - "&3<<&e兑换魔金之锤×1"
+      - "&3>>&e需要：能量&e水晶×30"
+      - "&3>>&e需要：力量&e水晶×30"
+    actions:
+      all:
+        - 'LTExchange: 魔金之锤'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'

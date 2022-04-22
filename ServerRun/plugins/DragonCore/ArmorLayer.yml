@@ -25,6 +25,9 @@
 虚空寒冰盔甲:
   match: "虚空寒冰盔甲"
   texture: "t3/虚空寒冰盔甲"
+恶魔盔甲:
+  match: "恶魔盔甲"
+  texture: "t4/恶魔盔甲"
 test:
   match: "TestArmor"
   texture: "test"
