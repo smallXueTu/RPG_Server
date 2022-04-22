@@ -103,6 +103,19 @@ public class EntityUtils {
         return null;
     }
 
+    /**
+     * 获取MythicMobs实体的配置文件
+     * @return ActiveMob
+     */
+    public static MythicConfig getMythicMobConfig(Entity entity){
+        Optional<ActiveMob> activeMob = MythicMobs.inst().getMobManager().getActiveMob(entity.getUniqueId());
+        if (activeMob.isPresent()) {
+            ActiveMob am = activeMob.get();
+            return am.getType().getConfig();
+        }
+        return null;
+    }
+
 
     /**
      * 释放MM技能
