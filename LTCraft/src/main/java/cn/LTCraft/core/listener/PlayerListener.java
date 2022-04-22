@@ -18,6 +18,7 @@ import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.GameUtils;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
+import cn.ltcraft.love.Love;
 import cn.ltcraft.teleport.Home;
 import cn.ltcraft.teleport.Teleport;
 import com.sucy.skill.SkillAPI;
@@ -347,7 +348,7 @@ public class PlayerListener  implements Listener {
         }
         PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
         String sex = playerConfig.getConfig().getString("性别", "");
-        String love = playerConfig.getConfig().getString("伴侣", "");
+        String love = Love.getLove(player);
         if (!love.equals("")){
             love = " §3伴侣§c♥§3" + love;
         }

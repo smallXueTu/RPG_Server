@@ -282,6 +282,7 @@ public class Command implements CommandExecutor {
                 sender.sendMessage("§e拒绝求婚--§d/结婚 拒绝§e来拒绝一个求婚！");
                 sender.sendMessage("§e离婚--§d/结婚 离婚§e向自己的伴侣提出离婚！");
                 sender.sendMessage("§eTP--§d/结婚 tp§e传送到你的伴侣身边！");
+                sender.sendMessage("§e亲亲--§d/结婚 亲亲§e跟你的伴侣亲亲！");
                 sender.sendMessage("§e选择性别--§d/结婚 性别 [男/女]§e选择自己的性别！");
                 break;
         }
