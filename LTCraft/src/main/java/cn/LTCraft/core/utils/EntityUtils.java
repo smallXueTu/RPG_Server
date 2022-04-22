@@ -3,6 +3,7 @@ package cn.LTCraft.core.utils;
 import cn.ltcraft.item.objs.PlayerAttribute;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
+import io.lumine.xikage.mythicmobs.io.MythicConfig;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import net.minecraft.server.v1_12_R1.EntityItem;
 import org.bukkit.Location;
@@ -87,6 +88,19 @@ public class EntityUtils {
     public static ActiveMob getMythicMob(AbstractEntity entity){
         Optional<ActiveMob> activeMob = MythicMobs.inst().getMobManager().getActiveMob(entity.getUniqueId());
         return activeMob.orElse(null);
+    }
+
+    /**
+     * 获取MythicMobs实体的配置文件
+     * @return ActiveMob
+     */
+    public static MythicConfig getMythicMobConfig(AbstractEntity entity){
+        Optional<ActiveMob> activeMob = MythicMobs.inst().getMobManager().getActiveMob(entity.getUniqueId());
+        if (activeMob.isPresent()) {
+            ActiveMob am = activeMob.get();
+            return am.getType().getConfig();
+        }
+        return null;
     }
 
 
