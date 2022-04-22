@@ -27,19 +27,25 @@ public class Love extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
         Bukkit.getPluginManager().registerEvents(new Listener() {
+            //玩家移动事件
             @EventHandler
             public void onMoveEvent(PlayerMoveEvent event){
+                //移动的玩家
                 Player player = event.getPlayer();
+                //获取的玩家的伴侣
                 String love = getLove(player);
+                //获取玩家伴侣实体类
                 Player partner = Bukkit.getPlayer(love);
-                if (partner != null && player.isOnline()) {
-                    if (partner.getWorld().equals(player.getWorld())) {
-                        Location partnerLocation = partner.getLocation();
+                if (partner != null && player.isOnline()) {//如果玩家的伴侣在线
+                    if (partner.getWorld().equals(player.getWorld())) {//判断他们是不是一个世界
+                        Location partnerLocation = partner.getLocation();//获取伴侣的坐标
+                        //如果玩家移动前与伴侣的位置大于0.5并且玩家移动后的位置距离小于0.5 则满足贴贴条件
                         if (partnerLocation.distance(event.getFrom()) > 0.5 && partnerLocation.distance(event.getTo()) < 0.5){
-                            if (Cooling.isCooling(player, "贴贴")) {
+                            if (Cooling.isCooling(player, "贴贴")) {//判断冷却 每10秒只能贴一次
                                 return;
                             }
                             Cooling.cooling(player, "贴贴", 10);
+
                         }
                     }
                 }
