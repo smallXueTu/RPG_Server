@@ -100,6 +100,7 @@ public class GlobalRefresh {
         Temp.injured.replaceAll((k, v) -> v - 1);
         Temp.injured.entrySet().removeIf(entry -> entry.getValue() <= 0);
         Temp.silence.replaceAll((k, v) -> v - 1);
+        Temp.armorBreaking.values().removeIf(v -> v.surplusTick -- <= 0);
         Temp.silence.entrySet().removeIf(entry -> entry.getValue() <= 0);
         Temp.shield.entrySet().removeIf(entry -> !entry.getValue().doTick(tick));
     }

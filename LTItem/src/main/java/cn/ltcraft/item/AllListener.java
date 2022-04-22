@@ -3,6 +3,7 @@ package cn.ltcraft.item;
 import cn.LTCraft.core.dataBase.bean.PlayerInfo;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.*;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
@@ -111,7 +112,7 @@ public class AllListener implements Listener {
             }
             if (ltItem instanceof ConfigurableLTItem){
                 ConfigurableLTItem configurable = (ConfigurableLTItem) ltItem;
-                Utils.action(damagerPlayer, configurable, "攻击技能", event);
+                Utils.action(damagerPlayer, configurable, "攻击动作", event);
             }
         }
         if (event.getEntity() instanceof Player){
@@ -167,6 +168,9 @@ public class AllListener implements Listener {
             if (damagerPlayer != null){
                 armorValue -= armorValue * playerAttribute.getNailPiercing(damagerPlayer);
             }
+            if (Temp.armorBreaking.containsKey(entity)){
+                armorValue -= armorValue * Temp.armorBreaking.get(entity).value;
+            }
             //计算伤害
             event.setDamage(event.getDamage() - event.getDamage() * MathUtils.getInjuryFreePercentage(armorValue));
             event.setDamage(event.getDamage() - event.getDamage() * entityAttribute.getInjuryFree(entityPlayer));
@@ -189,6 +193,9 @@ public class AllListener implements Listener {
                 //计算攻击者的穿甲
                 if (damagerPlayer != null) {
                     armorValue -= armorValue * playerAttribute.getNailPiercing(damagerPlayer);
+                }
+                if (Temp.armorBreaking.containsKey(entity)){
+                    armorValue -= armorValue * Temp.armorBreaking.get(entity).value;
                 }
                 //计算伤害
                 event.setDamage(event.getDamage() - event.getDamage() * MathUtils.getInjuryFreePercentage(armorValue));

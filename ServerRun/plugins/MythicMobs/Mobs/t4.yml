@@ -177,6 +177,7 @@ t4火焰粒子门1:
   Display: '&6古堡统治者-雷电之主'
   Health: 5000
   Damage: 12
+  护甲: 500
   Equipment:
     - 雷电弯刃:HAND
   Disguise:
@@ -205,6 +206,7 @@ t4火焰粒子门1:
   Display: '&6古堡统治者-恶魔之主'
   Health: 5000
   Damage: 12
+  护甲: 500
   Equipment:
     - 恶魔弯刀:HAND
   Disguise:
@@ -233,6 +235,7 @@ t4火焰粒子门1:
   Display: '&6古堡统治者-火魔之主'
   Health: 5000
   Damage: 12
+  护甲: 500
   Equipment:
     - 法火:HAND
   Disguise:
