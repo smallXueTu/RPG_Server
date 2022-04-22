@@ -12,6 +12,7 @@ import cn.ltcraft.item.utils.Utils;
 import com.earth2me.essentials.api.Economy;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
 import com.sucy.skill.api.event.PlayerClassChangeEvent;
+import io.lumine.xikage.mythicmobs.io.MythicConfig;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.GenericAttributes;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
@@ -156,6 +157,7 @@ public class AllListener implements Listener {
             }
         }
         //受伤者是玩家
+        MythicConfig mythicConfig;
         if (event.getEntity() instanceof Player){
             Player entityPlayer = ((Player) event.getEntity()).getPlayer();
             PlayerAttribute entityAttribute = PlayerAttribute.getPlayerAttribute(entityPlayer);
@@ -163,7 +165,7 @@ public class AllListener implements Listener {
             int armorValue = entityAttribute.getArmorValue();
             //计算攻击者的穿甲
             if (damagerPlayer != null){
-                armorValue -= armorValue * playerAttribute.getNailPiercing(entityPlayer);
+                armorValue -= armorValue * playerAttribute.getNailPiercing(damagerPlayer);
             }
             //计算伤害
             event.setDamage(event.getDamage() - event.getDamage() * MathUtils.getInjuryFreePercentage(armorValue));
@@ -181,6 +183,16 @@ public class AllListener implements Listener {
                     PlayerUtils.castSkill(entityPlayer, skill, targets, event);
                 }
             });
+        }else if ((mythicConfig = EntityUtils.getMythicMobConfig(entity)) != null){//MythicMobs支持护甲
+            int armorValue = mythicConfig.getInteger("护甲", 0);
+            if (armorValue > 0) {
+                //计算攻击者的穿甲
+                if (damagerPlayer != null) {
+                    armorValue -= armorValue * playerAttribute.getNailPiercing(damagerPlayer);
+                }
+                //计算伤害
+                event.setDamage(event.getDamage() - event.getDamage() * MathUtils.getInjuryFreePercentage(armorValue));
+            }
         }
         if (event.getDamager() instanceof Player){
             assert playerAttribute != null;
