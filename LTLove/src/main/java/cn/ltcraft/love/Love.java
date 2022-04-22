@@ -5,6 +5,7 @@ import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.task.PlayerClass;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -46,6 +47,20 @@ public class Love extends JavaPlugin {
                             }
                             Cooling.cooling(player, "贴贴", 10);
 
+                            player.getWorld().spawnParticle(Particle.HEART, player.getLocation().add(0, 1.8, 0), 5, 0.3, 0.3, 0.3);
+                            player.getWorld().spawnParticle(Particle.HEART, partner.getLocation().add(0, 1.8, 0), 5, 0.3, 0.3, 0.3);
+                            player.sendMessage("§a贴贴~~~");
+                            partner.sendMessage("§a贴贴~~~");
+                            for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                                if (onlinePlayer == player || onlinePlayer == partner) continue;
+                                PlayerConfig onlinePlayerConfig = PlayerConfig.getPlayerConfig(onlinePlayer);
+                                String partner2 = onlinePlayerConfig.getConfig().getString("伴侣");
+                                if (partner2 == null || partner.isEmpty()){
+                                    onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，你还没有对象~~~");
+                                }else {
+                                    onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，快叫上你的伴侣上线贴贴吧~~~");
+                                }
+                            }
                         }
                     }
                 }
