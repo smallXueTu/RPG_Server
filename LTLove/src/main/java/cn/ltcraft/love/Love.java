@@ -54,11 +54,17 @@ public class Love extends JavaPlugin {
                             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                                 if (onlinePlayer == player || onlinePlayer == partner) continue;
                                 PlayerConfig onlinePlayerConfig = PlayerConfig.getPlayerConfig(onlinePlayer);
-                                String partner2 = onlinePlayerConfig.getConfig().getString("伴侣");
-                                if (partner2 == null || partner.isEmpty()){
+                                String onlinePlayerLove = onlinePlayerConfig.getConfig().getString("伴侣");
+                                if (onlinePlayerLove == null || onlinePlayerLove.isEmpty()){
                                     onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，你还没有对象~~~");
                                 }else {
-                                    onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，快叫上你的伴侣上线贴贴吧~~~");
+                                    Player onlinePlayerP = Bukkit.getPlayer(onlinePlayerLove);
+                                    if (onlinePlayerP != null && onlinePlayerP.isOnline()){
+                                        Sex sex = getSex(onlinePlayerP);
+                                        onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，你也快去跟你的" + getAfterMarriageCall(sex) + "贴贴吧~~~");
+                                    }else {
+                                        onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，快叫上你的伴侣上线贴贴吧~~~");
+                                    }
                                 }
                             }
                         }

@@ -270,7 +270,13 @@ public class Command implements CommandExecutor {
                     if (partner == null || partner.isEmpty()){
                         onlinePlayer.sendMessage("§e" + player.getName() + "和" + target.getName() + "亲亲了，你还没有对象~~~");
                     }else {
-                        onlinePlayer.sendMessage("§e" + player.getName() + "和" + target.getName() + "亲亲了，快叫上你的伴侣上线亲亲吧~~~");
+                        Player partnerP = Bukkit.getPlayer(partner);
+                        if (partnerP != null && partnerP.isOnline()){
+                            Love.Sex partnerSex = Love.getSex(partnerP);
+                            onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "亲亲了，你也快去跟你的" + Love.getAfterMarriageCall(partnerSex) + "亲亲吧~~~");
+                        }else {
+                            onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "亲亲了，快叫上你的伴侣上线亲亲吧~~~");
+                        }
                     }
                 }
                 break;
