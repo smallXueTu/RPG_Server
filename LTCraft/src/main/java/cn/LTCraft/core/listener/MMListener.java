@@ -60,6 +60,8 @@ public class MMListener implements Listener {
             event.register(new Escort(event.getContainer().getConfigLine(), event.getConfig()));
         }else if (event.getMechanicName().equalsIgnoreCase("callVigilant")){
             event.register(new CallForHelp(event.getContainer().getConfigLine(), event.getConfig()));
+        }else if (event.getMechanicName().equalsIgnoreCase("randomLightning")){
+            event.register(new RandomLightning(event.getContainer().getConfigLine(), event.getConfig()));
         }
     }
 
