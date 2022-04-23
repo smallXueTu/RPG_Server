@@ -43,14 +43,6 @@ t3火焰粒子门3:
     MovementSpeed: 0.3
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
   Disguise:
     Type: Player
     Skin: '&6虚空圣殿守护者'
@@ -71,14 +63,6 @@ t3火焰粒子门3:
     MovementSpeed: 0.3
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
   Drops:
     - skillapi-exp 15
     - 魔腾树木棍 1 1
@@ -92,14 +76,6 @@ t3火焰粒子门3:
     MovementSpeed: 0.3
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
   Equipment:
     - 278 HAND
   Disguise:
@@ -119,13 +95,7 @@ t3火焰粒子门3:
     MovementSpeed: 0.3
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
   AITargetSelectors:
-    - clear
     - players
   Drops:
     - skillapi-exp 15
@@ -140,14 +110,6 @@ t3火焰粒子门3:
     MovementSpeed: 0.3
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
   Drops:
     - skillapi-exp 15
     - 绿光虚空粉 1 1
@@ -155,28 +117,20 @@ t3火焰粒子门3:
   Type: Skeleton
   Display: '&6虚空之灵'
   Health: 2000
-  Damage: 6
+  Damage: 10
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - skeletonbowattack
   Equipment:
     - 虚焱弓 HAND
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
   Disguise:
     Type: Player
     Skin: '&6虚空之灵'
     Player: '&6虚空之灵'
   Skills:
-    - damage{a=20} @target ~onAttack
+    - bd{m=1} @target ~onAttack
   Drops:
     - skillapi-exp 20
     - 残破的虚焱弓 1 1
@@ -191,14 +145,6 @@ t3火焰粒子门3:
     MovementSpeed: 0.3
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
   Drops:
     - skillapi-exp 15
     - 食火粉 1 1
@@ -212,14 +158,6 @@ t3火焰粒子门3:
     MovementSpeed: 0.3
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
   Drops:
     - skillapi-exp 20
     - 寒晶体 1 1
@@ -233,18 +171,10 @@ t3火焰粒子门3:
     MovementSpeed: 0.2
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
   Skills:
     - skill{s=金虎跃击} ~onDamaged
     - message{cooldown=60;m="<mob.name>&d>><&co> &c不许打搅虎王的安宁！"} @PlayersInRadius{r=20} ~onCombat 0.3
     - message{cooldown=60;m="<mob.name>&d>><&co> &c不我将永远对虎王忠臣！"} @PlayersInRadius{r=20} ~onCombat 0.3
-  AITargetSelectors:
-    - clear
-    - players
   Drops:
     - skillapi-exp 15
     - 虚空之金 1 1
@@ -258,9 +188,6 @@ t3火焰粒子门3:
     MovementSpeed: 0.2
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
   Modules:
     ThreatTable: true
   Skills:

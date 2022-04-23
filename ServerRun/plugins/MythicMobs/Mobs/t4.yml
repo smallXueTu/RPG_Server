@@ -20,12 +20,6 @@ t4火焰粒子门1:
     Type: Player
     Skin: '&6恶魔古堡守护者'
     Player: '&6恶魔古堡守护者'
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 6
     MovementSpeed: 0.3
@@ -121,13 +115,6 @@ t4火焰粒子门1:
     Type: Player
     Skin: '&6恶魔能量原体'
     Player: '&6恶魔能量原体'
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-    - randomstroll
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 8
     MovementSpeed: 0.35
@@ -152,13 +139,6 @@ t4火焰粒子门1:
     Type: Player
     Skin: '&6恶魔力量原体'
     Player: '&6恶魔力量原体'
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-    - randomstroll
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 8
     MovementSpeed: 0.35
@@ -184,13 +164,6 @@ t4火焰粒子门1:
     Type: Player
     Skin: '&6古堡统治者-雷电之主'
     Player: '&6古堡统治者-雷电之主'
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-    - randomstroll
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 8
     MovementSpeed: 0.35
@@ -201,6 +174,8 @@ t4火焰粒子门1:
   Drops:
     - skillapi-exp 50
     - 雷电碎片 1 0.5
+  Skills:
+    - skill{s=闪电之雨} ~onDamaged 0.2
 古堡统治者-恶魔之主:
   Type: Skeleton
   Display: '&6古堡统治者-恶魔之主'
@@ -213,13 +188,6 @@ t4火焰粒子门1:
     Type: Player
     Skin: '&6古堡统治者-恶魔之主'
     Player: '&6古堡统治者-恶魔之主'
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-    - randomstroll
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 8
     MovementSpeed: 0.35
@@ -242,13 +210,6 @@ t4火焰粒子门1:
     Type: Player
     Skin: '&6古堡统治者-火魔之主'
     Player: '&6古堡统治者-火魔之主'
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-    - randomstroll
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 8
     MovementSpeed: 0.35

@@ -46,3 +46,11 @@ t4火焰粒子门2:
     - MainLinePositionDistance{range=3;loc=-379:8:-835:t4}
   Skills:
     - execBQEvent{e=保存主线位置到T4进度4}
+闪电之雨:
+  Conditions:
+    - IsSilence{}<&csp>false
+  Cooldown: 10
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d三秒后&e召唤&c大量雷击 &d类型:随机 &c注意躲避！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
+    - delay 60
+    - randomLightning{c=10-50;r=5;d=10-30} @Self

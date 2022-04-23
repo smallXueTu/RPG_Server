@@ -3,20 +3,12 @@
   Display: '&e【初级】&6暗裔守卫者'
   Health: 600
   Damage: 20
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
   Disguise:
     Type: Player
     Skin: '&e【初级】&6暗裔守卫者'
     Player: '&e【初级】&6暗裔守卫者'
   Equipment:
     - 267 HAND
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 8
     MovementSpeed: 0.3
@@ -33,20 +25,12 @@
   Display: '&e【初级】&6暗裔守护'
   Health: 600
   Damage: 20
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
   Disguise:
     Type: Player
     Skin: '&e【初级】&6暗裔守护'
     Player: '&e【初级】&6暗裔守护'
   Equipment:
     - 267 HAND
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 8
     MovementSpeed: 0.3
@@ -63,9 +47,6 @@
   Display: '&e【中级】&6暗裔恶火'
   Health: 800
   Damage: 20
-  AIGoalSelectors:
-    - clear
-    - meleeattack
   Modules:
     ThreatTable: true
   Disguise:
@@ -74,9 +55,6 @@
     Player: '&e【中级】&6暗裔恶火'
   Equipment:
     - 267 HAND
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 8
     MovementSpeed: 0.3

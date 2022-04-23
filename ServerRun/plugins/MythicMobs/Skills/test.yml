@@ -1,3 +1,632 @@
 test:
   Skills:
     - summonTheEnemy{type=恶魔古堡守护者;amount=1;} @SelfLocation
+
+冰寒无双:
+  Skills:
+    - sendtitle{title="&b&l冰天雪女";subtitle=" &b飞舞吧！ &c冰寒无双！";d=60;fi=10;fo=10} @self
+    - potion{type=LEVITATION;d=100;lvl=3} @self
+    - potion{type=SLOW;d=100;lvl=3} @self
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=20;speed=0;hS=0.75;vS=0.2} @self
+    - delay 10
+    - effect:particles{c=#00BFFF;amount=100;speed=6;hS=0.75;vS=0.2} @self
+    - effect:particles{c=#87CEFA;amount=100;speed=6;hS=0.75;vS=0.2} @self
+    - damage{a=7000} @self
+雪舞耀阳:
+  Skills:
+    - sendtitle{title="&b&l冰天雪女";subtitle=" &b来到我这里你还想跑吗？ &a雪舞耀阳！";d=60;fi=10;fo=10} @Self
+    - potion{type=Slow;d=80;lvl=2} @Self
+    - potion{type=BLINDNESS;d=80;lvl=2} @Self
+    - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - delay 10
+    - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - delay 10
+    - damage{a=4000} @PIR{r=10}
+    - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - delay 10
+    - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - delay 10
+    - damage{a=4000} @PIR{r=10}
+    - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - delay 10
+    - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - delay 10
+    - damage{a=4000} @PIR{r=10}
+    - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - delay 10
+    - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - delay 10
+    - damage{a=4000} @PIR{r=10}
+    - effect:particlering{c=#00BFFF;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#87CEFA;amount=50;speed=0;hS=5;vS=0.2;r=5} @Self
+    - effect:particlering{c=#00BFFF;amount=200;speed=3;hS=5;vS=0.2;r=3} @Self
+    - effect:particlering{c=#87CEFA;amount=200;speed=3;hS=5;vS=0.2;r=3} @Self
+大寒无雪:
+  Skills:
+    - sendtitle{title="&b&l冰天雪女";subtitle=" &b冰霜之力！ &c受死吧！";d=60;fi=10;fo=10} @Self
+    - damage{a=8} @Self
+    - effect:particles{c=#00BFFF;amount=50;speed=0;hS=0.75;vS=0.2} @Self
+    - effect:particles{c=#87CEFA;amount=50;speed=0;hS=0.75;vS=0.2} @Self
+左提斩:
+  Skills:
+    - Effect:Particles{a=1;p=crit;yOffset=0.4;sideOffset=0.8;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.3;sideOffset=0.9;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=0.9;sideOffset=0.4;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.8;sideOffset=0.5;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.7;sideOffset=0.6;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.5;sideOffset=0.7;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=1.5;sideOffset=-0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.4;sideOffset=-0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.3;sideOffset=0;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.2;sideOffset=0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.1;sideOffset=0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1;sideOffset=0.3;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=1.8;sideOffset=-0.5;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.9;sideOffset=-0.6;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=2;sideOffset=-0.7;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.7;sideOffset=-0.4;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.6;sideOffset=-0.3;forwardOffset=1.5}
+左斜斩:
+  Skills:
+    - Effect:Particles{a=1;p=crit;yOffset=2;sideOffset=-0.7;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.9;sideOffset=-0.6;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.8;sideOffset=-0.5;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.7;sideOffset=-0.4;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.6;sideOffset=-0.3;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=1.5;sideOffset=-0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.4;sideOffset=-0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.3;sideOffset=0;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.2;sideOffset=0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.1;sideOffset=0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1;sideOffset=0.3;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=0.9;sideOffset=0.4;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.8;sideOffset=0.5;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.7;sideOffset=0.6;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.5;sideOffset=0.7;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=0.4;sideOffset=0.8;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.3;sideOffset=0.9;forwardOffset=1.5}
+右斜斩:
+  Skills:
+    - Effect:Particles{a=1;p=crit;yOffset=1.9;sideOffset=1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=2;sideOffset=0.9;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.8;sideOffset=0.8;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.7;sideOffset=0.7;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.6;sideOffset=0.6;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=1.5;sideOffset=0.5;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.4;sideOffset=0.4;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.3;sideOffset=0.3;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.2;sideOffset=0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.1;sideOffset=0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1;sideOffset=0;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=0.9;sideOffset=-0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.8;sideOffset=-0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.7;sideOffset=-0.3;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.6;sideOffset=-0.4;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=0.5;sideOffset=-0.5;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.4;sideOffset=-0.6;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.3;sideOffset=-0.7;forwardOffset=1.5}
+右提斩:
+  Skills:
+    - Effect:Particles{a=1;p=crit;yOffset=0.5;sideOffset=-0.5;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.4;sideOffset=-0.6;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.3;sideOffset=-0.7;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=0.9;sideOffset=-0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.8;sideOffset=-0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.7;sideOffset=-0.3;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=0.6;sideOffset=-0.4;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=1.5;sideOffset=0.5;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.4;sideOffset=0.4;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.3;sideOffset=0.3;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.2;sideOffset=0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.1;sideOffset=0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1;sideOffset=0;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=2;sideOffset=1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.9;sideOffset=0.9;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.8;sideOffset=0.8;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.7;sideOffset=0.7;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.6;sideOffset=0.6;forwardOffset=1.5}
+横斩:
+  Skills:
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=0.3;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=0.4;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=0.5;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=0.6;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=0.7;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=0.8;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=0.9;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=1.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=1.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=1.3;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-0.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-0.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-0.3;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-0.4;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-0.5;forwardOffset=1.5}
+    - delay 1
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-0.6;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-0.7;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-0.8;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-0.9;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-1.1;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-1.2;forwardOffset=1.5}
+    - Effect:Particles{a=1;p=crit;yOffset=1.25;sideOffset=-1.3;forwardOffset=1.5}
+右斜斩123:
+  Skills:
+    - message{m="使用成功"} @Self
+    - Effect:Particles{a=1;c=#000000;yOffset=1.5;sideOffset=-1.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.4;sideOffset=-1.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.3;sideOffset=-1.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.2;sideOffset=-1.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.5;sideOffset=-1.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.4;sideOffset=-1.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.3;sideOffset=-1.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.2;sideOffset=-1.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.1;sideOffset=-1.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.5;sideOffset=-1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.4;sideOffset=-1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.3;sideOffset=-1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.2;sideOffset=-1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.1;sideOffset=-1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.0;sideOffset=-1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.5;sideOffset=-1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.4;sideOffset=-1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.3;sideOffset=-1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.2;sideOffset=-1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.1;sideOffset=-1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.0;sideOffset=-1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.9;sideOffset=-1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.4;sideOffset=-1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.3;sideOffset=-1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.2;sideOffset=-1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.1;sideOffset=-1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.0;sideOffset=-1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.9;sideOffset=-1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.8;sideOffset=-1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.3;sideOffset=-1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.2;sideOffset=-1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.1;sideOffset=-1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.0;sideOffset=-1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.9;sideOffset=-1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.8;sideOffset=-1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.7;sideOffset=-1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.2;sideOffset=-0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.1;sideOffset=-0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.0;sideOffset=-0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.9;sideOffset=-0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.8;sideOffset=-0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.7;sideOffset=-0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.6;sideOffset=-0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.1;sideOffset=-0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.0;sideOffset=-0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.9;sideOffset=-0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.8;sideOffset=-0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.7;sideOffset=-0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.6;sideOffset=-0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.5;sideOffset=-0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=1.0;sideOffset=-0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.9;sideOffset=-0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.8;sideOffset=-0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.7;sideOffset=-0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.6;sideOffset=-0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.5;sideOffset=-0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.4;sideOffset=-0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.9;sideOffset=-0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.8;sideOffset=-0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.7;sideOffset=-0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.6;sideOffset=-0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.5;sideOffset=-0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.4;sideOffset=-0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.3;sideOffset=-0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.8;sideOffset=-0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.7;sideOffset=-0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.6;sideOffset=-0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.5;sideOffset=-0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.4;sideOffset=-0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.3;sideOffset=-0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.2;sideOffset=-0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.7;sideOffset=-0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.6;sideOffset=-0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.5;sideOffset=-0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.4;sideOffset=-0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.3;sideOffset=-0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.2;sideOffset=-0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.1;sideOffset=-0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.6;sideOffset=-0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.5;sideOffset=-0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.4;sideOffset=-0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.3;sideOffset=-0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.2;sideOffset=-0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.1;sideOffset=-0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.0;sideOffset=-0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.5;sideOffset=-0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.4;sideOffset=-0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.3;sideOffset=-0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.2;sideOffset=-0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.1;sideOffset=-0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.0;sideOffset=-0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.1;sideOffset=-0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.4;sideOffset=-0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.3;sideOffset=-0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.2;sideOffset=-0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.1;sideOffset=-0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.0;sideOffset=-0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.1;sideOffset=-0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.2;sideOffset=-0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.3;sideOffset=0.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.2;sideOffset=0.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.1;sideOffset=0.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.0;sideOffset=0.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.1;sideOffset=0.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.2;sideOffset=0.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.3;sideOffset=0.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.2;sideOffset=0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.1;sideOffset=0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.0;sideOffset=0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.1;sideOffset=0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.2;sideOffset=0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.3;sideOffset=0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.4;sideOffset=0.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.1;sideOffset=0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.0;sideOffset=0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.1;sideOffset=0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.2;sideOffset=0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.3;sideOffset=0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.4;sideOffset=0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.5;sideOffset=0.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=0.0;sideOffset=0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.1;sideOffset=0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.2;sideOffset=0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.3;sideOffset=0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.4;sideOffset=0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.5;sideOffset=0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.6;sideOffset=0.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.1;sideOffset=0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.2;sideOffset=0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.3;sideOffset=0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.4;sideOffset=0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.5;sideOffset=0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.6;sideOffset=0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.7;sideOffset=0.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.2;sideOffset=0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.3;sideOffset=0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.4;sideOffset=0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.5;sideOffset=0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.6;sideOffset=0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.7;sideOffset=0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.8;sideOffset=0.5}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.3;sideOffset=0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.4;sideOffset=0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.5;sideOffset=0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.6;sideOffset=0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.7;sideOffset=0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.8;sideOffset=0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.9;sideOffset=0.6}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.4;sideOffset=0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.5;sideOffset=0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.6;sideOffset=0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.7;sideOffset=0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.8;sideOffset=0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.9;sideOffset=0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.0;sideOffset=0.7}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.5;sideOffset=0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.6;sideOffset=0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.7;sideOffset=0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.8;sideOffset=0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.9;sideOffset=0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.0;sideOffset=0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.1;sideOffset=0.8}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.6;sideOffset=0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.7;sideOffset=0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.8;sideOffset=0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.9;sideOffset=0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.0;sideOffset=0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.1;sideOffset=0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.2;sideOffset=0.9}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.7;sideOffset=1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.8;sideOffset=1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.9;sideOffset=1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.0;sideOffset=1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.1;sideOffset=1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.2;sideOffset=1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.3;sideOffset=1.0}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.8;sideOffset=1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.9;sideOffset=1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.0;sideOffset=1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.1;sideOffset=1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.2;sideOffset=1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.3;sideOffset=1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.4;sideOffset=1.1}
+    - Effect:Particles{a=1;c=#000000;yOffset=-0.9;sideOffset=1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.0;sideOffset=1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.1;sideOffset=1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.2;sideOffset=1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.3;sideOffset=1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.4;sideOffset=1.2}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.0;sideOffset=1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.1;sideOffset=1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.2;sideOffset=1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.3;sideOffset=1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.4;sideOffset=1.3}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.1;sideOffset=1.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.2;sideOffset=1.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.3;sideOffset=1.4}
+    - Effect:Particles{a=1;c=#000000;yOffset=-1.4;sideOffset=1.4}
+爆裂重斩:
+  Skills:
+    - skill{s=左斜斩}
+    - skill{s=右提斩}
+    - effect:explosion @target
+    - Effect:Particles{a=1;p=explode;yOffset=2;sideOffset=-0.7;forwardOffset=1}
+    - Effect:Particles{a=1;p=explode;yOffset=1.6;sideOffset=-0.3;forwardOffset=1}
+    - delay 1
+    - Effect:Particles{a=1;p=explode;yOffset=1.5;sideOffset=-0.2;forwardOffset=1}
+    - delay 1
+    - Effect:Particles{a=1;p=explode;yOffset=0.9;sideOffset=0.4;forwardOffset=1}
+    - Effect:Particles{a=1;p=explode;yOffset=0.5;sideOffset=0.7;forwardOffset=1}
+    - delay 1
+    - Effect:Particles{a=1;p=explode;yOffset=0.4;sideOffset=0.8;forwardOffset=1}
+    - Effect:Particles{a=1;p=explode;yOffset=0.3;sideOffset=0.9;forwardOffset=1}
+    - Effect:Particles{a=1;p=explode;yOffset=0.5;sideOffset=-0.5;forwardOffset=1}
+    - delay 1
+    - Effect:Particles{a=1;p=explode;yOffset=0.9;sideOffset=-0.1;forwardOffset=1}
+    - Effect:Particles{a=1;p=explode;yOffset=0.6;sideOffset=-0.4;forwardOffset=1}
+    - delay 1
+    - Effect:Particles{a=1;p=explode;yOffset=1.5;sideOffset=0.5;forwardOffset=1}
+    - Effect:Particles{a=1;p=explode;yOffset=1.4;sideOffset=0.4;forwardOffset=1}
+    - Effect:Particles{a=1;p=explode;yOffset=1;sideOffset=0;forwardOffset=1}
+    - delay 1
+    - Effect:Particles{a=1;p=explode;yOffset=2;sideOffset=1;forwardOffset=1}
+    - Effect:Particles{a=1;p=explode;yOffset=1.9;sideOffset=0.9;forwardOffset=1}
+
+烈焰笼罩球状粒子:
+  Skills:
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+    - delay 5
+    - effect:particlesphere{particle=flame;amount=50;radius=0.75;y=0.5} @self
+烈焰环绕:
+  Skills:
+    - orbital{onTick=烈焰环绕-Tick;hp=false;hnp=false;StopAtBlock=false;StopAtEntity=false;points=20;interval=1;duration=22;charges=1;r=5} @Self
+烈焰环绕-Tick:
+  Skills:
+    - effect:particles{p=flame;amount=20;speed=0;hS=0.2;vS=0.1} @origin
+    - delay 20
+    - effect:particles{p=flame;amount=20;speed=0;hS=0.05;vS=3} @origin
+    - damage{a=1000} @PIR{r=5}
+聚能爆裂发射:
+  Skills:
+    - projectile{onTick=聚能爆裂-Tick;onHit=聚能爆裂-Hit;onEnd=聚能爆裂-Hit;v=8;i=1;hR=3;vR=3;g=0.2} @Cone{angle=360;points=4;range=6;rotation=1}
+聚能爆裂-Tick:
+  Skills:
+    - effect:particles{p=flame;amount=5;speed=0.1;hS=0.1;vS=0.1} @origin
+聚能爆裂-Hit:
+  Skills:
+    - damage{a=10}
+    - Effect:explosion
+    - ignite{ticks=120}
+烈焰笼罩粒子弹射:
+  Skills:
+    - Potion{t=SLOW;dur=200;lvl=5} @Self
+#    - teleport{spreadh=0;spreadv=0} @Location{c=315.5,233,235.5}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=180}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=30}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-30}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=60}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-60}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=90}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-90}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=120}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-120}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=150}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-150}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-180}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=180}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=210}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-210}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=240}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-240}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=270}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-270}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=300}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-300}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=330}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-330}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=360}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-360}
+    - skill{s=烈焰笼罩粒子弹射1}
+烈焰笼罩粒子弹射1:
+  Skills:
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=180}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=30}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-30}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=60}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-60}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=90}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-90}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=120}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-120}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=150}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-150}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-180}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=180}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=210}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-210}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=240}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-240}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=270}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-270}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=300}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-300}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=330}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-330}
+    - delay 5
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=360}
+    - projectile{onTick=烈焰笼罩粒子弹射-Tick;onHit=烈焰笼罩粒子弹射-Hit;onEnd=烈焰笼罩粒子弹射-End;v=8;i=1;hR=1;vR=1;hO=-360}
+    - delay 20
+    - modifymobscore{objective=water;action=set;value=0}
+烈焰笼罩粒子弹射-Tick:
+  Skills:
+    - effect:particles{particle=flame;amount=10;speed=0.1;hs=0.1;vs=0.1} @origin
+烈焰笼罩粒子弹射-Hit:
+  Skills:
+    - effect:particles{p=flame;amount=20;speed=0;hS=0.05;vS=0.1} @origin
+    - effect:particles{p=flame;amount=20;speed=0;hS=0.05;vS=0.1} @origin
+    - effect:explosion
+    - damage{a=10}
+    - potion{type=slow;dur=10;lvl=1}
+烈焰笼罩粒子弹射-End:
+  Skills:
+    - effect:particles{p=flame;amount=20;speed=0;hS=0.05;vS=0.1} @origin
+    - effect:particles{p=flame;amount=20;speed=0;hS=0.05;vS=0.1} @origin
+    - effect:explosion
+烈焰笼罩连线:
+  Skills:
+    - effect:particleline{particle=flame;amount=1;fromOrigin=true;y=1}
+烈焰笼罩连线清除:
+  Skills:
+    - delay 20
+    - remove
+
+飞行环绕粒子球:
+  Skills:
+    - potion{type=levitation;dur=100;lvl=2}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=6;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=4;oradz=6;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=4;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=6;oradsec=4}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=5;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-6;oradz=6;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-4;oradz=6;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-6;oradz=4;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-6;oradz=6;oradsec=4}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-6;oradz=5;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-6;oradz=-6;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-4;oradz=-6;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-6;oradz=-4;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-6;oradz=-6;oradsec=4}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=-6;oradz=-5;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=-6;oradsec=-6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=4;oradz=-6;oradsec=-6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=-4;oradsec=-6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=-6;oradsec=-4}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=-5;oradsec=-6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=-6;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=4;oradz=-6;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=-4;oradsec=6}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=-6;oradsec=4}
+    - mythicorbitalprojectile{pobject=环绕粒子线;i=1;md=200;se=false;pvoff=0.2;pfacedir=true;oradx=6;oradz=-5;oradsec=6}
+    - orbital{onTick=飞行环绕粒子球特效;points=1;interval=1;duration=200;charges=1;hp=fadlse;hnp=false;r=1;ox=-1}
+    - delay 100
+    - Effect:Particles{c=#DC143C;amount=150;vs=0.1;hs=3;s=5} @Self
+    - effect:particles{p=flame;a=100;hs=3;vs=0.15;s=2} @Self
+    - effect:particles{p=lava;a=60;hs=0.4;vs=0.15;s=0.1} @Self
+    - Effect:Particles{c=#DC143C;amount=120;vs=0.4;hs=0.5;s=0.1} @Self
+    - remove
+环绕粒子线:
+  Skills:
+    - missile{ot=环绕线条-Tick;v=8;i=1;hR=0;vR=0;hp=false;hnp=false;sE=false;fo=true;sfo=0;tyo=0;hs=true;in=0.1}
+环绕线条-Tick:
+  Skills:
+    - Effect:Particles{p=flame;amount=1;vs=0.1;hs=0;s=0} @origin
+生成技能测试:
+  Skills:
+    - randomLightning{c=5;r=5;d=10} @Self

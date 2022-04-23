@@ -924,15 +924,6 @@ BOSS-魔塔统治者:
   Display: '&e【高级】&6恶火翼兽'
   Health: 200
   Damage: 10
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
-    - golems
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
@@ -950,14 +941,6 @@ BOSS-魔塔统治者:
   Display: '&e【高级】&6恶火兽'
   Health: 250
   Damage: 10
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
@@ -1019,15 +1002,6 @@ BOSS-恶火圣殿统治者:
     MovementSpeed: 0.5
     AlwaysShowName: true
     PreventOtherDrops: true
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
-  AITargetSelectors:
-    - clear
-    - players
-    - golems
   Disguise:
     Type: Player
     Skin: '&e【BOSS】&6恶火统治者'

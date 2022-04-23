@@ -3,20 +3,12 @@
   Display: '&e【初级】&6试炼士兵'
   Health: 500
   Damage: 10
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
   Disguise:
     Type: Player
     Skin: '&e【初级】&6试炼士兵'
     Player: '&e【初级】&6试炼士兵'
   Equipment:
     - 267 HAND
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
@@ -33,20 +25,12 @@
   Display: '&e【中级】&6试炼士兵'
   Health: 1000
   Damage: 20
-  AIGoalSelectors:
-    - clear
-    - meleeattack
-  Modules:
-    ThreatTable: true
   Disguise:
     Type: Player
     Skin: '&e【中级】&6试炼士兵'
     Player: '&e【中级】&6试炼士兵'
   Equipment:
     - 267 HAND
-  AITargetSelectors:
-    - clear
-    - players
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
