@@ -524,31 +524,33 @@ public class PlayerListener  implements Listener {
             if (Game.rpgWorlds.contains(event.getPlayer().getWorld().getName())) {
                 boolean sign = false;
                 AirDoor airDoor = null;
-                for (Iterator<AirDoor> iterator = AirDoor.getAirDoors().iterator(); iterator.hasNext(); ) {
-                    airDoor = iterator.next();
-                    if (airDoor.getBukkitEntity().isDead()) {
-                        iterator.remove();
-                        continue;
-                    }
-                    if (airDoor.getBukkitEntity().getWorld() != player.getWorld() || airDoor.getBukkitEntity().getLocation().distance(player.getLocation()) > airDoor.getDistance())
-                        continue;
-                    double fLocation = airDoor.isX() ? from.getX() : from.getZ();
-                    double tLocation = airDoor.isX() ? to.getX() : to.getZ();
-                    if (airDoor.isForward()) {
-                        if (fLocation <= airDoor.getLocation() && tLocation > airDoor.getLocation()) {
-                            sign = true;
+                synchronized (AirDoor.getAirDoors()) {
+                    for (Iterator<AirDoor> iterator = AirDoor.getAirDoors().iterator(); iterator.hasNext(); ) {
+                        airDoor = iterator.next();
+                        if (airDoor.getBukkitEntity().isDead()) {
+                            iterator.remove();
+                            continue;
                         }
-                    } else {
-                        if (fLocation >= airDoor.getLocation() && tLocation < airDoor.getLocation()) {
-                            sign = true;
-                        }
-                    }
-                    if (sign) {
-                        if (Game.demand(player, airDoor.getDemand())) {
-                            Game.execute(player, airDoor.getSuccess());
+                        if (airDoor.getBukkitEntity().getWorld() != player.getWorld() || airDoor.getBukkitEntity().getLocation().distance(player.getLocation()) > airDoor.getDistance())
+                            continue;
+                        double fLocation = airDoor.isX() ? from.getX() : from.getZ();
+                        double tLocation = airDoor.isX() ? to.getX() : to.getZ();
+                        if (airDoor.isForward()) {
+                            if (fLocation <= airDoor.getLocation() && tLocation > airDoor.getLocation()) {
+                                sign = true;
+                            }
                         } else {
-                            Game.execute(player, airDoor.getFail(), event, airDoor);
-                            break;
+                            if (fLocation >= airDoor.getLocation() && tLocation < airDoor.getLocation()) {
+                                sign = true;
+                            }
+                        }
+                        if (sign) {
+                            if (Game.demand(player, airDoor.getDemand())) {
+                                Game.execute(player, airDoor.getSuccess());
+                            } else {
+                                Game.execute(player, airDoor.getFail(), event, airDoor);
+                                break;
+                            }
                         }
                     }
                 }

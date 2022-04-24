@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AirDoor extends SkillMechanic implements ITargetedEntitySkill {
-    private static List<AirDoor> airDoors = new ArrayList<>();
+    private static final List<AirDoor> airDoors = new ArrayList<>();
     private AbstractEntity entity = null;
     private boolean forward = true;//监听前进还是后退
     private boolean x = true;//X还是Z
@@ -35,7 +35,9 @@ public class AirDoor extends SkillMechanic implements ITargetedEntitySkill {
     @Override
     public boolean castAtEntity(SkillMetadata skillMetadata, AbstractEntity abstractEntity) {
         entity = abstractEntity;
-        airDoors.add(this);
+        synchronized (airDoors) {
+            airDoors.add(this);
+        }
         return false;
     }
 
