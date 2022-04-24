@@ -964,7 +964,7 @@ BOSS-魔塔统治者:
     ItemHand: 焱火三尺
   Pose:
     RightArm: -10,7,-40
-焱火三尺等待发色剑体:
+焱火三尺等待发射剑体:
   Type: armor_stand
   Options:
     HasArms: true
@@ -1010,7 +1010,7 @@ BOSS-恶火圣殿统治者:
     - skill{s=火之护盾;sync=true} ~onDamaged
     - skill{s=护盾损坏;} ~onDamaged
     - skill{s=恶火斩击;} <40% ~onDamaged 0.2
-    - skill{s=准备发发射焱火三尺;} <80% ~onDamaged 0.5
+    - skill{s=准备发射焱火三尺;} <80% ~onDamaged 0.5
     - skill{s=小提示;} ~onDamaged
     - skill{s=锻造寒冰三尺;} ~onDamaged
     - potion{type=FIRE_RESISTANCE;duration=1000000;} @Self ~onSpawn

@@ -191,15 +191,15 @@
   Skills:
     - effect:particlesphere{amount=20;radius=1.2;particle=flame;} @SelfLocation{yoffset=1}
     - sound{s=block.fire.extinguish;p=2} @self
-准备发发射焱火三尺:
+准备发射焱火三尺:
   Conditions:
     - IsSilence{}<&csp>false
   Cooldown: 10
   Skills:
     - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d五秒后&e使用技能&c焱火三尺之力 &d类型:远程 &c注意躲避！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
-    - roundSummon{type=焱火三尺等待发色剑体;amount=1;radius=2;angle=0} @SelfLocation
-    - roundSummon{type=焱火三尺等待发色剑体;amount=1;radius=2;angle=1} @SelfLocation
-    - roundSummon{type=焱火三尺等待发色剑体;amount=1;radius=2;angle=2} @SelfLocation
+    - roundSummon{type=焱火三尺等待发射剑体;amount=1;radius=2;angle=0} @SelfLocation
+    - roundSummon{type=焱火三尺等待发射剑体;amount=1;radius=2;angle=1} @SelfLocation
+    - roundSummon{type=焱火三尺等待发射剑体;amount=1;radius=2;angle=2} @SelfLocation
 焱火三尺启动:
   Skills:
     - summon{type=焱火三尺替身;amount=1;radius=0} @SelfLocation

@@ -156,7 +156,7 @@ t4火焰粒子门1:
   Type: Skeleton
   Display: '&6古堡统治者-雷电之主'
   Health: 5000
-  Damage: 12
+  Damage: 10
   护甲: 500
   Equipment:
     - 雷电弯刃:HAND
@@ -173,14 +173,15 @@ t4火焰粒子门1:
     PreventSunburn: true
   Drops:
     - skillapi-exp 50
-    - 雷电碎片 1 0.5
+    - ltitem 中型生命药剂 1 0.5
+    - 雷电碎片 1 1
   Skills:
     - skill{s=闪电之雨} ~onDamaged 0.2
 古堡统治者-恶魔之主:
   Type: Skeleton
   Display: '&6古堡统治者-恶魔之主'
   Health: 5000
-  Damage: 12
+  Damage: 10
   护甲: 500
   Equipment:
     - 恶魔弯刀:HAND
@@ -197,12 +198,15 @@ t4火焰粒子门1:
     PreventSunburn: true
   Drops:
     - skillapi-exp 50
-    - 恶魔能量碎片 1 0.5
+    - ltitem 中型生命药剂 1 0.5
+    - 恶魔能量碎片 1 1
+  Skills:
+    - skill{s=准备发射恶魔弯刀} ~onDamaged 0.2
 古堡统治者-火魔之主:
   Type: Skeleton
   Display: '&6古堡统治者-火魔之主'
   Health: 5000
-  Damage: 12
+  Damage: 10
   护甲: 500
   Equipment:
     - 法火:HAND
@@ -219,4 +223,66 @@ t4火焰粒子门1:
     PreventSunburn: true
   Drops:
     - skillapi-exp 50
-    - ltitem 火魔 1 0.5
+    - ltitem 中型生命药剂 1 0.5
+    - ltitem 火魔 1 1
+  Skills:
+    - skill{s=火舞耀阳} ~onDamaged 0.2
+恶魔弯刀插地剑体1:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    ItemHand: 恶魔弯刀
+    HasGravity: true
+  Pose:
+    RightArm: -130,5,180
+  Skills:
+    - remove{delay=100} @self ~onSpawn
+恶魔弯刀插地剑体2:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    ItemHand: 恶魔弯刀
+    HasGravity: true
+  Pose:
+    RightArm: -130,90,180
+  Skills:
+    - remove{delay=100} @self ~onSpawn
+恶魔弯刀剑体:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    ItemHand: 恶魔弯刀
+    HasGravity: true
+  Pose:
+    RightArm: -100,90,180
+  Skills:
+    - remove{delay=100} @self ~onSpawn
+恶魔弯刀发射剑体:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    ItemHand: 恶魔弯刀
+    HasGravity: false
+  Pose:
+    RightArm: -100,90,180
+  Skills:
+    - skill{s=恶魔弯刀启动} @NearestPlayer{r=50} ~onSpawn
+恶魔弯刀替身:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    HasGravity: false
+  Pose:
+    RightArm: -10,7,-40
+  Skills:
+    - skill{s=恶魔弯刀发射} @NearestPlayer{r=50} ~onSpawn

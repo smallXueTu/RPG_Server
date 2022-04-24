@@ -54,3 +54,74 @@ t4火焰粒子门2:
     - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d三秒后&e召唤&c大量雷击 &d类型:随机 &c注意躲避！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
     - delay 60
     - randomLightning{c=10-50;r=5;d=10-30} @Self
+准备发射恶魔弯刀:
+  Conditions:
+    - IsSilence{}<&csp>false
+  Cooldown: 20
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d五秒后&e使用技能&c恶魔弯刀之力 &d类型:远程 &c注意上空！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
+    - summon{type=恶魔弯刀发射剑体;amount=30;radius=8}  @SelfLocation{y=5}
+恶魔弯刀发射:
+  Skills:
+    - delay 100
+    - mythicprojectile{pobject=恶魔弯刀剑体;ontick=恶魔弯刀剑体tick;onhit=恶魔弯刀剑体Hit;onend=恶魔弯刀剑体end;v=15;i=1;hR=1;pfacedir=false} @SelfLocation{y=-256}
+    - delay 100
+    - remove @Self
+恶魔弯刀剑体tick:
+  Skills:
+    - particles{p=reddust;amount=1;speed=0;y=1} @origin
+恶魔弯刀剑体Hit:
+  Skills:
+    - effect:particles{p=lava;amount=10;speed=0;hR=0.2;vR=0.2} @origin
+    - effect:particles{p=flame;amount=20;speed=0;hR=0.2;vR=0.2} @origin
+    - effect:sound{s=entity.arrow.hit;v=1;p=0}
+    - damage{a=30}
+恶魔弯刀剑体end:
+  Skills:
+    - effect:particles{p=lava;amount=10;speed=0;hR=0.2;vR=0.2} @origin
+    - effect:particles{p=flame;amount=20;speed=0;hR=0.2;vR=0.2} @origin
+    - randomskill{skills=恶魔弯刀姿势1,恶魔弯刀姿势2}
+恶魔弯刀启动:
+  Skills:
+    - summon{type=恶魔弯刀替身;amount=1;radius=0} @SelfLocation
+    - delay 100
+    - remove @Self
+恶魔弯刀姿势1:
+  Skills:
+    - summon{type=恶魔弯刀插地剑体1;amount=1}
+恶魔弯刀姿势2:
+  Skills:
+    - summon{type=恶魔弯刀插地剑体2;amount=1}
+火舞耀阳:
+  Conditions:
+    - IsSilence{}<&csp>false
+  Cooldown: 20
+  Skills:
+    - sendtitle{title="&8[&cWARNINH&8]";subtitle="<mob.name>&d三秒后&e使用技能&c火舞耀阳 &d类型:范围 &c击退他！";d=40;fi=20;o=20} @PlayersInRadius{r=5}
+    - potion{type=Slow;d=80;lvl=2} @PlayersInRadius{r=10}
+#    - ignite{ticks=100} @PlayersInRadius{r=10}
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - delay 10
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - delay 10
+    - damage{a=5} @PIR{r=10}
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - delay 10
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - delay 10
+    - damage{a=5} @PIR{r=10}
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - delay 10
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - delay 10
+    - damage{a=5} @PIR{r=10}
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - delay 10
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - delay 10
+    - damage{a=5} @PIR{r=10}
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
+    - effect:particlering{particle=flame;amount=200;speed=3;hS=5;vS=0.2;r=3} @PlayersInRadius{r=10}
+    - effect:particlering{particle=flame;amount=200;speed=3;hS=5;vS=0.2;r=3} @PlayersInRadius{r=10}
