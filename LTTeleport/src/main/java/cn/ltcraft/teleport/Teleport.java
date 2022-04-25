@@ -251,16 +251,13 @@ public class Teleport extends JavaPlugin implements Listener {
      */
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        System.out.println(Arrays.toString(args));
         switch (command.getName()) {
             case "warp":
             case "delwarp":
-                return tmpWarps.keySet().stream().filter(s -> s.startsWith(args.length <= 1?"":args[1])).collect(Collectors.toList());
+                return tmpWarps.keySet().stream().filter(s -> s.startsWith(args.length < 1?"":args[0])).collect(Collectors.toList());
             case "home":
             case "delhome":
-                System.out.println(args.length <= 1?"":args[1]);
-                System.out.println(playerHomes.get(sender.getName()).keySet().stream().filter(s -> s.startsWith(args.length <= 1?"":args[1])).collect(Collectors.toList()));
-                return playerHomes.get(sender.getName()).keySet().stream().filter(s -> s.startsWith(args.length <= 1?"":args[1])).collect(Collectors.toList());
+                return playerHomes.get(sender.getName()).keySet().stream().filter(s -> s.startsWith(args.length < 1?"":args[0])).collect(Collectors.toList());
         }
         return null;
     }
