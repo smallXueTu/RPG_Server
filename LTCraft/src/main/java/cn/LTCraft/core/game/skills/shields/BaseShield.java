@@ -1,6 +1,8 @@
 package cn.LTCraft.core.game.skills.shields;
 
 import cn.LTCraft.core.game.skills.BaseSkill;
+import cn.LTCraft.core.other.Temp;
+import cn.LTCraft.core.task.GlobalRefresh;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
@@ -41,12 +43,14 @@ public abstract class BaseShield implements Shield {
         awaken = baseSkill.isAwaken();
         level = baseSkill.getLevel();
         awakenLevel = baseSkill.getAwakenLevel();
+        GlobalRefresh.addTickEntity(this);
     }
 
     public BaseShield(int level, int awakenLevel, boolean awaken){
         this.level = level;
         this.awakenLevel = awakenLevel;
         this.awaken = awaken;
+        GlobalRefresh.addTickEntity(this);
     }
     public boolean doTick(long tick){
         boolean sign = remainingTick-- > 0;
@@ -94,5 +98,15 @@ public abstract class BaseShield implements Shield {
 
     public boolean isAwaken() {
         return awaken;
+    }
+
+    @Override
+    public int getTickRate() {
+        return 1;
+    }
+
+    @Override
+    public boolean isAsync() {
+        return true;
     }
 }

@@ -1,5 +1,7 @@
 package cn.ltcraft.item.objs;
 
+import cn.LTCraft.core.game.more.tickEntity.TickEntity;
+import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.MathUtils;
 import cn.ltcraft.item.base.AICLA;
@@ -18,7 +20,7 @@ import org.bukkit.inventory.PlayerInventory;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class PlayerAttribute extends AbstractAttribute {
+public class PlayerAttribute extends AbstractAttribute implements TickEntity {
     private static Map<String, PlayerAttribute> playerAttributeMap = new HashMap<>();
     private ItemStack[] equipment = new ItemStack[4];
     private Armor[] equipmentAtt = new Armor[4];
@@ -29,12 +31,17 @@ public class PlayerAttribute extends AbstractAttribute {
     private int tick = 0;
     public PlayerAttribute(Player player){
         owner = player;
+        GlobalRefresh.addTickEntity(this);
     }
 
     /**
      * tick 每1tick
      */
-    public void tick(){
+    public boolean doTick(long tick){
+        if (!owner.isOnline()){
+            playerAttributeMap.remove(owner.getName());
+            return false;
+        }
         if (tick % 200 == 0){
             getPotion().forEach((type, potionAttribute) -> {
                 if (MathUtils.ifAdopt(potionAttribute.getProbability())) {
@@ -46,7 +53,17 @@ public class PlayerAttribute extends AbstractAttribute {
             onChangeHand();
         }
         checkChangeArmor();
-        tick++;
+        return true;
+    }
+
+    @Override
+    public int getTickRate() {
+        return 1;
+    }
+
+    @Override
+    public boolean isAsync() {
+        return false;
     }
 
     /**

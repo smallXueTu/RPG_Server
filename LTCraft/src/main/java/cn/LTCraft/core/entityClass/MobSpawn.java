@@ -2,6 +2,8 @@ package cn.LTCraft.core.entityClass;
 
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.game.more.tickEntity.TickEntity;
+import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.GameUtils;
 import cn.LTCraft.core.utils.MathUtils;
 import cn.LTCraft.core.utils.Utils;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MobSpawn {
+public class MobSpawn implements TickEntity {
     private final Hologram hologram;
     private final String insideName;
     private final Location location;
@@ -39,6 +41,7 @@ public class MobSpawn {
     private Location[] locations;
     private ActiveMob[] mobs;
     private int mobSize = 0;
+    private boolean closed = false;
     public MobSpawn(String insideName){
         this.insideName = insideName;
         Main main = Main.getInstance();
@@ -87,8 +90,10 @@ public class MobSpawn {
             }
         }
         hologram.setAllowPlaceholders(true);
+        GlobalRefresh.addTickEntity(this);
     }
-    public void onUpdate(){
+    public boolean doTick(long tick){
+        if (!closed)return true;
         int lastSize = mobSize;
         int lastTimer = timer;
         if (mobSize < maxMobs) {
@@ -105,7 +110,7 @@ public class MobSpawn {
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-                    return;
+                    return false;
                 }
                 ActiveMob am;
                 if (index < locations.length){
@@ -122,8 +127,10 @@ public class MobSpawn {
         if (lastSize != mobSize || lastTimer != timer) {
             ((CraftHologram) hologram).refreshSingleLines();
         }
+        return true;
     }
     public void close(){
+        closed = true;
         hologram.setAllowPlaceholders(false);
         hologram.delete();
         for (ActiveMob mob : mobs) {
@@ -164,5 +171,15 @@ public class MobSpawn {
             }
         }
         return -1;
+    }
+
+    @Override
+    public boolean isAsync() {
+        return true;
+    }
+
+    @Override
+    public int getTickRate() {
+        return 1;
     }
 }

@@ -1,5 +1,7 @@
 package cn.LTCraft.core.game;
 
+import cn.LTCraft.core.game.more.tickEntity.TickEntity;
+import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.EntityUtils;
 import com.google.common.primitives.Ints;
 import io.lumine.xikage.mythicmobs.MythicMobs;
@@ -16,10 +18,10 @@ import java.util.*;
  * Created by Angel、 on 2022/4/8 21:44
  * 针对怪物管理
  */
-public class TargetOnlyMobsManager {
+public class TargetOnlyMobsManager implements TickEntity {
     private static TargetOnlyMobsManager mobsForPlayersManager = null;
 
-    public static TargetOnlyMobsManager getInstance() {
+    public synchronized static TargetOnlyMobsManager getInstance() {
         if (mobsForPlayersManager == null){
             mobsForPlayersManager = new TargetOnlyMobsManager();
         }
@@ -32,7 +34,7 @@ public class TargetOnlyMobsManager {
     public static final Map<ActiveMob, Player> targetOnlyMobs = new HashMap<>();
     public static final Map<ActiveMob, Integer> freeTick = new HashMap<>();
     private TargetOnlyMobsManager(){
-
+        GlobalRefresh.addTickEntity(this);
     }
 
     public void add(ActiveMob activeMob, Player player){
@@ -43,7 +45,7 @@ public class TargetOnlyMobsManager {
     /**
      * tick
      */
-    public void doTick(){
+    public boolean doTick(long tick){
         Set<Map.Entry<ActiveMob, Player>> entries = targetOnlyMobs.entrySet();
         for (Iterator<Map.Entry<ActiveMob, Player>> iterator = entries.iterator();iterator.hasNext();){
             Map.Entry<ActiveMob, Player> next = iterator.next();
@@ -72,8 +74,10 @@ public class TargetOnlyMobsManager {
                 activeMob.setDead();
                 iterator.remove();
                 freeTick.remove(activeMob);
+                return false;
             }
         }
+        return true;
     }
 
     /**
@@ -89,5 +93,15 @@ public class TargetOnlyMobsManager {
             return null;
         }
         return null;
+    }
+
+    @Override
+    public int getTickRate() {
+        return 1;
+    }
+
+    @Override
+    public boolean isAsync() {
+        return true;
     }
 }

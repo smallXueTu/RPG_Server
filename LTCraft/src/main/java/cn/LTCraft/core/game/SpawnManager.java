@@ -13,7 +13,7 @@ import java.util.List;
 public class SpawnManager {
     private static SpawnManager instance = null;
 
-    public static SpawnManager getInstance() {
+    public synchronized static SpawnManager getInstance() {
         if (instance == null){
             instance = new SpawnManager();
         }

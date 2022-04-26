@@ -47,6 +47,33 @@ public class WorldUtils {
     }
 
     /**
+     * 获取一个坐标对于一个坐标的方向
+     * @param location1 对于的坐标
+     * @param location2 它的方向
+     * @return 方向
+     */
+    public static SIDE getForDirection(Location location1, Location location2){
+        if (Math.abs(location1.getBlockX() - location2.getBlockX()) == 1){
+            if (location1.getBlockX() - location2.getBlockX() < 0)
+                return SIDE.WEST;
+            else
+                return SIDE.EAST;
+        }
+        if (Math.abs(location1.getBlockZ() - location2.getBlockZ()) == 1){
+            if (location1.getBlockZ() - location2.getBlockZ() < 0)
+                return SIDE.NORTH;
+            else
+                return SIDE.SOUTH;
+        }
+        if (Math.abs(location1.getBlockY() - location2.getBlockY()) == 1){
+            if (location1.getBlockY() - location2.getBlockY() < 0)
+                return SIDE.DOWN;
+            else
+                return SIDE.UP;
+        }
+        return SIDE.NONE;
+    }
+    /**
      * 获取制定面的坐标
      * @param location 坐标
      * @param side 面
@@ -54,6 +81,22 @@ public class WorldUtils {
      */
     public static Location getSide(Location location, SIDE side){
         return getSide(location, side, 1);
+    }
+
+    /**
+     * 获取一个面的块
+     * @return 块
+     */
+    public static Block getSideBlock(Location location, SIDE side){
+        return location.getWorld().getBlockAt(getSide(location, side, 1));
+    }
+
+    /**
+     * 获取一个面的块
+     * @return 块
+     */
+    public static Block getSideBlock(Location location, SIDE side, int step){
+        return location.getWorld().getBlockAt(getSide(location, side, step));
     }
 
     /**
@@ -81,11 +124,12 @@ public class WorldUtils {
     /**
      * 方块面
      */
-    enum SIDE{
+    static public enum SIDE{
+        NONE(-1),//错误
         DOWN(0),//下 y - 1
         UP(1),//上 y + 1
         NORTH(2),//北 z - 1
-        SOUTH(3),//男 z + 1
+        SOUTH(3),//南 z + 1
         WEST(4),//西 x - 1
         EAST(5);//东 x + 1
         private static final Map<Integer, SIDE> BY_NAME = new HashMap<>();
@@ -103,7 +147,7 @@ public class WorldUtils {
         public int getId() {
             return id;
         }
-        public static SIDE byName(Integer id){
+        public static SIDE byId(Integer id){
             return BY_NAME.get(id);
         }
     }

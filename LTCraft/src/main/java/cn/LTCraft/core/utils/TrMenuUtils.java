@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 public class TrMenuUtils {
     private static TrMenuUtils instance = null;
 
-    public static TrMenuUtils getInstance() {
+    public synchronized static TrMenuUtils getInstance() {
         if (instance == null){
             instance = new TrMenuUtils();
         }

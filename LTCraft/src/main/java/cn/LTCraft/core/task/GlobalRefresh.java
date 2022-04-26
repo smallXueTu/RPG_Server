@@ -9,6 +9,7 @@ import cn.LTCraft.core.entityClass.MobSpawn;
 import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.game.SpawnManager;
 import cn.LTCraft.core.game.TargetOnlyMobsManager;
+import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.game.skills.BaseSkill;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.PlayerUtils;
@@ -28,6 +29,7 @@ import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 import java.io.File;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GlobalRefresh {
     private static Main plugin = null;
@@ -35,6 +37,7 @@ public class GlobalRefresh {
     private static Map<String, List<String>> lastObj = new HashMap<>();
     private static YamlConfiguration waypoint = null;
     public static List<String> warnings = new ArrayList<>();
+    private static final List<TickEntity> tickEntities = new ArrayList<>();
     public static void refresh(){
         tick++;
         /*
@@ -48,10 +51,6 @@ public class GlobalRefresh {
             iterator.remove();
         }
         if (tick % 20 == 0) {
-            /*
-             * 针对怪物
-             */
-            TargetOnlyMobsManager.getInstance().doTick();
             /*
             任务
              */
@@ -82,8 +81,10 @@ public class GlobalRefresh {
                 });
             }
             Temp.playerStates.forEach((player, playerStates) -> playerStates.removeIf(PlayerState::complete));
-            GarbageClear.getInstance().onTick();
-            SpawnManager.getInstance().getSpawns().forEach(MobSpawn::onUpdate);
+
+            synchronized (tickEntities) {
+                tickEntities.removeIf(tickEntity -> !tickEntity.isAsync() && tick % tickEntity.getTickRate() == 0 && !tickEntity.doTick(tick));
+            }
         }
 //        if(tick % 200 == 0){
 //            File dir = new File(plugin.getDataFolder().getParentFile(), "DragonGPS");
@@ -96,7 +97,6 @@ public class GlobalRefresh {
             Teleport.getInstance().save();
             Temp.dropCount = new HashMap<>();
         }
-        //效果
     }
 
     public static Map<String, List<String>> getLastObj() {
@@ -104,7 +104,9 @@ public class GlobalRefresh {
     }
     public static void init(Main plugin) {
         Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> {
-            Game.tickEquipment(tick);
+            synchronized (tickEntities) {
+                tickEntities.removeIf(tickEntity -> tickEntity.isAsync() && tick % tickEntity.getTickRate() == 0 && !tickEntity.doTick(tick));
+            }
             //玩家状态
             Temp.lock.lock();
             Temp.injured.replaceAll((k, v) -> v - 1);
@@ -112,7 +114,6 @@ public class GlobalRefresh {
             Temp.silence.replaceAll((k, v) -> v - 1);
             Temp.armorBreaking.values().removeIf(v -> v.surplusTick -- <= 0);
             Temp.silence.entrySet().removeIf(entry -> entry.getValue() <= 0);
-            Temp.shield.entrySet().removeIf(entry -> !entry.getValue().doTick(tick));
             Temp.lock.unlock();
         }, 1, 1);
         GlobalRefresh.plugin = plugin;
@@ -124,5 +125,14 @@ public class GlobalRefresh {
          */
         SQLServer sqlServer = plugin.getSQLServer();
         sqlServer.getConfiguration().addMapper(PlayerMapper.class);
+    }
+
+    public static long getTick() {
+        return tick;
+    }
+    public static void addTickEntity(TickEntity tickEntity){
+        synchronized (tickEntities) {
+            tickEntities.add(tickEntity);
+        }
     }
 }

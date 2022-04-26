@@ -1,6 +1,7 @@
 package cn.LTCraft.core.task;
 
 import cn.LTCraft.core.entityClass.ClutterItem;
+import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.utils.EntityUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -10,9 +11,9 @@ import org.bukkit.entity.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GarbageClear{
+public class GarbageClear implements TickEntity {
     private static GarbageClear instance = null;
-    public static GarbageClear getInstance(){
+    public synchronized static GarbageClear getInstance(){
         if (instance == null){
             instance = new GarbageClear();
         }
@@ -22,15 +23,16 @@ public class GarbageClear{
     private int remainingTime = 5 * 60;
     private GarbageClear(){
         instance = this;
+        GlobalRefresh.addTickEntity(this);
     }
-    public void onTick() {
+    public boolean doTick(long tick) {
         remainingTime--;
         if (remainingTime == 60 || remainingTime == 20 || remainingTime == 10 || remainingTime == 5){
             if (remainingTime == 60){
                 int dropCount = getDropCount();
                 if (dropCount < 30){
                     remainingTime = 3 * 60;
-                    return;
+                    return true;
                 }
             }
             Bukkit.broadcastMessage("§l§e[扫地娘]§c将在§d" + remainingTime + "§c秒后清理所有垃圾了！");
@@ -40,6 +42,12 @@ public class GarbageClear{
             Bukkit.broadcastMessage("§l§e[扫地娘]§c本次清理了§d" + drop + "§c个掉落物！");
             remainingTime = 5 * 60;
         }
+        return true;
+    }
+
+    @Override
+    public int getTickRate() {
+        return 20;
     }
 
     public int getRemainingTime() {
@@ -61,7 +69,7 @@ public class GarbageClear{
                         if (force)
                             age = -1;
                         else
-                        age = EntityUtils.getItemAge(item);
+                            age = EntityUtils.getItemAge(item);
                         if (age == -1 || age > 20 * 20){
                             entity.remove();
                             count++;
@@ -84,5 +92,10 @@ public class GarbageClear{
             }
         }
         return count;
+    }
+
+    @Override
+    public boolean isAsync() {
+        return true;
     }
 }

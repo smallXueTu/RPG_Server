@@ -1,7 +1,10 @@
 package cn.LTCraft.core.game.skills.shields;
 
 import cn.LTCraft.core.game.skills.BaseSkill;
+import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.PlayerUtils;
+import cn.ltcraft.item.LTItemSystem;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -48,9 +51,15 @@ public class EnergyShield extends BaseShield{
         if (isAwaken()){
 
         }
+        Temp.shield.remove(getOwner());
     }
 
     public Player getOwner() {
         return owner;
+    }
+
+    @Override
+    public boolean isAsync() {
+        return false;
     }
 }

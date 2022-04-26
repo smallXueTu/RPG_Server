@@ -1,5 +1,6 @@
 package cn.ltcraft.item;
 
+import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.FileUtil;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.LTItem;
@@ -45,7 +46,6 @@ public class LTItemSystem extends JavaPlugin {
         loadItems();
         Command.init();
         Bukkit.getPluginManager().registerEvents(new AllListener(), this);
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> PlayerAttribute.getPlayerAttributeMap().forEach((s, playerAttribute) -> playerAttribute.tick()), 1, 1);
     }
     public void init(){
         allType.keySet().forEach(k -> new File(getDataFolder() + File.separator + "items" + File.separator + k).mkdirs());

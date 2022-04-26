@@ -22,7 +22,7 @@ public class TeleportGateManager {
      */
     private Location prevent = new Location(Bukkit.getWorld("world"), 0, 0, 0);
 
-    public static TeleportGateManager getInstance() {
+    public synchronized static TeleportGateManager getInstance() {
         if (instance == null){
             instance = new TeleportGateManager();
         }

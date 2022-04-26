@@ -1,8 +1,9 @@
 package cn.LTCraft.core.game.skills.shields;
 
+import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-public interface Shield {
+public interface Shield extends TickEntity {
     /**
      * 受伤处理方法
      * @param event 事件
