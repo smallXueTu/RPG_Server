@@ -52,10 +52,6 @@ public class GlobalRefresh {
         }
         if (tick % 20 == 0) {
             /*
-            任务
-             */
-            ClientCheckTask.checkTask();
-            /*
             BQ笔记
              */
             for (Player player : Bukkit.getOnlinePlayers()) {

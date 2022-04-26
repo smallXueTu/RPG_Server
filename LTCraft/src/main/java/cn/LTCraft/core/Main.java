@@ -54,7 +54,7 @@ import java.util.Map;
 public class Main extends JavaPlugin {
     private SQLServer SQLServer;
     private SQLManage SQLManage;
-    private LinkedHashMap<Integer, ClientCheckTask> tacks = new LinkedHashMap<>();
+    private final LinkedHashMap<Integer, ClientCheckTask> tacks = new LinkedHashMap<>();
     private static Main instance;
     public static int id = 0;
     private Chat chat;
@@ -166,7 +166,9 @@ public class Main extends JavaPlugin {
     }
 
     public void addTack(int id, ClientCheckTask tack){
-        tacks.put(id, tack);
+        synchronized (tacks) {
+            tacks.put(id, tack);
+        }
     }
 
     public ClientCheckTask getTack(int id){

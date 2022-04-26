@@ -97,7 +97,7 @@ public class TargetOnlyMobsManager implements TickEntity {
 
     @Override
     public int getTickRate() {
-        return 1;
+        return 20;
     }
 
     @Override

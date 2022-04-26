@@ -93,7 +93,7 @@ public class MobSpawn implements TickEntity {
         GlobalRefresh.addTickEntity(this);
     }
     public boolean doTick(long tick){
-        if (!closed)return true;
+        if (closed)return false;
         int lastSize = mobSize;
         int lastTimer = timer;
         if (mobSize < maxMobs) {
@@ -112,13 +112,15 @@ public class MobSpawn implements TickEntity {
                     }
                     return false;
                 }
-                ActiveMob am;
-                if (index < locations.length){
-                    am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, locations[index]);
-                }else {
-                    am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, WorldUtils.rangeLocation(location, spawnRange));
-                }
-                mobs[index] = am;
+                Bukkit.getScheduler().runTask(Main.getInstance(), () -> {
+                    ActiveMob am;
+                    if (index < locations.length){
+                        am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, locations[index]);
+                    }else {
+                        am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, WorldUtils.rangeLocation(location, spawnRange));
+                    }
+                    mobs[index] = am;
+                });
                 timer = 0;
                 mobSize++;
             }
@@ -180,6 +182,6 @@ public class MobSpawn implements TickEntity {
 
     @Override
     public int getTickRate() {
-        return 1;
+        return 20;
     }
 }
