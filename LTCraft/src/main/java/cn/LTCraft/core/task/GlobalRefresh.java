@@ -48,10 +48,8 @@ public class GlobalRefresh {
             if (sqlQueue.getCallBack() != null)sqlQueue.getCallBack().onComplete(sqlQueue);
             iterator.remove();
         }
-        if (tick % 20 == 0) {
-            synchronized (tickEntities) {
-                tickEntities.removeIf(tickEntity -> !tickEntity.isAsync() && tick % tickEntity.getTickRate() == 0 && !tickEntity.doTick(tick));
-            }
+        synchronized (tickEntities) {
+            tickEntities.removeIf(tickEntity -> !tickEntity.isAsync() && tick % tickEntity.getTickRate() == 0 && !tickEntity.doTick(tick));
         }
         /*
          * 保存
