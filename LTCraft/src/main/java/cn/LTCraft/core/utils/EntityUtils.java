@@ -57,17 +57,16 @@ public class EntityUtils {
     public static void rangeRecovery(Location location, double range, int amount){
         Collection<Entity> entities = location.getWorld().getNearbyEntities(location, range, range, range);
         for (Entity entity : entities) {
-            if (entity instanceof Player)
-            ((CraftPlayer)entity).getHandle().heal(amount);
+            if (entity instanceof Player) ((CraftPlayer)entity).getHandle().heal(amount);
         }
     }
     public static int getItemAge(Item item){
         EntityItem handle = (EntityItem) ((CraftItem) item).getHandle();
-        int age = -1;
+        int age = 0;
         try {
             age = ReflectionHelper.getPrivateValue(handle.getClass(), handle, "age");
-        }catch (NullPointerException e){
-            age = -1;
+        }catch (NullPointerException ignore){
+
         }
         return age;
     }

@@ -78,6 +78,7 @@ public class GlobalRefresh {
         }, 1, 1);
         GlobalRefresh.plugin = plugin;
         BQObjectiveCheck.getInstance();
+        GarbageClear.getInstance();
         BaseSkill.init();
         /*
         MyBatis
