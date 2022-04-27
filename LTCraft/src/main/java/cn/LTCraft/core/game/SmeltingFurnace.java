@@ -6,6 +6,7 @@ import cn.LTCraft.core.game.more.FakeBlock;
 import cn.LTCraft.core.game.more.SmeltingFurnaceDrawing;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.other.exceptions.SmeltingFurnaceErrorException;
+import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.Utils;
 import cn.LTCraft.core.utils.WorldUtils;
@@ -13,6 +14,7 @@ import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.api.line.HologramLine;
 import com.gmail.filoghost.holographicdisplays.api.line.TextLine;
+import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
 import com.google.common.primitives.Ints;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -56,12 +58,14 @@ public class SmeltingFurnace implements TickEntity {
 
     public SmeltingFurnace(Player player, Location location, Location itemFrame, SmeltingFurnaceDrawing drawing){
         this.location = location;
-        this.itemFrame = new Location(itemFrame.getWorld(), itemFrame.getBlockX() + 0.5, itemFrame.getBlockY() + 0.5, itemFrame.getZ() + 0.5);
+        WorldUtils.SIDE entrance = WorldUtils.getForDirection(location, itemFrame);
+        this.itemFrame = WorldUtils.getSide(location, entrance).add(0.5, 0.5, 0.5);
         this.player = player;
         this.drawing = drawing;
         id = FID++;
         smeltingFurnaceMap.put(id, this);
         init();
+        GlobalRefresh.addTickEntity(this);
     }
 
     /**
@@ -77,6 +81,7 @@ public class SmeltingFurnace implements TickEntity {
         hologram.appendTextLine("§d当前第：LTSF:" + id + ":process阶段。");
         hologram.appendTextLine("§d当前温度：LTSF:" + id + ":temperature°§d。");
         hologram.appendTextLine("§d当前状态：LTSF:" + id + ":stable§d。");
+        hologram.setAllowPlaceholders(true);
         furnaces = getFurnaces(location, itemFrame);
         anvils = getAnvils(location, itemFrame);
         chest = WorldUtils.getSideBlock(location, WorldUtils.SIDE.UP);
@@ -121,6 +126,7 @@ public class SmeltingFurnace implements TickEntity {
             }
             errorTick++;
         }
+        ((CraftHologram) hologram).refreshSingleLines();
         return !closed;
     }
 
@@ -184,7 +190,7 @@ public class SmeltingFurnace implements TickEntity {
 
     @Override
     public boolean isAsync() {
-        return true;
+        return false;
     }
 
     @Override
@@ -198,8 +204,8 @@ public class SmeltingFurnace implements TickEntity {
      * @throws SmeltingFurnaceErrorException 如果 {@link SmeltingFurnace#chest} 不属于 {@link Container}
      */
     public ItemStack[] getChest() throws SmeltingFurnaceErrorException{
-        if (chest instanceof Container){
-            Inventory inventory = ((Container) chest).getInventory();
+        if (chest.getState() instanceof Container){
+            Inventory inventory = ((Container) chest.getState()).getInventory();
             return inventory.getContents();
         }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
     }
@@ -210,8 +216,8 @@ public class SmeltingFurnace implements TickEntity {
      * @throws SmeltingFurnaceErrorException  如果 {@link SmeltingFurnace#chest} 不属于 {@link Container}
      */
     public void setChest(ItemStack[] itemStacks) throws SmeltingFurnaceErrorException{
-        if (chest instanceof Container){
-            Inventory inventory = ((Container) chest).getInventory();
+        if (chest.getState() instanceof Container){
+            Inventory inventory = ((Container) chest.getState()).getInventory();
             inventory.setContents(itemStacks);
         }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
     }
