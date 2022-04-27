@@ -23,6 +23,9 @@ import cn.LTCraft.core.hook.TrMenu.actions.OpenCoreGui;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.utils.TrMenuUtils;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.PacketAdapter;
 import com.earth2me.essentials.Essentials;
 import me.arasple.mc.trmenu.TrMenu;
 import me.arasple.mc.trmenu.api.action.ActionHandle;
@@ -40,8 +43,7 @@ import pl.betoncraft.betonquest.BetonQuest;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 核心的主类，目前大部分功能都是图方便临时实现的
@@ -63,6 +65,8 @@ public class Main extends JavaPlugin {
     private LTCraftMessageHandler messageHandler;
     private Economy economy;
     private GroupManager groupManager;
+    private static ProtocolManager protocolManager = null;
+    private static List<PacketAdapter> adapters;
 
     public static Main getInstance(){
         return instance;
@@ -95,6 +99,7 @@ public class Main extends JavaPlugin {
         initEss();
         initTrMenu();
         initGM();
+        initProtocol();
 
         this.messageHandler = new LTCraftMessageHandler();
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "LTCraft");
@@ -136,6 +141,9 @@ public class Main extends JavaPlugin {
             SQLManage.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+        for (PacketAdapter adapter : adapters) {
+            protocolManager.removePacketListener(adapter);
         }
     }
 
@@ -242,7 +250,19 @@ public class Main extends JavaPlugin {
     private void initGM(){
         groupManager = ((GroupManager)Bukkit.getPluginManager().getPlugin("GroupManager"));
     }
+    public void initProtocol(){
+        protocolManager = ProtocolLibrary.getProtocolManager();
+        adapters = new ArrayList<>();
+    }
 
+    public static ProtocolManager getProtocolManager() {
+        return protocolManager;
+    }
+
+    public void registerPacket(PacketAdapter adapter){
+        adapters.add(adapter);
+        protocolManager.addPacketListener(adapter);
+    }
     public GroupManager getGroupManager() {
         return groupManager;
     }
@@ -251,4 +271,3 @@ public class Main extends JavaPlugin {
         return config;
     }
 }
-

@@ -1,5 +1,6 @@
 package cn.ltcraft.login.packetAdapter;
 
+import cn.LTCraft.core.Main;
 import cn.ltcraft.login.Login;
 import cn.ltcraft.login.other.PlayerStatus;
 import com.comphenix.protocol.PacketType;
@@ -39,7 +40,7 @@ public class InventoryPacketAdapter extends PacketAdapter {
     }
 
     public void sendBlankInventoryPacket(Player player) {
-        PacketContainer inventoryPacket = Login.getProtocolManager().createPacket(PacketType.Play.Server.WINDOW_ITEMS);
+        PacketContainer inventoryPacket = Main.getProtocolManager().createPacket(PacketType.Play.Server.WINDOW_ITEMS);
         inventoryPacket.getIntegers().write(0, 0);
         int inventorySize = 45;
         ItemStack[] blankInventory = new ItemStack[inventorySize];
@@ -53,7 +54,7 @@ public class InventoryPacketAdapter extends PacketAdapter {
         }
 
         try {
-            Login.getProtocolManager().sendServerPacket(player, inventoryPacket, false);
+            Main.getProtocolManager().sendServerPacket(player, inventoryPacket, false);
         } catch (InvocationTargetException e) {
             plugin.getLogger().warning("发送空白库存时出错。");
 

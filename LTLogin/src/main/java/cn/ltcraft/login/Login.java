@@ -1,5 +1,6 @@
 package cn.ltcraft.login;
 
+import cn.LTCraft.core.Main;
 import cn.LTCraft.core.utils.Utils;
 import cn.ltcraft.login.listener.PlayerListener;
 import cn.ltcraft.login.packetAdapter.ChatPacketAdapter;
@@ -12,6 +13,7 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_12_R1.ChatBaseComponent;
 import net.minecraft.server.v1_12_R1.ChatComponentText;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,12 +40,13 @@ public class Login extends JavaPlugin {
      * 命令对象 用来解析玩家的命令
      */
     private Command command;
+
+    private static Login instance = null;
+
     /**
      * 不可修改List
      */
-    private static List<PacketAdapter> adapters;
-    private static Login instance = null;
-    private static ProtocolManager protocolManager = null;
+    private static List<PacketAdapter> packetAdapterList;
 
     /**
      * 获取这个对象的实例
@@ -70,22 +73,20 @@ public class Login extends JavaPlugin {
         super.onEnable();
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         command = new Command(this);
-        protocolManager = ProtocolLibrary.getProtocolManager();
-        List<PacketAdapter> packetAdapterList = new ArrayList<>();
-        packetAdapterList.add(new InventoryPacketAdapter(this));
-        packetAdapterList.add(new ChatPacketAdapter(this));
-        adapters = Collections.unmodifiableList(packetAdapterList);
-        for (PacketAdapter adapter : adapters) {
-            protocolManager.addPacketListener(adapter);
-        }
+        List<PacketAdapter> packetAdapters = new ArrayList<>();
+        packetAdapters.add(new InventoryPacketAdapter(this));
+        packetAdapters.add(new ChatPacketAdapter(this));
+        packetAdapterList = Collections.unmodifiableList(packetAdapters);
+        Bukkit.getScheduler().runTask(this, () -> {
+            for (PacketAdapter packetAdapter : packetAdapterList) {
+                Main.getInstance().registerPacket(packetAdapter);
+            }
+        });
     }
 
     @Override
     public void onDisable() {
         super.onDisable();
-        for (PacketAdapter adapter : adapters) {
-            protocolManager.removePacketListener(adapter);
-        }
     }
 
     /**
@@ -111,11 +112,7 @@ public class Login extends JavaPlugin {
     }
 
     public static InventoryPacketAdapter getInventoryPacketAdapter() {
-        return (InventoryPacketAdapter) adapters.get(0);//必定是0
-    }
-
-    public static ProtocolManager getProtocolManager() {
-        return protocolManager;
+        return (InventoryPacketAdapter) packetAdapterList.get(0);//必定是0
     }
     public static void forceSendMessage(Player player, String message){
         String name = player.getName();
