@@ -2,7 +2,6 @@ package cn.LTCraft.core.game.more;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.material.MaterialData;
 
 /**
