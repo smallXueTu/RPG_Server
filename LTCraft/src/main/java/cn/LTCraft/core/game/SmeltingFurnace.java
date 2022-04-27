@@ -38,8 +38,6 @@ public class SmeltingFurnace {
 
     }
 
-    private static final List<Integer> sides = Ints.asList(4, 5, 2, 3);
-    private static final List<Integer> faces = Ints.asList(0, 0, 3, 2, 1, 0);
     private static final List<Integer> reverses = Ints.asList(0, 0, 3, 2, 5, 4);//反向
     private static final List<Integer> tReverses = Ints.asList(0, 0, 1, 3, 0, 2);//反向
     /**
@@ -131,8 +129,5 @@ public class SmeltingFurnace {
             }
         }
         return blocks.toArray(new FakeBlock[]{});
-    }
-    public static void tickAll(){
-
     }
 }
