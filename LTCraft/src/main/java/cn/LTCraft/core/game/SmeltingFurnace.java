@@ -35,7 +35,7 @@ import java.util.logging.Level;
 public class SmeltingFurnace implements TickEntity {
     //------------------------------------static------------------------------------
     private static int FID = 0;
-    private static Map<Integer, SmeltingFurnace> smeltingFurnaceMap = new HashMap<>();
+    private static final Map<Integer, SmeltingFurnace> smeltingFurnaceMap = new HashMap<>();
     //------------------------------------static------------------------------------
     private final Player player;
     private final Location location;
