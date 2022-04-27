@@ -34,10 +34,8 @@ import java.util.stream.Collectors;
 public class GlobalRefresh {
     private static Main plugin = null;
     private static long tick = 0;
-    private static Map<String, List<String>> lastObj = new HashMap<>();
-    private static YamlConfiguration waypoint = null;
-    public static List<String> warnings = new ArrayList<>();
     private static final List<TickEntity> tickEntities = new ArrayList<>();
+    public static List<String> warnings = new ArrayList<>();
     public static void refresh(){
         tick++;
         /*
@@ -51,41 +49,10 @@ public class GlobalRefresh {
             iterator.remove();
         }
         if (tick % 20 == 0) {
-            /*
-            BQ笔记
-             */
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                List<Objective> objectives = BetonQuest.getInstance().getPlayerObjectives(PlayerConverter.getID(player));
-                if (lastObj.containsKey(player.getName())) {
-                    List<String> list = lastObj.get(player.getName());
-                    for (Objective playerObjective : objectives) {
-                        if (!list.contains(playerObjective.getLabel())){
-                            String objName = playerObjective.getLabel().substring(playerObjective.getLabel().indexOf('.') + 1);
-                            if (waypoint.contains(objName) && objName.startsWith("【主线")) {
-                                if (PlayerUtils.hasBQTag(player, "default.自动导航"))
-                                    Bukkit.getServer().dispatchCommand(player, "dgps to " + objName);
-                            }
-                        }
-                    }
-                }
-                lastObj.put(player.getName(), new ArrayList<String>(){
-                    {
-                        for (Objective objective : objectives) {
-                            add(objective.getLabel());
-                        }
-                    }
-                });
-            }
-            Temp.playerStates.forEach((player, playerStates) -> playerStates.removeIf(PlayerState::complete));
-
             synchronized (tickEntities) {
                 tickEntities.removeIf(tickEntity -> !tickEntity.isAsync() && tick % tickEntity.getTickRate() == 0 && !tickEntity.doTick(tick));
             }
         }
-//        if(tick % 200 == 0){
-//            File dir = new File(plugin.getDataFolder().getParentFile(), "DragonGPS");
-//            waypoint = YamlConfiguration.loadConfiguration(new File(dir, "waypoint.yml"));
-//        }
         /*
          * 保存
          */
@@ -93,10 +60,6 @@ public class GlobalRefresh {
             Teleport.getInstance().save();
             Temp.dropCount = new HashMap<>();
         }
-    }
-
-    public static Map<String, List<String>> getLastObj() {
-        return lastObj;
     }
     public static void init(Main plugin) {
         Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> {
@@ -110,11 +73,11 @@ public class GlobalRefresh {
             Temp.silence.replaceAll((k, v) -> v - 1);
             Temp.armorBreaking.values().removeIf(v -> v.surplusTick -- <= 0);
             Temp.silence.entrySet().removeIf(entry -> entry.getValue() <= 0);
+            Temp.playerStates.forEach((player, playerStates) -> playerStates.removeIf(PlayerState::complete));
             Temp.lock.unlock();
         }, 1, 1);
         GlobalRefresh.plugin = plugin;
-        File dir = new File(plugin.getDataFolder().getParentFile(), "DragonGPS");
-        waypoint = YamlConfiguration.loadConfiguration(new File(dir, "waypoint.yml"));
+        BQObjectiveCheck.getInstance();
         BaseSkill.init();
         /*
         MyBatis

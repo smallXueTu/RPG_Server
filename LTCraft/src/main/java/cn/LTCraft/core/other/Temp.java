@@ -64,7 +64,7 @@ public class Temp {
     /**
      * 玩家状态
      */
-    public static final Map<Player, List<cn.LTCraft.core.entityClass.PlayerState>> playerStates = new HashMap<>();
+    public static final Map<Player, List<cn.LTCraft.core.entityClass.PlayerState>>  playerStates = new HashMap<>();
     public static void onPlayerQuit(Player player){
         Temp.lock.lock();
         injured.remove(player);
@@ -74,7 +74,9 @@ public class Temp {
         Temp.lock.unlock();
     }
     public static void onPlayerJoin(Player player){
+        Temp.lock.lock();
         Temp.playerStates.put(player, new ArrayList<>());
+        Temp.lock.unlock();
     }
 
     /**

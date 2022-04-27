@@ -48,7 +48,9 @@ public class Cooling implements Listener {
     }
     public static void cooling(Player player, String coolingGroup, long time, String msg){
         cooling.get(player.getName()).put(coolingGroup, System.currentTimeMillis() + time * 1000);
+        Temp.lock.lock();
         Temp.playerStates.get(player).add(new PlayerState(player, msg, () -> Cooling.getCooling(player, coolingGroup)));
+        Temp.lock.unlock();
     }
 
     @EventHandler

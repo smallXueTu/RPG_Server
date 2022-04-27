@@ -13,6 +13,7 @@ import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.game.more.FakeBlock;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
+import cn.LTCraft.core.task.BQObjectiveCheck;
 import cn.LTCraft.core.task.ClientCheckTask;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.task.PlayerClass;
@@ -378,7 +379,10 @@ public class PlayerListener  implements Listener {
     @EventHandler
     public void onQuitEvent(PlayerQuitEvent e){
         Player player = e.getPlayer();
-        GlobalRefresh.getLastObj().remove(player.getName());
+        Map<String, List<String>> lastObj = BQObjectiveCheck.getLastObj();
+        synchronized (lastObj) {
+            lastObj.remove(player.getName());
+        }
         GlobalRefresh.warnings.remove(player.getName());
         Temp.onPlayerQuit(player);
         PlayerConfig.getConfigMap().get(player.getName()).save();
