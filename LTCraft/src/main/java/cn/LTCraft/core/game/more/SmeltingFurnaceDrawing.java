@@ -49,10 +49,10 @@ public class SmeltingFurnaceDrawing extends MemoryConfiguration {
      */
     private SmeltingFurnaceDrawing(String name, MythicConfig config, MythicConfig parent){
         this.name = name;
-        set("level", config.getString("level", parent.getString("level", "通用")));
-        set("fuelCount", config.getInteger("fuelCount", parent.getInteger("fuelCount", 10)));
-        set("needMaterial", config.getStringList("needMaterial").addAll(parent.getStringList("needMaterial")));
-        set("result", config.getStringList("result").addAll(parent.getStringList("result")));
+        set("level", config.getString("level", parent.getString("level", "通用")));//等级
+        set("fuelCount", config.getInteger("fuelCount", parent.getInteger("fuelCount", 10)));//燃料数量
+        set("needMaterial", config.getStringList("needMaterial").addAll(parent.getStringList("needMaterial")));//需要材料
+        set("result", config.getStringList("result").addAll(parent.getStringList("result")));//结果
     }
 
     @Override

@@ -1,15 +1,24 @@
 package cn.LTCraft.core.game;
 
+import cn.LTCraft.core.Main;
 import cn.LTCraft.core.game.more.FakeBlock;
 import cn.LTCraft.core.game.more.SmeltingFurnaceDrawing;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
+import cn.LTCraft.core.other.exceptions.SmeltingFurnaceErrorException;
+import cn.LTCraft.core.utils.Utils;
 import cn.LTCraft.core.utils.WorldUtils;
+import com.gmail.filoghost.holographicdisplays.api.Hologram;
+import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
+import com.gmail.filoghost.holographicdisplays.api.line.TextLine;
 import com.google.common.primitives.Ints;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,17 +31,40 @@ import java.util.logging.Level;
  * Created by Angel、 on 2022/4/25 20:39
  */
 public class SmeltingFurnace implements TickEntity {
+    private static int FID = 0;
     private final Player player;
     private final Location location;
+    private Block chest;
+    private final Location itemFrame;
     private final SmeltingFurnaceDrawing drawing;
-    public SmeltingFurnace(Player player, Location location, SmeltingFurnaceDrawing drawing){
+    private boolean closed = false;
+    private Hologram hologram;
+    private final int id;//唯一id
+    private int process = 1;//阶段
+    private double temperature;//温度
+    private Block[] furnaces;//三个熔炉
+    private Block[] anvils;//三个铁砧
+    private List<TextLine> lines = new ArrayList<>();
+
+    public SmeltingFurnace(Player player, Location location, Location itemFrame, SmeltingFurnaceDrawing drawing){
         this.location = location;
+        this.itemFrame = new Location(itemFrame.getWorld(), itemFrame.getBlockX() + 0.5, itemFrame.getBlockY() + 0.5, itemFrame.getZ() + 0.5);
         this.player = player;
         this.drawing = drawing;
+        id = FID++;
         init();
     }
     public void init(){
-
+        hologram = HologramsAPI.createHologram(Main.getInstance(), itemFrame.clone().add(0, 2, 0));
+        HologramsAPI.registerPlaceholder(Main.getInstance(), "LTSF:" + id + ":process", 1, () -> Utils.getNumberCapitalize(process));
+        HologramsAPI.registerPlaceholder(Main.getInstance(), "LTSF:" + id + ":temperature", 1, this::getTemperatureString);
+        hologram.appendTextLine("§e§l熔炼祭坛");
+        hologram.appendTextLine("§d当前第：LTSF:" + id + ":process阶段。");
+        hologram.appendTextLine("§d当前温度：LTSF:" + id + ":temperature°§d。");
+        hologram.appendTextLine("§a阶段待完成事件：");
+        furnaces = getFurnaces(location, itemFrame);
+        anvils = getAnvils(location, itemFrame);
+        chest = WorldUtils.getSideBlock(location, WorldUtils.SIDE.UP);
     }
     public Player getPlayer() {
         return player;
@@ -42,9 +74,26 @@ public class SmeltingFurnace implements TickEntity {
         return location;
     }
     public boolean doTick(long tick){
+
         return true;
     }
 
+    public void updateProcess(){
+        switch (process){
+            case 0:
+                lines.add(hologram.appendTextLine("请将以下需要的材料放置到上方箱子中："));
+                List<String> needMaterial = drawing.getStringList("needMaterial");
+                for (String s : needMaterial) {
+                    String[] split = s.split(":");
+                    hologram.appendTextLine("§e" + split[0] + "类型" + split[1] + "×" + split[2]);
+                }
+                process++;
+                break;
+            case 1:
+
+                break;
+        }
+    }
     private static final List<Integer> reverses = Ints.asList(0, 0, 3, 2, 5, 4);//反向
     private static final List<Integer> tReverses = Ints.asList(0, 0, 1, 3, 0, 2);//反向
     /**
@@ -138,6 +187,44 @@ public class SmeltingFurnace implements TickEntity {
         return blocks.toArray(new FakeBlock[]{});
     }
 
+    /**
+     * 获取三个铁砧
+     * @param location location中心
+     * @param itemFrame 物品展示框
+     * @return 三个铁砧
+     */
+    public static Block[] getAnvils(Location location, Location itemFrame) {
+        List<Block> blocks = new ArrayList<>();
+        //入口
+        WorldUtils.SIDE entrance = WorldUtils.getForDirection(location, itemFrame);
+        //四个面 分别为 2 3 4 5(北 南 西 东)     1和2位上下
+        for (int side = 2; side < 6; side++){
+            if (side != entrance.getId()){
+                blocks.add(WorldUtils.getSideBlock(WorldUtils.getSide(location, WorldUtils.SIDE.byId(side), 4), WorldUtils.SIDE.UP));//找到它了
+            }
+        }
+        return blocks.toArray(blocks.toArray(new Block[0]));
+    }
+
+    /**
+     * 获取三个熔炉
+     * @param location location中心
+     * @param itemFrame 物品展示框
+     * @return 三个熔炉
+     */
+    public static Block[] getFurnaces(Location location, Location itemFrame) {
+        List<Block> blocks = new ArrayList<>();
+        //入口
+        WorldUtils.SIDE entrance = WorldUtils.getForDirection(location, itemFrame);
+        //四个面 分别为 2 3 4 5(北 南 西 东)     1和2位上下
+        for (int side = 2; side < 6; side++){
+            if (side != entrance.getId()){
+                blocks.add(WorldUtils.getSideBlock(location, WorldUtils.SIDE.byId(side), 4));//找到它了
+            }
+        }
+        return blocks.toArray(blocks.toArray(new Block[0]));
+    }
+
     @Override
     public boolean isAsync() {
         return true;
@@ -146,6 +233,48 @@ public class SmeltingFurnace implements TickEntity {
     @Override
     public int getTickRate() {
         return 1;
+    }
+
+    /**
+     *
+     * @return 箱子的物品
+     * @throws SmeltingFurnaceErrorException 如果 {@link SmeltingFurnace#chest} 不属于 {@link Container}
+     */
+    public ItemStack[] getChest() throws SmeltingFurnaceErrorException{
+        if (chest instanceof Container){
+            Inventory inventory = ((Container) chest).getInventory();
+            return inventory.getContents();
+        }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
+    }
+
+    /**
+     * 设置箱子的物品
+     * @param itemStacks 要设置的物品
+     * @throws SmeltingFurnaceErrorException  如果 {@link SmeltingFurnace#chest} 不属于 {@link Container}
+     */
+    public void setChest(ItemStack[] itemStacks) throws SmeltingFurnaceErrorException{
+        if (chest instanceof Container){
+            Inventory inventory = ((Container) chest).getInventory();
+            inventory.setContents(itemStacks);
+        }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
+    }
+    /**
+     * @return string
+     */
+    public String getTemperatureString() {
+        String p;
+        if(temperature < 50){
+            p = "§a";
+        }else if (temperature < 150){
+            p = "§e";
+        }else if (temperature < 500){
+            p = "§6";
+        }else if (temperature >= 500){
+            p = "§c";
+        }else{
+            p = "";
+        }
+        return p + temperature;
     }
     public static enum Level{
         CURRENCY("通用", "初级燃料"),
