@@ -11,6 +11,7 @@ import cn.LTCraft.core.game.SmeltingFurnace;
 import cn.LTCraft.core.game.TargetOnlyMobsManager;
 import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.game.more.FakeBlock;
+import cn.LTCraft.core.game.more.FlashingBlock;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.task.BQObjectiveCheck;
@@ -166,10 +167,10 @@ public class PlayerListener  implements Listener {
                 Location add = entity.getLocation().add(attachedFace.getModX(), attachedFace.getModY(), attachedFace.getModZ());
                 Block blockAt = entity.getWorld().getBlockAt(add);
                 if (blockAt.getType() == Material.GLASS){
-                    FakeBlock[] blocks = SmeltingFurnace.check(add, entity.getLocation());
+                    FakeBlock[] blocks = SmeltingFurnace.check(blockAt.getLocation(), entity.getLocation());
                     if (blocks.length > 0){
                         player.sendMessage("§c多方块结构错误，请对应闪动的方块来摆放对应的方块！");
-
+                        new FlashingBlock(player, blocks);
                     }
                 }
             }
