@@ -297,7 +297,7 @@ public class ItemUtils {
      */
     public static void removeItems(ItemStack[] items, ItemStack[] itemStacks) {
         for (ItemStack itemStack : itemStacks) {
-            removeItem(items, itemStack);
+            if (itemStack != null) removeItem(items, itemStack);
         }
     }
     public static void removeItems(ItemStack[] items, ClutterItem[] clutterItems, Player player) {
