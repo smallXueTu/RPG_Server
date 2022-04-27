@@ -1,6 +1,8 @@
 package cn.LTCraft.core.game;
 
 import cn.LTCraft.core.game.more.FakeBlock;
+import cn.LTCraft.core.game.more.SmeltingFurnaceDrawing;
+import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.utils.WorldUtils;
 import com.google.common.primitives.Ints;
 import org.bukkit.Location;
@@ -10,18 +12,23 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
 
 /**
  * 熔炼炉
  * Created by Angel、 on 2022/4/25 20:39
  */
-public class SmeltingFurnace {
+public class SmeltingFurnace implements TickEntity {
     private final Player player;
     private final Location location;
-    public SmeltingFurnace(Player player, Location location){
+    private final SmeltingFurnaceDrawing drawing;
+    public SmeltingFurnace(Player player, Location location, SmeltingFurnaceDrawing drawing){
         this.location = location;
         this.player = player;
+        this.drawing = drawing;
         init();
     }
     public void init(){
@@ -34,8 +41,8 @@ public class SmeltingFurnace {
     public Location getLocation() {
         return location;
     }
-    public void doTick(int tick){
-
+    public boolean doTick(long tick){
+        return true;
     }
 
     private static final List<Integer> reverses = Ints.asList(0, 0, 3, 2, 5, 4);//反向
@@ -129,5 +136,44 @@ public class SmeltingFurnace {
             }
         }
         return blocks.toArray(new FakeBlock[]{});
+    }
+
+    @Override
+    public boolean isAsync() {
+        return true;
+    }
+
+    @Override
+    public int getTickRate() {
+        return 1;
+    }
+    public static enum Level{
+        CURRENCY("通用", "初级燃料"),
+        ADVANCED("进阶", "高级燃料"),
+        LEGEND("传说", "传说燃料"),
+        CHAOS("混沌", "混沌燃料");
+        private static Map<String, Level> map = new HashMap<>();
+        static {
+            for (Level value : values()) {
+                map.put(value.getName(), value);
+            }
+        }
+        private final String name;
+        private final String fuel;
+        Level(String name, String fuel){
+            this.name = name;
+            this.fuel = fuel;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getFuel() {
+            return fuel;
+        }
+        public static Level getByName(String name){
+            return map.get(name);
+        }
     }
 }
