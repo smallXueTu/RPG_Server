@@ -148,7 +148,8 @@ public class SmeltingFurnace implements TickEntity {
                 break;
             case 1:
                 needMaterial = drawing.getStringList("needMaterial");
-                ItemStack[] itemStacks = ItemUtils.clone(getChest());
+                ItemStack[] yItemStacks = ItemUtils.clone(getChest());
+                ItemStack[] itemStacks = ItemUtils.clone(yItemStacks);
                 int numberOfSuccesses = 0;
                 for (int i = 0; i < needMaterial.size(); i++) {
                     String material = needMaterial.get(i);
@@ -167,8 +168,9 @@ public class SmeltingFurnace implements TickEntity {
                     }
                 }
                 if (numberOfSuccesses >= needMaterial.size()){
-//                    Collections.addAll(inventory, itemStacks);
+                    ItemUtils.removeItems(yItemStacks, itemStacks);
                     setChest(itemStacks);
+                    Collections.addAll(inventory, yItemStacks);
                     lines.forEach(HologramLine::removeLine);
                     lines.clear();
                     lines.add(hologram.appendTextLine("§e请将以下需要的材料丢弃到下方岩浆中："));
