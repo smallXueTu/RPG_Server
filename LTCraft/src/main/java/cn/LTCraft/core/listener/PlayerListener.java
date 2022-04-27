@@ -12,6 +12,7 @@ import cn.LTCraft.core.game.TargetOnlyMobsManager;
 import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.game.more.FakeBlock;
 import cn.LTCraft.core.game.more.FlashingBlock;
+import cn.LTCraft.core.game.more.SmeltingFurnaceDrawing;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.task.BQObjectiveCheck;
@@ -21,6 +22,8 @@ import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
+import cn.ltcraft.item.base.interfaces.LTItem;
+import cn.ltcraft.item.utils.Utils;
 import cn.ltcraft.love.Love;
 import cn.ltcraft.teleport.Home;
 import cn.ltcraft.teleport.Teleport;
@@ -171,6 +174,10 @@ public class PlayerListener  implements Listener {
                     if (blocks.length > 0){
                         player.sendMessage("§c多方块结构错误，请对应闪动的方块来摆放对应的方块！");
                         new FlashingBlock(player, blocks);
+                    }else {
+                        LTItem ltItems = Utils.getLTItems(itemInMainHand);
+                        String name = ltItems == null? cn.LTCraft.core.utils.Utils.clearColor(itemInMainHand.getItemMeta().getDisplayName()):ltItems.getName();
+                        new SmeltingFurnace(player, blockAt.getLocation(), entity.getLocation(), SmeltingFurnaceDrawing.getSmeltingFurnaceDrawing(name));
                     }
                 }
             }

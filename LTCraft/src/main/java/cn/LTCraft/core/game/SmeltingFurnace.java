@@ -63,6 +63,10 @@ public class SmeltingFurnace implements TickEntity {
         smeltingFurnaceMap.put(id, this);
         init();
     }
+
+    /**
+     * 初始化
+     */
     public void init(){
         hologram = HologramsAPI.createHologram(Main.getInstance(), itemFrame.clone().add(0, 2, 0));
         HologramsAPI.registerPlaceholder(Main.getInstance(), "LTSF:" + id + ":process", 1, () -> Utils.getNumberCapitalize(process));
@@ -84,6 +88,12 @@ public class SmeltingFurnace implements TickEntity {
     public Location getLocation() {
         return location;
     }
+
+    /**
+     * tick
+     * @param tick 从服务器开启到现在经过的游戏时刻
+     * @return 返回false带边吃熔炼已结束
+     */
     public boolean doTick(long tick){
         collectAround();
         try {
@@ -257,9 +267,26 @@ public class SmeltingFurnace implements TickEntity {
     public String getSmeltingStone(){
         return getLevel().getSmeltingStone();
     }
+
+    /**
+     * 获取这个熔炼坛的唯一id
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * 关闭这个熔炼坛
+     */
     public void close(){
         if (!closed){
             hologram.delete();
+            inventory.clear();
+            lines.clear();
+            errorLines.clear();
+            smeltingFurnaceMap.remove(id);
+            closed = true;
         }
     }
     private static final List<Integer> reverses = Ints.asList(0, 0, 3, 2, 5, 4);//反向

@@ -1,0 +1,8 @@
+通用熔炼炉图纸:
+  level: 通用
+  fuelCount: 10
+  needMaterial:
+    - "材料:火魔:10"
+    - "近战:魔金之锤:1"
+  result:
+    - "近战:法火:1"
