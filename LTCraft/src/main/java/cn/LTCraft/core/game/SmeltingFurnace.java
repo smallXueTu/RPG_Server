@@ -52,21 +52,17 @@ public class SmeltingFurnace {
      */
     public static FakeBlock[] check(Location location, Location itemFrame){
         List<FakeBlock> blocks = new ArrayList<>();
-        World world = location.getWorld();
         Block block;
-        WorldUtils.SIDE direction = WorldUtils.getForDirection(location, itemFrame);
-        //先检查下面是否为岩浆
-        if (world.getBlockAt(itemFrame.add(0, -1, 0)).getType() != Material.LAVA){
-            blocks.add(new FakeBlock(itemFrame.add(0, -1, 0), Material.LAVA));
-        }
+        //背向
+        WorldUtils.SIDE pSide = WorldUtils.getForDirection(itemFrame, location);
+        //入口
+        WorldUtils.SIDE entrance = WorldUtils.getForDirection(location, itemFrame);
         //检查上方是否为箱子 并且朝向入口
-        WorldUtils.SIDE pSide = WorldUtils.getForDirection(itemFrame, location);//物品展示框贴的面
-        WorldUtils.SIDE entrance = WorldUtils.SIDE.byId(pSide.getId() % 2 == 0 ? pSide.getId() + 1 : pSide.getId() -1);//如果是偶数 应对方向应该+1 如果是奇数 应该-1
         if ((block = WorldUtils.getSideBlock(location, WorldUtils.SIDE.UP)).getType() != Material.CHEST || block.getData() != entrance.getId()){
-            blocks.add(new FakeBlock(itemFrame.add(0, -1, 0), Material.CHEST, (byte) entrance.getId()));
+            blocks.add(new FakeBlock(WorldUtils.getSide(location, WorldUtils.SIDE.UP), Material.CHEST, (byte) entrance.getId()));
         }else{
-            if (faces.get(block.getData()) != direction.getId()){//如果是箱子检查朝向是否为入口
-                blocks.add(new FakeBlock(itemFrame.add(0, -1, 0), Material.CHEST, (byte) entrance.getId()));
+            if (block.getData() != entrance.getId()){//如果是箱子检查朝向是否为入口
+                blocks.add(new FakeBlock(WorldUtils.getSide(location, WorldUtils.SIDE.UP), Material.CHEST, (byte) entrance.getId()));
             }
         }
         Block tmpBlock;
@@ -75,9 +71,11 @@ public class SmeltingFurnace {
         Block bottom;
         //四个面 分别为 2 3 4 5(北 南 西 东)     1和2位上下
         for (int side = 2; side < 6; side++){
+            List<Block> lavas = new ArrayList<>();//应该是石头的所有坐标
             if (side != entrance.getId()){
                 furnace = WorldUtils.getSideBlock(location, WorldUtils.SIDE.byId(side), 4);//应该为熔炉
                 anvil = WorldUtils.getSideBlock(furnace.getLocation(), WorldUtils.SIDE.UP);// 应该为铁砧
+                lavas.add(WorldUtils.getSideBlock(WorldUtils.getSide(location, WorldUtils.SIDE.DOWN), WorldUtils.SIDE.byId(side)));//应该为岩浆
             }
             List<Block> stones = new ArrayList<>();//应该是石头的所有坐标
             WorldUtils.SIDE[] orSo = new WorldUtils.SIDE[2]; //左右
@@ -95,6 +93,9 @@ public class SmeltingFurnace {
                 if (side != entrance.getId()) {
                     assert furnace != null;
                     stones.add(WorldUtils.getSideBlock(furnace.getLocation(), s));//不是入口 应该有石头
+                    if (side == pSide.getId()){
+                        lavas.add(WorldUtils.getSideBlock(lavas.get(0).getLocation(), s));//应该为岩浆
+                    }
                 }
                 tmpBlock = WorldUtils.getSideBlock(location, WorldUtils.SIDE.byId(side), 3);//熔炉前面的方块
                 stones.add((bottom = WorldUtils.getSideBlock(tmpBlock.getLocation(), s, 2)));//底部 往上两个应该为石头
@@ -121,6 +122,11 @@ public class SmeltingFurnace {
             for (Block stone : stones) {
                 if (stone.getType() != Material.SMOOTH_BRICK || stone.getData() != 3){
                     blocks.add(new FakeBlock(stone.getLocation(), Material.SMOOTH_BRICK, (byte) 3));
+                }
+            }
+            for (Block lava : lavas) {
+                if (lava.getType() != Material.LAVA && lava.getType() != Material.STATIONARY_LAVA){
+                    blocks.add(new FakeBlock(lava.getLocation(), Material.LAVA));
                 }
             }
         }
