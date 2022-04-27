@@ -305,6 +305,11 @@ public class ItemUtils {
             removeItem(items, clutterItem, player);
         }
     }
+
+    /**
+     *
+     * @param player 为了验证绑定 请提供玩家对象用于验证
+     */
     public static boolean sufficientItem(ClutterItem[] items, Player player){
         ItemStack[] contents = clone(player.getInventory().getContents());
         for (ClutterItem item : items) {
