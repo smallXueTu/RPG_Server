@@ -47,7 +47,7 @@ public class SmeltingFurnace implements TickEntity {
     private boolean closed = false;
     private Hologram hologram;
     private final int id;//唯一id
-    private int process = 1;//阶段
+    private int process = 0;//阶段
     private double temperature;//温度
     private Block[] furnaces;//三个熔炉
     private Block[] anvils;//三个铁砧
@@ -138,11 +138,11 @@ public class SmeltingFurnace implements TickEntity {
         List<String> needMaterial;
         switch (process){
             case 0:
-                lines.add(hologram.appendTextLine("请将以下需要的材料放置到上方箱子中："));
+                lines.add(hologram.appendTextLine("§e请将以下需要的材料放置到上方箱子中："));
                 needMaterial = drawing.getStringList("needMaterial");
                 for (String s : needMaterial) {
                     String[] split = s.split(":");
-                    hologram.appendTextLine("§e" + split[0] + "类型" + split[1] + "×" + split[2]);
+                    lines.add(hologram.appendTextLine("§e" + split[0] + "类型" + split[1] + "×" + split[2]));
                 }
                 process++;
                 break;
