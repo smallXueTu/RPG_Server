@@ -15,7 +15,7 @@ import java.util.Map;
 public class SmeltingFurnaceDrawing extends MemoryConfiguration {
     private static final Map<String, SmeltingFurnaceDrawing> map = new HashMap<>();
     private final String name;
-    private static SmeltingFurnaceDrawing getSmeltingFurnaceDrawing(String name){
+    public static SmeltingFurnaceDrawing getSmeltingFurnaceDrawing(String name){
         SmeltingFurnaceDrawing drawing = null;
         YamlConfiguration drawingYaml = Config.getInstance().getDrawingYaml();
         if (drawingYaml.contains("name")){
