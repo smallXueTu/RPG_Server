@@ -148,21 +148,30 @@ public class SmeltingFurnace implements TickEntity {
                 break;
             case 1:
                 needMaterial = drawing.getStringList("needMaterial");
-                ItemStack[] itemStacks = getChest();
+                ItemStack[] itemStacks = ItemUtils.clone(getChest());
                 int numberOfSuccesses = 0;
                 for (int i = 0; i < needMaterial.size(); i++) {
                     String material = needMaterial.get(i);
                     ClutterItem clutterItem = new ClutterItem(material, ClutterItem.ItemSource.LTCraft);
                     if (ItemUtils.removeItem(itemStacks, clutterItem, player) <= 0) {
                         numberOfSuccesses++;
-                        String[] split = material.split(":");
-                        lines.get(i + 1).setText("§a" + split[0] + "类型" + split[1] + "×" + split[2]);
+                        if (lines.get(i + 1).getText().startsWith("§e")) {
+                            String[] split = material.split(":");
+                            lines.get(i + 1).setText("§a" + split[0] + "类型" + split[1] + "×" + split[2]);
+                        }
+                    }else {
+                        if (lines.get(i + 1).getText().startsWith("§a")) {
+                            String[] split = material.split(":");
+                            lines.get(i + 1).setText("§e" + split[0] + "类型" + split[1] + "×" + split[2]);
+                        }
                     }
                 }
                 if (numberOfSuccesses >= needMaterial.size()){
+//                    Collections.addAll(inventory, itemStacks);
+                    setChest(itemStacks);
                     lines.forEach(HologramLine::removeLine);
                     lines.clear();
-                    lines.add(hologram.appendTextLine("请将以下需要的材料丢弃到下方岩浆中："));
+                    lines.add(hologram.appendTextLine("§e请将以下需要的材料丢弃到下方岩浆中："));
                     String smeltingStone = getSmeltingStone();
                     String[] split = smeltingStone.split(":");
                     lines.add(hologram.appendTextLine("§e" + split[0] + "×" + split[1]));
