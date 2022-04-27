@@ -55,15 +55,15 @@ public class WorldUtils {
     public static SIDE getForDirection(Location location1, Location location2){
         if (Math.abs(location1.getBlockX() - location2.getBlockX()) == 1){
             if (location1.getBlockX() - location2.getBlockX() < 0)
-                return SIDE.WEST;
-            else
                 return SIDE.EAST;
+            else
+                return SIDE.WEST;
         }
         if (Math.abs(location1.getBlockZ() - location2.getBlockZ()) == 1){
             if (location1.getBlockZ() - location2.getBlockZ() < 0)
-                return SIDE.NORTH;
-            else
                 return SIDE.SOUTH;
+            else
+                return SIDE.NORTH;
         }
         if (Math.abs(location1.getBlockY() - location2.getBlockY()) == 1){
             if (location1.getBlockY() - location2.getBlockY() < 0)
@@ -103,6 +103,7 @@ public class WorldUtils {
      * @param side 步长
      */
     public static Location getSide(Location location, SIDE side, int step){
+        location = location.clone();
         switch(side){
             case DOWN://下
                 return location.add(0, - step, 0);
