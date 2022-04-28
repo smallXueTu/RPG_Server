@@ -180,7 +180,7 @@ public class PlayerListener  implements Listener {
                         }
                         LTItem ltItems = Utils.getLTItems(itemInMainHand);
                         String name = ltItems == null? cn.LTCraft.core.utils.Utils.clearColor(itemInMainHand.getItemMeta().getDisplayName()):ltItems.getName();
-                        new SmeltingFurnace(player, blockAt.getLocation(), entity.getLocation(), SmeltingFurnaceDrawing.getSmeltingFurnaceDrawing(name));
+                        new SmeltingFurnace(player, blockAt.getLocation(), entity, SmeltingFurnaceDrawing.getSmeltingFurnaceDrawing(name));
                     }
                 }
             }
