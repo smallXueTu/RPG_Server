@@ -190,11 +190,19 @@ public class SmeltingFurnace implements TickEntity {
      * 收集周围燃烧的物品
      */
     public void collectAround(){
-        Collection<Entity> nearbyEntities = location.getWorld().getNearbyEntities(location, 3, 3, 3);
+        Collection<Entity> nearbyEntities = location.getWorld().getNearbyEntities(location, 5, 3, 5);
         for (Entity nearbyEntity : nearbyEntities) {
-            if (nearbyEntity instanceof Item && nearbyEntity.getFireTicks() > 0){
-                inventory.add(((Item) nearbyEntity).getItemStack());
-                nearbyEntity.remove();
+            if (nearbyEntity instanceof Item){
+                Block down = WorldUtils.getSideBlock(nearbyEntity.getLocation(), WorldUtils.SIDE.DOWN);
+                Block block = nearbyEntity.getLocation().getWorld().getBlockAt(nearbyEntity.getLocation());
+                if (
+                        block.getType() == Material.LAVA || block.getType() == Material.STATIONARY_LAVA ||
+                        down.getType() == Material.LAVA || down.getType() == Material.STATIONARY_LAVA ||
+                        nearbyEntity.getFireTicks() > 0
+                ) {
+                    inventory.add(((Item) nearbyEntity).getItemStack());
+                    nearbyEntity.remove();
+                }
             }
         }
     }
