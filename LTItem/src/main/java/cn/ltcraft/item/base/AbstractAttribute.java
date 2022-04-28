@@ -12,7 +12,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -1107,5 +1109,44 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
                 ", PVPInjuredSkill=" + PVPInjuredSkill +
                 ", potion=" + potion +
                 '}';
+    }
+    public List<String> toStringRead() {
+        List<String> list = new ArrayList<>();
+            list.add("PVE伤害:" + PVEDamage);
+            list.add("PVP伤害:" + PVPDamage);
+            list.add("PVE吸血:" + PVESuckingBlood + "%");
+            list.add("PVP吸血:" + PVPSuckingBlood + "%");
+            list.add("PVE燃烧:" + PVEBurning);
+            list.add("PVP燃烧:" + PVPBurning);
+            list.add("PVE雷击:" + PVELightning);
+            list.add("PVP雷击:" + PVPLightning);
+            list.add("PVE击飞:" + PVEStrikeFly);
+            list.add("PVP击飞:" + PVPStrikeFly);
+            list.add("PVE击退:" + PVERepel);
+            list.add("PVP击退:" + PVPRepel);
+            list.add("PVE攻击恢复:" + PVEAttackRecovery);
+            list.add("PVP攻击恢复:" + PVPAttackRecovery);
+            list.add("PVE穿甲:" + PVENailPiercing + "%");
+            list.add("PVP穿甲:" + PVPNailPiercing + "%");
+            list.add("PVE免伤:" + PVEInjuryFree);
+            list.add("PVP免伤:" + PVPInjuryFree);
+            list.add("PVE群回:" + groupGyrus);
+            list.add("反伤:" + backInjury + "%");
+            list.add("闪避几率:" + dodge + "%");
+            list.add("控制减少:" + tenacity + "%");
+            list.add("速度加成:" + speed + "%");
+            list.add("护甲:" + armor);
+            list.add("幸运:" + lucky);
+            list.add("附加生命值:" + healthValue);
+            list.add("PVE攻击自身药水:" + PVESelfPotion);
+            list.add("PVP攻击自身药水:" + PVPSelfPotion);
+            list.add("PVE攻击目标药水:" + PVEEntityPotion);
+            list.add("PVP攻击目标药水:" + PVPEntityPotion);
+            list.add("PVE攻击技能:" + PVEAttackSkill);
+            list.add("PVP攻击技能:" + PVPAttackSkill);
+            list.add("被怪物攻击技能:" + PVEInjuredSkill);
+            list.add("被玩家攻击技能:" + PVPInjuredSkill);
+            list.add("实时药水效果:" + potion);
+            return list;
     }
 }
