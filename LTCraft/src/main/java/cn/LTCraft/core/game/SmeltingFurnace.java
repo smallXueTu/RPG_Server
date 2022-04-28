@@ -137,7 +137,7 @@ public class SmeltingFurnace implements TickEntity {
     /**
      * tick
      * @param tick 从服务器开启到现在经过的游戏时刻
-     * @return 返回false带边吃熔炼已结束
+     * @return 返回false代表熔炼已结束
      */
     public boolean doTick(long tick){
         age++;
