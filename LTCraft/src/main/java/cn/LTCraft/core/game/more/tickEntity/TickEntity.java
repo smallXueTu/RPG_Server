@@ -17,10 +17,14 @@ public interface TickEntity {
      * tick率
      * @return 1 = 1游戏时刻
      */
-    int getTickRate();
+    default int getTickRate(){
+        return 1;
+    }
 
     /**
      * @return 如果是true 则在副线程中调用 {@link TickEntity#doTick(long)}
      */
-    boolean isAsync();
+    default boolean isAsync(){
+        return false;
+    }
 }

@@ -175,6 +175,9 @@ public class PlayerListener  implements Listener {
                         player.sendMessage("§c多方块结构错误，请对应闪动的方块来摆放对应的方块！");
                         new FlashingBlock(player, blocks);
                     }else {
+                        if (SmeltingFurnace.getSmeltingFurnaceMap().values().stream().anyMatch(smeltingFurnace -> smeltingFurnace.getLocation().distance(blockAt.getLocation()) < 3)) {
+                            return;
+                        }
                         LTItem ltItems = Utils.getLTItems(itemInMainHand);
                         String name = ltItems == null? cn.LTCraft.core.utils.Utils.clearColor(itemInMainHand.getItemMeta().getDisplayName()):ltItems.getName();
                         new SmeltingFurnace(player, blockAt.getLocation(), entity.getLocation(), SmeltingFurnaceDrawing.getSmeltingFurnaceDrawing(name));

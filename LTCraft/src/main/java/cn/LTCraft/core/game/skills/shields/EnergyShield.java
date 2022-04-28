@@ -57,9 +57,4 @@ public class EnergyShield extends BaseShield{
     public Player getOwner() {
         return owner;
     }
-
-    @Override
-    public boolean isAsync() {
-        return false;
-    }
 }

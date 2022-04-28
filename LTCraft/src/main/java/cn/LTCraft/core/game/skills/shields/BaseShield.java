@@ -100,10 +100,6 @@ public abstract class BaseShield implements Shield {
         return awaken;
     }
 
-    @Override
-    public int getTickRate() {
-        return 1;
-    }
 
     @Override
     public boolean isAsync() {

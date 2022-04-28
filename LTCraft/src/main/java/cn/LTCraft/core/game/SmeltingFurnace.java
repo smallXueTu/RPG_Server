@@ -207,15 +207,6 @@ public class SmeltingFurnace implements TickEntity {
         }
     }
 
-    @Override
-    public boolean isAsync() {
-        return false;
-    }
-
-    @Override
-    public int getTickRate() {
-        return 1;
-    }
 
     /**
      *
