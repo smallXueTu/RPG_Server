@@ -8,12 +8,14 @@ import cn.ltcraft.item.items.GemsStone;
 import cn.ltcraft.item.items.Material;
 import cn.ltcraft.item.items.MeleeWeapon;
 import cn.ltcraft.item.objs.ItemObjs;
+import cn.ltcraft.item.objs.PlayerAttribute;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +43,12 @@ public class Command implements CommandExecutor {
             return true;
         }
         switch (args[0]) {
-            case "":
+            case "getInfo"://test
+                ItemStack is = new ItemStack(org.bukkit.Material.STONE);
+                ItemMeta itemMeta = is.getItemMeta();
+                itemMeta.setLore(PlayerAttribute.getPlayerAttribute(((Player) sender)).toStringRead());
+                is.setItemMeta(itemMeta);
+                ((Player) sender).getInventory().addItem(is);
                 break;
             default:
                 if (!sender.isOp()) return true;
