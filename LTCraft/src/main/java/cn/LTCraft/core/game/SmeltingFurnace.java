@@ -250,7 +250,8 @@ public class SmeltingFurnace implements TickEntity {
             case 0:
                 checkPlayer();
                 lines.add(hologram.appendTextLine("§e注意事项，熔炼时间大概需要" + DateUtils.getDateFormat(getLevel().getTime()) + "(不算强制冷却时间)。"));
-                lines.add(hologram.appendTextLine("§e请不要在箱子内放其他无用物品。请尽量保持在线。熔炼完成请在玩家6小时内查收！"));
+                lines.add(hologram.appendTextLine("§e请不要在箱子内放其他无用物品。"));
+                lines.add(hologram.appendTextLine("§e请尽量保持在线。熔炼完成请在玩家6小时内查收！"));
                 lines.add(hologram.appendTextLine("§e请将以下需要的材料放置到上方箱子中："));
                 needMaterial = drawing.getStringList("needMaterial");
                 for (String s : needMaterial) {
@@ -270,14 +271,14 @@ public class SmeltingFurnace implements TickEntity {
                     ClutterItem clutterItem = new ClutterItem(material, ClutterItem.ItemSource.LTCraft);
                     if (ItemUtils.removeItem(itemStacks, clutterItem, player) <= 0) {
                         numberOfSuccesses++;
-                        if (lines.get(i + 3).getText().startsWith("§e")) {
+                        if (lines.get(i + 4).getText().startsWith("§e")) {
                             String[] split = material.split(":");
-                            lines.get(i + 3).setText("§a" + split[0] + "类型" + split[1] + "×" + split[2]);
+                            lines.get(i + 4).setText("§a" + split[0] + "类型" + split[1] + "×" + split[2]);
                         }
                     }else {
-                        if (lines.get(i + 3).getText().startsWith("§a")) {
+                        if (lines.get(i + 4).getText().startsWith("§a")) {
                             String[] split = material.split(":");
-                            lines.get(i + 3).setText("§e" + split[0] + "类型" + split[1] + "×" + split[2]);
+                            lines.get(i + 4).setText("§e" + split[0] + "类型" + split[1] + "×" + split[2]);
                         }
                     }
                 }
