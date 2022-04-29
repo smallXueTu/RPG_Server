@@ -458,26 +458,28 @@ public class SmeltingFurnace implements TickEntity {
                 checkItemEntity();
                 break;
             case 6:
-                checkPlayer();
-                if (!done) {
-                    if (player.getLocation().distance(location) < 5) {
-                        lines.add(hologram.appendTextLine("§a熔炼已完成！"));
-                        List<String> result = drawing.getStringList("result");
-                        for (String s : result) {
-                            ClutterItem clutterItem = ClutterItem.spawnClutterItem(s);
-                            PlayerUtils.dropItemFloat(player, chest.getLocation().add(0.5, 1, 0.5), clutterItem.generate());
+                if (age % 20 == 0){
+                    checkPlayer();
+                    if (!done) {
+                        if (player.getLocation().distance(location) < 5) {
+                            lines.add(hologram.appendTextLine("§a熔炼已完成！"));
+                            List<String> result = drawing.getStringList("result");
+                            for (String s : result) {
+                                ClutterItem clutterItem = ClutterItem.spawnClutterItem(s);
+                                PlayerUtils.dropItemFloat(player, chest.getLocation().add(0.5, 1, 0.5), clutterItem.generate());
+                            }
+                            done = true;
+                            waitingTime = 0;
+                            floatItemEntity.forEach(Entity::remove);
+                            cleanFurnaces();
+                        } else {
+                            lines.add(hologram.appendTextLine("§a熔炼已完成，等待玩家靠近！"));
                         }
-                        done = true;
-                        waitingTime = 0;
-                        floatItemEntity.forEach(Entity::remove);
-                        cleanFurnaces();
-                    } else {
-                        lines.add(hologram.appendTextLine("§a熔炼已完成，等待玩家靠近！"));
-                    }
-                }else {
-                    waitingTime++;
-                    if (waitingTime > 10){
-                        close();
+                    }else {
+                        waitingTime++;
+                        if (waitingTime > 10){
+                            close();
+                        }
                     }
                 }
                 break;
