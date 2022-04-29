@@ -470,6 +470,7 @@ public class SmeltingFurnace implements TickEntity {
                             }
                             done = true;
                             waitingTime = 0;
+                            ((ItemFrame) itemFrameEntity).setItem(new ItemStack(Material.AIR));
                             floatItemEntity.forEach(Entity::remove);
                             cleanFurnaces();
                         } else {
@@ -934,7 +935,7 @@ public class SmeltingFurnace implements TickEntity {
     }
 
     public static enum Level{
-        CURRENCY("通用", "初级燃料:10", "通用熔炼石:30", 10),
+        CURRENCY("通用", "初级燃料:10", "通用熔炼石:30", 1000),
         ADVANCED("进阶", "高级燃料:10", "进阶熔炼石:30", 2000),
         LEGEND("传说", "传说燃料:10", "传说熔炼石:30", 3000),
         CHAOS("混沌", "混沌燃料:10", "混沌熔炼石:30", 4000);
