@@ -437,16 +437,15 @@ public class SmeltingFurnace implements TickEntity {
                             if (meltingTick == getLevel().getTime() - 30){
                                 final Location location = chest.getLocation().add(0.5, 1, 0.5);
                                 for (int i = 0; i < 10; i++) {
-                                    int finalI = i;
                                     Bukkit.getScheduler().scheduleSyncDelayedTask(cn.LTCraft.core.Main.getInstance(), () -> {
                                         location.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, location, 300, 0, 0, 0, 5);
-                                        if (finalI == 9){
-                                            process++;
-                                            lines.forEach(HologramLine::removeLine);
-                                            lines.clear();
-                                        }
                                     }, i * 10 + Utils.getRandom().nextInt(6) + 7);
                                 }
+                                Bukkit.getScheduler().scheduleSyncDelayedTask(cn.LTCraft.core.Main.getInstance(), () -> {
+                                    process++;
+                                    lines.forEach(HologramLine::removeLine);
+                                    lines.clear();
+                                }, 200);
                             }
                         }
                     }else {
@@ -933,7 +932,7 @@ public class SmeltingFurnace implements TickEntity {
     }
 
     public static enum Level{
-        CURRENCY("通用", "初级燃料:10", "通用熔炼石:30", 1000),
+        CURRENCY("通用", "初级燃料:10", "通用熔炼石:30", 10),
         ADVANCED("进阶", "高级燃料:10", "进阶熔炼石:30", 2000),
         LEGEND("传说", "传说燃料:10", "传说熔炼石:30", 3000),
         CHAOS("混沌", "混沌燃料:10", "混沌熔炼石:30", 4000);
