@@ -16,18 +16,22 @@ import com.gmail.filoghost.holographicdisplays.api.line.HologramLine;
 import com.gmail.filoghost.holographicdisplays.api.line.TextLine;
 import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
 import com.google.common.primitives.Ints;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
+import org.bukkit.block.Furnace;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftFurnace;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftItem;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.FurnaceInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.logging.Level;
 
@@ -71,9 +75,10 @@ public class SmeltingFurnace implements TickEntity {
     private Hologram hologram;
     private final int id;//唯一id
     private int process = 0;//阶段
-    private double temperature;//温度
+    private int temperature;//温度
     private Block[] furnaces;//三个熔炉
     private Block[] anvils;//三个铁砧
+    private List<Entity> floatItemEntity = new ArrayList<>();
     /**
      * 可变行
      */
@@ -91,9 +96,26 @@ public class SmeltingFurnace implements TickEntity {
      */
     private int errorTick = 0;
     /**
+     * 致命错误
+     */
+    private boolean fatalError = false;
+    /**
+     * 旋转速度
+     */
+    private double speed = 1;
+    /**
+     * 旋转角度
+     */
+    private double angle = 1;
+    /**
      * 存活时间
      */
     private int age = 0;
+    /**
+     * 容量时间
+     */
+    private int meltingTick = 0;
+    private ItemStack[] furnacesItemStack = new ItemStack[2];
 
     public SmeltingFurnace(Player player, Location location, Entity itemFrame, SmeltingFurnaceDrawing drawing){
         this.location = location;
@@ -142,37 +164,50 @@ public class SmeltingFurnace implements TickEntity {
     public boolean doTick(long tick){
         age++;
         collectAround();
+        int add = 1;
         try {
+            if (fatalError)throw new SmeltingFurnaceErrorException("致命错误！");
             if (age % 20 == 0){
+                add = 20;
                 FakeBlock[] check = check(location, itemFrame);
                 if (check.length > 0){
                     throw new SmeltingFurnaceErrorException("熔炼坛结构被破坏！");
                 }
                 checkDrawing();
+                //玩家修复了错误 还原状态
+                if (errorTick > 0){
+                    ArrayList<TextLine> textLines = new ArrayList<>(lines);
+                    lines.clear();
+                    for (TextLine textLine : textLines) {
+                        lines.add(hologram.appendTextLine(textLine.getText()));
+                    }
+                    for (TextLine errorLine : errorLines) {
+                        errorLine.removeLine();
+                    }
+                    errorLines.clear();
+                    errorTick = 0;
+                }
             }
+            add = 1;
+
             updateProcess();
-            //玩家修复了错误 还原状态
-            if (errorTick > 0){
-                ArrayList<TextLine> textLines = new ArrayList<>(lines);
-                lines.clear();
-                for (TextLine textLine : textLines) {
-                    lines.add(hologram.appendTextLine(textLine.getText()));
-                }
-                for (TextLine errorLine : errorLines) {
-                    errorLine.removeLine();
-                }
-                errorLines.clear();
-                errorTick = 0;
-            }
         } catch (SmeltingFurnaceErrorException e) {//发生了错误 留给玩家60s的时间用于玩家修复错误！
             if (errorTick == 0){
                 for (TextLine line : lines) {
                     line.removeLine();
                 }
-                errorLines.add(hologram.appendTextLine("§c错误：" + e.getMessage()));
-                errorLines.add(hologram.appendTextLine("§c请及时修正，否者将在LTSF:" + id + ":errorTick秒后坠毁！"));
+                if (fatalError) {
+                    errorLines.add(hologram.appendTextLine("§c致命错误：" + e.getMessage()));
+                    errorLines.add(hologram.appendTextLine("§c熔炼坛将在LTSF:" + id + ":errorTick秒后坠毁！"));
+                }else {
+                    errorLines.add(hologram.appendTextLine("§c错误：" + e.getMessage()));
+                    errorLines.add(hologram.appendTextLine("§c请及时修正，否者将在LTSF:" + id + ":errorTick秒后坠毁！"));
+                }
             }
-            errorTick++;
+            errorTick += add;
+            if (errorTick > 60 * 20){
+                close();
+            }
         }
         ((CraftHologram) hologram).refreshSingleLines();
         return !closed;
@@ -258,10 +293,31 @@ public class SmeltingFurnace implements TickEntity {
                         ItemUtils.removeItem(furnace, generate1);
                     }
                     setFurnaces(furnaces);
+                    furnacesItemStack[0] = ClutterItem.spawnClutterItem(getSmeltingStone()).generate(1);
+                    furnacesItemStack[1] = ClutterItem.spawnClutterItem(getFuel()).generate(1);
                     process++;
                     lines.forEach(HologramLine::removeLine);
                     lines.clear();
                 }
+            break;
+            case 4:
+                if (age % 20 == 0) {
+                    meltingTick++;
+                    temperature += Utils.getRandom().nextInt(2000);//增加温度
+                    checkFurnaces();
+                    if (meltingTick % 10 == 0){
+                        for (Block anvil : anvils) {
+                            anvil.getWorld().playSound(anvil.getLocation(), Sound.BLOCK_ANVIL_USE, 1, 1);//铁砧声音
+                        }
+                    }
+                }
+
+                if ((meltingTick - 1 % 10 == 0 || meltingTick % 10 == 0 || meltingTick + 1 % 10 == 0)){
+                    for (Block furnace : this.furnaces) {
+                        spawnParticle(furnace.getLocation().add(0.5, 0.8, 0.5), 10);
+                    }
+                }
+                checkItemEntity();
             break;
         }
     }
@@ -287,6 +343,68 @@ public class SmeltingFurnace implements TickEntity {
     }
 
     /**
+     * 检查旋转掉落物
+     */
+    public void checkItemEntity(){
+        if (floatItemEntity.size() <=0 || floatItemEntity.stream().anyMatch(Entity::isDead)){
+            for (Entity entity : floatItemEntity) {
+                entity.remove();
+            }
+            floatItemEntity.clear();
+            List<String> needMaterial = drawing.getStringList("needMaterial");
+            needMaterial.add(getSmeltingStone());
+            Location side = WorldUtils.getSide(location, WorldUtils.SIDE.UP);
+            for (String need : needMaterial) {
+                ClutterItem clutterItem = ClutterItem.spawnClutterItem(need);
+                ItemStack generate = clutterItem.generate();
+                Item item = location.getWorld().dropItem(side, generate);
+                item.setPickupDelay(Integer.MAX_VALUE);
+                item.setGravity(false);
+                floatItemEntity.add(item);
+                angle = Math.max(360 / floatItemEntity.size(), 1);
+            }
+        }else {//旋转他们
+            Location location = this.location.clone();
+            double x = location.add(0.5, 0, 0.5).getX();
+            double z = location.getZ();
+            for (int i = 1; i <= floatItemEntity.size(); i++) {
+                CraftItem craftItem = (CraftItem)floatItemEntity.get(i - 1);
+                double targetX = Math.cos(((angle * i + age % 360) % 360) * Math.PI / 180) * 1.5 + x;
+                double targetZ = Math.sin(((angle * i + age % 360) % 360) * Math.PI / 180) * 1.5 + z;
+                craftItem.getHandle().motX = (targetX - craftItem.getLocation().getX());
+                craftItem.getHandle().motY = 0;
+                craftItem.getHandle().motZ = (targetZ - craftItem.getLocation().getZ());
+                craftItem.getHandle().impulse = true;
+            }
+        }
+    }
+    public void checkFurnaces() throws SmeltingFurnaceErrorException {
+        for (Block furnace : furnaces) {
+            if (furnace.getState() instanceof Furnace){
+                Furnace state = (Furnace) furnace.getState();
+                FurnaceInventory inventory = state.getInventory();
+                if (state.getBurnTime() <= 0 && (inventory.getSmelting() == null || inventory.getSmelting().getType() == Material.AIR) && (inventory.getResult() == null || inventory.getResult().getType() == Material.AIR)) {
+                    inventory.setSmelting(furnacesItemStack[0].clone());
+                    inventory.setFuel(furnacesItemStack[1].clone());
+                }
+                if (inventory.getResult() != null && inventory.getResult().getType() != Material.AIR) {
+                    inventory.setResult(new ItemStack(Material.AIR));
+                    inventory.setSmelting(furnacesItemStack[0].clone());
+                }else if (!Objects.equals(inventory.getSmelting(), furnacesItemStack[0])){
+                    if (state.getBurnTime() >= 1){
+                        fatalError = true;
+                        throw new SmeltingFurnaceErrorException("熔炼过程熔炉被干扰！");
+                    }else {
+                        inventory.setFuel(furnacesItemStack[1].clone());
+                    }
+                }
+                if (state.getBurnTime() <= 1){
+                    inventory.setFuel(furnacesItemStack[1].clone());
+                }
+            }
+        }
+    }
+    /**
      * 检查图纸
      * @throws SmeltingFurnaceErrorException 错误
      */
@@ -296,7 +414,7 @@ public class SmeltingFurnace implements TickEntity {
         }
         ItemStack itemStack = ((ItemFrame) itemFrameEntity).getItem();
         String name;
-        if (itemStack == null || itemStack.hasItemMeta() || (name = itemStack.getItemMeta().getDisplayName()) == null){
+        if (itemStack == null || !itemStack.hasItemMeta() || (name = itemStack.getItemMeta().getDisplayName()) == null){
             throw new SmeltingFurnaceErrorException("找不到图纸！");
         }
         if (!Utils.clearColor(name).equals(this.drawing.getName())) {
@@ -304,6 +422,20 @@ public class SmeltingFurnace implements TickEntity {
         }
     }
 
+
+    /**
+     * 粒子效果
+     * @param location 粒子的中心
+     * @param count 循环次数
+     */
+    public void spawnParticle(Location location, int count){
+        double x,z;
+        for (int ii = 0; ii < count; ii++){
+            x = location.getX() + 1 * Math.cos((age % 360) * 3.14 / 9) ;
+            z = location.getZ() + 1 * Math.sin((age % 360) * 3.14 / 9) ;
+            location.getWorld().spawnParticle(Particle.LAVA, new Location(location.getWorld(), x, location.getY(), z), 1);
+        }
+    }
     /**
      *
      * @return 三个熔炉 的物品
@@ -364,18 +496,16 @@ public class SmeltingFurnace implements TickEntity {
      */
     public String getTemperatureString() {
         String p;
-        if(temperature < 50){
+        if(temperature < 5000){
             p = "§a";
-        }else if (temperature < 150){
+        }else if (temperature < 15000){
             p = "§e";
-        }else if (temperature < 500){
+        }else if (temperature < 50000){
             p = "§6";
-        }else if (temperature >= 500){
+        }else {
             p = "§c";
-        }else{
-            p = "";
         }
-        return p + temperature;
+        return p + Utils.formatNumber(temperature / 100d);
     }
 
 
@@ -386,6 +516,7 @@ public class SmeltingFurnace implements TickEntity {
     public String getStable()
     {
         if (errorTick > 0)return "§c！！！濒临爆炸！！！";
+        if (temperature > 50000)return "§e温度过高";
         return "非常稳定";
     }
     /**
@@ -431,6 +562,14 @@ public class SmeltingFurnace implements TickEntity {
             errorLines.clear();
             smeltingFurnaceMap.remove(id);
             closed = true;
+            furnacesItemStack = new ItemStack[0];
+            floatItemEntity.forEach(Entity::remove);
+            ItemStack[][] itemStacks = new ItemStack[3][];
+            try {
+                setFurnaces(itemStacks);
+            } catch (SmeltingFurnaceErrorException ignore) {
+
+            }
         }
     }
     private static final List<Integer> reverses = Ints.asList(0, 0, 3, 2, 5, 4);//反向
