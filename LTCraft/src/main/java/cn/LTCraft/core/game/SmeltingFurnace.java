@@ -111,6 +111,10 @@ public class SmeltingFurnace implements TickEntity {
      */
     private double speed = 1;
     /**
+     * 旋转进度
+     */
+    private double rotationProgress = 1;
+    /**
      * 旋转角度
      */
     private double angle = 1;
@@ -257,7 +261,7 @@ public class SmeltingFurnace implements TickEntity {
                 checkPlayer();
                 lines.add(hologram.appendTextLine("§e注意事项，熔炼时间大概需要" + DateUtils.getDateFormat(getLevel().getTime()) + "(不算强制冷却时间)。"));
                 lines.add(hologram.appendTextLine("§e请不要在箱子内放其他无用物品。"));
-                lines.add(hologram.appendTextLine("§e请尽量保持在线。熔炼完成请在玩家6小时内查收！"));
+                lines.add(hologram.appendTextLine("§e请尽量保持在线。熔炼完成请玩家在6小时内查收！"));
                 lines.add(hologram.appendTextLine("§e请将以下需要的材料放置到上方箱子中："));
                 needMaterial = drawing.getStringList("needMaterial");
                 for (String s : needMaterial) {
@@ -515,15 +519,16 @@ public class SmeltingFurnace implements TickEntity {
                     inventory.add(((Item) nearbyEntity).getItemStack());
                     nearbyEntity.remove();
                 }
-            }else if (nearbyEntities instanceof LivingEntity){
-                LivingEntity livingEntity = (LivingEntity) nearbyEntities;
+            }else if (age % 20 == 0 && nearbyEntity instanceof LivingEntity){
+                LivingEntity livingEntity = (LivingEntity) nearbyEntity;
                 float damage = 0;
-                if (temperature > 80 && temperature < 150)damage = 3;
-                if (temperature >= 150 && temperature < 300)damage = 8;
-                if (temperature >= 300 && temperature < 600)damage = 20;
-                if (temperature >= 600)damage = 50;
-                ((CraftLivingEntity)livingEntity).getHandle().damageEntity(DamageSource.BURN, damage);
-
+                if (temperature > 80 && temperature < 150)damage = 1;
+                if (temperature >= 150 && temperature < 300)damage = 3;
+                if (temperature >= 300 && temperature < 600)damage = 8;
+                if (temperature >= 600)damage = 15;
+                if (damage > 0) {
+                    ((CraftLivingEntity) livingEntity).getHandle().damageEntity(DamageSource.BURN, damage);
+                }
             }
         }
     }
@@ -586,15 +591,17 @@ public class SmeltingFurnace implements TickEntity {
             Location location = this.location.clone();
             double x = location.add(0.5, 0, 0.5).getX();
             double z = location.getZ();
-            for (int i = 1; i <= floatItemEntity.size(); i += speed) {
+            for (int i = 1; i <= floatItemEntity.size(); i ++) {
                 CraftItem craftItem = (CraftItem)floatItemEntity.get(i - 1);
-                double targetX = Math.cos(((angle * i + age % 360) % 360) * Math.PI / 180) * 1.5 + x;
-                double targetZ = Math.sin(((angle * i + age % 360) % 360) * Math.PI / 180) * 1.5 + z;
+                double targetX = Math.cos(((angle * i + rotationProgress) % 360) * Math.PI / 180) * 1.5 + x;
+                double targetZ = Math.sin(((angle * i + rotationProgress) % 360) * Math.PI / 180) * 1.5 + z;
                 craftItem.getHandle().motX = (targetX - craftItem.getLocation().getX());
                 craftItem.getHandle().motY = 0;
                 craftItem.getHandle().motZ = (targetZ - craftItem.getLocation().getZ());
                 craftItem.getHandle().impulse = true;
             }
+            rotationProgress += speed;
+            rotationProgress %= 360;
         }
     }
     public void checkFurnaces() throws SmeltingFurnaceErrorException {
@@ -631,6 +638,7 @@ public class SmeltingFurnace implements TickEntity {
         if (itemFrameEntity == null || itemFrameEntity.isDead() || !(itemFrameEntity instanceof ItemFrame)){
             throw new SmeltingFurnaceErrorException("找不到物品展示框！");
         }
+        if (done)return;
         ItemStack itemStack = ((ItemFrame) itemFrameEntity).getItem();
         String name;
         if (itemStack == null || !itemStack.hasItemMeta() || (name = itemStack.getItemMeta().getDisplayName()) == null){
