@@ -355,8 +355,7 @@ public class SmeltingFurnace implements TickEntity {
                                 process++;
                                 lines.forEach(HologramLine::removeLine);
                                 lines.clear();
-                                lines.add(hologram.appendTextLine("§e等待熔炼完成..."));
-                                lines.add(hologram.appendTextLine("§e请不要干扰熔炉工作！"));
+                                lines.add(hologram.appendTextLine("§a锻造结束，等待玩家验收。"));
                             }else {
                                 lines.forEach(HologramLine::removeLine);
                                 lines.clear();
@@ -427,7 +426,7 @@ public class SmeltingFurnace implements TickEntity {
     }
 
     /**
-     * 检查悬浮子 防止行太多陷入地下
+     * 检查悬浮字 防止行太多陷入地下
      */
     public void checkHologram(){
         List<CraftHologramLine> linesUnsafe = ((CraftHologram) hologram).getLinesUnsafe();
