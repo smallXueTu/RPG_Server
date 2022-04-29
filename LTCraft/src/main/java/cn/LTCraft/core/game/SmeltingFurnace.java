@@ -294,7 +294,7 @@ public class SmeltingFurnace implements TickEntity {
                     process++;
                 }else {
                     waitingTime++;
-                    if(waitingTime > 60 * 60){//超时
+                    if(waitingTime > 60 * 60 * 20){//超时
                         throw new SmeltingFurnaceErrorException("超时！", false);
                     }
                 }
@@ -315,7 +315,7 @@ public class SmeltingFurnace implements TickEntity {
                     waitingTime = 0;
                 }else {
                     waitingTime++;
-                    if(waitingTime > 60 * 60){//超时
+                    if(waitingTime > 60 * 60 * 20){//超时
                         throw new SmeltingFurnaceErrorException("超时！", false);
                     }
                 }
@@ -347,7 +347,7 @@ public class SmeltingFurnace implements TickEntity {
                     waitingTime = 0;
                 }else {
                     waitingTime++;
-                    if(waitingTime > 60 * 60){//超时
+                    if(waitingTime > 60 * 60 * 20){//超时
                         throw new SmeltingFurnaceErrorException("超时！", false);
                     }
                 }
