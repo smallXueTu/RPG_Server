@@ -1,6 +1,7 @@
 package cn.LTCraft.core.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Angel、 on 2022/4/6 11:02
@@ -23,5 +24,23 @@ public class DateUtils {
      */
     public static long getDaysTimeStamp(int days){
         return (long) days * 24 * 60 * 60;
+    }
+    public static String getDateFormat(int time){
+        int second = time % 60;
+        time /= 60;
+        int branch = time % 60;
+        time /= 60;
+        int hour = time % 24;
+        time /= 24;
+        if (time > 0){
+            return time + "天" + hour + "小时" + branch + "分" + second + "秒";
+        }
+        if (hour > 0){
+            return hour + "小时" + branch + "分" + second + "秒";
+        }
+        if (branch > 0){
+            return branch + "分" + second + "秒";
+        }
+        return second + "秒";
     }
 }

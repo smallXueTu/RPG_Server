@@ -52,7 +52,7 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
                 AbstractLocation livingEntityLocation = livingEntity.getLocation();
                 double yaw = MathUtils.getYaw(BukkitAdapter.adapt(livingEntityLocation), BukkitAdapter.adapt(location));
                 double v = MathUtils.getMinAngle(yaw, location.getYaw());
-                if (v < 120d / 2){
+                if (v < 120d / 2){//玩家出现在怪物面前 设置怪物的仇恨
                     if ((player.isSneaking() && distance < 3) || (distance < 8 && !player.isSneaking()) || (player.isSprinting() && distance < 15)) {
                         activeMob.setTarget(livingEntity);
                         informNearbyCompanions(entity.getBukkitEntity());
@@ -60,7 +60,7 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
                 }else {
                     if (distance < 3 && !player.isSneaking()) {
                         activeMob.setTarget(livingEntity);
-                        informNearbyCompanions(entity.getBukkitEntity());
+                        informNearbyCompanions(entity.getBukkitEntity());//通知周围的怪物警戒
                     }
                 }
             }
