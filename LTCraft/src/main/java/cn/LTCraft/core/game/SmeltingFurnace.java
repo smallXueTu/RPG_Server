@@ -45,6 +45,9 @@ public class SmeltingFurnace implements TickEntity {
     private static final Map<Integer, SmeltingFurnace> smeltingFurnaceMap = new HashMap<>();
     //------------------------------------static------------------------------------
     private Player player;
+    /**
+     * 玩家名字
+     */
     private final String playerName;
     /**
      * 中心 玻璃的坐标
@@ -79,6 +82,9 @@ public class SmeltingFurnace implements TickEntity {
     private int temperature;//温度
     private Block[] furnaces;//三个熔炉
     private Block[] anvils;//三个铁砧
+    /**
+     * 悬浮转动实体
+     */
     private List<Entity> floatItemEntity = new ArrayList<>();
     /**
      * 可变行
@@ -580,10 +586,10 @@ public class SmeltingFurnace implements TickEntity {
             Location location = this.location.clone();
             double x = location.add(0.5, 0, 0.5).getX();
             double z = location.getZ();
-            for (int i = 1; i <= floatItemEntity.size(); i++) {
+            for (int i = 1; i <= floatItemEntity.size(); i += speed) {
                 CraftItem craftItem = (CraftItem)floatItemEntity.get(i - 1);
-                double targetX = Math.cos(((angle * i * speed + age % 360) % 360) * Math.PI / 180) * 1.5 + x;
-                double targetZ = Math.sin(((angle * i * speed + age % 360) % 360) * Math.PI / 180) * 1.5 + z;
+                double targetX = Math.cos(((angle * i + age % 360) % 360) * Math.PI / 180) * 1.5 + x;
+                double targetZ = Math.sin(((angle * i + age % 360) % 360) * Math.PI / 180) * 1.5 + z;
                 craftItem.getHandle().motX = (targetX - craftItem.getLocation().getX());
                 craftItem.getHandle().motY = 0;
                 craftItem.getHandle().motZ = (targetZ - craftItem.getLocation().getZ());
