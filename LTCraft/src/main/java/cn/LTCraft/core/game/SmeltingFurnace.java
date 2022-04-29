@@ -16,17 +16,18 @@ import com.gmail.filoghost.holographicdisplays.api.line.HologramLine;
 import com.gmail.filoghost.holographicdisplays.api.line.TextLine;
 import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
 import com.google.common.primitives.Ints;
+import net.minecraft.server.v1_12_R1.DamageSource;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
 import org.bukkit.block.Furnace;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_12_R1.block.CraftFurnace;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftItem;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.ItemFrame;
-import org.bukkit.entity.Player;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.FurnaceInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -115,6 +116,14 @@ public class SmeltingFurnace implements TickEntity {
      * 容量时间
      */
     private int meltingTick = 0;
+    /**
+     * 冷却
+     */
+    private boolean cooling = false;
+    /**
+     * 快速冷却
+     */
+    private boolean fastCooling = false;
     private ItemStack[] furnacesItemStack = new ItemStack[2];
 
     public SmeltingFurnace(Player player, Location location, Entity itemFrame, SmeltingFurnaceDrawing drawing){
@@ -298,21 +307,65 @@ public class SmeltingFurnace implements TickEntity {
                     process++;
                     lines.forEach(HologramLine::removeLine);
                     lines.clear();
+                    lines.add(hologram.appendTextLine("§e等待熔炼完成..."));
+                    lines.add(hologram.appendTextLine("§e请不要干扰熔炉工作！"));
                 }
             break;
             case 4:
                 if (age % 20 == 0) {
-                    meltingTick++;
-                    temperature += Utils.getRandom().nextInt(2000);//增加温度
-                    checkFurnaces();
-                    if (meltingTick % 10 == 0){
-                        for (Block anvil : anvils) {
-                            anvil.getWorld().playSound(anvil.getLocation(), Sound.BLOCK_ANVIL_USE, 1, 1);//铁砧声音
+                    boolean b = location.getWorld().hasStorm();
+                    if (cooling){//在冷却
+                        if (!fastCooling){
+                            ItemStack[] chests = getChest();
+                            if (ItemUtils.removeItem(chests, ClutterItem.spawnClutterItem("急速冷却液").generate()) == 0){
+                                setChest(chests);
+                                fastCooling = true;
+                                lines.add(hologram.appendTextLine("§e冷却液加速冷却中..."));
+                            }
+                        }
+                        if (fastCooling) {
+                            temperature -= Utils.getRandom().nextInt(b?3000:2000);//减少温度
+                        }else {
+                            temperature -= Utils.getRandom().nextInt(b?600:400);//减少温度
+                        }
+                        if (temperature <= 50){
+                            fastCooling = false;
+                            cooling = false;
+                            lines.forEach(HologramLine::removeLine);
+                            lines.clear();
+                            lines.add(hologram.appendTextLine("§e等待熔炼完成..."));
+                            lines.add(hologram.appendTextLine("§e请不要干扰熔炉工作！"));
+                        }
+                    }else {
+                        meltingTick++;
+                        temperature += Utils.getRandom().nextInt(b ? 1000 : 2000);//增加温度
+                        if (temperature > 100000) {
+                            lines.forEach(HologramLine::removeLine);
+                            lines.clear();
+                            lines.add(hologram.appendTextLine("§e温度过高！强制冷却中..."));
+                            cooling = true;
+                            ItemStack[] chests = getChest();
+                            if (ItemUtils.removeItem(chests, ClutterItem.spawnClutterItem("急速冷却液").generate()) == 0){
+                                setChest(chests);
+                                fastCooling = true;
+                                lines.add(hologram.appendTextLine("§e冷却液加速冷却中..."));
+                            }
+                        }
+                        checkFurnaces();
+                        if (meltingTick % 10 == 0) {
+                            for (Block anvil : anvils) {
+                                anvil.getWorld().playSound(anvil.getLocation(), Sound.BLOCK_ANVIL_USE, 1, 1);//铁砧声音
+                            }
                         }
                     }
                 }
-
-                if ((meltingTick - 1 % 10 == 0 || meltingTick % 10 == 0 || meltingTick + 1 % 10 == 0)){
+                if (age % (Utils.getRandom().nextInt(20) + 10) == 0) {
+                    boolean b = location.getWorld().hasStorm();
+                    if (b || fastCooling) {
+                        location.getWorld().playSound(location, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE, 1, 1);//灭火
+                    }
+                }
+                if (!cooling && (meltingTick - 1 % 10 == 0 || meltingTick % 10 == 0 || meltingTick + 1 % 10 == 0)){
                     for (Block furnace : this.furnaces) {
                         spawnParticle(furnace.getLocation().add(0.5, 0.8, 0.5), 10);
                     }
@@ -338,6 +391,15 @@ public class SmeltingFurnace implements TickEntity {
                     inventory.add(((Item) nearbyEntity).getItemStack());
                     nearbyEntity.remove();
                 }
+            }else if (nearbyEntities instanceof LivingEntity){
+                LivingEntity livingEntity = (LivingEntity) nearbyEntities;
+                float damage = 0;
+                if (temperature > 80 && temperature < 150)damage = 3;
+                if (temperature >= 150 && temperature < 300)damage = 8;
+                if (temperature >= 300 && temperature < 600)damage = 20;
+                if (temperature >= 600)damage = 50;
+                ((CraftLivingEntity)livingEntity).getHandle().damageEntity(DamageSource.BURN, damage);
+
             }
         }
     }
