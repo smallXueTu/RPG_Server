@@ -113,11 +113,11 @@ public class SmeltingFurnace implements TickEntity {
     /**
      * 旋转进度
      */
-    private double rotationProgress = 1;
+    private double rotationProgress = 0;
     /**
      * 旋转角度
      */
-    private double angle = 1;
+    private double angle = 0;
     /**
      * 存活时间
      */
