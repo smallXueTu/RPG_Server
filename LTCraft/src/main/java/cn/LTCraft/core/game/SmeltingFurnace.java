@@ -345,6 +345,10 @@ public class SmeltingFurnace implements TickEntity {
                     lines.add(hologram.appendTextLine("§e等待熔炼完成..."));
                     lines.add(hologram.appendTextLine("§e请不要干扰熔炉工作！"));
                     waitingTime = 0;
+                    //锻造开始 清理库存的燃料和锻造石
+                    inventory.removeIf(next ->
+                            next.hasItemMeta() &&
+                                    (Utils.clearColor(next.getItemMeta().getDisplayName()).equals(getFuel()) || Utils.clearColor(next.getItemMeta().getDisplayName()).equals(getSmeltingStone())));
                 }else {
                     waitingTime++;
                     if(waitingTime > 60 * 60 * 20){//超时
@@ -473,6 +477,7 @@ public class SmeltingFurnace implements TickEntity {
                             ((ItemFrame) itemFrameEntity).setItem(new ItemStack(Material.AIR));
                             floatItemEntity.forEach(Entity::remove);
                             cleanFurnaces();
+                            inventory.clear();
                         } else {
                             lines.add(hologram.appendTextLine("§a熔炼已完成，等待玩家靠近！"));
                         }
@@ -769,6 +774,17 @@ public class SmeltingFurnace implements TickEntity {
     public void close(){
         if (!closed){
             hologram.delete();
+            if (!done){
+                ItemStack[] itemStacks = new ItemStack[inventory.size()];
+                for (int i = 0; i < inventory.size(); i++) {
+                    itemStacks[i] = inventory.get(i);
+                }
+                try {
+                    setChest(itemStacks);
+                } catch (SmeltingFurnaceErrorException ignore) {
+                    //箱子都没了 退什么？
+                }
+            }
             inventory.clear();
             lines.clear();
             errorLines.clear();
