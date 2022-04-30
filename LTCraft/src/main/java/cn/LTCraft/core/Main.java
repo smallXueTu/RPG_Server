@@ -137,7 +137,6 @@ public class Main extends JavaPlugin {
                 if (file.getName().endsWith(".yml")) {
                     YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);
                     SmeltingFurnace.load(yamlConfiguration);
-                    file.delete();
                 }
             }
         }, 1);
@@ -161,6 +160,8 @@ public class Main extends JavaPlugin {
             protocolManager.removePacketListener(adapter);
         }
         File file = new File(getDataFolder() + File.separator + "furnaces");
+        List<File> files = FileUtil.getFiles(file);
+        files.forEach(File::delete);//删除之前的
         Map<Integer, SmeltingFurnace> smeltingFurnaceMap = SmeltingFurnace.getSmeltingFurnaceMap();
         for (Map.Entry<Integer, SmeltingFurnace> integerSmeltingFurnaceEntry : smeltingFurnaceMap.entrySet()) {
             Integer id = integerSmeltingFurnaceEntry.getKey();
