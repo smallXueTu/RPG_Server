@@ -2,6 +2,7 @@ name: LTCraft
 main: cn.LTCraft.core.Main
 version: 1.0.0
 author: Angel、
+depend: [HolographicDisplays, ProtocolLib]
 commands:
   lt:
     description: LTCraft核心命令
