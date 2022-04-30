@@ -20,20 +20,16 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
 import org.bukkit.block.Furnace;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
-import org.bukkit.craftbukkit.v1_12_R1.block.CraftFurnace;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftItem;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.FurnaceInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 /**
  * 熔炼炉
@@ -48,7 +44,7 @@ public class SmeltingFurnace implements TickEntity {
     /**
      * 玩家名字
      */
-    private final String playerName;
+    private String playerName;
     /**
      * 中心 玻璃的坐标
      */
@@ -123,7 +119,7 @@ public class SmeltingFurnace implements TickEntity {
      */
     private int age = 0;
     /**
-     * 容量时间
+     * 锻造时间
      */
     private int meltingTick = 0;
     /**
@@ -154,7 +150,9 @@ public class SmeltingFurnace implements TickEntity {
         this.itemFrame = WorldUtils.getSide(location, entrance).add(0.5, 0.5, 0.5);
         this.itemFrameEntity = itemFrame;
         this.player = player;
-        this.playerName = player.getName();
+        if (player != null) {
+            this.playerName = player.getName();
+        }
         this.drawing = drawing;
         id = FID++;
         smeltingFurnaceMap.put(id, this);
@@ -358,7 +356,7 @@ public class SmeltingFurnace implements TickEntity {
                     waitingTime = 0;
                     //锻造开始 清理库存的燃料和锻造石
                     inventory.removeIf(next ->
-                            next.hasItemMeta() &&
+                            next != null && next.hasItemMeta() &&
                                     (Utils.clearColor(next.getItemMeta().getDisplayName()).equals(getFuel()) || Utils.clearColor(next.getItemMeta().getDisplayName()).equals(getSmeltingStone())));
                 }else {
                     waitingTime++;
@@ -548,7 +546,7 @@ public class SmeltingFurnace implements TickEntity {
      */
     public void checkPlayer() throws SmeltingFurnaceErrorException{
         if (!playerIsOnline()) {
-            throw new SmeltingFurnaceErrorException("锻造的玩家已经离线！");
+            throw new SmeltingFurnaceErrorException("锻造的玩家已经离线！", false);
         }
     }
 
@@ -824,8 +822,82 @@ public class SmeltingFurnace implements TickEntity {
 
         }
     }
+    public YamlConfiguration save(){
+        YamlConfiguration yamlConfiguration = new YamlConfiguration();
+        yamlConfiguration.set("playerName", playerName);
+        yamlConfiguration.set("location", GameUtils.spawnLocationString(location));
+        yamlConfiguration.set("itemFrameEntity", itemFrameEntity.getUniqueId().toString());
+        yamlConfiguration.set("drawing", drawing.getName());
+        yamlConfiguration.set("process", process);
+        yamlConfiguration.set("temperature", temperature);
+        yamlConfiguration.set("floatItemEntity", floatItemEntity.stream().map(entity -> entity.getUniqueId().toString()).collect(Collectors.toList()));
+        yamlConfiguration.set("lines", lines.stream().map(TextLine::getText).collect(Collectors.toList()));
+        yamlConfiguration.set("errorLines", errorLines.stream().map(TextLine::getText).collect(Collectors.toList()));
+        yamlConfiguration.set("inventory", inventory.stream().filter(Objects::nonNull).map(ItemStack::serialize).collect(Collectors.toList()));
+        yamlConfiguration.set("errorTick", errorTick);
+        yamlConfiguration.set("fatalError", fatalError);
+        yamlConfiguration.set("speed", speed);
+        yamlConfiguration.set("rotationProgress", rotationProgress);
+        yamlConfiguration.set("angle", angle);
+        yamlConfiguration.set("age", age);
+        yamlConfiguration.set("meltingTick", meltingTick);
+        yamlConfiguration.set("cooling", cooling);
+        yamlConfiguration.set("waitingTime", waitingTime);
+        yamlConfiguration.set("fastCooling", fastCooling);
+        yamlConfiguration.set("done", done);
+        if (lastException != null) {
+            yamlConfiguration.set("lastException", lastException.serialize());
+        }
+        return yamlConfiguration;
+    }
+    public static SmeltingFurnace load(YamlConfiguration yamlConfiguration){
+        Location location = GameUtils.spawnLocation(yamlConfiguration.getString("location"));
+        String itemFrameUUID = yamlConfiguration.getString("itemFrameEntity");
+        Optional<Entity> first = location.getWorld().getNearbyEntities(location, 5, 3, 5).stream().filter(entity -> entity.getUniqueId().toString().equals(itemFrameUUID)).findFirst();
+        if (!first.isPresent())return null;
+        Entity itemFrame = first.get();
+        SmeltingFurnace smeltingFurnace = new SmeltingFurnace(null, location, itemFrame, SmeltingFurnaceDrawing.getSmeltingFurnaceDrawing(yamlConfiguration.getString("drawing")));
+        smeltingFurnace.playerName = yamlConfiguration.getString("playerName");
+        smeltingFurnace.process = yamlConfiguration.getInt("process");
+        smeltingFurnace.temperature = yamlConfiguration.getInt("temperature");
+        List<String> floatItemEntityUUIDs = yamlConfiguration.getStringList("floatItemEntity");
+        smeltingFurnace.floatItemEntity = location.getWorld().getNearbyEntities(location, 5, 3, 5).stream().filter(entity -> floatItemEntityUUIDs.contains(entity.getUniqueId().toString())).collect(Collectors.toList());
+        List<String> lines = yamlConfiguration.getStringList("lines");
+        smeltingFurnace.lines = new ArrayList<>();
+        for (String line : lines) {
+            smeltingFurnace.lines.add(smeltingFurnace.hologram.appendTextLine(line));
+        }
+        lines = yamlConfiguration.getStringList("errorLines");
+        smeltingFurnace.errorLines = new ArrayList<>();
+        for (String line : lines) {
+            smeltingFurnace.errorLines.add(smeltingFurnace.hologram.appendTextLine(line));
+        }
+        List<ItemStack> inventory = (List<ItemStack>)yamlConfiguration.get("inventory");
+        for (Object itemStack : inventory) {
+            ItemStack deserialize = ItemStack.deserialize((Map)itemStack);
+            smeltingFurnace.inventory.add(deserialize);
+        }
+        smeltingFurnace.errorTick = yamlConfiguration.getInt("errorTick");
+        smeltingFurnace.fatalError = yamlConfiguration.getBoolean("fatalError");
+        smeltingFurnace.speed = yamlConfiguration.getInt("speed");
+        smeltingFurnace.rotationProgress = yamlConfiguration.getInt("rotationProgress");
+        smeltingFurnace.angle = yamlConfiguration.getInt("angle");
+        smeltingFurnace.age = yamlConfiguration.getInt("age");
+        smeltingFurnace.meltingTick = yamlConfiguration.getInt("meltingTick");
+        smeltingFurnace.cooling = yamlConfiguration.getBoolean("cooling");
+        smeltingFurnace.waitingTime = yamlConfiguration.getInt("waitingTime");
+        smeltingFurnace.fastCooling = yamlConfiguration.getBoolean("fastCooling");
+        smeltingFurnace.done = yamlConfiguration.getBoolean("done");
+        if (smeltingFurnace.process > 3){
+            smeltingFurnace.furnacesItemStack[0] = ClutterItem.spawnClutterItem(smeltingFurnace.getSmeltingStone()).generate(1);
+            smeltingFurnace.furnacesItemStack[1] = ClutterItem.spawnClutterItem(smeltingFurnace.getFuel()).generate(1);
+        }
+        if (yamlConfiguration.contains("lastException"))smeltingFurnace.lastException = SmeltingFurnaceErrorException.unSerialize(yamlConfiguration.getString("lastException"));
+        return smeltingFurnace;
+    }
     /**
      * 产出一个爆炸
+     * //fixme 增加爆炸破坏方块
      */
     public void explosive(){
         location.getWorld().createExplosion(location, 5);

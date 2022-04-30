@@ -1,6 +1,7 @@
 package cn.LTCraft.core;
 
 
+import cn.LTCraft.core.game.SmeltingFurnace;
 import cn.LTCraft.core.game.SpawnManager;
 import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.hook.BQ.event.*;
@@ -22,6 +23,7 @@ import cn.LTCraft.core.hook.TrMenu.actions.LTExchange;
 import cn.LTCraft.core.hook.TrMenu.actions.OpenCoreGui;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import cn.LTCraft.core.utils.FileUtil;
 import cn.LTCraft.core.utils.TrMenuUtils;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -42,6 +44,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.betoncraft.betonquest.BetonQuest;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -125,6 +128,18 @@ public class Main extends JavaPlugin {
             }
             SpawnManager.getInstance().init();
             TeleportGateManager.getInstance().init();
+
+            /*
+             * 锻造炉
+             */
+            List<File> files = FileUtil.getFiles(new File(getDataFolder() + File.separator + "furnaces"));
+            for (File file : files) {
+                if (file.getName().endsWith(".yml")) {
+                    YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);
+                    SmeltingFurnace.load(yamlConfiguration);
+                    file.delete();
+                }
+            }
         }, 1);
     }
 
@@ -144,6 +159,18 @@ public class Main extends JavaPlugin {
         }
         for (PacketAdapter adapter : adapters) {
             protocolManager.removePacketListener(adapter);
+        }
+        File file = new File(getDataFolder() + File.separator + "furnaces");
+        Map<Integer, SmeltingFurnace> smeltingFurnaceMap = SmeltingFurnace.getSmeltingFurnaceMap();
+        for (Map.Entry<Integer, SmeltingFurnace> integerSmeltingFurnaceEntry : smeltingFurnaceMap.entrySet()) {
+            Integer id = integerSmeltingFurnaceEntry.getKey();
+            SmeltingFurnace smeltingFurnace = integerSmeltingFurnaceEntry.getValue();
+            YamlConfiguration yamlConfiguration = smeltingFurnace.save();
+            try {
+                yamlConfiguration.save(new File(file, id + ".yml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
