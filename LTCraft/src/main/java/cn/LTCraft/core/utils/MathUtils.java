@@ -2,6 +2,9 @@ package cn.LTCraft.core.utils;
 
 import org.bukkit.Location;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class MathUtils {
     /**
      * 几率
@@ -9,7 +12,7 @@ public class MathUtils {
      */
     public static boolean ifAdopt(double p){
         if (p > 1)p = p / 100;
-        return Utils.getRandom().nextInt(101) < p * 100;
+        return Utils.getRandom().nextInt(100) < p * 100;
     }
     /**
      * 获得免伤百分比
@@ -23,6 +26,41 @@ public class MathUtils {
      */
     public static double getInjuryFreePercentage(int armorValue){
         return armorValue / (armorValue + 200d);
+    }
+
+    /**
+     * 从随机表随机一个 V
+     * @param map 随机表
+     * @return 随机结果
+     * @param <T> 返回类型
+     */
+    public static <T> T calculationRandom(Map<Double, T> map){
+        TreeMap<Double, T> treeMap = new TreeMap<>();
+        for (Double aDouble : map.keySet()) {
+            treeMap.put(aDouble, map.get(aDouble));
+        }
+        int random = Utils.getRandom().nextInt(100);
+        List<Double> collect = new ArrayList<>(treeMap.keySet());
+        for (int i = 0; i < collect.size(); i++) {
+            Double aDouble = collect.get(i);
+            if (random >= aDouble && (i == collect.size() - 1 || random < collect.get(i + 1))){
+                return map.get(aDouble);
+            }
+        }
+        return null;
+    }
+    /**
+     * 解析随机表
+     * @param list 待解析
+     * @return 随机表
+     */
+    public static  Map<Double, String> getRandomTable(List<String> list){
+        HashMap<Double, String> objectObjectHashMap = new HashMap<>();
+        for (String s : list) {
+            String[] split = s.split("%");
+            objectObjectHashMap.put(Double.parseDouble(split[1]), split[1]);
+        }
+        return objectObjectHashMap;
     }
 
     /**
