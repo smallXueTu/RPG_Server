@@ -476,11 +476,7 @@ public class SmeltingFurnace implements TickEntity {
                     if (!done) {
                         if (player.getLocation().distance(location) < 5) {
                             lines.add(hologram.appendTextLine("§a熔炼已完成！"));
-                            List<String> results = drawing.getStringList("result");
-                            Map<Double, String> randomTable = MathUtils.getRandomTable(results);
-                            String result = MathUtils.calculationRandom(randomTable);
-                            ClutterItem clutterItem = ClutterItem.spawnClutterItem(result);
-                            PlayerUtils.dropItemFloat(player, chest.getLocation().add(0.5, 1, 0.5), clutterItem.generate());
+                            PlayerUtils.dropItemFloat(player, chest.getLocation().add(0.5, 1, 0.5), getResult());
                             done = true;
                             waitingTime = 0;
                             ((ItemFrame) itemFrameEntity).setItem(new ItemStack(Material.AIR));
@@ -602,6 +598,41 @@ public class SmeltingFurnace implements TickEntity {
             rotationProgress %= 360;
         }
     }
+
+    /**
+     * 是否为随机
+     * @return 是否为随机
+     */
+    public boolean isRandom(){
+        return inventory.stream().anyMatch(itemStack -> itemStack.hasItemMeta() && itemStack.getItemMeta().getDisplayName().endsWith("不稳定要素"));
+    }
+
+    /**
+     * 获取熔炼结果
+     * @return 获取熔炼结果
+     */
+    private ItemStack[] getResult(){
+        ClutterItem clutterItem;
+        List<ItemStack> list = new ArrayList<>();
+        if (isRandom()){
+            List<String> results = drawing.getStringList("randomResult");
+            Map<Double, String> randomTable = MathUtils.getRandomTable(results);
+            String result = MathUtils.calculationRandom(randomTable);
+            clutterItem = ClutterItem.spawnClutterItem(result);
+            list.add(clutterItem.generate());
+        }else {
+            List<String> results = drawing.getStringList("stableResult");
+            for (String result : results) {
+                clutterItem = ClutterItem.spawnClutterItem(result);
+                list.add(clutterItem.generate());
+            }
+        }
+        return list.toArray(new ItemStack[0]);
+    }
+    /**
+     * 检查熔炉
+     * @throws SmeltingFurnaceErrorException 如果被玩家干扰
+     */
     public void checkFurnaces() throws SmeltingFurnaceErrorException {
         for (Block furnace : furnaces) {
             if (furnace.getState() instanceof Furnace){

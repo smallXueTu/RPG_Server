@@ -39,7 +39,8 @@ public class SmeltingFurnaceDrawing extends MemoryConfiguration {
         set("level", config.getString("level", "通用"));
         set("fuelCount", config.getInteger("fuelCount", 10));
         set("needMaterial", config.getStringList("needMaterial"));
-        set("result", config.getStringList("result"));
+        set("stableResult", config.getStringList("stableResult"));
+        set("randomResult", config.getStringList("randomResult"));
     }
     /**
      *
@@ -52,7 +53,8 @@ public class SmeltingFurnaceDrawing extends MemoryConfiguration {
         set("level", config.getString("level", parent.getString("level", "通用")));//等级
         set("fuelCount", config.getInteger("fuelCount", parent.getInteger("fuelCount", 10)));//燃料数量
         set("needMaterial", config.getStringList("needMaterial").addAll(parent.getStringList("needMaterial")));//需要材料
-        set("result", config.getStringList("result").addAll(parent.getStringList("result")));//结果
+        set("stableResult", config.getStringList("stableResult").addAll(parent.getStringList("stableResult")));//结果
+        set("randomResult", config.getStringList("randomResult").addAll(parent.getStringList("randomResult")));//结果
     }
 
     @Override
