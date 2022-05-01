@@ -476,11 +476,11 @@ public class SmeltingFurnace implements TickEntity {
                     if (!done) {
                         if (player.getLocation().distance(location) < 5) {
                             lines.add(hologram.appendTextLine("§a熔炼已完成！"));
-                            List<String> result = drawing.getStringList("result");
-                            for (String s : result) {
-                                ClutterItem clutterItem = ClutterItem.spawnClutterItem(s);
-                                PlayerUtils.dropItemFloat(player, chest.getLocation().add(0.5, 1, 0.5), clutterItem.generate());
-                            }
+                            List<String> results = drawing.getStringList("result");
+                            Map<Double, String> randomTable = MathUtils.getRandomTable(results);
+                            String result = MathUtils.calculationRandom(randomTable);
+                            ClutterItem clutterItem = ClutterItem.spawnClutterItem(result);
+                            PlayerUtils.dropItemFloat(player, chest.getLocation().add(0.5, 1, 0.5), clutterItem.generate());
                             done = true;
                             waitingTime = 0;
                             ((ItemFrame) itemFrameEntity).setItem(new ItemStack(Material.AIR));
