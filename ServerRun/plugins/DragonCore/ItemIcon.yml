@@ -315,3 +315,12 @@
 金币:
   match: "§6金币"
   texture: "全局/金币.png"
+熔炼石:
+  match: "熔炼石"
+  texture: "锻造/熔炼石.png"
+燃料:
+  match: "燃料"
+  texture: "锻造/燃料.png"
+急速冷却液:
+  match: "急速冷却液"
+  texture: "锻造/急速冷却液.png"
