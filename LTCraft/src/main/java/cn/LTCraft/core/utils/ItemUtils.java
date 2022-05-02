@@ -341,6 +341,12 @@ public class ItemUtils {
         }
         return counter;
     }
+
+    /**
+     * 克隆一组 ItemStack
+     * @param itemStacks ItemStack[]
+     * @return 克隆后的 防止引用的问题
+     */
     public static ItemStack[] clone(ItemStack[] itemStacks){
         ItemStack[] itemStacks1 = new ItemStack[itemStacks.length];
         for (int i = 0; i < itemStacks.length; i++) {
