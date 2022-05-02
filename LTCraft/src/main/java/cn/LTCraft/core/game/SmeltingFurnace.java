@@ -264,8 +264,8 @@ public class SmeltingFurnace implements TickEntity {
                 lines.add(hologram.appendTextLine("§e请将以下需要的材料放置到上方箱子中："));
                 needMaterial = drawing.getStringList("needMaterial");
                 for (String s : needMaterial) {
-                    String[] split = s.split(":");
-                    lines.add(hologram.appendTextLine("§e" + split[0] + "类型" + split[1] + "×" + split[2]));
+                    ClutterItem clutterItem = ClutterItem.spawnClutterItem(s);
+                    lines.add(hologram.appendTextLine("§e" + clutterItem.toStringReadable()));
                 }
                 process++;
                 break;
@@ -281,13 +281,13 @@ public class SmeltingFurnace implements TickEntity {
                     if (ItemUtils.removeItem(itemStacks, clutterItem, player) <= 0) {
                         numberOfSuccesses++;
                         if (lines.get(i + 4).getText().startsWith("§e")) {
-                            String[] split = material.split(":");
-                            lines.get(i + 4).setText("§a" + split[0] + "类型" + split[1] + "×" + split[2]);
+                            clutterItem = ClutterItem.spawnClutterItem(material);
+                            lines.add(hologram.appendTextLine("§a" + clutterItem.toStringReadable()));
                         }
                     }else {
                         if (lines.get(i + 4).getText().startsWith("§a")) {
-                            String[] split = material.split(":");
-                            lines.get(i + 4).setText("§e" + split[0] + "类型" + split[1] + "×" + split[2]);
+                            clutterItem = ClutterItem.spawnClutterItem(material);
+                            lines.add(hologram.appendTextLine("§e" + clutterItem.toStringReadable()));
                         }
                     }
                 }
@@ -448,6 +448,7 @@ public class SmeltingFurnace implements TickEntity {
                             if (meltingTick % 5 == 0 || speed == 1) {
                                 speed += 1;
                             }
+                            System.out.println(meltingTick);
                             if (meltingTick == getLevel().getTime() - 30){
                                 final Location location = chest.getLocation().add(0.5, 1, 0.5);
                                 for (int i = 0; i < 10; i++) {
