@@ -2,8 +2,9 @@
   level: 通用
   fuelCount: 10
   needMaterial:
-    - "材料:火魔:10"
-    - "近战:魔金之锤:1"
+    - "材料:火魔:16"
+    - "恶魔能量碎片:16"
+    - "雷电碎片:16"
   stableResult:
     - "近战:魔火:1"
   randomResult:

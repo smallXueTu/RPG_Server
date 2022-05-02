@@ -8,13 +8,13 @@
   - '§bPVE吸血:%PVESuckingBlood%%'
   - '§bPVE暴击:%PVECritical% %PVECriticalRate%%'
   - '§6恶魔古堡士兵的武器。'
+  - '§6已镶嵌宝石数:%set%/%maxSet%'
   - ''
   - ''
   - '§6品质:%quality%'
   - '§e近战武器'
 无限耐久: true
 绑定: true
-宝石槽位: 3
 品质: 中级
 PVP:
   自身药水: ''
