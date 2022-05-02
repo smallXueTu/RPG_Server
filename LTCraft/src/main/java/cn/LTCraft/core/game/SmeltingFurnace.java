@@ -14,6 +14,7 @@ import com.gmail.filoghost.holographicdisplays.api.line.HologramLine;
 import com.gmail.filoghost.holographicdisplays.api.line.TextLine;
 import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
 import com.gmail.filoghost.holographicdisplays.object.line.CraftHologramLine;
+import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import org.bukkit.*;
@@ -603,18 +604,23 @@ public class SmeltingFurnace implements TickEntity {
      * 是否为随机
      * @return 是否为随机
      */
-    public boolean isRandom(){
-        return inventory.stream().anyMatch(itemStack -> itemStack.hasItemMeta() && itemStack.getItemMeta().getDisplayName().endsWith("不稳定要素"));
+    public boolean isRandom() throws SmeltingFurnaceErrorException {
+        ItemStack itemStack = ClutterItem.spawnClutterItem(getLevel().getName() + "不稳定要素").generate();
+        return ItemUtils.removeItem(ItemUtils.clone(getChest()), itemStack) <= 0;
     }
 
     /**
      * 获取熔炼结果
      * @return 获取熔炼结果
      */
-    private ItemStack[] getResult(){
+    private ItemStack[] getResult() throws SmeltingFurnaceErrorException {
         ClutterItem clutterItem;
         List<ItemStack> list = new ArrayList<>();
         if (isRandom()){
+            ItemStack[] clone = ItemUtils.clone(getChest());
+            ItemStack itemStack = ClutterItem.spawnClutterItem(getLevel().getName() + "不稳定要素").generate();
+            ItemUtils.removeItem(clone, itemStack);
+            setChest(clone);
             List<String> results = drawing.getStringList("randomResult");
             Map<Double, String> randomTable = MathUtils.getRandomTable(results);
             String result = MathUtils.calculationRandom(randomTable);
