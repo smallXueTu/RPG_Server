@@ -105,8 +105,10 @@ public class PlayerConfig {
     }
     public void save(){
         try {
-            playerInfo.setLastPlayTime(new Date());
-            playerInfo.commitChanges();
+            if (playerInfo != null) {
+                playerInfo.setLastPlayTime(new Date());
+                playerInfo.commitChanges();
+            }
             config.save(file);
         } catch (IOException e) {
             e.printStackTrace();
