@@ -196,6 +196,21 @@ public class ClutterItem {
     }
 
     /**
+     * 获取可读的String
+     * @return 可被 玩家理解的
+     */
+    public String toStringReadable(){
+        switch (itemSource){
+            case LTCraft:
+                return ltItem.getType().toString() + "类型的" + ltItem.getName() + "×" + number;
+            case BetonQuest:
+            case MythicMobs:
+            case Minecraft:
+            default:
+                return itemString;
+        }
+    }
+    /**
      * 解析LTCraft物品
      * @return 是否成功
      */
@@ -205,15 +220,19 @@ public class ClutterItem {
         if (itemString.contains(":")){
             String[] split = itemString.split(":");
             type = split[0];
-            if (ItemTypes.byName(type) == null){
-                name = type;
-                type = null;
-                number = Integer.parseInt(split[1]);
-            }else {
-                name = split[1];
-            }
-            if (split.length >= 3){
-                number = Integer.parseInt(split[2]);
+            try {
+                if (ItemTypes.byName(type) == null){
+                    name = type;
+                    type = null;
+                    number = Integer.parseInt(split[1]);
+                }else {
+                    name = split[1];
+                }
+                if (split.length >= 3){
+                    number = Integer.parseInt(split[2]);
+                }
+            }catch (NumberFormatException e){
+                return false;
             }
         }else {
             name = itemString;
@@ -232,7 +251,11 @@ public class ClutterItem {
     public boolean decodeMythicMobs(){
         String[] split = itemString.split(":");
         Optional<MythicItem> maybeItem = MythicMobs.inst().getItemManager().getItem(split[0]);
-        if (split.length >= 2)number = Integer.parseInt(split[1]);
+        try {
+            if (split.length >= 2)number = Integer.parseInt(split[1]);
+        }catch (NumberFormatException e){
+            return false;
+        }
         maybeItem.ifPresent(item -> mythicItem = item);
         return mythicItem != null;
     }
@@ -241,6 +264,7 @@ public class ClutterItem {
      * 解析原版物品
      */
     public void decodeMinecraft(){
+        try {
         if (itemString.matches("[0-9]+|[0-9]+:[0-9]+")) {
             String[] mI = itemString.split(":");
             itemStack = new ItemStack(Integer.parseInt(mI[0]), mI.length > 2 ? Integer.parseInt(mI[2]) : 1, mI.length > 1 ? Short.parseShort(mI[1]) : 0);
@@ -254,6 +278,9 @@ public class ClutterItem {
             if (Material.getMaterial(itemString) != null) {
                 itemStack = new ItemStack(Material.getMaterial(itemString), count);
             }
+        }
+        }catch (NumberFormatException e){
+            return;
         }
     }
 
