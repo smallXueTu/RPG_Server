@@ -26,6 +26,7 @@ import org.anjocaido.groupmanager.data.Group;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftItem;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
@@ -244,6 +245,7 @@ public class PlayerUtils {
     }
     public static void dropItemFloat(Player player, Location location, ItemStack ...stacks){
         for (ItemStack itemStack : stacks) {
+            if (itemStack.getType() == Material.AIR)continue;
             CraftItem craftItem = (CraftItem) location.getWorld().dropItem(location, itemStack);
             Temp.playerDropItem.put(craftItem, player.getName());
             Temp.discardOnly.add(craftItem);
