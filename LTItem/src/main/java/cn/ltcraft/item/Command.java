@@ -128,7 +128,6 @@ public class Command implements CommandExecutor {
                                     yamlConfiguration.set("说明", new ArrayList<>());
                                     yamlConfiguration.set("无限耐久", true);
                                     yamlConfiguration.set("绑定", false);
-                                    yamlConfiguration.set("宝石槽位", 3);
                                     yamlConfiguration.set("品质", "未知");
                                     yamlConfiguration.set("PVP", PVP);
                                     yamlConfiguration.set("PVE", PVE);
@@ -163,7 +162,6 @@ public class Command implements CommandExecutor {
                                     yamlConfiguration.set("说明", new ArrayList<>());
                                     yamlConfiguration.set("无限耐久", true);
                                     yamlConfiguration.set("绑定", false);
-                                    yamlConfiguration.set("宝石槽位", 3);
                                     yamlConfiguration.set("品质", "未知");
                                     yamlConfiguration.set("护甲", 0);
                                     yamlConfiguration.set("生命值", 0);
