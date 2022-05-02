@@ -76,7 +76,7 @@ public abstract class BaseWeapon extends AICLA {
             PVECriticalRate = Double.parseDouble(criticalSplit[1]);
         }
         lore = config.getStringList("说明");
-        maxSet = config.getInt("宝石槽位", Utils.getMaxSet(config.getString("quality", "")));
+        maxSet = config.getInt("宝石槽位", Utils.getMaxSet(config.getString("品质", "")));
     }
     @Override
     public String getName() {

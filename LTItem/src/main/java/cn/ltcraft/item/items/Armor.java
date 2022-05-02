@@ -29,7 +29,7 @@ public class Armor extends AICLA {
         dodge = config.getDouble("闪避");
         backInjury = config.getDouble("反伤");
         lore = config.getStringList("说明");
-        maxSet = config.getInt("宝石槽位", Utils.getMaxSet(config.getString("quality", "")));
+        maxSet = config.getInt("宝石槽位", Utils.getMaxSet(config.getString("品质", "")));
         PVEInjuredSkill = GameUtils.analyticalSkill(config.getString("PVE受伤技能"));
         PVPInjuredSkill = GameUtils.analyticalSkill(config.getString("PVP受伤技能"));
         potion = GameUtils.analyticalPotion(config.getString("药水效果"));
