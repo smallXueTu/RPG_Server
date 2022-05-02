@@ -67,6 +67,7 @@ public class GlobalRefresh {
             synchronized (tickEntities) {
                 tickEntities.removeIf(tickEntity -> tickEntity.isAsync() && tick % tickEntity.getTickRate() == 0 && !tickEntity.doTick(tick));
             }
+            Game.tickEquipment(tick);
             //玩家状态
             Temp.lock.lock();
             Temp.injured.replaceAll((k, v) -> v - 1);
