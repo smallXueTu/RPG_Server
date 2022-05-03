@@ -2,6 +2,7 @@ package cn.ltcraft.item.items;
 
 import cn.LTCraft.core.utils.GameUtils;
 import cn.ltcraft.item.base.*;
+import cn.ltcraft.item.items.materials.Infernal;
 import cn.ltcraft.item.utils.Utils;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -9,13 +10,19 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 public class Armor extends AICLA {
+    public static void initItems(){
+
+    }
+    public static Armor get(MemoryConfiguration configuration){
+        return new Armor(configuration);
+    }
     private String name;
     private ItemStack itemStack;
     private List<String> lore;
     protected int maxSet = 0;
     private final MemoryConfiguration config;
     protected boolean binding;
-    public Armor(MemoryConfiguration configuration){
+    private Armor(MemoryConfiguration configuration){
         config = configuration;
         init();
     }

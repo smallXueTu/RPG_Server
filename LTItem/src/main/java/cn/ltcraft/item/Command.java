@@ -174,7 +174,7 @@ public class Command implements CommandExecutor {
                                     yamlConfiguration.set("反伤", 0);
                                     yamlConfiguration.save(file);
                                     yamlConfiguration = YamlConfiguration.loadConfiguration(file);
-                                    ItemObjs.armorMap.put(args[2], new Armor(yamlConfiguration));
+                                    ItemObjs.armorMap.put(args[2], Armor.get(yamlConfiguration));
                                     break;
                                 default:
                                     return true;

@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +50,13 @@ public class LTItemSystem extends JavaPlugin {
     }
     public void init(){
         allType.keySet().forEach(k -> new File(getDataFolder() + File.separator + "items" + File.separator + k).mkdirs());
+        allType.values().forEach(aClass -> {
+            try {
+                aClass.getMethod("initItems").invoke(null);
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        });
     }
     public void loadItems(){
         allType.forEach((k, v) -> {
@@ -58,9 +66,9 @@ public class LTItemSystem extends JavaPlugin {
             for (File f : files) {
                 if (f.getName().endsWith(".yml")){
                     try {
-                        Constructor<? extends LTItem> constructor = v.getConstructor(MemoryConfiguration.class);
-                        ItemObjs.putLTItem(f.getName().substring(0, f.getName().length() - 4), constructor.newInstance(YamlConfiguration.loadConfiguration(f)));
-                    } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                        Method method = v.getMethod("get", MemoryConfiguration.class);
+                        ItemObjs.putLTItem(f.getName().substring(0, f.getName().length() - 4), (LTItem) method.invoke(null, YamlConfiguration.loadConfiguration(f)));
+                    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
                     }
                 }

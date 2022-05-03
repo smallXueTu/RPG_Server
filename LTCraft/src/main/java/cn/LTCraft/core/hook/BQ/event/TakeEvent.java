@@ -11,8 +11,6 @@ import pl.betoncraft.betonquest.api.QuestEvent;
 import pl.betoncraft.betonquest.config.Config;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
-import java.util.HashMap;
-
 public class TakeEvent extends QuestEvent {
     private final ClutterItem[] items;
     private final boolean notify;

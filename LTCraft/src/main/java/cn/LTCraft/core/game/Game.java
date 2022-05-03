@@ -13,6 +13,7 @@ import cn.LTCraft.core.utils.Utils;
 import cn.ltcraft.item.base.AICLA;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
+import cn.ltcraft.item.base.interfaces.TickItem;
 import cn.ltcraft.item.items.Armor;
 import cn.ltcraft.item.items.BaseWeapon;
 import cn.ltcraft.item.items.GemsStone;
@@ -545,13 +546,12 @@ public class Game {
                             continue;
                         }
                     }
-                    if (ltItem instanceof ConfigurableLTItem) {
-                        ConfigurableLTItem configurable = (ConfigurableLTItem) ltItem;
-                        int tickInterval = configurable.getConfig().getInt("TICK间隔", 10);
-                        String tickAction = configurable.getConfig().getString("TICK动作", "无");
-                        if (!tickAction.equals("无") && tick % tickInterval == 0) {
-                            ItemActions.add(() -> cn.ltcraft.item.utils.Utils.action(player, configurable, "TICK动作"));
-                        }
+                    if (ltItem instanceof TickItem) {
+                        int finalI = i;
+                        ItemActions.add(() -> {
+                            TickItem tickItem = (TickItem) ltItem;
+                            tickItem.doTick(tick, player, finalI);
+                        });
                     }
                 }
             }

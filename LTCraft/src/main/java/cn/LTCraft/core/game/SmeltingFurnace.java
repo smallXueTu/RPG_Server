@@ -390,6 +390,9 @@ public class SmeltingFurnace implements TickEntity {
                             if (meltingTick >= getLevel().getTime()){
                                 process++;
                                 waitingTime = 0;
+                                lines.forEach(HologramLine::removeLine);
+                                lines.clear();
+                                lines.add(hologram.appendTextLine("§a等待玩家靠近..."));
                                 break;
                             }
                             lines.forEach(HologramLine::removeLine);
@@ -404,8 +407,8 @@ public class SmeltingFurnace implements TickEntity {
                             if (meltingTick >= getLevel().getTime()) {//熔炼结束
                                 lines.forEach(HologramLine::removeLine);
                                 lines.clear();
-                                lines.add(hologram.appendTextLine("§a锻造结束，等待冷却完成后玩家靠近验收。"));
-                                lines.add(hologram.appendTextLine("§a正在融合..."));
+                                lines.add(hologram.appendTextLine("§a锻造结束，等待冷却完成。"));
+                                meltingTick = getLevel().getTime();
                                 cooling = true;
                             }else {
                                 lines.forEach(HologramLine::removeLine);
@@ -446,9 +449,14 @@ public class SmeltingFurnace implements TickEntity {
                     if (meltingTick < getLevel().getTime() || playerIsOnline()){
                         checkPlayer();
                         if (player.getLocation().distance(location) < 5) {
+                            if (!lines.get(0).getText().equals("§a正在融合...")){
+                                lines.forEach(HologramLine::removeLine);
+                                lines.clear();
+                                lines.add(hologram.appendTextLine("§a正在融合..."));
+                            }
                             meltingTick--;
                             if (meltingTick % 5 == 0 || speed == 1) {
-                                speed += 2;
+                                speed += 5;
                             }
                             if (meltingTick == getLevel().getTime() - 30){
                                 final Location location = chest.getLocation().add(0.5, 2, 0.5);
@@ -461,7 +469,13 @@ public class SmeltingFurnace implements TickEntity {
                                     process++;
                                     lines.forEach(HologramLine::removeLine);
                                     lines.clear();
-                                }, 200);
+                                }, 150);
+                            }
+                        }else {
+                            if (!lines.get(0).getText().equals("§e等待玩家靠近...")){
+                                lines.forEach(HologramLine::removeLine);
+                                lines.clear();
+                                lines.add(hologram.appendTextLine("§e等待玩家靠近..."));
                             }
                         }
                     }else {

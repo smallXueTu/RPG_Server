@@ -10,13 +10,21 @@ import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+import java.util.Map;
 
 public class GemsStone extends AbstractAttribute implements ConfigurableLTItem {
+    public static void initItems(){
+
+    }
+    public static GemsStone get(MemoryConfiguration configuration){
+        return new GemsStone(configuration);
+    }
     private String name;
     private ItemStack itemStack = null;
     private List<String> lore;
     protected boolean binding = false;
     private final MemoryConfiguration config;
+
     public GemsStone(MemoryConfiguration configuration){
         config = configuration;
         init();
