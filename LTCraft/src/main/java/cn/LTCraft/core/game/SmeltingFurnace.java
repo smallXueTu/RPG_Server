@@ -282,12 +282,12 @@ public class SmeltingFurnace implements TickEntity {
                         numberOfSuccesses++;
                         if (lines.get(i + 4).getText().startsWith("§e")) {
                             clutterItem = ClutterItem.spawnClutterItem(material);
-                            lines.add(hologram.appendTextLine("§a" + clutterItem.toStringReadable()));
+                            lines.get(i + 4).setText("§a" + clutterItem.toStringReadable());
                         }
                     }else {
                         if (lines.get(i + 4).getText().startsWith("§a")) {
                             clutterItem = ClutterItem.spawnClutterItem(material);
-                            lines.add(hologram.appendTextLine("§e" + clutterItem.toStringReadable()));
+                            lines.get(i + 4).setText("§e" + clutterItem.toStringReadable());
                         }
                     }
                 }
@@ -404,6 +404,7 @@ public class SmeltingFurnace implements TickEntity {
                                 lines.forEach(HologramLine::removeLine);
                                 lines.clear();
                                 lines.add(hologram.appendTextLine("§a锻造结束，等待冷却完成后玩家靠近验收。"));
+                                lines.add(hologram.appendTextLine("§a正在融合..."));
                                 cooling = true;
                             }else {
                                 lines.forEach(HologramLine::removeLine);
@@ -432,7 +433,7 @@ public class SmeltingFurnace implements TickEntity {
                         location.getWorld().playSound(location, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE, 1, 1);//灭火
                     }
                 }
-                if (!cooling && (meltingTick - 1 % 10 == 0 || meltingTick % 10 == 0 || meltingTick + 1 % 10 == 0)){
+                if (meltingTick > 1 && !cooling && (meltingTick - 1 % 10 == 0 || meltingTick % 10 == 0 || meltingTick + 1 % 10 == 0)){
                     for (Block furnace : this.furnaces) {
                         spawnParticle(furnace.getLocation().add(0.5, 0.8, 0.5), 10);
                     }
@@ -446,11 +447,10 @@ public class SmeltingFurnace implements TickEntity {
                         if (player.getLocation().distance(location) < 5) {
                             meltingTick--;
                             if (meltingTick % 5 == 0 || speed == 1) {
-                                speed += 1;
+                                speed += 2;
                             }
-                            System.out.println(meltingTick);
                             if (meltingTick == getLevel().getTime() - 30){
-                                final Location location = chest.getLocation().add(0.5, 1, 0.5);
+                                final Location location = chest.getLocation().add(0.5, 2, 0.5);
                                 for (int i = 0; i < 10; i++) {
                                     Bukkit.getScheduler().scheduleSyncDelayedTask(cn.LTCraft.core.Main.getInstance(), () -> {
                                         location.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, location, 300, 0, 0, 0, 5);
@@ -495,6 +495,7 @@ public class SmeltingFurnace implements TickEntity {
                         }
                     }
                 }
+                if (!done)checkItemEntity();
                 break;
         }
     }
@@ -518,10 +519,10 @@ public class SmeltingFurnace implements TickEntity {
             }else if (age % 20 == 0 && nearbyEntity instanceof LivingEntity){
                 LivingEntity livingEntity = (LivingEntity) nearbyEntity;
                 float damage = 0;
-                if (temperature > 80 && temperature < 150)damage = 1;
-                if (temperature >= 150 && temperature < 300)damage = 3;
-                if (temperature >= 300 && temperature < 600)damage = 8;
-                if (temperature >= 600)damage = 15;
+                if (temperature > 8000 && temperature < 15000)damage = 1;
+                if (temperature >= 15000 && temperature < 30000)damage = 3;
+                if (temperature >= 30000 && temperature < 60000)damage = 8;
+                if (temperature >= 60000)damage = 15;
                 if (damage > 0) {
                     ((CraftLivingEntity) livingEntity).getHandle().damageEntity(DamageSource.BURN, damage);
                 }
