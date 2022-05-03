@@ -25,10 +25,7 @@ public class ItemUtils {
     public static ItemStack replaceLore(ItemStack itemStack, String oldStr, String newStr){
         ItemMeta itemMeta = itemStack.getItemMeta();
         List<String> lore = itemMeta.getLore();
-        for (int i = 0; i < lore.size(); i++) {
-            String s = lore.get(i);
-            lore.set(i, s.replace(oldStr, newStr));
-        }
+        lore.replaceAll(s1 -> s1.replace(oldStr, newStr));
         itemMeta.setLore(lore);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
@@ -213,6 +210,7 @@ public class ItemUtils {
     }
     public static ItemStack setBinding(ItemStack itemStack, String binding) {
         NBTTagCompound nbt = getNBT(itemStack);
+        if (nbt == null)return itemStack;
         nbt = setBinding(nbt, binding);
         return setNBT(itemStack, nbt);
     }
@@ -220,7 +218,9 @@ public class ItemUtils {
         if (nbt == null)return null;
         if (nbt.hasKey("ltAttribute")){
             NBTTagCompound ltAttribute = nbt.getCompound("ltAttribute");
-            ltAttribute.setString("binding", binding);
+            if (ltAttribute.getString("binding").equals("?")) {
+                ltAttribute.setString("binding", binding.toLowerCase());
+            }
         }
         return nbt;
     }
