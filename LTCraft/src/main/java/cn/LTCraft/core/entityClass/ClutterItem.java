@@ -66,7 +66,7 @@ public class ClutterItem {
     private int number = 1;
     private ItemSource itemSource = null;
     private final String itemString;
-    public ClutterItem(String itemStr){
+    private ClutterItem(String itemStr){
         itemString = itemStr;
         //如果是LTCraft物品
         if (decodeLTCraft()) {
@@ -89,7 +89,7 @@ public class ClutterItem {
             itemSource = ItemSource.Minecraft;
         }
     }
-    public ClutterItem(String itemStr, ItemSource itemSource){
+    private ClutterItem(String itemStr, ItemSource itemSource){
         itemString = itemStr;
         this.itemSource = itemSource;
         switch (itemSource){
