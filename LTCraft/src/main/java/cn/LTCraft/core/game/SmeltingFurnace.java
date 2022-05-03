@@ -383,7 +383,8 @@ public class SmeltingFurnace implements TickEntity {
                         }else {
                             temperature -= Utils.getRandom().nextInt(b?600:400);//减少温度
                         }
-                        if (temperature <= 50){
+                        temperature = Math.max(temperature, 2000);
+                        if (temperature <= 5000){
                             fastCooling = false;
                             cooling = false;
                             if (meltingTick >= getLevel().getTime()){
