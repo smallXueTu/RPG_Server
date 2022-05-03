@@ -420,7 +420,6 @@ public class SmeltingFurnace implements TickEntity {
                                 }
                             }
                         }
-                        checkFurnaces();
                         if (meltingTick % 10 == 0) {
                             for (Block anvil : anvils) {
                                 anvil.getWorld().playSound(anvil.getLocation(), Sound.BLOCK_ANVIL_USE, 1, 1);//铁砧声音
@@ -428,6 +427,7 @@ public class SmeltingFurnace implements TickEntity {
                         }
                     }
                 }
+                checkFurnaces();
                 if (age % (Utils.getRandom().nextInt(20) + 10) == 0) {
                     boolean b = location.getWorld().hasStorm();
                     if (b || fastCooling) {
@@ -657,8 +657,8 @@ public class SmeltingFurnace implements TickEntity {
                 }
                 if (inventory.getResult() != null && inventory.getResult().getType() != Material.AIR) {
                     inventory.setResult(new ItemStack(Material.AIR));
-                    inventory.setSmelting(furnacesItemStack[0].clone());
-                }else if (!Objects.equals(inventory.getSmelting(), furnacesItemStack[0])){
+                    if (!cooling)inventory.setSmelting(furnacesItemStack[0].clone());
+                }else if (!cooling && !Objects.equals(inventory.getSmelting(), furnacesItemStack[0])){
                     if (state.getBurnTime() >= 1){
                         fatalError = true;
                         throw new SmeltingFurnaceErrorException("熔炼过程熔炉被干扰！");
@@ -666,7 +666,7 @@ public class SmeltingFurnace implements TickEntity {
                         inventory.setFuel(furnacesItemStack[1].clone());
                     }
                 }
-                if (state.getBurnTime() <= 1){
+                if (!cooling && state.getBurnTime() <= 1){
                     inventory.setFuel(furnacesItemStack[1].clone());
                 }
             }
