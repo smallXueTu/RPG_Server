@@ -31,6 +31,7 @@ import org.bukkit.block.Block;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftInventoryPlayer;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -38,6 +39,7 @@ import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
@@ -526,12 +528,20 @@ public class Game {
     public static void tickEquipment(long tick){
         synchronized (ItemActions) {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                ItemStack[] itemStacks = ObjectArrays.concat(player.getInventory().getItemInOffHand(), ObjectArrays.concat(player.getItemInHand(), player.getInventory().getArmorContents()));
-                for (ItemStack itemStack : itemStacks) {
+                PlayerInventory inventory = player.getInventory();
+                ItemStack[] itemStacks = inventory.getContents();
+                for (int i = 0; i < itemStacks.length; i++) {
+                    ItemStack itemStack = itemStacks[i];
                     NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
                     LTItem ltItem = cn.ltcraft.item.utils.Utils.getLTItems(nbt);
                     if (ltItem != null && ltItem.binding()) {
-                        if (!ItemUtils.canUse(nbt, player)) {
+                        String binding = ItemUtils.getBinding(nbt);
+                        if (binding.equals("?")){
+                            binding = player.getName().toLowerCase();
+                            nbt = ItemUtils.setBinding(nbt, binding);
+                            inventory.setItem(i, ItemUtils.setNBT(itemStack, nbt));
+                        }
+                        if (!binding.equals("*") && !binding.equalsIgnoreCase(player.getName())) {
                             continue;
                         }
                     }
