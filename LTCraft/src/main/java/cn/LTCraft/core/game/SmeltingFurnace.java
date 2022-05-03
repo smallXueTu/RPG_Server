@@ -635,7 +635,11 @@ public class SmeltingFurnace implements TickEntity {
                 list.add(clutterItem.generate());
             }
         }
-        return list.toArray(new ItemStack[0]);
+        ItemStack[] itemStacks = list.toArray(new ItemStack[0]);
+        for (int i = 0; i < itemStacks.length; i++) {
+            itemStacks[i] = ItemUtils.setBinding(itemStacks[i], playerName);
+        }
+        return itemStacks;
     }
     /**
      * 检查熔炉
