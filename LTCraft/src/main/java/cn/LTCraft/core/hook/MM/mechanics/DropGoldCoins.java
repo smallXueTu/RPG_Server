@@ -36,7 +36,7 @@ public class DropGoldCoins  extends SkillMechanic implements ITargetedLocationSk
                 world.dropItem(new Location(world,
                         abstractLocation.getX() + (Utils.getRandom().nextBoolean() ? x : 0 - x),
                         abstractLocation.getY(),
-                        abstractLocation.getZ() + (Utils.getRandom().nextBoolean() ? z : 0 - z)), new ClutterItem(drop, ClutterItem.ItemSource.LTCraft).generate());
+                        abstractLocation.getZ() + (Utils.getRandom().nextBoolean() ? z : 0 - z)), ClutterItem.spawnClutterItem(drop, ClutterItem.ItemSource.LTCraft).generate());
             }
         }, 0);
         return true;

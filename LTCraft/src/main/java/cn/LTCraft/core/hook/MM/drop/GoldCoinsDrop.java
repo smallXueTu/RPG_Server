@@ -38,7 +38,7 @@ public class GoldCoinsDrop extends Drop implements IIntangibleDrop {
             Item item = world.dropItem(new Location(world,
                     location.getX() + (Utils.getRandom().nextBoolean() ? x : 0 - x),
                     location.getY(),
-                    location.getZ() + (Utils.getRandom().nextBoolean() ? z : 0 - z)), new ClutterItem(gold, ClutterItem.ItemSource.LTCraft).generate());
+                    location.getZ() + (Utils.getRandom().nextBoolean() ? z : 0 - z)), ClutterItem.spawnClutterItem(gold, ClutterItem.ItemSource.LTCraft).generate());
             Temp.protectItem(BukkitAdapter.adapt(abstractPlayer), item);
         }
     }

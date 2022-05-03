@@ -124,7 +124,7 @@ public class Main extends JavaPlugin {
             for (String string : new String[]{
                     "丢弃物"
             }) {
-                GarbageClear.skips.add(new ClutterItem(string));
+                GarbageClear.skips.add(ClutterItem.spawnClutterItem(string));
             }
             SpawnManager.getInstance().init();
             TeleportGateManager.getInstance().init();

@@ -277,7 +277,7 @@ public class SmeltingFurnace implements TickEntity {
                 int numberOfSuccesses = 0;
                 for (int i = 0; i < needMaterial.size(); i++) {
                     String material = needMaterial.get(i);
-                    ClutterItem clutterItem = new ClutterItem(material, ClutterItem.ItemSource.LTCraft);
+                    ClutterItem clutterItem = ClutterItem.spawnClutterItem(material);
                     if (ItemUtils.removeItem(itemStacks, clutterItem, player) <= 0) {
                         numberOfSuccesses++;
                         if (lines.get(i + 4).getText().startsWith("§e")) {

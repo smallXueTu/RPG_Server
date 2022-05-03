@@ -61,7 +61,7 @@ public class PseudorandomDrop extends Drop implements IIntangibleDrop {
             Item item = world.dropItem(new Location(world,
                     location.getX(),
                     location.getY(),
-                    location.getZ()), new ClutterItem(itemName).generate());
+                    location.getZ()), ClutterItem.spawnClutterItem(itemName).generate());
             Temp.protectItem(BukkitAdapter.adapt(abstractPlayer), item);
             /*
             如果玩家成功触发了
