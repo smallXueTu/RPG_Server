@@ -70,6 +70,8 @@ public class ItemObjs {
             meleeWeaponMap.put(name, (MeleeWeapon) ltItem);
         } else if (Boolean.TRUE == ltItem instanceof GemsStone) {
             gemstoneMap.put(name, (GemsStone) ltItem);
+        } else if (Boolean.TRUE == ltItem instanceof Ornament) {
+            ornamentMap.put(name, (Ornament) ltItem);
         }
     }
 }
