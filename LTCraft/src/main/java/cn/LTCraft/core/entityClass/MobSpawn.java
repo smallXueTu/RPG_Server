@@ -154,10 +154,13 @@ public class MobSpawn implements TickEntity {
                 mobSize--;
             }
             if (mob.getLocation().distance(i >= locations.length ? abstractLocation: BukkitAdapter.adapt(locations[i])) > mob.getType().getConfig().getDouble("Options.FollowRange", 16)){
-                Hologram hologram = HologramsAPI.createHologram(Main.getInstance(), mob.getEntity().getBukkitEntity().getLocation().add(0, 1.5, 0));
-                hologram.appendTextLine("§c怪物超出范围，拉回怪物！");
-                mob.getEntity().teleport(i >= locations.length ? abstractLocation: BukkitAdapter.adapt(locations[i]));
-                Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), hologram::delete, 40);
+                int finalI = i;
+                Bukkit.getScheduler().runTask(Main.getInstance(), () -> {
+                    Hologram hologram = HologramsAPI.createHologram(Main.getInstance(), mob.getEntity().getBukkitEntity().getLocation().add(0, 1.5, 0));
+                    hologram.appendTextLine("§c怪物超出范围，拉回怪物！");
+                    mob.getEntity().teleport(finalI >= locations.length ? abstractLocation: BukkitAdapter.adapt(locations[finalI]));
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), hologram::delete, 40);
+                });
             }
         }
     }

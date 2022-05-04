@@ -82,4 +82,8 @@ public class MMListener implements Listener {
             event.register(new PseudorandomDrop(event.getContainer().getConfigLine(), event.getConfig()));
         }
     }
+    @EventHandler
+    public void onMythicMobDeath(MythicMobDeathEvent event){
+
+    }
 }
