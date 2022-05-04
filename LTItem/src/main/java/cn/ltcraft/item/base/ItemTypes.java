@@ -8,6 +8,7 @@ public enum ItemTypes {
     Melee("近战"),
     Armor("盔甲"),
     Gemstone("宝石"),
+    Ornament("饰品"),
     Material("材料");
     private final String name;
     private static final Map<String, ItemTypes> BY_NAME = new HashMap();

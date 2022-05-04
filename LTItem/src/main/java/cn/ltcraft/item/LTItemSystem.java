@@ -4,10 +4,7 @@ import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.FileUtil;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.LTItem;
-import cn.ltcraft.item.items.Armor;
-import cn.ltcraft.item.items.GemsStone;
-import cn.ltcraft.item.items.Material;
-import cn.ltcraft.item.items.MeleeWeapon;
+import cn.ltcraft.item.items.*;
 import cn.ltcraft.item.objs.ItemObjs;
 import cn.ltcraft.item.objs.PlayerAttribute;
 import org.bukkit.Bukkit;
@@ -32,6 +29,7 @@ public class LTItemSystem extends JavaPlugin {
             put("材料", Material.class);
             put("盔甲", Armor.class);
             put("宝石", GemsStone.class);
+            put("饰品", Ornament.class);
         }
     };
 

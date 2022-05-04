@@ -3,10 +3,7 @@ package cn.ltcraft.item.objs;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.LTItem;
-import cn.ltcraft.item.items.Armor;
-import cn.ltcraft.item.items.GemsStone;
-import cn.ltcraft.item.items.Material;
-import cn.ltcraft.item.items.MeleeWeapon;
+import cn.ltcraft.item.items.*;
 import cn.ltcraft.item.utils.Utils;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.entity.Player;
@@ -19,6 +16,7 @@ public class ItemObjs {
     public static final Map<String, MeleeWeapon> meleeWeaponMap = new HashMap<>();
     public static final Map<String, Armor> armorMap = new HashMap<>();
     public static final Map<String, GemsStone> gemstoneMap = new HashMap<>();
+    public static final Map<String, Ornament> ornamentMap = new HashMap<>();
     public static final Map<String, Material> materialMap = new HashMap<>();
     public static LTItem getHandLTItem(Player player){
         ItemStack itemStack = player.getItemInHand();
@@ -40,6 +38,8 @@ public class ItemObjs {
                 return meleeWeaponMap.get(name);
             case Gemstone:
                 return gemstoneMap.get(name);
+            case Ornament:
+                return ornamentMap.get(name);
             default:
                 return null;
         }
@@ -53,6 +53,8 @@ public class ItemObjs {
             return meleeWeaponMap.get(name);
         else if (gemstoneMap.containsKey(name))
             return gemstoneMap.get(name);
+        else if (ornamentMap.containsKey(name))
+            return ornamentMap.get(name);
         else
             return null;
     }

@@ -3,10 +3,7 @@ package cn.ltcraft.item;
 
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.LTItem;
-import cn.ltcraft.item.items.Armor;
-import cn.ltcraft.item.items.GemsStone;
-import cn.ltcraft.item.items.Material;
-import cn.ltcraft.item.items.MeleeWeapon;
+import cn.ltcraft.item.items.*;
 import cn.ltcraft.item.objs.ItemObjs;
 import cn.ltcraft.item.objs.PlayerAttribute;
 import org.bukkit.Bukkit;
@@ -100,6 +97,8 @@ public class Command implements CommandExecutor {
                         }
                         File file;
                         YamlConfiguration yamlConfiguration = new YamlConfiguration();
+                        Map<String, Object> pvp;
+                        Map<String, Object> pve;
                         try {
                             switch (args[1]) {
                                 case "材料":
@@ -142,15 +141,32 @@ public class Command implements CommandExecutor {
                                     yamlConfiguration.set("品质", "未知");
                                     yamlConfiguration.set("显示名字", "§6" + args[2]);
                                     yamlConfiguration.set("说明", new ArrayList<>());
-                                    Map<String, Object> pvp = new HashMap<>(PVP);
+                                    pvp = new HashMap<>(PVP);
                                     pvp.put("伤害", 0);
                                     yamlConfiguration.set("PVP", pvp);
-                                    Map<String, Object> pve = new HashMap<>(PVE);
+                                    pve = new HashMap<>(PVE);
                                     pve.put("伤害", 0);
                                     yamlConfiguration.set("PVE", pve);
                                     yamlConfiguration.save(file);
                                     yamlConfiguration = YamlConfiguration.loadConfiguration(file);
                                     ItemObjs.gemstoneMap.put(args[2], new GemsStone(yamlConfiguration));
+                                    break;
+                                case "饰品":
+                                    file = new File(plugin.getDataFolder() + File.separator + "items" + File.separator + "饰品" + File.separator + args[2] + ".yml");
+                                    yamlConfiguration.set("模型", args[3]);
+                                    yamlConfiguration.set("名字", args[2]);
+                                    yamlConfiguration.set("品质", "未知");
+                                    yamlConfiguration.set("显示名字", "§6" + args[2]);
+                                    yamlConfiguration.set("说明", new ArrayList<>());
+                                    pvp = new HashMap<>(PVP);
+                                    pvp.put("伤害", 0);
+                                    yamlConfiguration.set("PVP", pvp);
+                                    pve = new HashMap<>(PVE);
+                                    pve.put("伤害", 0);
+                                    yamlConfiguration.set("PVE", pve);
+                                    yamlConfiguration.save(file);
+                                    yamlConfiguration = YamlConfiguration.loadConfiguration(file);
+                                    ItemObjs.ornamentMap.put(args[2], new Ornament(yamlConfiguration));
                                     break;
                                 case "盔甲":
                                     file = new File(plugin.getDataFolder() + File.separator + "items" + File.separator + "盔甲" + File.separator + args[2] + ".yml");
