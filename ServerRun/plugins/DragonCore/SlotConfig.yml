@@ -1,25 +1,35 @@
 # 自定义的槽位必须填在此处，否则槽位将不允许点击操作
 
-额外槽位1:
+饰品槽位1:
   # 本槽位是否启用属性兼容
   attribute: true
-  limit: [ ]
-额外槽位2:
+  limit:
+    - "equalsType|饰品"
+饰品槽位2:
   # 本槽位是否启用属性兼容
   attribute: true
-  limit: [ ]
-额外槽位3:
+  limit:
+    - "equalsType|饰品"
+饰品槽位3:
   # 本槽位是否启用属性兼容
   attribute: true
-  limit: [ ]
-额外槽位4:
+  limit:
+    - "equalsType|饰品"
+饰品槽位4:
   # 本槽位是否启用属性兼容
   attribute: true
-  limit: [ ]
-额外槽位5:
+  limit:
+    - "equalsType|饰品"
+饰品槽位5:
   # 本槽位是否启用属性兼容
   attribute: true
-  limit: [ ]
+  limit:
+    - "equalsType|饰品"
+饰品槽位6:
+  # 本槽位是否启用属性兼容
+  attribute: true
+  limit:
+    - "equalsType|饰品"
 
 装备格子:
   attribute: true
@@ -30,7 +40,7 @@
 结果格子:
   attribute: true
   limit:
-    - "lore|cannotPlace该槽位无法放置任何物品！"
+    - "cannotPlace|cannotPlace"
 
 吊坠槽位:
   # 本槽位是否启用属性兼容
@@ -97,6 +107,18 @@ Script:
     	player.sendMessage("§c该槽位需要Lore: "+limitString);
       }
       return result;
+    }
+  # 无法放置
+  cannotPlace: |-
+    function execute(player, itemStack, slotIdentifier, limitString){
+      return false;
+    }
+  # 判断是否为指定类型的物品
+  equalsType: |-
+    function execute(player, itemStack, slotIdentifier, limitString){
+      var LTItem = LTItemUtils.static.getLTItems(itemStack)
+      if (LTItem == null)return false
+      return LTItem.getType().getName().equals(limitString);
     }
   # 用于判断玩家是否拥有权限xxx
   permission: |-
