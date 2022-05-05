@@ -21,6 +21,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -41,7 +42,9 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
         }
         AbstractLocation location = entity.getLocation();
         AbstractWorld world = location.getWorld();
-        for (AbstractEntity livingEntity : world.getLivingEntities()) {
+        List<AbstractEntity> livingEntities = world.getLivingEntities();
+        for (int i = 0; i < livingEntities.size(); i++) {//不要使用增强for循环 会触发并发修改异常
+            AbstractEntity livingEntity = livingEntities.get(i);
             if (livingEntity.isPlayer() && PlayerUtils.isLegitimateName(livingEntity.getName())) {
                 double distance = livingEntity.getLocation().distance(entity.getLocation());
                 if (distance > 15 || Math.abs(livingEntity.getLocation().getY() - entity.getLocation().getY()) > 3)continue;
