@@ -164,6 +164,15 @@ public class Command implements CommandExecutor {
                                     pve = new HashMap<>(PVE);
                                     pve.put("伤害", 0);
                                     yamlConfiguration.set("PVE", pve);
+                                    yamlConfiguration.set("护甲", 0);
+                                    yamlConfiguration.set("生命值", 0);
+                                    yamlConfiguration.set("PVE攻击技能", "");
+                                    yamlConfiguration.set("PVP攻击技能", "");
+                                    yamlConfiguration.set("药水效果", "");
+                                    yamlConfiguration.set("幸运", 0);
+                                    yamlConfiguration.set("韧性", 0);
+                                    yamlConfiguration.set("闪避", 0);
+                                    yamlConfiguration.set("反伤", 0);
                                     yamlConfiguration.save(file);
                                     yamlConfiguration = YamlConfiguration.loadConfiguration(file);
                                     ItemObjs.ornamentMap.put(args[2], new Ornament(yamlConfiguration));
