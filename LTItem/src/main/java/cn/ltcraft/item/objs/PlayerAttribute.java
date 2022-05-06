@@ -2,6 +2,7 @@ package cn.ltcraft.item.objs;
 
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
+import cn.LTCraft.core.utils.DragonCoreUtil;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.MathUtils;
 import cn.ltcraft.item.base.AICLA;
@@ -11,6 +12,7 @@ import cn.ltcraft.item.base.interfaces.InsertableConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.items.Armor;
 import cn.ltcraft.item.items.BaseWeapon;
+import cn.ltcraft.item.items.Ornament;
 import cn.ltcraft.item.utils.Utils;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.entity.Player;
@@ -24,6 +26,8 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
     private static Map<String, PlayerAttribute> playerAttributeMap = new HashMap<>();
     private ItemStack[] equipment = new ItemStack[4];
     private Armor[] equipmentAtt = new Armor[4];
+    private ItemStack[] ornaments = new ItemStack[7];//饰品
+    private Ornament[] ornamentsAtt = new Ornament[7];
     private ItemStack hand;
     private BaseWeapon handAtt;
     private ItemStack offHand;
@@ -32,6 +36,7 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
     public PlayerAttribute(Player player){
         owner = player;
         GlobalRefresh.addTickEntity(this);
+        init();
     }
 
     /**
@@ -184,6 +189,36 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
             owner.getInventory().setItem(slot, itemStack);
         }
     }
+    public void onChangeOrnament(int slot){
+        DragonCoreUtil.getItemStack(owner, "饰品槽位" + slot, (itemStack) -> {
+            if (Objects.equals(ornaments[slot - 1], itemStack))return;
+            if (itemStack != null)itemStack = itemStack.clone();
+            //移除原本手持属性
+            if (ornamentsAtt[slot - 1] != null)removeAttribute(ornamentsAtt[slot - 1]);
+            //设置现在手持
+            ornaments[slot - 1] = itemStack;
+            ornamentsAtt[slot - 1] = null;
+            //手持空气
+            if (itemStack == null)return;
+            NBTTagCompound nbt = ItemUtils.getNBT(itemStack);//获取NBT
+            LTItem ltItem = Utils.getLTItems(nbt);
+            if (ltItem == null)return;
+            boolean canUse = true;//是否有权限使用
+            if (ltItem.binding()) {
+                String binding = ItemUtils.getBinding(nbt);//获取绑定
+                if (binding != null && !binding.equalsIgnoreCase(owner.getName())) {//如果绑定与玩家id不符合
+                    if (!binding.equals("*")) {//不是不绑定的
+                        canUse = false;
+                    }
+                }
+            }
+            if (canUse && ltItem instanceof Ornament) {
+                Ornament ornament = (Ornament) ltItem;
+                ornamentsAtt[slot - 1] = ornament;
+                addAttribute(ornament);
+            }
+        });
+    }
     public static PlayerAttribute getPlayerAttribute(Player player){
         if (!playerAttributeMap.containsKey(player.getName())){
             playerAttributeMap.put(player.getName(), new PlayerAttribute(player));
@@ -203,7 +238,19 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
         offHand = null;
         equipment = new ItemStack[4];
         equipmentAtt = new Armor[4];
+        ornaments = new ItemStack[7];
+        ornamentsAtt = new Ornament[7];
         onChangeHand();
         checkChangeArmor();
+        for (int i = 0; i < 7; i++) {
+            onChangeOrnament(i + 1);
+        }
+    }
+    public void init(){
+        onChangeHand();
+        checkChangeArmor();
+        for (int i = 0; i < 7; i++) {
+            onChangeOrnament(i + 1);
+        }
     }
 }

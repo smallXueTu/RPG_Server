@@ -11,6 +11,8 @@ import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
 import cn.LTCraft.core.utils.Utils;
 import cn.ltcraft.item.base.AICLA;
+import cn.ltcraft.item.base.AbstractAttribute;
+import cn.ltcraft.item.base.interfaces.ConfigurableAttLTItem;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.base.interfaces.TickItem;
@@ -528,22 +530,44 @@ public class Game {
      */
     public static void tickEquipment(long tick){
         synchronized (ItemActions) {
-            for (Player player : Bukkit.getOnlinePlayers()) {
+            List<Player> onlinePlayers;
+            do {
+                try {
+                    onlinePlayers = new ArrayList<>(Bukkit.getOnlinePlayers());
+                    break;
+                }catch (ConcurrentModificationException ignored){//乐观锁
+                }
+            }while (true);
+            for (Player player : onlinePlayers) {
                 PlayerInventory inventory = player.getInventory();
-                ItemStack[] itemStacks = inventory.getContents();
+                ItemStack[] itemStacks;
+                do {
+                    try {
+                        itemStacks = inventory.getContents();
+                        break;
+                    } catch (ConcurrentModificationException ignored) {
+                    }
+                }while (true);
                 for (int i = 0; i < itemStacks.length; i++) {
                     ItemStack itemStack = itemStacks[i];
                     NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
                     LTItem ltItem = cn.ltcraft.item.utils.Utils.getLTItems(nbt);
                     if (ltItem != null && ltItem.binding()) {
                         String binding = ItemUtils.getBinding(nbt);
-                        if (binding.equals("?")){
+                        if (binding.equals("?")) {
                             binding = player.getName().toLowerCase();
                             nbt = ItemUtils.setBinding(nbt, binding);
                             inventory.setItem(i, ItemUtils.setNBT(itemStack, nbt));
                         }
                         if (!binding.equals("*") && !binding.equalsIgnoreCase(player.getName())) {
                             continue;
+                        }
+                    }
+                    if (ltItem instanceof AICLA && tick % 20 == 0){
+                        AICLA aicla = (AICLA) ltItem;
+                        itemStack = cn.ltcraft.item.utils.Utils.updateNameAndLore(itemStack, aicla, aicla.getLore());
+                        if (!itemStack.equals(inventory.getItem(i))) {
+                            inventory.setItem(i, itemStack);
                         }
                     }
                     if (ltItem instanceof TickItem) {

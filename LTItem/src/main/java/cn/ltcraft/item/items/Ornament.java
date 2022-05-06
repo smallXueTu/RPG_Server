@@ -38,6 +38,16 @@ public class Ornament extends AbstractAttribute implements ConfigurableLTItem {
     public void init(){
         name = config.getString("名字");
         binding = config.getBoolean("绑定");
+        armor = config.getInt("护甲");
+        healthValue = config.getInt("生命值");
+        lucky = config.getInt("幸运");
+        tenacity = config.getDouble("韧性");
+        dodge = config.getDouble("闪避");
+        backInjury = config.getDouble("反伤");
+        lore = config.getStringList("说明");
+        PVEInjuredSkill = GameUtils.analyticalSkill(config.getString("PVE受伤技能"));
+        PVPInjuredSkill = GameUtils.analyticalSkill(config.getString("PVP受伤技能"));
+        potion = GameUtils.analyticalPotion(config.getString("药水效果"));
         String pveAD = config.getString("PVE.伤害");
         if (pveAD.contains("-")){
             String[] split = pveAD.split("-");
@@ -45,7 +55,6 @@ public class Ornament extends AbstractAttribute implements ConfigurableLTItem {
         }else {
             PVEDamage = new RandomValue(Double.parseDouble(pveAD));
         }
-        PVESuckingBlood = config.getDouble("PVE.吸血");
         String pvpAD = config.getString("PVP.伤害");
         if (pvpAD.contains("-")){
             String[] split = pvpAD.split("-");

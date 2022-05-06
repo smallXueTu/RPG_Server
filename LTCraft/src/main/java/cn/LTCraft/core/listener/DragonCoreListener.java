@@ -4,6 +4,7 @@ import cn.LTCraft.core.Main;
 import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.utils.DragonCoreUtil;
 import cn.LTCraft.core.utils.PlayerUtils;
+import cn.ltcraft.item.objs.PlayerAttribute;
 import eos.moe.dragoncore.api.event.PlayerSlotUpdateEvent;
 import eos.moe.dragoncore.api.gui.event.CustomPacketEvent;
 import org.bukkit.Material;
@@ -76,6 +77,9 @@ public class DragonCoreListener implements Listener {
                     });
                 }
             break;
+        }
+        if (event.getIdentifier().startsWith("饰品槽位")){
+            PlayerAttribute.getPlayerAttribute(event.getPlayer()).onChangeOrnament(Integer.parseInt(event.getIdentifier().substring(4)));
         }
     }
 

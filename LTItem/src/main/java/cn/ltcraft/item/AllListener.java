@@ -66,7 +66,7 @@ public class AllListener implements Listener {
     @EventHandler
     public void onJoinEvent(PlayerJoinEvent event){
         Player player = event.getPlayer();
-        PlayerAttribute.getPlayerAttributeMap().remove(player.getName());
+        PlayerAttribute.getPlayerAttribute(player);
     }
     @EventHandler
     public void onQuitEvent(PlayerQuitEvent event){
