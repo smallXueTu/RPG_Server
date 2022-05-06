@@ -19,9 +19,207 @@ Functions:
   # 图片显示的高度
   height: "166"
   # 贴图的文件路径
-  texture: "gui/锻造/锻造.png"
+  texture: "gui/饰品/饰品.png"
   # 鼠标悬浮于组件上时显示的贴图
   # textureHovered: "inventory.png"
+
+
+
+饰品槽位1空_texture:
+  x: "背包背景_texture.x+77"
+  y: "背包背景_texture.y+8"
+  visible: "方法.取物品数(方法.取物品('饰品槽位1'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/饰品/项链.png"
+  alpha: "方法.取界面存活时间/700"
+饰品槽位1_slot:
+  x: "背包背景_texture.x+77"
+  y: "背包背景_texture.y+8"
+  identifier: "饰品槽位1"
+  alpha: "方法.取界面存活时间/700"
+
+饰品槽位2空_texture:
+  x: "背包背景_texture.x+77"
+  y: "背包背景_texture.y+26"
+  visible: "方法.取物品数(方法.取物品('饰品槽位2'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/饰品/戒指.png"
+  alpha: "方法.取界面存活时间/700"
+饰品槽位2_slot:
+  x: "背包背景_texture.x+77"
+  y: "背包背景_texture.y+26"
+  identifier: "饰品槽位2"
+  alpha: "方法.取界面存活时间/700"
+
+饰品槽位3空_texture:
+  x: "背包背景_texture.x+77"
+  y: "背包背景_texture.y+44"
+  visible: "方法.取物品数(方法.取物品('饰品槽位3'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/饰品/戒指.png"
+  alpha: "方法.取界面存活时间/700"
+饰品槽位3_slot:
+  x: "背包背景_texture.x+77"
+  y: "背包背景_texture.y+44"
+  identifier: "饰品槽位3"
+  alpha: "方法.取界面存活时间/700"
+
+饰品槽位4空_texture:
+  x: "背包背景_texture.x+77"
+  y: "背包背景_texture.y+62"
+  visible: "方法.取物品数(方法.取物品('饰品槽位4'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/饰品/腰带.png"
+  alpha: "方法.取界面存活时间/700"
+饰品槽位4_slot:
+  x: "背包背景_texture.x+77"
+  y: "背包背景_texture.y+62"
+  identifier: "饰品槽位4"
+  alpha: "方法.取界面存活时间/700"
+
+饰品槽位5空_texture:
+  x: "背包背景_texture.x+96"
+  y: "背包背景_texture.y+8"
+  visible: "方法.取物品数(方法.取物品('饰品槽位5'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/饰品/头饰.png"
+  alpha: "方法.取界面存活时间/700"
+饰品槽位5_slot:
+  x: "背包背景_texture.x+96"
+  y: "背包背景_texture.y+8"
+  identifier: "饰品槽位5"
+  alpha: "方法.取界面存活时间/700"
+
+饰品槽位6空_texture:
+  x: "背包背景_texture.x+96"
+  y: "背包背景_texture.y+26"
+  visible: "方法.取物品数(方法.取物品('饰品槽位6'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/饰品/衣服.png"
+  alpha: "方法.取界面存活时间/700"
+饰品槽位6_slot:
+  x: "背包背景_texture.x+96"
+  y: "背包背景_texture.y+26"
+  identifier: "饰品槽位6"
+  alpha: "方法.取界面存活时间/700"
+
+饰品槽位7空_texture:
+  x: "背包背景_texture.x+96"
+  y: "背包背景_texture.y+44"
+  visible: "方法.取物品数(方法.取物品('饰品槽位7'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/饰品/勋章.png"
+  alpha: "方法.取界面存活时间/700"
+饰品槽位7_slot:
+  x: "背包背景_texture.x+96"
+  y: "背包背景_texture.y+44"
+  identifier: "饰品槽位7"
+  alpha: "方法.取界面存活时间/700"
+
+# 设置4个装备槽和副手槽
+头部槽位空_texture:
+  x: "背包背景_texture.x+8"
+  y: "背包背景_texture.y+8"
+  visible: "方法.取物品数(方法.取物品('container_5'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/全局素材/头盔.png"
+  alpha: "方法.取界面存活时间/700"
+头部槽位_slot:
+  x: "背包背景_texture.x+8"
+  y: "背包背景_texture.y+8"
+  identifier: "container_5"
+  alpha: "方法.取界面存活时间/700"
+
+胸部槽位空_texture:
+  x: "背包背景_texture.x+8"
+  y: "背包背景_texture.y+26"
+  visible: "方法.取物品数(方法.取物品('container_6'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/全局素材/胸甲.png"
+  alpha: "方法.取界面存活时间/700"
+胸部槽位_slot:
+  x: "背包背景_texture.x+8"
+  y: "背包背景_texture.y+26"
+  identifier: "container_6"
+  alpha: "方法.取界面存活时间/700"
+
+腿部槽位空_texture:
+  x: "背包背景_texture.x+8"
+  y: "背包背景_texture.y+44"
+  visible: "方法.取物品数(方法.取物品('container_7'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/全局素材/护膝.png"
+  alpha: "方法.取界面存活时间/700"
+腿部槽位_slot:
+  x: "背包背景_texture.x+8"
+  y: "背包背景_texture.y+44"
+  identifier: "container_7"
+  alpha: "方法.取界面存活时间/700"
+
+脚部槽位空_texture:
+  x: "背包背景_texture.x+8"
+  y: "背包背景_texture.y+62"
+  visible: "方法.取物品数(方法.取物品('container_8'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/全局素材/鞋子.png"
+  alpha: "方法.取界面存活时间/700"
+脚部槽位_slot:
+  x: "背包背景_texture.x+8"
+  y: "背包背景_texture.y+62"
+  identifier: "container_8"
+  alpha: "方法.取界面存活时间/700"
+
+副手槽空_texture:
+  x: "背包背景_texture.x+96"
+  y: "背包背景_texture.y+62"
+  visible: "方法.取物品数(方法.取物品('container_45'))<=0"
+  width: 16
+  height: 16
+  texture: "gui/全局素材/护盾.png"
+  alpha: "方法.取界面存活时间/700"
+副手槽_slot:
+  x: "背包背景_texture.x+96"
+  y: "背包背景_texture.y+62"
+  identifier: "container_45"
+  alpha: "方法.取界面存活时间/700"
+
+# 设置5个合成栏的槽位
+合成槽位0_slot:
+  x: "背包背景_texture.x+154"
+  y: "背包背景_texture.y+28"
+  identifier: "container_0"
+  alpha: "方法.取界面存活时间/700"
+合成槽位1_slot:
+  x: "背包背景_texture.x+116"
+  y: "背包背景_texture.y+18"
+  identifier: "container_1"
+  alpha: "方法.取界面存活时间/700"
+合成槽位2_slot:
+  x: "背包背景_texture.x+134"
+  y: "背包背景_texture.y+18"
+  identifier: "container_2"
+  alpha: "方法.取界面存活时间/700"
+合成槽位3_slot:
+  x: "背包背景_texture.x+116"
+  y: "背包背景_texture.y+36"
+  identifier: "container_3"
+  alpha: "方法.取界面存活时间/700"
+合成槽位4_slot:
+  x: "背包背景_texture.x+134"
+  y: "背包背景_texture.y+36"
+  identifier: "container_4"
+  alpha: "方法.取界面存活时间/700"
 
 # 背包36个格子（第一行）
 背包格子1-1_slot:
@@ -205,37 +403,8 @@ Functions:
   identifier: "container_44"
   alpha: "方法.取界面存活时间/700"
 
-装备格子_slot:
-  x: "背包背景_texture.x+27"
-  y: "背包背景_texture.y+47"
-  identifier: "饰品槽位1"
-  alpha: "方法.取界面存活时间/700"
-
-材料格子_slot:
-  x: "背包背景_texture.x+76"
-  y: "背包背景_texture.y+47"
-  identifier: "饰品槽位2"
-  alpha: "方法.取界面存活时间/700"
-
-结果格子_slot:
-  x: "背包背景_texture.x+134"
-  y: "背包背景_texture.y+47"
-  identifier: "饰品槽位3"
-  alpha: "方法.取界面存活时间/700"
-
-
-装备锻造界面_label:
-  x: "背包背景_texture.x+60"
-  y: "背包背景_texture.y+8"
-  texts: "装备锻造界面"
-  alpha: "方法.取界面存活时间/700"
-
-
-不可锻造_texture:
-  x: "背包背景_texture.x+99"
-  y: "背包背景_texture.y+45"
-  width: 28
-  visible: "方法.取物品数(方法.取物品('结果格子'))==0.0 && 方法.取物品数(方法.取物品('装备格子'))>0 && 方法.取物品数(方法.取物品('材料格子'))>0"
-  height: 21
-  texture: "gui/锻造/error.png"
+玩家模型_entity:
+  x: "背包背景_texture.x+50"
+  y: "背包背景_texture.y+72"
+  entity: "owner"
   alpha: "方法.取界面存活时间/700"

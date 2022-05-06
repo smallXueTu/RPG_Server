@@ -30,6 +30,11 @@
   attribute: true
   limit:
     - "equalsType|饰品"
+饰品槽位7:
+  # 本槽位是否启用属性兼容
+  attribute: true
+  limit:
+    - "equalsType|饰品"
 
 装备格子:
   attribute: true
