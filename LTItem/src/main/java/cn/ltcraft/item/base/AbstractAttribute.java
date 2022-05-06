@@ -17,7 +17,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * 抽象属性
+ * 目前实现Attribute接口的类只有这个
+ * 属于Attribute的必定可强转为AbstractAttribute
+ */
 public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfaces.Attribute {
     public final static RandomValue negative = new RandomValue(-1);
     public final static Additional negativeCritical = new Additional();
