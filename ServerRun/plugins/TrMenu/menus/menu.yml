@@ -95,7 +95,7 @@ Icons:
 #          material: Air
     actions:
       all:
-        - 'close'
+        - close
         - 'OpenCoreGui: 锻造'
   Close:
     display:
