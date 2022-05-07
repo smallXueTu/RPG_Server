@@ -1,11 +1,10 @@
 package cn.ltcraft.item.items.materials;
 
-import cn.ltcraft.item.base.interfaces.TickItem;
+import cn.ltcraft.item.base.interfaces.actions.TickItem;
 import cn.ltcraft.item.items.Material;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftInventoryPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.PlayerInventory;
 
