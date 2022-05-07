@@ -241,6 +241,7 @@ public class Main extends JavaPlugin {
         BetonQuest.getInstance().registerObjectives("conditions", ConditionObjective.class);
         BetonQuest.getInstance().registerObjectives("enchante", EnchantEObjective.class);
         BetonQuest.getInstance().registerObjectives("dropitemrange", DropItemRangeObjective.class);
+        BetonQuest.getInstance().registerObjectives("wearornament", WearOrnamentObjective.class);
 
         BetonQuest.getInstance().registerEvents("saveMainLine", SaveMainLineEvent.class);
         BetonQuest.getInstance().registerEvents("changeClass", ChangeClassEvent.class);
