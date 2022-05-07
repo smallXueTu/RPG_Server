@@ -186,32 +186,6 @@ public class PlayerListener  implements Listener {
             }
         }
     }
-
-    /**
-     * 阻止 具有 LTCraft.antiBurning 权限节点的玩家燃烧
-     * @param event .
-     */
-    @EventHandler
-    public void onCombustEvent(EntityCombustEvent event){
-        Entity entity = event.getEntity();
-        if (entity instanceof Player && entity.hasPermission("LTCraft.antiBurning")){
-            event.setCancelled(true);
-        }
-    }
-
-    /**
-     * 扑灭 具有 LTCraft.antiBurning 权限节点玩家的火
-     * @param event .
-     */
-    @EventHandler
-    public void onEntityDamage(EntityDamageEvent event){
-        Entity entity = event.getEntity();
-        //小于2的才是真正的火烧伤害
-        if (event.getDamage() < 2 && entity instanceof Player && entity.hasPermission("LTCraft.antiBurning") && (event.getCause() == EntityDamageEvent.DamageCause.FIRE || event.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK)){
-            entity.setFireTicks(0);
-            event.setCancelled(true);
-        }
-    }
     @EventHandler
     public void onBucketFillEvent(PlayerBucketFillEvent event){
         Player player = event.getPlayer();
