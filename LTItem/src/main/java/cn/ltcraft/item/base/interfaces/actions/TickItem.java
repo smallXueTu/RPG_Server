@@ -1,11 +1,11 @@
-package cn.ltcraft.item.base.interfaces;
+package cn.ltcraft.item.base.interfaces.actions;
 
 import org.bukkit.entity.Player;
 
 /**
  * Created by Angel、 on 2022/5/3 21:30
  * 每tick调用的物品需要实现这个接口
- * todo 添加更多的 onUse (使用) onAttack (玩家发动攻击) onDamage (玩家受伤) onXxxx (更多...)....
+ * todo 添加更多的 onUse (使用) onAttack (玩家发动攻击) onXxxx (更多...)....
  */
 public interface TickItem {
     /**
