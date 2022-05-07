@@ -9,6 +9,7 @@ import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.objs.PlayerAttribute;
 import cn.ltcraft.item.base.subAttrbute.PotionAttribute;
+import cn.ltcraft.item.utils.TriggerAction;
 import cn.ltcraft.item.utils.Utils;
 import com.earth2me.essentials.api.Economy;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
@@ -32,6 +33,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
@@ -220,6 +222,17 @@ public class AllListener implements Listener {
             });
         }
     }
+    @EventHandler(
+            ignoreCancelled = true,
+            priority = EventPriority.HIGHEST
+    )
+    public void onEntityDamage(EntityDamageEvent event){
+        Entity entity = event.getEntity();
+        if (entity instanceof Player){
+            Player player = (Player) entity;
+            TriggerAction.onDamage(player, event);
+        }
+    }
     @EventHandler
     public void onPrepareAnvil(PrepareAnvilEvent event){
         ItemStack item = event.getInventory().getItem(0);
@@ -307,6 +320,13 @@ public class AllListener implements Listener {
                     }
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onCombustEvent(EntityCombustEvent event){
+        if (event.getEntity() instanceof Player) {
+            TriggerAction.onCombust(((Player) event.getEntity()), event);
         }
     }
 }
