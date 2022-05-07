@@ -3,26 +3,42 @@ package cn.ltcraft.item.items;
 import cn.LTCraft.core.entityClass.Additional;
 import cn.LTCraft.core.entityClass.RandomValue;
 import cn.LTCraft.core.utils.GameUtils;
-import cn.ltcraft.item.LTItemSystem;
 import cn.ltcraft.item.base.AbstractAttribute;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
+import cn.ltcraft.item.items.ornaments.BlackIronFireEatingRing;
 import cn.ltcraft.item.utils.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.inventory.ItemStack;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 饰品
  * Created by Angel、 on 2022/5/4 22:06
  */
 public class Ornament extends AbstractAttribute implements ConfigurableLTItem {
-    public static void initItems(){
 
+    private static Map<String, Class<? extends Ornament>> ornaments = new HashMap<>();
+    public static void initItems(){
+        ornaments.put("黑铁食火之戒", BlackIronFireEatingRing.class);
     }
     public static Ornament get(MemoryConfiguration configuration){
+        if (ornaments.containsKey(configuration.getString("名字"))){
+            Class<? extends Ornament> aClass = ornaments.get(configuration.getString("名字"));
+            Constructor<? extends Ornament> constructor = null;
+            try {
+                constructor = aClass.getConstructor(MemoryConfiguration.class);
+                return constructor.newInstance(configuration);
+            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+                     InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+        }
         return new Ornament(configuration);
     }
     private String name;

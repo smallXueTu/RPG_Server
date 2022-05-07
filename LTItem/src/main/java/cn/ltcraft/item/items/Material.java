@@ -2,7 +2,7 @@ package cn.ltcraft.item.items;
 
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.ItemTypes;
-import cn.ltcraft.item.base.interfaces.LTItem;
+import cn.ltcraft.item.base.interfaces.actions.TickItem;
 import cn.ltcraft.item.items.materials.Infernal;
 import cn.ltcraft.item.utils.Utils;
 import org.bukkit.configuration.MemoryConfiguration;
@@ -18,7 +18,7 @@ public class Material implements ConfigurableLTItem {
     private static Map<String, Class<? extends Material>> materials = new HashMap<>();
     /**
      * todo 对于包含动作的物品，全部替换为面向对象的方式 见：
-     * @see cn.ltcraft.item.base.interfaces.TickItem
+     * @see TickItem
      */
     public static void initItems(){
         materials.put("火魔", Infernal.class);
