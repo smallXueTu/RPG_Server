@@ -4,37 +4,37 @@
   # 本槽位是否启用属性兼容
   attribute: true
   limit:
-    - "equalsType|饰品"
+    - "ornamentEqualsType|项链"
 饰品槽位2:
   # 本槽位是否启用属性兼容
   attribute: true
   limit:
-    - "equalsType|饰品"
+    - "ornamentEqualsType|戒指"
 饰品槽位3:
   # 本槽位是否启用属性兼容
   attribute: true
   limit:
-    - "equalsType|饰品"
+    - "ornamentEqualsType|戒指"
 饰品槽位4:
   # 本槽位是否启用属性兼容
   attribute: true
   limit:
-    - "equalsType|饰品"
+    - "ornamentEqualsType|腰带"
 饰品槽位5:
   # 本槽位是否启用属性兼容
   attribute: true
   limit:
-    - "equalsType|饰品"
+    - "ornamentEqualsType|头饰"
 饰品槽位6:
   # 本槽位是否启用属性兼容
   attribute: true
   limit:
-    - "equalsType|饰品"
+    - "ornamentEqualsType|衣服"
 饰品槽位7:
   # 本槽位是否启用属性兼容
   attribute: true
   limit:
-    - "equalsType|饰品"
+    - "ornamentEqualsType|勋章"
 
 装备格子:
   attribute: true
@@ -124,6 +124,14 @@ Script:
       var LTItem = LTItemUtils.static.getLTItems(itemStack)
       if (LTItem == null)return false
       return LTItem.getType().getName().equals(limitString);
+    }
+  # 判断饰品是否为指定类型
+  ornamentEqualsType: |-
+    function execute(player, itemStack, slotIdentifier, limitString){
+      var LTItem = LTItemUtils.static.getLTItems(itemStack)
+      if (LTItem == null)return false
+      var type = LTItem.getConfig().getString("饰品类型", "任意")
+      return type.equals("任意") || type.equals(limitString)
     }
   # 用于判断玩家是否拥有权限xxx
   permission: |-
