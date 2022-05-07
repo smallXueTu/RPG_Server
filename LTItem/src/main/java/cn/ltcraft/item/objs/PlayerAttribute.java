@@ -226,22 +226,38 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
         return owner;
     }
 
+
+    /**
+     * 获取主手物品
+     * @return 主手物品
+     */
+    public BaseWeapon getHandAtt() {
+        return handAtt;
+    }
+
+
+    /**
+     * 获取盔甲
+     * @return 盔甲
+     */
+    public Armor[] getEquipmentAtt() {
+        return equipmentAtt;
+    }
+
+    /**
+     * 获取全部佩戴的饰品
+     * @return 佩戴的饰品
+     */
+    public Ornament[] getOrnamentsAtt() {
+        return ornamentsAtt;
+    }
+
     /**
      * 获取全部LTItem物品
      * @return LTItem物品
      */
     public LTItem[] getLTItems(){
         return ObjectArrays.concat(new LTItem[]{handAtt, null/* 副手 */}, ObjectArrays.concat(ornamentsAtt, equipmentAtt, LTItem.class), LTItem.class);
-    }
-    public static PlayerAttribute getPlayerAttribute(Player player){
-        if (!playerAttributeMap.containsKey(player.getName())){
-            playerAttributeMap.put(player.getName(), new PlayerAttribute(player));
-        }
-        return playerAttributeMap.get(player.getName());
-    }
-
-    public static Map<String, PlayerAttribute> getPlayerAttributeMap() {
-        return playerAttributeMap;
     }
 
     @Override
@@ -266,5 +282,15 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
         for (int i = 0; i < 7; i++) {
             onChangeOrnament(i + 1);
         }
+    }
+    public static PlayerAttribute getPlayerAttribute(Player player){
+        if (!playerAttributeMap.containsKey(player.getName())){
+            playerAttributeMap.put(player.getName(), new PlayerAttribute(player));
+        }
+        return playerAttributeMap.get(player.getName());
+    }
+
+    public static Map<String, PlayerAttribute> getPlayerAttributeMap() {
+        return playerAttributeMap;
     }
 }
