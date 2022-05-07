@@ -4,7 +4,6 @@
 鸡肉: RAW_CHICKEN durability:0 name:§6鸡肉 lore:§6生鸡肉，或许需要烤一下。
 熟鸡肉: COOKED_CHICKEN durability:0 name:§6熟鸡肉 lore:§6熟鸡肉，放心食用。
 小型生命药剂: GLASS_BOTTLE durability:0 name:§6小型生命药剂 lore:§6少幅度恢复生命值;;§b右键回复§a8§b点生命§b值;§b冷却时间：§a10s
-金粒: GOLD_NUGGET durability:0 name:§6金粒
 闪烁的西瓜: SPECKLED_MELON durability:0
 牛肉: RAW_BEEF durability:0 name:§6牛肉 lore:§6丰富的蛋白质来源。
 荧光结晶: GLOWSTONE_DUST durability:0 name:§6荧光结晶 lore:;;§e装备材料。
