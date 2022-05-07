@@ -12,8 +12,10 @@ import cn.ltcraft.item.base.interfaces.InsertableConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.items.Armor;
 import cn.ltcraft.item.items.BaseWeapon;
+import cn.ltcraft.item.items.MeleeWeapon;
 import cn.ltcraft.item.items.Ornament;
 import cn.ltcraft.item.utils.Utils;
+import com.google.common.collect.ObjectArrays;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -218,6 +220,18 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
                 addAttribute(ornament);
             }
         });
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    /**
+     * 获取全部LTItem物品
+     * @return LTItem物品
+     */
+    public LTItem[] getLTItems(){
+        return ObjectArrays.concat(new LTItem[]{handAtt, null/* 副手 */}, ObjectArrays.concat(ornamentsAtt, equipmentAtt, LTItem.class), LTItem.class);
     }
     public static PlayerAttribute getPlayerAttribute(Player player){
         if (!playerAttributeMap.containsKey(player.getName())){
