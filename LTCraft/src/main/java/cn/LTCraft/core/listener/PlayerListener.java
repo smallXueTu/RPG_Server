@@ -560,7 +560,7 @@ public class PlayerListener  implements Listener {
                         }
                     }
                 }
-                if (new Location(player.getWorld(), 198, 9, 474).distance(player.getLocation()) < 100) {
+                if (player.getWorld().getName().equals("t3") && new Location(player.getWorld(), 198, 9, 474).distance(player.getLocation()) < 100) {
                     Block block = player.getWorld().getBlockAt(event.getTo());
                     if (Game.burningBlocks.contains(block.getTypeId())) {
                         sign = false;
