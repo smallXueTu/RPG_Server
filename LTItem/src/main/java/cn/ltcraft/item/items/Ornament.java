@@ -7,6 +7,7 @@ import cn.ltcraft.item.base.AbstractAttribute;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.items.ornaments.BlackIronFireEatingRing;
+import cn.ltcraft.item.items.ornaments.CertifierBelt;
 import cn.ltcraft.item.utils.Utils;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -26,6 +27,7 @@ public class Ornament extends AbstractAttribute implements ConfigurableLTItem {
     private static Map<String, Class<? extends Ornament>> ornaments = new HashMap<>();
     public static void initItems(){
         ornaments.put("黑铁食火之戒", BlackIronFireEatingRing.class);
+        ornaments.put("证明者腰带", CertifierBelt.class);
     }
     public static Ornament get(MemoryConfiguration configuration){
         if (ornaments.containsKey(configuration.getString("名字"))){
