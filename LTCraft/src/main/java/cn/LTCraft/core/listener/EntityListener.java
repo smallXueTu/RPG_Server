@@ -47,29 +47,23 @@ public class EntityListener implements Listener {
     )
     public void onDamageByEntityEvent(EntityDamageByEntityEvent event){
         Entity entity = event.getEntity();
+        if (!(event.getDamager() instanceof Player)){
+            return;
+        }
+        Player damager = ((Player) event.getDamager());
+        Temp.lastBattleTime.put(damager, GlobalRefresh.getTick());
         if (entity instanceof ArmorStand){
-            Entity damager = event.getDamager();
-            if (damager instanceof Player){
-                Temp.lastBattleTime.put(((Player) damager), GlobalRefresh.getTick());
-                if (!damager.hasPermission("LTCraft.damage.armorStand."+entity.getCustomName()) &&
-                        !damager.hasPermission("LTCraft.damage.armorStand.*") &&
-                        !damager.hasPermission("LTCraft.damage.*")){
-                    event.setCancelled(true);
-                }
-            }else{
+            if (!damager.hasPermission("LTCraft.damage.armorStand."+entity.getCustomName()) &&
+                    !damager.hasPermission("LTCraft.damage.armorStand.*") &&
+                    !damager.hasPermission("LTCraft.damage.*")){
                 event.setCancelled(true);
             }
         }else if(entity instanceof ItemFrame){
-            Entity damager = event.getDamager();
-            if (damager instanceof Player){
                 if (!damager.hasPermission("LTCraft.damage.ItemFrame."+entity.getCustomName()) &&
                         !damager.hasPermission("LTCraft.damage.ItemFrame.*") &&
                         !damager.hasPermission("LTCraft.damage.*")){
                     event.setCancelled(true);
                 }
-            }else{
-                event.setCancelled(true);
-            }
         }
     }
     @EventHandler
