@@ -496,7 +496,8 @@ public class SmeltingFurnace implements TickEntity {
                             PlayerUtils.dropItemFloat(player, chest.getLocation().add(0.5, 1, 0.5), getResult());
                             done = true;
                             waitingTime = 0;
-                            ((ItemFrame) itemFrameEntity).setItem(new ItemStack(Material.AIR));
+                            //不再删除图纸
+//                            ((ItemFrame) itemFrameEntity).setItem(new ItemStack(Material.AIR));
                             floatItemEntity.forEach(Entity::remove);
                             cleanFurnaces();
                             inventory.clear();
@@ -760,6 +761,17 @@ public class SmeltingFurnace implements TickEntity {
         if (chest.getState() instanceof Container){
             Inventory inventory = ((Container) chest.getState()).getInventory();
             return inventory.getContents();
+        }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
+    }
+
+    /**
+     *
+     * @return 箱子的库存
+     * @throws SmeltingFurnaceErrorException 如果 {@link SmeltingFurnace#chest} 不属于 {@link Container}
+     */
+    public Inventory getChestInventory() throws SmeltingFurnaceErrorException{
+        if (chest.getState() instanceof Container){
+            return ((Container) chest.getState()).getInventory();
         }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
     }
 
