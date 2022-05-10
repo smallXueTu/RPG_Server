@@ -1,0 +1,76 @@
+妖化的锻造师:
+  Type: Skeleton
+  Display: '&6妖化的锻造师'
+  Health: 1000
+  Damage: 10
+  Equipment:
+    - 锻造锤:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6妖化的锻造师'
+    Player: '&6妖化的锻造师'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 35
+    - 通用熔炼石 1 0.5
+    - 初级燃料 1 0.5
+魔化的队长:
+  Type: Skeleton
+  Display: '&6魔化的队长'
+  Health: 3000
+  Damage: 10
+  Equipment:
+    - 锻造锤:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6魔化的队长'
+    Player: '&6魔化的队长'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 40
+    - 通用不稳定要素 1 1
+受寒锻造师:
+  Type: Skeleton
+  Display: '&6受寒锻造师'
+  Health: 1000
+  Damage: 10
+  Equipment:
+    - 锻造锤:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6受寒锻造师'
+    Player: '&6受寒锻造师'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 凝固冷却液 1 1
