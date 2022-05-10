@@ -374,6 +374,7 @@ public class SmeltingFurnace implements TickEntity {
                             ItemStack[] chests = getChest();
                             if (ItemUtils.removeItem(chests, ClutterItem.spawnClutterItem("急速冷却液").generate()) == 0){
                                 setChest(chests);
+                                getChestInventory().addItem(new ItemStack(Material.GLASS_BOTTLE));
                                 fastCooling = true;
                                 lines.add(hologram.appendTextLine("§e冷却液加速冷却中..."));
                             }
@@ -418,6 +419,7 @@ public class SmeltingFurnace implements TickEntity {
                                 ItemStack[] chests = getChest();
                                 if (ItemUtils.removeItem(chests, ClutterItem.spawnClutterItem("急速冷却液").generate()) == 0) {
                                     setChest(chests);
+                                    getChestInventory().addItem(new ItemStack(Material.GLASS_BOTTLE));
                                     fastCooling = true;
                                     lines.add(hologram.appendTextLine("§e冷却液加速冷却中..."));
                                 }
