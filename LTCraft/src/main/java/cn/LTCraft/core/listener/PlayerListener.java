@@ -464,7 +464,7 @@ public class PlayerListener  implements Listener {
     private static Map<String, String> putItInABottle = new HashMap<String, String>(){
         {
             put("凝固经验块", "知识之瓶");
-            put("冷却液", "急速冷却液");
+            put("凝固冷却液", "急速冷却液");
         }
     };
     /**
