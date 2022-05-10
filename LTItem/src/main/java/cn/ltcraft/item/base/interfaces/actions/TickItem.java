@@ -12,6 +12,7 @@ public interface TickItem {
      * @param tick tick
      * @param player 玩家
      * @param invIndex 物品在玩家背包的索引
+     *                 饰品的invIndex在饰品的位置-背包大小
      */
     void doTick(long tick, Player player, int invIndex);
 }
