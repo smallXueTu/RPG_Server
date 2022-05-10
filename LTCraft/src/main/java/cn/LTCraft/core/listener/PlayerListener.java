@@ -461,7 +461,12 @@ public class PlayerListener  implements Listener {
             }, 200);
         }
     }
-
+    private static Map<String, String> putItInABottle = new HashMap<String, String>(){
+        {
+            put("凝固经验块", "知识之瓶");
+            put("冷却液", "急速冷却液");
+        }
+    };
     /**
      * 玩家捡起物品事件
      * 判断是否可以捡起
@@ -481,37 +486,42 @@ public class PlayerListener  implements Listener {
         }
         ItemStack itemStack = item.getItemStack();
         Player player = event.getPlayer();
-        if (ClutterItem.spawnClutterItem("凝固经验块").isSimilar(itemStack)){
-            ItemStack inHand = player.getItemInHand();
-            ClutterItem result = ClutterItem.spawnClutterItem("知识之瓶");
-            if (inHand.getType() == Material.GLASS_BOTTLE && !inHand.hasItemMeta()){
-                int amount = itemStack.getAmount();
-                if (amount < inHand.getAmount()){
-                    inHand.setAmount(inHand.getAmount() - amount);
-                    result.setNumber(amount);
-                    amount = 0;
-                } else {
-                    result.setNumber(inHand.getAmount());
-                    inHand = new ItemStack(Material.AIR);
-                    amount -= result.getNumber();
+        if (itemStack.hasItemMeta() && putItInABottle.containsKey(cn.LTCraft.core.utils.Utils.clearColor(itemStack.getItemMeta().getDisplayName()))) {
+            Set<Map.Entry<String, String>> entries = putItInABottle.entrySet();
+            for (Map.Entry<String, String> entry : entries) {
+                if (ClutterItem.spawnClutterItem(entry.getKey()).isSimilar(itemStack)) {
+                    ItemStack inHand = player.getItemInHand();
+                    ClutterItem result = ClutterItem.spawnClutterItem(entry.getValue());
+                    if (inHand.getType() == Material.GLASS_BOTTLE && !inHand.hasItemMeta()) {
+                        int amount = itemStack.getAmount();
+                        if (amount < inHand.getAmount()) {
+                            inHand.setAmount(inHand.getAmount() - amount);
+                            result.setNumber(amount);
+                            amount = 0;
+                        } else {
+                            result.setNumber(inHand.getAmount());
+                            inHand = new ItemStack(Material.AIR);
+                            amount -= result.getNumber();
+                        }
+                        itemStack.setAmount(amount);
+                        if (amount <= 0) {
+                            item.remove();
+                        } else {
+                            item.setItemStack(itemStack);
+                        }
+                        if (inHand.getType() == Material.AIR) {
+                            player.getInventory().setItemInMainHand(result.generate());
+                        } else {
+                            PlayerUtils.securityAddItem(player, result.generate());
+                        }
+                        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1, 1);
+                    } else {
+                        if (item.getPickupDelay() != 20) item.setPickupDelay(20);
+                        player.sendMessage("§c你需要手持玻璃瓶才能捡起" + entry.getValue() + "！");
+                    }
+                    event.setCancelled(true);
                 }
-                itemStack.setAmount(amount);
-                if (amount <= 0){
-                    item.remove();
-                }else {
-                    item.setItemStack(itemStack);
-                }
-                if (inHand.getType() == Material.AIR){
-                    player.getInventory().setItemInMainHand(result.generate());
-                }else {
-                    PlayerUtils.securityAddItem(player, result.generate());
-                }
-                player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1, 1);
-            }else {
-                if (item.getPickupDelay() != 20)item.setPickupDelay(20);
-                player.sendMessage("§c你需要手持玻璃瓶才能捡起凝固经验块！");
             }
-            event.setCancelled(true);
         }
     }
 
