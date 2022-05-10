@@ -1,20 +1,30 @@
 package cn.LTCraft.core.listener;
 
+import cn.LTCraft.core.Main;
+import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.game.TargetOnlyMobsManager;
 import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
+import com.google.common.collect.Lists;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class EntityListener implements Listener {
     @EventHandler
@@ -97,6 +107,40 @@ public class EntityListener implements Listener {
         if (mythicMob != null && event.getTarget() != null){
             if (TargetOnlyMobsManager.targetOnlyMobs.containsKey(mythicMob) && !event.getTarget().equals(TargetOnlyMobsManager.targetOnlyMobs.get(mythicMob))) {
                 event.setCancelled(true);
+            }
+        }
+    }
+    private static Map<String[], String> map = new HashMap<String[], String>(){
+        {
+            put(new String[]{"EYE_OF_ENDER", "通用要素", "DRAGONS_BREATH"}, "通用不稳定要素");
+        }
+    };
+    @EventHandler
+    public void onEntityExplode(EntityExplodeEvent event){
+        if (event.getEntity() instanceof TNTPrimed) {
+            Entity entity = event.getEntity();
+            Location location = entity.getLocation();
+            World world = entity.getWorld();
+            Collection<Entity> nearbyEntities = world.getNearbyEntities(location, 3, 3, 3);
+            Set<Map.Entry<String[], String>> entries = map.entrySet();
+            List<Entity> killEntities = new ArrayList<>();
+            for (Map.Entry<String[], String> entry : entries) {
+                String[] key = entry.getKey();
+                List<ClutterItem> clutterItems = Arrays.stream(key).map(ClutterItem::spawnClutterItem).collect(Collectors.toList());
+                for (Entity nearbyEntity : nearbyEntities) {
+                    if (nearbyEntity instanceof Item){
+                        ItemStack itemStack = ((Item) nearbyEntity).getItemStack();
+                        if (clutterItems.removeIf(clutterItem -> clutterItem.isSimilar(itemStack))) {
+                            killEntities.add(nearbyEntity);
+                        }
+                    }
+                }
+                if (clutterItems.size() <= 0){
+                    ItemStack generate = ClutterItem.spawnClutterItem(entry.getValue()).generate();
+                    Bukkit.getScheduler().runTask(Main.getInstance(), () -> world.dropItem(location, generate));
+                    killEntities.forEach(Entity::remove);
+                }
+                killEntities.clear();
             }
         }
     }
