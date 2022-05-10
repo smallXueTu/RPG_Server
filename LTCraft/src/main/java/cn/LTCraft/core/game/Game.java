@@ -16,8 +16,10 @@ import cn.ltcraft.item.base.interfaces.actions.TickItem;
 import cn.ltcraft.item.items.Armor;
 import cn.ltcraft.item.items.BaseWeapon;
 import cn.ltcraft.item.items.GemsStone;
+import cn.ltcraft.item.objs.PlayerAttribute;
 import cn.ltcraft.teleport.Teleport;
 import cn.ltcraft.teleport.Warp;
+import com.google.common.collect.ObjectArrays;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVDestination;
 import com.onarandombox.MultiverseCore.destination.DestinationFactory;
@@ -539,6 +541,7 @@ public class Game {
                     } catch (ConcurrentModificationException ignored) {
                     }
                 }while (true);
+                itemStacks = ObjectArrays.concat(itemStacks, PlayerAttribute.getPlayerAttribute(player).getOrnaments(), ItemStack.class);
                 for (int i = 0; i < itemStacks.length; i++) {
                     ItemStack itemStack = itemStacks[i];
                     NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
