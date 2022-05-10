@@ -110,7 +110,7 @@ public class EntityListener implements Listener {
             }
         }
     }
-    private static Map<String[], String> map = new HashMap<String[], String>(){
+    private static Map<String[], String> explosiveFormula = new HashMap<String[], String>(){
         {
             put(new String[]{"EYE_OF_ENDER", "通用要素", "DRAGONS_BREATH"}, "通用不稳定要素");
         }
@@ -122,7 +122,7 @@ public class EntityListener implements Listener {
             Location location = entity.getLocation();
             World world = entity.getWorld();
             Collection<Entity> nearbyEntities = world.getNearbyEntities(location, 3, 3, 3);
-            Set<Map.Entry<String[], String>> entries = map.entrySet();
+            Set<Map.Entry<String[], String>> entries = explosiveFormula.entrySet();
             List<Entity> killEntities = new ArrayList<>();
             for (Map.Entry<String[], String> entry : entries) {
                 String[] key = entry.getKey();
