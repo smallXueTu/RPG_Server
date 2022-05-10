@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -37,6 +38,10 @@ public class Temp {
      * 垃圾计数器
      */
     public static Map<Player, Integer> dropCount = new HashMap<>();
+    /**
+     * 最后战斗时间
+     */
+    public static Map<Player, Long> lastBattleTime = new ConcurrentHashMap<>();
     /**
      * 重伤
      */
@@ -70,6 +75,7 @@ public class Temp {
         injured.remove(player);
         silence.remove(player);
         shield.remove(player);
+        lastBattleTime.remove(player);
         playerStates.remove(player);
         Temp.lock.unlock();
     }

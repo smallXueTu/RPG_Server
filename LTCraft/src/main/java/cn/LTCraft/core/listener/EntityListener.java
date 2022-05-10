@@ -4,6 +4,7 @@ import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.game.TargetOnlyMobsManager;
+import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.EntityUtils;
@@ -30,17 +31,26 @@ public class EntityListener implements Listener {
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event){
         Entity entity = event.getEntity();
+        /*
         if (MythicMobs.inst().getMobManager().isActiveMob(entity.getUniqueId())){
             ActiveMob am = MythicMobs.inst().getMobManager().getMythicMobInstance(entity);
 //            System.out.println(am.getDisplayName() + ":" + event.getCause());
         }
+         */
+        if (entity instanceof Player){
+            Temp.lastBattleTime.put(((Player) entity), GlobalRefresh.getTick());
+        }
     }
-    @EventHandler
+    @EventHandler(
+            ignoreCancelled = true,
+            priority = EventPriority.HIGHEST
+    )
     public void onDamageByEntityEvent(EntityDamageByEntityEvent event){
         Entity entity = event.getEntity();
         if (entity instanceof ArmorStand){
             Entity damager = event.getDamager();
             if (damager instanceof Player){
+                Temp.lastBattleTime.put(((Player) damager), GlobalRefresh.getTick());
                 if (!damager.hasPermission("LTCraft.damage.armorStand."+entity.getCustomName()) &&
                         !damager.hasPermission("LTCraft.damage.armorStand.*") &&
                         !damager.hasPermission("LTCraft.damage.*")){
