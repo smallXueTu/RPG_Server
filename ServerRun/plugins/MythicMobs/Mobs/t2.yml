@@ -89,6 +89,7 @@
     - 292 HAND
     - 268 OFFHAND
   Skills:
+    - 奇怪的石头 1 1
     - skill{s=白天死亡} ~onTimer:20
 岩浆人:
   Type: BLAZE
@@ -136,6 +137,7 @@
     PreventSunburn: true
   Drops:
     - 洞穴蜘蛛之眼 1 1
+    - 红色蜘蛛之眼 1 1
 火焰蜘蛛:
   Type: SPIDER
   Display: '&6火焰蜘蛛'
@@ -157,6 +159,7 @@
     PreventSunburn: true
   Drops:
     - 火焰蜘蛛眼 1 1
+    - 红色蜘蛛之眼 1 1
 水灵蜘蛛:
   Type: SPIDER
   Display: '&6水灵蜘蛛'
