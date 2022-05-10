@@ -104,8 +104,44 @@
   z: -759.0
   maxMobs: 4
   locations:
-    - -401.5:37:-748.5:t4
-    - -419.5:37:-751.5:t4
-    - -418.5:37:-767.5:t4
-    - -401.5:37:-767.5:t4
+  - -401.5:37:-748.5:t4
+  - -419.5:37:-751.5:t4
+  - -418.5:37:-767.5:t4
+  - -401.5:37:-767.5:t4
+  spawnRange: 1
+妖化的锻造师:
+  mobName: 妖化的锻造师
+  world: f3
+  x: -73.5
+  cooling: 30
+  y: 19
+  range: 16
+  z: 15.5
+  maxMobs: 3
+  locations:
+  - -52.5:12:6.5:f3
+  - -86.5:22:12.5:f3
+  - -69.5:14:6.5:f3
+  spawnRange: 1
+受寒锻造师:
+  mobName: 受寒锻造师
+  world: f3
+  x: -81.5
+  cooling: 30
+  y: 16
+  range: 16
+  z: 46.5
+  maxMobs: 3
+  locations: []
+  spawnRange: 2
+魔化的队长:
+  mobName: 魔化的队长
+  world: f3
+  x: -58.5
+  cooling: 100
+  y: 15
+  range: 16
+  z: 41.5
+  maxMobs: 1
+  locations: []
   spawnRange: 1
