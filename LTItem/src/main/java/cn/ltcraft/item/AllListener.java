@@ -220,6 +220,7 @@ public class AllListener implements Listener {
 
                 }
             });
+            TriggerAction.onAttack(damagerPlayer, event);
         }
     }
     @EventHandler(

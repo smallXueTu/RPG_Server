@@ -1,11 +1,13 @@
 package cn.ltcraft.item.utils;
 
 import cn.ltcraft.item.base.interfaces.LTItem;
+import cn.ltcraft.item.base.interfaces.actions.AttackItem;
 import cn.ltcraft.item.base.interfaces.actions.CombustItem;
 import cn.ltcraft.item.base.interfaces.actions.DamageItem;
 import cn.ltcraft.item.objs.PlayerAttribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityCombustEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 /**
@@ -33,6 +35,23 @@ public class TriggerAction {
             LTItem ltItem = LTItems[i];
             if (ltItem instanceof DamageItem){
                 ((DamageItem) ltItem).onDamage(event, playerAttribute.getOwner(), i);
+            }
+        }
+    }
+    /**
+     * 触发一个攻击
+     * @param player 玩家
+     * @param event 事件主体
+     */
+    public static void onAttack(Player player, EntityDamageByEntityEvent event){
+        onAttack(PlayerAttribute.getPlayerAttribute(player), event);
+    }
+    public static void onAttack(PlayerAttribute playerAttribute, EntityDamageByEntityEvent event){
+        LTItem[] LTItems = playerAttribute.getLTItems();
+        for (int i = 0; i < LTItems.length; i++) {
+            LTItem ltItem = LTItems[i];
+            if (ltItem instanceof AttackItem){
+                ((AttackItem) ltItem).onAttack(event, playerAttribute.getOwner(), i);
             }
         }
     }
