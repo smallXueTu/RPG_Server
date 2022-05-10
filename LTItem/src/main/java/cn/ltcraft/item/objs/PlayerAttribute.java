@@ -253,6 +253,37 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
     }
 
     /**
+     * 获取饰品的物品
+     * @return 饰品物品
+     */
+    public ItemStack[] getOrnaments() {
+        return ornaments;
+    }
+
+    /**
+     * 获取装备
+     * @return 装备物品
+     */
+    public ItemStack[] getEquipment() {
+        return equipment;
+    }
+
+    /**
+     * @return 副手
+     */
+    public ItemStack getOffHand() {
+        return offHand;
+    }
+
+
+    /**
+     * @return 主手
+     */
+    public ItemStack getHand() {
+        return hand;
+    }
+
+    /**
      * 获取全部LTItem物品
      * @return LTItem物品
      */
