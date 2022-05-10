@@ -157,6 +157,7 @@ public class Command implements CommandExecutor {
                                     yamlConfiguration.set("名字", args[2]);
                                     yamlConfiguration.set("品质", "未知");
                                     yamlConfiguration.set("饰品类型", "任意");
+                                    yamlConfiguration.set("绑定", false);
                                     yamlConfiguration.set("显示名字", "§6" + args[2]);
                                     yamlConfiguration.set("说明", new ArrayList<>());
                                     pvp = new HashMap<>(PVP);
