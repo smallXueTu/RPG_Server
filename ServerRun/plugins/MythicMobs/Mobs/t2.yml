@@ -806,6 +806,7 @@ BOSS-魔塔统治者:
   Drops:
     - skillapi-exp 3
     - 青蜘符文 1 1
+    - 青蜘之眼 1 1
     - ltitem 符文之刃 1 0.2
 水晶蝎子:
   Type: Spider
@@ -840,6 +841,7 @@ BOSS-魔塔统治者:
   Drops:
     - skillapi-exp 5
     - 魔力符文 1 1
+    - 黑蛛皮革 1 1
 遗迹蜘蛛:
   Type: Spider
   Display: '&e【高级】&6遗迹蜘蛛'

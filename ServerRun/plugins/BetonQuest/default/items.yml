@@ -39,7 +39,6 @@
 魔法法杖: STICK durability:0 name:§6魔法法杖 lore:§6可释放法师职业基础技能。;;;§e工具。
 刺客法杖: STICK durability:0 name:§6刺客法杖 lore:§6可释放刺客职业基础技能。;;;§e工具。
 护盾法杖: STICK durability:0 name:§6护盾法杖 lore:§6可释放战士职业基础技能。;;;§e工具。
-test: STICK durability:0 name:§6test lore:§6test-test-test。
 击退附魔书: ENCHANTED_BOOK durability:0 enchants:KNOCKBACK:2
 青蜘符文: CLAY_BALL durability:0 name:§6青蜘符文 lore:§6符文蜘蛛的战利品！;;;§e主线材料。
 晶蝎符文: CLAY_BALL durability:0 name:§6晶蝎符文 lore:§6水晶蝎子的战利品！;;;§e主线材料。

@@ -21,6 +21,15 @@
 火焰蜘蛛眼:
   match: "火焰蜘蛛眼"
   texture: "t2/火焰蜘蛛眼.png"
+红色蜘蛛之眼:
+  match: "红色蜘蛛之眼"
+  texture: "t2/红色蜘蛛之眼.png"
+青蜘之眼:
+  match: "青蜘之眼"
+  texture: "t2/青蜘之眼.png"
+黑蛛皮革:
+  match: "黑蛛皮革"
+  texture: "t2/黑蛛皮革.png"
 水灵晶石:
   match: "水灵晶石"
   texture: "t2/水灵晶石.png"
