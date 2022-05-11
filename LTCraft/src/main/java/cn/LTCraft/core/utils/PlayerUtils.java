@@ -195,7 +195,7 @@ public class PlayerUtils {
             if (skill!=null){
                 skill.cast(target);
                 if (Game.getClassSkill(PlayerClass.byName(clazz.getName())).equals(skillName)) {
-                    Cooling.cooling(player, "ClassSkill", 300 - level * 2L, "职业主动技能剩余冷却时间：%s%S");
+                    Cooling.cooling(player, "ClassSkill", 80 - level / 2, "职业主动技能剩余冷却时间：%s%S");
                 }
             }
         }
