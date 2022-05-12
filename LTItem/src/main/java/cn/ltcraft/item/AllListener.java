@@ -3,6 +3,7 @@ package cn.ltcraft.item;
 import cn.LTCraft.core.dataBase.bean.PlayerInfo;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import cn.LTCraft.core.game.more.FloatText;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.*;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
@@ -12,6 +13,9 @@ import cn.ltcraft.item.base.subAttrbute.PotionAttribute;
 import cn.ltcraft.item.utils.TriggerAction;
 import cn.ltcraft.item.utils.Utils;
 import com.earth2me.essentials.api.Economy;
+import com.gmail.filoghost.holographicdisplays.api.Hologram;
+import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
+import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
 import com.sucy.skill.api.event.PlayerClassChangeEvent;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
@@ -36,10 +40,12 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -232,6 +238,19 @@ public class AllListener implements Listener {
         if (entity instanceof Player){
             Player player = (Player) entity;
             TriggerAction.onDamage(player, event);
+        }
+        if (entity instanceof LivingEntity){
+            new FloatText(entity.getLocation().add(0, entity.getHeight(), 0), "§l§c-" + cn.LTCraft.core.utils.Utils.formatNumber(event.getFinalDamage()), 2 * 20, new Vector(0, 0.03, 0));
+        }
+    }
+    @EventHandler(
+            ignoreCancelled = true,
+            priority = EventPriority.HIGHEST
+    )
+    public void onRegainHealth(EntityRegainHealthEvent event){
+        Entity entity = event.getEntity();
+        if (entity instanceof LivingEntity){
+            new FloatText(entity.getLocation().add(0, entity.getHeight(), 0), "§l§a+"  + cn.LTCraft.core.utils.Utils.formatNumber(event.getAmount()), 2 * 20, new Vector(0, 0.03, 0));
         }
     }
     @EventHandler
