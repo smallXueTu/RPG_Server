@@ -37,9 +37,6 @@ public class EntityListener implements Listener {
 //            System.out.println(am.getDisplayName() + ":" + event.getCause());
         }
          */
-        if (entity instanceof Player){
-            Temp.lastBattleTime.put(((Player) entity), GlobalRefresh.getTick());
-        }
     }
     @EventHandler(
             ignoreCancelled = true,
@@ -49,6 +46,9 @@ public class EntityListener implements Listener {
         Entity entity = event.getEntity();
         if (!(event.getDamager() instanceof Player)){
             return;
+        }
+        if (entity instanceof Player){
+            Temp.lastBattleTime.put(((Player) entity), GlobalRefresh.getTick());
         }
         Player damager = ((Player) event.getDamager());
         Temp.lastBattleTime.put(damager, GlobalRefresh.getTick());
