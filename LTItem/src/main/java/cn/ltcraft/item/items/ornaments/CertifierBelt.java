@@ -46,7 +46,7 @@ public class CertifierBelt extends Ornament implements TickItem, DamageItem, Att
      */
     @Override
     public void onDamage(EntityDamageEvent event, Player player, int invIndex) {
-        if (event instanceof EntityDamageByEntityEvent && player.getPotionEffect(PotionEffectType.SPEED).getAmplifier() == 1)
+        if (event instanceof EntityDamageByEntityEvent && player.hasPotionEffect(PotionEffectType.SPEED) && player.getPotionEffect(PotionEffectType.SPEED).getAmplifier() == 1)
             player.removePotionEffect(PotionEffectType.SPEED);
     }
 
@@ -59,7 +59,7 @@ public class CertifierBelt extends Ornament implements TickItem, DamageItem, Att
      */
     @Override
     public void onAttack(EntityDamageByEntityEvent event, Player player, int invIndex) {
-        if (player.getPotionEffect(PotionEffectType.SPEED).getAmplifier() == 1)
+        if (player.hasPotionEffect(PotionEffectType.SPEED) && player.getPotionEffect(PotionEffectType.SPEED).getAmplifier() == 1)
             player.removePotionEffect(PotionEffectType.SPEED);
     }
 }
