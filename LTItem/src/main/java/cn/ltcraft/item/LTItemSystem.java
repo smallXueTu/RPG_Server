@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LTItemSystem extends JavaPlugin {
+    //
     private static LTItemSystem instance = null;
     private static final Map<String, Class<? extends LTItem>> allType = new HashMap<String, Class<? extends LTItem>>(){
         {
