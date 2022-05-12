@@ -92,7 +92,7 @@ public class GameUtils {
         }else if (PotionEffectType.BLINDNESS.equals(type)) {
             return "失明";
         }else if (PotionEffectType.NIGHT_VISION.equals(type)) {
-            return "夜市";
+            return "夜视";
         }else if (PotionEffectType.HUNGER.equals(type)) {
             return "饥饿";
         }else if (PotionEffectType.WEAKNESS.equals(type)) {
