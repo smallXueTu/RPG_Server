@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 public class EntityListener implements Listener {
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event){
-        Entity entity = event.getEntity();
+//        Entity entity = event.getEntity();
         /*
         if (MythicMobs.inst().getMobManager().isActiveMob(entity.getUniqueId())){
             ActiveMob am = MythicMobs.inst().getMobManager().getMythicMobInstance(entity);
