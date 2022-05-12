@@ -25,7 +25,7 @@ public class GameUtils {
                 }else {
                     potionEffectType = PotionEffectType.getByName(pInfo[0]);
                 }
-                int duration = 10 * 20;
+                int duration = 60 * 20;
                 int amplifier = 1;
                 double probability = 1;
                 if (pInfo.length > 2){

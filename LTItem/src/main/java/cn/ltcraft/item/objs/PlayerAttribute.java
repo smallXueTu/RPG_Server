@@ -17,6 +17,8 @@ import cn.ltcraft.item.items.Ornament;
 import cn.ltcraft.item.utils.Utils;
 import com.google.common.collect.ObjectArrays;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -52,7 +54,7 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
         if (tick % 200 == 0){
             getPotion().forEach((type, potionAttribute) -> {
                 if (MathUtils.ifAdopt(potionAttribute.getProbability())) {
-                    owner.addPotionEffect(potionAttribute);
+                    owner.addPotionEffect(potionAttribute, true);
                 }
             });
         }
