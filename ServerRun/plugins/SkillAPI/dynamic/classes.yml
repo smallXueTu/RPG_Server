@@ -30,7 +30,7 @@ loaded: 'true'
   icon-lore: 
   - '&4技能名称 : &2Class 1'
   - '&a技能列表 : &b'
-  exp-source: 269
+  exp-source: 273
 战士: 
   name: '战士'
   prefix: '&6战士'
@@ -62,7 +62,7 @@ loaded: 'true'
   icon-lore: 
   - '&4技能名称 : &2Class 1'
   - '&a技能列表 : &b'
-  exp-source: 269
+  exp-source: 273
 法师: 
   name: '法师'
   prefix: '&6法师'
@@ -94,7 +94,7 @@ loaded: 'true'
   icon-lore: 
   - '&4技能名称 : &2Class 1'
   - '&a技能列表 : &b'
-  exp-source: 269
+  exp-source: 273
 牧师: 
   name: '牧师'
   prefix: '&6牧师'
@@ -123,7 +123,7 @@ loaded: 'true'
   skills:  []
   icon: 'JACK_O_LANTERN'
   icon-data: 0
-  exp-source: 269
+  exp-source: 273
 无职业: 
   name: '无职业'
   prefix: '&6无职业'
@@ -152,4 +152,4 @@ loaded: 'true'
   skills:  []
   icon: 'GRASS'
   icon-data: 0
-  exp-source: 269
+  exp-source: 273

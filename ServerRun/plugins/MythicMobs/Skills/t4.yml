@@ -13,7 +13,7 @@ t4火焰粒子门2:
     - teleport @target
     - effect:sound{s=mob.endermen.portal;volume=1.0;pitch=0.5}
     - delay 5
-    - damage{amount=50;ignorearmor=true} @target
+    - damage{amount=25;ignorearmor=true} @target
     - throw{velocity=10;velocityY=5} @target
     - effect:explosion @Self
 古堡守护者逃跑:
