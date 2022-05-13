@@ -54,6 +54,7 @@ public class PseudorandomDrop extends Drop implements IIntangibleDrop {
             playerProbability.put(abstractPlayer.getName(), probability);
         }
         double probability = playerProbability.get(abstractPlayer.getName()) + count * playerProbability.get(abstractPlayer.getName());
+        System.out.println(probability);
         if (MathUtils.ifAdopt(probability)) {
             counter.remove(mythicMob.getType().getInternalName());
             AbstractLocation location = abstractEntity.getLocation();

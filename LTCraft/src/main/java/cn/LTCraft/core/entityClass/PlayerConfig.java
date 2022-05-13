@@ -20,7 +20,8 @@ import java.util.Map;
 
 public class PlayerConfig {
     private static final Map<String, PlayerConfig> configMap = new HashMap<>();
-    private static final Table<String, String, Integer> counter = HashBasedTable.create();
+//    private static final Table<String, String, Integer> counter = HashBasedTable.create();
+    private static final Map<String, Map<String, Integer>> counter = new HashMap<>();
 
     /**
      * 获取玩家配置文件
@@ -153,13 +154,14 @@ public class PlayerConfig {
      * @return 计数器 Map
      */
     public static Map<String, Integer> getCounter(Player player) {
-        return counter.rowMap().putIfAbsent(player.getName(), new HashMap<>());
+        return getCounter(player.getName());
     }
     public static Map<String, Integer> getCounter(String playerName) {
-        return counter.rowMap().putIfAbsent(playerName, new HashMap<>());
+        Map<String, Integer> map = counter.computeIfAbsent(playerName, k -> new HashMap<>());
+        return map;
     }
 
-    public static Table<String, String, Integer> getCounter() {
+    public static Map<String, Map<String, Integer>> getCounter() {
         return counter;
     }
 }
