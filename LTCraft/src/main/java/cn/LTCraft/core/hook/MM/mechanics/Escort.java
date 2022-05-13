@@ -1,5 +1,7 @@
 package cn.LTCraft.core.hook.MM.mechanics;
 
+import cn.LTCraft.core.other.Temp;
+import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.MathUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
@@ -18,6 +20,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -60,13 +63,18 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
                 if (v < 120d / 2){//玩家出现在怪物面前 设置怪物的仇恨
                     if ((player.isSneaking() && distance < 3) || (distance < 8 && !player.isSneaking()) || (player.isSprinting() && distance < 15)) {
                         activeMob.setTarget(livingEntity);
+                        Temp.lastBattleTime.put((LivingEntity) entity.getBukkitEntity(), GlobalRefresh.getTick());
                         informNearbyCompanions(entity.getBukkitEntity());
                     }
                 }else {
                     if (distance < 3 && !player.isSneaking()) {
                         activeMob.setTarget(livingEntity);
+                        Temp.lastBattleTime.put((LivingEntity) entity.getBukkitEntity(), GlobalRefresh.getTick());
                         informNearbyCompanions(entity.getBukkitEntity());//通知周围的怪物警戒
                     }
+                }
+                if (GlobalRefresh.getTick() - Temp.lastBattleTime.get(entity.getBukkitEntity()) > 60 * 20){//脱离战斗60s 取消战斗状态
+                    activeMob.setTarget(null);
                 }
             }
         }
