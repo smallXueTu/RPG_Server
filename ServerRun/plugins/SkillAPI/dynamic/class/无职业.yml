@@ -26,4 +26,6 @@
   skills:  []
   icon: 'GRASS'
   icon-data: 0
-  exp-source: 269
+  icon-lore:
+    - '&4技能名称 : &2Class 1'
+    - '&a技能列表 : &b'
