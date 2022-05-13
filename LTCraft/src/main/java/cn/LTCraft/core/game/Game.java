@@ -71,6 +71,7 @@ public class Game {
             this.add("t4");
             this.add("f1");
             this.add("f2");
+            this.add("f3");
             this.add("rpg");
             this.add("RPG");
         }
