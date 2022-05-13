@@ -43,15 +43,17 @@ public class EntityListener implements Listener {
             priority = EventPriority.HIGHEST
     )
     public void onDamageByEntityEvent(EntityDamageByEntityEvent event){
-        Entity entity = event.getEntity();
-        if (!(event.getDamager() instanceof Player)){
+        Entity damager = event.getDamager();
+        if (damager instanceof LivingEntity) {
+            Temp.lastBattleTime.put((LivingEntity) damager, GlobalRefresh.getTick());
+        }
+        if (!(damager instanceof Player)){
             return;
         }
-        if (entity instanceof Player){
-            Temp.lastBattleTime.put(((Player) entity), GlobalRefresh.getTick());
+        Entity entity = event.getEntity();
+        if (entity instanceof LivingEntity){
+            Temp.lastBattleTime.put(((LivingEntity) entity), GlobalRefresh.getTick());
         }
-        Player damager = ((Player) event.getDamager());
-        Temp.lastBattleTime.put(damager, GlobalRefresh.getTick());
         if (entity instanceof ArmorStand){
             if (!damager.hasPermission("LTCraft.damage.armorStand."+entity.getCustomName()) &&
                     !damager.hasPermission("LTCraft.damage.armorStand.*") &&
@@ -68,15 +70,19 @@ public class EntityListener implements Listener {
     }
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event){
-        if (event.getEntity() instanceof Item){
-            if(Temp.playerDropItem.containsKey(event.getEntity())){
-                Player player = Bukkit.getPlayerExact(Temp.playerDropItem.get(event.getEntity()));
+        LivingEntity entity = event.getEntity();
+        if (entity instanceof Item){
+            if(Temp.playerDropItem.containsKey(entity)){
+                Player player = Bukkit.getPlayerExact(Temp.playerDropItem.get(entity));
                 if (Temp.dropCount.containsKey(player)){
                     Temp.dropCount.put(player, Temp.dropCount.get(player) - 1 );
                 }
-                Temp.playerDropItem.remove(event.getEntity());
+                Temp.playerDropItem.remove(entity);
             }
-            Temp.discardOnly.remove((Item) event.getEntity());
+            Temp.discardOnly.remove((Item) entity);
+        }
+        if (!(entity instanceof Player)){
+            Temp.lastBattleTime.remove(entity);
         }
     }
     @EventHandler(

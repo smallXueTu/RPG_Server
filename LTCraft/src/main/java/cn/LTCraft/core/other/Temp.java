@@ -7,6 +7,7 @@ import cn.LTCraft.core.utils.Utils;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class Temp {
     /**
      * 最后战斗时间
      */
-    public static Map<Player, Long> lastBattleTime = new ConcurrentHashMap<>();
+    public static Map<LivingEntity, Long> lastBattleTime = new ConcurrentHashMap<>();
     /**
      * 重伤
      */
