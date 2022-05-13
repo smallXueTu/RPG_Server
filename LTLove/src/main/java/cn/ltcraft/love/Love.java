@@ -35,6 +35,7 @@ public class Love extends JavaPlugin {
                 Player player = event.getPlayer();
                 //获取的玩家的伴侣
                 String love = getLove(player);
+                if (love.equals(""))return;
                 //获取玩家伴侣实体类
                 Player partner = Bukkit.getPlayer(love);
                 if (partner != null && player.isOnline()) {//如果玩家的伴侣在线
