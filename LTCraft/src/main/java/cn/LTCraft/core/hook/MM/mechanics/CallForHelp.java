@@ -27,7 +27,7 @@ public class CallForHelp extends SkillMechanic implements INoTargetSkill {
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
             SkillCaster caster = skillMetadata.getCaster();
             AbstractEntity entity = caster.getEntity();
-            int range = entity.isDead()?3:6;
+            int range = entity.isDead()?3:5;
             ActiveMob activeMob = EntityUtils.getMythicMob(entity);
             World world = BukkitAdapter.adapt(entity.getWorld());
             Collection<Entity> nearbyEntities = world.getNearbyEntities(BukkitAdapter.adapt(entity.getLocation()), range, 3, range);
