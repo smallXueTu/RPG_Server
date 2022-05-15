@@ -33,6 +33,7 @@ public class DropCheckS extends SkillMechanic implements ITargetedEntitySkill {
         World world = bukkitEntity.getWorld();
         Collection<Entity> entities = world.getNearbyEntities(bukkitEntity.getLocation(), 2, 2, 2);
         for (Entity entity : entities) {
+            if (entity == null)continue;
             if (entity.getCustomName().equals(bukkitEntity.getCustomName()) && entity != bukkitEntity)entity.remove();
             if (entity instanceof Item && clutterItem.isSimilar(ItemUtils.cleanVar(((Item)entity).getItemStack().clone()))){
                 map.get(bukkitEntity.getEntityId()).addEntity((Item) entity);
