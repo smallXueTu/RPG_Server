@@ -231,6 +231,15 @@
   width: 1
   # 对于obj模型可采用缩放功能
   scale: 1
+流浪黑货商人:
+  entity: "流浪黑货商人"
+  model: "全局/流浪黑货商人/model.json"
+  texture: "全局/流浪黑货商人/texture.png"
+  animation: "全局/流浪黑货商人/model.animation.json"
+  height: 2
+  width: 2
+  # 对于obj模型可采用缩放功能
+  scale: 1
 主城雕像:
   entity: "主城雕像"
   model: "全局/主城雕像/model.json"

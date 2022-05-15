@@ -1,0 +1,92 @@
+Title: '黑货商人'
+
+Title-Update: -1
+
+Layout:
+  - - '#       #'
+    - '#  `证明者腰带``黑铁嗜血之戒``夜视头饰`  #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d我流浪在世界的各处~"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '证明者腰带':
+    display:
+      material: 337
+      name: "&e证明者腰带"
+      lore:
+        - "&3<<&e兑换证明者腰带×1"
+        - "&3>>&e需要：奇怪&e的石头×16"
+        - "&3>>&e需要：神秘的&e皮革×18"
+        - "&aTip:&e奇怪&e的石头&a在从料哨北城赶过来的路上&c地底人&a100%掉落。"
+        - "&aTip:&e神秘的&e皮革&a在从料哨北城赶过来的路上&c雪地暴民&a100%掉落。"
+    actions:
+      all:
+        - 'LTExchange: 证明者腰带'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '黑铁嗜血之戒':
+    display:
+      material: 337
+      name: "&e黑铁嗜血之戒"
+      lore:
+        - "&3<<&e兑换黑铁嗜血之戒×1"
+        - "&3>>&e需要：奇怪&e的石头×16"
+        - "&3>>&e需要：红色&e蜘蛛之眼×8"
+        - "&aTip:&e奇怪&e的石头&a在从料哨北城赶过来的路上&c地底人&a100%掉落。"
+        - "&aTip:&e红色&e蜘蛛之眼&a在帮小晴过程中矿洞内&c部分蜘蛛&a100%掉落。"
+    icons:
+      - condition: 'js: !LTCraftUtils.satisfyBQCondition(player, "default.靠近第二个流浪黑货商人") && !LTCraftUtils.satisfyBQCondition(player, "default.靠近第三个流浪黑货商人")'
+        display:
+          material: Air
+    actions:
+      all:
+        - 'LTExchange: 黑铁嗜血之戒'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '夜视头饰':
+    display:
+      material: 337
+      name: "&e夜视头饰"
+      lore:
+        - "&3<<&e兑换夜视头饰×1"
+        - "&3>>&e需要：青蜘&e之眼×16"
+        - "&3>>&e需要：黑蛛&e皮革×18"
+        - "&aTip:&e青蜘&e之眼&a在恶火圣殿&c符文蜘蛛&a100%掉落！"
+        - "&aTip:&e黑蛛&e皮革&a在恶火圣殿&c魔化蜘蛛&a100%掉落！"
+    icons:
+      - condition: 'js: !LTCraftUtils.satisfyBQCondition(player, "default.靠近第三个流浪黑货商人")'
+        display:
+          material: Air
+    actions:
+      all:
+        - 'LTExchange: 夜视头饰'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
