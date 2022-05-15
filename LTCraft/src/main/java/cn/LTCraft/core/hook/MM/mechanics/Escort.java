@@ -73,7 +73,7 @@ public class Escort extends SkillMechanic implements INoTargetSkill {
                         informNearbyCompanions(entity.getBukkitEntity());//通知周围的怪物警戒
                     }
                 }
-                if (GlobalRefresh.getTick() - Temp.lastBattleTime.get(entity.getBukkitEntity()) > 60 * 20){//脱离战斗60s 取消战斗状态
+                if (activeMob.getNewTarget() != null && GlobalRefresh.getTick() - Temp.lastBattleTime.getOrDefault(entity.getBukkitEntity(), GlobalRefresh.getTick()) > 60 * 20){//脱离战斗60s 取消战斗状态
                     activeMob.setTarget(null);
                 }
             }
