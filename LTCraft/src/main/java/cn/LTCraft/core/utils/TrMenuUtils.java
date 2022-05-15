@@ -32,4 +32,18 @@ public class TrMenuUtils {
     public boolean hasBQTag(Player player, String tag){
         return PlayerUtils.hasBQTag(player, tag);
     }
+
+    /**
+     * 是否满足BQ条件
+     */
+    public boolean satisfyBQCondition(Player player, String condition){
+        return PlayerUtils.satisfyBQCondition(player, condition);
+    }
+
+    /**
+     * 是否满足MM条件
+     */
+    public boolean satisfyMMCondition(Player player, String condition){
+        return PlayerUtils.satisfyMMCondition(player, condition);
+    }
 }

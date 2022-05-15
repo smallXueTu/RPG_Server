@@ -17,6 +17,7 @@ import com.sucy.skill.api.player.PlayerData;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
+import io.lumine.xikage.mythicmobs.skills.SkillCondition;
 import net.minecraft.server.v1_12_R1.ChatComponentText;
 import net.minecraft.server.v1_12_R1.ChatMessageType;
 import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
@@ -39,6 +40,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import pl.betoncraft.betonquest.BetonQuest;
+import pl.betoncraft.betonquest.ConditionID;
+import pl.betoncraft.betonquest.ObjectNotFoundException;
+import pl.betoncraft.betonquest.config.ConfigPackage;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 import java.util.*;
@@ -104,6 +108,34 @@ public class PlayerUtils {
      */
     public static boolean hasBQTag(Player player, String tag){
         return BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player)).hasTag(tag);
+    }
+
+    /**
+     * 是否满足bq条件
+     * @param player 玩家
+     * @param condition 条件
+     * @return 如果满足
+     */
+    public static boolean satisfyBQCondition(Player player, String condition){
+        try {
+            String id = PlayerConverter.getID(player);
+            ConditionID conditionID = new ConditionID(null, condition);
+            return BetonQuest.condition(id, conditionID);
+        } catch (ObjectNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 是否满足MM条件
+     * @param player 玩家
+     * @param condition 条件
+     * @return 如果满足
+     */
+    public static boolean satisfyMMCondition(Player player, String condition){
+        SkillCondition skillCondition = SkillCondition.getCondition(condition);
+        return skillCondition.evaluateEntity(BukkitAdapter.adapt(player));
     }
 
     /**
