@@ -107,7 +107,6 @@ public class AllListener implements Listener {
             Material type = itemInHand.getType();
             if (type == Material.BOW){
                 LTItem ltItems = Utils.getLTItems(itemInHand);
-                System.out.println(event.getCause());
                 if (ltItems != null && event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK){
                     return;
                 }
