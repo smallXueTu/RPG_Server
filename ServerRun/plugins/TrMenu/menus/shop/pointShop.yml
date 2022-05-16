@@ -1,0 +1,89 @@
+Title: '§l点券商店 §c§l1RMB=10点券'
+
+Title-Update: -1
+
+Layout:
+  - - '#`VIP``SVIP``MVIP`    #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  'VIP':
+    display:
+      material: 399
+      name: "&a&lVIP"
+      lore:
+       - "&e飞行权限(不包括RPG世界)"
+       - "&e传送无冷却"
+       - "&e潜行连锁挖矿砍树"
+       - "&e电击玩家：§d/vip 电击§e 30s冷却时间"
+       - "&e每日四个每日任务"
+       - "&e最多可设置五个家"
+       - "&eVIP随身箱子×1"
+       - "&c&l200点券/月"
+    actions:
+      all:
+        - 'open: RPGShop'
+  'SVIP':
+    display:
+      material: 399
+      name: "&c&lSVIP"
+      lore:
+        - "&e包含VIP内容"
+        - "&eVIP专属副本"
+        - "&e电击玩家：§d/vip 电击§e 20s冷却时间"
+        - "&e每日五个每日任务"
+        - "&e最多可设置七个家"
+        - "&eVIP随身箱子×2"
+        - "&c&l400点券/月"
+    actions:
+      all:
+        - 'open: RPGShop'
+  'MVIP':
+    display:
+      material: 399
+      name: "&d&lMVIP"
+      lore:
+        - "&e包含SVIP内容"
+        - "&e生物伪装"
+        - "&e骑乘其他玩家"
+        - "&e电击玩家：§d/vip 电击§e 10s冷却时间"
+        - "&e每日六个每日任务"
+        - "&e最多可设置十个家"
+        - "&eVIP随身箱子×3"
+        - "&c&l600点券/月"
+    actions:
+      all:
+        - 'open: RPGShop'

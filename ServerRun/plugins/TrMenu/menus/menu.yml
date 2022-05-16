@@ -1,10 +1,10 @@
-Title: '§l§aLTCraft 总菜单'
+Title: '§lLTCraft 总菜单'
 
 Title-Update: 0
 
 Layout:
   - - '#  `teleport``rtp``mainline`  #'
-    - '#  `shop`    #'
+    - '#  `shop``sell``pointShop`  #'
     - '#       #'
     - '#       #'
     - '`基础设置`   `forge`   `Close`'
@@ -51,9 +51,23 @@ Icons:
     display:
       material: 264
       name: "&e打开商店菜单"
-      lore: "&3<<&e点我打开打开商店菜单&3>>"
+      lore: "&3<<&e点我打开商店菜单&3>>"
     actions:
       all: 'open: shop'
+  'sell':
+    display:
+      material: 388
+      name: "&e打开出售菜单"
+      lore: "&3<<&e点我打开出售商店菜单&3>>"
+    actions:
+      all: 'open: sell'
+  'pointShop':
+    display:
+      material: 399
+      name: "&e打开点券菜单"
+      lore: "&3<<&e点我打开点券菜单&3>>"
+    actions:
+      all: 'open: pointShop'
   'rtp':
     display:
       material: 368
@@ -81,7 +95,7 @@ Icons:
       lore: "&3<<&e点我打开基础设置&3>>"
     actions:
       all:
-        - close
+        - "close"
         - 'OpenCoreGui: 设置'
   'forge':
     display:
@@ -95,7 +109,7 @@ Icons:
 #          material: Air
     actions:
       all:
-        - close
+        - "close"
         - 'OpenCoreGui: 锻造'
   Close:
     display:

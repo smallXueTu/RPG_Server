@@ -1,10 +1,10 @@
-Title: '§lF1兑换菜单'
+Title: '服务器出售商店'
 
 Title-Update: -1
 
 Layout:
   - - '#       #'
-    - '#   `法杖知识卷轴`   #'
+    - '#       #'
     - '#       #'
     - '#       #'
     - '#       #'
@@ -40,14 +40,3 @@ Icons:
       name: "&d旁白君"
     actions:
       all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
-  '法杖知识卷轴':
-    display:
-      material: 339
-      name: "&e法杖知识卷轴"
-      lore:
-        - "&3<<&e兑换法杖知识卷轴×1"
-        - "&3>>&e需要：知识卷轴&e章节×32"
-    actions:
-      all:
-         - 'LTExchange: 法杖知识卷轴'
-         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
