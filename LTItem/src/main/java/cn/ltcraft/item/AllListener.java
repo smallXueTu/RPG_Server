@@ -273,7 +273,7 @@ public class AllListener implements Listener {
             Player player = (Player) entity;
             TriggerAction.onDamage(player, event);
         }
-        if (entity instanceof LivingEntity){
+        if (entity instanceof LivingEntity && event.getDamage() >= 1){
             new FloatText(entity.getLocation().add(0, entity.getHeight(), 0), "§l§c-" + cn.LTCraft.core.utils.Utils.formatNumber(event.getFinalDamage()), 2 * 20, new Vector(0, 0.03, 0));
         }
     }
@@ -283,7 +283,7 @@ public class AllListener implements Listener {
     )
     public void onRegainHealth(EntityRegainHealthEvent event){
         Entity entity = event.getEntity();
-        if (entity instanceof LivingEntity){
+        if (entity instanceof LivingEntity && event.getAmount() >= 1){
             new FloatText(entity.getLocation().add(0, entity.getHeight(), 0), "§l§a+"  + cn.LTCraft.core.utils.Utils.formatNumber(event.getAmount()), 2 * 20, new Vector(0, 0.03, 0));
         }
     }
