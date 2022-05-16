@@ -30,6 +30,8 @@ import cn.ltcraft.teleport.Teleport;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
+import me.libraryaddict.disguise.DisguiseAPI;
+import me.libraryaddict.disguise.disguisetypes.Disguise;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.*;
@@ -301,11 +303,17 @@ public class PlayerListener  implements Listener {
                     break;
                 }
             }
-            if (!event.isCancelled() && Config.getInstance().getWorldTitleYaml().contains(toWorld.toLowerCase())){
-                Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {
-                    List<String> list = Config.getInstance().getWorldTitleYaml().getStringList(toWorld.toLowerCase());
-                    player.sendTitle(list.get(0), list.get(1), 60, 20, 20);
-                }, 20);
+            if (!event.isCancelled()) {
+                if (Config.getInstance().getWorldTitleYaml().contains(toWorld.toLowerCase())) {
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {
+                        List<String> list = Config.getInstance().getWorldTitleYaml().getStringList(toWorld.toLowerCase());
+                        player.sendTitle(list.get(0), list.get(1), 60, 20, 20);
+                    }, 20);
+                }
+                if (Game.rpgWorlds.contains(toWorld)){
+                    Disguise disguise = DisguiseAPI.getDisguise(player);
+                    if (disguise != null)disguise.stopDisguise();
+                }
             }
         }else if (Game.rpgWorlds.contains(player.getWorld().getName())){
             if (

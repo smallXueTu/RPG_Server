@@ -16,7 +16,7 @@ public class Disarm extends BaseSkill{
     }
     @Override
     public boolean cast(Entity e) {
-        owner.sendTitle("§l§a释放成功", "§l§a您§e释放了§d缴械§d技能。");
+        owner.sendTitle("§a§l释放成功", "§a您§e释放了§d缴械§d技能。");
         double radius = 3 + level;
         List<Entity> collection = owner.getNearbyEntities(radius, radius, radius);
         for (Entity entity : collection) {

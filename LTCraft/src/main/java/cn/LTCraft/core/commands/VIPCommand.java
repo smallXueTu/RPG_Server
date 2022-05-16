@@ -4,7 +4,16 @@ import cn.LTCraft.core.Main;
 import cn.LTCraft.core.dataBase.bean.PlayerInfo;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.utils.DateUtils;
+import me.libraryaddict.disguise.DisguiseAPI;
+import me.libraryaddict.disguise.DisguiseConfig;
+import me.libraryaddict.disguise.disguisetypes.Disguise;
+import me.libraryaddict.disguise.disguisetypes.DisguiseType;
+import me.libraryaddict.disguise.disguisetypes.MiscDisguise;
+import me.libraryaddict.disguise.disguisetypes.MobDisguise;
+import me.libraryaddict.disguise.utilities.DisguiseParser;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -124,7 +133,63 @@ public class VIPCommand implements CommandExecutor {
                 target.damage(0, strike);
                 target.getWorld().playSound(target.getLocation(), "entity.lightning.impact", 2f, 0.5f);
                 commandSender.sendMessage("§e玩家" + target.getName() + "受到了" +  vip.getLevel().toString() + "§e玩家" + commandSender.getName() + "的电击！");
-                Cooling.cooling(player, "VIP电击", 30 - vip.getLevel().getGrade() * 10L, "VIP电击剩余冷却时间：%s%S");
+                Cooling.cooling(player, "VIP电击", 40 - vip.getLevel().getGrade() * 10L, "VIP电击剩余冷却时间：%s%S");
+            break;
+            case "伪装":
+                if (args.length < 2){
+                    commandSender.sendMessage("§c用法/vip 伪装 伪装类型");
+                    commandSender.sendMessage("§c伪装类型请查阅：https://minecraft.fandom.com/zh/wiki/Java%E7%89%88%E6%95%B0%E6%8D%AE%E5%80%BC/%E6%89%81%E5%B9%B3%E5%8C%96%E5%89%8D/%E5%AE%9E%E4%BD%93ID");
+                    return true;
+                }
+                if (player == null || Cooling.isCooling(player, "VIP生物伪装")) {
+                    return true;
+                }
+                playerInfo = PlayerConfig.getPlayerConfig(player).getPlayerInfo();
+                vip = playerInfo.getVipStatus();
+                if (vip.compareTo(PlayerInfo.VIP.Level.VIP) < 0){
+                    commandSender.sendMessage("§c你没有VIP权益！");
+                    return true;
+                }
+                if (vip.compareTo(PlayerInfo.VIP.Level.MVIP) < 0){
+                    commandSender.sendMessage("§c你的VIP等级不足，你至少需要MVIP才可以伪装！");
+                    return true;
+                }
+                if (Game.rpgWorlds.contains(player.getWorld().getName())) {
+                    commandSender.sendMessage("§cRPG世界不可以伪装！");
+                    return true;
+                }
+                DisguiseType disguiseType;
+                try {
+                    disguiseType = DisguiseType.valueOf(args[1].toUpperCase());
+                } catch (Throwable e) {
+                    commandSender.sendMessage("§c§l类型" + args[1] + "不存在！");
+                    commandSender.sendMessage("§c§l支持的类型有：");
+                    StringBuilder message = new StringBuilder("§c");
+                    int newLine = 0;
+                    for (DisguiseType value : DisguiseType.values()) {
+                        message.append(value.getEntityType().getName() + ", ");
+                        if (newLine++ > 10){
+                            newLine = 0;
+                            message.append("\n");
+                        }
+                    }
+                    commandSender.sendMessage(message.substring(0, message.length() - 2));
+                    return true;
+                }
+                Disguise entity;
+                if (disguiseType.isMob()) {
+                    entity = new MobDisguise(disguiseType);
+                }else if (disguiseType.isPlayer()){
+                    Disguise disguise = DisguiseAPI.getDisguise(player);
+                    if (disguise != null)disguise.stopDisguise();
+                    commandSender.sendMessage("§a取消伪装！");
+                    return true;
+                }else {
+                    entity = new MiscDisguise(disguiseType);
+                }
+                DisguiseAPI.disguiseEntity(player, entity);
+                commandSender.sendMessage("§a伪装成功！输入§d/vip 伪装 player§a来取消伪装");
+                Cooling.cooling(player, "VIP生物伪装", 10, "VIP生物伪装：%s%S");
             break;
         }
         return true;
