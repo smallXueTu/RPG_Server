@@ -29,10 +29,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -45,6 +42,7 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -96,8 +94,24 @@ public class AllListener implements Listener {
         if (event.getDamage(EntityDamageEvent.DamageModifier.HARD_HAT) != 0)
             event.setDamage(EntityDamageEvent.DamageModifier.HARD_HAT, 0);
         Entity entity = event.getEntity();
-        if (event.getDamager() instanceof Player){
-            Player damagerPlayer = ((Player) event.getDamager()).getPlayer();
+        Entity damager = event.getDamager();
+        if (damager instanceof Arrow){
+            ProjectileSource shooter = ((Arrow) damager).getShooter();
+            if (shooter instanceof Player){
+                damager = ((Player) shooter);
+            }
+        }
+        if (damager instanceof Player){
+            Player damagerPlayer = ((Player) damager).getPlayer();
+            ItemStack itemInHand = damagerPlayer.getItemInHand();
+            Material type = itemInHand.getType();
+            if (type == Material.BOW){
+                LTItem ltItems = Utils.getLTItems(itemInHand);
+                System.out.println(event.getCause());
+                if (ltItems != null && event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK){
+                    return;
+                }
+            }
             double originalDamage = ((CraftPlayer) damagerPlayer).getHandle().getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).getValue();
             PlayerAttribute damagerAttribute = PlayerAttribute.getPlayerAttribute(damagerPlayer);
             //设置伤害
@@ -110,8 +124,7 @@ public class AllListener implements Listener {
                 }
                 event.setDamage(v);
             }
-            ItemStack inHand = damagerPlayer.getItemInHand();
-            NBTTagCompound nbt = ItemUtils.getNBT(inHand);
+            NBTTagCompound nbt = ItemUtils.getNBT(itemInHand);
             LTItem ltItem = Utils.getLTItems(nbt);
             if (ltItem != null && ltItem.binding()) {
                 if (!ItemUtils.canUse(nbt, damagerPlayer)){
@@ -142,10 +155,24 @@ public class AllListener implements Listener {
     public void onDamageByEntityHIGHEST(EntityDamageByEntityEvent event){
         Entity entity = event.getEntity();
         Entity damager = event.getDamager();
+        if (damager instanceof Arrow){
+            ProjectileSource shooter = ((Arrow) damager).getShooter();
+            if (shooter instanceof Player){
+                damager = ((Player) shooter);
+            }
+        }
         Player damagerPlayer = null;
         PlayerAttribute playerAttribute = null;
-        if (event.getDamager() instanceof Player){
-            damagerPlayer = ((Player) event.getDamager()).getPlayer();
+        if (damager instanceof Player){
+            damagerPlayer = ((Player) damager).getPlayer();
+            ItemStack itemInHand = damagerPlayer.getItemInHand();
+            Material type = itemInHand.getType();
+            if (type == Material.BOW){
+                LTItem ltItems = Utils.getLTItems(itemInHand);
+                if (ltItems != null && event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK){
+                    return;
+                }
+            }
             playerAttribute = PlayerAttribute.getPlayerAttribute(damagerPlayer);
             //设置燃烧
             entity.setFireTicks((int) playerAttribute.getBurning(entity) * 20);
@@ -188,10 +215,11 @@ public class AllListener implements Listener {
                     ((CraftLivingEntity)damager).getHandle().damageEntity(DamageSource.MAGIC, (float) damage);
                 }
             }
+            Entity finalDamager = damager;
             entityAttribute.getInjuredSkill(damager).forEach((skill, probability) -> {
                 if (MathUtils.ifAdopt(probability / 100)){
                     List<Entity> targets = new ArrayList<>();
-                    targets.add(damager);
+                    targets.add(finalDamager);
                     PlayerUtils.castSkill(entityPlayer, skill, targets, event);
                 }
             });
@@ -209,8 +237,16 @@ public class AllListener implements Listener {
                 event.setDamage(event.getDamage() - event.getDamage() * MathUtils.getInjuryFreePercentage(armorValue));
             }
         }
-        if (event.getDamager() instanceof Player){
+        if (damager instanceof Player){
             assert playerAttribute != null;
+            ItemStack itemInHand = damagerPlayer.getItemInHand();
+            Material type = itemInHand.getType();
+            if (type == Material.BOW){
+                LTItem ltItems = Utils.getLTItems(itemInHand);
+                if (ltItems != null && event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK){
+                    return;
+                }
+            }
             //最终伤害
             double damage = event.getDamage();
             //吸血和恢复生命值
