@@ -13,10 +13,10 @@ NPC_options:
     pointer: 'reply2'
     events: ''
   'collect':
-    text: '你去收集一些铁原矿石吧，打开菜单去资源挖30个吧。'
+    text: '你去收集一些铁原矿石吧，打开菜单去资源挖2个吧。'
     conditions: ''
     pointer: 'reply3'
-    events: '添加采铁矿石标签,采30块铁矿石,删除找巴克门中标签'
+    events: '添加采铁矿石标签,采2块铁矿石,删除找巴克门中标签'
   'encourage':
     text: '你不去采矿石我也很难帮你做武器...'
     conditions: '采铁矿石,!拥有30块铁矿石'
@@ -24,7 +24,7 @@ NPC_options:
     events: ''
   'making':
     text: '好样的，我现在就给你做！'
-    conditions: '采铁矿石,拥有30块铁矿石'
+    conditions: '采铁矿石,拥有2块铁矿石'
     pointer: 'reply4'
     events: ''
   'completed':
