@@ -55,6 +55,7 @@ public class EntityUtils {
      * 范围恢复
      */
     public static void rangeRecovery(Location location, double range, int amount){
+        if (amount < 1)return;
         Collection<Entity> entities = location.getWorld().getNearbyEntities(location, range, range, range);
         for (Entity entity : entities) {
             if (entity instanceof Player) ((CraftPlayer)entity).getHandle().heal(amount);

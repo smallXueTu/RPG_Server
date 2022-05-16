@@ -251,7 +251,7 @@ public class AllListener implements Listener {
             double damage = event.getDamage();
             //吸血和恢复生命值
             double recoveryHealth = playerAttribute.getAttackRecovery(entity) + damage * playerAttribute.getSuckingBlood(entity);
-            ((CraftPlayer)damagerPlayer).getHandle().heal((float) recoveryHealth);
+            if (recoveryHealth >= 1)((CraftPlayer)damagerPlayer).getHandle().heal((float) recoveryHealth);
             EntityUtils.rangeRecovery(damagerPlayer.getLocation(), 5, playerAttribute.getGroupGyrus());
             Player finalDamagerPlayer = damagerPlayer;
             playerAttribute.getAttackSkill(entity).forEach((skill, probability) -> {
@@ -259,7 +259,6 @@ public class AllListener implements Listener {
                     List<Entity> targets = new ArrayList<>();
                     targets.add(entity);
                     PlayerUtils.castSkill(finalDamagerPlayer, skill, targets, event);
-
                 }
             });
             TriggerAction.onAttack(damagerPlayer, event);
