@@ -1,0 +1,28 @@
+#是否使用sql
+useSql: false
+MYSQL:
+  Table: "armourers"
+  Host: "127.0.0.1"
+  Port: "3306"
+  Database: "database"
+  Users: "root"
+  Password: "root"
+
+#时装栏的文字
+ServerName: "§6龙之时装"
+
+#更新实体时装时是否提示
+ShowSkinUpdate: true
+
+#拥有该lore的时装才可装备进时装槽
+SkinLore: "§6类型: §a时装皮肤"
+
+
+##玩家登陆事件后经过60tick (1秒=20tick) 后发送该玩家皮肤数据
+##设置太短可能导致玩家没进入服务器就发送，导致客户端没收到数据
+JoinDelay: 60
+
+##临时时装展示时间(秒)
+ShowTime: 30
+
+code: "woendan"
