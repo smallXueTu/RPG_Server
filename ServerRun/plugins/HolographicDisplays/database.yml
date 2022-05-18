@@ -121,3 +121,13 @@ armor-skin:
   lines:
   - ICON:leather_chestplate {ench:[{id:1,lvl:1}]}
   - '&u&l时装商店'
+wings_price:
+  location: world, -35.999, 22.000, 12.500
+  lines:
+  - '&u&l时装翅膀商店'
+  - '&a上架的六种翅膀300点券/只'
+hat_price:
+  location: world, -35.999, 22.000, 5.500
+  lines:
+  - '&u&l时装帽子商店'
+  - '&a上架的六种帽子300点券/顶'
