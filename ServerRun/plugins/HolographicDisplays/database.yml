@@ -112,7 +112,12 @@ ms:
 f3-info:
   location: RPG, 52.500, 76.000, 663.500
   lines:
-    - ICON:IRON_SWORD {ench:[{id:1,lvl:1}]}
-    - §a锻造副本 F3
-    - §d获取锻造材料。
-    - §d还有§e不稳定要素§d(是什么？)
+  - ICON:IRON_SWORD {ench:[{id:1,lvl:1}]}
+  - §a锻造副本 F3
+  - §d获取锻造材料。
+  - §d还有§e不稳定要素§d(是什么？)
+armor-skin:
+  location: world, -26.500, 23.000, 8.999
+  lines:
+  - ICON:leather_chestplate {ench:[{id:1,lvl:1}]}
+  - '&u&l时装商店'
