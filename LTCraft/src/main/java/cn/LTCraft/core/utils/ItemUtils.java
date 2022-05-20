@@ -263,6 +263,13 @@ public class ItemUtils {
         }
         return true;
     }
+    public static boolean sufficientItem(ItemStack itemStack, Player player) {
+        return sufficientItem(itemStack, clone(player.getInventory().getContents()));
+    }
+    public static boolean sufficientItem(ItemStack itemStack, ItemStack[] contents){
+        removeItem(contents, itemStack);
+        return itemStack.getAmount() <= 0;
+    }
 
     /**
      * 扣除物品
