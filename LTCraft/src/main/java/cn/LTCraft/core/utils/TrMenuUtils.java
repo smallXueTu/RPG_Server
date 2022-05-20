@@ -1,5 +1,7 @@
 package cn.LTCraft.core.utils;
 
+import cn.LTCraft.core.entityClass.ClutterItem;
+import cn.LTCraft.core.entityClass.Exchange;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import org.bukkit.entity.Player;
 
@@ -45,5 +47,12 @@ public class TrMenuUtils {
      */
     public boolean satisfyMMCondition(Player player, String condition){
         return PlayerUtils.satisfyMMCondition(player, condition);
+    }
+
+    /**
+     * 是否满足MM条件
+     */
+    public boolean hasItem(Player player, String item){
+        return ItemUtils.sufficientItem(ClutterItem.spawnClutterItem(item).generate(), player);
     }
 }

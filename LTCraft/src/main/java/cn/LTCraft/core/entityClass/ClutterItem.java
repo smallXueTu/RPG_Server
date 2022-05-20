@@ -19,6 +19,7 @@ import pl.betoncraft.betonquest.config.Config;
 import pl.betoncraft.betonquest.config.ConfigPackage;
 import pl.betoncraft.betonquest.item.QuestItem;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -265,22 +266,22 @@ public class ClutterItem {
      */
     public void decodeMinecraft(){
         try {
-        if (itemString.matches("[0-9]+|[0-9]+:[0-9]+")) {
+        if (itemString.matches("\\d+(:\\d+)?(:\\d+)?")) {
             String[] mI = itemString.split(":");
             itemStack = new ItemStack(Integer.parseInt(mI[0]), mI.length > 2 ? Integer.parseInt(mI[2]) : 1, mI.length > 1 ? Short.parseShort(mI[1]) : 0);
+            number = itemStack.getAmount();
         } else {
-            int count = 1;
+            number = 1;
             String itemString = this.itemString;
             if (itemString.contains(":")){
                 itemString = itemString.split(":")[0];
-                count = Integer.parseInt(this.itemString.split(":")[1]);
+                number = Integer.parseInt(this.itemString.split(":")[1]);
             }
             if (Material.getMaterial(itemString) != null) {
-                itemStack = new ItemStack(Material.getMaterial(itemString), count);
+                itemStack = new ItemStack(Material.getMaterial(itemString), number);
             }
         }
-        }catch (NumberFormatException e){
-            return;
+        }catch (NumberFormatException ignored){
         }
     }
 

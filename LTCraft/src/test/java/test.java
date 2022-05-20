@@ -6,11 +6,6 @@ import java.util.HashMap;
 public class test {
     private static boolean sign = false;
     public static void main(String[] args) {
-        HashMap<String, String> map = new HashMap<>();
-        if (sign){
-            map.put("test", "test");
-        }
-        String test = map.computeIfAbsent("test", k -> "test");
-        System.out.println(test);
+        System.out.println("111:1:1".matches("\\d+(:\\d+)?(:\\d+)?"));
     }
 }

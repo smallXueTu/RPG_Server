@@ -256,8 +256,7 @@ public class ItemUtils {
     }
     public static boolean sufficientItem(ItemStack[] itemStacks, ItemStack[] contents){
         for (ItemStack itemStack : itemStacks) {
-            removeItem(contents, itemStack);
-            if (itemStack.getAmount() > 0) {
+            if (removeItem(contents, itemStack) > 0) {
                 return false;
             }
         }
@@ -267,8 +266,7 @@ public class ItemUtils {
         return sufficientItem(itemStack, clone(player.getInventory().getContents()));
     }
     public static boolean sufficientItem(ItemStack itemStack, ItemStack[] contents){
-        removeItem(contents, itemStack);
-        return itemStack.getAmount() <= 0;
+        return removeItem(contents, itemStack) <= 0;
     }
 
     /**
