@@ -1,0 +1,319 @@
+Title: '§l方块商店'
+
+Title-Update: -1
+
+Layout:
+  - - '`羊毛``砖块``荧石``石英``石头``花岗岩``闪长岩``安山岩``圆石`'
+    - '`草方块``冰``雪``地狱岩``末地石``陶瓦``海晶石``沙子``红沙`'
+    - '`沙砾`        '
+    - '         '
+    - '       `上一页``下一页`'
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+    - '       `上一页``下一页`'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '羊毛':
+    display:
+      material: WHITE_WOOL
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '砖块':
+    display:
+      material: BRICK
+      amount: 64
+      name: "&a砖块"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 45:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '荧石':
+    display:
+      material: GLOWSTONE
+      amount: 64
+      name: "&a荧石"
+      lore:
+        - "&3<<&d300橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 300)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 89:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '石英':
+    display:
+      material: QUARTZ_BLOCK
+      amount: 64
+      name: "&a石英"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 300)'
+          actions:
+            - 'take-money: 300'
+            - 'GiveItemByID: 155:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '石头':
+    display:
+      material: STONE
+      amount: 64
+      name: "&a石头"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 1:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '花岗岩':
+    display:
+      material: '{"type":"STONE","data":1}'
+      amount: 64
+      name: "&a花岗岩"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 1:1:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '闪长岩':
+    display:
+      material: '{"type":"STONE","data":3}'
+      amount: 64
+      name: "&a闪长岩"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 1:3:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '安山岩':
+    display:
+      material: '{"type":"STONE","data":5}'
+      amount: 64
+      name: "&a安山岩"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 1:5:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '圆石':
+    display:
+      material: '4'
+      amount: 64
+      name: "&a圆石"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 4:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '草方块':
+    display:
+      material: '2'
+      amount: 64
+      name: "&a草方块"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 2:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '冰':
+    display:
+      material: '79'
+      amount: 64
+      name: "&a冰"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 79:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '雪':
+    display:
+      material: '80'
+      amount: 64
+      name: "&a雪"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 80:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '地狱岩':
+    display:
+      material: '87'
+      amount: 64
+      name: "&a地狱岩"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 87:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '末地石':
+    display:
+      material: '121'
+      amount: 64
+      name: "&a末地石"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 121:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '陶瓦':
+    display:
+      material: '172'
+      amount: 64
+      name: "&a陶瓦"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 172:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '海晶石':
+    display:
+      material: '168'
+      amount: 64
+      name: "&a海晶石"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 168:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '沙子':
+    display:
+      material: '12'
+      amount: 64
+      name: "&a沙子"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 12:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '红沙':
+    display:
+      material: '{"type":"SAND","data":1}'
+      amount: 64
+      name: "&a红沙"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 12:1:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '沙砾':
+    display:
+      material: 13
+      amount: 64
+      name: "&a红沙"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 13:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '下一页':
+    display:
+      material: 404
+      name: "&a下一页"
+    actions:
+      all: 'page: %trmenu_menu_next%'
+  '上一页':
+    display:
+      material: 356
+      name: "&a上一页"
+    actions:
+      all: 'page: %trmenu_menu_pre%'

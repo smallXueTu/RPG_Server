@@ -344,6 +344,13 @@
 金币:
   match: "§6金币"
   texture: "全局/金币.png"
+下一页:
+  match: "§a下一页"
+  texture: "全局/next_page.png"
+上一页:
+  match: "§a上一页"
+  texture: "全局/pre_page.png"
+#---------------------- 锻造 ----------------------
 熔炼石:
   match: "熔炼石"
   texture: "锻造/熔炼石.png"

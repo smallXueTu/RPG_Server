@@ -4,7 +4,7 @@ Title-Update: -1
 
 Layout:
   - - '# `RPG商店`     #'
-    - '#       #'
+    - '# `方块商店`     #'
     - '#       #'
     - '#       #'
     - '#       #'
@@ -49,3 +49,11 @@ Icons:
     actions:
       all:
         - 'open: RPGShop'
+  '方块商店':
+    display:
+      material: 45
+      name: "&e方块商店"
+      lore: "&3<<&e打开方块商店&3>>"
+    actions:
+      all:
+        - 'open: blockShop'

@@ -3,11 +3,11 @@ Title: '服务器出售商店'
 Title-Update: -1
 
 Layout:
-  - - '#       #'
-    - '#       #'
-    - '#       #'
-    - '#       #'
-    - '#       #'
+  - - '`木头``圆石`      '
+    - '`小麦``西瓜``甘蔗``胡萝卜``土豆``南瓜`   '
+    - '         '
+    - '         '
+    - '         '
 
 PlayerInventory:
   - - '         '
@@ -34,9 +34,116 @@ Events:
     - 'sound: BLOCK_CHEST_CLOSE-1-0'
 
 Icons:
-  '#':
+  '木头':
     display:
-      material: Pink Stained Glass Pane
-      name: "&d旁白君"
+      material: 17
+      amount: 64
+      name: "&a木头"
+      lore:
+        - "&3<<&d64个100橙币&3>>"
     actions:
-      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+      all:
+        - condition: 'js: LTCraftUtils.hasItem(player, "17:0:64")'
+          actions:
+            - 'give-money: 100'
+            - 'TakeItemByID: 17:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '圆石':
+    display:
+      material: COBBLESTONE
+      amount: 64
+      name: "&a圆石"
+      lore:
+        - "&3<<&d64个50橙币&3>>"
+    actions:
+      all:
+        - condition: 'js: LTCraftUtils.hasItem(player, "4:0:64")'
+          actions:
+            - 'give-money: 50'
+            - 'TakeItemByID: 4:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '小麦':
+    display:
+      material: 296
+      amount: 64
+      name: "&a小麦"
+      lore:
+        - "&3<<&d64个80橙币&3>>"
+    actions:
+      all:
+        - condition: 'js: LTCraftUtils.hasItem(player, "296:0:64")'
+          actions:
+            - 'give-money: 80'
+            - 'TakeItemByID: 296:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '甘蔗':
+    display:
+      material: 338
+      amount: 64
+      name: "&a甘蔗"
+      lore:
+        - "&3<<&d64个50橙币&3>>"
+    actions:
+      all:
+        - condition: 'js: LTCraftUtils.hasItem(player, "338:0:64")'
+          actions:
+            - 'give-money: 50'
+            - 'TakeItemByID: 338:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '西瓜':
+    display:
+      material: 360
+      amount: 64
+      name: "&a西瓜"
+      lore:
+        - "&3<<&d64个50橙币&3>>"
+    actions:
+      all:
+        - condition: 'LTCraftUtils.hasItem(player, "360:0:64")'
+          actions:
+            - 'give-money: 50'
+            - 'TakeItemByID: 360:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '南瓜':
+    display:
+      material: 86
+      amount: 64
+      name: "&a西瓜"
+      lore:
+        - "&3<<&d64个70橙币&3>>"
+    actions:
+      all:
+        - condition: 'LTCraftUtils.hasItem(player, "86:0:64")'
+          actions:
+            - 'give-money: 70'
+            - 'TakeItemByID: 86:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '胡萝卜':
+    display:
+      material: 391
+      amount: 64
+      name: "&a胡萝卜"
+      lore:
+        - "&3<<&d64个90橙币&3>>"
+    actions:
+      all:
+        - condition: 'js: LTCraftUtils.hasItem(player, "391:0:64")'
+          actions:
+            - 'give-money: 90'
+            - 'TakeItemByID: 391:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '土豆':
+    display:
+      material: 392
+      amount: 64
+      name: "&a土豆"
+      lore:
+        - "&3<<&d64个90橙币&3>>"
+    actions:
+      all:
+        - condition: 'js: LTCraftUtils.hasItem(player, "392:0:64")'
+          actions:
+            - 'give-money: 90'
+            - 'TakeItemByID: 392:0:64'
+            - 'GiveItemByID: 0:0:0'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
