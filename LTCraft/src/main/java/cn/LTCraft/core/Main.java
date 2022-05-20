@@ -10,7 +10,7 @@ import cn.LTCraft.core.hook.BQ.condition.*;
 import cn.LTCraft.core.commands.CommandLoader;
 import cn.LTCraft.core.dataBase.SQLManage;
 import cn.LTCraft.core.dataBase.SQLServer;
-import cn.LTCraft.core.hook.TrMenu.actions.TackGoldCoins;
+import cn.LTCraft.core.hook.TrMenu.actions.*;
 import cn.LTCraft.core.listener.*;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.game.Game;
@@ -18,9 +18,6 @@ import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.hook.papi.LTExpansion;
 import cn.LTCraft.core.task.ClientCheckTask;
 import cn.LTCraft.core.task.GarbageClear;
-import cn.LTCraft.core.hook.TrMenu.actions.GetClutterItem;
-import cn.LTCraft.core.hook.TrMenu.actions.LTExchange;
-import cn.LTCraft.core.hook.TrMenu.actions.OpenCoreGui;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.utils.FileUtil;
@@ -266,6 +263,7 @@ public class Main extends JavaPlugin {
         actionHandle.register(new GetClutterItem(actionHandle));
         actionHandle.register(new OpenCoreGui(actionHandle));
         actionHandle.register(new TackGoldCoins(actionHandle));
+        actionHandle.register(new GiveItemByID(actionHandle));
         Class<JavaScriptAgent> javaScriptAgentClass = JavaScriptAgent.class;
         try {
             Field bindings = javaScriptAgentClass.getDeclaredField("bindings");
