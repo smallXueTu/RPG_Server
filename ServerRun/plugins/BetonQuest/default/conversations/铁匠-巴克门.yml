@@ -19,7 +19,7 @@ NPC_options:
     events: '添加采铁矿石标签,采2块铁矿石,删除找巴克门中标签'
   'encourage':
     text: '你不去采矿石我也很难帮你做武器...'
-    conditions: '采铁矿石,!拥有30块铁矿石'
+    conditions: '采铁矿石,!拥有2块铁矿石'
     pointer: 'reply3'
     events: ''
   'making':
