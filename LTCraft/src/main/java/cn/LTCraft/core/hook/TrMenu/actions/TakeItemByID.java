@@ -30,6 +30,7 @@ public class TakeItemByID extends ActionBase {
         ItemStack[] invContents = inventory.getContents();
         ItemUtils.removeItem(invContents, clutterItem.generate());
         inventory.setContents(invContents);
+        //fixme 不会刷新玩家背包
         MenuSession.Companion.getSession(bukkitPlayer).playerItemSlots();
     }
 }
