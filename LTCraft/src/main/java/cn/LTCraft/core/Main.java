@@ -264,6 +264,7 @@ public class Main extends JavaPlugin {
         actionHandle.register(new OpenCoreGui(actionHandle));
         actionHandle.register(new TackGoldCoins(actionHandle));
         actionHandle.register(new GiveItemByID(actionHandle));
+        actionHandle.register(new TaskItemByID(actionHandle));
         Class<JavaScriptAgent> javaScriptAgentClass = JavaScriptAgent.class;
         try {
             Field bindings = javaScriptAgentClass.getDeclaredField("bindings");
