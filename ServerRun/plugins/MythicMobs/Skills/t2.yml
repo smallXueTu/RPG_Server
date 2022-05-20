@@ -62,7 +62,7 @@
     - effect:particles{c=#FF0000;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
 魔塔统治者冲击波-Hit:
   Skills:
-    - damage{a=12}
+    - damage{a=8}
     - Effect:explosion
 爆炸护盾:
   Cooldown: 30
@@ -91,7 +91,7 @@
     - delay 10
     - effect:particlesphere{c=#ffcc00;amount=400;radius=3.5} @SelfLocation{yoffset=1}
     - effect:explosion{y=1} @SelfLocation{yoffset=1}
-    - damage{a=18} @PIR{r=3.5}
+    - damage{a=10} @PIR{r=3.5}
     - setvariable{type=STRING;var=caster.hasShield;value="false";}
 护盾:
   Conditions:
