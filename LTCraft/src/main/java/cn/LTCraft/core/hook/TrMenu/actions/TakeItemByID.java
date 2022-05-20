@@ -2,7 +2,6 @@ package cn.LTCraft.core.hook.TrMenu.actions;
 
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.utils.ItemUtils;
-import cn.LTCraft.core.utils.PlayerUtils;
 import me.arasple.mc.trmenu.api.action.ActionHandle;
 import me.arasple.mc.trmenu.api.action.base.ActionBase;
 import me.arasple.mc.trmenu.api.action.base.ActionContents;
@@ -17,8 +16,8 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Created by Angel、 on 2022/5/20 18:31
  */
-public class TaskItemByID extends ActionBase {
-    public TaskItemByID(@NotNull ActionHandle handle) {
+public class TakeItemByID extends ActionBase {
+    public TakeItemByID(@NotNull ActionHandle handle) {
         super(handle);
     }
 
