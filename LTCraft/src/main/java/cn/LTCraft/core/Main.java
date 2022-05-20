@@ -136,6 +136,7 @@ public class Main extends JavaPlugin {
                     SmeltingFurnace.load(yamlConfiguration);
                 }
             }
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "trmenu reload");
         }, 1);
     }
 
