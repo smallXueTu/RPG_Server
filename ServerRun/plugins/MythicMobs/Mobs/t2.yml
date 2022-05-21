@@ -443,7 +443,7 @@
 地狱-地狱之主:
   Type: Skeleton
   Display: '&e【地狱】&6地狱之主'
-  Health: 600
+  Health: 500
   Damage: 6
   Equipment:
     - 地狱之镰:HAND
@@ -520,7 +520,7 @@
 地狱-地狱统治者:
   Type: Skeleton
   Display: '&e【地狱】&6地狱统治者'
-  Health: 800
+  Health: 600
   Damage: 6
   Equipment:
     - 地狱之镰:HAND
@@ -547,7 +547,7 @@
 BOSS-魔塔统治者-资格分身:
   Type: Skeleton
   Display: '&e【BOSS】&6魔塔统治者'
-  Health: 90000
+  Health: 1000
   Damage: 6
   DamageModifiers:
     - FIRE 0
@@ -581,7 +581,7 @@ BOSS-魔塔统治者-资格分身:
 BOSS-魔塔统治者:
   Type: Skeleton
   Display: '&e【BOSS】&6魔塔统治者'
-  Health: 1500
+  Health: 1200
   Damage: 10
   DamageModifiers:
     - FIRE 0
