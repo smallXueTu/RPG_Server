@@ -117,7 +117,7 @@ public class AllListener implements Listener {
             //设置伤害
             double p = Math.min(event.getDamage() / originalDamage, 1.2);
             double damage = damagerAttribute.getDamage(entity).getValue();
-            if (damage != -1){
+            if (damage > 1){
                 double v = damage * p;
                 if (MathUtils.ifAdopt(damagerAttribute.getCriticalRate(entity))){
                     v = damagerAttribute.getCritical(entity).getValue(v);
