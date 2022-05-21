@@ -794,7 +794,7 @@ BOSS-魔塔统治者:
 符文蜘蛛:
   Type: Spider
   Display: '&e【入门】&6符文蜘蛛'
-  Health: 800
+  Health: 80
   Damage: 4
   Options:
     FollowRange: 18
