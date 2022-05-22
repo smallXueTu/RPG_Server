@@ -266,6 +266,9 @@ public class Utils {
                     }
                 }
                 if (Cooling.isCooling(player, coolingGroup))return;
+                String base = ltItem.getType().getName() + ":" + ltItem.getName() + ":base";
+                if (Cooling.isCooling(player, base))return;
+                Cooling.cooling(player, base, 1);
                 String cmd;
                 int count = 1;
                 int number = 1;
