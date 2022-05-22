@@ -58,6 +58,9 @@ t3火焰粒子门3:
   Display: '&6魔藤树'
   Health: 300
   Damage: 10
+  AIGoalSelectors:
+    - clear
+    - meleeattack
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -139,6 +142,9 @@ t3火焰粒子门3:
   Type: Skeleton
   Display: '&6虚空寒晶鸟'
   Health: 600
+  AIGoalSelectors:
+    - clear
+    - meleeattack
   Damage: 15
   Options:
     FollowRange: 16
@@ -153,6 +159,9 @@ t3火焰粒子门3:
   Display: '&6寒晶凤凰'
   Health: 2000
   Damage: 15
+  AIGoalSelectors:
+    - clear
+    - meleeattack
   Options:
     FollowRange: 16
     MovementSpeed: 0.3

@@ -930,6 +930,9 @@ BOSS-魔塔统治者:
   Display: '&e【高级】&6恶火翼兽'
   Health: 150
   Damage: 10
+  AIGoalSelectors:
+    - clear
+    - meleeattack
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
@@ -947,6 +950,9 @@ BOSS-魔塔统治者:
   Display: '&e【高级】&6恶火兽'
   Health: 200
   Damage: 10
+  AIGoalSelectors:
+    - clear
+    - meleeattack
   Options:
     FollowRange: 18
     MovementSpeed: 0.3
