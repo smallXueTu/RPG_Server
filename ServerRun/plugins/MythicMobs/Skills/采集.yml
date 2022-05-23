@@ -2,37 +2,32 @@
   Cooldown: 2
   Skills:
     - actionmessage{m="开始采集<mob.name>"} @Trigger
-    - delay 5
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌&7&l▌▌▌▌▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
     - delay 2
+    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌&7&l▌▌▌▌▌▌▌▌▌&c&l]"} @Trigger
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌&7&l▌▌▌▌▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌&7&l▌▌▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌&7&l▌▌▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌&7&l▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌&7&l▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌&7&l▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌▌&7&l▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌▌▌&7&l▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>采集完成!"} @Trigger
     - sound{s=entity.arrow.hit_player} @SelfLocation
     - damage{amount=1000000} @Self
@@ -43,35 +38,30 @@
     - actionmessage{m="开始采集<mob.name>"} @Trigger
     - delay 3
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌&7&l▌▌▌▌▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌&7&l▌▌▌▌▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌&7&l▌▌▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌&7&l▌▌▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌&7&l▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌&7&l▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌&7&l▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌▌&7&l▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌▌▌&7&l▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 2
+    - delay 1
     - actionmessage{m="<mob.name>采集完成!"} @Trigger
     - sound{s=entity.arrow.hit_player} @SelfLocation
     - damage{amount=1000000} @Self
