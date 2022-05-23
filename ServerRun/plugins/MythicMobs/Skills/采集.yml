@@ -1,10 +1,7 @@
 收集西瓜:
-  Cooldown: 4
-  TargetConditions:
-    - hastag 采集 false
+  Cooldown: 2
   Skills:
     - actionmessage{m="开始采集<mob.name>"} @Trigger
-    - addtag{t=采集}
     - delay 5
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌&7&l▌▌▌▌▌▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
@@ -39,63 +36,11 @@
     - actionmessage{m="<mob.name>采集完成!"} @Trigger
     - sound{s=entity.arrow.hit_player} @SelfLocation
     - damage{amount=1000000} @Self
-    - removetag{t=采集}
     - remove @self
-收集铁矿石:
-  Cooldown: 10
-  TargetConditions:
-    - hastag 采集 false
-  Skills:
-    - actionmessage{m="开始采集<mob.name>"} @Trigger
-    - addtag{t=采集}
-    - delay 10
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌&7&l▌▌▌▌▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌&7&l▌▌▌▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌&7&l▌▌▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌&7&l▌▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌&7&l▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌&7&l▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌&7&l▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌▌&7&l▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌▌▌&7&l▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌▌▌▌▌▌▌▌▌▌&c&l]"} @Trigger
-    - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
-    - delay 3
-    - actionmessage{m="<mob.name>采集完成!"} @Trigger
-    - sound{s=entity.arrow.hit_player} @SelfLocation
-    - damage{amount=1000000} @Self
-    - removetag{t=采集}
-    - remove @self
-检测采集:
-  TargetConditions:
-    - hastag 采集 true
-  Skills:
-    - message{cooldown=4;m="&f*&c你正在采集中..."} @Trigger
 收集南瓜:
-  Cooldown: 4
-  TargetConditions:
-    - hastag 采集 false
+  Cooldown: 2
   Skills:
     - actionmessage{m="开始采集<mob.name>"} @Trigger
-    - addtag{t=采集}
     - delay 3
     - actionmessage{m="<mob.name>&6&l采集进度：&c&l[&f&l▌&7&l▌▌▌▌▌▌▌▌▌&c&l]"} @Trigger
     - sound{s=block.note.basedrum;p=0.5;volume=2} @PIR{r=10}
@@ -130,5 +75,4 @@
     - actionmessage{m="<mob.name>采集完成!"} @Trigger
     - sound{s=entity.arrow.hit_player} @SelfLocation
     - damage{amount=1000000} @Self
-    - removetag{t=采集}
     - remove @self

@@ -11,7 +11,6 @@
     BlockData: 0
     ShowName: true
   Skills:
-    - skill{s=检测采集} ~onInteract
     - skill{s=收集西瓜} ~onInteract
     - message{cooldown=4;m="&f*&c请使用右键进行采集哦"} ~onDamaged
   Options:
