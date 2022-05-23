@@ -148,12 +148,12 @@ public class Love extends JavaPlugin {
     }
     public static void setSex(Player player, Sex sex){
         PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
-        playerConfig.getConfig().set("伴侣", player);
+        playerConfig.getConfig().set("性别", sex.getName());
         sexs.put(player.getName(), sex);
     }
     public static void setSex(Player player, Sex sex, PlayerConfig playerConfig){
         if (playerConfig == null)playerConfig = PlayerConfig.getPlayerConfig(player);
-        playerConfig.getConfig().set("伴侣", player);
+        playerConfig.getConfig().set("性别", sex.getName());
         sexs.put(player.getName(), sex);
     }
     public static enum Sex{
