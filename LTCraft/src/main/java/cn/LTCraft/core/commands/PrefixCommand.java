@@ -1,6 +1,7 @@
 package cn.LTCraft.core.commands;
 
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.utils.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -52,6 +53,7 @@ public class PrefixCommand implements CommandExecutor {
         }
         plugin.getChat().setPlayerPrefix("zy", (OfflinePlayer)player, "[" + auxString + "§r]");
         plugin.getChat().setPlayerPrefix("world", (OfflinePlayer)player, "[" + auxString + "§r]");
+        PlayerUtils.updatePlayerDisplayName(player);
         commandSender.sendMessage("设置成功！");
         return true;
     }

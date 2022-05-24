@@ -29,6 +29,7 @@ import cn.ltcraft.teleport.Home;
 import cn.ltcraft.teleport.Teleport;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
+import com.sucy.skill.api.event.PlayerLevelUpEvent;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.Disguise;
@@ -72,8 +73,17 @@ public class PlayerListener  implements Listener {
      */
     @EventHandler
     public void onAccountChange(PlayerAccountChangeEvent event){
-        final Player player = event.getAccountData().getPlayer();
+        Player player = event.getAccountData().getPlayer();
         PlayerConfig.getPlayerConfig(player).updateClassAttConfig(event.getNewID());
+    }
+    /**
+     * 玩家职业更新事件
+     * @param event .
+     */
+    @EventHandler
+    public void onLevelChange(PlayerLevelUpEvent event){
+        Player player = event.getPlayerData().getPlayer();
+        PlayerUtils.updatePlayerDisplayName(player);
     }
     @EventHandler
     public void onJoinEvent(PlayerJoinEvent e){
@@ -93,6 +103,7 @@ public class PlayerListener  implements Listener {
         }
         Temp.onPlayerJoin(player);
         new PlayerConfig(player);
+        PlayerUtils.updatePlayerDisplayName(player);
         e.setJoinMessage(null);
     }
 

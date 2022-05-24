@@ -87,6 +87,7 @@ public class GlobalRefresh {
          */
         SQLServer sqlServer = plugin.getSQLServer();
         sqlServer.getConfiguration().addMapper(PlayerMapper.class);
+        PlayerUtils.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
     }
 
     public static long getTick() {

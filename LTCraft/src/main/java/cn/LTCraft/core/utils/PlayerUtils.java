@@ -7,6 +7,7 @@ import cn.LTCraft.core.game.skills.BaseSkill;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
+import cn.ltcraft.love.Love;
 import com.earth2me.essentials.Essentials;
 import com.earth2me.essentials.I18n;
 import com.earth2me.essentials.Kit;
@@ -18,10 +19,7 @@ import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
 import io.lumine.xikage.mythicmobs.skills.SkillCondition;
-import net.minecraft.server.v1_12_R1.ChatComponentText;
-import net.minecraft.server.v1_12_R1.ChatMessageType;
-import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
-import net.minecraft.server.v1_12_R1.PlayerConnection;
+import net.minecraft.server.v1_12_R1.*;
 import org.anjocaido.groupmanager.GroupManager;
 import org.anjocaido.groupmanager.data.Group;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
@@ -38,6 +36,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 import org.bukkit.util.Vector;
 import pl.betoncraft.betonquest.BetonQuest;
 import pl.betoncraft.betonquest.ConditionID;
@@ -45,6 +46,9 @@ import pl.betoncraft.betonquest.ObjectNotFoundException;
 import pl.betoncraft.betonquest.config.ConfigPackage;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
@@ -352,5 +356,24 @@ public class PlayerUtils {
      */
     public static boolean isLegitimateName(String name){
         return Pattern.matches("^\\w{3,}$", name);
+    }
+
+    public static Scoreboard scoreboard = null;
+    public static void updatePlayerDisplayName(Player player){
+        if (scoreboard == null)return;
+        int classLevel = getClassLevel(player);
+        Love.Sex sex = Love.getSex(player);
+        String prefix =  Main.getInstance().getChat().getPlayerPrefix(player).replace("&", "§");
+        String s = "§eLV." + classLevel + " §d" + sex.getName() + "§e";
+        Team team = scoreboard.getTeam(player.getName());
+        if (team == null) {
+            team = scoreboard.registerNewTeam(player.getName());
+        }
+        team.setPrefix(s);
+        team.setSuffix("§r" + prefix);
+        team.addEntry(player.getName());
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            onlinePlayer.setScoreboard(team.getScoreboard());
+        }
     }
 }

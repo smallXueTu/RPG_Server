@@ -3,6 +3,7 @@ package cn.ltcraft.love;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.task.PlayerClass;
+import cn.LTCraft.core.utils.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -150,11 +151,13 @@ public class Love extends JavaPlugin {
         PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
         playerConfig.getConfig().set("性别", sex.getName());
         sexs.put(player.getName(), sex);
+        PlayerUtils.updatePlayerDisplayName(player);
     }
     public static void setSex(Player player, Sex sex, PlayerConfig playerConfig){
         if (playerConfig == null)playerConfig = PlayerConfig.getPlayerConfig(player);
         playerConfig.getConfig().set("性别", sex.getName());
         sexs.put(player.getName(), sex);
+        PlayerUtils.updatePlayerDisplayName(player);
     }
     public static enum Sex{
         NONE("无性别", "ta", ""),
