@@ -33,9 +33,9 @@ NPC_options:
     pointer: '当然可以'
     events: ''
   '好':
-    text: '好的，怪物的战利品还挺有研究意义的，你每一种收集20种就行了！\n对了，这里的怪物凶猛，你可能需要把你的武器附魔一下。\n按下M找到锻造菜单，跟铁砧一样，附魔一下吧！'
+    text: '好的，怪物的战利品还挺有研究意义的，你每一种收集20种就行了！'
     conditions: ''
-    pointer: '马上'
+    pointer: '没问题'
     events: ''
 player_options:
   '什么情况':
