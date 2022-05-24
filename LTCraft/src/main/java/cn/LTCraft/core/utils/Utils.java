@@ -309,6 +309,10 @@ public class Utils {
 //        System.out.println(formatNumber(4.555660000111000, 10));
 //        System.out.println(arrayRandom(new Integer[]{111, 222, 333}));
         System.out.println(clearColor("&8PVE伤害:200 &|"));
+        Utils utils = new Utils();
+        utils.test(1f);
     }
-
+    public void test(float a){
+        System.out.println(a);
+    }
 }
