@@ -1,5 +1,5 @@
 quester: '接待员-琪琪'
-first: 'welcome,寻找翟纳若,encourage'
+first: '完成基本操作,welcome,寻找翟纳若,encourage'
 stop: 'false'
 NPC_options:
   'welcome':
@@ -13,9 +13,9 @@ NPC_options:
     pointer: 'reply2'
     events: ''
   'start':
-    text: '说怎么多也没用，不如先证明一下自己吧！\n是不是已经迫不及待了？'
+    text: '说怎么多也没用，先学习一些必备知识吧！'
     conditions: ''
-    pointer: 'reply3'
+    pointer: '当然可以'
     events: ''
   'prove':
     text: '你可以出去找下大将军\n他就是一个真正的勇士，看你能不能得到他的认可了。'
@@ -26,6 +26,11 @@ NPC_options:
     text: '你应该去找翟纳若的，按回车调出鼠标点击左上角"导航"开始导航。'
     conditions: '寻找翟纳若'
     pointer: 'reply6'
+    events: ''
+  '完成基本操作':
+    text: '太棒了，你已经掌握了基本操作！\n现在可以证明自己了！'
+    conditions: '完成基本操作'
+    pointer: 'reply3'
     events: ''
   encourage:
     text: '我相信你是个勇士，加油！'
@@ -48,6 +53,11 @@ player_options:
     conditions: ''
     pointer: 'prove'
     events: ''
+  '当然可以':
+    text: '当然可以！'
+    conditions: ''
+    pointer: ''
+    events: '传送到新手地皮'
   'reply4':
     text: '嗯，我一定会的！'
     conditions: ''
@@ -57,7 +67,7 @@ player_options:
     text: '好的！'
     conditions: ''
     pointer: ''
-    events: '添加被接待完成标签,添加寻找翟纳若标签,添加寻找翟纳若,两秒后呼出导航教程'
+    events: '添加被接待完成标签,添加寻找翟纳若标签,添加寻找翟纳若'
   '是的':
     text: '是的！'
     conditions: ''
