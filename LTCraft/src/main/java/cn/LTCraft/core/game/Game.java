@@ -559,7 +559,7 @@ public class Game {
                         }
                     }
                     if (ltItem instanceof AICLA && tick % 20 == 0){
-                        AICLA aicla = (AICLA) ltItem;
+                        AICLA aicla = cn.ltcraft.item.utils.Utils.calculationAttr(((AICLA) ltItem).clone(), nbt);
                         itemStack = cn.ltcraft.item.utils.Utils.updateNameAndLore(itemStack, aicla, aicla.getLore());
                         if (!itemStack.equals(inventory.getItem(i))) {
                             inventory.setItem(i, itemStack);
