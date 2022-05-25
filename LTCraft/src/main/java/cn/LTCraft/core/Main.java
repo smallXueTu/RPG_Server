@@ -26,6 +26,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.earth2me.essentials.Essentials;
+import com.intellectualcrafters.plot.api.PlotAPI;
 import me.arasple.mc.trmenu.TrMenu;
 import me.arasple.mc.trmenu.api.action.ActionHandle;
 import me.arasple.mc.trmenu.module.internal.script.js.JavaScriptAgent;
@@ -65,6 +66,7 @@ public class Main extends JavaPlugin {
     private LTCraftMessageHandler messageHandler;
     private Economy economy;
     private GroupManager groupManager;
+    private PlotAPI plotAPI;
     private static ProtocolManager protocolManager = null;
     private static List<PacketAdapter> adapters;
 
@@ -99,6 +101,7 @@ public class Main extends JavaPlugin {
         initEss();
         initTrMenu();
         initGM();
+        initPlot();
         initProtocol();
 
         this.messageHandler = new LTCraftMessageHandler();
@@ -240,6 +243,8 @@ public class Main extends JavaPlugin {
         BetonQuest.getInstance().registerObjectives("enchante", EnchantEObjective.class);
         BetonQuest.getInstance().registerObjectives("dropitemrange", DropItemRangeObjective.class);
         BetonQuest.getInstance().registerObjectives("wearornament", WearOrnamentObjective.class);
+        BetonQuest.getInstance().registerObjectives("world", WorldObjective.class);
+        BetonQuest.getInstance().registerObjectives("hasplot", hasPlotObjective.class);
 
         BetonQuest.getInstance().registerEvents("saveMainLine", SaveMainLineEvent.class);
         BetonQuest.getInstance().registerEvents("changeClass", ChangeClassEvent.class);
@@ -279,6 +284,15 @@ public class Main extends JavaPlugin {
     private void initGM(){
         groupManager = ((GroupManager)Bukkit.getPluginManager().getPlugin("GroupManager"));
     }
+
+    private void initPlot() {
+        plotAPI = new PlotAPI();
+    }
+
+    public PlotAPI getPlotAPI() {
+        return plotAPI;
+    }
+
     public void initProtocol(){
         protocolManager = ProtocolLibrary.getProtocolManager();
         adapters = new ArrayList<>();
