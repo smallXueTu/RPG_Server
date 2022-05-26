@@ -1,9 +1,6 @@
 package cn.LTCraft.core.hook.BQ.event;
 
-import cn.LTCraft.core.Main;
 import cn.LTCraft.core.utils.PlayerUtils;
-import com.earth2me.essentials.Kit;
-import com.earth2me.essentials.User;
 import org.bukkit.entity.Player;
 import pl.betoncraft.betonquest.Instruction;
 import pl.betoncraft.betonquest.InstructionParseException;
