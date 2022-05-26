@@ -860,7 +860,6 @@ public class SmeltingFurnace implements TickEntity {
         if (!closed){
             hologram.delete();
             if (!done){
-                ItemStack[] itemStacks = new ItemStack[inventory.size()];
                 try {
                     for (ItemStack itemStack : inventory) {
                         getChestInventory().addItem(itemStack);
