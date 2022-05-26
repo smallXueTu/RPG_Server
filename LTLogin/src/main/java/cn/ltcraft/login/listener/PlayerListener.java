@@ -94,6 +94,7 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         Login.playerStatus.remove(player.getName());
         Login.allowReceiveChat.remove(player.getName());
+        Login.errorCount.remove(player.getName());
         if (Login.playerStatus.get(player.getName()) == PlayerStatus.NORMAL) {
             PlayerUtils.sendActionMessage("§e" + player.getName() + "退出了游戏。");
         }
