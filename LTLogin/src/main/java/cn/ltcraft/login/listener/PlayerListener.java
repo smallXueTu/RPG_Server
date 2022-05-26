@@ -172,7 +172,8 @@ public class PlayerListener implements Listener {
                     }
                     if (Login.errorCount.containsKey(player.getName())){
                         if (Login.errorCount.get(player.getName()) >= 5){
-                            player.kickPlayer("§c多次密码错误！");
+                            Bukkit.getScheduler().runTask(Login.getInstance(), () ->
+                                    player.kickPlayer("§c多次密码错误！"));
                             event.setCancelled(true);
                             return;
                         }
@@ -183,13 +184,16 @@ public class PlayerListener implements Listener {
                 }
             break;
             case REGISTER:
+                if(message.startsWith("/")){
+                    Login.forceSendMessage(player, "§l§c注意，你输入的可能为命令，在此服务器你应该§d直接输入密码§c来的注册！");
+                }
                 if (playerInfo.getConfirmPassword()==null) {//玩家在第一步
                     String check = Utils.checkPassword(message);
                     if (!check.equals("true")){
                         Login.forceSendMessage(player, "§l§c"+check);
                     }else {
                         playerInfo.setConfirmPassword(message);
-                        Login.forceSendMessage(player, "§l§e请再输入一遍密码来确认~");
+                        Login.forceSendMessage(player, "§l§e请再输入一遍密码来确认~输入§dtop§e返回上一步");
                     }
                 }else{//再次验证玩家密码..
                     if (message.equals("top")){//回到上一步
