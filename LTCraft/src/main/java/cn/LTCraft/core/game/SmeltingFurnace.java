@@ -861,11 +861,10 @@ public class SmeltingFurnace implements TickEntity {
             hologram.delete();
             if (!done){
                 ItemStack[] itemStacks = new ItemStack[inventory.size()];
-                for (int i = 0; i < inventory.size(); i++) {
-                    itemStacks[i] = inventory.get(i);
-                }
                 try {
-                    setChest(itemStacks);
+                    for (ItemStack itemStack : inventory) {
+                        getChestInventory().addItem(itemStack);
+                    }
                 } catch (SmeltingFurnaceErrorException ignore) {
                     //箱子都没了 退什么？
                 }
