@@ -676,7 +676,7 @@ public class SmeltingFurnace implements TickEntity {
                     inventory.setResult(new ItemStack(Material.AIR));
                     if (!cooling)inventory.setSmelting(furnacesItemStack[0].clone());
                 }else if (!cooling && !Objects.equals(inventory.getSmelting(), furnacesItemStack[0])){
-                    if (state.getBurnTime() >= 1){
+                    if (state.getBurnTime() >= 1 && temperature > 10000){
                         fatalError = true;
                         throw new SmeltingFurnaceErrorException("熔炼过程熔炉被干扰！");
                     }else {
