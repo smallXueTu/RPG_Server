@@ -364,7 +364,8 @@ public class PlayerUtils {
         int classLevel = getClassLevel(player);
         Love.Sex sex = Love.getSex(player);
         String prefix =  Main.getInstance().getChat().getPlayerPrefix(player).replace("&", "§");
-        String s = "§eLV." + classLevel + " §d" + sex.getName() + "§e";
+        String sexStr = sex == Love.Sex.NONE?"":" §d" + sex.getName();
+        String s = "§eLV." + classLevel + sexStr + "§e";
         Team team = scoreboard.getTeam(player.getName());
         if (team == null) {
             team = scoreboard.registerNewTeam(player.getName());
