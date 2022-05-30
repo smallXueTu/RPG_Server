@@ -76,6 +76,14 @@ public class Game {
             this.add("RPG");
         }
     };
+    public static final List<String> mainLineWorlds = new ArrayList<String>() {
+        {
+            this.add("t1");
+            this.add("t2");
+            this.add("t3");
+            this.add("t4");
+        }
+    };
     public static final Map<String, String> worldNames = new HashMap<String, String>(){
         {
             put("zy", "zy");
