@@ -17,7 +17,7 @@ player_options:
     text: '我有，让我通过！'
     conditions: '拥有恶魔古堡通行证'
     pointer: ''
-    events: '拿走恶魔古堡通行证,传送到古堡第二层,尝试保存主线位置到T4进度4'
+    events: '拿走恶魔古堡通行证,传送到古堡第二层,尝试保存主线位置到T4进度4,添加毕业T4标签'
   '好吧':
     text: '好吧！'
     conditions: ''
