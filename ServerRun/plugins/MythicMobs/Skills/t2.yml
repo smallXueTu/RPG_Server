@@ -250,3 +250,14 @@
     - effect:sound{s=entity.player.attack.sweep;v=1;p=1} @Self
     - delay 1
     - effect:sound{s=entity.player.attack.sweep;v=1;p=1} @Self
+传送到T3:
+  TargetConditions:
+    - HasBQTag{t=default.接受翟纳若的任务2}
+  Skills:
+    - teleportto{c=-203,178,272;w=t2}
+传送T2失败传送到大将军身边:
+  TargetConditions:
+    - HasBQTag{t=default.接受翟纳若的任务2}<&csp>false
+  Skills:
+    - teleportto{c=27.5,20,6.5;w=world}
+    - message{m ="&c请先找大将军接任务再进入t2哦~"}
