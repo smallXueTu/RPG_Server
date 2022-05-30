@@ -250,7 +250,7 @@
     - effect:sound{s=entity.player.attack.sweep;v=1;p=1} @Self
     - delay 1
     - effect:sound{s=entity.player.attack.sweep;v=1;p=1} @Self
-传送到T3:
+传送到T2:
   TargetConditions:
     - HasBQTag{t=default.接受翟纳若的任务2}
   Skills:
