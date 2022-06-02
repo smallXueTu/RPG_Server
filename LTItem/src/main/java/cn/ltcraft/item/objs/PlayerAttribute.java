@@ -90,8 +90,8 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
                     if (equipmentAtt[i] != null)removeAttribute(equipmentAtt[i]);
                     equipment[i] = itemStack;
                     equipmentAtt[i] = null;
-                    if (itemStack != null)itemStack = itemStack.clone();
                     if (itemStack == null)continue;
+                    itemStack = itemStack.clone();
                     NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
                     boolean canUse = true;//是否有权限使用
                     LTItem ltItem = Utils.getLTItems(nbt);
@@ -112,7 +112,7 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
                         Armor armor = (Armor) ltItem;
                         armor = (Armor) Utils.calculationAttr(armor.clone(), nbt);
                         equipmentAtt[i] = armor;
-                        itemStack = Utils.updateNameAndLore(itemStack, armor, armor.getLore());
+                        itemStack = Utils.updateItem(itemStack, armor, armor.getLore());
                         addAttribute(equipmentAtt[i]);
                     }else if (ltItem instanceof ConfigurableLTItem){
                         AbstractAttribute attribute = null;
@@ -122,7 +122,7 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
                                 attribute = Utils.calculationAttr((AICLA) attribute.clone(), nbt);
                             }
                         }
-                        itemStack = Utils.updateNameAndLore(itemStack, ltItem instanceof AbstractAttribute?attribute:null, ((ConfigurableLTItem)ltItem).getLore());
+                        itemStack = Utils.updateItem(itemStack, ltItem instanceof AbstractAttribute?attribute:null, ((ConfigurableLTItem)ltItem).getLore());
                     }
                     if (!itemStack.equals(armorContents[i])) {
                         equipment[i] = itemStack;
@@ -176,7 +176,7 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
             BaseWeapon baseWeapon = (BaseWeapon) ltItem;
             baseWeapon = (BaseWeapon) Utils.calculationAttr(baseWeapon.clone(), nbt);
             handAtt = baseWeapon;
-            itemStack = Utils.updateNameAndLore(itemStack, baseWeapon, baseWeapon.getLore());
+            itemStack = Utils.updateItem(itemStack, baseWeapon, baseWeapon.getLore());
             addAttribute(handAtt);
         }else if (ltItem instanceof ConfigurableLTItem){
             AbstractAttribute attribute = null;
@@ -186,7 +186,7 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
                     attribute = Utils.calculationAttr((AICLA) attribute.clone(), nbt);
                 }
             }
-            itemStack = Utils.updateNameAndLore(itemStack, ltItem instanceof AbstractAttribute?attribute:null, ((ConfigurableLTItem)ltItem).getLore());
+            itemStack = Utils.updateItem(itemStack, ltItem instanceof AbstractAttribute?attribute:null, ((ConfigurableLTItem)ltItem).getLore());
         }
         if (!owner.getInventory().getItem(slot).equals(itemStack)) {
             hand = itemStack;

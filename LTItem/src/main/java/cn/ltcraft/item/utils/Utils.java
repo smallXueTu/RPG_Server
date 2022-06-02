@@ -160,7 +160,7 @@ public class Utils {
         if (configurableLTItems.getConfig().getBoolean("无限耐久"))itemMeta.setUnbreakable(true);
         itemStack.setItemMeta(itemMeta);
         if (configurableLTItems instanceof AbstractAttribute){
-            return updateNameAndLore(itemStack, (AbstractAttribute) configurableLTItems, configurableLTItems.getConfig().getStringList("说明"));
+            return updateItem(itemStack, (AbstractAttribute) configurableLTItems, configurableLTItems.getConfig().getStringList("说明"));
         }else {
             return itemStack;
         }
@@ -186,7 +186,7 @@ public class Utils {
      * @param lore 原本的lore
      * @return 已更新的
      */
-    public static ItemStack updateNameAndLore(ItemStack itemStack, AbstractAttribute abstractAttribute, List<String> lore){
+    public static ItemStack updateItem(ItemStack itemStack, AbstractAttribute abstractAttribute, List<String> lore){
         ItemMeta itemMeta = itemStack.getItemMeta();
         StringBuilder loreStrB = new StringBuilder();
         for (int i = 0; i < lore.size(); i++) {
@@ -207,10 +207,11 @@ public class Utils {
                 }
             }
         }
+        List<String> set = getSet(itemStack);
         if (abstractAttribute instanceof AICLA && (loreStr.contains("%maxSet%") || loreStr.contains("%set%"))){
             AICLA aicla = (AICLA) abstractAttribute;
             loreStr = loreStr.replace("%maxSet%", aicla.getMaxSet() + "");
-            loreStr = loreStr.replace("%set%", getSet(itemStack).size() + "");
+            loreStr = loreStr.replace("%set%", set.size() + "");
         }
         if (abstractAttribute instanceof ConfigurableLTItem && loreStr.contains("%quality%")){
             ConfigurableLTItem configurableLTItems = (ConfigurableLTItem) abstractAttribute;
@@ -226,6 +227,19 @@ public class Utils {
         List<String> list = Arrays.asList(loreStr.split("\n"));
         itemMeta.setLore(list);
         itemStack.setItemMeta(itemMeta);
+        /*
+         * 安装宝石
+         */
+        NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
+        for (String s : set) {
+            GemsStone gemstone = ItemObjs.getGemstone(s);
+            Object o = gemstone.generalInstallOn(itemStack, nbt);
+            if (o instanceof ItemStack){
+                itemStack = ((ItemStack) o);
+            }else if(o instanceof NBTTagCompound){
+                itemStack = ItemUtils.setNBT(itemStack, nbt);
+            }
+        }
         return itemStack.clone();
     }
 

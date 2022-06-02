@@ -3,20 +3,38 @@ package cn.ltcraft.item.items;
 import cn.LTCraft.core.entityClass.Additional;
 import cn.LTCraft.core.entityClass.RandomValue;
 import cn.LTCraft.core.utils.GameUtils;
+import cn.LTCraft.core.utils.ItemUtils;
 import cn.ltcraft.item.base.*;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
+import cn.ltcraft.item.items.gemsstones.*;
 import cn.ltcraft.item.utils.Utils;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.inventory.ItemStack;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class GemsStone extends AbstractAttribute implements ConfigurableLTItem {
+    private static Map<String, Class<? extends GemsStone>> gemsStones = new HashMap<>();
     public static void initItems(){
-
+        gemsStones.put("永恒水晶", EternalCrystal.class);
     }
     public static GemsStone get(MemoryConfiguration configuration){
+        if (gemsStones.containsKey(configuration.getString("名字"))){
+            Class<? extends GemsStone> aClass = gemsStones.get(configuration.getString("名字"));
+            Constructor<? extends GemsStone> constructor = null;
+            try {
+                constructor = aClass.getConstructor(MemoryConfiguration.class);
+                return constructor.newInstance(configuration);
+            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+                     InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+        }
         return new GemsStone(configuration);
     }
     private String name;
@@ -131,5 +149,39 @@ public class GemsStone extends AbstractAttribute implements ConfigurableLTItem {
     @Override
     public boolean binding() {
         return binding;
+    }
+
+    /**
+     * 为什么提供两个参数？
+     * 第一个参数已经包括了第二个参数，处理宝石逻辑 的时候 处理的代码块已经有NBT对象了
+     * 直接传递过来不用这里再去获取了
+     * @param itemStack 物品堆
+     * @param nbtTagCompound nbt
+     * @return 处理后的 如果返回null则不用处理
+     */
+    public Object generalInstallOn(ItemStack itemStack, NBTTagCompound nbtTagCompound){
+        Class<? extends GemsStone> aClass = this.getClass();
+        Class<?> superclass = aClass.getSuperclass();
+        if (superclass == GemsStone.class) {
+            NBTTagCompound nbt = installOn(nbtTagCompound);
+            if (nbtTagCompound != nbt){
+                return nbt;
+            }
+            return installOn(itemStack);
+        }
+        return null;
+    }
+    protected ItemStack installOn(ItemStack itemStack){
+        return itemStack;
+    }
+
+    /**
+     * 一个物品安装了它
+     * 用于子类处理逻辑
+     * @param nbtTagCompound nbt
+     * @return 安装完成后的
+     */
+    protected NBTTagCompound installOn(NBTTagCompound nbtTagCompound){
+        return nbtTagCompound;
     }
 }

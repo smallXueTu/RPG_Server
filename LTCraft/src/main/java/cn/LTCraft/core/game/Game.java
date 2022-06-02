@@ -491,7 +491,7 @@ public class Game {
                 stringMap.put("gemstones", list);
                 result = cn.ltcraft.item.utils.Utils.setStringMap(result, stringMap);
                 aicla = cn.ltcraft.item.utils.Utils.calculationAttr(aicla.clone(), result);
-                result = cn.ltcraft.item.utils.Utils.updateNameAndLore(result, aicla, aicla.getConfig().getStringList("说明"));
+                result = cn.ltcraft.item.utils.Utils.updateItem(result, aicla, aicla.getConfig().getStringList("说明"));
                 return result;
             }
         }else if (material != null && material.getType()  == Material.ENCHANTED_BOOK){
@@ -568,7 +568,7 @@ public class Game {
                     }
                     if (ltItem instanceof AICLA && tick % 20 == 0){
                         AICLA aicla = cn.ltcraft.item.utils.Utils.calculationAttr(((AICLA) ltItem).clone(), nbt);
-                        itemStack = cn.ltcraft.item.utils.Utils.updateNameAndLore(itemStack, aicla, aicla.getLore());
+                        itemStack = cn.ltcraft.item.utils.Utils.updateItem(itemStack, aicla, aicla.getLore());
                         if (!itemStack.equals(inventory.getItem(i))) {
                             inventory.setItem(i, itemStack);
                         }
