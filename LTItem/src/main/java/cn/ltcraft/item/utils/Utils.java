@@ -27,7 +27,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 public class Utils {
-    private static List<String> list = Arrays.asList("近战", "远程", "通用");
+    private static final List<String> list = Arrays.asList("近战", "远程", "通用");
 
     /**
      * 获取一个NBT内的json标签
