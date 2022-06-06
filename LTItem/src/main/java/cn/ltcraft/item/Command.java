@@ -1,6 +1,7 @@
 package cn.ltcraft.item;
 
 
+import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.items.*;
@@ -77,17 +78,26 @@ public class Command implements CommandExecutor {
                         }
                         LTItem ltItem = plugin.getItem(itemTypes, name);
                         if (ltItem == null) {
-                            player.sendMessage("§c找不到" + name);
+                            ClutterItem clutterItem = ClutterItem.spawnClutterItem(name);
+                            if (clutterItem.getItemString().equals("AIR")){
+                                player.sendMessage("§c找不到" + name);
+                            }else {
+                                ItemStack generate = clutterItem.generate(number);
+                                player.getInventory().addItem(generate);
+                                sender.sendMessage("§c在杂物中从" + clutterItem.getItemSource().toString() + "找到" + name + "×" + generate.getAmount());
+                                player.sendMessage("§c收到" + name + "×" + generate.getAmount());
+                            }
                             return true;
+                        }else {
+                            ItemStack itemStack;
+                            if (number > 1)
+                                itemStack = ltItem.generate(number);
+                            else
+                                itemStack = ltItem.getItemStack();
+                            player.getInventory().addItem(itemStack);
+                            sender.sendMessage("§c成功赐予玩家" + name + "×" + itemStack.getAmount());
+                            player.sendMessage("§c收到" + name + "×" + itemStack.getAmount());
                         }
-                        ItemStack itemStack;
-                        if (number > 1)
-                            itemStack = ltItem.generate(number);
-                        else
-                            itemStack = ltItem.getItemStack();
-                        player.getInventory().addItem(itemStack);
-                        sender.sendMessage("§c成功赐予玩家" + name + "×" + itemStack.getAmount());
-                        player.sendMessage("§c收到" + name + "×" + itemStack.getAmount());
                         break;
                     case "add":
                     case "a":
