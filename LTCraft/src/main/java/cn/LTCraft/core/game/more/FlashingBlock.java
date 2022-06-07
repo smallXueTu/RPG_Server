@@ -35,7 +35,7 @@ public class FlashingBlock implements TickEntity {
                 try {
                     Main.getProtocolManager().sendServerPacket(player, blockPacket, false);
                 } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
             }
         }else {
@@ -46,7 +46,7 @@ public class FlashingBlock implements TickEntity {
                 try {
                     Main.getProtocolManager().sendServerPacket(player, blockPacket, false);
                 } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
             }
         }
