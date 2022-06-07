@@ -363,6 +363,7 @@
     - skillapi-exp 13-18
     - ltitem 暗影之锤 1 0.1
     - ltitem 暗影胸甲 1 0.2
+    - ltitem 永恒水晶 1 0.3
 恶魔-武器缴械者:
   Type: Skeleton
   Display: '&e【恶魔】&6武器缴械者'
@@ -396,6 +397,7 @@
     - ltitem 风暴之主的短剑 1 0.1
     - ltitem 风暴者的短剑 1 0.16
     - ltitem 毁灭者的匕首 1 0.18
+    - ltitem 永恒水晶 1 0.3
 恶魔-装备缴械者:
   Type: Skeleton
   Display: '&e【恶魔】&6装备缴械者'
