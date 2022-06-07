@@ -21,10 +21,17 @@ public class ReflectionHelper {
     {
         try {
             return (T) findField(classToAccess, fieldName).get(instance);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return null;
+        }
+    }
+    public static <T, E> boolean setPrivateValue(Class<? extends E> classToAccess, EntityItem instance, String fieldName, Object value)
+    {
+        try {
+            findField(classToAccess, fieldName).set(instance, value);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }
