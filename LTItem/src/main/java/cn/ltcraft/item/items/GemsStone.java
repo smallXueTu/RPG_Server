@@ -22,6 +22,7 @@ public class GemsStone extends AbstractAttribute implements ConfigurableLTItem {
     private static Map<String, Class<? extends GemsStone>> gemsStones = new HashMap<>();
     public static void initItems(){
         gemsStones.put("永恒水晶", EternalCrystal.class);
+        gemsStones.put("高级永恒水晶", EternalCrystal.class);
     }
     public static GemsStone get(MemoryConfiguration configuration){
         if (gemsStones.containsKey(configuration.getString("名字"))){
