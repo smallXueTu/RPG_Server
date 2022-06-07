@@ -16,7 +16,7 @@
   match: "现币"
   texture: "t2/现币.png"
 永恒水晶:
-  match: "永恒水晶"
+  match: "§6永恒水晶"
   texture: "t2/永恒水晶.png"
 蜘蛛腿:
   match: "蜘蛛腿"
