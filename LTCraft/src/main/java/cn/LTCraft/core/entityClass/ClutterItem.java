@@ -110,19 +110,38 @@ public class ClutterItem {
     }
     public ItemStack generate(int count){
         if (itemSource == null)return null;
+        ItemStack result;
         switch (itemSource){
             case LTCraft:
-                return ltItem.generate(count);
+                if (itemStack == null){
+                    itemStack = ltItem.generate(count);
+                    itemStack.setAmount(number);
+                }
+                result = itemStack.clone();
+                result.setAmount(count);
+                return result;
             case BetonQuest:
-                return questItem.generate(count);
+                if (itemStack == null){
+                    itemStack = questItem.generate(count);
+                    itemStack.setAmount(number);
+                }
+                result = itemStack.clone();
+                result.setAmount(count);
+                return result;
             case Minecraft:
-                ItemStack clone = itemStack.clone();
-                clone.setAmount(count);
-                return clone;
+                result = itemStack.clone();
+                result.setAmount(count);
+                return result;
             case MythicMobs:
-                AbstractItemStack abstractItemStack = mythicItem.generateItemStack(count);
-                if (abstractItemStack == null) return null;
-                return ((BukkitItemStack) abstractItemStack).build();
+                if (itemStack == null){
+                    AbstractItemStack abstractItemStack = mythicItem.generateItemStack(count);
+                    if (abstractItemStack == null) return null;
+                    itemStack = ((BukkitItemStack) abstractItemStack).build();
+                    itemStack.setAmount(number);
+                }
+                result = itemStack.clone();
+                result.setAmount(count);
+                return result;
             default:
                 return null;
         }
