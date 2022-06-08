@@ -163,12 +163,13 @@ public class DailyLottery implements TickEntity, Listener {
             PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(clicker);
             YamlConfiguration config = playerConfig.getConfig();
             List<String> lotteryDrawn = config.getStringList("已抽奖");
-            String day = new Date().getDate() + "";
+            String day = Utils.getYyyyMMdd().format(new Date());
             if (!lotteryDrawn.contains(day)) {
                 Prize prize = prizes[Utils.getRandom().nextInt(prizes.length)];
                 org.bukkit.inventory.ItemStack generate = prize.clutterItem.generate();
                 clicker.getInventory().addItem(generate);
                 lotteryDrawn.add(day);
+                checkDate(lotteryDrawn);
                 config.set("已抽奖", lotteryDrawn);
                 clicker.sendTitle("§6§l运气不错,不抽到了：", "§d§l" + prize.name + "×" + generate.getAmount());
                 setSpray();
@@ -178,6 +179,22 @@ public class DailyLottery implements TickEntity, Listener {
                 ((CraftWorld) world).getHandle().createExplosion(((CraftEntity) event.getNPC().getEntity()).getHandle(), add.getX(), add.getY(), add.getZ(), 5, false, false);
                 EntityUtils.repel(clicker, event.getNPC().getEntity().getLocation(), 2, 10);
                 clicker.sendTitle("§6§l你今天已经抽过奖了~", "");
+            }
+        }
+    }
+
+    /**
+     * 月初清空上一个月的
+     * @param days 已签到的日期
+     */
+    public static void checkDate(List<String> days){
+        String format = Utils.getYyyyMM().format(new Date());
+        if (days.stream().filter(s -> s.startsWith(format)).count() == 1) {//本月第一次签到
+            Iterator<String> iterator = days.iterator();
+            while (iterator.hasNext()) {
+                if (days.size() > 1) {
+                    iterator.remove();
+                }
             }
         }
     }
