@@ -192,6 +192,7 @@ public class DailyLottery implements TickEntity, Listener {
         if (days.stream().filter(s -> s.startsWith(format)).count() == 1) {//本月第一次签到
             Iterator<String> iterator = days.iterator();
             while (iterator.hasNext()) {
+                iterator.next();
                 if (days.size() > 1) {
                     iterator.remove();
                 }
