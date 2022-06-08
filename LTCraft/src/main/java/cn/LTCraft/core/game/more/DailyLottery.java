@@ -5,6 +5,7 @@ import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
+import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.ReflectionHelper;
 import cn.LTCraft.core.utils.Utils;
 import com.comphenix.protocol.PacketType;
@@ -168,9 +169,10 @@ public class DailyLottery implements TickEntity, Listener {
                 config.set("已抽奖", lotteryDrawn);
                 setSpray();
             }else {
-                Location add = location.add(0, -1.5, 0);
+                Location add = location.clone().add(0, -1.5, 0);
                 World world = add.getWorld();
                 ((CraftWorld) world).getHandle().createExplosion(((CraftEntity) event.getNPC().getEntity()).getHandle(), add.getX(), add.getY(), add.getZ(), 5, false, false);
+                EntityUtils.repel(clicker.getPlayer(), event.getNPC().getEntity().getLocation(), 2, 10);
                 clicker.sendTitle("§6§l你今天已经抽过奖了~", "");
             }
         }
