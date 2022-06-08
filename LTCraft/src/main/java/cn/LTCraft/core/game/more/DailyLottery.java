@@ -11,10 +11,14 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import io.lumine.utils.config.file.YamlConfiguration;
 import net.citizensnpcs.api.event.NPCLeftClickEvent;
+import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -152,7 +156,7 @@ public class DailyLottery implements TickEntity, Listener {
         return 10;
     }
     @EventHandler
-    public void onNPCLeftClick(NPCLeftClickEvent event){
+    public void onNPCLeftClick(NPCRightClickEvent event){
         if (event.getNPC().getId() == 128){
             Player clicker = event.getClicker();
             PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(clicker);
@@ -164,6 +168,9 @@ public class DailyLottery implements TickEntity, Listener {
                 config.set("已抽奖", lotteryDrawn);
                 setSpray();
             }else {
+                Location add = location.add(0, -1.5, 0);
+                World world = add.getWorld();
+                ((CraftWorld) world).getHandle().createExplosion(((CraftEntity) event.getNPC().getEntity()).getHandle(), add.getX(), add.getY(), add.getZ(), 5, false, false);
                 clicker.sendTitle("§6§l你今天已经抽过奖了~", "");
             }
         }
