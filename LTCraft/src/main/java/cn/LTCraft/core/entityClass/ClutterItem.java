@@ -347,6 +347,7 @@ public class ClutterItem {
     }
 
     public ItemStack getItemStack() {
+        if (itemStack == null)generate();
         return itemStack;
     }
 
