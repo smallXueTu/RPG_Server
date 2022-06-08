@@ -1,38 +1,22 @@
 package cn.LTCraft.core.task;
 
-import cn.LTCraft.core.dataBase.mappers.PlayerMapper;
+import cn.LTCraft.core.Main;
 import cn.LTCraft.core.dataBase.SQLQueue;
 import cn.LTCraft.core.dataBase.SQLServer;
+import cn.LTCraft.core.dataBase.mappers.PlayerMapper;
 import cn.LTCraft.core.entityClass.PlayerState;
-import cn.LTCraft.core.Main;
-import cn.LTCraft.core.entityClass.MobSpawn;
 import cn.LTCraft.core.game.Game;
-import cn.LTCraft.core.game.SmeltingFurnace;
-import cn.LTCraft.core.game.SpawnManager;
-import cn.LTCraft.core.game.TargetOnlyMobsManager;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.game.skills.BaseSkill;
 import cn.LTCraft.core.other.Temp;
-import cn.LTCraft.core.utils.FileUtil;
 import cn.LTCraft.core.utils.PlayerUtils;
-import cn.LTCraft.core.utils.Utils;
 import cn.ltcraft.teleport.Teleport;
-import net.minecraft.server.v1_12_R1.EntityRabbit;
-import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import pl.betoncraft.betonquest.BetonQuest;
-import pl.betoncraft.betonquest.api.Objective;
-import pl.betoncraft.betonquest.utils.PlayerConverter;
 
-import java.io.File;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 public class GlobalRefresh {
     private static Main plugin = null;
