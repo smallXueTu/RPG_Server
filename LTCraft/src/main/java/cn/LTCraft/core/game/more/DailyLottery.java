@@ -2,17 +2,23 @@ package cn.LTCraft.core.game.more;
 
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.ClutterItem;
+import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.ReflectionHelper;
 import cn.LTCraft.core.utils.Utils;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
+import io.lumine.utils.config.file.YamlConfiguration;
+import net.citizensnpcs.api.event.NPCLeftClickEvent;
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -21,7 +27,7 @@ import java.util.*;
 /**
  * Created by Angel、 on 2022/6/7 8:39
  */
-public class DailyLottery implements TickEntity {
+public class DailyLottery implements TickEntity, Listener {
     private final Prize[] prizes = {
             new Prize(ClutterItem.spawnClutterItem("宝石:高级永恒水晶", ClutterItem.ItemSource.LTCraft), "高级永恒水晶"),
             new Prize(ClutterItem.spawnClutterItem("材料:中型生命药剂:10", ClutterItem.ItemSource.LTCraft), "中型生命药剂"),
@@ -75,6 +81,7 @@ public class DailyLottery implements TickEntity {
     }
     private DailyLottery(){
         GlobalRefresh.addTickEntity(this);
+        Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
     }
     @Override
     public boolean doTick(long tick) {
@@ -114,6 +121,7 @@ public class DailyLottery implements TickEntity {
                 }
                 items.put(id, 0);
             }
+            location.getWorld().playSound(location, Sound.ENTITY_BLAZE_SHOOT, 1, 1);
             if (sprayTick > 0)sprayTick--;
         }
         PacketContainer remove = Main.getProtocolManager().createPacket(PacketType.Play.Server.ENTITY_DESTROY);
@@ -142,6 +150,23 @@ public class DailyLottery implements TickEntity {
     @Override
     public int getTickRate() {
         return 10;
+    }
+    @EventHandler
+    public void onNPCLeftClick(NPCLeftClickEvent event){
+        if (event.getNPC().getId() == 128){
+            Player clicker = event.getClicker();
+            PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(clicker);
+            YamlConfiguration config = playerConfig.getConfig();
+            List<String> lotteryDrawn = config.getStringList("已抽奖");
+            String day = new Date().getDate() + "";
+            if (!lotteryDrawn.contains(day)) {
+                lotteryDrawn.add(day);
+                config.set("已抽奖", lotteryDrawn);
+                setSpray();
+            }else {
+                clicker.sendTitle("§6§l你今天已经抽过奖了~", "");
+            }
+        }
     }
     public void setSpray(){
         sprayTick = 10;
