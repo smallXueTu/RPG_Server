@@ -114,7 +114,7 @@ public class DailyLottery implements TickEntity, Listener {
                 for (Map.Entry<DataWatcherObject<?>, Object> dataWatcherObjectObjectEntry : dataWatcherObjectObjectMap.entrySet()) {
                     dataWatcher.register(dataWatcherObjectObjectEntry.getKey(), dataWatcherObjectObjectEntry.getValue());
                 }
-                dataWatcher.register(dataWatcherObject, CraftItemStack.asNMSCopy(clutterItem.generate()));
+                dataWatcher.register(dataWatcherObject, CraftItemStack.asNMSCopy(clutterItem.getItemStack()));
                 metadata.getSpecificModifier(List.class).write(0, dataWatcher.c());
                 for (Player onlinePlayer : location.getWorld().getPlayers()) {
                     try {
@@ -165,14 +165,18 @@ public class DailyLottery implements TickEntity, Listener {
             List<String> lotteryDrawn = config.getStringList("已抽奖");
             String day = new Date().getDate() + "";
             if (!lotteryDrawn.contains(day)) {
+                Prize prize = prizes[Utils.getRandom().nextInt(prizes.length)];
+                org.bukkit.inventory.ItemStack generate = prize.clutterItem.generate();
+                clicker.getInventory().addItem(generate);
                 lotteryDrawn.add(day);
                 config.set("已抽奖", lotteryDrawn);
+                clicker.sendTitle("§6§l运气不错,不抽到了：", "§d§l" + prize.name + "×" + generate.getAmount());
                 setSpray();
             }else {
                 Location add = location.clone().add(0, -1.5, 0);
                 World world = add.getWorld();
                 ((CraftWorld) world).getHandle().createExplosion(((CraftEntity) event.getNPC().getEntity()).getHandle(), add.getX(), add.getY(), add.getZ(), 5, false, false);
-                EntityUtils.repel(clicker.getPlayer(), event.getNPC().getEntity().getLocation(), 2, 10);
+                EntityUtils.repel(clicker, event.getNPC().getEntity().getLocation(), 2, 10);
                 clicker.sendTitle("§6§l你今天已经抽过奖了~", "");
             }
         }
