@@ -17,15 +17,31 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class Utils {
     private static Random random = new Random();
     private static Gson gson = new Gson();
+    private static SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat yyyyMM = new SimpleDateFormat("yyyy-MM");
 
     public static Random getRandom() {
         return random;
+    }
+
+    public static SimpleDateFormat getYyyyMM() {
+        return yyyyMM;
+    }
+
+    public static SimpleDateFormat getYyyyMMdd() {
+        return yyyyMMdd;
+    }
+
+    public static SimpleDateFormat getYyyyMMddHHmmss() {
+        return yyyyMMddHHmmss;
     }
 
     public static Gson getGson() {
