@@ -113,7 +113,7 @@ public class ClutterItem {
         ItemStack result;
         switch (itemSource){
             case LTCraft:
-                if (itemStack == null){
+                if (itemStack == null || itemStack.getType() == Material.AIR){
                     itemStack = ltItem.generate(count);
                     itemStack.setAmount(number);
                 }
@@ -121,7 +121,7 @@ public class ClutterItem {
                 result.setAmount(count);
                 return result;
             case BetonQuest:
-                if (itemStack == null){
+                if (itemStack == null || itemStack.getType() == Material.AIR){
                     itemStack = questItem.generate(count);
                     itemStack.setAmount(number);
                 }
@@ -133,7 +133,7 @@ public class ClutterItem {
                 result.setAmount(count);
                 return result;
             case MythicMobs:
-                if (itemStack == null){
+                if (itemStack == null || itemStack.getType() == Material.AIR){
                     AbstractItemStack abstractItemStack = mythicItem.generateItemStack(count);
                     if (abstractItemStack == null) return null;
                     itemStack = ((BukkitItemStack) abstractItemStack).build();
@@ -347,7 +347,7 @@ public class ClutterItem {
     }
 
     public ItemStack getItemStack() {
-        if (itemStack == null)generate();
+        if (itemStack == null || itemStack.getType() == Material.AIR)generate();
         return itemStack;
     }
 
