@@ -7,10 +7,13 @@ import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.other.exceptions.BlockCeilingException;
 import cn.LTCraft.core.task.PlayerClass;
+import cn.LTCraft.core.utils.DragonCoreUtil;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
 import cn.LTCraft.core.utils.Utils;
 import cn.ltcraft.item.base.AICLA;
+import cn.ltcraft.item.base.AbstractAttribute;
+import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.base.interfaces.actions.TickItem;
 import cn.ltcraft.item.items.Armor;
@@ -541,7 +544,7 @@ public class Game {
                 }
             }while (true);
             for (Player player : onlinePlayers) {
-                PlayerInventory inventory = player.getInventory();
+                final PlayerInventory inventory = player.getInventory();
                 ItemStack[] itemStacks;
                 do {
                     try {
@@ -566,11 +569,39 @@ public class Game {
                             continue;
                         }
                     }
-                    if (ltItem instanceof AICLA && tick % 20 == 0){
-                        AICLA aicla = cn.ltcraft.item.utils.Utils.calculationAttr(((AICLA) ltItem).clone(), nbt);
-                        itemStack = cn.ltcraft.item.utils.Utils.updateItem(itemStack, aicla, aicla.getLore());
-                        if (!itemStack.equals(inventory.getItem(i))) {
-                            inventory.setItem(i, itemStack);
+                    if (tick % 20 == 0 && ltItem != null){
+                        if (ltItem instanceof AICLA){
+                            AICLA aicla = cn.ltcraft.item.utils.Utils.calculationAttr(((AICLA) ltItem).clone(), nbt);
+                            itemStack = cn.ltcraft.item.utils.Utils.updateItem(itemStack.clone(), aicla, aicla.getLore());
+                        }else if (ltItem instanceof AbstractAttribute){
+                            AbstractAttribute abstractAttribute = (AbstractAttribute) ltItem;
+                            ConfigurableLTItem configurableLTItem = (ConfigurableLTItem) ltItem;
+                            itemStack = cn.ltcraft.item.utils.Utils.updateItem(itemStack.clone(), abstractAttribute, configurableLTItem.getLore());
+                        }else {
+                            itemStack = ltItem.generate(itemStack.getAmount());
+                        }
+                        if (i < 41 && !inventory.getItem(i).isSimilar(itemStack)) {
+                            int finalI1 = i;
+                            ItemStack finalItemStack = itemStack;
+                            ItemActions.add(() -> {
+                                if (!inventory.getItem(finalI1).isSimilar(finalItemStack)) {
+                                    inventory.setItem(finalI1, finalItemStack);
+                                }
+                            });
+                        }else if (i >= 41){
+                            ItemStack ornament = PlayerAttribute.getPlayerAttribute(player).getOrnaments()[i - 41];
+                            if (!ornament.isSimilar(itemStack)) {
+                                int finalI1 = i;
+                                ItemStack finalItemStack = itemStack;
+                                ItemActions.add(() -> {
+                                    ItemStack or = PlayerAttribute.getPlayerAttribute(player).getOrnaments()[finalI1 - 41];
+                                    if (or != null && !or.isSimilar(finalItemStack)) {
+                                        DragonCoreUtil.setItemStack(player, "饰品槽位" + (finalI1 - 40), finalItemStack, (is) -> {
+                                            PlayerAttribute.getPlayerAttribute(player).onChangeOrnament(finalI1 - 40);
+                                        }, true);
+                                    }
+                                });
+                            }
                         }
                     }
                     if (ltItem instanceof TickItem) {
