@@ -6,12 +6,13 @@ import eos.moe.dragoncore.database.IDataBase;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 public class DragonCoreUtil {
-    public final static Set<UUID> saving = new HashSet();
+    public final static Set<UUID> saving = Collections.synchronizedSet(new HashSet<>());
 
     public static void setItemStack(final Player player, String slotIdentity, final ItemStack itemStack, DragonDataBaseCallback dragonDataBaseCallback) {
         setItemStack(player, slotIdentity, itemStack, dragonDataBaseCallback, false);
