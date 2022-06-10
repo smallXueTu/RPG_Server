@@ -584,7 +584,7 @@ public class Game {
                             int finalI1 = i;
                             ItemStack finalItemStack = itemStack;
                             ItemActions.add(() -> {
-                                if (!inventory.getItem(finalI1).isSimilar(finalItemStack)) {
+                                if (inventory.getItem(finalI1) != null && inventory.getItem(finalI1).isSimilar(finalItemStack)) {
                                     inventory.setItem(finalI1, finalItemStack);
                                 }
                             });
