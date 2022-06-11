@@ -13,7 +13,7 @@ t4火焰粒子门1:
   Type: Skeleton
   Display: '&6恶魔古堡守护者'
   Health: 5000
-  Damage: 20
+  Damage: 12
   Equipment:
     - 暗魔:HAND
   Disguise:
