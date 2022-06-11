@@ -174,7 +174,7 @@ t3火焰粒子门3:
   Type: PIG_ZOMBIE
   Display: '&6虚空金虎'
   Health: 700
-  Damage: 25
+  Damage: 15
   Options:
     FollowRange: 16
     MovementSpeed: 0.2
