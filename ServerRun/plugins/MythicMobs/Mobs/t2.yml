@@ -736,7 +736,7 @@ BOSS-魔塔统治者:
   Type: Skeleton
   Display: '&e【元素】&6元素猎人'
   Health: 300
-  Damage: 6
+  Damage: 3
   Equipment:
     - 元素之刃:HAND
   DamageModifiers:

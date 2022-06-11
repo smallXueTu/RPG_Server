@@ -137,7 +137,7 @@
     - effect:particles{c=#ffff66;amount=20;speed=0.1;hS=0.2;vS=0.2} @origin
 元素猎人冲击波-Hit:
   Skills:
-    - damage{a=30}
+    - damage{a=10}
     - Effect:explosion
 白天死亡:
   Conditions:
