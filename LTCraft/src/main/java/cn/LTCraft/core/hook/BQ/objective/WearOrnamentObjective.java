@@ -27,7 +27,7 @@ public class WearOrnamentObjective extends Objective implements Listener {
     public void start() {
         taskID = Bukkit.getScheduler().runTaskTimer(BetonQuest.getInstance(), () -> {
             if (dataMap == null)return;
-            for (String playerID : dataMap.keySet()){
+            dataMap.keySet().forEach((playerID) -> {
                 Player player = PlayerConverter.getPlayer(playerID);
                 PlayerAttribute playerAttribute = PlayerAttribute.getPlayerAttribute(player);
                 Ornament[] ornamentsAtt = playerAttribute.getOrnamentsAtt();
@@ -38,7 +38,7 @@ public class WearOrnamentObjective extends Objective implements Listener {
                         break;
                     }
                 }
-            }
+            });
         }, 10, 10).getTaskId();
     }
 
