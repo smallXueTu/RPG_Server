@@ -4,9 +4,11 @@ import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.task.ClientCheckTask;
+import cn.LTCraft.core.task.LTCraftRestartRunnable;
 import cn.LTCraft.core.utils.ClientUtils;
 import cn.LTCraft.core.utils.FileUtil;
 import cn.LTCraft.core.utils.PlayerUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,6 +22,7 @@ import java.util.List;
 
 public class LTCoreCommand implements CommandExecutor {
     private final Main plugin;
+    protected LTCraftRestartRunnable restartRunnable = null;
     protected LTCoreCommand() {
         plugin = Main.getInstance();
         plugin.getCommand("lt").setExecutor(this);
@@ -51,6 +54,17 @@ public class LTCoreCommand implements CommandExecutor {
             case "reload":
                 plugin.getConfigOBJ().reload();
                 commandSender.sendMessage("§a重载成功！");
+                break;
+            case "重启":
+                restartRunnable = new LTCraftRestartRunnable(Integer.parseInt(args[1]));
+                Bukkit.getServer().broadcastMessage("§c§lLTCraft将在" + args[1] + "秒后进行重启!");
+                break;
+            case "取消重启":
+                if (restartRunnable != null){
+                    restartRunnable.cancel();
+                    restartRunnable = null;
+                    Bukkit.getServer().broadcastMessage("§c§l重启被取消！");
+                }
                 break;
             case "reset":
                 if (args.length<2){

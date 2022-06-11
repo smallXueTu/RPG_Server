@@ -1,18 +1,21 @@
 package cn.LTCraft.core.task;
 
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.utils.PlayerUtils;
+import org.bukkit.Bukkit;
 
 public class LTCraftRestartRunnable implements Runnable{
     private int time = 0;
-    private Main plugins = null;
+    private Main plugin = null;
+    private final int id;
 
     /**
      *
-     * @param time
      */
-    public LTCraftRestartRunnable(int time, Main plugins){
+    public LTCraftRestartRunnable(int time){
         this.time = time;
-        this.plugins = plugins;
+        plugin = Main.getInstance();
+        id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this, 20, 20);
     }
 
     /**
@@ -21,19 +24,17 @@ public class LTCraftRestartRunnable implements Runnable{
     @Override
     public void run() {
         if (time == 60){
-            plugins.getServer().getScheduler().scheduleSyncDelayedTask(plugins, new LTCraftRestartRunnable(30, plugins), 20*30);
-            plugins.getServer().broadcastMessage("&l&cLTCraft将在60秒后进行重启!");
+            plugin.getServer().broadcastMessage("§c§lLTCraft将在60秒后进行重启!");
+        }else if (time == 30){
+            plugin.getServer().broadcastMessage("§c§lLTCraft将在30秒后进行重启!");
+        }else if (time <= 10 && time > 0){
+            PlayerUtils.sendActionMessage("§c§lLTCraft将在" + time + "秒后进行重启!");
+        }else if (time == 0){
+            plugin.getServer().shutdown();
         }
-        if (time == 30){
-            plugins.getServer().getScheduler().scheduleSyncDelayedTask(plugins, new LTCraftRestartRunnable(10, plugins), 20*20);
-            plugins.getServer().broadcastMessage("&l&cLTCraft将在30秒后进行重启!");
-        }
-        if (time == 10){
-            plugins.getServer().getScheduler().scheduleSyncDelayedTask(plugins, new LTCraftRestartRunnable(0, plugins), 20*10);
-            plugins.getServer().broadcastMessage("&l&cLTCraft将在10秒后进行重启!");
-        }
-        if (time == 0){
-            plugins.getServer().shutdown();
-        }
+        time--;
+    }
+    public void cancel(){
+        Bukkit.getScheduler().cancelTask(id);
     }
 }
