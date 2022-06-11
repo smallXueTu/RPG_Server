@@ -106,7 +106,13 @@ public class PlayerListener  implements Listener {
         PlayerUtils.updatePlayerDisplayName(player);
         e.setJoinMessage(null);
     }
-
+    @EventHandler
+    public void onPreLogin(PlayerPreLoginEvent event){
+        if (!cn.LTCraft.core.utils.Utils.checkName(event.getName())){
+            event.setKickMessage("无效用户名:" + event.getName() + "。请使用英文数字和_组合");
+            event.setResult(PlayerPreLoginEvent.Result.KICK_OTHER);
+        }
+    }
     /**
      * 玩家重生
      * @param event .

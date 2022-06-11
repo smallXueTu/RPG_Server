@@ -121,6 +121,9 @@ public class Utils {
         }
         return false;
     }
+    public static boolean checkName(String name){
+        return Pattern.matches("^\\w+$", name);
+    }
 
     /**
      * 邮箱格式校验
@@ -324,9 +327,16 @@ public class Utils {
 //        System.out.println(formatNumber(4.555660000000, 10));
 //        System.out.println(formatNumber(4.555660000111000, 10));
 //        System.out.println(arrayRandom(new Integer[]{111, 222, 333}));
-        System.out.println(clearColor("&8PVE伤害:200 &|"));
-        Utils utils = new Utils();
-        utils.test(1f);
+//        System.out.println(clearColor("&8PVE伤害:200 &|"));
+//        Utils utils = new Utils();
+//        utils.test(1f);
+        System.out.println(checkName("哈哈哈"));
+        System.out.println(checkName("aaaa哈哈哈"));
+        System.out.println(checkName("aaaa哈哈哈aaa"));
+        System.out.println(checkName("哈哈哈aaa"));
+        System.out.println(checkName("aaa"));
+        System.out.println(checkName("a_a"));
+        System.out.println(checkName("a_11a"));
     }
     public void test(float a){
         System.out.println(a);
