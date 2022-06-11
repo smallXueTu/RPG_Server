@@ -1,5 +1,5 @@
 quester: '沐沐'
-first: '告诉沐沐附魔完成,附魔,介绍'
+first: '介绍'
 stop: 'false'
 NPC_options:
   '介绍':
@@ -67,7 +67,7 @@ player_options:
     text: '好的，没问题！'
     conditions: ''
     pointer: ''
-    events: '附魔武器提示,添加附魔标签,赐予击退附魔书,添加可以锻造标签'
+    events: '添加收集元素结晶标签,收集元素结晶,删除找到沐沐标签,删除告诉沐沐附魔完成标签'
   '好的':
     text: '好的'
     conditions: ''
