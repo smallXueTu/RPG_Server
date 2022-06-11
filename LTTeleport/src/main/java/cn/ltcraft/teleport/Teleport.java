@@ -341,7 +341,7 @@ public class Teleport extends JavaPlugin implements Listener {
                     sender.sendMessage("§c用法/w 世界名字。");
                     return true;
                 }
-                if (Game.mainLineWorlds.contains(args[0]) && !PlayerUtils.hasBQTag(sp, "毕业T4")){
+                if (Game.mainLineWorlds.contains(args[0]) && !PlayerUtils.hasBQTag(sp, "default.毕业T4")){
                     sender.sendMessage("§c你需要完成主线才能使用/w传送到主线世界！");
                     return true;
                 }
@@ -374,7 +374,7 @@ public class Teleport extends JavaPlugin implements Listener {
                     request = requests.get(args[0].toLowerCase());
                     requests.remove(args[0].toLowerCase());
                 }
-                if (Game.rpgWorlds.contains(request.getPlayer().getWorld().getName()) && !PlayerUtils.hasBQTag(request.getTransmitters(), "毕业T4")){
+                if (Game.rpgWorlds.contains(request.getPlayer().getWorld().getName()) && !PlayerUtils.hasBQTag(request.getTransmitters(), "default.毕业T4")){
                     request.getTransmitters().sendMessage("§c你需要完成主线副本才能传送其他副本的玩家！");
                     sender.sendMessage("§c接受失败");
                     return true;
@@ -458,7 +458,7 @@ public class Teleport extends JavaPlugin implements Listener {
                     sender.sendMessage("§c地标"+args[0]+"不存在！");
                     return true;
                 }
-                if (Game.mainLineWorlds.contains(args[0]) && !PlayerUtils.hasBQTag(sp, "毕业T4")){
+                if (Game.mainLineWorlds.contains(args[0]) && !PlayerUtils.hasBQTag(sp, "default.毕业T4")){
                     sender.sendMessage("§c你需要完成主线才能使用/warp传送到主线世界！");
                     return true;
                 }
