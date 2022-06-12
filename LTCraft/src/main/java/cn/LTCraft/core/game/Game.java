@@ -30,6 +30,8 @@ import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Sign;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Item;
@@ -388,6 +390,20 @@ public class Game {
                     }
                     event.setCancelled(true);
                 break;
+            }
+            if (block.getType() == Material.SIGN){
+                BlockState state = block.getState();
+                if (state instanceof Sign){
+                    Sign sign = (Sign) state;
+                    if(sign.getLine(1).equals("plcmd")){
+                        String command = sign.getLine(2) + sign.getLine(3);
+                        if (Game.rpgWorlds.contains(block.getWorld().getName())){
+                            PlayerUtils.sudoExec(player, command);
+                        }else {
+                            Bukkit.dispatchCommand(player, command);
+                        }
+                    }
+                }
             }
         }
     }
