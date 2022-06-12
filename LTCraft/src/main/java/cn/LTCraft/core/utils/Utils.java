@@ -320,7 +320,8 @@ public class Utils {
      * @return 被清除的字符串
      */
     public static String clearColor(String str){
-        return str.replaceAll("([§&])[A-Za-z0-9|]" , "");
+        if (str == null)return "";
+        return str.replaceAll("([§&])[A-Za-z\\d|]" , "");
     }
     public static void main(String[] args) {
 //        System.out.println(formatNumber(4.55566));
