@@ -24,7 +24,7 @@ public class HealTheWounded extends BaseSkill {
         double percentage = 30 + level * 10;
         double l = Math.max(lost * (percentage / 100), 1);
         owner.setHealth(Math.min(owner.getHealth() + l, owner.getMaxHealth()));
-        owner.sendTitle("§l§a您已被医疗", "§l§e来自§a您§e的§d救死扶伤" + Utils.getLevelStr(awakenLevel) + "§d效果，医疗量：" + Utils.formatNumber(l));
+        owner.sendTitle("§l§a您已被医疗", "§l§e来自§a您§e的§d救死扶伤" + Utils.getLevelStr(level) + "§d效果，医疗量：" + Utils.formatNumber(l));
         if (isAwaken()){
             double radius = 3 + awakenLevel;
             Collection<Entity> entities = owner.getWorld().getNearbyEntities(owner.getLocation(), radius, radius, radius);
