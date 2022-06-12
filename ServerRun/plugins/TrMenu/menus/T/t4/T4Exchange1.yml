@@ -47,8 +47,8 @@ Icons:
       name: "&e魔金之锤"
       lore:
       - "&3<<&e兑换魔金之锤×1"
-      - "&3>>&e需要：能量&e水晶×30"
-      - "&3>>&e需要：力量&e水晶×30"
+      - "&3>>&e需要：能量&e水晶×20"
+      - "&3>>&e需要：力量&e水晶×20"
     actions:
       all:
         - 'LTExchange: 魔金之锤'
@@ -63,5 +63,5 @@ Icons:
       - "&3>>&e需要：通用熔炼炉&e图纸碎片×10"
     actions:
       all:
-        - 'LTExchange: 魔金之锤'
+        - 'LTExchange: 通用熔炼炉图纸'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
