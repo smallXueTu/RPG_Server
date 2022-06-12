@@ -1,6 +1,7 @@
 package cn.LTCraft.core.listener;
 
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.utils.PlayerUtils;
 import cn.LTCraft.core.utils.Utils;
 import net.citizensnpcs.api.event.NPCClickEvent;
 import net.citizensnpcs.api.event.NPCLeftClickEvent;
@@ -38,10 +39,7 @@ public class CitizensListener implements org.bukkit.event.Listener {
                 List<String> commands = config.getStringList(id + "." + "sudoCommands");
                 for (String command : commands) {
                     command = command.replace("%player%", player.getName());
-                    boolean isOp = player.isOp();
-                    player.setOp(true);
-                    Bukkit.getServer().dispatchCommand(player, command);
-                    player.setOp(isOp);
+                    PlayerUtils.sudoExec(player, command);
                 }
             }
             if (config.contains(id + "." + "messages")){

@@ -344,12 +344,8 @@ public class Utils {
                         }
                         break;
                     case "sudo":
-                        boolean isOp = player.isOp();
-                        player.setOp(true);
-                        cmd = split[1];
-                        cmd = cmd.replace("%player%", player.getName());
-                        Bukkit.getServer().dispatchCommand(player, cmd);
-                        player.setOp(isOp);
+                        cmd = split[1].replace("%player%", player.getName());
+                        PlayerUtils.sudoExec(player, cmd);
                         break;
                 }
                 if (split.length >= 4){

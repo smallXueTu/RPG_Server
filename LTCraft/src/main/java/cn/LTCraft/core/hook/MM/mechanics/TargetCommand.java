@@ -1,5 +1,6 @@
 package cn.LTCraft.core.hook.MM.mechanics;
 
+import cn.LTCraft.core.utils.PlayerUtils;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.io.MythicLineConfig;
 import io.lumine.xikage.mythicmobs.skills.ITargetedEntitySkill;
@@ -27,10 +28,7 @@ public class TargetCommand extends SkillMechanic implements ITargetedEntitySkill
         if (target.isPlayer()) {
             Player player = (Player) target.getBukkitEntity();
             if (this.asOP) {
-                boolean op = player.isOp();
-                player.setOp(true);
-                Bukkit.getServer().dispatchCommand(player, parsedCommand);
-                player.setOp(op);
+                PlayerUtils.sudoExec(player, parsedCommand);
             } else {
                 Bukkit.getServer().dispatchCommand(player, parsedCommand);
             }
