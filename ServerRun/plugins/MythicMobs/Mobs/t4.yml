@@ -175,7 +175,7 @@ t4火焰粒子门1:
     - skillapi-exp 50
     - ltitem 中型生命药剂 1 0.5
     - 雷电碎片 1 1
-    - 通用熔炼炉图纸碎片 1 0.2
+    - PseudorandomDrop 通用熔炼炉图纸碎片%0.2
   Skills:
     - skill{s=闪电之雨} ~onDamaged 0.2
 古堡统治者-恶魔之主:
@@ -201,7 +201,7 @@ t4火焰粒子门1:
     - skillapi-exp 50
     - ltitem 中型生命药剂 1 0.5
     - 恶魔能量碎片 1 1
-    - 通用熔炼炉图纸碎片 1 0.2
+    - PseudorandomDrop 通用熔炼炉图纸碎片%0.2
   Skills:
     - skill{s=准备发射恶魔弯刀} ~onDamaged 0.2
 古堡统治者-火魔之主:
@@ -227,7 +227,7 @@ t4火焰粒子门1:
     - skillapi-exp 50
     - ltitem 中型生命药剂 1 0.5
     - ltitem 火魔 1 1
-    - 通用熔炼炉图纸碎片 1 0.2
+    - PseudorandomDrop 通用熔炼炉图纸碎片%0.2
   Skills:
     - skill{s=火舞耀阳} ~onDamaged 0.2
 恶魔弯刀插地剑体1:
