@@ -377,4 +377,16 @@ public class PlayerUtils {
             onlinePlayer.setScoreboard(team.getScoreboard());
         }
     }
+
+    /**
+     * 以管理员权限执行一个命令
+     * @param player 玩家
+     * @param command 命令
+     */
+    public static void sudoExec(Player player, String command){
+        boolean op = player.isOp();
+        if (!op)player.setOp(true);
+        Bukkit.dispatchCommand(player, command);
+        if (!op)player.setOp(false);
+    }
 }
