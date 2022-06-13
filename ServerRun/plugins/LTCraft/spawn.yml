@@ -141,3 +141,36 @@
   maxMobs: 1
   locations: []
   spawnRange: 1
+古堡统治者-恶魔之主:
+  mobName: 古堡统治者-恶魔之主
+  world: t4
+  x: -379.0
+  cooling: 10
+  y: 35
+  range: 16
+  z: -659.5
+  maxMobs: 3
+  locations: []
+  spawnRange: 1
+古堡统治者-火魔之主:
+  mobName: 古堡统治者-火魔之主
+  world: t4
+  x: -346.5
+  cooling: 10
+  y: 34
+  range: 16
+  z: -672.5
+  maxMobs: 3
+  locations: []
+  spawnRange: 1
+古堡统治者-雷电之主:
+  mobName: 古堡统治者-雷电之主
+  world: t4
+  x: -411.5
+  cooling: 10
+  y: 34
+  range: 16
+  z: -672.5
+  maxMobs: 3
+  locations: []
+  spawnRange: 1
