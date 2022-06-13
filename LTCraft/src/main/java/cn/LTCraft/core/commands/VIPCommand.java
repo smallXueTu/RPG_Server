@@ -6,6 +6,7 @@ import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.utils.DateUtils;
+import cn.LTCraft.core.utils.PlayerUtils;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.DisguiseConfig;
 import me.libraryaddict.disguise.disguisetypes.Disguise;
@@ -93,6 +94,7 @@ public class VIPCommand implements CommandExecutor {
                     vip1.setExpirationTime(new Date(vip.getExpirationTime().getTime() + DateUtils.getDaysTimeStamp(days)));
                 }
                 playerInfo.setVipStatus(vip1);
+                PlayerUtils.setGroup(target, vip1.getLevel().toString().toUpperCase());
                 playerInfo.commitChanges();
                 commandSender.sendMessage("§c添加成功！");
             break;
