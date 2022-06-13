@@ -58,7 +58,7 @@ public class MathUtils {
         HashMap<Double, String> objectObjectHashMap = new HashMap<>();
         for (String s : list) {
             String[] split = s.split("%");
-            objectObjectHashMap.put(Double.parseDouble(split[1]), split[1]);
+            objectObjectHashMap.put(Double.parseDouble(split[1]), split[0]);
         }
         return objectObjectHashMap;
     }
