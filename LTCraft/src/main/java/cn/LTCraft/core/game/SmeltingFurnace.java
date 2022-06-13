@@ -223,18 +223,21 @@ public class SmeltingFurnace implements TickEntity {
             add = 1;
 
             updateProcess();
+            if (lastException != null)lastException = null;
         } catch (SmeltingFurnaceErrorException e) {//发生了错误 留给玩家60s的时间用于玩家修复错误！
-            lastException = e;
-            if (errorTick == 0){
-                for (TextLine line : lines) {
-                    line.removeLine();
-                }
-                if (fatalError) {
-                    errorLines.add(hologram.appendTextLine("§c致命错误：" + e.getMessage()));
-                    errorLines.add(hologram.appendTextLine("§c熔炼坛将在LTSF:" + id + ":errorTick秒后坠毁！"));
-                }else {
-                    errorLines.add(hologram.appendTextLine("§c错误：" + e.getMessage()));
-                    errorLines.add(hologram.appendTextLine("§c请及时修正，否者将在LTSF:" + id + ":errorTick秒后坠毁！"));
+            if (lastException == null) {
+                lastException = e;
+                if (errorTick == 0) {
+                    for (TextLine line : lines) {
+                        line.removeLine();
+                    }
+                    if (fatalError) {
+                        errorLines.add(hologram.appendTextLine("§c致命错误：" + e.getMessage()));
+                        errorLines.add(hologram.appendTextLine("§c熔炼坛将在LTSF:" + id + ":errorTick秒后坠毁！"));
+                    } else {
+                        errorLines.add(hologram.appendTextLine("§c错误：" + e.getMessage()));
+                        errorLines.add(hologram.appendTextLine("§c请及时修正，否者将在LTSF:" + id + ":errorTick秒后坠毁！"));
+                    }
                 }
             }
             errorTick += add;
