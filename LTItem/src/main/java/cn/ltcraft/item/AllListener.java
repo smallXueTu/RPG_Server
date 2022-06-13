@@ -286,6 +286,7 @@ public class AllListener implements Listener {
     public void onRegainHealth(EntityRegainHealthEvent event){
         Entity entity = event.getEntity();
         if (entity instanceof LivingEntity && event.getAmount() >= 1){
+            if (entity.getType() == EntityType.ARMOR_STAND)return;
             new FloatText(entity.getLocation().add(0, entity.getHeight(), 0), "§l§a+"  + cn.LTCraft.core.utils.Utils.formatNumber(event.getAmount()), 2 * 20, new Vector(0, 0.03, 0));
         }
     }
