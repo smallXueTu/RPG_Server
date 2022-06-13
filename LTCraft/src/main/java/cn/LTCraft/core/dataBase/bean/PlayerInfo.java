@@ -311,6 +311,12 @@ public class PlayerInfo {
             public String toString() {
                 return color + super.toString();
             }
+
+            public String toString(boolean clear) {
+                if (clear)return super.toString();
+                else return toString();
+            }
+
             public String toStringClean() {
                 return color + super.toString();
             }
