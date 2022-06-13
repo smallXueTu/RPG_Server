@@ -94,7 +94,7 @@ public class VIPCommand implements CommandExecutor {
                     vip1.setExpirationTime(new Date(vip.getExpirationTime().getTime() + DateUtils.getDaysTimeStamp(days)));
                 }
                 playerInfo.setVipStatus(vip1);
-                PlayerUtils.setGroup(target, vip1.getLevel().toString().toUpperCase());
+                PlayerUtils.setGroup(target, "LTCraft." + vip1.getLevel().toString().toUpperCase());
                 playerInfo.commitChanges();
                 commandSender.sendMessage("§c添加成功！");
             break;
