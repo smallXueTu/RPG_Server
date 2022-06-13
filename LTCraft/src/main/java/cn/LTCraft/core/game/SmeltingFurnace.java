@@ -813,7 +813,7 @@ public class SmeltingFurnace implements TickEntity {
     public String getStable()
     {
         if (errorTick > 0){
-            if (lastException.isBlast())
+            if (lastException != null && lastException.isBlast())
                 return "§c！！！濒临爆炸！！！";
             else
                 return "§c！！！锻造错误！！！";
