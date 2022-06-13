@@ -12,6 +12,10 @@ import pl.betoncraft.betonquest.api.Objective;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 import pl.betoncraft.betonquest.utils.Utils;
 
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Created by Angel、 on 2022/5/7 17:48
  */
@@ -27,7 +31,8 @@ public class WearOrnamentObjective extends Objective implements Listener {
     public void start() {
         taskID = Bukkit.getScheduler().runTaskTimer(BetonQuest.getInstance(), () -> {
             if (dataMap == null)return;
-            dataMap.keySet().forEach((playerID) -> {
+            Set<Map.Entry<String, ObjectiveData>> entries = dataMap.entrySet();
+            new HashSet<>(dataMap.keySet()).forEach((playerID) -> {
                 Player player = PlayerConverter.getPlayer(playerID);
                 PlayerAttribute playerAttribute = PlayerAttribute.getPlayerAttribute(player);
                 Ornament[] ornamentsAtt = playerAttribute.getOrnamentsAtt();
