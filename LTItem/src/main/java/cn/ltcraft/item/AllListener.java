@@ -18,6 +18,7 @@ import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
 import com.sucy.skill.api.event.PlayerClassChangeEvent;
+import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.GenericAttributes;
@@ -90,12 +91,14 @@ public class AllListener implements Listener {
     )
     public void onDamageByEntityLOWEST(EntityDamageByEntityEvent event){
         //删除原版护甲
-        if (event.getDamage(EntityDamageEvent.DamageModifier.ARMOR) != 0)
-            event.setDamage(EntityDamageEvent.DamageModifier.ARMOR, 0);
-        if (event.getDamage(EntityDamageEvent.DamageModifier.HARD_HAT) != 0)
-            event.setDamage(EntityDamageEvent.DamageModifier.HARD_HAT, 0);
-        Entity entity = event.getEntity();
         Entity damager = event.getDamager();
+        if (damager instanceof Player || MythicMobs.inst().getMobManager().isActiveMob(damager.getUniqueId())) {
+            if (event.getDamage(EntityDamageEvent.DamageModifier.ARMOR) != 0)
+                event.setDamage(EntityDamageEvent.DamageModifier.ARMOR, 0);
+            if (event.getDamage(EntityDamageEvent.DamageModifier.HARD_HAT) != 0)
+                event.setDamage(EntityDamageEvent.DamageModifier.HARD_HAT, 0);
+        }
+        Entity entity = event.getEntity();
         if (damager instanceof Arrow){
             ProjectileSource shooter = ((Arrow) damager).getShooter();
             if (shooter instanceof Player){
