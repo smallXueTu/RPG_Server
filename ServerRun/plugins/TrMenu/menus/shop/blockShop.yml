@@ -3,14 +3,14 @@ Title: '§l方块商店'
 Title-Update: -1
 
 Layout:
-  - - '`羊毛``砖块``荧石``石英``石头``花岗岩``闪长岩``安山岩``圆石`'
+  - - '`沙砾``砖块``荧石``石英``石头``花岗岩``闪长岩``安山岩``圆石`'
     - '`草方块``冰``雪``地狱岩``末地石``陶瓦``海晶石``沙子``红沙`'
-    - '`沙砾`        '
-    - '         '
-    - '       `上一页``下一页`'
-  - - '         '
-    - '         '
-    - '         '
+    - '`羊毛0``羊毛1``羊毛2``羊毛3``羊毛4``羊毛5``羊毛6``羊毛7``羊毛8`'
+    - '`羊毛9``羊毛10``羊毛11``羊毛12``羊毛13``羊毛14``羊毛15``混凝土0``混凝土1`'
+    - '`混凝土2``混凝土3``混凝土4``混凝土5``混凝土6``混凝土7``混凝土8``上一页``下一页`'
+  - - '`混凝土9``混凝土10``混凝土11``混凝土12``混凝土13``混凝土14``混凝土15``混凝土粉末0``混凝土粉末1`'
+    - '`混凝土粉末2``混凝土粉末3``混凝土粉末4``混凝土粉末5``混凝土粉末6``混凝土粉末7``混凝土粉末8``混凝土粉末9``混凝土粉末10`'
+    - '`混凝土粉末11``混凝土粉末12``混凝土粉末13``混凝土粉末14``混凝土粉末15`   '
     - '         '
     - '       `上一页``下一页`'
 
@@ -304,6 +304,678 @@ Icons:
           actions:
             - 'take-money: 100'
             - 'GiveItemByID: 13:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛0':
+    display:
+      material: '{"type":"WOOL","data":0}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛1':
+    display:
+      material: '{"type":"WOOL","data":1}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:1:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛2':
+    display:
+      material: '{"type":"WOOL","data":2}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:2:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛3':
+    display:
+      material: '{"type":"WOOL","data":3}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:3:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛4':
+    display:
+      material: '{"type":"WOOL","data":4}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:4:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛5':
+    display:
+      material: '{"type":"WOOL","data":5}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:5:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛6':
+    display:
+      material: '{"type":"WOOL","data":6}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:6:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛7':
+    display:
+      material: '{"type":"WOOL","data":7}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:7:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛8':
+    display:
+      material: '{"type":"WOOL","data":8}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:8:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛9':
+    display:
+      material: '{"type":"WOOL","data":9}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:9:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛10':
+    display:
+      material: '{"type":"WOOL","data":10}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:10:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛11':
+    display:
+      material: '{"type":"WOOL","data":11}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:11:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛12':
+    display:
+      material: '{"type":"WOOL","data":12}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:12:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛13':
+    display:
+      material: '{"type":"WOOL","data":13}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:13:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛14':
+    display:
+      material: '{"type":"WOOL","data":14}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:14:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '羊毛15':
+    display:
+      material: '{"type":"WOOL","data":15}'
+      amount: 64
+      name: "&a羊毛"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 35:15:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土0':
+    display:
+      material: '{"type":"CONCRETE","data":0}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土1':
+    display:
+      material: '{"type":"CONCRETE","data":1}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:1:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土2':
+    display:
+      material: '{"type":"CONCRETE","data":2}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:2:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土3':
+    display:
+      material: '{"type":"CONCRETE","data":3}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:3:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土4':
+    display:
+      material: '{"type":"CONCRETE","data":4}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:4:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土5':
+    display:
+      material: '{"type":"CONCRETE","data":5}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:5:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土6':
+    display:
+      material: '{"type":"CONCRETE","data":6}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:6:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土7':
+    display:
+      material: '{"type":"CONCRETE","data":7}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:7:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土8':
+    display:
+      material: '{"type":"CONCRETE","data":8}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:8:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土9':
+    display:
+      material: '{"type":"CONCRETE","data":9}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:9:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土10':
+    display:
+      material: '{"type":"CONCRETE","data":10}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:10:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土11':
+    display:
+      material: '{"type":"CONCRETE","data":11}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:11:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土12':
+    display:
+      material: '{"type":"CONCRETE","data":12}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:12:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土13':
+    display:
+      material: '{"type":"CONCRETE","data":13}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:13:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土14':
+    display:
+      material: '{"type":"CONCRETE","data":14}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:14:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土15':
+    display:
+      material: '{"type":"CONCRETE","data":15}'
+      amount: 64
+      name: "&a混凝土"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:15:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末0':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":0}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:0:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末1':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":1}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:1:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末2':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":2}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:2:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末3':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":3}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:3:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末4':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":4}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:4:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末5':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":5}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:5:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末6':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":6}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:6:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末7':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":7}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:7:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末8':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":8}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:8:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末9':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":9}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:9:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末10':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":10}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:10:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末11':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":11}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:11:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末12':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":12}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:12:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末13':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":13}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:13:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末14':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":14}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:14:64'
+            - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '混凝土粉末15':
+    display:
+      material: '{"type":"CONCRETE_POWDER","data":15}'
+      amount: 64
+      name: "&a混凝土粉末"
+      lore:
+        - "&3<<&d100橙币64个&3>>"
+    actions:
+      all:
+        - condition: 'js: utils.hasMoney(player, 100)'
+          actions:
+            - 'take-money: 100'
+            - 'GiveItemByID: 251:15:64'
             - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
   '下一页':
     display:
