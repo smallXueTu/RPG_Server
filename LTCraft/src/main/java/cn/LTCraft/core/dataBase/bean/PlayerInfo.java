@@ -312,13 +312,8 @@ public class PlayerInfo {
                 return color + super.toString();
             }
 
-            public String toString(boolean clear) {
-                if (clear)return super.toString();
-                else return toString();
-            }
-
             public String toStringClean() {
-                return color + super.toString();
+                return super.toString();
             }
         }
         private Level level = Level.NONE;
