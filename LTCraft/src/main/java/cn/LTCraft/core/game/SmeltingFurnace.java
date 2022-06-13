@@ -453,7 +453,7 @@ public class SmeltingFurnace implements TickEntity {
                 if (age % 20 == 0){
                     if (meltingTick < getLevel().getTime() || playerIsOnline()){
                         checkPlayer();
-                        if (player.getLocation().distance(location) < 5) {
+                        if (player.getWorld() == location.getWorld() && player.getLocation().distance(location) < 5) {
                             if (!lines.get(0).getText().equals("§a正在融合...")){
                                 lines.forEach(HologramLine::removeLine);
                                 lines.clear();
@@ -575,7 +575,7 @@ public class SmeltingFurnace implements TickEntity {
      * @return 玩家是否在线
      */
     public boolean playerIsOnline(){
-        if (player == null || player.isOnline()){
+        if (player == null || !player.isOnline()){
             Player playerExact = Bukkit.getPlayerExact(playerName);
             if (playerExact == null) {
                 return false;
