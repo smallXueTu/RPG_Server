@@ -3,6 +3,7 @@ package cn.LTCraft.core.listener;
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.commands.LTGCommand;
+import cn.LTCraft.core.dataBase.bean.PlayerInfo;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.entityClass.TeleportGate;
@@ -384,7 +385,13 @@ public class PlayerListener  implements Listener {
         if (!sex.equals("")){
             sex = " §d" + sex;
         }
-        event.setFormat("§f[§bLv.§e" + level + sex + love + " §c" + clazz + "§f]" + prefix + "§e" + player.getName() + "§f: §r%2$s");
+        PlayerInfo playerInfo = PlayerConfig.getPlayerConfig(player).getPlayerInfo();
+        PlayerInfo.VIP vipStatus = playerInfo.getVipStatus();
+        String vip = "";
+        if (vipStatus.getLevel().getGrade() > 0){
+            vip = "§f[§r" + vipStatus.getLevel().toString() + "§f]";
+        }
+        event.setFormat("§f[§bLv.§e" + level + sex + love + " §c" + clazz + "§f]" + vip + prefix + "§e" + player.getName() + "§f: §r%2$s");
 //        event.setMessage("§f[§bLv.§e" + level + " §c" + clazz + "§f]§e" + player.getName() + "§f: §e" + event.getMessage());
     }
     @EventHandler
