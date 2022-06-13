@@ -664,8 +664,9 @@ public class SmeltingFurnace implements TickEntity {
     }
     /**
      * 检查熔炉
+     * @throws SmeltingFurnaceErrorException 如果被玩家干扰
      */
-    public void checkFurnaces() {
+    public void checkFurnaces() throws SmeltingFurnaceErrorException {
         for (Block furnace : furnaces) {
             if (furnace.getState() instanceof Furnace){
                 Furnace state = (Furnace) furnace.getState();
@@ -678,11 +679,12 @@ public class SmeltingFurnace implements TickEntity {
                     inventory.setResult(new ItemStack(Material.AIR));
                     inventory.setSmelting(furnacesItemStack[0].clone());
                 }
-                if (!Objects.equals(inventory.getSmelting(), furnacesItemStack[0])){
-                    inventory.setSmelting(furnacesItemStack[0].clone());
-                }
                 if (state.getBurnTime() <= 1){
                     inventory.setFuel(furnacesItemStack[1].clone());
+                }
+                if (!Objects.equals(inventory.getSmelting(), furnacesItemStack[0])){
+                    fatalError = true;
+                    throw new SmeltingFurnaceErrorException("熔炼过程熔炉被干扰！");
                 }
             }
         }
