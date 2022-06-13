@@ -13,6 +13,7 @@ import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.game.more.FakeBlock;
 import cn.LTCraft.core.game.more.FlashingBlock;
 import cn.LTCraft.core.game.more.SmeltingFurnaceDrawing;
+import cn.LTCraft.core.game.skills.shields.Shield;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.task.BQObjectiveCheck;
@@ -422,7 +423,8 @@ public class PlayerListener  implements Listener {
         if (event.getEntity() instanceof Player) {
             entity = (Player) event.getEntity();
             if (Temp.silence.containsKey(entity)){
-                Temp.shield.get(entity).block(event);
+                Shield shield = Temp.shield.get(entity);
+                if (shield != null)shield.block(event);
             }
         }
     }
