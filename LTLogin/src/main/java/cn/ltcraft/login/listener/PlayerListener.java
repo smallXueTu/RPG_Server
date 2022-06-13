@@ -161,7 +161,7 @@ public class PlayerListener implements Listener {
                             PlayerUtils.setGroup(player, "default");
                         }else {
                             player.sendMessage("§l§e尊贵的" + vipStatus.getLevel().toString() + "§e，你的" + vipStatus.getLevel().toString() + "§e截止到" + DateUtils.simpleDateFormat.format(vipStatus.getExpirationTime()));
-                            PlayerUtils.setGroup(player, "LTCraft." + vipStatus.getLevel().toStringClean().toLowerCase());
+                            PlayerUtils.setGroup(player, vipStatus.getLevel().toStringClean().toLowerCase());
                         }
                     }
                     PlayerUtils.sendActionMessage("§e" + player.getName() + "加入了游戏。");
