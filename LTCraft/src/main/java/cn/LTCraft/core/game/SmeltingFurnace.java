@@ -198,7 +198,7 @@ public class SmeltingFurnace implements TickEntity {
         int add = 1;
         try {
             if (fatalError)throw new SmeltingFurnaceErrorException("致命错误！");
-            if (lastException == null)updateProcess();
+            updateProcess();
             if (age % 20 == 0){
                 add = 20;//每20s检查一次错误 所以要等于20
                 FakeBlock[] check = check(location, itemFrame);
