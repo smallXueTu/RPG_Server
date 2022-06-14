@@ -96,6 +96,19 @@ public class LTCoreCommand implements CommandExecutor {
             case "test":
                 PlayerUtils.updatePlayerDisplayName(player);
                 break;
+            case "entities":
+                Player target;
+                if (args.length >= 3){
+                    target = Bukkit.getPlayer(args[1]);
+                }else {
+                    target = player;
+                }
+                World targetWorld = target.getWorld();
+                List<Entity> entities1 = targetWorld.getEntities();
+                for (Entity entity : entities1) {
+                    System.out.println(entity.getCustomName());
+                }
+                break;
             case "add":
                 if (args.length<3){
                     commandSender.sendMessage("/lt add {玩家} screen/json/mod");
