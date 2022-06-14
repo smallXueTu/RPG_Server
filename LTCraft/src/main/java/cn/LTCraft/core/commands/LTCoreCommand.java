@@ -98,7 +98,7 @@ public class LTCoreCommand implements CommandExecutor {
                 break;
             case "entities":
                 Player target;
-                if (args.length >= 3){
+                if (args.length >= 2){
                     target = Bukkit.getPlayer(args[1]);
                 }else {
                     target = player;
