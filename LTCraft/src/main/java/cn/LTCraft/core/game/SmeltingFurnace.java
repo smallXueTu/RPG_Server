@@ -198,8 +198,9 @@ public class SmeltingFurnace implements TickEntity {
         int add = 1;
         try {
             if (fatalError)throw new SmeltingFurnaceErrorException("致命错误！");
+            if (lastException == null)updateProcess();
             if (age % 20 == 0){
-                add = 20;
+                add = 20;//每20s检查一次错误 所以要等于20
                 FakeBlock[] check = check(location, itemFrame);
                 if (check.length > 0){
                     throw new SmeltingFurnaceErrorException("熔炼坛结构被破坏！");
@@ -219,11 +220,8 @@ public class SmeltingFurnace implements TickEntity {
                     errorLines.clear();
                     errorTick = 0;
                 }
+                if (lastException != null)lastException = null;
             }
-            add = 1;
-
-            updateProcess();
-            if (lastException != null)lastException = null;
         } catch (SmeltingFurnaceErrorException e) {//发生了错误 留给玩家60s的时间用于玩家修复错误！
             if (lastException == null) {
                 lastException = e;
@@ -295,8 +293,12 @@ public class SmeltingFurnace implements TickEntity {
                     }
                 }
                 if (numberOfSuccesses >= needMaterial.size()){
-                    ItemUtils.removeItems(yItemStacks, itemStacks);
-                    setChest(itemStacks);
+
+                    for (String material : needMaterial) {
+                        ClutterItem clutterItem = ClutterItem.spawnClutterItem(material);
+                        ItemUtils.removeItem(yItemStacks, clutterItem, player);
+                    }
+                    setChest(yItemStacks);
                     Collections.addAll(inventory, yItemStacks);
                     lines.forEach(HologramLine::removeLine);
                     lines.clear();
@@ -932,23 +934,28 @@ public class SmeltingFurnace implements TickEntity {
         smeltingFurnace.temperature = yamlConfiguration.getInt("temperature");
         List<String> floatItemEntityUUIDs = yamlConfiguration.getStringList("floatItemEntity");
         smeltingFurnace.floatItemEntity = location.getWorld().getNearbyEntities(location, 5, 3, 5).stream().filter(entity -> floatItemEntityUUIDs.contains(entity.getUniqueId().toString())).collect(Collectors.toList());
-        List<String> lines = yamlConfiguration.getStringList("lines");
+        smeltingFurnace.errorTick = yamlConfiguration.getInt("errorTick");
+        smeltingFurnace.fatalError = yamlConfiguration.getBoolean("fatalError");
         smeltingFurnace.lines = new ArrayList<>();
+        smeltingFurnace.errorLines = new ArrayList<>();
+        List<String> lines = yamlConfiguration.getStringList("lines");
         for (String line : lines) {
             smeltingFurnace.lines.add(smeltingFurnace.hologram.appendTextLine(line));
         }
-        lines = yamlConfiguration.getStringList("errorLines");
-        smeltingFurnace.errorLines = new ArrayList<>();
-        for (String line : lines) {
-            smeltingFurnace.errorLines.add(smeltingFurnace.hologram.appendTextLine(line));
+        if (smeltingFurnace.errorTick > 0){
+            for (TextLine line : smeltingFurnace.lines) {
+                line.removeLine();
+            }
+            lines = yamlConfiguration.getStringList("errorLines");
+            for (String line : lines) {
+                smeltingFurnace.errorLines.add(smeltingFurnace.hologram.appendTextLine(line));
+            }
         }
         List<ItemStack> inventory = (List<ItemStack>)yamlConfiguration.get("inventory");
         for (Object itemStack : inventory) {
             ItemStack deserialize = ItemStack.deserialize((Map)itemStack);
             smeltingFurnace.inventory.add(deserialize);
         }
-        smeltingFurnace.errorTick = yamlConfiguration.getInt("errorTick");
-        smeltingFurnace.fatalError = yamlConfiguration.getBoolean("fatalError");
         smeltingFurnace.speed = yamlConfiguration.getInt("speed");
         smeltingFurnace.rotationProgress = yamlConfiguration.getInt("rotationProgress");
         smeltingFurnace.angle = yamlConfiguration.getInt("angle");
