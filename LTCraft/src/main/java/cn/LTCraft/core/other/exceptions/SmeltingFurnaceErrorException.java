@@ -6,6 +6,8 @@ package cn.LTCraft.core.other.exceptions;
  */
 public class SmeltingFurnaceErrorException extends Exception {
     private boolean blast = true;
+    public SmeltingFurnaceErrorException(){
+    }
     public SmeltingFurnaceErrorException(String message){
         super(message);
     }
