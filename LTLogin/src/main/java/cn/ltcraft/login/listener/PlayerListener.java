@@ -208,7 +208,7 @@ public class PlayerListener implements Listener {
                                 sqlQueue -> {
                                     if (sqlQueue.getStatus()== SQLQueue.STATUS.DONE){
                                         Login.forceSendMessage(player, "§e恭喜你！注册成功了~");
-                                        Login.forceSendMessage(player, "§l§a现在。你可以开始游戏啦~");
+                                        Login.forceSendMessage(player, "§a现在。你可以开始游戏啦~");
                                         plugin.setPlayerStatus(player, PlayerStatus.NORMAL);
                                         player.updateInventory();
                                     }else{
