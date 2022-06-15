@@ -453,7 +453,7 @@ public class SmeltingFurnace implements TickEntity {
                 break;
             case 5:
                 if (age % 20 == 0){
-                    if (meltingTick < getLevel().getTime() || playerIsOnline()){
+                    if (meltingTick >= getLevel().getTime() || playerIsOnline()){
                         checkPlayer();
                         if (player.getWorld() == location.getWorld() && player.getLocation().distance(location) < 5) {
                             if (!lines.get(0).getText().equals("§a正在融合...")){
