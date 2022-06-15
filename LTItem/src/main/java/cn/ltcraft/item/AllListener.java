@@ -6,6 +6,7 @@ import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.game.more.FloatText;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.*;
+import cn.ltcraft.item.base.interfaces.Attribute;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.objs.PlayerAttribute;
@@ -27,7 +28,6 @@ import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
@@ -253,15 +253,22 @@ public class AllListener implements Listener {
             //最终伤害
             double damage = event.getDamage();
             //吸血和恢复生命值
-            double recoveryHealth = playerAttribute.getAttackRecovery(entity) + damage * playerAttribute.getSuckingBlood(entity);
-            if (recoveryHealth >= 1)((CraftPlayer)damagerPlayer).getHandle().heal((float) recoveryHealth);
-            ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
-            if (mythicMob != null){
-                MythicConfig config = mythicMob.getType().getConfig();
-                if (config.getBoolean("团队", false)) {
-                    EntityUtils.rangeRecovery(damagerPlayer.getLocation(), 5, playerAttribute.getGroupGyrus());
+            double recoveryHealth = 0;
+            if (entity instanceof Player) {
+                recoveryHealth += playerAttribute.getAttackRecovery(Attribute.Type.PVP) + damage * playerAttribute.getSuckingBlood(Attribute.Type.PVP);
+            }else {
+                ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
+                if (mythicMob != null) {
+                    MythicConfig config = mythicMob.getType().getConfig();
+                    if (config.getBoolean("团队", false)) {
+                        EntityUtils.rangeRecovery(damagerPlayer.getLocation(), 5, playerAttribute.getGroupGyrus());
+                        recoveryHealth += playerAttribute.getAttackRecovery(Attribute.Type.PVE);
+                    }else {
+                        recoveryHealth += playerAttribute.getAttackRecovery(Attribute.Type.PVE) + damage * playerAttribute.getSuckingBlood(Attribute.Type.PVE);
+                    }
                 }
             }
+            if (recoveryHealth >= 1) ((CraftPlayer) damagerPlayer).getHandle().heal((float) recoveryHealth);
             Player finalDamagerPlayer = damagerPlayer;
             playerAttribute.getAttackSkill(entity).forEach((skill, probability) -> {
                 if (MathUtils.ifAdopt(probability / 100)){
