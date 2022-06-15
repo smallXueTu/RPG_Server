@@ -166,7 +166,7 @@ public class PlayerListener implements Listener {
                     }
                     PlayerUtils.sendActionMessage("§e" + player.getName() + "加入了游戏。");
                 }else{
-                    Login.forceSendMessage(player, "§c密码错误！");
+                    Login.forceSendMessage(player, "§c抱歉，密码不对哦~");
                     if(message.startsWith("/")){
                         Login.forceSendMessage(player, "§l§c注意，你输入的密码可能为命令，在此服务器你应该§d直接输入密码§c来的登录！");
                     }
