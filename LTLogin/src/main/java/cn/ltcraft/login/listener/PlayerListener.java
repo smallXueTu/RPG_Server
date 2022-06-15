@@ -166,7 +166,7 @@ public class PlayerListener implements Listener {
                     }
                     PlayerUtils.sendActionMessage("§e" + player.getName() + "§e§l加入了游戏。");
                 }else{
-                    Login.forceSendMessage(player, "§l§a[LTCraft]§c密码错误！");
+                    Login.forceSendMessage(player, "§c密码错误！");
                     if(message.startsWith("/")){
                         Login.forceSendMessage(player, "§l§c注意，你输入的密码可能为命令，在此服务器你应该§d直接输入密码§c来的登录！");
                     }
@@ -207,7 +207,7 @@ public class PlayerListener implements Listener {
                             Main.getInstance().getSQLManage().getQueue().add(new SQLQueue(sqlSession, () -> mapper.insert(playerInfo),
                                 sqlQueue -> {
                                     if (sqlQueue.getStatus()== SQLQueue.STATUS.DONE){
-                                        Login.forceSendMessage(player, "§l§a[LTCraft]§e恭喜你！注册成功了~");
+                                        Login.forceSendMessage(player, "§e恭喜你！注册成功了~");
                                         Login.forceSendMessage(player, "§l§a现在。你可以开始游戏啦~");
                                         plugin.setPlayerStatus(player, PlayerStatus.NORMAL);
                                         player.updateInventory();
