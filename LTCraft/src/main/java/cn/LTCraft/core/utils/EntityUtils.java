@@ -92,7 +92,7 @@ public class EntityUtils {
 
     /**
      * 获取MythicMobs实体的配置文件
-     * @return ActiveMob
+     * @return MythicConfig
      */
     public static MythicConfig getMythicMobConfig(AbstractEntity entity){
         Optional<ActiveMob> activeMob = MythicMobs.inst().getMobManager().getActiveMob(entity.getUniqueId());
@@ -105,7 +105,7 @@ public class EntityUtils {
 
     /**
      * 获取MythicMobs实体的配置文件
-     * @return ActiveMob
+     * @return MythicConfig
      */
     public static MythicConfig getMythicMobConfig(Entity entity){
         Optional<ActiveMob> activeMob = MythicMobs.inst().getMobManager().getActiveMob(entity.getUniqueId());
@@ -114,6 +114,14 @@ public class EntityUtils {
             return am.getType().getConfig();
         }
         return null;
+    }
+
+    /**
+     * 获取MythicMobs实体的配置文件
+     * @return MythicConfig
+     */
+    public static MythicConfig getMythicMobConfig(ActiveMob entity){
+        return entity.getType().getConfig();
     }
 
 
