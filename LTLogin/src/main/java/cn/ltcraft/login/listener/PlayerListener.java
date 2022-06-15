@@ -96,7 +96,7 @@ public class PlayerListener implements Listener {
         Login.allowReceiveChat.remove(player.getName());
         Login.errorCount.remove(player.getName());
         if (Login.playerStatus.get(player.getName()) == PlayerStatus.NORMAL) {
-            PlayerUtils.sendActionMessage("§a§l[LTCraft]§e" + player.getName() + "§e§l退出了游戏。");
+            PlayerUtils.sendActionMessage("§e" + player.getName() + "§e§l退出了游戏。");
         }
     }
 
@@ -164,7 +164,7 @@ public class PlayerListener implements Listener {
                             PlayerUtils.setGroup(player, vipStatus.getLevel().toStringClean().toLowerCase());
                         }
                     }
-                    PlayerUtils.sendActionMessage("§l§a[LTCraft]§e" + player.getName() + "§e§l加入了游戏。");
+                    PlayerUtils.sendActionMessage("§e" + player.getName() + "§e§l加入了游戏。");
                 }else{
                     Login.forceSendMessage(player, "§l§a[LTCraft]§c密码错误！");
                     if(message.startsWith("/")){
