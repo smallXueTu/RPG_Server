@@ -20,6 +20,7 @@ import com.sucy.skill.api.event.PlayerAccountChangeEvent;
 import com.sucy.skill.api.event.PlayerClassChangeEvent;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
+import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.GenericAttributes;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
@@ -241,7 +242,6 @@ public class AllListener implements Listener {
             }
         }
         if (damager instanceof Player){
-            assert playerAttribute != null;
             ItemStack itemInHand = damagerPlayer.getItemInHand();
             Material type = itemInHand.getType();
             if (type == Material.BOW){
@@ -255,7 +255,13 @@ public class AllListener implements Listener {
             //吸血和恢复生命值
             double recoveryHealth = playerAttribute.getAttackRecovery(entity) + damage * playerAttribute.getSuckingBlood(entity);
             if (recoveryHealth >= 1)((CraftPlayer)damagerPlayer).getHandle().heal((float) recoveryHealth);
-            EntityUtils.rangeRecovery(damagerPlayer.getLocation(), 5, playerAttribute.getGroupGyrus());
+            ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
+            if (mythicMob != null){
+                MythicConfig config = mythicMob.getType().getConfig();
+                if (config.getBoolean("团队", false)) {
+                    EntityUtils.rangeRecovery(damagerPlayer.getLocation(), 5, playerAttribute.getGroupGyrus());
+                }
+            }
             Player finalDamagerPlayer = damagerPlayer;
             playerAttribute.getAttackSkill(entity).forEach((skill, probability) -> {
                 if (MathUtils.ifAdopt(probability / 100)){
