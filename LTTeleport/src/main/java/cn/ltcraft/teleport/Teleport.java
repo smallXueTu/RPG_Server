@@ -305,21 +305,22 @@ public class Teleport extends JavaPlugin implements Listener {
                 }
                 player = getServer().getPlayer(args[0]);
                 if (player==null){
-                    sender.sendMessage("对方不在线！");
+                    sender.sendMessage("§a§l[LTCraft温馨提示]§c对方不在线！");
                     return true;
                 }
                 if (player.getName().equals(sender.getName())){
-                    sender.sendMessage("§c你不能tpa自己！");
+                    sender.sendMessage("§a§l[LTCraft温馨提示]§c你不能传送至自己!");
                     return true;
                 }
                 if (this.requests.get(player.getName()).containsKey(sender.getName().toLowerCase())){
-                    sender.sendMessage("§c你们两个已经存在一个请求了请等待处理或者到期！");
+                    sender.sendMessage("§l§a[LTCraft温馨提示]§c你们两个已经存在一个请求了请等待处理或者到期！");
                     return true;
                 }
                 if (Cooling.isCooling(sp, "TPA命令")) {
                     return true;
                 }
                 Cooling.cooling(sp, "TPA命令", 10, "TPA命令剩余冷却时间：%s%S");
+                message = new TextComponent("§6----------玩家传送----------");
                 message = new TextComponent("§e玩家"+sender.getName()+"想往你这瞧瞧，你可以在30秒内做出决定：");
                 accept = new TextComponent("[点我接受]");
                 accept.setColor(ChatColor.GREEN);
@@ -330,7 +331,7 @@ public class Teleport extends JavaPlugin implements Listener {
                 message.addExtra(new TextComponent("§e或者输入/tpaccept 来接受这个请求。"));
                 requests.get(player.getName()).put(sender.getName().toLowerCase(), new Request(player, sp));
                 player.spigot().sendMessage(message);
-                sender.sendMessage("§a发送请求成功！");
+                sender.sendMessage("§a§l发送请求成功！");
             break;
             case "w":
                 if (sp == null){
@@ -349,7 +350,7 @@ public class Teleport extends JavaPlugin implements Listener {
                 if (world == null){
                     world = Bukkit.getWorld(Game.remarks.get(args[0]));
                     if (world == null) {
-                        sender.sendMessage("§c世界" + args[0] + "不存在！");
+                        sender.sendMessage("§l§a[LTCraft温馨提示]§c世界" + args[0] + "不存在！");
                         return true;
                     }
                 }
@@ -368,20 +369,20 @@ public class Teleport extends JavaPlugin implements Listener {
                     requests.remove(requests.entrySet().iterator().next().getKey());
                 }else{
                     if (!requests.containsKey(args[0].toLowerCase())){
-                        sender.sendMessage("§c"+args[0]+"没有想你发起请求或者请求已经过期了！");
+                        sender.sendMessage("§l§a[LTCraft温馨提示]§c"+args[0]+"§c§l没有向你发起请求或者请求已经过期了！");
                         return true;
                     }
                     request = requests.get(args[0].toLowerCase());
                     requests.remove(args[0].toLowerCase());
                 }
                 if (Game.rpgWorlds.contains(request.getPlayer().getWorld().getName()) && !PlayerUtils.hasBQTag(request.getTransmitters(), "default.毕业T4")){
-                    request.getTransmitters().sendMessage("§c你需要完成主线副本才能传送其他副本的玩家！");
-                    sender.sendMessage("§c接受失败");
+                    request.getTransmitters().sendMessage("§l§a[LTCraft温馨提示]§c你需要完成主线副本才能传送其他副本的玩家！");
+                    sender.sendMessage("§c§l接受失败");
                     return true;
                 }
                 request.getTransmitters().teleport(request.getPlayer(), PlayerTeleportEvent.TeleportCause.COMMAND);
-                sender.sendMessage("§a接受成功");
-                request.getPlayer().sendMessage("§a"+sender.getName()+"接受了你的请求~");
+                sender.sendMessage("§a§l接受成功");
+                request.getPlayer().sendMessage("§a§l[LTCraft温馨提示]§e"+sender.getName()+"§e§l接受了你的请求~");
             break;
             case "tpahere":
                 if (sp == null)return true;
@@ -391,21 +392,22 @@ public class Teleport extends JavaPlugin implements Listener {
                 }
                 player = getServer().getPlayer(args[0]);
                 if (player==null){
-                    sender.sendMessage("§c对方不在线！");
+                    sender.sendMessage("§a§l[LTCraft温馨提示]§c对方不在线！");
                     return true;
                 }
                 if (player.getName().equals(sender.getName())){
-                    sender.sendMessage("§c你不能tpahere自己！");
+                    sender.sendMessage("§l§a[LTCraft温馨提示]§c你不能tpahere自己！");
                     return true;
                 }
                 if (this.requests.get(player.getName()).containsKey(sender.getName().toLowerCase())){
-                    sender.sendMessage("§c你们两个已经存在一个请求了请等待处理或者到期！");
+                    sender.sendMessage("§l§a[LTCraft温馨提示]§c你们两个已经存在一个请求了请等待处理或者到期！");
                     return true;
                 }
                 if (Cooling.isCooling(sp, "TPA命令")) {
                     return true;
                 }
                 Cooling.cooling(sp, "TPA命令", 10, "TPA命令剩余冷却时间：%s%S");
+                message = new TextComponent("§6----------玩家传送----------");
                 message = new TextComponent("§e玩家"+sender.getName()+"邀请你过去喝茶，你可以在30秒内做出决定：");
                 accept = new TextComponent("[点我接受]");
                 accept.setColor(ChatColor.GREEN);
@@ -459,7 +461,7 @@ public class Teleport extends JavaPlugin implements Listener {
                     return true;
                 }
                 if (Game.mainLineWorlds.contains(args[0]) && !PlayerUtils.hasBQTag(sp, "default.毕业T4")){
-                    sender.sendMessage("§c你需要完成主线才能使用/warp传送到主线世界！");
+                    sender.sendMessage("§l§a[LTCraft温馨提示]§c你需要完成主线才能使用/warp传送到主线世界！");
                     return true;
                 }
                 warp = tmpWarps.get(args[0]);
@@ -485,21 +487,21 @@ public class Teleport extends JavaPlugin implements Listener {
                     return true;
                 }
                 if (args[0].equalsIgnoreCase("mainline")){
-                    sender.sendMessage("§c你不能用这个名子来命名你的家！");
+                    sender.sendMessage("§l§a[LTCraft温馨提示]§c你不能用这个名子来命名你的家！");
                     return true;
                 }
                 if (sp.getWorld().getName().startsWith("t")){
-                    sender.sendMessage("§c你不能在主线副本安置家！");
+                    sender.sendMessage("§l§a[LTCraft温馨提示]§c你不能在主线副本安置家！");
                     return true;
                 }
                 int max = getHomeMaxCount(sp);
                 if (playerHomes.get(sender.getName()).size() >= max){
-                    sender.sendMessage("§a你最大只能设置" + max + "个家！");
+                    sender.sendMessage("§l§a[LTCraft温馨提示]§c你最大只能设置" + max + "个家！");
                     return true;
                 }
                 home = new Home(sp.getLocation());
                 playerHomes.get(sender.getName()).put(args[0], home);
-                sender.sendMessage("§a设置家成功！");
+                sender.sendMessage("§l§a[LTCraft温馨提示]§e设置家成功！");
             break;
             case "delhome":
                 if (args.length==0){
@@ -511,11 +513,11 @@ public class Teleport extends JavaPlugin implements Listener {
                     return true;
                 }
                 if (!playerHomes.get(sender.getName()).containsKey(args[0])){
-                    sender.sendMessage("§c家"+args[0]+"不存在！");
+                    sender.sendMessage("§l§a[LTCraft温馨提示]§c家"+args[0]+"不存在！");
                     return true;
                 }
                 playerHomes.get(sender.getName()).remove(args[0]);
-                sender.sendMessage("§a删除家成功！");
+                sender.sendMessage("§l§a[LTCraft温馨提示]§a删除家成功！");
             break;
             case "home":
                 if (args.length==0){
@@ -523,7 +525,7 @@ public class Teleport extends JavaPlugin implements Listener {
                     return true;
                 }
                 if (!playerHomes.get(sender.getName()).containsKey(args[0])){
-                    sender.sendMessage("§c家"+args[0]+"不存在！");
+                    sender.sendMessage("§l§a[LTCraft温馨提示]§c家"+args[0]+"不存在！");
                     return true;
                 }
                 home = playerHomes.get(sender.getName()).get(args[0]);
@@ -546,7 +548,7 @@ public class Teleport extends JavaPlugin implements Listener {
                     return true;
                 }
                 sp.teleport(deathLocation.get(sender.getName()), PlayerTeleportEvent.TeleportCause.COMMAND);
-                sender.sendMessage("§a传送成功！");
+                sender.sendMessage("§l§a[LTCraft温馨提示]§a传送成功！");
             break;
             case "bt":
                 if (!lastLocation.containsKey(sender.getName()) || lastLocation.get(sender.getName()) == null){
@@ -554,12 +556,12 @@ public class Teleport extends JavaPlugin implements Listener {
                     return true;
                 }
                 sp.teleport(lastLocation.get(sender.getName()), PlayerTeleportEvent.TeleportCause.COMMAND);
-                sender.sendMessage("§a传送成功！");
+                sender.sendMessage("§l§a[LTCraft温馨提示]§a传送成功！");
             break;
             case "setspawn":
                 world = sp.getWorld();
                 world.setSpawnLocation(sp.getLocation());
-                sender.sendMessage("§a设置成功！");
+                sender.sendMessage("§l§a[LTCraft温馨提示]§a设置成功！");
             break;
         }
         return true;
@@ -577,7 +579,7 @@ public class Teleport extends JavaPlugin implements Listener {
         if (!Game.rpgWorlds.contains(event.getFrom().getWorld().getName()) && !(event.getFrom().getWorld() == event.getTo().getWorld() && event.getTo().distance(event.getFrom()) < 5) &&
                 (event.getCause() == PlayerTeleportEvent.TeleportCause.COMMAND || event.getCause() == PlayerTeleportEvent.TeleportCause.PLUGIN)){
             lastLocation.put(event.getPlayer().getName(), event.getFrom());
-            event.getPlayer().sendMessage("§e输入/bt传送到上次传送前的坐标.");
+            event.getPlayer().sendMessage("§l§a[LTCraft温馨提示]§e输入/bt传送到上次传送前的坐标.");
         }
     }
     public int getHomeMaxCount(Player player){
