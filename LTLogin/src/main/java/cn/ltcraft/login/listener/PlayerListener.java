@@ -45,7 +45,7 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         if (Login.playerStatus.containsKey(player.getName())){
             if (Login.playerStatus.get(player.getName())==PlayerStatus.NORMAL){
-                event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "§c相同ID的玩家已经登录！");
+                event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "§c§l这个账户已经被登录！");
             }
         }else{
             Login.playerStatus.put(player.getName(), PlayerStatus.WAITING);//设置玩家为等待状态
@@ -67,7 +67,7 @@ public class PlayerListener implements Listener {
                             Login.forceSendMessage(player, "§l§e这个账户还没有注册，请直接发送密码来注册。");
                         } else {//有记录
                             plugin.setPlayerStatus(player, PlayerStatus.LOGIN);
-                            Login.forceSendMessage(player, "§l§e欢迎回来，请输入密码~");
+                            Login.forceSendMessage(player, "§l§a请输入你的密码，如果你没注册过账户请更改你的ID.");
                         }
                         Bukkit.getScheduler().cancelTask(getTaskId());
                     }else {
@@ -148,7 +148,7 @@ public class PlayerListener implements Listener {
             case LOGIN:
                 event.setCancelled(true);
                 if (message.equals(playerInfo.getPassword())){
-                    Login.forceSendMessage(player, "§l§a恭喜你，登录成功啦~");
+                    Login.forceSendMessage(player, "§l§a登陆成功，欢迎回来！");
                     plugin.setPlayerStatus(player, PlayerStatus.NORMAL);
                     player.updateInventory();
                     playerInfo.setIp(player.getAddress().toString().substring(1).split(":")[0]);
@@ -166,14 +166,14 @@ public class PlayerListener implements Listener {
                     }
                     PlayerUtils.sendActionMessage("§e" + player.getName() + "加入了游戏。");
                 }else{
-                    Login.forceSendMessage(player, "§l§c抱歉，密码不对哦~");
+                    Login.forceSendMessage(player, "§c密码错误！");
                     if(message.startsWith("/")){
                         Login.forceSendMessage(player, "§l§c注意，你输入的密码可能为命令，在此服务器你应该§d直接输入密码§c来的登录！");
                     }
                     if (Login.errorCount.containsKey(player.getName())){
                         if (Login.errorCount.get(player.getName()) >= 5){
                             Bukkit.getScheduler().runTask(Login.getInstance(), () ->
-                                    player.kickPlayer("§c多次密码错误！"));
+                                    player.kickPlayer("§c§l多次密码错误！"));
                             event.setCancelled(true);
                             return;
                         }
@@ -207,7 +207,7 @@ public class PlayerListener implements Listener {
                             Main.getInstance().getSQLManage().getQueue().add(new SQLQueue(sqlSession, () -> mapper.insert(playerInfo),
                                 sqlQueue -> {
                                     if (sqlQueue.getStatus()== SQLQueue.STATUS.DONE){
-                                        Login.forceSendMessage(player, "§l§a恭喜你！注册成功了~");
+                                        Login.forceSendMessage(player, "§e恭喜你！注册成功了~");
                                         Login.forceSendMessage(player, "§l§a现在。你可以开始游戏啦~");
                                         plugin.setPlayerStatus(player, PlayerStatus.NORMAL);
                                         player.updateInventory();
