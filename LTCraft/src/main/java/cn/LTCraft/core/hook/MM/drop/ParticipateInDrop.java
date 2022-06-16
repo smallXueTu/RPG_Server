@@ -3,6 +3,7 @@ package cn.LTCraft.core.hook.MM.drop;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.listener.MMListener;
 import cn.LTCraft.core.other.Temp;
+import cn.LTCraft.core.utils.MathUtils;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.adapters.AbstractPlayer;
 import io.lumine.xikage.mythicmobs.drops.Drop;
@@ -25,11 +26,13 @@ import java.util.*;
  */
 public class ParticipateInDrop extends Drop implements IIntangibleDrop {
     private final ClutterItem item;
+    private final double probability;
     public ParticipateInDrop(String line, MythicLineConfig config){
         super(line, config);
         String itemStr = line.substring("ParticipateInDrop ".length());
-        String[] s = itemStr.split(" ");
-        item = ClutterItem.spawnClutterItem(s[0], ClutterItem.ItemSource.LTCraft);
+        String[] split = itemStr.split("%");
+        item = ClutterItem.spawnClutterItem(split[0]);
+        probability = split.length > 1? Double.parseDouble(split[1]):1;
     }
     @Override
     public void giveDrop(AbstractPlayer abstractPlayer, DropMetadata dropMetadata) {
@@ -37,7 +40,6 @@ public class ParticipateInDrop extends Drop implements IIntangibleDrop {
         AbstractEntity entity = caster.getEntity();
         Entity bukkitEntity = entity.getBukkitEntity();
         Map<String, List<MMListener.PlayerDamage>> stringListMap = MMListener.damages.get(bukkitEntity.getEntityId());
-
         if (stringListMap != null){
             Location location = bukkitEntity.getLocation();
             ArrayList<Map.Entry<String, List<MMListener.PlayerDamage>>> list = new ArrayList<>(stringListMap.entrySet());
@@ -46,6 +48,7 @@ public class ParticipateInDrop extends Drop implements IIntangibleDrop {
                 String key = stringListEntry.getKey();
                 Player playerExact = Bukkit.getPlayerExact(key);
                 if (playerExact != null && playerExact.getWorld() == bukkitEntity.getWorld() && playerExact.getLocation().distance(location) < 10){
+                    if (!MathUtils.ifAdopt(probability))continue;
                     ItemStack generate = item.generate();
                     Item dropItem = location.getWorld().dropItem(location, generate);
                     Temp.protectItem(playerExact, dropItem);
