@@ -4,9 +4,22 @@ import cn.LTCraft.core.hook.MM.conditions.*;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.*;
 import cn.LTCraft.core.hook.MM.mechanics.*;
 import cn.LTCraft.core.hook.MM.drop.*;
+import cn.LTCraft.core.task.GlobalRefresh;
+import cn.LTCraft.core.utils.EntityUtils;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.*;
+import io.lumine.xikage.mythicmobs.io.MythicConfig;
+import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class MMListener implements Listener {
@@ -80,10 +93,44 @@ public class MMListener implements Listener {
             event.register(new GoldCoins(event.getContainer().getConfigLine(), event.getConfig()));
         }else if (event.getDropName().equalsIgnoreCase("PseudorandomDrop")){
             event.register(new PseudorandomDrop(event.getContainer().getConfigLine(), event.getConfig()));
+        }else if (event.getDropName().equalsIgnoreCase("ParticipateInDrop")){
+            event.register(new ParticipateInDrop(event.getContainer().getConfigLine(), event.getConfig()));
         }
     }
+    public static final Map<Integer, Map<String, List<PlayerDamage>>> damages = new HashMap<>();
     @EventHandler
     public void onMythicMobDeath(MythicMobDeathEvent event){
+        ActiveMob mob = event.getMob();
+        MythicConfig config = mob.getType().getConfig();
+        if (config.getBoolean("团队")) {
+            damages.remove(event.getEntity().getEntityId());
+        }
+    }
+    @EventHandler(
+        priority = EventPriority.HIGHEST
+    )
+    public void onDamageByEntity(EntityDamageByEntityEvent event){
+        Entity entity = event.getEntity();
+        Entity damager = event.getDamager();
+        if (damager instanceof Player) {
+            Player player = (Player) damager;
+            MythicConfig mythicMobConfig = EntityUtils.getMythicMobConfig(entity);
+            if (mythicMobConfig != null) {
+                if (mythicMobConfig.getBoolean("团队")) {
+                    Map<String, List<PlayerDamage>> stringListMap = damages.computeIfAbsent(entity.getEntityId(), k -> new HashMap<>());
+                    List<PlayerDamage> list = stringListMap.computeIfAbsent(player.getName(), k -> new ArrayList<>());
+                    list.add(new PlayerDamage(GlobalRefresh.getTick(), event.getDamage()));
+                }
+            }
+        }
+    }
+    public static class PlayerDamage{
+        private final long tick;
+        private final double damage;
 
+        public PlayerDamage(long tick, double damage) {
+            this.tick = tick;
+            this.damage = damage;
+        }
     }
 }
