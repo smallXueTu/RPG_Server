@@ -369,18 +369,19 @@ public class PlayerListener  implements Listener {
         Player player = event.getPlayer();
         com.sucy.skill.api.player.PlayerData data;
         data = SkillAPI.getPlayerData(player);
-        String clazz = "无职业";
         String prefix =  Main.getInstance().getChat().getPlayerPrefix(player).replace("&", "§");
+        if (!prefix.isEmpty()){
+            prefix = "§3<§r" + prefix + "§3>";
+        }
         int level = 0;
         if (data != null && data.getMainClass() != null){
-                clazz = data.getMainClass().getData().getName();
                 level = data.getMainClass().getLevel();
         }
         PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
         String sex = playerConfig.getConfig().getString("性别", "");
         String love = Love.getLove(player);
         if (!love.equals("")){
-            love = " §3伴侣§c♥§3" + love;
+            love = "§c♥§3" + love;
         }
         if (!sex.equals("")){
             sex = " §d" + sex;
@@ -389,9 +390,9 @@ public class PlayerListener  implements Listener {
         PlayerInfo.VIP vipStatus = playerInfo.getVipStatus();
         String vip = "";
         if (vipStatus.getLevel().getGrade() > 0){
-            vip = "§f[§r" + vipStatus.getLevel().toString() + "§f]";
+            vip = vipStatus.getLevel().toString() + " ";
         }
-        event.setFormat("§f[§bLv.§e" + level + sex + love + " §c" + clazz + "§f]" + vip + prefix + "§e" + player.getName() + "§f: §r%2$s");
+        event.setFormat("§f[§bLv.§e" + level + sex + love + "§f]" + vip + prefix + "§e" + player.getName() + "§f: §r%2$s");
 //        event.setMessage("§f[§bLv.§e" + level + " §c" + clazz + "§f]§e" + player.getName() + "§f: §e" + event.getMessage());
     }
     @EventHandler
