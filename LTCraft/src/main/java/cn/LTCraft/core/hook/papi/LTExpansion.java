@@ -70,7 +70,7 @@ public class LTExpansion extends PlaceholderExpansion {
             case "armor":
                 return PlayerAttribute.getPlayerAttribute(p).getArmorValue() + "";
             case "prefix":
-                return PlayerConfig.getPlayerConfig(p).getConfig().getString("prefix", "");
+                return PlayerConfig.getPlayerConfig(p.getName()).getString("prefix", "");
             case "vip_name":
                 PlayerInfo.VIP.Level level = PlayerConfig.getPlayerConfig(p).getPlayerInfo().getVipStatus().getLevel();
                 if (level != PlayerInfo.VIP.Level.NONE) {
