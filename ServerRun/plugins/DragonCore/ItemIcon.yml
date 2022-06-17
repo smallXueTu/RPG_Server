@@ -237,18 +237,27 @@
   match: "通用熔炼炉图纸"
   texture: "t4/通用熔炼炉图纸.png"
 #---------------------- f1 ----------------------
+觉醒知识卷轴章节:
+  match: "觉醒知识卷轴章节"
+  texture: "f1/觉醒知识卷轴章节.png"
 知识卷轴章节:
   match: "知识卷轴章节"
   texture: "f1/知识卷轴章节.png"
 法杖知识卷轴:
   match: "法杖知识卷轴"
   texture: "f1/法杖知识卷轴.png"
+法杖觉醒知识卷轴:
+  match: "法杖觉醒知识卷轴"
+  texture: "f1/法杖觉醒知识卷轴.png"
 凝固经验块:
   match: "凝固经验块"
   texture: "f1/凝固经验块.png"
 知识之瓶:
   match: "知识之瓶"
   texture: "f1/知识之瓶.png"
+觉醒知识精髓:
+  match: "觉醒知识精髓"
+  texture: "f1/觉醒知识精髓.png"
 刺客知识精髓:
   match: "刺客知识精髓"
   texture: "f1/知识精髓.png"
