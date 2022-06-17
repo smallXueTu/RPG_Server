@@ -384,7 +384,7 @@ public class PlayerListener  implements Listener {
             love = "§c♥§3" + love;
         }
         if (!sex.equals("")){
-            sex = " §d" + sex;
+            sex = "§d" + sex;
         }
         PlayerInfo playerInfo = PlayerConfig.getPlayerConfig(player).getPlayerInfo();
         PlayerInfo.VIP vipStatus = playerInfo.getVipStatus();
