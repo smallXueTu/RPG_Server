@@ -99,6 +99,8 @@ public class MMListener implements Listener {
             event.register(new PseudorandomDrop(event.getContainer().getConfigLine(), event.getConfig()));
         }else if (event.getDropName().equalsIgnoreCase("ParticipateInDrop")){
             event.register(new ParticipateInDrop(event.getContainer().getConfigLine(), event.getConfig()));
+        }else if (event.getDropName().equalsIgnoreCase("ParticipateInSAPExp")){
+            event.register(new ParticipateInSAPExp(event.getContainer().getConfigLine(), event.getConfig()));
         }
     }
     public static final Map<Integer, Map<String, List<PlayerDamage>>> damages = new HashMap<>();
