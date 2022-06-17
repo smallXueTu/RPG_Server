@@ -180,7 +180,7 @@ public class UseItemEffect {
                     player.sendMessage("§c你的§d" + skillName + "§c觉醒等级已达上限:5！");
                     return count;
                 }
-                count = level * 4;
+                count = awakenLevel * 4;
                 if (inHand.getAmount() < count){
                     player.sendMessage("§c你需要" + count + "个§d" + itemName + "§c才能升级！");
                     return 0;
