@@ -1,7 +1,9 @@
 package cn.LTCraft.core.commands;
 
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.utils.PlayerUtils;
+import io.lumine.utils.config.file.YamlConfiguration;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -51,11 +53,11 @@ public class PrefixCommand implements CommandExecutor {
                 auxString.append(" ");
             }
         }
-        if (auxString.length() > 16) {
-            commandSender.sendMessage("§c称号最长支持16位！");
+        if (auxString.length() > 14) {
+            commandSender.sendMessage("§c称号最长支持14位！");
         }
-        plugin.getChat().setPlayerPrefix("zy", player, auxString.toString());
-        plugin.getChat().setPlayerPrefix("world", player, auxString.toString());
+        YamlConfiguration config = PlayerConfig.getPlayerConfig(player.getName());
+        config.set("prefix", auxString);
         PlayerUtils.updatePlayerDisplayName(player);
         commandSender.sendMessage("设置成功！");
         return true;
