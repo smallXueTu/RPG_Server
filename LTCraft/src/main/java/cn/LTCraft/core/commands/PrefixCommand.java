@@ -43,16 +43,19 @@ public class PrefixCommand implements CommandExecutor {
         }else {
             player = (Player) commandSender;
         }
-        String auxString = "";
+        StringBuilder auxString = new StringBuilder();
 
         for(int i = count - 1; i < args.length; ++i) {
-            auxString = auxString + args[i];
+            auxString.append(args[i]);
             if (i + 1 < args.length) {
-                auxString = auxString + " ";
+                auxString.append(" ");
             }
         }
-        plugin.getChat().setPlayerPrefix("zy", (OfflinePlayer)player, "[" + auxString + "§r]");
-        plugin.getChat().setPlayerPrefix("world", (OfflinePlayer)player, "[" + auxString + "§r]");
+        if (auxString.length() > 16) {
+            commandSender.sendMessage("§c称号最长支持16位！");
+        }
+        plugin.getChat().setPlayerPrefix("zy", player, auxString.toString());
+        plugin.getChat().setPlayerPrefix("world", player, auxString.toString());
         PlayerUtils.updatePlayerDisplayName(player);
         commandSender.sendMessage("设置成功！");
         return true;
