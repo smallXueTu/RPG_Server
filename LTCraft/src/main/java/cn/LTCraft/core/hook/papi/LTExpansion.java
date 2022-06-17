@@ -1,5 +1,6 @@
 package cn.LTCraft.core.hook.papi;
 
+import cn.LTCraft.core.dataBase.bean.PlayerInfo;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.MathUtils;
 import cn.LTCraft.core.entityClass.PlayerConfig;
@@ -68,6 +69,13 @@ public class LTExpansion extends PlaceholderExpansion {
                 return Utils.formatNumber(p.getMaxHealth());
             case "armor":
                 return PlayerAttribute.getPlayerAttribute(p).getArmorValue() + "";
+            case "prefix":
+                return PlayerConfig.getPlayerConfig(p).getConfig().getString("prefix", "");
+            case "vip_name":
+                PlayerInfo.VIP.Level level = PlayerConfig.getPlayerConfig(p).getPlayerInfo().getVipStatus().getLevel();
+                if (level != PlayerInfo.VIP.Level.NONE) {
+                    return level.toString();
+                }else return "";
             case "injuryFree":
                 double injuryFreePercentage = MathUtils.getInjuryFreePercentage(PlayerAttribute.getPlayerAttribute(p).getArmorValue());
                 return Utils.formatNumber(injuryFreePercentage * 100);
