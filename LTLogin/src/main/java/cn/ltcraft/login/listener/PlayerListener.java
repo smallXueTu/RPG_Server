@@ -186,6 +186,8 @@ public class PlayerListener implements Listener {
             case REGISTER:
                 if(message.startsWith("/")){
                     Login.forceSendMessage(player, "§l§c注意，你输入的可能为命令，在此服务器你应该§d直接输入密码§c来的注册！");
+                    event.setCancelled(true);
+                    return;
                 }
                 if (playerInfo.getConfirmPassword()==null) {//玩家在第一步
                     String check = Utils.checkPassword(message);
