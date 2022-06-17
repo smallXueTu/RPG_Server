@@ -1,5 +1,6 @@
 package cn.LTCraft.core.listener;
 
+import cn.LTCraft.core.Main;
 import cn.LTCraft.core.hook.MM.conditions.*;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.*;
 import cn.LTCraft.core.hook.MM.mechanics.*;
@@ -9,12 +10,15 @@ import cn.LTCraft.core.utils.EntityUtils;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.*;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
+import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -123,6 +127,22 @@ public class MMListener implements Listener {
                 }
             }
         }
+    }
+    @EventHandler
+    public void onSpawn(EntitySpawnEvent event){
+        Entity entity = event.getEntity();
+        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+            MythicConfig mythicMobConfig = EntityUtils.getMythicMobConfig(entity);
+            if (mythicMobConfig != null) {
+                if (mythicMobConfig.getBoolean("团队")) {
+                    double aDouble = mythicMobConfig.getDouble("攻击范围", 0d);
+                    if (aDouble > 0.5) {
+                        net.minecraft.server.v1_12_R1.Entity handle = ((CraftEntity) entity).getHandle();
+                        handle.width = (float) ((float) aDouble / 1.5);
+                    }
+                }
+            }
+        }, 0);
     }
     public static class PlayerDamage{
         private final long tick;
