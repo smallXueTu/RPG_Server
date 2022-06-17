@@ -37,8 +37,10 @@ public class UseItemEffect {
         MythicConfig classAtt;
         Set<String> skills;
         String skillName;
+        String itemClass;
         int level;
         int maxLevel;
+        int maxAwakenLevel;
         switch (itemName){
             case "非稳定钢质":
                 if (!player.getWorld().getName().equals("t2"))return count;
@@ -109,7 +111,7 @@ public class UseItemEffect {
             case "法师知识精髓":
             case "战士知识精髓":
             case "牧师知识精髓":
-                String itemClass = itemName.substring(0, 2);
+                itemClass = itemName.substring(0, 2);
                 if (playerClass.getName().equals(itemClass)){
                     classAtt = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
                     skills = classAtt.getKeys("skills");
@@ -126,6 +128,34 @@ public class UseItemEffect {
                         classAtt.set("skills." + skillName + ".maxLevel", 1);
                         classAtt.set("skills." + skillName + ".level", 1);
                         classAtt.set("skills." + skillName + ".awakenLevel", 0);
+                        classAtt.set("skills." + skillName + ".maxAwakenLevel", 0);
+                    }
+                    player.sendMessage("§a使用成功！");
+                    count++;
+                }else {
+                    player.sendMessage("§c你的职业与精髓类型不符合！");
+                }
+            break;
+            case "刺客觉醒知识精髓":
+            case "法师觉醒知识精髓":
+            case "战士觉醒知识精髓":
+            case "牧师觉醒知识精髓":
+                itemClass = itemName.substring(0, 2);
+                if (playerClass.getName().equals(itemClass)){
+                    classAtt = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
+                    skills = classAtt.getKeys("skills");
+                    if (skills == null)skills = new HashSet<>();
+                    skillName = cn.LTCraft.core.game.Game.getClassSkill(playerClass);
+                    if (skills.contains(skillName)){
+                        maxAwakenLevel = classAtt.getInteger("skills." + skillName + ".maxAwakenLevel");
+                        if (maxAwakenLevel >= 5){
+                            player.sendMessage("§c你的§d" + skillName + "§c最大觉醒等级已达上限:5！");
+                            return count;
+                        }
+                        classAtt.set("skills." + skillName + ".maxAwakenLevel", maxAwakenLevel + 1);
+                    }else {
+                        classAtt.set("skills." + skillName + ".awakenLevel", 1);
+                        classAtt.set("skills." + skillName + ".maxAwakenLevel", 1);
                     }
                     player.sendMessage("§a使用成功！");
                     count++;
@@ -173,11 +203,12 @@ public class UseItemEffect {
                 level = classAtt.getInteger("skills." + skillName + ".level");
                 int awakenLevel = classAtt.getInteger("skills." + skillName + ".awakenLevel");
                 if (level < 5){
-                    player.sendMessage("§c你的§d" + skillName + "§c还为达到最大等级:5，请先升级至最5级再觉醒！");
+                    player.sendMessage("§c你的§d" + skillName + "§c还未达到最大等级:5，请先升级至最5级再觉醒！");
                     return count;
                 }
-                if (awakenLevel >= 5){
-                    player.sendMessage("§c你的§d" + skillName + "§c觉醒等级已达上限:5！");
+                maxAwakenLevel = classAtt.getInteger("skills." + skillName + ".maxAwakenLevel", 1);
+                if (awakenLevel >= maxAwakenLevel){
+                    player.sendMessage("§c你的§d" + skillName + "§c已达最大觉醒等级，请使用§d" + playerClass.getName() + "觉醒知识精髓§c升级最大觉醒等级！");
                     return count;
                 }
                 count = awakenLevel * 4;
