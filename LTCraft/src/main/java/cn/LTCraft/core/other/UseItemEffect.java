@@ -34,6 +34,11 @@ public class UseItemEffect {
         PlayerClass playerClass = PlayerUtils.getClass(player);
         ItemStack inHand = player.getItemInHand();
         int count = 0;
+        MythicConfig classAtt;
+        Set<String> skills;
+        String skillName;
+        int level;
+        int maxLevel;
         switch (itemName){
             case "非稳定钢质":
                 if (!player.getWorld().getName().equals("t2"))return count;
@@ -106,17 +111,17 @@ public class UseItemEffect {
             case "牧师知识精髓":
                 String itemClass = itemName.substring(0, 2);
                 if (playerClass.getName().equals(itemClass)){
-                    MythicConfig classAtt = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
-                    Set<String> skills = classAtt.getKeys("skills");
+                    classAtt = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
+                    skills = classAtt.getKeys("skills");
                     if (skills == null)skills = new HashSet<>();
-                    String skillName = cn.LTCraft.core.game.Game.getClassSkill(playerClass);
+                    skillName = cn.LTCraft.core.game.Game.getClassSkill(playerClass);
                     if (skills.contains(skillName)){
-                        int maxLevel = classAtt.getInteger("skills." + skillName + ".maxLevel");
+                        maxLevel = classAtt.getInteger("skills." + skillName + ".maxLevel");
                         if (maxLevel >= 5){
                             player.sendMessage("§c你的§d" + skillName + "§c最大等级已达上限:5！");
                             return count;
                         }
-                        classAtt.set("skills." + skillName + ".maxLevel", classAtt.getInteger("skills." + skillName + ".maxLevel") + 1);
+                        classAtt.set("skills." + skillName + ".maxLevel", maxLevel + 1);
                     }else {
                         classAtt.set("skills." + skillName + ".maxLevel", 1);
                         classAtt.set("skills." + skillName + ".level", 1);
@@ -129,15 +134,19 @@ public class UseItemEffect {
                 }
             break;
             case "法杖知识卷轴":
-                MythicConfig classAtt = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
-                Set<String> skills = classAtt.getKeys("skills");
-                String skillName = Game.getClassSkill(playerClass);
+                classAtt = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
+                skills = classAtt.getKeys("skills");
+                skillName = Game.getClassSkill(playerClass);
                 if (skills == null || !skills.contains(skillName)){
                     player.sendMessage("§c你还没学习职业基础技能！");
                     return count;
                 }
-                int level = classAtt.getInteger("skills." + skillName + ".level");
-                int maxLevel = classAtt.getInteger("skills." + skillName + ".maxLevel");
+                level = classAtt.getInteger("skills." + skillName + ".level");
+                maxLevel = classAtt.getInteger("skills." + skillName + ".maxLevel");
+                if (level >= 5){
+                    player.sendMessage("§c你的§d" + skillName + "§c等级已达上限:5！");
+                    return count;
+                }
                 if (maxLevel <= level){
                     player.sendMessage("§c你的§d" + skillName + "§c已达最大等级，请使用§d" + playerClass.getName() + "知识精髓§c升级最大等级！");
                     return count;
@@ -147,7 +156,36 @@ public class UseItemEffect {
                     player.sendMessage("§c你需要" + count + "个§d" + itemName + "§c才能升级！");
                     return 0;
                 }
-                classAtt.set("skills." + skillName + ".level", classAtt.getInteger("skills." + skillName + ".level") + 1);
+                classAtt.set("skills." + skillName + ".level", level + 1);
+                player.sendMessage("§a使用成功！");
+                inHand.setAmount(inHand.getAmount() - count);
+                player.getInventory().setItemInMainHand(inHand);
+                count = 0;
+            break;
+            case "法杖觉醒知识卷轴":
+                classAtt = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
+                skills = classAtt.getKeys("skills");
+                skillName = Game.getClassSkill(playerClass);
+                if (skills == null || !skills.contains(skillName)){
+                    player.sendMessage("§c你还没学习职业基础技能！");
+                    return count;
+                }
+                level = classAtt.getInteger("skills." + skillName + ".level");
+                int awakenLevel = classAtt.getInteger("skills." + skillName + ".awakenLevel");
+                if (level < 5){
+                    player.sendMessage("§c你的§d" + skillName + "§c还为达到最大等级:5，请先升级至最5级再觉醒！");
+                    return count;
+                }
+                if (awakenLevel >= 5){
+                    player.sendMessage("§c你的§d" + skillName + "§c觉醒等级已达上限:5！");
+                    return count;
+                }
+                count = level * 4;
+                if (inHand.getAmount() < count){
+                    player.sendMessage("§c你需要" + count + "个§d" + itemName + "§c才能升级！");
+                    return 0;
+                }
+                classAtt.set("skills." + skillName + ".awakenLevel", awakenLevel + 1);
                 player.sendMessage("§a使用成功！");
                 inHand.setAmount(inHand.getAmount() - count);
                 player.getInventory().setItemInMainHand(inHand);
