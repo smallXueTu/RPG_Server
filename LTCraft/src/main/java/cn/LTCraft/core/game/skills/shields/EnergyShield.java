@@ -8,6 +8,7 @@ import net.minecraft.server.v1_12_R1.DamageSource;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -56,12 +57,12 @@ public class EnergyShield extends BaseShield{
     public void destroy() {
         super.destroy();
         if (isAwaken()){
-            ((CraftWorld) owner.getWorld()).getHandle().createExplosion((owner).getHandle(), owner.getX(), owner.getY(), owner.getZ(), 5, false, false);
+            ((CraftWorld) owner.getWorld()).getHandle().createExplosion((((CraftPlayer) owner)).getHandle(), owner.getLocation().getX(), owner.getLocation().getY(), owner.getLocation().getZ(), 5, false, false);
             Collection<Entity> nearbyEntities = owner.getWorld().getNearbyEntities(owner.getLocation(), 3, 3, 3);
             double damage = blockDamage * (0.2 + awakenLevel * 0.1);
             for (Entity nearbyEntity : nearbyEntities) {
                 EntityUtils.repel(nearbyEntity, owner.getLocation(), 2, 10);
-                ((CraftEntity) nearbyEntity).getHandle().damageEntity(DamageSource.a(owner), damage);
+                ((CraftEntity) nearbyEntity).getHandle().damageEntity(DamageSource.a(((CraftPlayer) owner).getHandle()), (float) damage);
             }
         }
         Temp.shield.remove(getOwner());
