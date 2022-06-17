@@ -25,7 +25,7 @@ public class CInfoCommand implements CommandExecutor{
         for (String skill : classAttConfig.getKeys("skills")) {
             player.sendMessage("§a" + skill + ":");
             player.sendMessage("   §6技能等级:" + classAttConfig.getInteger("skills." + skill + ".level") + "/" +  classAttConfig.getInteger("skills." + skill + ".maxLevel"));
-            player.sendMessage("   §6觉醒等级:" + classAttConfig.getInteger("skills." + skill + ".awakenLevel") + "/5");
+            player.sendMessage("   §6觉醒等级:" + classAttConfig.getInteger("skills." + skill + ".awakenLevel") + "/" + classAttConfig.getInteger("skills." + skill + ".maxAwakenLevel"));
         }
         return true;
     }
