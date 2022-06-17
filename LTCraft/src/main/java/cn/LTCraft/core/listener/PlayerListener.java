@@ -369,16 +369,16 @@ public class PlayerListener  implements Listener {
         Player player = event.getPlayer();
         com.sucy.skill.api.player.PlayerData data;
         data = SkillAPI.getPlayerData(player);
-        String prefix =  Main.getInstance().getChat().getPlayerPrefix(player).replace("&", "§");
-        if (!prefix.isEmpty()){
-            prefix = "§3<§r" + prefix + "§3>";
-        }
         int level = 0;
         if (data != null && data.getMainClass() != null){
                 level = data.getMainClass().getLevel();
         }
         PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
         String sex = playerConfig.getConfig().getString("性别", "");
+        String prefix = playerConfig.getConfig().getString("prefix", "");
+        if (!prefix.isEmpty()){
+            prefix = "§3<§r" + prefix + "§3>";
+        }
         String love = Love.getLove(player);
         if (!love.equals("")){
             love = "§c♥§3" + love;
