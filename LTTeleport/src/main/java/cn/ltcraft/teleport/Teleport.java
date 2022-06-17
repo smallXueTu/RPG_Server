@@ -368,7 +368,7 @@ public class Teleport extends JavaPlugin implements Listener {
                     requests.remove(requests.entrySet().iterator().next().getKey());
                 }else{
                     if (!requests.containsKey(args[0].toLowerCase())){
-                        sender.sendMessage("§c"+args[0]+"没有想你发起请求或者请求已经过期了！");
+                        sender.sendMessage("§c"+args[0]+"没有向你发起请求或者请求已经过期了！");
                         return true;
                     }
                     request = requests.get(args[0].toLowerCase());
