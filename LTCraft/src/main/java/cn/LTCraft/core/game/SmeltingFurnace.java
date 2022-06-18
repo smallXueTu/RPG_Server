@@ -294,13 +294,13 @@ public class SmeltingFurnace implements TickEntity {
                     }
                 }
                 if (numberOfSuccesses >= needMaterial.size()){
-
+                    itemStacks = ItemUtils.clone(yItemStacks);
                     for (String material : needMaterial) {
                         ClutterItem clutterItem = ClutterItem.spawnClutterItem(material);
                         ItemUtils.removeItem(yItemStacks, clutterItem, player);
                     }
                     setChest(yItemStacks);
-                    Collections.addAll(inventory, yItemStacks);
+                    Collections.addAll(inventory, itemStacks);
                     lines.forEach(HologramLine::removeLine);
                     lines.clear();
                     lines.add(hologram.appendTextLine("§e请将以下需要的材料丢弃到下方岩浆中："));
