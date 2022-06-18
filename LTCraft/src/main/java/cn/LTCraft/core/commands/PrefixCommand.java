@@ -57,7 +57,7 @@ public class PrefixCommand implements CommandExecutor {
             commandSender.sendMessage("§c称号最长支持14位！");
         }
         YamlConfiguration config = PlayerConfig.getPlayerConfig(player.getName());
-        config.set("prefix", auxString);
+        config.set("prefix", auxString.toString());
         PlayerUtils.updatePlayerDisplayName(player);
         commandSender.sendMessage("设置成功！");
         return true;
