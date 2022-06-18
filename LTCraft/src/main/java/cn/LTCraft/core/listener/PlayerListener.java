@@ -416,7 +416,7 @@ public class PlayerListener  implements Listener {
      * @param event
      */
     @EventHandler(
-            priority = EventPriority.HIGHEST,
+            priority = EventPriority.HIGH,
             ignoreCancelled = true
     )
     public void onEntityDamageByEntityLow(EntityDamageByEntityEvent event){
