@@ -197,13 +197,13 @@ public class SmeltingFurnace implements TickEntity {
         collectAround();
         int add = 1;
         try {
-            if (fatalError)throw new SmeltingFurnaceErrorException("致命错误！");
+            if (fatalError)throw new SmeltingFurnaceErrorException();
             updateProcess();
             if (age % 20 == 0){
                 add = 20;//每20s检查一次错误 所以要等于20
                 FakeBlock[] check = check(location, itemFrame);
                 if (check.length > 0){
-                    throw new SmeltingFurnaceErrorException("熔炼坛结构被破坏！");
+                    throw new SmeltingFurnaceErrorException("熔炼坛结构被破坏！", SmeltingFurnaceErrorException.Type.STRUCTURE);
                 }
                 checkDrawing();
                 checkHologram();
@@ -226,6 +226,7 @@ public class SmeltingFurnace implements TickEntity {
             if (lastException == null) {
                 lastException = e;
                 if (errorTick == 0) {
+                    errorTick = 60 * 20 - e.getTime() * 20;
                     for (TextLine line : lines) {
                         line.removeLine();
                     }
@@ -307,10 +308,11 @@ public class SmeltingFurnace implements TickEntity {
                     String[] split = smeltingStone.split(":");
                     lines.add(hologram.appendTextLine("§e" + split[0] + "×" + split[1]));
                     process++;
+                    waitingTime = 0;
                 }else {
                     waitingTime++;
                     if(waitingTime > 60 * 60 * 20){//超时
-                        throw new SmeltingFurnaceErrorException("超时！", false);
+                        throw new SmeltingFurnaceErrorException("超时！", SmeltingFurnaceErrorException.Type.TIMEOUT, 0);
                     }
                 }
                 break;
@@ -331,7 +333,7 @@ public class SmeltingFurnace implements TickEntity {
                 }else {
                     waitingTime++;
                     if(waitingTime > 60 * 60 * 20){//超时
-                        throw new SmeltingFurnaceErrorException("超时！", false);
+                        throw new SmeltingFurnaceErrorException("超时！", SmeltingFurnaceErrorException.Type.TIMEOUT, 0);
                     }
                 }
                 break;
@@ -367,7 +369,7 @@ public class SmeltingFurnace implements TickEntity {
                 }else {
                     waitingTime++;
                     if(waitingTime > 60 * 60 * 20){//超时
-                        throw new SmeltingFurnaceErrorException("超时！", false);
+                        throw new SmeltingFurnaceErrorException("超时！", SmeltingFurnaceErrorException.Type.TIMEOUT, 0);
                     }
                 }
             break;
@@ -568,7 +570,7 @@ public class SmeltingFurnace implements TickEntity {
      */
     public void checkPlayer() throws SmeltingFurnaceErrorException{
         if (!playerIsOnline()) {
-            throw new SmeltingFurnaceErrorException("锻造的玩家已经离线！", false);
+            throw new SmeltingFurnaceErrorException("超时！", SmeltingFurnaceErrorException.Type.PLAYER_OFFLINE);
         }
     }
 
@@ -686,7 +688,7 @@ public class SmeltingFurnace implements TickEntity {
                 }
                 if (!Objects.equals(inventory.getSmelting(), furnacesItemStack[0])){
                     fatalError = true;
-                    throw new SmeltingFurnaceErrorException("熔炼过程熔炉被干扰！");
+                    throw new SmeltingFurnaceErrorException("熔炼过程熔炉被干扰！", SmeltingFurnaceErrorException.Type.FURNACES_DISTURBED, 60, true);
                 }
             }
         }
@@ -697,16 +699,16 @@ public class SmeltingFurnace implements TickEntity {
      */
     public void checkDrawing() throws SmeltingFurnaceErrorException {
         if (itemFrameEntity == null || itemFrameEntity.isDead() || !(itemFrameEntity instanceof ItemFrame)){
-            throw new SmeltingFurnaceErrorException("找不到物品展示框！");
+            throw new SmeltingFurnaceErrorException("找不到物品展示框！", SmeltingFurnaceErrorException.Type.FRAME_ABNORMAL, 60, true);
         }
         if (done)return;
         ItemStack itemStack = ((ItemFrame) itemFrameEntity).getItem();
         String name;
         if (itemStack == null || !itemStack.hasItemMeta() || (name = itemStack.getItemMeta().getDisplayName()) == null){
-            throw new SmeltingFurnaceErrorException("找不到图纸！");
+            throw new SmeltingFurnaceErrorException("找不到图纸！", SmeltingFurnaceErrorException.Type.DRAWING_ABNORMAL, 60, true);
         }
         if (!Utils.clearColor(name).equals(this.drawing.getName())) {
-            throw new SmeltingFurnaceErrorException("现在图纸与开始图纸不符合！");
+            throw new SmeltingFurnaceErrorException("现在图纸与开始图纸不符合！", SmeltingFurnaceErrorException.Type.DRAWING_ABNORMAL, 60, true);
         }
     }
 
@@ -736,7 +738,7 @@ public class SmeltingFurnace implements TickEntity {
             if (furnace != null && furnace.getState() instanceof Container) {
                 Inventory inventory = ((Container) furnace.getState()).getInventory();
                 itemStacks[i] = inventory.getContents();
-            } else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
+            } else throw new SmeltingFurnaceErrorException("找不到熔炼坛熔炉！", SmeltingFurnaceErrorException.Type.FURNACES_ABNORMAL, 60, true);
         }
         return itemStacks;
     }
@@ -752,7 +754,7 @@ public class SmeltingFurnace implements TickEntity {
             if (furnace != null && furnace.getState() instanceof Container) {
                 Inventory inventory = ((Container) furnace.getState()).getInventory();
                 inventory.setContents(itemStacks[i]);
-            } else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
+            } else throw new SmeltingFurnaceErrorException("找不到熔炼坛熔炉！", SmeltingFurnaceErrorException.Type.FURNACES_ABNORMAL, 60, true);
         }
     }
 
@@ -765,7 +767,7 @@ public class SmeltingFurnace implements TickEntity {
         if (chest.getState() instanceof Container){
             Inventory inventory = ((Container) chest.getState()).getInventory();
             return inventory.getContents();
-        }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
+        }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！", SmeltingFurnaceErrorException.Type.CHEST_ABNORMAL, 60, true);
     }
 
     /**
@@ -776,7 +778,7 @@ public class SmeltingFurnace implements TickEntity {
     public Inventory getChestInventory() throws SmeltingFurnaceErrorException{
         if (chest.getState() instanceof Container){
             return ((Container) chest.getState()).getInventory();
-        }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
+        }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！", SmeltingFurnaceErrorException.Type.CHEST_ABNORMAL, 60, true);
     }
 
     /**
@@ -788,7 +790,7 @@ public class SmeltingFurnace implements TickEntity {
         if (chest.getState() instanceof Container){
             Inventory inventory = ((Container) chest.getState()).getInventory();
             inventory.setContents(itemStacks);
-        }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！");
+        }else throw new SmeltingFurnaceErrorException("找不到熔炼坛箱子！", SmeltingFurnaceErrorException.Type.CHEST_ABNORMAL, 60, true);
     }
     /**
      * @return string
