@@ -147,7 +147,7 @@ public class AllListener implements Listener {
              * Miss
              */
             if (MathUtils.ifAdopt(entityAttribute.getDodge())){
-                //TODO miss提示
+                EntityUtils.missAttack(entity);
                 event.setCancelled(true);
             }
         }
