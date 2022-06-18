@@ -421,19 +421,16 @@ public class PlayerListener  implements Listener {
     )
     public void onEntityDamageByEntityLow(EntityDamageByEntityEvent event){
         Player damager = null;
-        Player entity = null;
+        Entity entity = event.getEntity();
         if (event.getDamager() instanceof Player) {
             damager = (Player) event.getDamager();
             if (PlayerUtils.getClass(damager) == PlayerClass.ASSASSIN){
                 Temp.addInjured(event.getEntity(), 20);
             }
         }
-        if (event.getEntity() instanceof Player) {
-            entity = (Player) event.getEntity();
-            if (Temp.silence.containsKey(entity)){
-                Shield shield = Temp.shield.get(entity);
-                if (shield != null)shield.block(event);
-            }
+        if (Temp.shield.containsKey(entity)){
+            Shield shield = Temp.shield.get(entity);
+            if (shield != null)shield.block(event);
         }
     }
 
