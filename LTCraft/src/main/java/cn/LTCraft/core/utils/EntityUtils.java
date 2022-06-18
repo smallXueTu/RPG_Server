@@ -1,5 +1,6 @@
 package cn.LTCraft.core.utils;
 
+import cn.LTCraft.core.game.more.FloatText;
 import cn.ltcraft.item.objs.PlayerAttribute;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
@@ -134,5 +135,15 @@ public class EntityUtils {
         List<Entity> targets = new ArrayList<Entity>();
         targets.add(entity);
         MythicMobs.inst().getAPIHelper().castSkill(entity, skillName, entity, entity.getLocation(), targets, null, 1.0F);
+    }
+
+    /**
+     * 触发闪避特效
+     * @param entity 闪避的实体
+     */
+    public static void missAttack(Entity entity){
+        new FloatText(entity.getLocation().add(0, entity.getHeight(), 0), "§l§cMiss~", 2 * 20, new Vector(0, 0.03, 0));
+        Location location = WorldUtils.rangeLocation(entity.getLocation(), 2);
+        repel(entity, location, 0.5, 0);
     }
 }
