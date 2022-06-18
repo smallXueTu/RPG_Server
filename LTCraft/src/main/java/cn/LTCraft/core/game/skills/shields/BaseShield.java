@@ -3,11 +3,13 @@ package cn.LTCraft.core.game.skills.shields;
 import cn.LTCraft.core.game.skills.BaseSkill;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.task.GlobalRefresh;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * 基础护盾
@@ -26,7 +28,7 @@ public abstract class BaseShield implements Shield {
         return classMap.get(shieldName);
     }
 
-    public static BaseShield getShieldObj(String shieldName, Player player, BaseSkill skill){
+    public static BaseShield getShieldObjForPlayer(String shieldName, Player player, BaseSkill skill){
         try {
             Constructor<? extends BaseShield> construct = getShield(shieldName).getConstructor(Player.class, BaseSkill.class);
             return construct.newInstance(player, skill);
@@ -37,7 +39,7 @@ public abstract class BaseShield implements Shield {
     /**
      * 护盾剩余tick
      */
-    protected int remainingTick;
+    protected int remainingTick = 20;
     /**
      * 上次刷新的TICK
      */
@@ -54,15 +56,18 @@ public abstract class BaseShield implements Shield {
      * 觉醒等级
      */
     protected int awakenLevel = 1;
+    protected Entity owner;
 
-    public BaseShield(BaseSkill baseSkill){
+    public BaseShield(Entity entity, BaseSkill baseSkill){
+        owner = entity;
         awaken = baseSkill.isAwaken();
         level = baseSkill.getLevel();
         awakenLevel = baseSkill.getAwakenLevel();
         GlobalRefresh.addTickEntity(this);
     }
 
-    public BaseShield(int level, int awakenLevel, boolean awaken){
+    public BaseShield(Entity entity, int level, int awakenLevel, boolean awaken){
+        owner = entity;
         this.level = level;
         this.awakenLevel = awakenLevel;
         this.awaken = awaken;
@@ -94,6 +99,9 @@ public abstract class BaseShield implements Shield {
      */
     public void destroy(){
         remainingTick = 0;
+        Temp.lock.lock();
+        Temp.shield.remove(owner);
+        Temp.lock.unlock();
     }
 
     /**
@@ -116,6 +124,9 @@ public abstract class BaseShield implements Shield {
         return awaken;
     }
 
+    public Entity getOwner() {
+        return owner;
+    }
 
     @Override
     public boolean isAsync() {

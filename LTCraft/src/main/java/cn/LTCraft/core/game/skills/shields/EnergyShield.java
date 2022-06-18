@@ -17,15 +17,12 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import java.util.Collection;
 
 public class EnergyShield extends BaseShield{
-    private Player owner;
     private double blockDamage = 0;
     public EnergyShield(Player player, BaseSkill baseSkill){
-        super(baseSkill);
-        owner = player;
+        super(player, baseSkill);
     }
     public EnergyShield(Player player, int level, int awakenLevel, boolean awaken){
-        super(level, awakenLevel, awaken);
-        owner = player;
+        super(player, level, awakenLevel, awaken);
     }
     @Override
     public boolean block(EntityDamageEvent event) {
@@ -48,7 +45,7 @@ public class EnergyShield extends BaseShield{
     public boolean doTick(long tick) {
         if (tick % 20 == 0){
             owner.getWorld().playSound(owner.getLocation(), Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON, 1, 1);
-            PlayerUtils.castMMSkill(owner, "能量护盾");
+            PlayerUtils.castMMSkill((Player) owner, "能量护盾");
         }
         return super.doTick(tick);
     }
@@ -65,10 +62,5 @@ public class EnergyShield extends BaseShield{
                 ((CraftEntity) nearbyEntity).getHandle().damageEntity(DamageSource.a(((CraftPlayer) owner).getHandle()), (float) damage);
             }
         }
-        Temp.shield.remove(getOwner());
-    }
-
-    public Player getOwner() {
-        return owner;
     }
 }

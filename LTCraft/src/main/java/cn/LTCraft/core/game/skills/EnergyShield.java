@@ -13,7 +13,7 @@ public class EnergyShield extends BaseSkill {
     }
     @Override
     public boolean cast(Entity entity) {
-        cn.LTCraft.core.game.skills.shields.BaseShield baseShield = BaseShield.getShieldObj("能量护盾", owner, this);
+        cn.LTCraft.core.game.skills.shields.BaseShield baseShield = BaseShield.getShieldObjForPlayer("能量护盾", owner, this);
         if (baseShield != null) {
             baseShield.setRemainingTick((2 + level) * 20);
             Temp.addShield(owner, baseShield);
