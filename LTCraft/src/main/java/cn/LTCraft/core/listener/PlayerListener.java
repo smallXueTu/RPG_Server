@@ -572,7 +572,14 @@ public class PlayerListener  implements Listener {
             Player player = event.getPlayer();
             Location from = event.getFrom();
             Location to = event.getTo();
-            if (Game.rpgWorlds.contains(event.getPlayer().getWorld().getName())) {
+            if (Game.rpgWorlds.contains(player.getWorld().getName())) {
+                if (Game.mainLineWorlds.contains(player.getWorld().getName())){
+                    if (!player.isOp() && player.isFlying()){
+                        player.setFlying(false);
+                        player.setAllowFlight(false);
+                        event.setCancelled(true);
+                    }
+                }
                 boolean sign = false;
                 AirDoor airDoor = null;
                 synchronized (AirDoor.getAirDoors()) {
