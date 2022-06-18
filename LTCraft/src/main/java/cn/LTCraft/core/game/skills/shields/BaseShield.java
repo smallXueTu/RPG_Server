@@ -9,12 +9,17 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 基础护盾
+ *
+ */
 public abstract class BaseShield implements Shield {
     private static final Map<String, Class<? extends BaseShield>> classMap = new HashMap<>();
 
     public static void init(){
         classMap.clear();
         classMap.put("能量护盾", EnergyShield.class);
+        classMap.put("闪避护盾", DodgeShield.class);
     }
 
     public static Class<? extends BaseShield> getShield(String shieldName){
@@ -33,10 +38,21 @@ public abstract class BaseShield implements Shield {
      * 护盾剩余tick
      */
     protected int remainingTick;
+    /**
+     * 上次刷新的TICK
+     */
     protected long lastTick = 0;
-
+    /**
+     * 觉醒
+     */
     protected boolean awaken = false;
+    /**
+     * 等级
+     */
     protected int level = 1;
+    /**
+     * 觉醒等级
+     */
     protected int awakenLevel = 1;
 
     public BaseShield(BaseSkill baseSkill){
