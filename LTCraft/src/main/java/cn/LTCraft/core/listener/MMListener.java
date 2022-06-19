@@ -10,8 +10,11 @@ import cn.LTCraft.core.utils.EntityUtils;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.*;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
+import net.minecraft.server.v1_12_R1.AttributeInstance;
+import net.minecraft.server.v1_12_R1.GenericAttributes;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -128,6 +131,18 @@ public class MMListener implements Listener {
                     Map<String, List<PlayerDamage>> stringListMap = damages.computeIfAbsent(entity.getEntityId(), k -> new HashMap<>());
                     List<PlayerDamage> list = stringListMap.computeIfAbsent(player.getName(), k -> new ArrayList<>());
                     list.add(new PlayerDamage(GlobalRefresh.getTick(), event.getDamage()));
+                }
+            }
+        }else {
+            MythicConfig mythicMobConfig = EntityUtils.getMythicMobConfig(damager);
+            if (mythicMobConfig != null){
+                if (mythicMobConfig.getBoolean("团队")) {
+                    if (entity instanceof Player){
+                        AttributeInstance attributeInstance = ((CraftPlayer) entity).getHandle().getAttributeInstance(GenericAttributes.c);
+                        double value = attributeInstance.getValue();
+                        attributeInstance.setValue(1);
+                        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> attributeInstance.setValue(value), 0);
+                    }
                 }
             }
         }
