@@ -1,5 +1,6 @@
 package cn.LTCraft.core.game.more;
 
+import cn.LTCraft.core.Main;
 import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
@@ -9,6 +10,7 @@ import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.nms.interfaces.entity.NMSEntityBase;
 import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
 import com.gmail.filoghost.holographicdisplays.object.line.*;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
@@ -30,7 +32,8 @@ public class FloatText implements TickEntity {
         this.text = text;
         this.durationTick = durationTick + GlobalRefresh.getTick();
         init();
-        GlobalRefresh.addTickEntity(this);
+        //防止并发修改异常
+        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> GlobalRefresh.addTickEntity(this), 0);
     }
     public FloatText(Location location, String text, int durationTick, Vector motion){
         this(location, text, durationTick);
