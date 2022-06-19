@@ -70,9 +70,9 @@
   Type: Zombie
   Display: '&e【觉醒】&6试炼士兵'
   Health: 20000
-  Damage: 20
+  Damage: 30
   团队: true
-  攻击范围: 3
+  攻击范围: 5
   Disguise:
     Type: Player
     Skin: '&e【觉醒】&6试炼士兵'
@@ -82,7 +82,7 @@
     - 267 OFFHAND
   Options:
     FollowRange: 18
-    MovementSpeed: 0.1
+    MovementSpeed: 0.2
     KnockbackResistance: 1
     UseThreatTable: true
     PreventOtherDrops: true
