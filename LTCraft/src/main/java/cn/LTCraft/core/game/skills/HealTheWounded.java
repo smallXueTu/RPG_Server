@@ -34,7 +34,7 @@ public class HealTheWounded extends BaseSkill {
                 Player p = (Player)entity1;
                 lost = p.getMaxHealth() - p.getHealth();
                 l = Math.max(lost * (percentage / 100), 1);
-                p.setHealth(Math.min(owner.getHealth() + l, owner.getMaxHealth()));
+                p.setHealth(Math.min(p.getHealth() + l, p.getMaxHealth()));
                 ((CraftWorld)owner.getWorld()).spawnParticle(Particle.VILLAGER_HAPPY, p.getLocation().add(0, 1.2, 0), 10, 0.5, 0.5, 0.5);
                 p.sendTitle("§l§a你已被医疗", "§l§e来自§a"+owner.getName()+"§e的§d救死扶伤" + Utils.getLevelStr(awakenLevel) + "§e效果，医疗量：" + Utils.formatNumber(l));
             }
