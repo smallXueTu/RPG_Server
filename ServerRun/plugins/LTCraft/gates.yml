@@ -24,8 +24,8 @@ t2:
   - -13:22:-61:world
   to: 0:0:0:world
   mythicSkills:
-    - 传送到T2
-    - 传送T2失败传送到大将军身边
+  - 传送到T2
+  - 传送T2失败传送到大将军身边
 t3:
   locations:
   - -13:20:-49:world

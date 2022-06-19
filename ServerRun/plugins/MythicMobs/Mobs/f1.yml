@@ -42,3 +42,53 @@
     - skillapi-exp 15
     - 凝固经验块 1 1
     - goldCoinsDrop 金币:1 1-3 1
+高级试炼士兵:
+  Type: Zombie
+  Display: '&e【高级】&6试炼士兵'
+  Health: 800
+  Damage: 18
+  Disguise:
+    Type: Player
+    Skin: '&e【高级】&6试炼士兵'
+    Player: '&e【高级】&6试炼士兵'
+  Equipment:
+    - 267 HAND
+    - 267 OFFHAND
+  Options:
+    FollowRange: 18
+    AttackSpeed: 0
+#    MovementSpeed: 0.1
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 25
+    - 觉醒知识卷轴章节 1 1
+    - goldCoinsDrop 金币:1 2-5 1
+觉醒试炼士兵:
+  Type: Zombie
+  Display: '&e【觉醒】&6试炼士兵'
+  Health: 20000
+  Damage: 20
+  团队: true
+  攻击范围: 3
+  Disguise:
+    Type: Player
+    Skin: '&e【觉醒】&6试炼士兵'
+    Player: '&e【觉醒】&6试炼士兵'
+  Equipment:
+    - 267 HAND
+    - 267 OFFHAND
+  Options:
+    FollowRange: 18
+    MovementSpeed: 0.1
+    KnockbackResistance: 1
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - ParticipateInSAPExp 25
+    - ParticipateInDrop 觉醒知识精髓:1
+    - ParticipateInGoldCoinsDrop 金币:1 2-5 1

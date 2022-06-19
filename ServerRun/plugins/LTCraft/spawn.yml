@@ -174,3 +174,36 @@
   maxMobs: 1
   locations: []
   spawnRange: 1
+高级试炼士兵1:
+  mobName: 高级试炼士兵
+  world: f1
+  x: 1025.5
+  cooling: 10
+  y: 56
+  range: 26
+  z: -1138.5
+  maxMobs: 2
+  locations: []
+  spawnRange: 2
+高级试炼士兵2:
+  mobName: 高级试炼士兵
+  world: f1
+  x: 955.5
+  cooling: 10
+  y: 56
+  range: 26
+  z: -1138.5
+  maxMobs: 2
+  locations: []
+  spawnRange: 2
+觉醒试炼士兵:
+  mobName: 觉醒试炼士兵
+  world: f1
+  x: 977.5
+  cooling: 60
+  y: 56
+  range: 16
+  z: -1082.5
+  maxMobs: 1
+  locations: []
+  spawnRange: 1
