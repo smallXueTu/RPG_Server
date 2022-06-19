@@ -12,6 +12,10 @@ commands:
     description: 释放mm技能
     permission: op
     usage: /mmskills 技能名字
+  ltc:
+    description: 职业管理
+    permission: op
+    usage: /ltc
   lte:
     description: 兑换的物品
     permission: op
