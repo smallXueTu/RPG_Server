@@ -6,7 +6,7 @@
 说明:
   - '§bPVE伤害:%PVEDamage%'
   - '§bPVE吸血:%PVESuckingBlood%%'
-  - '§b群体回血:%groupGyrus%%'
+  - '§b群体回血:%groupGyrus%'
   - '§6攻击§a治疗§6周围的右方！'
   - '§6充满邪恶魔法的剑身。'
   - '§6已镶嵌宝石数:%set%/%maxSet%'
