@@ -50,7 +50,10 @@ public class MobSpawn implements TickEntity {
         mobName = config.getString("mobName");
         spawnRange = config.getInteger("spawnRange", 1);
         MythicMob mm = MythicMobs.inst().getMobManager().getMythicMob(mobName);
-        this.location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + mm.getDrops().size() * 0.3, config.getDouble("z"));
+        if (mm.getConfig().getBoolean("团队"))
+            this.location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + (mm.getDrops().size() + 1) * 0.3, config.getDouble("z"));
+        else
+            this.location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + mm.getDrops().size() * 0.3, config.getDouble("z"));
         this.abstractLocation = new AbstractLocation(new BukkitWorld(world), config.getDouble("x"), config.getDouble("y") + 2, config.getDouble("z"));
         cooling = config.getInteger("cooling", 10);
         maxMobs = config.getInteger("maxMobs", 3);
@@ -72,6 +75,7 @@ public class MobSpawn implements TickEntity {
         hologram.appendTextLine("§a=========[" + insideName + "§a]=========");
         hologram.appendTextLine("§6名字:§3"+ mobName +"§d还有:LTSpawn:"+insideName+":colling");
         hologram.appendTextLine("§e当前怪物数量:LTSpawn:"+insideName+":mobCount/" + maxMobs);
+        if (mm.getConfig().getBoolean("团队"))hologram.appendTextLine("§c这个怪物需要多人配合击杀！");
         for (int i = 0; i < mm.getDrops().size(); i++) {
             String drop = mm.getDrops().get(i);
             String[] drops = MythicLineConfig.unparseBlock(drop).split(" ");
@@ -83,6 +87,12 @@ public class MobSpawn implements TickEntity {
                 hologram.appendTextLine("§e掉落:金币×" + (drops.length >= 2?drops[1]:1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 3?drops[2]:"1") * 100) + "%");
             }else if (drops[0].startsWith("skillapi-exp")){
                 hologram.appendTextLine("§e掉落:经验×" + (drops.length >= 2?drops[1]:1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 3?drops[2]:"1") * 100) + "%");
+            }else if (drops[0].startsWith("ParticipateInSAPExp")){
+                hologram.appendTextLine("§e参与掉落:经验×" + drops[1].split("%")[0] + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1?drops[1].split("%")[1]:"1") * 100) + "%");
+            }else if (drops[0].startsWith("ParticipateInDrop")){
+                hologram.appendTextLine("§e参与掉落:" + drops[1].split("%")[0] + "×" + (drops.length >= 3?drops[2]:1) + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1?drops[1].split("%")[1]:"1") * 100) + "%");
+            }else if (drops[0].startsWith("ParticipateInGoldCoinsDrop")){
+                hologram.appendTextLine("§e参与掉落:金币×" + drops[1].split("%")[0] + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1?drops[1].split("%")[1]:"1") * 100) + "%");
             }else if (drops[0].startsWith("PseudorandomDrop")){
                 hologram.appendTextLine("§e伪随机掉落:" + drops[1].split("%")[0] + "×" + (drops.length >= 3?drops[2]:1) + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1?drops[1].split("%")[1]:"1") * 100) + "%");
             }else if (drops.length >= 3) {
