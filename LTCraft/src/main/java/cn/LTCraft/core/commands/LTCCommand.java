@@ -41,6 +41,10 @@ public class LTCCommand implements CommandExecutor {
         PlayerClass data;
         switch (args[0]) {
             case "level":
+                if (args.length < 3){
+                    commandSender.sendMessage("§c/ltc level [Player] [Level]");
+                    return true;
+                }
                 level = Integer.parseInt(args[2]);
                 data = SkillAPI.getPlayerData(target).getMainClass();
                 data.setLevel(level);
@@ -50,6 +54,10 @@ public class LTCCommand implements CommandExecutor {
                 commandSender.sendMessage("§a修改成功！");
             break;
             case "class":
+                if (args.length < 3){
+                    commandSender.sendMessage("§c/ltc class [Player] [class]");
+                    return true;
+                }
                 PlayerData playerData = SkillAPI.getPlayerData(target);
                 RPGClass rpgClass = SkillAPI.getClass(args[2]);
                 if (rpgClass == null){
