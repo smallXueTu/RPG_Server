@@ -3,6 +3,7 @@ package cn.LTCraft.core.game.skills;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.PlayerUtils;
+import cn.LTCraft.core.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -18,7 +19,7 @@ public class Disarm extends BaseSkill{
     }
     @Override
     public boolean cast(Entity e) {
-        owner.sendTitle("§a§l释放成功", "§a您§e释放了§d缴械§d技能。");
+        owner.sendTitle("§a§l释放成功", "§a您§e释放了§d缴械" + Utils.getLevelStr(level) + "§d技能。");
         double radius = 3 + level;
         List<Entity> collection = owner.getNearbyEntities(radius, radius, radius);
         for (Entity entity : collection) {
