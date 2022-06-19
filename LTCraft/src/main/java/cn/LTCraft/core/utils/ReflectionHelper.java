@@ -1,7 +1,5 @@
 package cn.LTCraft.core.utils;
 
-import net.minecraft.server.v1_12_R1.EntityItem;
-
 import java.lang.reflect.Field;
 
 public class ReflectionHelper {
@@ -17,7 +15,7 @@ public class ReflectionHelper {
         }
         return null;
     }
-    public static <T, E> T getPrivateValue(Class<? extends E> classToAccess, EntityItem instance, String fieldName)
+    public static <T, E> T getPrivateValue(Class<? extends E> classToAccess, Object instance, String fieldName)
     {
         try {
             return (T) findField(classToAccess, fieldName).get(instance);
@@ -25,7 +23,7 @@ public class ReflectionHelper {
             return null;
         }
     }
-    public static <T, E> boolean setPrivateValue(Class<? extends E> classToAccess, EntityItem instance, String fieldName, Object value)
+    public static <T, E> boolean setPrivateValue(Class<? extends E> classToAccess, Object instance, String fieldName, Object value)
     {
         try {
             findField(classToAccess, fieldName).set(instance, value);
