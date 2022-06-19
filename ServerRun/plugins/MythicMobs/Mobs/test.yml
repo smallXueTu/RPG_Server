@@ -67,8 +67,8 @@ test:
 #    - dropGoldCoins{c=500;r=2;forcesync=true;d=5金币} @SelfLocation ~onDeath
   Options:
     FollowRange: 32
-    MovementSpeed: 0.35
-    UseThreatTable: true
+    MovementSpeed: -1
+    KnockbackResistance: 1
     PreventOtherDrops: true
     AlwaysShowName: true
     PreventSunburn: true
