@@ -154,4 +154,15 @@ public class EntityListener implements Listener {
             }
         }
     }
+
+    /**
+     * 取消保护的物品合并
+     * @param event 事件
+     */
+    @EventHandler
+    public void onItemMerge(ItemMergeEvent event){
+        if (Temp.discardOnly.contains(event.getEntity()) || Temp.discardOnly.contains(event.getTarget())) {
+            event.setCancelled(true);
+        }
+    }
 }
