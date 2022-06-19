@@ -1,13 +1,20 @@
 package cn.LTCraft.core.game.skills;
 
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.entityClass.PlayerState;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.PlayerUtils;
+import cn.LTCraft.core.utils.ReflectionHelper;
 import cn.LTCraft.core.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.scheduler.CraftScheduler;
+import org.bukkit.craftbukkit.v1_12_R1.scheduler.CraftTask;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.util.Vector;
 
 import java.util.List;
 
@@ -19,7 +26,7 @@ public class Disarm extends BaseSkill{
     }
     @Override
     public boolean cast(Entity e) {
-        owner.sendTitle("§a§l释放成功", "§a您§e释放了§d缴械" + Utils.getLevelStr(level) + "§d技能。");
+        owner.sendTitle("§a§l释放成功", "§a您§e释放了§d缴械" + Utils.getLevelStr(level) + "§e技能。");
         double radius = 3 + level;
         List<Entity> collection = owner.getNearbyEntities(radius, radius, radius);
         for (Entity entity : collection) {
@@ -32,14 +39,20 @@ public class Disarm extends BaseSkill{
             }
         }
         if (isAwaken()) {
-            if (!owner.getAllowFlight()) {
-                owner.setAllowFlight(true);
-                owner.setFlying(true);
-                Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
-                    owner.setAllowFlight(false);
-                    owner.setFlying(false);
-                }, (3 + awakenLevel) * 20L);
-            }
+            Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+                if (!owner.getAllowFlight()) {
+                    owner.setAllowFlight(true);
+                    owner.setFlying(true);
+                    ((CraftPlayer) owner).setMomentum(new Vector(0, 1, 0));
+                    CraftTask bukkitTask = ((CraftTask) ((CraftScheduler) Bukkit.getScheduler()).runTaskLater(Main.getInstance(), () -> {
+                        owner.setAllowFlight(false);
+                        owner.setFlying(false);
+                    }, (3 + awakenLevel) * 20L));
+                    Temp.lock.lock();
+                    Temp.playerStates.get(owner).add(new PlayerState(owner, "飞行 %s%S", () -> ((long) ReflectionHelper.getPrivateValue(CraftTask.class, bukkitTask, "nextRun") - (int) ReflectionHelper.getPrivateValue(CraftScheduler.class, Bukkit.getScheduler(), "currentTick")) / 20d));
+                    Temp.lock.unlock();
+                }
+            }, 0);
         }
         return true;
     }
