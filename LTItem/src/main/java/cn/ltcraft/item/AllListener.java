@@ -174,6 +174,7 @@ public class AllListener implements Listener {
             if (type == Material.BOW){
                 LTItem ltItems = Utils.getLTItems(itemInHand);
                 if (ltItems != null && event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK){
+                    onEntityDamage(event);
                     return;
                 }
             }
@@ -247,6 +248,7 @@ public class AllListener implements Listener {
             if (type == Material.BOW){
                 LTItem ltItems = Utils.getLTItems(itemInHand);
                 if (ltItems != null && event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK){
+                    onEntityDamage(event);
                     return;
                 }
             }
@@ -279,11 +281,8 @@ public class AllListener implements Listener {
             });
             TriggerAction.onAttack(damagerPlayer, event);
         }
+        onEntityDamage(event);
     }
-    @EventHandler(
-            ignoreCancelled = true,
-            priority = EventPriority.HIGHEST
-    )
     public void onEntityDamage(EntityDamageEvent event){
         Entity entity = event.getEntity();
         if (entity instanceof Player){
@@ -291,7 +290,7 @@ public class AllListener implements Listener {
             TriggerAction.onDamage(player, event);
         }
         if (entity instanceof LivingEntity && event.getDamage() >= 1){
-            if (entity.getType() == EntityType.ARMOR_STAND)return;
+            if (((CraftEntity) entity).getHandle().isInvisible())return;
             new FloatText(entity.getLocation().add(0, entity.getHeight(), 0), "§l§c-" + cn.LTCraft.core.utils.Utils.formatNumber(event.getFinalDamage()), 2 * 20, new Vector(0, 0.03, 0));
         }
     }
