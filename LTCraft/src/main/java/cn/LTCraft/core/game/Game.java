@@ -2,6 +2,7 @@ package cn.LTCraft.core.game;
 
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.ClutterItem;
+import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.messy.ItemAction;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
@@ -391,11 +392,13 @@ public class Game {
                     event.setCancelled(true);
                 break;
             }
-            if (block.getType() == Material.SIGN){
+            if (block.getType() == Material.SIGN_POST){
                 BlockState state = block.getState();
                 if (state instanceof Sign){
                     Sign sign = (Sign) state;
                     if(sign.getLine(1).equals("plcmd")){
+                        if (Cooling.isCooling(player, "plcmd")) return;
+                        Cooling.cooling(player, "plcmd", 1);
                         String command = sign.getLine(2) + sign.getLine(3);
                         if (Game.rpgWorlds.contains(block.getWorld().getName())){
                             PlayerUtils.sudoExec(player, command);
