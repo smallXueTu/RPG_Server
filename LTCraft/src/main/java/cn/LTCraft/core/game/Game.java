@@ -33,6 +33,7 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Item;
@@ -142,7 +143,7 @@ public class Game {
     }
 
     public static void breakMines(Block block, int count, List<Block> ignore, ItemStack itemStack, int depth) throws BlockCeilingException {
-        if (count > 150){
+        if (count > 30){
             throw new BlockCeilingException();
         }
         World world = block.getWorld();
@@ -160,15 +161,15 @@ public class Game {
             if (Game.isMine(tBlock)){
                 count++;
                 ignore.add(tBlock);
-                if (count<150){
+                if (count<30){
                     breakMines(tBlock, ++count, ignore, itemStack, depth + 1);
                 }
-                tBlock.breakNaturally(itemStack);
+                ((CraftBlock) tBlock).breakNaturally(itemStack);
             }
         }
     }
     public static void breakWoods(Block block, int count, List<Block> ignore, ItemStack itemStack, int depth) throws BlockCeilingException{
-        if (count > 150) {
+        if (count > 30) {
             throw new BlockCeilingException();
         }
         World world = block.getWorld();
@@ -186,7 +187,7 @@ public class Game {
             if (Game.isWood(tBlock)){
                 count++;
                 ignore.add(tBlock);
-                if (count<150){
+                if (count<30){
                     breakWoods(tBlock, ++count, ignore, itemStack, depth + 1);
                 }
                 tBlock.breakNaturally(itemStack);
