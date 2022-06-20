@@ -184,7 +184,7 @@
   z: -1138.5
   maxMobs: 2
   locations: []
-  spawnRange: 2
+  spawnRange: 1
 高级试炼士兵2:
   mobName: 高级试炼士兵
   world: f1
@@ -195,7 +195,7 @@
   z: -1138.5
   maxMobs: 2
   locations: []
-  spawnRange: 2
+  spawnRange: 1
 觉醒试炼士兵:
   mobName: 觉醒试炼士兵
   world: f1
