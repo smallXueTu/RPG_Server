@@ -33,6 +33,7 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
@@ -142,7 +143,7 @@ public class Game {
         return woods.contains(block.getTypeId());
     }
 
-    public static void breakMines(Block block, int count, List<Block> ignore, ItemStack itemStack, int depth) throws BlockCeilingException {
+    public static void breakMines(Player player, Block block, int count, List<Block> ignore, ItemStack itemStack, int depth) throws BlockCeilingException {
         if (count > 30){
             throw new BlockCeilingException();
         }
@@ -162,13 +163,13 @@ public class Game {
                 count++;
                 ignore.add(tBlock);
                 if (count<30){
-                    breakMines(tBlock, ++count, ignore, itemStack, depth + 1);
+                    breakMines(player, tBlock, ++count, ignore, itemStack, depth + 1);
                 }
-                ((CraftBlock) tBlock).breakNaturally(itemStack);
+                tBlock.breakNaturally(itemStack);
             }
         }
     }
-    public static void breakWoods(Block block, int count, List<Block> ignore, ItemStack itemStack, int depth) throws BlockCeilingException{
+    public static void breakWoods(Player player, Block block, int count, List<Block> ignore, ItemStack itemStack, int depth) throws BlockCeilingException{
         if (count > 30) {
             throw new BlockCeilingException();
         }
@@ -188,8 +189,10 @@ public class Game {
                 count++;
                 ignore.add(tBlock);
                 if (count<30){
-                    breakWoods(tBlock, ++count, ignore, itemStack, depth + 1);
+                    breakWoods(player, tBlock, ++count, ignore, itemStack, depth + 1);
                 }
+
+
                 tBlock.breakNaturally(itemStack);
             }
         }

@@ -32,7 +32,7 @@ public class BlockListener implements Listener{
                     ItemStack ItemStack = new ItemStack(278, 1, (short) 1);
                     Map<Enchantment, Integer> enchantments = player.getInventory().getItemInMainHand().getEnchantments();
                     ItemStack.addEnchantments(enchantments);
-                    Game.breakMines(block, 0, new ArrayList<>(), ItemStack, 0);
+                    Game.breakMines(player, block, 0, new ArrayList<>(), ItemStack, 0);
                 } catch (BlockCeilingException var7) {
                     //
                 }
@@ -41,7 +41,7 @@ public class BlockListener implements Listener{
                     ItemStack ItemStack = new ItemStack(279, 1, (short) 1);
                     Map<Enchantment, Integer> enchantments = player.getInventory().getItemInMainHand().getEnchantments();
                     ItemStack.addEnchantments(enchantments);
-                    Game.breakWoods(block, 0, new ArrayList<>(), ItemStack, 0);
+                    Game.breakWoods(player, block, 0, new ArrayList<>(), ItemStack, 0);
                 } catch (BlockCeilingException var7) {
                     //
                 }
