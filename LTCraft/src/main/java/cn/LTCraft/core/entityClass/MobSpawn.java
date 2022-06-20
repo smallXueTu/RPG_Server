@@ -50,10 +50,12 @@ public class MobSpawn implements TickEntity {
         mobName = config.getString("mobName");
         spawnRange = config.getInteger("spawnRange", 1);
         MythicMob mm = MythicMobs.inst().getMobManager().getMythicMob(mobName);
+        this.location = new Location(world, config.getDouble("x"), config.getDouble("y") + 2, config.getDouble("z"));
+        Location location;
         if (mm.getConfig().getBoolean("团队"))
-            this.location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + (mm.getDrops().size() + 1) * 0.3, config.getDouble("z"));
+            location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + (mm.getDrops().size() + 1) * 0.3, config.getDouble("z"));
         else
-            this.location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + mm.getDrops().size() * 0.3, config.getDouble("z"));
+            location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + mm.getDrops().size() * 0.3, config.getDouble("z"));
         this.abstractLocation = new AbstractLocation(new BukkitWorld(world), config.getDouble("x"), config.getDouble("y") + 2, config.getDouble("z"));
         cooling = config.getInteger("cooling", 10);
         maxMobs = config.getInteger("maxMobs", 3);
