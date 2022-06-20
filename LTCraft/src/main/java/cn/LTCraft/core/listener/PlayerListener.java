@@ -778,7 +778,7 @@ public class PlayerListener  implements Listener {
                     return;
                 }
                 YamlConfiguration config = PlayerConfig.getPlayerConfig(player.getName());
-                config.set("prefix", message);
+                config.set("prefix", message.replace("&", "§"));
                 PlayerUtils.updatePlayerDisplayName(player);
                 PrefixCommand.settingPlayers.remove(player.getName());
                 player.sendMessage("§c设置成功！");
