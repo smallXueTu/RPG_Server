@@ -27,7 +27,7 @@ public class PrefixCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         Player player = null;
-        if (!commandSender.isOp() && !commandSender.hasPermission("LTCraft.vip")){
+        if (!commandSender.isOp()){
             commandSender.sendMessage("你没有足够的权限。");
             return true;
         }
