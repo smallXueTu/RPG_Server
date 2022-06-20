@@ -99,7 +99,7 @@ Icons:
         - "&3<<&d64个50橙币&3>>"
     actions:
       all:
-        - condition: 'LTCraftUtils.hasItem(player, "360:0:64")'
+        - condition: 'js: LTCraftUtils.hasItem(player, "360:0:64")'
           actions:
             - 'give-money: 50'
             - 'TakeItemByID: 360:0:64'
@@ -108,12 +108,12 @@ Icons:
     display:
       material: 86
       amount: 64
-      name: "&a西瓜"
+      name: "&a南瓜"
       lore:
         - "&3<<&d64个70橙币&3>>"
     actions:
       all:
-        - condition: 'LTCraftUtils.hasItem(player, "86:0:64")'
+        - condition: 'js: LTCraftUtils.hasItem(player, "86:0:64")'
           actions:
             - 'give-money: 70'
             - 'TakeItemByID: 86:0:64'
