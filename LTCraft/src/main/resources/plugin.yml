@@ -22,7 +22,7 @@ commands:
     usage: /lte 需要兑换的物品
   prefix:
     description: 称号命令
-    permission: LTCraft.prefix
+    permission: true
     usage: /prefix 称号
   sign:
     description: 编辑木牌

@@ -3,6 +3,7 @@ package cn.LTCraft.core.listener;
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.commands.LTGCommand;
+import cn.LTCraft.core.commands.PrefixCommand;
 import cn.LTCraft.core.dataBase.bean.PlayerInfo;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.entityClass.PlayerConfig;
@@ -32,9 +33,11 @@ import cn.ltcraft.teleport.Teleport;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
 import com.sucy.skill.api.event.PlayerLevelUpEvent;
+import io.lumine.utils.config.file.YamlConfiguration;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.Disguise;
+import net.milkbowl.vault.economy.Economy;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.*;
@@ -748,4 +751,38 @@ public class PlayerListener  implements Listener {
     }
 
      */
+    @EventHandler(
+            priority = EventPriority.LOWEST
+    )
+    public void onAsyncPlayerChat(AsyncPlayerChatEvent event){
+        Player player = event.getPlayer();
+        Long time = PrefixCommand.settingPlayers.get(player.getName());
+        if (time != null){
+            if (GlobalRefresh.getTick() - time > 30 * 20){
+                PrefixCommand.settingPlayers.remove(player.getName());
+            }else {
+                event.setCancelled(true);
+                String message = event.getMessage();
+                if (message.equals("exit")) {
+                    PrefixCommand.settingPlayers.remove(player.getName());
+                    player.sendMessage("§c你退出了。");
+                    return;
+                }
+                if (message.length() > 14){
+                    player.sendMessage("§c称号最长支持14位！");
+                    return;
+                }
+                Economy economy = Main.getInstance().getEconomy();
+                if (!economy.withdrawPlayer(player, 500d).transactionSuccess()){
+                    player.sendMessage("§c橙币余额不足500！");
+                    return;
+                }
+                YamlConfiguration config = PlayerConfig.getPlayerConfig(player.getName());
+                config.set("prefix", message);
+                PlayerUtils.updatePlayerDisplayName(player);
+                PrefixCommand.settingPlayers.remove(player.getName());
+                player.sendMessage("§c设置成功！");
+            }
+        }
+    }
 }
