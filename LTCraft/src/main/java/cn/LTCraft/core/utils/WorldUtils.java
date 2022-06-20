@@ -43,7 +43,7 @@ public class WorldUtils {
     public static Location rangeLocation(Location location, double range){
         double x = (Utils.getRandom().nextInt((int) (range * 200)) - range * 100) / 100;
         double z = (Utils.getRandom().nextInt((int) (range * 200)) - range * 100) / 100;
-        return location.add(x, 0, z);
+        return location.clone().add(x, 0, z);
     }
 
     /**
