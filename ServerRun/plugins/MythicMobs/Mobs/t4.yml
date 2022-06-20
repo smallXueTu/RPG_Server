@@ -203,7 +203,7 @@ t4火焰粒子门1:
     - 恶魔能量碎片 1 1
     - PseudorandomDrop 通用熔炼炉图纸碎片%0.2
   Skills:
-#    - skill{s=准备发射恶魔弯刀} ~onDamaged 0.2
+    - skill{s=准备发射恶魔弯刀} ~onDamaged 0.2
 古堡统治者-火魔之主:
   Type: Skeleton
   Display: '&6古堡统治者-火魔之主'
