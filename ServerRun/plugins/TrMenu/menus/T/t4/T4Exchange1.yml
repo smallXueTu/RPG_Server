@@ -5,8 +5,8 @@ Title-Update: -1
 Layout:
   - - '#       #'
     - '#   `魔金之锤`   #'
-    - '#   `通用熔炼炉图纸`   #'
-    - '#       #'
+    - '#   `高级武器锻造图纸`   #'
+    - '#   `高级盔甲锻造图纸`   #'
     - '#       #'
 
 PlayerInventory:
@@ -53,15 +53,27 @@ Icons:
       all:
         - 'LTExchange: 魔金之锤'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
-  '通用熔炼炉图纸':
+  '高级武器锻造图纸':
     display:
-      material: 257
+      material: 339
       shiny: 'true'
-      name: "&e通用熔炼炉图纸"
+      name: "&e高级武器锻造图纸"
       lore:
-      - "&3<<&e兑换通用熔炼炉图纸×1"
-      - "&3>>&e需要：通用熔炼炉&e图纸碎片×10"
+      - "&3<<&e兑换高级武器锻造图纸×1"
+      - "&3>>&e需要：高级武器锻造图纸&e碎片×10"
     actions:
       all:
-        - 'LTExchange: 通用熔炼炉图纸'
+        - 'LTExchange: 高级武器锻造图纸'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '高级盔甲锻造图纸':
+    display:
+      material: 339
+      shiny: 'true'
+      name: "&e高级盔甲锻造图纸"
+      lore:
+      - "&3<<&e兑换高级盔甲锻造图纸×1"
+      - "&3>>&e需要：高级盔甲锻造图纸&e碎片×10"
+    actions:
+      all:
+        - 'LTExchange: 高级盔甲锻造图纸'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
