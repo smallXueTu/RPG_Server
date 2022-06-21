@@ -62,8 +62,10 @@ import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import pl.betoncraft.betonquest.BetonQuest;
 import pl.betoncraft.betonquest.database.PlayerData;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
@@ -800,6 +802,18 @@ public class PlayerListener  implements Listener {
         if (Log4jFixerUtils.match(event.getMessage())) {
             Main.getInstance().getLogger().warning("发现恶意玩家：" + event.getPlayer().getName());
             event.setCancelled(true);
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
+    public void onRenameItem(PrepareAnvilEvent event) {
+        ItemStack item = event.getResult();
+        if (item == null || item.getType() == Material.AIR || !item.hasItemMeta() || !item.getItemMeta().hasDisplayName()) {
+            return;
+        }
+        if (Log4jFixerUtils.match(item.getItemMeta().getDisplayName())) {
+            event.setResult(null);
+            Main.getInstance().getLogger().warning("发现恶意玩家：" + event.getPlayer().getName());
         }
     }
 }
