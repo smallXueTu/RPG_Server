@@ -24,6 +24,7 @@ import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.utils.EntityUtils;
 import cn.LTCraft.core.utils.ItemUtils;
+import cn.LTCraft.core.utils.Log4jFixerUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.utils.Utils;
@@ -783,6 +784,22 @@ public class PlayerListener  implements Listener {
                 PrefixCommand.settingPlayers.remove(player.getName());
                 player.sendMessage("§c设置成功！");
             }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void censorCommand(PlayerCommandPreprocessEvent event) {
+        if (Log4jFixerUtils.match(event.getMessage())) {
+            Main.getInstance().getLogger().warning("发现恶意玩家：" + event.getPlayer().getName());
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void censorChatAsync(AsyncPlayerChatEvent event) {
+        if (Log4jFixerUtils.match(event.getMessage())) {
+            Main.getInstance().getLogger().warning("发现恶意玩家：" + event.getPlayer().getName());
+            event.setCancelled(true);
         }
     }
 }

@@ -22,6 +22,7 @@ import cn.LTCraft.core.task.GarbageClear;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.utils.FileUtil;
+import cn.LTCraft.core.utils.Log4jFixerUtils;
 import cn.LTCraft.core.utils.TrMenuUtils;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -87,15 +88,22 @@ public class Main extends JavaPlugin {
         super.onEnable();
         instance = this;
         config = Config.getInstance();
+        if (Log4jFixerUtils.tryFix()) {
+            getLogger().info("修复漏洞成功！");
+        }
         /*
         创建插件配置目录
          */
         this.getDataFolder().mkdirs();
         new File(getDataFolder() + File.separator + "playerData").mkdirs();
+
         SQLServer = new SQLServer(this);
         SQLManage = new SQLManage(SQLServer);
+
         GlobalRefresh.init(this);
+
         getServer().getScheduler().runTaskTimer(this, GlobalRefresh::refresh, 1, 1);
+
         //hooks
         initVault();
         initBQ();
