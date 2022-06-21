@@ -768,8 +768,8 @@ public class PlayerListener  implements Listener {
                     player.sendMessage("§c你退出了。");
                     return;
                 }
-                if (message.length() > 14){
-                    player.sendMessage("§c称号最长支持14位！");
+                if (message.length() > 18){
+                    player.sendMessage("§c称号最长支持18位！");
                     return;
                 }
                 Economy economy = Main.getInstance().getEconomy();
