@@ -363,7 +363,6 @@ public class PlayerUtils {
         if (scoreboard == null)return;
         int classLevel = getClassLevel(player);
         Love.Sex sex = Love.getSex(player);
-        String prefix = PlayerConfig.getPlayerConfig(player.getName()).getString("prefix", "");
         String sexStr = sex == Love.Sex.NONE?"":"§d" + sex.getName();
         String s = "§eLV." + classLevel + sexStr + "§e";
         Team team = scoreboard.getTeam(player.getName());
@@ -371,7 +370,6 @@ public class PlayerUtils {
             team = scoreboard.registerNewTeam(player.getName());
         }
         team.setPrefix(s);
-        team.setSuffix("§r" + prefix);
         team.addEntry(player.getName());
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
             onlinePlayer.setScoreboard(team.getScoreboard());
