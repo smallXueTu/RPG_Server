@@ -43,6 +43,7 @@ import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
@@ -309,10 +310,16 @@ public class AllListener implements Listener {
     public void onPrepareAnvil(PrepareAnvilEvent event){
         ItemStack item = event.getInventory().getItem(0);
         ItemStack result = event.getResult();
-        if (item != null && result != null && item.getTypeId() != 0 && result.getTypeId() != 0 && item.hasItemMeta() && result.hasItemMeta() && item.getItemMeta().getDisplayName() != null && !item.getItemMeta().getDisplayName().equals(result.getItemMeta().getDisplayName())) {
-            if (Utils.getLTItems(result) != null) {
-                event.setResult(new ItemStack(Material.AIR));
-                event.getView().getPlayer().sendMessage("§c特殊物品不支持改名！");
+        if (Utils.getLTItems(result) != null) {
+            if (item != null && result != null && item.getTypeId() != 0 && result.getTypeId() != 0 && item.hasItemMeta() && result.hasItemMeta() && item.getItemMeta().getDisplayName() != null) {
+                if (!item.getItemMeta().getDisplayName().replace("§", "").equals(result.getItemMeta().getDisplayName())) {
+                    event.setResult(new ItemStack(Material.AIR));
+                    event.getView().getPlayer().sendMessage("§c特殊物品不支持改名！");
+                }
+                ItemMeta itemMeta = result.getItemMeta();
+                itemMeta.setDisplayName(item.getItemMeta().getDisplayName());
+                result.setItemMeta(itemMeta);
+                event.setResult(result);
             }
         }
     }
