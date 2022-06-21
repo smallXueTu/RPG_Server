@@ -27,7 +27,9 @@ public class BlockListener implements Listener{
         Player player = e.getPlayer();
         Block block = e.getBlock();
         if (player.hasPermission("LTCraft.vip") && player.isSneaking()) {
+            if (Game.breakIng.contains(player.getName()))return;
             if (Game.isMine(block)) {
+                Game.breakIng.add(player.getName());
                 try {
                     ItemStack ItemStack = new ItemStack(278, 1, (short) 1);
                     Map<Enchantment, Integer> enchantments = player.getInventory().getItemInMainHand().getEnchantments();
@@ -35,8 +37,11 @@ public class BlockListener implements Listener{
                     Game.breakMines(player, block, 0, new ArrayList<>(), ItemStack, 0);
                 } catch (BlockCeilingException var7) {
                     //
+                }finally {
+                    Game.breakIng.remove(player.getName());
                 }
             }else if (Game.isWood(block)){
+                Game.breakIng.add(player.getName());
                 try {
                     ItemStack ItemStack = new ItemStack(279, 1, (short) 1);
                     Map<Enchantment, Integer> enchantments = player.getInventory().getItemInMainHand().getEnchantments();
@@ -44,6 +49,8 @@ public class BlockListener implements Listener{
                     Game.breakWoods(player, block, 0, new ArrayList<>(), ItemStack, 0);
                 } catch (BlockCeilingException var7) {
                     //
+                }finally {
+                    Game.breakIng.remove(player.getName());
                 }
             }
         }

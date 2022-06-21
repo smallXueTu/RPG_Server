@@ -8,10 +8,7 @@ import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.other.exceptions.BlockCeilingException;
 import cn.LTCraft.core.task.PlayerClass;
-import cn.LTCraft.core.utils.DragonCoreUtil;
-import cn.LTCraft.core.utils.ItemUtils;
-import cn.LTCraft.core.utils.PlayerUtils;
-import cn.LTCraft.core.utils.Utils;
+import cn.LTCraft.core.utils.*;
 import cn.ltcraft.item.base.AICLA;
 import cn.ltcraft.item.base.AbstractAttribute;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
@@ -27,9 +24,12 @@ import com.google.common.collect.ObjectArrays;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVDestination;
 import com.onarandombox.MultiverseCore.destination.DestinationFactory;
-import net.minecraft.server.v1_12_R1.DamageSource;
-import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.*;
+import org.bukkit.Material;
+import org.bukkit.SoundCategory;
+import org.bukkit.World;
+import org.bukkit.WorldType;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
@@ -37,6 +37,7 @@ import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.util.CraftMagicNumbers;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -54,6 +55,7 @@ import pl.betoncraft.betonquest.ObjectNotFoundException;
 import pl.betoncraft.betonquest.database.PlayerData;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 public class Game {
@@ -142,9 +144,10 @@ public class Game {
     public static boolean isWood(Block block){
         return woods.contains(block.getTypeId());
     }
-
+    public static final List<String> breakIng = new ArrayList<>();
+    private static final Field playerInteractManager = ReflectionHelper.findField(EntityPlayer.class, "playerInteractManager");
     public static void breakMines(Player player, Block block, int count, List<Block> ignore, ItemStack itemStack, int depth) throws BlockCeilingException {
-        if (count > 30){
+        if (count > 50){
             throw new BlockCeilingException();
         }
         World world = block.getWorld();
@@ -162,15 +165,22 @@ public class Game {
             if (Game.isMine(tBlock)){
                 count++;
                 ignore.add(tBlock);
-                if (count<30){
+                if (count<50){
                     breakMines(player, tBlock, ++count, ignore, itemStack, depth + 1);
                 }
-                tBlock.breakNaturally(itemStack);
+                PlayerInteractManager playerInteractManager = null;
+                try {
+                    playerInteractManager = (PlayerInteractManager) Game.playerInteractManager.get(((CraftPlayer) player).getHandle());
+                } catch (Exception e) {
+                    continue;
+                }
+                playerInteractManager.breakBlock(new BlockPosition(tBlock.getLocation().getBlockX(), tBlock.getLocation().getBlockY(), tBlock.getLocation().getBlockZ()));
+//                tBlock.breakNaturally(itemStack);
             }
         }
     }
     public static void breakWoods(Player player, Block block, int count, List<Block> ignore, ItemStack itemStack, int depth) throws BlockCeilingException{
-        if (count > 30) {
+        if (count > 50) {
             throw new BlockCeilingException();
         }
         World world = block.getWorld();
@@ -188,12 +198,17 @@ public class Game {
             if (Game.isWood(tBlock)){
                 count++;
                 ignore.add(tBlock);
-                if (count<30){
+                if (count<50){
                     breakWoods(player, tBlock, ++count, ignore, itemStack, depth + 1);
                 }
-
-
-                tBlock.breakNaturally(itemStack);
+                PlayerInteractManager playerInteractManager = null;
+                try {
+                    playerInteractManager = (PlayerInteractManager) Game.playerInteractManager.get(((CraftPlayer) player).getHandle());
+                } catch (Exception e) {
+                    continue;
+                }
+                playerInteractManager.breakBlock(new BlockPosition(tBlock.getLocation().getBlockX(), tBlock.getLocation().getBlockY(), tBlock.getLocation().getBlockZ()));
+//                tBlock.breakNaturally(itemStack);
             }
         }
     }
