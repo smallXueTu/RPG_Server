@@ -813,7 +813,7 @@ public class PlayerListener  implements Listener {
         }
         if (Log4jFixerUtils.match(item.getItemMeta().getDisplayName())) {
             event.setResult(null);
-            Main.getInstance().getLogger().warning("发现恶意玩家：" + event.getPlayer().getName());
+            if (event.getInventory().getViewers().size() > 0)Main.getInstance().getLogger().warning("发现恶意玩家：" + event.getInventory().getViewers().toString());
         }
     }
 }
