@@ -9,7 +9,7 @@ public enum PlayerClass {
     MASTER("法师"),
     MINISTER("牧师"),
     NONE("无职业");
-    private static final Map<String, PlayerClass> BY_NAME = new HashMap();
+    private static final Map<String, PlayerClass> BY_NAME = new HashMap<>();
     static {
         PlayerClass[] classes = values();
         for (PlayerClass aClass : classes) {
