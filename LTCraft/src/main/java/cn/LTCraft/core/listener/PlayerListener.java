@@ -191,7 +191,7 @@ public class PlayerListener  implements Listener {
                 return;
             }
             ItemStack itemInMainHand = event.getPlayer().getInventory().getItemInMainHand();
-            if (itemInMainHand != null && itemInMainHand.hasItemMeta() && itemInMainHand.getItemMeta().hasDisplayName() && itemInMainHand.getItemMeta().getDisplayName().endsWith("熔炼炉图纸")) {
+            if (itemInMainHand != null && itemInMainHand.hasItemMeta() && itemInMainHand.getItemMeta().hasDisplayName() && itemInMainHand.getItemMeta().getDisplayName().endsWith("图纸")) {
                 ItemFrame frame = (ItemFrame) entity;
                 BlockFace attachedFace = frame.getAttachedFace();
                 Location add = entity.getLocation().add(attachedFace.getModX(), attachedFace.getModY(), attachedFace.getModZ());
