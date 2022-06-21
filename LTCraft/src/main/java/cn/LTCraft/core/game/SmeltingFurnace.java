@@ -643,7 +643,7 @@ public class SmeltingFurnace implements TickEntity {
     private ItemStack[] getResult() throws SmeltingFurnaceErrorException {
         ClutterItem clutterItem;
         List<ItemStack> list = new ArrayList<>();
-        if (isRandom()){
+        if (isRandom() && drawing.contains("randomResult")){
             ItemStack[] clone = ItemUtils.clone(getChest());
             ItemStack itemStack = ClutterItem.spawnClutterItem(getLevel().getName() + "不稳定要素").generate();
             ItemUtils.removeItem(clone, itemStack);
