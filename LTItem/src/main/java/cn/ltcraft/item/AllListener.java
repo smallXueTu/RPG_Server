@@ -22,9 +22,7 @@ import com.sucy.skill.api.event.PlayerClassChangeEvent;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
-import net.minecraft.server.v1_12_R1.DamageSource;
-import net.minecraft.server.v1_12_R1.GenericAttributes;
-import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -32,6 +30,7 @@ import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.*;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -118,6 +117,8 @@ public class AllListener implements Listener {
                 }
             }
             double originalDamage = ((CraftPlayer) damagerPlayer).getHandle().getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).getValue();
+            EntityPlayer handle = ((CraftPlayer) damagerPlayer).getHandle();
+            originalDamage += EnchantmentManager.a(handle.getItemInMainHand(), ((EntityLiving) ((CraftEntity) entity).getHandle()).getMonsterType());
             PlayerAttribute damagerAttribute = PlayerAttribute.getPlayerAttribute(damagerPlayer);
             //设置伤害
             double p = Math.min(event.getDamage() / originalDamage, 1.2);
