@@ -160,5 +160,11 @@ t3test:
     - delay 20
     - message{m="&d<trigger.name>&r>> &6不过好多传送门啊，感觉想是发现了新大陆！"} @Self
     - sendtitle{title="&6新的传送点&r：&dRPG世界";subtitle="&d你可以在菜单->传送菜单->RPG世界找到它！";d=60;fi=20;o=20} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6要不要回去找翟纳若呢..."} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6算了，经理了这样的失败，再去找他恐怕再也不会给我证明的机会了..."} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6我记得还有一个传送门来着，要不先进去看看吧..."} @Self
     - sound{s=ui.toast.challenge_completep=1;v=1;} @Self
     - execBQEvent{e=保存主线位置到T4进度1}
