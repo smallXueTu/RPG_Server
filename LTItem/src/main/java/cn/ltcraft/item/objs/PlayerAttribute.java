@@ -5,6 +5,7 @@ import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.DragonCoreUtil;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.LTCraft.core.utils.MathUtils;
+import cn.ltcraft.item.LTItemSystem;
 import cn.ltcraft.item.base.AICLA;
 import cn.ltcraft.item.base.AbstractAttribute;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
@@ -17,6 +18,7 @@ import cn.ltcraft.item.items.Ornament;
 import cn.ltcraft.item.utils.Utils;
 import com.google.common.collect.ObjectArrays;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -80,6 +82,7 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
      */
     public void checkChangeArmor(){
         PlayerInventory playerInventory = owner.getInventory();
+        if (owner.isDead())return;
         if (!Arrays.equals(equipment, playerInventory.getArmorContents())){
             //更新盔甲
             ItemStack[] armorContents = playerInventory.getArmorContents();
@@ -296,6 +299,7 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
     @Override
     public void reset() {
         super.reset();
+        int oldHealthValue = getHealthValue();
         hand = null;
         handAtt = null;
         offHand = null;
@@ -308,6 +312,9 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
         for (int i = 0; i < 7; i++) {
             onChangeOrnament(i + 1);
         }
+        if (oldHealthValue != getHealthValue()){
+            owner.setMaxHealth(owner.getMaxHealth() + (getHealthValue() - oldHealthValue));
+        }
     }
     public void init(){
         onChangeHand();
@@ -315,6 +322,10 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
         for (int i = 0; i < 7; i++) {
             onChangeOrnament(i + 1);
         }
+        Bukkit.getScheduler().runTaskLater(LTItemSystem.getInstance(), () -> {
+            owner.setMaxHealth(owner.getMaxHealth() + getHealthValue());
+            if (owner.getHealth() > 0)owner.setHealth(owner.getMaxHealth());
+        }, 20);
     }
     public static PlayerAttribute getPlayerAttribute(Player player){
         if (!playerAttributeMap.containsKey(player.getName())){
