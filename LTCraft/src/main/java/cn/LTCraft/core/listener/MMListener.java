@@ -102,8 +102,6 @@ public class MMListener implements Listener {
             event.register(new GoldCoins(event.getContainer().getConfigLine(), event.getConfig()));
         }else if (event.getDropName().equalsIgnoreCase("PseudorandomDrop")){
             PseudorandomDrop inheritProxy = ProxyUtils.getInheritProxy(PseudorandomDrop.class, new Class[]{String.class, MythicLineConfig.class}, new Object[]{event.getContainer().getConfigLine(), event.getConfig()});
-            System.out.println(inheritProxy.getClass());
-            System.out.println(event.getContainer().getConfigLine());
             event.register(inheritProxy);
         }else if (event.getDropName().equalsIgnoreCase("ParticipateInDrop")){
             ParticipateInDrop inheritProxy = ProxyUtils.getInheritProxy(ParticipateInDrop.class, new Class[]{String.class, MythicLineConfig.class}, new Object[]{event.getContainer().getConfigLine(), event.getConfig()});
