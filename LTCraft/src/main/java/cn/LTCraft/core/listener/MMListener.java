@@ -7,8 +7,10 @@ import cn.LTCraft.core.hook.MM.mechanics.*;
 import cn.LTCraft.core.hook.MM.drop.*;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.EntityUtils;
+import cn.LTCraft.core.utils.ProxyUtils;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.*;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
+import io.lumine.xikage.mythicmobs.io.MythicLineConfig;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import net.minecraft.server.v1_12_R1.AttributeInstance;
 import net.minecraft.server.v1_12_R1.GenericAttributes;
@@ -99,9 +101,13 @@ public class MMListener implements Listener {
         }else if (event.getDropName().equalsIgnoreCase("GoldCoins")){
             event.register(new GoldCoins(event.getContainer().getConfigLine(), event.getConfig()));
         }else if (event.getDropName().equalsIgnoreCase("PseudorandomDrop")){
-            event.register(new PseudorandomDrop(event.getContainer().getConfigLine(), event.getConfig()));
+            PseudorandomDrop inheritProxy = ProxyUtils.getInheritProxy(PseudorandomDrop.class, new Class[]{String.class, MythicLineConfig.class}, new Object[]{event.getContainer().getConfigLine(), event.getConfig()});
+            System.out.println(inheritProxy.getClass());
+            System.out.println(event.getContainer().getConfigLine());
+            event.register(inheritProxy);
         }else if (event.getDropName().equalsIgnoreCase("ParticipateInDrop")){
-            event.register(new ParticipateInDrop(event.getContainer().getConfigLine(), event.getConfig()));
+            ParticipateInDrop inheritProxy = ProxyUtils.getInheritProxy(ParticipateInDrop.class, new Class[]{String.class, MythicLineConfig.class}, new Object[]{event.getContainer().getConfigLine(), event.getConfig()});
+            event.register(inheritProxy);
         }else if (event.getDropName().equalsIgnoreCase("ParticipateInSAPExp")){
             event.register(new ParticipateInSAPExp(event.getContainer().getConfigLine(), event.getConfig()));
         }else if (event.getDropName().equalsIgnoreCase("ParticipateInGoldCoinsDrop")){

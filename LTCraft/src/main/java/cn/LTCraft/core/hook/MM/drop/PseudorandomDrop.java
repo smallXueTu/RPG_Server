@@ -21,6 +21,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Item;
 import org.openjdk.jol.vm.VM;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,13 +51,15 @@ public class PseudorandomDrop extends Drop implements IIntangibleDrop {
             Bukkit.getLogger().warning("错误，无法获取怪物！");
             return;
         }
-        int count = counter.getOrDefault(mythicMob.getType().getInternalName(), 0);
+        String key = mythicMob.getType().getInternalName() + ":" + itemName;
+        int count = counter.getOrDefault(key, 0);
         if (!playerProbability.containsKey(abstractPlayer.getName())){
             playerProbability.put(abstractPlayer.getName(), probability);
         }
-        double probability = playerProbability.get(abstractPlayer.getName()) + count * playerProbability.get(abstractPlayer.getName());
+        System.out.println(key);
+        double probability = playerProbability.get(abstractPlayer.getName()) + playerProbability.get(abstractPlayer.getName()) * (count / 2d);
         if (MathUtils.ifAdopt(probability)) {
-            counter.remove(mythicMob.getType().getInternalName());
+            counter.remove(key);
             AbstractLocation location = abstractEntity.getLocation();
             World world = BukkitAdapter.adapt(abstractPlayer.getWorld());
             Item item = world.dropItem(new Location(world,
@@ -67,9 +71,9 @@ public class PseudorandomDrop extends Drop implements IIntangibleDrop {
             如果玩家成功触发了
             那么玩家下次触发的几率将会下降至：原本几率降低 $probability 百分比
              */
-            playerProbability.put(abstractPlayer.getName(), this.probability / (2d - probability));
+            playerProbability.put(abstractPlayer.getName(), this.probability / (2 - probability));
         }else {
-            counter.put(mythicMob.getType().getInternalName(), count + 1);//计数一次 玩家每次触发失败增加一定的百分比防止玩家多次未掉落
+            counter.put(key, count + 1);//计数一次 玩家每次触发失败增加一定的百分比防止玩家多次未掉落
         }
     }
 }

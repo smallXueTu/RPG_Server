@@ -139,7 +139,7 @@ public class MobSpawn implements TickEntity {
         }
         checkMobs();
         if (lastSize != mobSize || lastTimer != timer) {
-            ((CraftHologram) hologram).refreshSingleLines();
+            ((CraftHologram) hologram).refreshSingleLines();///????
         }
         return true;
     }
