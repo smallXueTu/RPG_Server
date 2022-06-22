@@ -560,7 +560,7 @@ public class SmeltingFurnace implements TickEntity {
      */
     public void checkHologram(){
         List<CraftHologramLine> linesUnsafe = ((CraftHologram) hologram).getLinesUnsafe();
-        if (Math.abs(hologram.getY() - (linesUnsafe.size() * 0.3)) > 0.3){
+        if (Math.abs(hologram.getY() - (linesUnsafe.size() * 0.3)) > 0.3 && !hologram.isDeleted()){
             hologram.teleport(itemFrame.clone().add(0, linesUnsafe.size() * 0.3, 0));
         }
     }
