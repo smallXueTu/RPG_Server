@@ -2,6 +2,7 @@ package cn.LTCraft.core.entityClass;
 
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.utils.ItemUtils;
+import cn.LTCraft.core.utils.matcher.ItemMatcher;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.objs.ItemObjs;
@@ -176,9 +177,9 @@ public class ClutterItem {
         if (generate == null && itemStack == null)return true;
         if (generate == null)return false;
         if (itemSource == ItemSource.LTCraft) {
-            return ItemUtils.isSimilar(getLtItems(), itemStack);
+            return ItemMatcher.isSimilar(getLtItems(), itemStack);
         }
-        return ItemUtils.isSimilar(generate, itemStack);
+        return ItemMatcher.isSimilar(generate, itemStack);
     }
 
     /**
@@ -192,7 +193,7 @@ public class ClutterItem {
         if (generate == null && nbtTagCompound == null)return true;
         if (generate == null)return false;
         if (itemSource == ItemSource.LTCraft) {
-            return ItemUtils.isSimilar(getLtItems(), nbtTagCompound);
+            return ItemMatcher.isSimilar(getLtItems(), nbtTagCompound);
         }
         return false;
     }
@@ -205,10 +206,10 @@ public class ClutterItem {
     public boolean isSimilar(ClutterItem clutterItem){
         if (getItemSource() != clutterItem.getItemSource())return false;
         if (clutterItem.getItemSource() == ItemSource.LTCraft && getItemSource() == ItemSource.LTCraft){
-            return ItemUtils.isSimilar(clutterItem.getLtItems(), getLtItems());
+            return ItemMatcher.isSimilar(clutterItem.getLtItems(), getLtItems());
         }
         ItemStack generate = generate();
-        return ItemUtils.isSimilar(generate, clutterItem.generate());
+        return ItemMatcher.isSimilar(generate, clutterItem.generate());
     }
     @Override
     public String toString() {

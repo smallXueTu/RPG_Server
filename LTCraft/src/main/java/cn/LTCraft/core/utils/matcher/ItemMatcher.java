@@ -1,12 +1,25 @@
 package cn.LTCraft.core.utils.matcher;
 
 import cn.LTCraft.core.entityClass.ClutterItem;
+import cn.LTCraft.core.entityClass.RandomValue;
 import cn.LTCraft.core.utils.ItemUtils;
+import cn.ltcraft.item.base.AbstractAttribute;
+import cn.ltcraft.item.base.ItemTypes;
+import cn.ltcraft.item.base.interfaces.Attribute;
+import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
+import cn.ltcraft.item.utils.Utils;
+import net.minecraft.server.v1_12_R1.Enchantment;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import java.nio.file.PathMatcher;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.regex.Pattern;
 
 /**
  * 物品匹配器
@@ -88,5 +101,91 @@ public class ItemMatcher {
         if (Objects.equals(ltItems2, ltItems1))return true;
         if (ltItems2 == null || ltItems1 == null)return false;
         return ltItems1.getType().equals(ltItems2.getType()) && ltItems1.getName().equals(ltItems2.getName());
+    }
+
+    /**
+     * 名字匹配
+     */
+    private Pattern nameMatcher = null;
+    /**
+     * 类型匹配
+     */
+    private ItemTypes itemType = null;
+    /**
+     * 品质匹配
+     */
+    private String qualityMatcher = null;
+    /**
+     * PVP伤害匹配
+     */
+    private RandomValue PVPDamage = null;
+    /**
+     * PVE伤害匹配
+     */
+    private RandomValue PVEDamage = null;
+    /**
+     * lore匹配
+     */
+    private List<Pattern> lore = null;
+    /**
+     * 附魔匹配
+     */
+    private List<Enchantment> enchantments = null;
+
+    public ItemMatcher setNameMatcher(Pattern nameMatcher) {
+        this.nameMatcher = nameMatcher;
+        return this;
+    }
+
+    public ItemMatcher setItemType(ItemTypes itemType) {
+        this.itemType = itemType;
+        return this;
+    }
+
+    public ItemMatcher setQualityMatcher(String qualityMatcher) {
+        this.qualityMatcher = qualityMatcher;
+        return this;
+    }
+
+    public ItemMatcher setPVPDamage(RandomValue PVPDamage) {
+        this.PVPDamage = PVPDamage;
+        return this;
+    }
+
+    public ItemMatcher setPVEDamage(RandomValue PVEDamage) {
+        this.PVEDamage = PVEDamage;
+        return this;
+    }
+
+    public ItemMatcher addEnchantments(Enchantment enchantment) {
+        if (enchantments == null)enchantments = new ArrayList<>();
+        this.enchantments.add(enchantment);
+        return this;
+    }
+
+    public ItemMatcher addLore(Pattern lore) {
+        if (this.lore == null)this.lore = new ArrayList<>();
+        this.lore.add(lore);
+        return this;
+    }
+
+    /**
+     * 测试匹配
+     * @param itemStack 要测试的物品
+     * @return 如果通过
+     */
+    public boolean matches(ItemStack itemStack){
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        if (nameMatcher != null && !nameMatcher.matcher(cn.LTCraft.core.utils.Utils.clearColor(itemMeta.getDisplayName())).find())return false;
+        if (lore != null && lore.stream().noneMatch(lore -> itemMeta.getLore().stream().noneMatch(l -> lore.matcher(l).find())))return false;
+        LTItem ltItems = Utils.getLTItems(itemStack);
+        return matches(ltItems);
+    }
+    public boolean matches(LTItem ltItems){
+        if (itemType != null && (ltItems == null || ltItems.getType() != itemType))return false;
+        if (qualityMatcher != null && (!(ltItems instanceof ConfigurableLTItem) || !Objects.equals(qualityMatcher, ((ConfigurableLTItem) ltItems).getConfig().getString("品质", "未知"))))return false;
+        if (PVPDamage != null && (!(ltItems instanceof AbstractAttribute) || !((AbstractAttribute) ltItems).getDamage(Attribute.Type.PVP).equals(PVPDamage)))return false;
+        if (PVEDamage != null && (!(ltItems instanceof AbstractAttribute) || !((AbstractAttribute) ltItems).getDamage(Attribute.Type.PVE).equals(PVEDamage)))return false;
+        return true;
     }
 }
