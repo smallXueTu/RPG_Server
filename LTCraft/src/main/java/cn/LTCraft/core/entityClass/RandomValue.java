@@ -2,6 +2,8 @@ package cn.LTCraft.core.entityClass;
 
 import cn.LTCraft.core.utils.Utils;
 
+import java.util.Objects;
+
 /**
  * 可变随机值
  * 提供一个最大值和最小值
@@ -52,5 +54,18 @@ public class RandomValue {
     public String toString() {
         if (isRandom())return min + "";
         return min + "-" + max;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RandomValue that = (RandomValue) o;
+        return Double.compare(that.min, min) == 0 && Double.compare(that.max, max) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(min, max);
     }
 }
