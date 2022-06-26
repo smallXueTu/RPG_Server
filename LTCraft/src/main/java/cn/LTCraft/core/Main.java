@@ -255,6 +255,7 @@ public class Main extends JavaPlugin {
         BetonQuest.getInstance().registerObjectives("wearornament", WearOrnamentObjective.class);
         BetonQuest.getInstance().registerObjectives("world", WorldObjective.class);
         BetonQuest.getInstance().registerObjectives("hasplot", hasPlotObjective.class);
+        BetonQuest.getInstance().registerObjectives("itemmatching", ItemMatchingObjective.class);
 
         BetonQuest.getInstance().registerEvents("saveMainLine", SaveMainLineEvent.class);
         BetonQuest.getInstance().registerEvents("changeClass", ChangeClassEvent.class);
