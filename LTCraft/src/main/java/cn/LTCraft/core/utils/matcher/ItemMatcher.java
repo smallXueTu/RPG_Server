@@ -9,11 +9,12 @@ import cn.ltcraft.item.base.interfaces.Attribute;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.utils.Utils;
-import net.minecraft.server.v1_12_R1.Enchantment;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.lang.ref.SoftReference;
 import java.nio.file.PathMatcher;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +103,38 @@ public class ItemMatcher {
         if (ltItems2 == null || ltItems1 == null)return false;
         return ltItems1.getType().equals(ltItems2.getType()) && ltItems1.getName().equals(ltItems2.getName());
     }
-
+    public static ItemMatcher parse(String syntax){
+        String[] split = syntax.split("---");
+        ItemMatcher itemMatcher = new ItemMatcher();
+        for (String s : split) {
+            String start = s.substring(0, 2);
+            String rule = s.substring(2);
+            switch (start){
+                case "NM"://nameMatcher
+                    itemMatcher.setNameMatcher(rule);
+                break;
+                case "IT"://itemType
+                    itemMatcher.setItemType(rule);
+                break;
+                case "QM"://qualityMatcher
+                    itemMatcher.setQualityMatcher(rule);
+                break;
+                case "PP"://PVPDamage
+                    itemMatcher.setPVPDamage(rule);
+                break;
+                case "PE"://PVEDamage
+                    itemMatcher.setPVEDamage(rule);
+                break;
+                case "LR"://lore
+                    itemMatcher.addLore(rule);
+                break;
+                case "EM"://enchantments
+                    itemMatcher.addEnchantments(rule);
+                break;
+            }
+        }
+        return itemMatcher;
+    }
     /**
      * 名字匹配
      */
@@ -137,8 +169,18 @@ public class ItemMatcher {
         return this;
     }
 
+    public ItemMatcher setNameMatcher(String nameMatcher) {
+        this.nameMatcher = Pattern.compile(nameMatcher);
+        return this;
+    }
+
     public ItemMatcher setItemType(ItemTypes itemType) {
         this.itemType = itemType;
+        return this;
+    }
+
+    public ItemMatcher setItemType(String itemType) {
+        this.itemType = ItemTypes.byName(itemType);
         return this;
     }
 
@@ -147,8 +189,18 @@ public class ItemMatcher {
         return this;
     }
 
+    public ItemMatcher setPVPDamage(String PVPDamage) {
+        this.PVPDamage = new RandomValue(PVPDamage);
+        return this;
+    }
+
     public ItemMatcher setPVPDamage(RandomValue PVPDamage) {
         this.PVPDamage = PVPDamage;
+        return this;
+    }
+
+    public ItemMatcher setPVEDamage(String PVEDamage) {
+        this.PVPDamage = new RandomValue(PVEDamage);
         return this;
     }
 
@@ -157,9 +209,21 @@ public class ItemMatcher {
         return this;
     }
 
+    public ItemMatcher addEnchantments(String enchantment) {
+        if (enchantments == null)enchantments = new ArrayList<>();
+        this.enchantments.add(Enchantment.getByName(enchantment));
+        return this;
+    }
+
     public ItemMatcher addEnchantments(Enchantment enchantment) {
         if (enchantments == null)enchantments = new ArrayList<>();
         this.enchantments.add(enchantment);
+        return this;
+    }
+
+    public ItemMatcher addLore(String lore) {
+        if (this.lore == null)this.lore = new ArrayList<>();
+        this.lore.add(Pattern.compile(lore));
         return this;
     }
 
@@ -178,8 +242,18 @@ public class ItemMatcher {
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (nameMatcher != null && !nameMatcher.matcher(cn.LTCraft.core.utils.Utils.clearColor(itemMeta.getDisplayName())).find())return false;
         if (lore != null && lore.stream().noneMatch(lore -> itemMeta.getLore().stream().noneMatch(l -> lore.matcher(l).find())))return false;
+        if (enchantments != null && enchantments.stream().noneMatch(enchantment -> itemMeta.getEnchantLevel(enchantment) > 0))return false;//TODO 附魔等级
         LTItem ltItems = Utils.getLTItems(itemStack);
         return matches(ltItems);
+    }
+    public boolean matches(ClutterItem clutterItem){
+        if (!matches(clutterItem.generate())) {
+            return false;
+        }
+        if (clutterItem.getItemSource() == ClutterItem.ItemSource.LTCraft){
+            return matches(clutterItem.getLtItems());
+        }
+        return true;
     }
     public boolean matches(LTItem ltItems){
         if (itemType != null && (ltItems == null || ltItems.getType() != itemType))return false;
