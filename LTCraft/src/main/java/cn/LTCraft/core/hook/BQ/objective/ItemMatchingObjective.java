@@ -45,7 +45,7 @@ public class ItemMatchingObjective extends Objective {
                 if (sign) {
                     for (ItemStack itemStack : player.getInventory().getContents()) {
                         for (ItemMatcher itemMatcher : itemMatchers) {
-                            if (!itemMatcher.matches(itemStack)) {
+                            if (!itemMatcher.matches(itemStack, player)) {
                                 sign = false;
                                 break breakD;
                             }
