@@ -3,6 +3,7 @@ package cn.LTCraft.core.utils.matcher;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.entityClass.RandomValue;
 import cn.LTCraft.core.utils.ItemUtils;
+import cn.ltcraft.item.base.AICLA;
 import cn.ltcraft.item.base.AbstractAttribute;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.Attribute;
@@ -11,6 +12,7 @@ import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.utils.Utils;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -233,18 +235,24 @@ public class ItemMatcher {
     /**
      * 测试匹配
      * @param itemStack 要测试的物品
+     * @param player 绑定的玩家
      * @return 如果通过
      */
-    public boolean matches(ItemStack itemStack){
+    public boolean matches(ItemStack itemStack, Player player){
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (nameMatcher != null && !nameMatcher.matcher(cn.LTCraft.core.utils.Utils.clearColor(itemMeta.getDisplayName())).find())return false;
         if (lore != null && lore.stream().noneMatch(lore -> itemMeta.getLore().stream().noneMatch(l -> lore.matcher(l).find())))return false;
         if (enchantments != null && enchantments.stream().noneMatch(enchantment -> itemMeta.getEnchantLevel(enchantment) > 0))return false;//TODO 附魔等级
         LTItem ltItems = Utils.getLTItems(itemStack);
+        if (player == null)return true;
+        if (!ItemUtils.getBinding(itemStack).equals(player.getName().toLowerCase())) {
+            return false;
+        }
         return matches(ltItems);
     }
-    public boolean matches(ClutterItem clutterItem){
-        if (!matches(clutterItem.generate())) {
+    public boolean matches(ClutterItem clutterItem, Player player){
+        ItemStack generate = clutterItem.generate();
+        if (!matches(generate, null)) {
             return false;
         }
         if (clutterItem.getItemSource() == ClutterItem.ItemSource.LTCraft){
