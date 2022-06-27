@@ -245,7 +245,7 @@ public class ItemMatcher {
         if (enchantments != null && enchantments.stream().noneMatch(enchantment -> itemMeta.getEnchantLevel(enchantment) > 0))return false;//TODO 附魔等级
         LTItem ltItems = Utils.getLTItems(itemStack);
         if (player == null)return true;
-        if (!ItemUtils.getBinding(itemStack).equals(player.getName().toLowerCase())) {
+        if (ltItems != null && (ltItems.binding() && !ItemUtils.getBinding(itemStack).equals(player.getName().toLowerCase()))) {
             return false;
         }
         return matches(ltItems);
