@@ -31,7 +31,7 @@ t4火焰粒子门2:
     - delay 20
     - message{m="&d<trigger.name>&r>> &6应该是又是什么锻炼自己的地方..."} @Self
     - delay 20
-    - message{m="&d<trigger.name>&r>> &6不管了，先看看有什么厉害的武器和装备，好回虚无之境拿到传说武器！"} @Self
+    - message{m="&d<trigger.name>&r>> &6不管了，先看看有什么厉害的武器和装备，把它拿到证明给翟纳若看！"} @Self
     - delay 20
     - message{m="&d<trigger.name>&r>> &6最好还是小心点吧。"} @Self
     - execBQEvent{e=保存主线位置到T4进度2}
