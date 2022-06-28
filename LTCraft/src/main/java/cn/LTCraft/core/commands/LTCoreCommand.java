@@ -8,7 +8,10 @@ import cn.LTCraft.core.task.LTCraftRestartRunnable;
 import cn.LTCraft.core.utils.ClientUtils;
 import cn.LTCraft.core.utils.FileUtil;
 import cn.LTCraft.core.utils.PlayerUtils;
+import cn.LTCraft.core.utils.matcher.ItemMatcher;
+import cn.ltcraft.item.base.ItemTypes;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,8 +19,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 
 public class LTCoreCommand implements CommandExecutor {
@@ -94,7 +99,9 @@ public class LTCoreCommand implements CommandExecutor {
                 }
                 break;
             case "test":
-                PlayerUtils.updatePlayerDisplayName(player);
+                ItemMatcher itemMatcher = new ItemMatcher();
+                    itemMatcher.setNameMatcher(Pattern.compile("^恶魔(头盔|护腿|胸甲|战靴)"));
+                System.out.println(itemMatcher.matches(player.getItemInHand(), player));
                 break;
             case "entities":
                 Player target;
