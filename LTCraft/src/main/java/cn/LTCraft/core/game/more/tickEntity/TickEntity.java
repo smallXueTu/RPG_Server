@@ -1,8 +1,8 @@
 package cn.LTCraft.core.game.more.tickEntity;
 
 /**
- * tick的实体 每getTickRate() * 0.05秒调用一次
- * 在doTick(int)返回false的时候停止调用
+ * tick的实体 每{@link  TickEntity#getTickRate() * 0.05}秒调用一次
+ * 在{@link TickEntity#doTick(long)} 返回false的时候停止调用
  * Created by Angel、 on 2022/4/26 14:51
  */
 public interface TickEntity {
