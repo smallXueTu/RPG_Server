@@ -683,9 +683,12 @@ public class PlayerListener  implements Listener {
         for (CraftPlayer craftPlayer : craftPlayers) {
             if (craftPlayer == null)continue;
             if (Game.rpgWorlds.contains(craftPlayer.getWorld().getName())) {
-                if (craftPlayer.isBlocking()){
-                    event.setDamage(EntityDamageEvent.DamageModifier.BLOCKING, 0);
-                    Cooling.cooling(craftPlayer, "原版盾牌", 10, "盾牌传送剩余冷却时间：%s%S");
+                if (craftPlayer.isBlocking()) {
+                    if (Cooling.isCooling(craftPlayer, "原版盾牌") && event.getDamage(EntityDamageEvent.DamageModifier.BLOCKING) > 0) {
+                        event.setDamage(EntityDamageEvent.DamageModifier.BLOCKING, 0);
+                    } else {
+                        Cooling.cooling(craftPlayer, "原版盾牌", 10, "盾牌传送剩余冷却时间：%s%S");
+                    }
                 }
             }
         }
