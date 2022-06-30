@@ -99,9 +99,6 @@ public class LTCoreCommand implements CommandExecutor {
                 }
                 break;
             case "test":
-                ItemMatcher itemMatcher = new ItemMatcher();
-                    itemMatcher.setNameMatcher(Pattern.compile("^恶魔(头盔|护腿|胸甲|战靴)"));
-                System.out.println(itemMatcher.matches(player.getItemInHand(), player));
                 break;
             case "entities":
                 Player target;
