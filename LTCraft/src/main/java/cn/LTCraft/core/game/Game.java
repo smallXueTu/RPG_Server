@@ -618,7 +618,7 @@ public class Game {
                         }else {
                             itemStack = ltItem.generate(itemStack.getAmount());
                         }
-                        if (i < 41 && !inventory.getItem(i).isSimilar(itemStack)) {
+                        if (i < 41 && inventory.getItem(i) != null && !inventory.getItem(i).isSimilar(itemStack)) {
                             int finalI1 = i;
                             ItemStack finalItemStack = itemStack;
                             ItemActions.add(() -> {
