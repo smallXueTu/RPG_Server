@@ -6,6 +6,7 @@ import cn.LTCraft.core.commands.LTGCommand;
 import cn.LTCraft.core.commands.PrefixCommand;
 import cn.LTCraft.core.dataBase.bean.PlayerInfo;
 import cn.LTCraft.core.entityClass.ClutterItem;
+import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.entityClass.TeleportGate;
 import cn.LTCraft.core.game.Game;
@@ -666,10 +667,6 @@ public class PlayerListener  implements Listener {
             }
         }
     }
-
-    /**
-     * TODO: 玩家格挡后冷却盾牌
-     */
     @EventHandler(
             priority = EventPriority.LOWEST
     )
@@ -686,23 +683,9 @@ public class PlayerListener  implements Listener {
         for (CraftPlayer craftPlayer : craftPlayers) {
             if (craftPlayer == null)continue;
             if (Game.rpgWorlds.contains(craftPlayer.getWorld().getName())) {
-                ItemStack itemInOffHand = craftPlayer.getInventory().getItemInOffHand();
-                if (
-                        itemInOffHand != null &&
-                                itemInOffHand.getTypeId() == 442
-                ) {
-                    PlayerUtils.securityAddItem(craftPlayer, itemInOffHand.clone());
-                    craftPlayer.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
-                    craftPlayer.sendMessage("§cRPG世界暂时不支持盾牌！");
-                }
-                ItemStack itemInMainHand = craftPlayer.getInventory().getItemInMainHand();
-                if (
-                        itemInMainHand != null &&
-                                itemInMainHand.getTypeId() == 442
-                ) {
-                    PlayerUtils.securityAddItem(craftPlayer, itemInMainHand.clone());
-                    craftPlayer.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
-                    craftPlayer.sendMessage("§cRPG世界暂时不支持盾牌！");
+                if (craftPlayer.isBlocking()){
+                    event.setDamage(EntityDamageEvent.DamageModifier.BLOCKING, 0);
+                    Cooling.cooling(craftPlayer, "原版盾牌", 10, "盾牌传送剩余冷却时间：%s%S");
                 }
             }
         }
