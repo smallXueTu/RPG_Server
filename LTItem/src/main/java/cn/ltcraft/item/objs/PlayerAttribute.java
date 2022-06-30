@@ -1,5 +1,6 @@
 package cn.ltcraft.item.objs;
 
+import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.DragonCoreUtil;
@@ -53,6 +54,11 @@ public class PlayerAttribute extends AbstractAttribute implements TickEntity {
             playerAttributeMap.remove(owner.getName());
             return false;
         }
+        /*
+         * 取消盾牌格挡
+         */
+        if (Cooling.isCooling(owner, "原版盾牌"))
+            ((CraftPlayer) owner).getHandle().cN();
         if (tick % 200 == 0){
             getPotion().forEach((type, potionAttribute) -> {
                 if (MathUtils.ifAdopt(potionAttribute.getProbability())) {
