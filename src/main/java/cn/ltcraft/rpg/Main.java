@@ -1,8 +1,7 @@
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package cn.ltcraft.rpg;
 
 /**
- * Created by Angel、 on 2022/6/22 22:14
+ * Created by Angel、 on 2022/7/3 21:13
  */
 public class Main {
     public static void main(String[] args) {

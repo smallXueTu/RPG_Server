@@ -18,14 +18,29 @@ subprojects {
         mavenCentral()
     }
 
-    /* 添加通用依赖 */
+    /*
+     TODO 更好的模块依赖处理方式 编写自定义插件加载器
+     添加通用依赖
+    */
     dependencies {
         compile fileTree(dir: '../ServerRun/', includes: ['spigot-1.12.2.jar'])
         compile fileTree(dir: '../ServerRun/plugins/', includes: ['*.jar'])
+//        compile fileTree(dir: '../ServerRun/plugins/', includes: ['*.jar'], exclude: ['LT*.jar'])
         compile fileTree(dir: '../ServerRun/plugins/PlaceholderAPI/expansions/', includes: ['*.jar'])
         compile fileTree(dir: '../ServerRun/libs/', includes: ['*.jar'])
         compile fileTree(dir: '../ServerRun/plugins/PxTools/lib', includes: ['*.jar'])
-        compile "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
+//        if (name != ":LTCraft"){
+//            compile project(":LTCraft")
+//        }
+        /*
+        def iterator = parent.getSubprojects().iterator()
+        while (iterator.hasNext()){
+            def next = iterator.next()
+            if (next.getName() != name){
+                implementation next
+            }
+        }
+         */
     }
     task createDirs(){
         sourceSets*.java.srcDirs*.each {
@@ -34,5 +49,16 @@ subprojects {
         sourceSets*.resources.srcDirs*.each{
             it.mkdirs()
         }
+    }
+}
+dependencies {
+    compile fileTree(dir: 'ServerRun/', includes: ['spigot-1.12.2.jar'])
+}
+task createDirs(){
+    sourceSets*.java.srcDirs*.each {
+        it.mkdirs()
+    }
+    sourceSets*.resources.srcDirs*.each{
+        it.mkdirs()
     }
 }
