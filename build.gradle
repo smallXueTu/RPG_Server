@@ -62,3 +62,11 @@ task createDirs(){
         it.mkdirs()
     }
 }
+//TODO 使用gradle编译插件
+task compilePlugins(){
+    def iterator = getSubprojects().iterator()
+    while (iterator.hasNext()){
+        def project = iterator.next()
+        project.getArtifacts()
+    }
+}
