@@ -152,4 +152,12 @@ public class WorldUtils {
             return BY_NAME.get(id);
         }
     }
+    /**
+     * 坐标枚举
+     */
+    static public enum COORDINATE{
+        X,
+        Y,
+        Z
+    }
 }
