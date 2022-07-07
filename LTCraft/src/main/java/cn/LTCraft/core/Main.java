@@ -270,6 +270,7 @@ public class Main extends JavaPlugin {
         BetonQuest.getInstance().registerConditions("skillapiLevel", SkillAPILevelCondition.class);
         BetonQuest.getInstance().registerConditions("item", ItemCondition.class);
         BetonQuest.getInstance().registerConditions("agold", AdequateGoldCondition.class);
+        BetonQuest.getInstance().registerConditions("itemMatching", ItemMatchingCondition.class);
     }
     private void initEss() {
         essentials = ((Essentials)Bukkit.getPluginManager().getPlugin("Essentials"));
