@@ -36,8 +36,8 @@ public class ItemMatchingObjective extends Objective {
     public void start() {
         taskID = Bukkit.getScheduler().runTaskTimer(BetonQuest.getInstance(), () -> {
             if (dataMap == null)return;
-            List<ItemStack> matched = new ArrayList<>();
             for (String playerID : dataMap.keySet()){
+                List<ItemStack> matched = new ArrayList<>();
                 List<ItemMatcher> itemMatchers = new ArrayList<>(Arrays.asList(this.itemMatchers));
                 Player player = PlayerConverter.getPlayer(playerID);
                 ItemStack[] contents = player.getInventory().getContents();
