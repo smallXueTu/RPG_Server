@@ -356,6 +356,8 @@ public class Game {
                     Main.getInstance().getLogger().warning("找不到BQEvent：" + info[1]);
                 }
             break;
+            case "none"://无
+            break;
         }
     }
 

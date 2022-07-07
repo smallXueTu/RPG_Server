@@ -1,11 +1,8 @@
 package cn.LTCraft.core.hook.BQ.objective;
 
-import cn.LTCraft.core.Main;
 import cn.LTCraft.core.utils.matcher.ItemMatcher;
-import com.intellectualcrafters.plot.api.PlotAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import pl.betoncraft.betonquest.BetonQuest;
 import pl.betoncraft.betonquest.Instruction;
@@ -13,14 +10,17 @@ import pl.betoncraft.betonquest.InstructionParseException;
 import pl.betoncraft.betonquest.api.Objective;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Angel、 on 2022/6/26 21:57
  */
 public class ItemMatchingObjective extends Objective {
     private int taskID;
-   private ItemMatcher[] itemMatchers;
+   private final ItemMatcher[] itemMatchers;
     public ItemMatchingObjective(Instruction instruction) throws InstructionParseException {
         super(instruction);
         template = ObjectiveData.class;
