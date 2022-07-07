@@ -125,3 +125,6 @@ t4火焰粒子门2:
     - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
     - effect:particlering{particle=flame;amount=200;speed=3;hS=5;vS=0.2;r=3} @PlayersInRadius{r=10}
     - effect:particlering{particle=flame;amount=200;speed=3;hS=5;vS=0.2;r=3} @PlayersInRadius{r=10}
+触发T4完结:
+  Skills:
+    - message{m="&d<trigger.name>&r>> &6哇，这里居然能通过。"} @Self

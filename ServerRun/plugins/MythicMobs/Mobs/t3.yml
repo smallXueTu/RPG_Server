@@ -8,7 +8,7 @@ t3火焰粒子门1:
     Invincible: true
   Skills:
     - skill{s=t3火焰粒子门1} @Self ~onTimer:15
-    - airDoor{location=154;f=true;x=false;d=BQTag:default.解开t3第一关谜团;mess=§c你需要解开谜团才能通过这道门！;s=skill:遇到虚空圣殿守护者} @Self ~onSpawn
+    - airDoor{location=154;f=true;direction=Z;d=BQTag:default.解开t3第一关谜团;mess=§c你需要解开谜团才能通过这道门！;s=skill:遇到虚空圣殿守护者} @Self ~onSpawn
 t3火焰粒子门2:
   Type: armor_stand
   Options:
@@ -19,7 +19,7 @@ t3火焰粒子门2:
     Invincible: true
   Skills:
     - skill{s=t3火焰粒子门1} @Self ~onTimer:15
-    - airDoor{location=192;f=true;x=false;d=BQTag:default.已击杀虚空圣殿守护者;mess=§d虚空圣殿守护者§r>> §6想通过？从我的尸体上踏过去吧！;s=skill:遇到受伤的冒险者} @Self ~onSpawn
+    - airDoor{location=192;f=true;direction=Z;d=BQTag:default.已击杀虚空圣殿守护者;mess=§d虚空圣殿守护者§r>> §6想通过？从我的尸体上踏过去吧！;s=skill:遇到受伤的冒险者} @Self ~onSpawn
 t3火焰粒子门3:
   Type: armor_stand
   Options:
@@ -30,7 +30,7 @@ t3火焰粒子门3:
     Invincible: true
   Skills:
     - skill{s=t3火焰粒子门2} @Self ~onTimer:15
-    - airDoor{location=448;distance=3;f=true;x=false;d=BQTag:default.解开t3第二关谜团;mess=§c你需要启动它才能使用它！;} @Self ~onSpawn
+    - airDoor{location=448;distance=3;f=true;direction=Z;d=BQTag:default.解开t3第二关谜团;mess=§c你需要启动它才能使用它！;} @Self ~onSpawn
 虚空圣殿守护者:
   Type: Skeleton
   Display: '&6虚空圣殿守护者'

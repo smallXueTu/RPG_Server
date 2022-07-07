@@ -8,7 +8,7 @@ t4火焰粒子门1:
     Invincible: true
   Skills:
     - skill{s=t4火焰粒子门1} @Self ~onTimer:15
-    - airDoor{location=-927;f=true;x=false;d=BQTag:default.已击杀古堡守护者;mess=§c你需要击杀古堡守护者才能通过这道门！;} @Self ~onSpawn
+    - airDoor{location=-927;f=true;direction=Z;d=BQTag:default.已击杀古堡守护者;mess=§c你需要击杀古堡守护者才能通过这道门！;} @Self ~onSpawn
 恶魔古堡守护者:
   Type: Skeleton
   Display: '&6恶魔古堡守护者'
@@ -44,7 +44,7 @@ t4火焰粒子门1:
     Invincible: true
   Skills:
     - skill{s=t4火焰粒子门2} @Self ~onTimer:15
-    - airDoor{location=-840;f=true;x=false;d=BQTag:default.完成击杀恶魔古堡士兵任务;mess=§l§e[恶魔古堡士兵]§c想进去？只有杀了我们12个你才能通过！;s=skill:保存主线位置到T4进度3} @Self ~onSpawn
+    - airDoor{location=-840;f=true;direction=Z;d=BQTag:default.完成击杀恶魔古堡士兵任务;mess=§l§e[恶魔古堡士兵]§c想进去？只有杀了我们12个你才能通过！;s=skill:保存主线位置到T4进度3} @Self ~onSpawn
 恶魔古堡士兵:
   Type: Skeleton
   Display: '&6恶魔古堡士兵'
@@ -292,3 +292,14 @@ t4火焰粒子门1:
     RightArm: -10,7,-40
   Skills:
     - skill{s=恶魔弯刀发射} @NearestPlayer{r=50} ~onSpawn
+t4出口:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    Despawn: false
+    Invincible: true
+  Skills:
+    - skill{s=t4出口检查} @Self ~onTimer:15
+    - airDoor{location=32;f=false;direction=Y;d=BQCondition:default.拥有高级武器和恶魔套装;fail=none;s=skill:触发T4完结} @Self ~onSpawn
