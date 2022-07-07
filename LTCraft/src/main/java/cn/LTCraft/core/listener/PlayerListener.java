@@ -23,10 +23,7 @@ import cn.LTCraft.core.task.BQObjectiveCheck;
 import cn.LTCraft.core.task.ClientCheckTask;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.task.PlayerClass;
-import cn.LTCraft.core.utils.EntityUtils;
-import cn.LTCraft.core.utils.ItemUtils;
-import cn.LTCraft.core.utils.Log4jFixerUtils;
-import cn.LTCraft.core.utils.PlayerUtils;
+import cn.LTCraft.core.utils.*;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.utils.Utils;
 import cn.ltcraft.love.Love;
@@ -594,8 +591,8 @@ public class PlayerListener  implements Listener {
                         }
                         if (airDoor.getBukkitEntity().getWorld() != player.getWorld() || airDoor.getBukkitEntity().getLocation().distance(player.getLocation()) > airDoor.getDistance())
                             continue;
-                        double fLocation = airDoor.isX() ? from.getX() : from.getZ();
-                        double tLocation = airDoor.isX() ? to.getX() : to.getZ();
+                        double fLocation = airDoor.getCheckDirection() == WorldUtils.COORDINATE.X ? from.getX() : airDoor.getCheckDirection() == WorldUtils.COORDINATE.Z ? from.getZ() : from.getY();
+                        double tLocation = airDoor.getCheckDirection() == WorldUtils.COORDINATE.X ? to.getX() : airDoor.getCheckDirection() == WorldUtils.COORDINATE.Z ? to.getZ() : to.getY();
                         if (airDoor.isForward()) {
                             if (fLocation <= airDoor.getLocation() && tLocation > airDoor.getLocation()) {
                                 sign = true;
