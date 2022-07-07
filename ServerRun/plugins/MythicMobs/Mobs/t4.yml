@@ -301,5 +301,4 @@ t4出口:
     Despawn: false
     Invincible: true
   Skills:
-    - skill{s=t4出口检查} @Self ~onTimer:15
     - airDoor{location=32;f=false;direction=Y;d=BQCondition:default.拥有高级武器和恶魔套装;fail=none;s=skill:触发T4完结} @Self ~onSpawn
