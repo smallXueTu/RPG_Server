@@ -290,7 +290,7 @@ public class Game {
                 PlayerData playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
                 return playerData.hasTag(demand);
             case "BQCondition":
-                return PlayerUtils.satisfyMMCondition(player, demand);
+                return PlayerUtils.satisfyBQCondition(player, demand);
             case "custom1":
                 poses = new double[][]{{262.5, 9.5, 159.5}, {258.5, 9.5, 159.5}, {258.5, 9.5, 137.5}, {260.5, 9.5, 137.5}};
                 for (double[] pos : poses) {
