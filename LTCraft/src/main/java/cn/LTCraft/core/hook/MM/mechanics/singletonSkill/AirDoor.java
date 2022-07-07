@@ -1,5 +1,6 @@
 package cn.LTCraft.core.hook.MM.mechanics.singletonSkill;
 
+import cn.LTCraft.core.utils.WorldUtils;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.io.MythicLineConfig;
 import io.lumine.xikage.mythicmobs.skills.ITargetedEntitySkill;
@@ -14,7 +15,7 @@ public class AirDoor extends SkillMechanic implements ITargetedEntitySkill {
     private static final List<AirDoor> airDoors = new ArrayList<>();
     private AbstractEntity entity = null;
     private boolean forward = true;//监听前进还是后退
-    private boolean x = true;//X还是Z
+    private final WorldUtils.COORDINATE checkDirection;//X还是Z还是Z
     private double location = 0;
     private double distance = 10;
     private String demand = "";
@@ -26,7 +27,7 @@ public class AirDoor extends SkillMechanic implements ITargetedEntitySkill {
         location = mlc.getInteger(new String[]{"location", "l"}, 0);
         distance = mlc.getDouble(new String[]{"distance", "di"}, 10);
         forward = mlc.getBoolean(new String[]{"forward", "f"}, true);
-        x = mlc.getBoolean(new String[]{"x"}, true);
+        checkDirection = WorldUtils.COORDINATE.valueOf(mlc.getString(new String[]{"direction"}, "X"));
         demand = mlc.getString(new String[]{"demand", "d"}, "");
         message = mlc.getString(new String[]{"message", "msg", "mess", "m"}, "§c你还没有权限通过这个门！");
         fail = mlc.getString(new String[]{"fail"}, "弹开");
@@ -57,8 +58,8 @@ public class AirDoor extends SkillMechanic implements ITargetedEntitySkill {
         return forward;
     }
 
-    public boolean isX() {
-        return x;
+    public WorldUtils.COORDINATE getCheckDirection() {
+        return checkDirection;
     }
 
     public double getLocation() {
