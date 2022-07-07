@@ -7,7 +7,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-import pl.betoncraft.betonquest.*;
+import pl.betoncraft.betonquest.BetonQuest;
+import pl.betoncraft.betonquest.Instruction;
+import pl.betoncraft.betonquest.InstructionParseException;
 import pl.betoncraft.betonquest.api.Objective;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
@@ -35,14 +37,25 @@ public class ItemMatchingObjective extends Objective {
         taskID = Bukkit.getScheduler().runTaskTimer(BetonQuest.getInstance(), () -> {
             if (dataMap == null)return;
             for (String playerID : dataMap.keySet()){
-                try {
-                    if (BetonQuest.condition(playerID, new ConditionID(null, "itemMatching"))) {
-                        this.completeObjective(playerID);
+                List<ItemStack> matched = new ArrayList<>();
+                List<ItemMatcher> itemMatchers = new ArrayList<>(Arrays.asList(this.itemMatchers));
+                Player player = PlayerConverter.getPlayer(playerID);
+                ItemStack[] contents = player.getInventory().getContents();
+                for (ItemStack itemStack : contents) {
+                    if (itemMatchers.size() <= 0)break;
+                    if (itemStack == null || matched.contains(itemStack))continue;
+                    for (Iterator<ItemMatcher> iterator = itemMatchers.iterator();iterator.hasNext();) {
+                        ItemMatcher itemMatcher = iterator.next();
+                        if (itemMatcher.matches(itemStack, player)) {
+                            matched.add(itemStack);
+                            iterator.remove();
+                            if (itemMatchers.size() <= 0){
+                                break;
+                            }
+                        }
                     }
-                } catch (ObjectNotFoundException e) {
-                    e.printStackTrace();
                 }
-                return;
+                if (itemMatchers.size() <= 0)this.completeObjective(playerID);
             }
         }, 20, 20).getTaskId();
     }
