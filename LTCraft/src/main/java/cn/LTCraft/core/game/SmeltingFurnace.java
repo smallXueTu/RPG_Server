@@ -94,7 +94,7 @@ public class SmeltingFurnace implements TickEntity {
     /**
      * 内部物品
      */
-    private List<ItemStack> inventory = new ArrayList<>();
+    private final List<ItemStack> inventory = new ArrayList<>();
     /**
      * 错误时间
      */
@@ -1121,7 +1121,7 @@ public class SmeltingFurnace implements TickEntity {
         ADVANCED("进阶", "高级燃料:10", "进阶熔炼石:30", 2000),
         LEGEND("传说", "传说燃料:10", "传说熔炼石:30", 3000),
         CHAOS("混沌", "混沌燃料:10", "混沌熔炼石:30", 4000);
-        private static Map<String, Level> map = new HashMap<>();
+        private static final Map<String, Level> map = new HashMap<>();
         static {
             for (Level value : values()) {
                 map.put(value.getName(), value);
