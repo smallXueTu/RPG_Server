@@ -22,64 +22,13 @@ import java.util.Set;
  * @author 寻琴
  * @year 2022年04月19日20:34
  */
-public class Love extends JavaPlugin {
-    private static Map<String, String> loves = new HashMap<>();
-    private static Map<String, Sex> sexs = new HashMap<>();
+public class Love extends JavaPlugin implements Listener {
+    private static final Map<String, String> loves = new HashMap<>();
+    private static final Map<String, Sex> playerSex = new HashMap<>();
     @Override
     public void onEnable() {
         super.onEnable();
-        Bukkit.getPluginManager().registerEvents(new Listener() {
-            //玩家移动事件
-            @EventHandler
-            public void onMoveEvent(PlayerMoveEvent event){
-                //移动的玩家
-                Player player = event.getPlayer();
-                //获取的玩家的伴侣
-                String love = getLove(player);
-                if (love.equals(""))return;
-                //获取玩家伴侣实体类
-                Player partner = Bukkit.getPlayer(love);
-                if (partner != null && player.isOnline()) {//如果玩家的伴侣在线
-                    if (partner.getWorld().equals(player.getWorld())) {//判断他们是不是一个世界
-                        Location partnerLocation = partner.getLocation();//获取伴侣的坐标
-                        //如果玩家移动前与伴侣的位置大于0.5并且玩家移动后的位置距离小于0.5 则满足贴贴条件
-                        if (partnerLocation.distance(event.getFrom()) > 0.5 && partnerLocation.distance(event.getTo()) < 0.5){
-                            if (Cooling.isCooling(player, "贴贴")) {//判断冷却 每10秒只能贴一次
-                                return;
-                            }
-                            Cooling.cooling(player, "贴贴", 10);
-
-                            player.getWorld().spawnParticle(Particle.HEART, player.getLocation().add(0, 1.8, 0), 5, 0.3, 0.3, 0.3);
-                            player.getWorld().spawnParticle(Particle.HEART, partner.getLocation().add(0, 1.8, 0), 5, 0.3, 0.3, 0.3);
-                            player.sendMessage("§a贴贴~~~");
-                            partner.sendMessage("§a贴贴~~~");
-                            for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                                if (onlinePlayer == player || onlinePlayer == partner) continue;
-                                PlayerConfig onlinePlayerConfig = PlayerConfig.getPlayerConfig(onlinePlayer);
-                                String onlinePlayerLove = onlinePlayerConfig.getConfig().getString("伴侣");
-                                if (onlinePlayerLove == null || onlinePlayerLove.isEmpty()){
-                                    onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，你还没有对象~~~");
-                                }else {
-                                    Player onlinePlayerP = Bukkit.getPlayer(onlinePlayerLove);
-                                    if (onlinePlayerP != null && onlinePlayerP.isOnline()){
-                                        Sex sex = getSex(onlinePlayerP);
-                                        onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，你也快去跟你的" + getAfterMarriageCall(sex) + "贴贴吧~~~");
-                                    }else {
-                                        onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，快叫上你的伴侣上线贴贴吧~~~");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            @EventHandler
-            public void onQuitEvent(PlayerQuitEvent event){
-                Player player = event.getPlayer();
-                loves.remove(player.getName());
-                sexs.remove(player.getName());
-            }
-        }, this);
+        Bukkit.getPluginManager().registerEvents(this, this);
         getCommand("结婚").setExecutor(new Command());
     }
 
@@ -130,34 +79,83 @@ public class Love extends JavaPlugin {
      * @return 性别
      */
     public static Sex getSex(Player player){
-        Sex sex = sexs.get(player.getName());
+        Sex sex = playerSex.get(player.getName());
         if (sex == null){
             PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
             sex = Sex.byName(playerConfig.getConfig().getString("性别", ""));
-            sexs.put(player.getName(), sex);
+            playerSex.put(player.getName(), sex);
         }
         return sex;
     }
     public static Sex getSex(Player player, PlayerConfig playerConfig){
-        Sex sex = sexs.get(player.getName());
+        Sex sex = playerSex.get(player.getName());
         if (sex == null){
             if (playerConfig == null)playerConfig = PlayerConfig.getPlayerConfig(player);
             sex = Sex.byName(playerConfig.getConfig().getString("性别", ""));
-            sexs.put(player.getName(), sex);
+            playerSex.put(player.getName(), sex);
         }
         return sex;
     }
     public static void setSex(Player player, Sex sex){
         PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
         playerConfig.getConfig().set("性别", sex.getName());
-        sexs.put(player.getName(), sex);
+        playerSex.put(player.getName(), sex);
         PlayerUtils.updatePlayerDisplayName(player);
     }
     public static void setSex(Player player, Sex sex, PlayerConfig playerConfig){
         if (playerConfig == null)playerConfig = PlayerConfig.getPlayerConfig(player);
         playerConfig.getConfig().set("性别", sex.getName());
-        sexs.put(player.getName(), sex);
+        playerSex.put(player.getName(), sex);
         PlayerUtils.updatePlayerDisplayName(player);
+    }
+    //玩家移动事件
+    @EventHandler
+    public void onMoveEvent(PlayerMoveEvent event){
+        //移动的玩家
+        Player player = event.getPlayer();
+        //获取的玩家的伴侣
+        String love = getLove(player);
+        if (love.equals(""))return;
+        //获取玩家伴侣实体类
+        Player partner = Bukkit.getPlayer(love);
+        if (partner != null && player.isOnline()) {//如果玩家的伴侣在线
+            if (partner.getWorld().equals(player.getWorld())) {//判断他们是不是一个世界
+                Location partnerLocation = partner.getLocation();//获取伴侣的坐标
+                //如果玩家移动前与伴侣的位置大于0.5并且玩家移动后的位置距离小于0.5 则满足贴贴条件
+                if (partnerLocation.distance(event.getFrom()) > 0.5 && partnerLocation.distance(event.getTo()) < 0.5){
+                    if (Cooling.isCooling(player, "贴贴")) {//判断冷却 每10秒只能贴一次
+                        return;
+                    }
+                    Cooling.cooling(player, "贴贴", 10);
+                    player.getWorld().spawnParticle(Particle.HEART, player.getLocation().add(0, 1.8, 0), 5, 0.3, 0.3, 0.3);
+                    player.getWorld().spawnParticle(Particle.HEART, partner.getLocation().add(0, 1.8, 0), 5, 0.3, 0.3, 0.3);
+                    player.sendMessage("§a贴贴~~~");
+                    partner.sendMessage("§a贴贴~~~");
+                    for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                        if (onlinePlayer == player || onlinePlayer == partner) continue;
+                        PlayerConfig onlinePlayerConfig = PlayerConfig.getPlayerConfig(onlinePlayer);
+                        String onlinePlayerLove = onlinePlayerConfig.getConfig().getString("伴侣");
+                        if (onlinePlayerLove == null || onlinePlayerLove.isEmpty()){
+                            onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，你还没有对象~~~");
+                        }else {
+                            Player onlinePlayerP = Bukkit.getPlayer(onlinePlayerLove);
+                            if (onlinePlayerP != null && onlinePlayerP.isOnline()){
+                                Sex sex = getSex(onlinePlayerP);
+                                onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，你也快去跟你的" + getAfterMarriageCall(sex) + "贴贴吧~~~");
+                            }else {
+                                onlinePlayer.sendMessage("§e" + player.getName() + "和" + partner.getName() + "贴贴了，快叫上你的伴侣上线贴贴吧~~~");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @EventHandler
+    public void onQuitEvent(PlayerQuitEvent event){
+        Player player = event.getPlayer();
+        loves.remove(player.getName());
+        playerSex.remove(player.getName());
     }
     public static enum Sex{
         NONE("无性别", "ta", ""),
