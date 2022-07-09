@@ -19,7 +19,7 @@ public class SpawnManager {
         }
         return instance;
     }
-    private List<MobSpawn> mobSpawns = new ArrayList<>();
+    private final List<MobSpawn> mobSpawns = new ArrayList<>();
 
     private SpawnManager(){
 
