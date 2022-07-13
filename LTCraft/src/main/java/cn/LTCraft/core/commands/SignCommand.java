@@ -24,15 +24,10 @@ public class SignCommand implements CommandExecutor {
         if (args.length <=0){
             return false;
         }
-        str[0] = args[0].replace("&", "§");
-        if (args.length >= 2){
-            str[1] = args[1].replace("&", "§");
-        }
-        if (args.length >= 3){
-            str[2] = args[2].replace("&", "§");
-        }
-        if (args.length >= 4){
-            str[3] = args[3].replace("&", "§");
+        for (int i = 0; i < 4; i++) {
+            if (args.length >= i + 1) {
+                str[i] = args[i].replace("&", "§");
+            }
         }
         PlayerListener.signEdit.put(player.getName(), str);
         Player finalPlayer = player;
