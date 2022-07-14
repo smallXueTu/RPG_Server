@@ -153,6 +153,7 @@ t3test:
     - execBQEvent{e=添加毕业T3标签}
     - execBQEvent{e=击杀古堡守护者进入恶魔古堡}
     - teleportto{c=43.5,72,671.5;w=RPG}
+    - execBQEvent{e=保存主线位置到T4进度1}
     - delay 80
     - message{m="&d<trigger.name>&r>> &6终于到了，这是哪里呢..."} @Self
     - delay 20
@@ -167,4 +168,3 @@ t3test:
     - delay 20
     - message{m="&d<trigger.name>&r>> &6我记得还有一个传送门来着，要不先进去看看吧..."} @Self
     - sound{s=ui.toast.challenge_completep=1;v=1;} @Self
-    - execBQEvent{e=保存主线位置到T4进度1}
