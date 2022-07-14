@@ -127,21 +127,24 @@ t4火焰粒子门2:
     - effect:particlering{particle=flame;amount=200;speed=3;hS=5;vS=0.2;r=3} @PlayersInRadius{r=10}
 触发T4完结:
   Skills:
-    - message{m="&a噗通..."} @Self
+    - message{m="&e噗通(落入水中)..."} @Self
     - sendAction{"type":"blackScreen","time":200}
     - message{m="&d<trigger.name>&r>> &6怎么突然怎么黑！"} @Self
-    - delay 20
-    - message{m="&d<trigger.name>&r>> &6这是那里，好奇怪。"} @Self
     - delay 20
     - message{m="&d<trigger.name>&r>> &6怎么感觉身体在一直在飞速下降，不会掉进什么危险的地方吧！"} @Self
     - delay 20
     - message{m="&d<trigger.name>&r>> &6身体突然感受到了好强大的拉扯力..."} @Self
     - sound{s=block.portal.travel;p=1;v=1;} @Self
     - delay 20
-    - message{m="&d<trigger.name>&r>> &6我感觉我被传送了..."} @Self
+    - message{m="&e吱吱吱吱(传送门的声音)..."} @Self
     - delay 20
-    - message{m="&d<trigger.name>&r>> &6说实话我又害怕又期待..."} @Self
+    - message{m="&d<trigger.name>&r>> &6害怕又期待..."} @Self
     - delay 60
     - execBQEvent{e=添加毕业T4标签}
     - execBQEvent{e=击杀古堡守护者进入恶魔古堡}
     - teleportto{c=1161.5,70,-1199.5;w=t5}
+    - message{m="&d<trigger.name>&r>> &6这是哪里！"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6看这建筑，我不会掉入末地了吧！"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6真实倒霉，先看看怎么回去吧..."} @Self
