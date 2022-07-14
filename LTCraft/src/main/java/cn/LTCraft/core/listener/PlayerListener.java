@@ -303,7 +303,7 @@ public class PlayerListener  implements Listener {
                     PlayerData playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
                     if (level > 1 && !playerData.hasTag("default.毕业T" + (level - 1))){
                         event.setCancelled(true);
-                        player.sendMessage("§c你需要完成T"+ (level - 1) + "才能前往" + toWorld + "！");
+                        player.sendMessage("§c你需要完成T"+ (level - 1) + "才能前往T" + level + "！");
                     }
                 }catch (NumberFormatException ignored){
 
