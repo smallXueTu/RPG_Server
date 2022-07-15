@@ -126,6 +126,10 @@ public abstract class AbstractMobSpawn implements TickEntity {
         return insideName;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
     public int getIndex(){
         for (int i = mobs.length - 1; i >= 0; i--) {
             ActiveMob mob = mobs[i];
