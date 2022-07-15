@@ -2,7 +2,7 @@ package cn.LTCraft.core.commands;
 
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
-import cn.LTCraft.core.entityClass.TimerMobSpawn;
+import cn.LTCraft.core.entityClass.spawns.TimerMobSpawn;
 import cn.LTCraft.core.game.TimerSpawnManager;
 import cn.LTCraft.core.utils.GameUtils;
 import org.bukkit.command.Command;

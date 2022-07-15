@@ -1,7 +1,7 @@
 package cn.LTCraft.core.game;
 
 import cn.LTCraft.core.Config;
-import cn.LTCraft.core.entityClass.TimerMobSpawn;
+import cn.LTCraft.core.entityClass.spawns.TimerMobSpawn;
 import io.lumine.utils.config.file.YamlConfiguration;
 
 import java.util.ArrayList;
