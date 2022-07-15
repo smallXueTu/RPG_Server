@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 箱子刷怪点 玩家点击某个箱子后生成怪物 玩家击杀完怪物即可打开
  * Created by Angel、 on 2022/7/15 12:33
  */
 public class ChestSpawnManager {
@@ -49,7 +50,17 @@ public class ChestSpawnManager {
         });
         init();
     }
+
     public Map<String, ChestMobSpawn> getSpawns() {
         return mobSpawns;
+    }
+
+    /**
+     * 获取箱子刷怪点
+     * @param location 坐标 方块坐标
+     * @return 刷怪点
+     */
+    public ChestMobSpawn getMobSpawn(String location){
+        return mobSpawns.get(location);
     }
 }
