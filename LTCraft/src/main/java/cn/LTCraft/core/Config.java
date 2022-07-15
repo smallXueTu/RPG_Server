@@ -47,7 +47,7 @@ public class Config {
         itemsFile = new File(plugin.getDataFolder(), "items.yml");
         itemsYaml = YamlConfiguration.loadConfiguration(itemsFile);
 
-        spawnFile = new File(plugin.getDataFolder(), "spawn.yml");
+        spawnFile = new File(plugin.getDataFolder(), "spawns/MMSpawn.yml");
         spawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(spawnFile);
 
         drawingFile = new File(plugin.getDataFolder(), "drawing.yml");
