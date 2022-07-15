@@ -50,7 +50,8 @@ public class LTCSCommand implements CommandExecutor {
                 Config.getInstance().getChestSpawnYaml().set(args[1], map);
                 Config.getInstance().save();
                 Config.getInstance().reload();
-                ChestSpawnManager.getInstance().getSpawns().add(new ChestMobSpawn(args[1]));
+                ChestMobSpawn chestMobSpawn = new ChestMobSpawn(args[1]);
+                ChestSpawnManager.getInstance().getSpawns().put(GameUtils.spawnLocationString(chestMobSpawn.getLocation()), chestMobSpawn);
                 sender.sendMessage("§a添加成功！");
                 break;
             case "delete":
@@ -59,7 +60,7 @@ public class LTCSCommand implements CommandExecutor {
             case "del":
                 Config.getInstance().getChestSpawnYaml().set(args[1], null);
                 Config.getInstance().save();
-                ChestSpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
+                ChestSpawnManager.getInstance().getSpawns().values().removeIf(mobSpawn -> {
                     if (mobSpawn.getInsideName().equals(args[1])){
                         mobSpawn.close();
                         return true;
