@@ -87,7 +87,6 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
         instance = this;
-        config = Config.getInstance();
         if (Log4jFixerUtils.tryFix()) {
             getLogger().info("修复漏洞成功！");
         }
@@ -96,6 +95,8 @@ public class Main extends JavaPlugin {
          */
         this.getDataFolder().mkdirs();
         new File(getDataFolder() + File.separator + "playerData").mkdirs();
+        new File(getDataFolder() + File.separator + "spawns").mkdirs();
+        config = Config.getInstance();
 
         SQLServer = new SQLServer(this);
         SQLManage = new SQLManage(SQLServer);
