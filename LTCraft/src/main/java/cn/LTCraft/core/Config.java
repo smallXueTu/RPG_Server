@@ -19,6 +19,7 @@ public class Config {
     private final File worldTitleFile;
     private final File itemsFile;
     private final File MMSpawnFile;
+    private final File chestSpawnFile;
     private final File gateFile;
     private final File drawingFile;
 
@@ -28,6 +29,7 @@ public class Config {
     private YamlConfiguration worldTitleYaml;
     private io.lumine.utils.config.file.YamlConfiguration gateYaml;
     private io.lumine.utils.config.file.YamlConfiguration MMSpawnYaml;
+    private io.lumine.utils.config.file.YamlConfiguration chestSpawnYaml;
     private io.lumine.utils.config.file.YamlConfiguration drawingYaml;
     private Config(Main plugin){
         this.plugin = plugin;
@@ -49,6 +51,9 @@ public class Config {
 
         MMSpawnFile = new File(plugin.getDataFolder(), "spawns/MMSpawn.yml");
         MMSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(MMSpawnFile);
+
+        chestSpawnFile = new File(plugin.getDataFolder(), "spawns/chestSpawn.yml");
+        chestSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(chestSpawnFile);
 
         drawingFile = new File(plugin.getDataFolder(), "drawing.yml");
         drawingYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(drawingFile);
@@ -89,6 +94,10 @@ public class Config {
         return drawingYaml;
     }
 
+    public io.lumine.utils.config.file.YamlConfiguration getChestSpawnYaml() {
+        return chestSpawnYaml;
+    }
+
     /**
      * 重新加载
      */
@@ -98,6 +107,7 @@ public class Config {
         itemsYaml = YamlConfiguration.loadConfiguration(itemsFile);
         worldTitleYaml = YamlConfiguration.loadConfiguration(worldTitleFile);
         MMSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(MMSpawnFile);
+        chestSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(chestSpawnFile);
         gateYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(gateFile);
         drawingYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(drawingFile);
     }
@@ -109,6 +119,7 @@ public class Config {
         try {
             MMSpawnYaml.save(MMSpawnFile);
             gateYaml.save(gateFile);
+            chestSpawnYaml.save(chestSpawnFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
