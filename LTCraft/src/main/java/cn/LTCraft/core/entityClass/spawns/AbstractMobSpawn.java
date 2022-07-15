@@ -143,4 +143,14 @@ public abstract class AbstractMobSpawn implements TickEntity {
     public MythicConfig getConfig() {
         return config;
     }
+
+    @Override
+    public int getTickRate() {
+        return 20;
+    }
+
+    @Override
+    public boolean isAsync() {
+        return true;
+    }
 }
