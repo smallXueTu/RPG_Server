@@ -33,7 +33,7 @@ public class SpawnManager {
      * 加载刷怪点
      */
     private void loadSpawns(){
-        YamlConfiguration spawnYaml = Config.getInstance().getSpawnYaml();
+        YamlConfiguration spawnYaml = Config.getInstance().getMMSpawnYaml();
         for (String key : spawnYaml.getKeys(false)) {
             MobSpawn mobSpawn = new MobSpawn(key);
             mobSpawns.add(mobSpawn);

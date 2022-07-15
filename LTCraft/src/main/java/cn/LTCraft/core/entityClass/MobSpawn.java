@@ -45,7 +45,7 @@ public class MobSpawn implements TickEntity {
     public MobSpawn(String insideName){
         this.insideName = insideName;
         Main main = Main.getInstance();
-        MythicConfig config = new MythicConfig(insideName, Config.getInstance().getSpawnYaml());
+        MythicConfig config = new MythicConfig(insideName, Config.getInstance().getMMSpawnYaml());
         World world = Bukkit.getWorld(config.getString("world"));
         mobName = config.getString("mobName");
         spawnRange = config.getInteger("spawnRange", 1);

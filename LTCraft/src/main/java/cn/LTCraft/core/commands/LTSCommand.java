@@ -42,7 +42,7 @@ public class LTSCommand implements CommandExecutor {
                 map.put("spawnRange", 1);
                 map.put("mobName", args[2]);
                 map.put("locations", new ArrayList<>());
-                Config.getInstance().getSpawnYaml().set(args[1], map);
+                Config.getInstance().getMMSpawnYaml().set(args[1], map);
                 Config.getInstance().save();
                 Config.getInstance().reload();
                 SpawnManager.getInstance().getSpawns().add(new MobSpawn(args[1]));
@@ -52,7 +52,7 @@ public class LTSCommand implements CommandExecutor {
             case "d":
             case "remove":
             case "del":
-                Config.getInstance().getSpawnYaml().set(args[1], null);
+                Config.getInstance().getMMSpawnYaml().set(args[1], null);
                 Config.getInstance().save();
                 SpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
                     if (mobSpawn.getInsideName().equals(args[1])){

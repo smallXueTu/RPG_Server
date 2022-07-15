@@ -18,7 +18,7 @@ public class Config {
     private final File MySQLInfoFile;
     private final File worldTitleFile;
     private final File itemsFile;
-    private final File spawnFile;
+    private final File MMSpawnFile;
     private final File gateFile;
     private final File drawingFile;
 
@@ -27,7 +27,7 @@ public class Config {
     private YamlConfiguration itemsYaml;
     private YamlConfiguration worldTitleYaml;
     private io.lumine.utils.config.file.YamlConfiguration gateYaml;
-    private io.lumine.utils.config.file.YamlConfiguration spawnYaml;
+    private io.lumine.utils.config.file.YamlConfiguration MMSpawnYaml;
     private io.lumine.utils.config.file.YamlConfiguration drawingYaml;
     private Config(Main plugin){
         this.plugin = plugin;
@@ -47,8 +47,8 @@ public class Config {
         itemsFile = new File(plugin.getDataFolder(), "items.yml");
         itemsYaml = YamlConfiguration.loadConfiguration(itemsFile);
 
-        spawnFile = new File(plugin.getDataFolder(), "spawns/MMSpawn.yml");
-        spawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(spawnFile);
+        MMSpawnFile = new File(plugin.getDataFolder(), "spawns/MMSpawn.yml");
+        MMSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(MMSpawnFile);
 
         drawingFile = new File(plugin.getDataFolder(), "drawing.yml");
         drawingYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(drawingFile);
@@ -73,8 +73,8 @@ public class Config {
         return itemsYaml;
     }
 
-    public io.lumine.utils.config.file.YamlConfiguration getSpawnYaml() {
-        return spawnYaml;
+    public io.lumine.utils.config.file.YamlConfiguration getMMSpawnYaml() {
+        return MMSpawnYaml;
     }
 
     public io.lumine.utils.config.file.YamlConfiguration getGateYaml() {
@@ -97,7 +97,7 @@ public class Config {
         NPCClickYaml = YamlConfiguration.loadConfiguration(NPCClickFile);
         itemsYaml = YamlConfiguration.loadConfiguration(itemsFile);
         worldTitleYaml = YamlConfiguration.loadConfiguration(worldTitleFile);
-        spawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(spawnFile);
+        MMSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(MMSpawnFile);
         gateYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(gateFile);
         drawingYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(drawingFile);
     }
@@ -107,7 +107,7 @@ public class Config {
      */
     public void save(){
         try {
-            spawnYaml.save(spawnFile);
+            MMSpawnYaml.save(MMSpawnFile);
             gateYaml.save(gateFile);
         } catch (IOException e) {
             e.printStackTrace();
