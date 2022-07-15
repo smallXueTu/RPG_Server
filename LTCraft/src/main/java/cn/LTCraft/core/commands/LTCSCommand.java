@@ -2,7 +2,9 @@ package cn.LTCraft.core.commands;
 
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.entityClass.spawns.ChestMobSpawn;
 import cn.LTCraft.core.entityClass.spawns.TimerMobSpawn;
+import cn.LTCraft.core.game.ChestSpawnManager;
 import cn.LTCraft.core.game.TimerSpawnManager;
 import cn.LTCraft.core.utils.GameUtils;
 import org.bukkit.command.Command;
@@ -38,6 +40,7 @@ public class LTCSCommand implements CommandExecutor {
                 map.put("y", player.getLocation().getBlockY());
                 map.put("z", player.getLocation().getBlockZ() + 0.5);
                 map.put("maxMobs", 3);
+                map.put("spawnRange", 1);
                 map.put("mobName", args[2]);
                 ArrayList<Object> list = new ArrayList<>();
                 for (int i = 0; i < 3; i++) {
@@ -47,7 +50,7 @@ public class LTCSCommand implements CommandExecutor {
                 Config.getInstance().getChestSpawnYaml().set(args[1], map);
                 Config.getInstance().save();
                 Config.getInstance().reload();
-                TimerSpawnManager.getInstance().getSpawns().add(new TimerMobSpawn(args[1]));
+                ChestSpawnManager.getInstance().getSpawns().add(new ChestMobSpawn(args[1]));
                 sender.sendMessage("§a添加成功！");
                 break;
             case "delete":
@@ -56,7 +59,7 @@ public class LTCSCommand implements CommandExecutor {
             case "del":
                 Config.getInstance().getChestSpawnYaml().set(args[1], null);
                 Config.getInstance().save();
-                TimerSpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
+                ChestSpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
                     if (mobSpawn.getInsideName().equals(args[1])){
                         mobSpawn.close();
                         return true;
@@ -67,7 +70,7 @@ public class LTCSCommand implements CommandExecutor {
             case "reload":
             case "r":
                 Config.getInstance().reload();
-                TimerSpawnManager.getInstance().reload();
+                ChestSpawnManager.getInstance().reload();
                 sender.sendMessage("§a重载完成！");
                 break;
         }

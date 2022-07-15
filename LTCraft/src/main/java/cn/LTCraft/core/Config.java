@@ -52,7 +52,7 @@ public class Config {
         timerSpawnFile = new File(plugin.getDataFolder(), "spawns/TimerSpawn.yml");
         timerSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(timerSpawnFile);
 
-        chestSpawnFile = new File(plugin.getDataFolder(), "spawns/chestSpawn.yml");
+        chestSpawnFile = new File(plugin.getDataFolder(), "spawns/ChestSpawn.yml");
         chestSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(chestSpawnFile);
 
         drawingFile = new File(plugin.getDataFolder(), "drawing.yml");
