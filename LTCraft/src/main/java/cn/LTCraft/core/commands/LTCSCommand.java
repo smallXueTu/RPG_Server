@@ -3,7 +3,8 @@ package cn.LTCraft.core.commands;
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.MobSpawn;
-import cn.LTCraft.core.game.SpawnManager;
+import cn.LTCraft.core.game.MMSpawnManager;
+import cn.LTCraft.core.utils.GameUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,11 +17,11 @@ import java.util.Map;
 /**
  * Created by Angel、 on 2022/3/27 13:01
  */
-public class LTSCommand implements CommandExecutor {
+public class LTCSCommand implements CommandExecutor {
     private final Main plugin;
-    public LTSCommand(){
+    public LTCSCommand(){
         plugin = Main.getInstance();
-        plugin.getCommand("lts").setExecutor(this);
+        plugin.getCommand("ltcs").setExecutor(this);
     }
 
     @Override
@@ -37,15 +38,16 @@ public class LTSCommand implements CommandExecutor {
                 map.put("y", player.getLocation().getBlockY());
                 map.put("z", player.getLocation().getBlockZ() + 0.5);
                 map.put("maxMobs", 3);
-                map.put("cooling", 10);
-                map.put("range", 16);
-                map.put("spawnRange", 1);
                 map.put("mobName", args[2]);
-                map.put("locations", new ArrayList<>());
+                ArrayList<Object> list = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    list.add(GameUtils.spawnLocationString(player.getLocation()));
+                }
+                map.put("locations", list);
                 Config.getInstance().getMMSpawnYaml().set(args[1], map);
                 Config.getInstance().save();
                 Config.getInstance().reload();
-                SpawnManager.getInstance().getSpawns().add(new MobSpawn(args[1]));
+                MMSpawnManager.getInstance().getSpawns().add(new MobSpawn(args[1]));
                 sender.sendMessage("§a添加成功！");
                 break;
             case "delete":
@@ -54,7 +56,7 @@ public class LTSCommand implements CommandExecutor {
             case "del":
                 Config.getInstance().getMMSpawnYaml().set(args[1], null);
                 Config.getInstance().save();
-                SpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
+                MMSpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
                     if (mobSpawn.getInsideName().equals(args[1])){
                         mobSpawn.close();
                         return true;
@@ -65,7 +67,7 @@ public class LTSCommand implements CommandExecutor {
             case "reload":
             case "r":
                 Config.getInstance().reload();
-                SpawnManager.getInstance().reload();
+                MMSpawnManager.getInstance().reload();
                 sender.sendMessage("§a重载完成！");
                 break;
         }

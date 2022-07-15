@@ -2,25 +2,16 @@ package cn.LTCraft.core.commands;
 
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
-import cn.LTCraft.core.entityClass.MobSpawn;
-import cn.LTCraft.core.entityClass.TeleportGate;
-import cn.LTCraft.core.game.SpawnManager;
 import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.utils.GameUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
-import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlockState;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;

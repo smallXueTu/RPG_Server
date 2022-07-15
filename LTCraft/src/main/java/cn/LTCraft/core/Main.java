@@ -2,7 +2,7 @@ package cn.LTCraft.core;
 
 
 import cn.LTCraft.core.game.SmeltingFurnace;
-import cn.LTCraft.core.game.SpawnManager;
+import cn.LTCraft.core.game.MMSpawnManager;
 import cn.LTCraft.core.game.TeleportGateManager;
 import cn.LTCraft.core.game.more.DailyLottery;
 import cn.LTCraft.core.hook.BQ.event.*;
@@ -136,7 +136,7 @@ public class Main extends JavaPlugin {
             }) {
                 GarbageClear.skips.add(ClutterItem.spawnClutterItem(string));
             }
-            SpawnManager.getInstance().init();
+            MMSpawnManager.getInstance().init();
             TeleportGateManager.getInstance().init();
 
             /*

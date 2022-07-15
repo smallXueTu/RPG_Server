@@ -8,20 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * MM刷怪点管理
  * Created by Angel、 on 2022/3/27 11:50
  */
-public class SpawnManager {
-    private static SpawnManager instance = null;
+public class MMSpawnManager {
+    private static MMSpawnManager instance = null;
 
-    public synchronized static SpawnManager getInstance() {
+    public synchronized static MMSpawnManager getInstance() {
         if (instance == null){
-            instance = new SpawnManager();
+            instance = new MMSpawnManager();
         }
         return instance;
     }
     private final List<MobSpawn> mobSpawns = new ArrayList<>();
 
-    private SpawnManager(){
+    private MMSpawnManager(){
 
     }
 
