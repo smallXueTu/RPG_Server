@@ -1,9 +1,7 @@
 package cn.LTCraft.core;
 
 
-import cn.LTCraft.core.game.SmeltingFurnace;
-import cn.LTCraft.core.game.MMSpawnManager;
-import cn.LTCraft.core.game.TeleportGateManager;
+import cn.LTCraft.core.game.*;
 import cn.LTCraft.core.game.more.DailyLottery;
 import cn.LTCraft.core.hook.BQ.event.*;
 import cn.LTCraft.core.hook.BQ.objective.*;
@@ -14,7 +12,6 @@ import cn.LTCraft.core.dataBase.SQLServer;
 import cn.LTCraft.core.hook.TrMenu.actions.*;
 import cn.LTCraft.core.listener.*;
 import cn.LTCraft.core.entityClass.ClutterItem;
-import cn.LTCraft.core.game.Game;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.hook.papi.LTExpansion;
 import cn.LTCraft.core.task.ClientCheckTask;
@@ -136,7 +133,8 @@ public class Main extends JavaPlugin {
             }) {
                 GarbageClear.skips.add(ClutterItem.spawnClutterItem(string));
             }
-            MMSpawnManager.getInstance().init();
+            TimerSpawnManager.getInstance().init();
+            ChestSpawnManager.getInstance().init();
             TeleportGateManager.getInstance().init();
 
             /*

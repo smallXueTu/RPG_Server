@@ -1,7 +1,7 @@
 package cn.LTCraft.core.game;
 
 import cn.LTCraft.core.Config;
-import cn.LTCraft.core.entityClass.MobSpawn;
+import cn.LTCraft.core.entityClass.TimerMobSpawn;
 import io.lumine.utils.config.file.YamlConfiguration;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class ChestSpawnManager {
         }
         return instance;
     }
-    private final List<MobSpawn> mobSpawns = new ArrayList<>();
+    private final List<TimerMobSpawn> mobSpawns = new ArrayList<>();
 
     private ChestSpawnManager(){
 
@@ -35,7 +35,7 @@ public class ChestSpawnManager {
     private void loadSpawns(){
         YamlConfiguration spawnYaml = Config.getInstance().getChestSpawnYaml();
         for (String key : spawnYaml.getKeys(false)) {
-            MobSpawn mobSpawn = new MobSpawn(key);
+            TimerMobSpawn mobSpawn = new TimerMobSpawn(key);
             mobSpawns.add(mobSpawn);
         }
     }
@@ -46,7 +46,7 @@ public class ChestSpawnManager {
         });
         init();
     }
-    public List<MobSpawn> getSpawns() {
+    public List<TimerMobSpawn> getSpawns() {
         return mobSpawns;
     }
 }

@@ -5,7 +5,6 @@ import cn.LTCraft.core.Main;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.GameUtils;
-import cn.LTCraft.core.utils.MathUtils;
 import cn.LTCraft.core.utils.Utils;
 import cn.LTCraft.core.utils.WorldUtils;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
@@ -23,11 +22,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public class MobSpawn implements TickEntity {
+public class TimerMobSpawn implements TickEntity {
     private final Hologram hologram;
     private final String insideName;
     private final Location location;
@@ -42,10 +39,10 @@ public class MobSpawn implements TickEntity {
     private ActiveMob[] mobs;
     private int mobSize = 0;
     private boolean closed = false;
-    public MobSpawn(String insideName){
+    public TimerMobSpawn(String insideName){
         this.insideName = insideName;
         Main main = Main.getInstance();
-        MythicConfig config = new MythicConfig(insideName, Config.getInstance().getMMSpawnYaml());
+        MythicConfig config = new MythicConfig(insideName, Config.getInstance().getTimerSpawnYaml());
         World world = Bukkit.getWorld(config.getString("world"));
         mobName = config.getString("mobName");
         spawnRange = config.getInteger("spawnRange", 1);

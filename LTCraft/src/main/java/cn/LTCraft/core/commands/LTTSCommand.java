@@ -2,9 +2,8 @@ package cn.LTCraft.core.commands;
 
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
-import cn.LTCraft.core.entityClass.MobSpawn;
-import cn.LTCraft.core.game.MMSpawnManager;
-import cn.LTCraft.core.utils.GameUtils;
+import cn.LTCraft.core.entityClass.TimerMobSpawn;
+import cn.LTCraft.core.game.TimerSpawnManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,11 +16,11 @@ import java.util.Map;
 /**
  * Created by Angel、 on 2022/3/27 13:01
  */
-public class LTMSCommand implements CommandExecutor {
+public class LTTSCommand implements CommandExecutor {
     private final Main plugin;
-    public LTMSCommand(){
+    public LTTSCommand(){
         plugin = Main.getInstance();
-        plugin.getCommand("ltcs").setExecutor(this);
+        plugin.getCommand("ltts").setExecutor(this);
     }
 
     @Override
@@ -43,19 +42,19 @@ public class LTMSCommand implements CommandExecutor {
                 map.put("spawnRange", 1);
                 map.put("mobName", args[2]);
                 map.put("locations", new ArrayList<>());
-                Config.getInstance().getMMSpawnYaml().set(args[1], map);
+                Config.getInstance().getTimerSpawnYaml().set(args[1], map);
                 Config.getInstance().save();
                 Config.getInstance().reload();
-                MMSpawnManager.getInstance().getSpawns().add(new MobSpawn(args[1]));
+                TimerSpawnManager.getInstance().getSpawns().add(new TimerMobSpawn(args[1]));
                 sender.sendMessage("§a添加成功！");
                 break;
             case "delete":
             case "d":
             case "remove":
             case "del":
-                Config.getInstance().getMMSpawnYaml().set(args[1], null);
+                Config.getInstance().getTimerSpawnYaml().set(args[1], null);
                 Config.getInstance().save();
-                MMSpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
+                TimerSpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
                     if (mobSpawn.getInsideName().equals(args[1])){
                         mobSpawn.close();
                         return true;
@@ -66,7 +65,7 @@ public class LTMSCommand implements CommandExecutor {
             case "reload":
             case "r":
                 Config.getInstance().reload();
-                MMSpawnManager.getInstance().reload();
+                TimerSpawnManager.getInstance().reload();
                 sender.sendMessage("§a重载完成！");
                 break;
         }

@@ -9,7 +9,7 @@ public class CommandLoader {
         new MMSkillsCommand();
         new PrefixCommand();
         new SignCommand();
-        new LTMSCommand();
+        new LTTSCommand();
         new LTCSCommand();
         new LTGCommand();
         new RTPCommand();

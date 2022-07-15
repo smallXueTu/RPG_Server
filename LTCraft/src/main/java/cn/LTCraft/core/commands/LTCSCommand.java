@@ -2,8 +2,8 @@ package cn.LTCraft.core.commands;
 
 import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
-import cn.LTCraft.core.entityClass.MobSpawn;
-import cn.LTCraft.core.game.MMSpawnManager;
+import cn.LTCraft.core.entityClass.TimerMobSpawn;
+import cn.LTCraft.core.game.TimerSpawnManager;
 import cn.LTCraft.core.utils.GameUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -44,19 +44,19 @@ public class LTCSCommand implements CommandExecutor {
                     list.add(GameUtils.spawnLocationString(player.getLocation()));
                 }
                 map.put("locations", list);
-                Config.getInstance().getMMSpawnYaml().set(args[1], map);
+                Config.getInstance().getChestSpawnYaml().set(args[1], map);
                 Config.getInstance().save();
                 Config.getInstance().reload();
-                MMSpawnManager.getInstance().getSpawns().add(new MobSpawn(args[1]));
+                TimerSpawnManager.getInstance().getSpawns().add(new TimerMobSpawn(args[1]));
                 sender.sendMessage("§a添加成功！");
                 break;
             case "delete":
             case "d":
             case "remove":
             case "del":
-                Config.getInstance().getMMSpawnYaml().set(args[1], null);
+                Config.getInstance().getChestSpawnYaml().set(args[1], null);
                 Config.getInstance().save();
-                MMSpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
+                TimerSpawnManager.getInstance().getSpawns().removeIf(mobSpawn -> {
                     if (mobSpawn.getInsideName().equals(args[1])){
                         mobSpawn.close();
                         return true;
@@ -67,7 +67,7 @@ public class LTCSCommand implements CommandExecutor {
             case "reload":
             case "r":
                 Config.getInstance().reload();
-                MMSpawnManager.getInstance().reload();
+                TimerSpawnManager.getInstance().reload();
                 sender.sendMessage("§a重载完成！");
                 break;
         }

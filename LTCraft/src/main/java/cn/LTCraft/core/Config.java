@@ -18,7 +18,7 @@ public class Config {
     private final File MySQLInfoFile;
     private final File worldTitleFile;
     private final File itemsFile;
-    private final File MMSpawnFile;
+    private final File timerSpawnFile;
     private final File chestSpawnFile;
     private final File gateFile;
     private final File drawingFile;
@@ -28,7 +28,7 @@ public class Config {
     private YamlConfiguration itemsYaml;
     private YamlConfiguration worldTitleYaml;
     private io.lumine.utils.config.file.YamlConfiguration gateYaml;
-    private io.lumine.utils.config.file.YamlConfiguration MMSpawnYaml;
+    private io.lumine.utils.config.file.YamlConfiguration timerSpawnYaml;
     private io.lumine.utils.config.file.YamlConfiguration chestSpawnYaml;
     private io.lumine.utils.config.file.YamlConfiguration drawingYaml;
     private Config(Main plugin){
@@ -49,8 +49,8 @@ public class Config {
         itemsFile = new File(plugin.getDataFolder(), "items.yml");
         itemsYaml = YamlConfiguration.loadConfiguration(itemsFile);
 
-        MMSpawnFile = new File(plugin.getDataFolder(), "spawns/MMSpawn.yml");
-        MMSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(MMSpawnFile);
+        timerSpawnFile = new File(plugin.getDataFolder(), "spawns/TimerSpawn.yml");
+        timerSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(timerSpawnFile);
 
         chestSpawnFile = new File(plugin.getDataFolder(), "spawns/chestSpawn.yml");
         chestSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(chestSpawnFile);
@@ -78,8 +78,8 @@ public class Config {
         return itemsYaml;
     }
 
-    public io.lumine.utils.config.file.YamlConfiguration getMMSpawnYaml() {
-        return MMSpawnYaml;
+    public io.lumine.utils.config.file.YamlConfiguration getTimerSpawnYaml() {
+        return timerSpawnYaml;
     }
 
     public io.lumine.utils.config.file.YamlConfiguration getGateYaml() {
@@ -106,7 +106,7 @@ public class Config {
         NPCClickYaml = YamlConfiguration.loadConfiguration(NPCClickFile);
         itemsYaml = YamlConfiguration.loadConfiguration(itemsFile);
         worldTitleYaml = YamlConfiguration.loadConfiguration(worldTitleFile);
-        MMSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(MMSpawnFile);
+        timerSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(timerSpawnFile);
         chestSpawnYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(chestSpawnFile);
         gateYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(gateFile);
         drawingYaml = io.lumine.utils.config.file.YamlConfiguration.loadConfiguration(drawingFile);
@@ -117,7 +117,7 @@ public class Config {
      */
     public void save(){
         try {
-            MMSpawnYaml.save(MMSpawnFile);
+            timerSpawnYaml.save(timerSpawnFile);
             gateYaml.save(gateFile);
             chestSpawnYaml.save(chestSpawnFile);
         } catch (IOException e) {

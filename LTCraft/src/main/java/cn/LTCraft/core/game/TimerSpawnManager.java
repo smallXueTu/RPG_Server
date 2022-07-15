@@ -1,7 +1,7 @@
 package cn.LTCraft.core.game;
 
 import cn.LTCraft.core.Config;
-import cn.LTCraft.core.entityClass.MobSpawn;
+import cn.LTCraft.core.entityClass.TimerMobSpawn;
 import io.lumine.utils.config.file.YamlConfiguration;
 
 import java.util.ArrayList;
@@ -11,18 +11,18 @@ import java.util.List;
  * MM刷怪点管理
  * Created by Angel、 on 2022/3/27 11:50
  */
-public class MMSpawnManager {
-    private static MMSpawnManager instance = null;
+public class TimerSpawnManager {
+    private static TimerSpawnManager instance = null;
 
-    public synchronized static MMSpawnManager getInstance() {
+    public synchronized static TimerSpawnManager getInstance() {
         if (instance == null){
-            instance = new MMSpawnManager();
+            instance = new TimerSpawnManager();
         }
         return instance;
     }
-    private final List<MobSpawn> mobSpawns = new ArrayList<>();
+    private final List<TimerMobSpawn> mobSpawns = new ArrayList<>();
 
-    private MMSpawnManager(){
+    private TimerSpawnManager(){
 
     }
 
@@ -34,9 +34,9 @@ public class MMSpawnManager {
      * 加载刷怪点
      */
     private void loadSpawns(){
-        YamlConfiguration spawnYaml = Config.getInstance().getMMSpawnYaml();
+        YamlConfiguration spawnYaml = Config.getInstance().getTimerSpawnYaml();
         for (String key : spawnYaml.getKeys(false)) {
-            MobSpawn mobSpawn = new MobSpawn(key);
+            TimerMobSpawn mobSpawn = new TimerMobSpawn(key);
             mobSpawns.add(mobSpawn);
         }
     }
@@ -47,7 +47,7 @@ public class MMSpawnManager {
         });
         init();
     }
-    public List<MobSpawn> getSpawns() {
+    public List<TimerMobSpawn> getSpawns() {
         return mobSpawns;
     }
 }

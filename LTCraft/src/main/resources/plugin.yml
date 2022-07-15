@@ -40,8 +40,8 @@ commands:
     description: 个人信息
     permission: true
     usage: /cinfo
-  ltms:
-    description: MM刷怪点管理
+  ltts:
+    description: 计时刷怪点管理
     usage: /lts args...
     permission: op
   ltcs:
