@@ -92,6 +92,7 @@ public class Main extends JavaPlugin {
          */
         this.getDataFolder().mkdirs();
         new File(getDataFolder() + File.separator + "playerData").mkdirs();
+        new File(getDataFolder() + File.separator + "tempPlayerData").mkdirs();
         new File(getDataFolder() + File.separator + "spawns").mkdirs();
         config = Config.getInstance();
 
