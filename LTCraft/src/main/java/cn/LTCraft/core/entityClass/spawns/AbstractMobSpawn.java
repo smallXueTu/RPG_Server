@@ -148,6 +148,14 @@ public abstract class AbstractMobSpawn implements TickEntity {
         return config;
     }
 
+    public int getMaxMobs() {
+        return maxMobs;
+    }
+
+    public int getMobSize() {
+        return mobSize;
+    }
+
     @Override
     public int getTickRate() {
         return 20;
