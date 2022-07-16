@@ -48,6 +48,7 @@ public class PlayerConfig {
 
     /**
      * 保存配置文件
+     *
      * @param playerName 玩家姓名
      * @param config 配置文件
      */
@@ -60,16 +61,20 @@ public class PlayerConfig {
         }
     }
     private final YamlConfiguration config;
+    private final YamlConfiguration tempConfig;
     private final Player owner;
-    private final File file;
+    private final File configFile;
+    private final File tempConfigFile;
     private final Main plugin;
     private MythicConfig classAttConfig;
     private PlayerInfo playerInfo;
     public PlayerConfig(Player player){
         plugin = Main.getInstance();
         owner = player;
-        file = new File(plugin.getDataFolder()  + File.separator + "playerData" + File.separator + player.getName().toLowerCase() + ".yml");
-        config = YamlConfiguration.loadConfiguration(file);
+        configFile = new File(plugin.getDataFolder()  + File.separator + "playerData" + File.separator + player.getName().toLowerCase() + ".yml");
+        tempConfigFile = new File(plugin.getDataFolder()  + File.separator + "tempPlayerData" + File.separator + player.getName().toLowerCase() + ".yml");
+        config = YamlConfiguration.loadConfiguration(configFile);
+        tempConfig = YamlConfiguration.loadConfiguration(tempConfigFile);
         configMap.put(player.getName(), this);
         updateClassAttConfig();
         SqlSession sqlSession = Main.getInstance().getSQLServer().getSqlSessionFactory().openSession();
@@ -89,8 +94,8 @@ public class PlayerConfig {
     public void updateClassAttConfig(){
         classAttConfig = getMythicConfig("classAtt." + PlayerUtils.getAccount(owner));
         try {
+            //如果不存在 skills 则抛出空指针异常 在异常捕捉将创建 skills
             classAttConfig.getKeys("skills");
-            config.save(file);
         }catch (Exception e){
             classAttConfig.set("skills", new HashMap<>());
         }
@@ -98,8 +103,8 @@ public class PlayerConfig {
     public void updateClassAttConfig(int id){
         classAttConfig = getMythicConfig("classAtt." + id);
         try {
+            //如果不存在 skills 则抛出空指针异常 在异常捕捉将创建 skills
             classAttConfig.getKeys("skills");
-            config.save(file);
         }catch (Exception e){
             classAttConfig.set("skills", new HashMap<>());
         }
@@ -110,14 +115,22 @@ public class PlayerConfig {
                 playerInfo.setLastPlayTime(new Date());
                 playerInfo.commitChanges();
             }
-            config.save(file);
+            config.save(configFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public File getFile() {
-        return file;
+    public File getConfigFile() {
+        return configFile;
+    }
+
+    public File getTempConfigFile() {
+        return tempConfigFile;
+    }
+
+    public YamlConfiguration getTempConfig() {
+        return tempConfig;
     }
 
     public YamlConfiguration getConfig() {
@@ -150,6 +163,7 @@ public class PlayerConfig {
 
     /**
      * 获取玩家的计数器
+     * 注意 这个计数器在服务器关闭后将重置
      * @param player 玩家对象
      * @return 计数器 Map
      */
