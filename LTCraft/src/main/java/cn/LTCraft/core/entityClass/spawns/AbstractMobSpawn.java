@@ -153,6 +153,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
     }
 
     public int getMobSize() {
+        checkMobs();
         return mobSize;
     }
 

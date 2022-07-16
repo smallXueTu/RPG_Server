@@ -3,7 +3,9 @@ package cn.LTCraft.core.game;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.entityClass.Cooling;
+import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.entityClass.messy.ItemAction;
+import cn.LTCraft.core.entityClass.spawns.ChestMobSpawn;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.other.exceptions.BlockCeilingException;
@@ -24,6 +26,7 @@ import com.google.common.collect.ObjectArrays;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVDestination;
 import com.onarandombox.MultiverseCore.destination.DestinationFactory;
+import io.lumine.utils.config.file.YamlConfiguration;
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.*;
 import org.bukkit.Material;
@@ -428,6 +431,33 @@ public class Game {
                         }else {
                             Bukkit.dispatchCommand(player, command);
                         }
+                    }
+                }
+            }else if (block.getType() == Material.CHEST){
+                String key = GameUtils.spawnLocationString(block.getLocation());
+                ChestMobSpawn chestMobSpawn = ChestSpawnManager.getInstance().getMobSpawn(key);
+                if (chestMobSpawn == null){//如果这个坐标不存在箱子守卫者 则获取这个地图的
+                    chestMobSpawn = ChestSpawnManager.getInstance().getMobSpawn(player.getWorld().getName());
+                }
+                PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
+                YamlConfiguration tempConfig = playerConfig.getTempConfig();
+                List<String> openedChest = (List<String>) tempConfig.getList("已打开箱子");
+                if (openedChest.contains(key)) {//已经打开过不允许再次打开
+                    player.sendMessage("§c这个箱子你已经打开过了！");
+                    event.setCancelled(true);
+                    return;
+                }
+                Long aLong = chestMobSpawn.getTryOpenTimer().get(player.getName());
+                if (aLong == null || aLong > System.currentTimeMillis() + 120){//玩家未点击过或者点击已经过期
+                    for (int i = chestMobSpawn.getMobSize(); i < chestMobSpawn.getMaxMobs(); i++) {
+                        chestMobSpawn.spawnMob();
+                    }
+                    player.sendMessage("§c箱子的守卫者出来了，在120s内将他们一网打尽！即可拿走战利品！");
+                    event.setCancelled(true);
+                }else {
+                    if (chestMobSpawn.getMobSize() > 0){
+                        player.sendMessage("§c你必须清理掉所有的战利品守卫者才能打开它！");
+                        event.setCancelled(true);
                     }
                 }
             }
