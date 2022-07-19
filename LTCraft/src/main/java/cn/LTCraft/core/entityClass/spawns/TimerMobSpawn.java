@@ -92,7 +92,6 @@ public class TimerMobSpawn extends AbstractMobSpawn {
             ) {
                 if (spawnMob()) {
                     timer = 0;
-                    mobSize++;
                 }
             }
         }

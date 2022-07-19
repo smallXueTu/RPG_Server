@@ -111,6 +111,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
                 }
                 return false;
             }
+            mobSize++;
             Bukkit.getScheduler().runTask(Main.getInstance(), () -> {
                 ActiveMob am;
                 if (index < locations.length) {
