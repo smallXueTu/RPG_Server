@@ -115,7 +115,7 @@ public class TimerMobSpawn extends AbstractMobSpawn {
     }
 
     @Override
-    public int getAddHeight() {
-        return 2;
+    public Location getAddLocation(Location location) {
+        return location.add(0, 2, 0);
     }
 }

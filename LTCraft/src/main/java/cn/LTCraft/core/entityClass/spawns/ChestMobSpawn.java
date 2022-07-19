@@ -2,6 +2,7 @@ package cn.LTCraft.core.entityClass.spawns;
 
 import cn.LTCraft.core.Config;
 import io.lumine.utils.config.file.YamlConfiguration;
+import org.bukkit.Location;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class ChestMobSpawn extends AbstractMobSpawn {
     }
 
     @Override
-    public int getAddHeight() {
-        return 1;
+    public Location getAddLocation(Location location) {
+        return location.add(0.5, 1, 0.5);
     }
 }
