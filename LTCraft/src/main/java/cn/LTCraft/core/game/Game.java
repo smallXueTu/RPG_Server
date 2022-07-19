@@ -439,9 +439,12 @@ public class Game {
                 if (chestMobSpawn == null){//如果这个坐标不存在箱子守卫者 则获取这个地图的
                     chestMobSpawn = ChestSpawnManager.getInstance().getMobSpawn(player.getWorld().getName());
                 }
+                if (chestMobSpawn == null){
+                    return;//这个箱子不不存在守卫者
+                }
                 PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
                 YamlConfiguration tempConfig = playerConfig.getTempConfig();
-                List<String> openedChest = (List<String>) tempConfig.getList("已打开箱子");
+                List<String> openedChest = (List<String>) tempConfig.getList("已打开箱子", new ArrayList<>());
                 if (openedChest.contains(key)) {//已经打开过不允许再次打开
                     player.sendMessage("§c这个箱子你已经打开过了！");
                     event.setCancelled(true);
