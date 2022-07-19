@@ -61,8 +61,6 @@ public class ChestSpawnManager {
      * @return 刷怪点
      */
     public ChestMobSpawn getMobSpawn(String location){
-        System.out.println(location);
-        System.out.println(mobSpawns);
         return mobSpawns.get(location);
     }
 }
