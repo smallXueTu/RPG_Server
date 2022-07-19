@@ -43,7 +43,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
     protected int spawnRange = 1;
     public AbstractMobSpawn(String insideName){
         this.insideName = insideName;
-        config = new MythicConfig(insideName, Config.getInstance().getTimerSpawnYaml());
+        config = new MythicConfig(insideName, getYamlConfig());
         World world = Bukkit.getWorld(config.getString("world"));
         mobName = config.getString("mobName");
         spawnRange = config.getInteger("spawnRange", 1);
