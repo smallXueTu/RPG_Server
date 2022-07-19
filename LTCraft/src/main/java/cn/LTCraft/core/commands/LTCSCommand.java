@@ -36,9 +36,9 @@ public class LTCSCommand implements CommandExecutor {
             case "c":
                 Map<String, Object> map = new HashMap<>();
                 map.put("world", player.getWorld().getName());
-                map.put("x", player.getLocation().getBlockX() + 0.5);
+                map.put("x", player.getLocation().getBlockX());
                 map.put("y", player.getLocation().getBlockY());
-                map.put("z", player.getLocation().getBlockZ() + 0.5);
+                map.put("z", player.getLocation().getBlockZ());
                 map.put("maxMobs", 3);
                 map.put("spawnRange", 1);
                 map.put("mobName", args[2]);
@@ -50,8 +50,7 @@ public class LTCSCommand implements CommandExecutor {
                 Config.getInstance().getChestSpawnYaml().set(args[1], map);
                 Config.getInstance().save();
                 Config.getInstance().reload();
-                ChestMobSpawn chestMobSpawn = new ChestMobSpawn(args[1]);
-                ChestSpawnManager.getInstance().getSpawns().put(GameUtils.spawnLocationString(chestMobSpawn.getLocation()), chestMobSpawn);
+                ChestSpawnManager.getInstance().reload();
                 sender.sendMessage("§a添加成功！");
                 break;
             case "delete":
