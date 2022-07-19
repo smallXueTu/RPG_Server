@@ -47,8 +47,8 @@ public abstract class AbstractMobSpawn implements TickEntity {
         World world = Bukkit.getWorld(config.getString("world"));
         mobName = config.getString("mobName");
         spawnRange = config.getInteger("spawnRange", 1);
-        location = new Location(world, config.getDouble("x"), config.getDouble("y") + 2, config.getDouble("z"));
-        abstractLocation = new AbstractLocation(new BukkitWorld(world), config.getDouble("x"), config.getDouble("y") + 2, config.getDouble("z"));
+        location = new Location(world, config.getDouble("x"), config.getDouble("y") + getAddHeight(), config.getDouble("z"));
+        abstractLocation = new AbstractLocation(new BukkitWorld(world), config.getDouble("x"), config.getDouble("y") + getAddHeight(), config.getDouble("z"));
         maxMobs = config.getInteger("maxMobs", 3);
         mobs = new ActiveMob[maxMobs];
         List<String> locations = config.getStringList("locations");
@@ -168,4 +168,5 @@ public abstract class AbstractMobSpawn implements TickEntity {
         return true;
     }
     public abstract YamlConfiguration getYamlConfig();
+    public abstract int getAddHeight();
 }

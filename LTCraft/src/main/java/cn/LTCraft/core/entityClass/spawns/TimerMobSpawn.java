@@ -113,4 +113,9 @@ public class TimerMobSpawn extends AbstractMobSpawn {
     public YamlConfiguration getYamlConfig() {
         return Config.getInstance().getTimerSpawnYaml();
     }
+
+    @Override
+    public int getAddHeight() {
+        return 2;
+    }
 }

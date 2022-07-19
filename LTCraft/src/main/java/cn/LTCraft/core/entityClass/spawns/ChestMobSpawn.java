@@ -23,4 +23,9 @@ public class ChestMobSpawn extends AbstractMobSpawn {
     public YamlConfiguration getYamlConfig() {
         return Config.getInstance().getChestSpawnYaml();
     }
+
+    @Override
+    public int getAddHeight() {
+        return 0;
+    }
 }
