@@ -26,6 +26,6 @@ public class ChestMobSpawn extends AbstractMobSpawn {
 
     @Override
     public int getAddHeight() {
-        return 0;
+        return 1;
     }
 }
