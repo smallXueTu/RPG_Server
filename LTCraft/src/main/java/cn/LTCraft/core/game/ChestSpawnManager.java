@@ -40,7 +40,7 @@ public class ChestSpawnManager {
         YamlConfiguration spawnYaml = Config.getInstance().getChestSpawnYaml();
         for (String key : spawnYaml.getKeys(false)) {
             ChestMobSpawn mobSpawn = new ChestMobSpawn(key);
-            mobSpawns.put(GameUtils.spawnLocationString(mobSpawn.getLocation()), mobSpawn);
+            mobSpawns.put(GameUtils.spawnLocationString(mobSpawn.getOriginalLocation()), mobSpawn);
         }
     }
     public void reload(){
@@ -61,6 +61,8 @@ public class ChestSpawnManager {
      * @return 刷怪点
      */
     public ChestMobSpawn getMobSpawn(String location){
+        System.out.println(location);
+        System.out.println(mobSpawns);
         return mobSpawns.get(location);
     }
 }

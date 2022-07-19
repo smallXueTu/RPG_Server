@@ -32,6 +32,7 @@ import java.util.List;
 public abstract class AbstractMobSpawn implements TickEntity {
     protected final String insideName;
     protected final Location location;
+    protected final Location originaLocation;
     protected final AbstractLocation abstractLocation;
     protected final String mobName;
     protected int maxMobs;
@@ -48,6 +49,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
         mobName = config.getString("mobName");
         spawnRange = config.getInteger("spawnRange", 1);
         location = new Location(world, config.getDouble("x"), config.getDouble("y") + getAddHeight(), config.getDouble("z"));
+        originaLocation = new Location(world, config.getDouble("x"), config.getDouble("y"), config.getDouble("z"));
         abstractLocation = new AbstractLocation(new BukkitWorld(world), config.getDouble("x"), config.getDouble("y") + getAddHeight(), config.getDouble("z"));
         maxMobs = config.getInteger("maxMobs", 3);
         mobs = new ActiveMob[maxMobs];
@@ -129,6 +131,10 @@ public abstract class AbstractMobSpawn implements TickEntity {
 
     public Location getLocation() {
         return location;
+    }
+
+    public Location getOriginalLocation() {
+        return originaLocation;
     }
 
     public int getIndex(){
