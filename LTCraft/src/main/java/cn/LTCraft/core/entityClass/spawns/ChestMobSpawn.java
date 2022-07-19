@@ -1,7 +1,9 @@
 package cn.LTCraft.core.entityClass.spawns;
 
+import cn.LTCraft.core.Config;
+import io.lumine.utils.config.file.YamlConfiguration;
+
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 /**
@@ -15,5 +17,10 @@ public class ChestMobSpawn extends AbstractMobSpawn {
 
     public Map<String, Long> getTryOpenTimer() {
         return tryOpenTimer;
+    }
+
+    @Override
+    public YamlConfiguration getYamlConfig() {
+        return Config.getInstance().getChestSpawnYaml();
     }
 }

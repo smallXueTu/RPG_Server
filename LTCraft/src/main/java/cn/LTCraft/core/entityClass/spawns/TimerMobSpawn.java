@@ -11,6 +11,7 @@ import cn.LTCraft.core.utils.WorldUtils;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
+import io.lumine.utils.config.file.YamlConfiguration;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractLocation;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
@@ -106,5 +107,10 @@ public class TimerMobSpawn extends AbstractMobSpawn {
         hologram.delete();
         HologramsAPI.unregisterPlaceholder(Main.getInstance(), "LTSpawn:" + insideName + ":colling");
         HologramsAPI.unregisterPlaceholder(Main.getInstance(), "LTSpawn:" + insideName + ":mobCount");
+    }
+
+    @Override
+    public YamlConfiguration getYamlConfig() {
+        return Config.getInstance().getTimerSpawnYaml();
     }
 }

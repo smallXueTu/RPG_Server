@@ -11,6 +11,7 @@ import cn.LTCraft.core.utils.WorldUtils;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
+import io.lumine.utils.config.file.YamlConfiguration;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractLocation;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
@@ -166,4 +167,5 @@ public abstract class AbstractMobSpawn implements TickEntity {
     public boolean isAsync() {
         return true;
     }
+    public abstract YamlConfiguration getYamlConfig();
 }
