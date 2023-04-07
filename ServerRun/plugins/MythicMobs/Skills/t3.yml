@@ -164,7 +164,7 @@ t3test:
     - delay 20
     - message{m="&d<trigger.name>&r>> &6要不要回去找翟纳若呢..."} @Self
     - delay 20
-    - message{m="&d<trigger.name>&r>> &6算了，经理了这样的失败，再去找他恐怕再也不会给我证明的机会了..."} @Self
+    - message{m="&d<trigger.name>&r>> &6算了，经历了这样的失败，再去找他恐怕再也不会给我证明的机会了..."} @Self
     - delay 20
     - message{m="&d<trigger.name>&r>> &6我记得还有一个传送门来着，要不先进去看看吧..."} @Self
     - sound{s=ui.toast.challenge_completep=1;v=1;} @Self

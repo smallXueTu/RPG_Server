@@ -78,10 +78,10 @@ public abstract class AbstractMobSpawn implements TickEntity {
     public void checkMobs(){
         for (int i = 0; i < mobs.length; i++) {
             ActiveMob mob = mobs[i];
-            if (mob == null)continue;
-            if (mob.isDead() || mob.getEntity().isDead() || mob.getEntity().getBukkitEntity().isDead()){
+            if (mob == null || mob.isDead() || mob.getEntity().isDead() || mob.getEntity().getBukkitEntity().isDead()){
                 mobs[i] = null;
                 mobSize--;
+                continue;
             }
             if (mob.getLocation().distance(i >= locations.length ? abstractLocation: BukkitAdapter.adapt(locations[i])) > mob.getType().getConfig().getDouble("Options.FollowRange", 16)){
                 int finalI = i;
@@ -111,7 +111,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
                 }
                 return false;
             }
-            mobSize++;
+            mobSize++;//TODO 修复逻辑
             Bukkit.getScheduler().runTask(Main.getInstance(), () -> {
                 ActiveMob am;
                 if (index < locations.length) {

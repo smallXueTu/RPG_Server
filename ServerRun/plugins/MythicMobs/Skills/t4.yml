@@ -21,6 +21,7 @@ t4火焰粒子门2:
     - message{m="<mob.name>&d>><&co> &c证明者，你已经很厉害了！"} @Trigger
     - message{m="&6你现在可以进入古堡了！"} @Trigger
     - addBQTag{t=default.已击杀古堡守护者} @trigger
+    - teleportto{c=-379.5,8,-933.5;w=t4} @trigger
     - damage{amount=1000000} @Self
     - remove @self
 触发T4对话1:

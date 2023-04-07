@@ -1,0 +1,20 @@
+初级宝箱守卫者:
+  Type: Skeleton
+  Display: '&6初级宝箱守卫者'
+  Health: 1500
+  Damage: 6
+  Equipment:
+    - 暗魔:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6恶魔力量原体'
+    Player: '&6恶魔力量原体'
+  Options:
+    FollowRange: 8
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30

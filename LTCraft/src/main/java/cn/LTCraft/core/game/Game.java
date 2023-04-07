@@ -457,9 +457,11 @@ public class Game {
                     }
                     player.sendMessage("§c箱子的守卫者出来了，在120s内将他们一网打尽！即可拿走战利品！");
                     event.setCancelled(true);
-                    chestMobSpawn.getTryOpenTimer().put(player.getName(), System.currentTimeMillis() + 120);
+                    chestMobSpawn.getTryOpenTimer().put(player.getName(), System.currentTimeMillis() + 120 * 1000);
                 }else {
-                    if (chestMobSpawn.getMobSize() > 0){
+                    int mobSize = chestMobSpawn.getMobSize();
+                    System.out.println(mobSize);
+                    if (mobSize > 0){
                         player.sendMessage("§c你必须清理掉所有的战利品守卫者才能打开它！");
                         event.setCancelled(true);
                     }
