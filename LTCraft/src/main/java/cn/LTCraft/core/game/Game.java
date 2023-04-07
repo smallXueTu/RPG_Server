@@ -459,9 +459,7 @@ public class Game {
                     event.setCancelled(true);
                     chestMobSpawn.getTryOpenTimer().put(player.getName(), System.currentTimeMillis() + 120 * 1000);
                 }else {
-                    int mobSize = chestMobSpawn.getMobSize();
-                    System.out.println(mobSize);
-                    if (mobSize > 0){
+                    if (chestMobSpawn.getMobSize() > 0){
                         player.sendMessage("§c你必须清理掉所有的战利品守卫者才能打开它！");
                         event.setCancelled(true);
                     }
