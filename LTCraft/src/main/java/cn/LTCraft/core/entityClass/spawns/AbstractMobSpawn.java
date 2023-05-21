@@ -1,30 +1,31 @@
 package cn.LTCraft.core.entityClass.spawns;
 
-import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
-import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.GameUtils;
-import cn.LTCraft.core.utils.Utils;
 import cn.LTCraft.core.utils.WorldUtils;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
-import com.gmail.filoghost.holographicdisplays.object.CraftHologram;
 import io.lumine.utils.config.file.YamlConfiguration;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.AbstractLocation;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
-import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitWorld;
+import io.lumine.xikage.mythicmobs.drops.DropMetadata;
+import io.lumine.xikage.mythicmobs.drops.DropTable;
+import io.lumine.xikage.mythicmobs.drops.LootBag;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
-import io.lumine.xikage.mythicmobs.io.MythicLineConfig;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
-import io.lumine.xikage.mythicmobs.mobs.MythicMob;
+import io.lumine.xikage.mythicmobs.mobs.GenericCaster;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Created by Angel、 on 2022/7/15 23:37
@@ -32,9 +33,10 @@ import java.util.List;
 public abstract class AbstractMobSpawn implements TickEntity {
     protected final String insideName;
     protected final Location location;
-    protected final Location originaLocation;
+    protected final Location originLocation;
     protected final AbstractLocation abstractLocation;
     protected final String mobName;
+    protected final String dropTableName;
     protected int maxMobs;
     protected final Location[] locations;
     protected ActiveMob[] mobs;
@@ -47,9 +49,10 @@ public abstract class AbstractMobSpawn implements TickEntity {
         config = new MythicConfig(insideName, getYamlConfig());
         World world = Bukkit.getWorld(config.getString("world"));
         mobName = config.getString("mobName");
+        dropTableName = config.getString("dropTable");
         spawnRange = config.getInteger("spawnRange", 1);
         location = getAddLocation(new Location(world, config.getDouble("x"), config.getDouble("y"), config.getDouble("z")));
-        originaLocation = new Location(world, config.getDouble("x"), config.getDouble("y"), config.getDouble("z"));
+        originLocation = new Location(world, config.getDouble("x"), config.getDouble("y"), config.getDouble("z"));
         abstractLocation = BukkitAdapter.adapt(location);
         maxMobs = config.getInteger("maxMobs", 3);
         mobs = new ActiveMob[maxMobs];
@@ -78,7 +81,8 @@ public abstract class AbstractMobSpawn implements TickEntity {
     public void checkMobs(){
         for (int i = 0; i < mobs.length; i++) {
             ActiveMob mob = mobs[i];
-            if (mob == null || mob.isDead() || mob.getEntity().isDead() || mob.getEntity().getBukkitEntity().isDead()){
+            if (mob == null)continue;
+            if (mob.isDead() || mob.getEntity().isDead() || mob.getEntity().getBukkitEntity().isDead()){
                 mobs[i] = null;
                 mobSize--;
                 continue;
@@ -94,9 +98,15 @@ public abstract class AbstractMobSpawn implements TickEntity {
             }
         }
     }
-
+    public LootBag getDropTable(Player player){
+        if (Objects.isNull(dropTableName))return null;
+        Optional<DropTable> dropTable = MythicMobs.inst().getDropManager().getDropTable(dropTableName);
+//        GenericCaster genericCaster = new GenericCaster(BukkitAdapter.adapt(player));
+        return dropTable.map(table -> table.generate(new DropMetadata(null, BukkitAdapter.adapt(player)))).orElse(null);
+    }
     /**
      * 产出怪物
+     * 推荐同一游戏时刻只调用一次！
      * @return 如果成功
      */
     public boolean spawnMob(){
@@ -112,7 +122,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
                 return false;
             }
             mobSize++;//TODO 修复逻辑
-            Bukkit.getScheduler().runTask(Main.getInstance(), () -> {
+            if (Bukkit.isPrimaryThread()){
                 ActiveMob am;
                 if (index < locations.length) {
                     am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, locations[index]);
@@ -120,7 +130,17 @@ public abstract class AbstractMobSpawn implements TickEntity {
                     am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, WorldUtils.rangeLocation(location, spawnRange));
                 }
                 mobs[index] = am;
-            });
+            }else {
+                Bukkit.getScheduler().runTask(Main.getInstance(),() -> {
+                    ActiveMob am;
+                    if (index < locations.length) {
+                        am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, locations[index]);
+                    } else {
+                        am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, WorldUtils.rangeLocation(location, spawnRange));
+                    }
+                    mobs[index] = am;
+                });
+            }
             return true;
         }
         return false;
@@ -134,8 +154,8 @@ public abstract class AbstractMobSpawn implements TickEntity {
         return location;
     }
 
-    public Location getOriginalLocation() {
-        return originaLocation;
+    public Location getOriginLocation() {
+        return originLocation;
     }
 
     public int getIndex(){

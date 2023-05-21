@@ -9,6 +9,7 @@ import cn.LTCraft.core.entityClass.spawns.ChestMobSpawn;
 import cn.LTCraft.core.hook.MM.mechanics.singletonSkill.AirDoor;
 import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.other.exceptions.BlockCeilingException;
+import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.utils.*;
 import cn.ltcraft.item.base.AICLA;
@@ -27,6 +28,12 @@ import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVDestination;
 import com.onarandombox.MultiverseCore.destination.DestinationFactory;
 import io.lumine.utils.config.file.YamlConfiguration;
+import io.lumine.xikage.mythicmobs.adapters.AbstractItemStack;
+import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
+import io.lumine.xikage.mythicmobs.drops.Drop;
+import io.lumine.xikage.mythicmobs.drops.DropMetadata;
+import io.lumine.xikage.mythicmobs.drops.IItemDrop;
+import io.lumine.xikage.mythicmobs.drops.LootBag;
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.*;
 import org.bukkit.Material;
@@ -35,12 +42,10 @@ import org.bukkit.World;
 import org.bukkit.WorldType;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_12_R1.util.CraftMagicNumbers;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -60,6 +65,10 @@ import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Function;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
 
 public class Game {
     public static final List<String> resourcesWorlds = new ArrayList<String>() {
@@ -442,26 +451,39 @@ public class Game {
                 if (chestMobSpawn == null){
                     return;//这个箱子不不存在守卫者
                 }
+                event.setCancelled(true);
                 PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
                 YamlConfiguration tempConfig = playerConfig.getTempConfig();
                 List<String> openedChest = (List<String>) tempConfig.getList("已打开箱子", new ArrayList<>());
                 if (openedChest.contains(key)) {//已经打开过不允许再次打开
                     player.sendMessage("§c这个箱子你已经打开过了！");
-                    event.setCancelled(true);
                     return;
                 }
                 Long aLong = chestMobSpawn.getTryOpenTimer().get(player.getName());
                 if (aLong == null || aLong < System.currentTimeMillis()){//玩家未点击过或者点击已经过期
-                    for (int i = chestMobSpawn.getMobSize(); i < chestMobSpawn.getMaxMobs(); i++) {
-                        chestMobSpawn.spawnMob();
-                    }
+//                    for (int i = 0; i < chestMobSpawn.getMobSize(); i++) {
+//                        chestMobSpawn.spawnMob();
+//                    }
+                    GlobalRefresh.scheduleTaskRuns(chestMobSpawn::spawnMob, 1L, chestMobSpawn.getMaxMobs(), true);
                     player.sendMessage("§c箱子的守卫者出来了，在120s内将他们一网打尽！即可拿走战利品！");
-                    event.setCancelled(true);
                     chestMobSpawn.getTryOpenTimer().put(player.getName(), System.currentTimeMillis() + 120 * 1000);
                 }else {
                     if (chestMobSpawn.getMobSize() > 0){
                         player.sendMessage("§c你必须清理掉所有的战利品守卫者才能打开它！");
-                        event.setCancelled(true);
+                    }else {
+                        openedChest.add(key);
+                        tempConfig.set("已打开的箱子", key);
+                        LootBag dropTable = chestMobSpawn.getDropTable(player);
+                        WorldUtils.SIDE side = WorldUtils.getForDirection(block.getLocation(), player.getLocation());
+                        Location location = WorldUtils.getSideBlock(block.getLocation(), side).getLocation().add(0.5, 0.5, 0.5);
+                        PlayerUtils.dropItem(player, location, dropTable.getDrops().stream().map(drop -> {
+                            if (drop instanceof IItemDrop) {
+                                IItemDrop iItemDrop = (IItemDrop) drop;
+                                AbstractItemStack itemDropDrop = iItemDrop.getDrop(new DropMetadata(null, BukkitAdapter.adapt(player)));
+                                return BukkitAdapter.adapt(itemDropDrop);
+                            }
+                            return null;
+                        }).filter(Objects::isNull).toArray(ItemStack[]::new));
                     }
                 }
             }

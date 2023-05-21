@@ -53,23 +53,23 @@ public class WorldUtils {
      * @return 方向
      */
     public static SIDE getForDirection(Location location1, Location location2){
-        if (Math.abs(location1.getBlockX() - location2.getBlockX()) == 1){
+        if (Math.abs(location1.getBlockX() - location2.getBlockX()) >= 1){
             if (location1.getBlockX() - location2.getBlockX() < 0)
                 return SIDE.EAST;
             else
                 return SIDE.WEST;
         }
-        if (Math.abs(location1.getBlockZ() - location2.getBlockZ()) == 1){
+        if (Math.abs(location1.getBlockZ() - location2.getBlockZ()) >= 1){
             if (location1.getBlockZ() - location2.getBlockZ() < 0)
                 return SIDE.SOUTH;
             else
                 return SIDE.NORTH;
         }
-        if (Math.abs(location1.getBlockY() - location2.getBlockY()) == 1){
+        if (Math.abs(location1.getBlockY() - location2.getBlockY()) >= 1){
             if (location1.getBlockY() - location2.getBlockY() < 0)
-                return SIDE.DOWN;
-            else
                 return SIDE.UP;
+            else
+                return SIDE.DOWN;
         }
         return SIDE.NONE;
     }

@@ -116,6 +116,7 @@ public class PlayerConfig {
                 playerInfo.commitChanges();
             }
             config.save(configFile);
+            tempConfig.save(tempConfigFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

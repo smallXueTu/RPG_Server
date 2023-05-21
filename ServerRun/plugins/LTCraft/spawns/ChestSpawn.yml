@@ -1,0 +1,13 @@
+初级宝箱守卫者:
+  mobName: 初级宝箱守卫者
+  world: t5
+  x: 1149
+  y: 72
+  z: -1239
+  maxMobs: 3
+  locations:
+  - 1149:72:-1239:t5
+  - 1149:72:-1239:t5
+  - 1149:72:-1239:t5
+  spawnRange: 1
+  dropTable: "普通宝箱掉落"

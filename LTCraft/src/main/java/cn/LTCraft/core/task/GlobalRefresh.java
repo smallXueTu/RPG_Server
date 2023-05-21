@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class GlobalRefresh {
     private static Main plugin = null;
@@ -76,6 +77,42 @@ public class GlobalRefresh {
 
     public static long getTick() {
         return tick;
+    }
+
+    /**
+     * 运行按次数计时器
+     * @param runnable 运行的类
+     * @param interval 间隔
+     * @param count 运存次数
+     */
+    public static void scheduleTaskRuns(Runnable runnable, Long interval, Integer count){
+        scheduleTaskRuns(runnable, interval, count, false);
+    }
+
+    /**
+     * 运行按次数计时器
+     * @param runnable 运行的类
+     * @param interval 间隔
+     * @param count 运存次数
+     * @param immediately 是否立即执行一次
+     */
+    public static void scheduleTaskRuns(Runnable runnable, Long interval, Integer count, boolean immediately){
+        AtomicInteger tackId = new AtomicInteger(-1);
+        Runnable run = new Runnable() {
+            private int runCount = 0;//已运行次数
+            @Override
+            public void run() {
+                runnable.run();
+                runCount++;
+                if (runCount >= count) {
+                    Bukkit.getScheduler().cancelTask(tackId.get());
+                }
+            }
+        };
+        if (immediately){//立即运行一次
+            run.run();
+        }
+        tackId.set(Bukkit.getScheduler().runTaskTimer(plugin, run, interval, interval).getTaskId());
     }
     public static void addTickEntity(TickEntity tickEntity){
         synchronized (tickEntities) {
