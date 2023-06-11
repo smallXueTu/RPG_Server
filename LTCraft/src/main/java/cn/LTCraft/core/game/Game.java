@@ -472,18 +472,19 @@ public class Game {
                         player.sendMessage("§c你必须清理掉所有的战利品守卫者才能打开它！");
                     }else {
                         openedChest.add(key);
-                        tempConfig.set("已打开的箱子", key);
+                        tempConfig.set("已打开箱子", openedChest);
                         LootBag dropTable = chestMobSpawn.getDropTable(player);
                         WorldUtils.SIDE side = WorldUtils.getForDirection(block.getLocation(), player.getLocation());
                         Location location = WorldUtils.getSideBlock(block.getLocation(), side).getLocation().add(0.5, 0.5, 0.5);
-                        PlayerUtils.dropItem(player, location, dropTable.getDrops().stream().map(drop -> {
+                        ItemStack[] stacks = dropTable.getDrops().stream().map(drop -> {
                             if (drop instanceof IItemDrop) {
                                 IItemDrop iItemDrop = (IItemDrop) drop;
                                 AbstractItemStack itemDropDrop = iItemDrop.getDrop(new DropMetadata(null, BukkitAdapter.adapt(player)));
                                 return BukkitAdapter.adapt(itemDropDrop);
                             }
                             return null;
-                        }).filter(Objects::isNull).toArray(ItemStack[]::new));
+                        }).filter(Objects::nonNull).toArray(ItemStack[]::new);
+                        PlayerUtils.dropItem(player, location, stacks);
                     }
                 }
             }
