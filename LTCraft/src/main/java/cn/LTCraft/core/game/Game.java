@@ -380,10 +380,10 @@ public class Game {
     public static void onRightClickBlock(PlayerInteractEvent event){
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK){
             Block block = event.getClickedBlock();
-            String xyz = block.getWorld().getName() + ":" + block.getX() + ":" + block.getY() + ":" + block.getZ();
+            String xyz = GameUtils.spawnLocationString(block.getLocation());
             Player player = event.getPlayer();
             switch (xyz){
-                case "f1:990:65:-1189"://精髓激活台
+                case "990:65:-1189:f1"://精髓激活台
                     ItemStack inHand = player.getItemInHand();
                     if (inHand.getTypeId() == 0)return;
                     PlayerClass playerClass = PlayerUtils.getClass(player);
