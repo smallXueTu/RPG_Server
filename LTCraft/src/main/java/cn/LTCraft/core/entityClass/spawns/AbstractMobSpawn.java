@@ -23,6 +23,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import javax.swing.text.html.parser.Entity;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -36,6 +37,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
     protected final Location originLocation;
     protected final AbstractLocation abstractLocation;
     protected final String mobName;
+    protected final List<String> mobNames;
     protected final String dropTableName;
     protected int maxMobs;
     protected final Location[] locations;
@@ -49,6 +51,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
         config = new MythicConfig(insideName, getYamlConfig());
         World world = Bukkit.getWorld(config.getString("world"));
         mobName = config.getString("mobName");
+        mobNames = config.getStringList("mobNames");
         dropTableName = config.getString("dropTable");
         spawnRange = config.getInteger("spawnRange", 1);
         location = getAddLocation(new Location(world, config.getDouble("x"), config.getDouble("y"), config.getDouble("z")));
@@ -125,18 +128,24 @@ public abstract class AbstractMobSpawn implements TickEntity {
             if (Bukkit.isPrimaryThread()){
                 ActiveMob am;
                 if (index < locations.length) {
-                    am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, locations[index]);
+                    am = MythicMobs.inst().getMobManager().spawnMob(this.getMobName(index), locations[index]);
                 } else {
-                    am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, WorldUtils.rangeLocation(location, spawnRange));
+                    am = MythicMobs.inst().getMobManager().spawnMob(this.getMobName(index), WorldUtils.rangeLocation(location, spawnRange));
+                }
+                if (am == null){
+                    am = MythicMobs.inst().getMobManager().spawnMob("AngrySludge", locations[index]);
                 }
                 mobs[index] = am;
             }else {
                 Bukkit.getScheduler().runTask(Main.getInstance(),() -> {
                     ActiveMob am;
                     if (index < locations.length) {
-                        am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, locations[index]);
+                        am = MythicMobs.inst().getMobManager().spawnMob(this.getMobName(index), locations[index]);
                     } else {
-                        am = MythicMobs.inst().getMobManager().spawnMob(this.mobName, WorldUtils.rangeLocation(location, spawnRange));
+                        am = MythicMobs.inst().getMobManager().spawnMob(this.getMobName(index), WorldUtils.rangeLocation(location, spawnRange));
+                    }
+                    if (am == null){
+                        am = MythicMobs.inst().getMobManager().spawnMob("AngrySludge", locations[index]);
                     }
                     mobs[index] = am;
                 });
@@ -168,6 +177,17 @@ public abstract class AbstractMobSpawn implements TickEntity {
         return -1;
     }
 
+    /**
+     * 获取索引对应的怪物名
+     */
+    public String getMobName(int index){
+        if (mobNames.size() <= 0)return mobName;
+        return  mobNames.get(index % mobNames.size());
+    }
+
+    /**
+     * 获取所有已刷出怪物
+     */
     public ActiveMob[] getMobs() {
         return mobs;
     }

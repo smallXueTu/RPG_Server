@@ -5,6 +5,7 @@ package cn.ltcraft.rpg;
  */
 public class Main {
     public static void main(String[] args) {
-        org.bukkit.craftbukkit.Main.main(args);
+        System.out.println("哈哈哈");
+//        org.bukkit.craftbukkit.Main.main(args);
     }
 }

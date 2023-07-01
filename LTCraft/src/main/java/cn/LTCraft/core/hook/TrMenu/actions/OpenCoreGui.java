@@ -10,6 +10,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * 打开龙核GUI
+ */
 public class OpenCoreGui extends ActionBase {
     public OpenCoreGui(@NotNull ActionHandle handle) {
         super(handle);

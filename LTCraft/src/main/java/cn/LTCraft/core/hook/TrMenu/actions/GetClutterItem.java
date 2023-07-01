@@ -11,6 +11,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * 获取杂物
+ */
 public class GetClutterItem extends ActionBase {
     public GetClutterItem(@NotNull ActionHandle handle) {
         super(handle);

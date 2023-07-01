@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Angel、 on 2022/3/21 23:41
+ * 消耗金币
  */
 public class TackGoldCoins extends ActionBase {
     public TackGoldCoins(@NotNull ActionHandle handle) {

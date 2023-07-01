@@ -65,6 +65,7 @@ public class GlobalRefresh {
         }, 1, 1);
         GlobalRefresh.plugin = plugin;
         BQObjectiveCheck.getInstance();
+        TreasureChestTask.getInstance();
         GarbageClear.getInstance();
         BaseSkill.init();
         /*

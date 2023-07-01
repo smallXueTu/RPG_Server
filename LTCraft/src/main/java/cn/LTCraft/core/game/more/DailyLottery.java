@@ -1,11 +1,13 @@
 package cn.LTCraft.core.game.more;
 
+import cn.LTCraft.core.Config;
 import cn.LTCraft.core.Main;
 import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.EntityUtils;
+import cn.LTCraft.core.utils.GameUtils;
 import cn.LTCraft.core.utils.ReflectionHelper;
 import cn.LTCraft.core.utils.Utils;
 import com.comphenix.protocol.PacketType;
@@ -18,6 +20,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_12_R1.CraftChunk;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
@@ -30,6 +33,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
+ * 每日抽奖
  * Created by Angel、 on 2022/6/7 8:39
  */
 public class DailyLottery implements TickEntity, Listener {
@@ -90,6 +94,9 @@ public class DailyLottery implements TickEntity, Listener {
     }
     @Override
     public boolean doTick(long tick) {
+        World world = location.getWorld();
+        Player[] players = world.getPlayers().stream().filter(player ->
+                player.getLocation().distance(location) < Config.GlobalConfig.sendPacketRange).toArray(Player[]::new);
         if (GlobalRefresh.getTick() % 60 == 0 || sprayTick > 0) {
             for (int i = 0; i < 20; i++) {
                 ClutterItem clutterItem = prizes[Utils.getRandom().nextInt(prizes.length)].clutterItem;
@@ -116,17 +123,12 @@ public class DailyLottery implements TickEntity, Listener {
                 }
                 dataWatcher.register(dataWatcherObject, CraftItemStack.asNMSCopy(clutterItem.getItemStack()));
                 metadata.getSpecificModifier(List.class).write(0, dataWatcher.c());
-                for (Player onlinePlayer : location.getWorld().getPlayers()) {
-                    try {
-                        Main.getProtocolManager().sendServerPacket(onlinePlayer, entity, false);
-                        Main.getProtocolManager().sendServerPacket(onlinePlayer, metadata, false);
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    }
-                }
+                GameUtils.sendProtocolLibPacket(entity, players);
+                GameUtils.sendProtocolLibPacket(metadata, players);
                 items.put(id, 0);
+//                ((CraftChunk) location.getChunk()).getHandle()
             }
-            location.getWorld().playSound(location, Sound.ENTITY_BLAZE_SHOOT, 1, 1);
+            world.playSound(location, Sound.ENTITY_BLAZE_SHOOT, 1, 1);
             if (sprayTick > 0)sprayTick--;
         }
         PacketContainer remove = Main.getProtocolManager().createPacket(PacketType.Play.Server.ENTITY_DESTROY);
@@ -143,19 +145,19 @@ public class DailyLottery implements TickEntity, Listener {
             }
         }
         remove.getIntegerArrays().write(0, ints);
-        for (Player onlinePlayer : location.getWorld().getPlayers()) {
-            try {
-                Main.getProtocolManager().sendServerPacket(onlinePlayer, remove, false);
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
+        GameUtils.sendProtocolLibPacket(remove, world.getPlayers().toArray(new Player[0]));
         return true;
     }
     @Override
     public int getTickRate() {
         return 10;
     }
+
+    @Override
+    public boolean isAsync() {
+        return true;
+    }
+
     @EventHandler
     public void onNPCLeftClick(NPCRightClickEvent event){
         if (event.getNPC().getId() == 128){

@@ -14,6 +14,7 @@ public class Config {
     private static Config instance = null;
     private final Main plugin;
 
+    private final File configFile;
     private final File NPCClickFile;
     private final File MySQLInfoFile;
     private final File worldTitleFile;
@@ -23,6 +24,7 @@ public class Config {
     private final File gateFile;
     private final File drawingFile;
 
+    private YamlConfiguration configYaml;
     private YamlConfiguration NPCClickYaml;
     private YamlConfiguration MySQLInfoYaml;
     private YamlConfiguration itemsYaml;
@@ -33,6 +35,9 @@ public class Config {
     private io.lumine.utils.config.file.YamlConfiguration drawingYaml;
     private Config(Main plugin){
         this.plugin = plugin;
+        configFile = new File(plugin.getDataFolder(), "Config.yml");
+        configYaml = YamlConfiguration.loadConfiguration(configFile);
+
         MySQLInfoFile = new File(plugin.getDataFolder(), "MySQLInfo.yml");
         MySQLInfoYaml = YamlConfiguration.loadConfiguration(MySQLInfoFile);
 
@@ -98,10 +103,15 @@ public class Config {
         return chestSpawnYaml;
     }
 
+    public YamlConfiguration getConfigYaml() {
+        return configYaml;
+    }
+
     /**
      * 重新加载
      */
     public void reload(){
+        configYaml = YamlConfiguration.loadConfiguration(configFile);
         MySQLInfoYaml = YamlConfiguration.loadConfiguration(MySQLInfoFile);
         NPCClickYaml = YamlConfiguration.loadConfiguration(NPCClickFile);
         itemsYaml = YamlConfiguration.loadConfiguration(itemsFile);
@@ -123,5 +133,11 @@ public class Config {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static class GlobalConfig{
+        /**
+         * 发包范围
+         */
+        public static final int sendPacketRange = 32;
     }
 }

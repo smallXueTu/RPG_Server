@@ -1,6 +1,7 @@
 package cn.LTCraft.core;
 
 
+import cn.LTCraft.core.enums.EnvironmentMode;
 import cn.LTCraft.core.game.*;
 import cn.LTCraft.core.game.more.DailyLottery;
 import cn.LTCraft.core.hook.BQ.event.*;
@@ -12,6 +13,9 @@ import cn.LTCraft.core.dataBase.SQLServer;
 import cn.LTCraft.core.hook.TrMenu.actions.*;
 import cn.LTCraft.core.listener.*;
 import cn.LTCraft.core.entityClass.ClutterItem;
+import cn.LTCraft.core.listener.packetAdapter.ChunkPacketAdapter;
+import cn.LTCraft.core.listener.packetAdapter.EntityMetadataPacketAdapter;
+import cn.LTCraft.core.listener.packetAdapter.WorldPacketAdapter;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.hook.papi.LTExpansion;
 import cn.LTCraft.core.task.ClientCheckTask;
@@ -123,12 +127,18 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new MMListener(), this);
         Bukkit.getPluginManager().registerEvents(new CitizensListener(), this);
         Bukkit.getPluginManager().registerEvents(new Cooling(), this);
+        Bukkit.getPluginManager().registerEvents(new WorldListener(), this);
+        Main.getInstance().registerPacket(new ChunkPacketAdapter(this));
+        Main.getInstance().registerPacket(new EntityMetadataPacketAdapter(this));
+        Main.getInstance().registerPacket(new WorldPacketAdapter(this));
 
         new CommandLoader();
 
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
             PlaceholderAPI.registerExpansion(new LTExpansion());
-            Game.resetWorld("zy");
+            if (getEvnMode() == EnvironmentMode.PRODUCTION){
+                Game.resetWorld("zy");
+            }
             for (String string : new String[]{
                     "丢弃物"
             }) {
@@ -325,5 +335,8 @@ public class Main extends JavaPlugin {
 
     public Config getConfigOBJ() {
         return config;
+    }
+    public EnvironmentMode getEvnMode(){
+        return EnvironmentMode.valueIgnoreCaseOf(config.getConfigYaml().getString("envMode", "PRODUCTION").toUpperCase());
     }
 }

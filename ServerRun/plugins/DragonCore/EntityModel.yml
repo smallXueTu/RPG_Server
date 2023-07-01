@@ -248,3 +248,12 @@
   width: 1
   # 对于obj模型可采用缩放功能
   scale: 1
+黄色宝箱符文:
+  entity: "黄色宝箱符文"
+  model: "全局/黄色宝箱符文/model.json"
+  texture: "全局/黄色宝箱符文/texture.png"
+  animation: "全局/黄色宝箱符文/model.animation.json"
+  height: 1
+  width: 1
+  # 对于obj模型可采用缩放功能
+  scale: 0.5

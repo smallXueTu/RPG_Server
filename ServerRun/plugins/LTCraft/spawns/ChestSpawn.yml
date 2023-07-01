@@ -186,3 +186,82 @@
   - 1125:91:-1252:t5
   spawnRange: 1
   dropTable: 中级宝箱掉落
+初级宝箱守卫者16:
+  mobName: 初级宝箱守卫者
+  world: t5
+  x: 1145
+  y: 91
+  z: -1225
+  maxMobs: 3
+  locations:
+  - 1143:91:-1222:t5
+  - 1145:91:-1221:t5
+  - 1147:91:-1222:t5
+  spawnRange: 1
+  dropTable: 普通宝箱掉落
+初级宝箱守卫者17:
+  mobName: 初级宝箱守卫者
+  world: t5
+  x: 1118
+  y: 102
+  z: -1224
+  maxMobs: 3
+  locations:
+  - 1114:103:-1225:t5
+  - 1113:103:-1223:t5
+  - 1113:103:-1230:t5
+  spawnRange: 1
+  dropTable: 普通宝箱掉落
+初级宝箱守卫者18:
+  mobName: 初级宝箱守卫者
+  world: t5
+  x: 1128
+  y: 102
+  z: -1231
+  maxMobs: 3
+  locations:
+  - 1132:103:-1230:t5
+  - 1132:103:-1233:t5
+  - 1133:103:-1224:t5
+  spawnRange: 1
+  dropTable: 普通宝箱掉落
+初级宝箱守卫者19:
+  mobName: 初级宝箱守卫者
+  world: t5
+  x: 1123
+  y: 102
+  z: -1251
+  maxMobs: 2
+  locations:
+  - 1121:103:-1256:t5
+  - 1125:103:-1256:t5
+  spawnRange: 1
+  dropTable: 普通宝箱掉落
+初级宝箱守卫者20:
+  mobName: 初级宝箱守卫者
+  world: t5
+  x: 1079
+  y: 103
+  z: -1247
+  maxMobs: 4
+  locations:
+  - 1082:103:-1248:t5
+  - 1082:103:-1253:t5
+  - 1091:103:-1252:t5
+  - 1091:103:-1249:t5
+  spawnRange: 1
+  dropTable: 普通宝箱掉落
+初级宝箱守卫者21:
+  mobName: 初级宝箱守卫者
+  world: t5
+  x: 1096
+  y: 102
+  z: -1242
+  maxMobs: 4
+  locations:
+  - 1082:103:-1234:t5
+  - 1082:103:-1239:t5
+  - 1091:103:-1239:t5
+  - 1091:103:-1234:t5
+  spawnRange: 1
+  dropTable: 普通宝箱掉落

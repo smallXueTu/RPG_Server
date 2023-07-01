@@ -6,8 +6,11 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class WorldUtils {
@@ -44,6 +47,34 @@ public class WorldUtils {
         double x = (Utils.getRandom().nextInt((int) (range * 200)) - range * 100) / 100;
         double z = (Utils.getRandom().nextInt((int) (range * 200)) - range * 100) / 100;
         return location.clone().add(x, 0, z);
+    }
+
+    /**
+     * 给出两个点 返回一个矩形的坐标
+     * @param vector1 点1（包含）
+     * @param vector2 点2（包含）
+     * @return 矩形的所有坐标
+     */
+    public static Vector[] getVectors(Vector vector1, Vector vector2){
+        int[] min = new int[]{
+                Math.min(vector1.getBlockX(), vector2.getBlockX()),
+                Math.min(vector1.getBlockY(), vector2.getBlockY()),
+                Math.min(vector1.getBlockZ(), vector2.getBlockZ())
+        };
+        int[] max = new int[]{
+                Math.max(vector1.getBlockX(), vector2.getBlockX()),
+                Math.max(vector1.getBlockY(), vector2.getBlockY()),
+                Math.max(vector1.getBlockZ(), vector2.getBlockZ())
+        };
+        List<Vector> vectors = new ArrayList<>();
+        for (int i = min[0]; i <= max[0]; i++) {
+            for (int j = min[1]; j <= max[1]; j++) {
+                for (int k = min[2]; k <= max[2]; k++) {
+                    vectors.add(new Vector(i, j ,k));
+                }
+            }
+        }
+        return vectors.toArray(new Vector[0]);
     }
 
     /**

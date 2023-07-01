@@ -1,13 +1,25 @@
+import java.util.function.Function
+import java.util.stream.Collectors
+
 plugins {
     id 'java'
+    id 'idea'
+    id 'application'
     id "org.jetbrains.kotlin.jvm" version "1.6.10"
 }
 repositories {
     mavenCentral()
 }
 apply plugin: "org.jetbrains.kotlin.jvm"
+apply plugin: 'idea'
+apply plugin: 'application'
 group 'cn.ltcraft'
 version '0.0.1'
+
+mainClassName = "cn.ltcraft.rpg.Main"
+dependencies {
+    implementation fileTree(dir: 'ServerRun/', includes: ['spigot-1.12.2.jar'])
+}
 subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
@@ -23,24 +35,20 @@ subprojects {
      添加通用依赖
     */
     dependencies {
-        compile fileTree(dir: '../ServerRun/', includes: ['spigot-1.12.2.jar'])
-        compile fileTree(dir: '../ServerRun/plugins/', includes: ['*.jar'])
-//        compile fileTree(dir: '../ServerRun/plugins/', includes: ['*.jar'], exclude: ['LT*.jar'])
-        compile fileTree(dir: '../ServerRun/plugins/PlaceholderAPI/expansions/', includes: ['*.jar'])
-        compile fileTree(dir: '../ServerRun/libs/', includes: ['*.jar'])
-        compile fileTree(dir: '../ServerRun/plugins/PxTools/lib', includes: ['*.jar'])
-//        if (name != ":LTCraft"){
-//            compile project(":LTCraft")
-//        }
-        /*
-        def iterator = parent.getSubprojects().iterator()
-        while (iterator.hasNext()){
-            def next = iterator.next()
-            if (next.getName() != name){
-                implementation next
+        Set<String> submodulesJar = parent.getSubprojects().stream().map(new Function<Project, String>() {
+            @Override
+            String apply(Project s) {
+                return s.getName().substring(0) + ".jar";
             }
-        }
-         */
+        }).collect(Collectors.toSet())
+        implementation fileTree(dir: '../ServerRun/', includes: ['spigot-1.12.2.jar'])
+        implementation fileTree(dir: '../ServerRun/plugins/', includes: ['*.jar']/*, excludes: submodulesJar*/)
+        implementation fileTree(dir: '../ServerRun/plugins/PlaceholderAPI/expansions/', includes: ['*.jar'])
+        implementation fileTree(dir: '../ServerRun/libs/', includes: ['*.jar'])
+        implementation fileTree(dir: '../ServerRun/plugins/PxTools/lib', includes: ['*.jar'])
+//        for(Project submodule : parent.getSubprojects()){
+//            if (name != submodule.getName())implementation submodule
+//        }
     }
     task createDirs(){
         sourceSets*.java.srcDirs*.each {
@@ -50,23 +58,23 @@ subprojects {
             it.mkdirs()
         }
     }
-}
-dependencies {
-    compile fileTree(dir: 'ServerRun/', includes: ['spigot-1.12.2.jar'])
-}
-task createDirs(){
-    sourceSets*.java.srcDirs*.each {
-        it.mkdirs()
-    }
-    sourceSets*.resources.srcDirs*.each{
-        it.mkdirs()
+    task compilePlugin(){
+
     }
 }
 //TODO 使用gradle编译插件
 task compilePlugins(){
-    def iterator = getSubprojects().iterator()
-    while (iterator.hasNext()){
-        def project = iterator.next()
-        project.getArtifacts()
+    doFirst{
+        for(Project submodule : getSubprojects()){
+//            submodule.build
+        }
     }
+}
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+run{
+    standardInput = System.in
+    workingDir(new File("ServerRun"))
 }

@@ -23,6 +23,9 @@ import cn.ltcraft.item.items.GemsStone;
 import cn.ltcraft.item.objs.PlayerAttribute;
 import cn.ltcraft.teleport.Teleport;
 import cn.ltcraft.teleport.Warp;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.wrappers.WrappedBlockData;
 import com.google.common.collect.ObjectArrays;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVDestination;
@@ -44,6 +47,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Item;
@@ -64,6 +68,7 @@ import pl.betoncraft.betonquest.database.PlayerData;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
@@ -380,7 +385,8 @@ public class Game {
     public static void onRightClickBlock(PlayerInteractEvent event){
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK){
             Block block = event.getClickedBlock();
-            String xyz = GameUtils.spawnLocationString(block.getLocation());
+            Location blockLocation = block.getLocation();
+            String xyz = GameUtils.spawnLocationString(blockLocation);
             Player player = event.getPlayer();
             switch (xyz){
                 case "990:65:-1189:f1"://精髓激活台
@@ -396,14 +402,14 @@ public class Game {
                         int count = 32;
                         if (inHand.getAmount() >= count){
                             inHand.setAmount(inHand.getAmount() - count);
-                            Item item = block.getWorld().dropItem(block.getLocation().add(0.5, 1, 0.5), clutterItem.generate());
+                            Item item = block.getWorld().dropItem(blockLocation.add(0.5, 1, 0.5), clutterItem.generate());
                             item.setGravity(false);
                             ((CraftEntity) item).setMomentum(new Vector(0, 0, 0));
                             Temp.playerDropItem.put(item, "Angel_XX");
                             Temp.discardOnly.add(item);
                             for (int i = 0; i < 10; i++) {
                                 Bukkit.getScheduler().scheduleSyncDelayedTask(cn.LTCraft.core.Main.getInstance(), () -> {
-                                    block.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, block.getLocation().add(0.5, 2, 0.5), 300, 0, 0, 0, 5);
+                                    block.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, blockLocation.add(0.5, 2, 0.5), 300, 0, 0, 0, 5);
                                 }, i * 10 + Utils.getRandom().nextInt(6) + 7);
                             }
                             player.getInventory().setItemInMainHand(inHand);
@@ -412,11 +418,11 @@ public class Game {
                                 for (int i = 0; i < 2; i++) {
                                     String pClass = Utils.arrayRandom(Game.playerClasses);
                                     cn.LTCraft.core.entityClass.ClutterItem quintessence = cn.LTCraft.core.entityClass.ClutterItem.spawnClutterItem(pClass + "知识精髓");
-                                    PlayerUtils.dropItemFloat(player, block.getLocation().add(0.5, 1, 0.5), quintessence.generate());
+                                    PlayerUtils.dropItemFloat(player, blockLocation.add(0.5, 1, 0.5), quintessence.generate());
                                 }
                                 cn.LTCraft.core.entityClass.ClutterItem bottle = ClutterItem.spawnClutterItem("未知知识之瓶");
                                 bottle.setNumber(2);
-                                PlayerUtils.dropItemFloat(player, block.getLocation().add(0.5, 1, 0.5), bottle.generate());
+                                PlayerUtils.dropItemFloat(player, blockLocation.add(0.5, 1, 0.5), bottle.generate());
                             }, 13 * 10);
                         }else {
                             player.sendMessage("§c你需要至少32个才能激活！");
@@ -443,7 +449,8 @@ public class Game {
                     }
                 }
             }else if (block.getType() == Material.CHEST){
-                String key = GameUtils.spawnLocationString(block.getLocation());
+
+                String key = GameUtils.spawnLocationString(blockLocation);
                 ChestMobSpawn chestMobSpawn = ChestSpawnManager.getInstance().getMobSpawn(key);
                 if (chestMobSpawn == null){//如果这个坐标不存在箱子守卫者 则获取这个地图的
                     chestMobSpawn = ChestSpawnManager.getInstance().getMobSpawn(player.getWorld().getName());
@@ -474,8 +481,7 @@ public class Game {
                         openedChest.add(key);
                         tempConfig.set("已打开箱子", openedChest);
                         LootBag dropTable = chestMobSpawn.getDropTable(player);
-                        WorldUtils.SIDE side = WorldUtils.getForDirection(block.getLocation(), player.getLocation());
-                        Location location = WorldUtils.getSideBlock(block.getLocation(), side).getLocation().add(0.5, 0.5, 0.5);
+                        Location location = GameUtils.dropNextToTheBlock(blockLocation, player.getLocation());
                         ItemStack[] stacks = dropTable.getDrops().stream().map(drop -> {
                             if (drop instanceof IItemDrop) {
                                 IItemDrop iItemDrop = (IItemDrop) drop;
@@ -485,6 +491,12 @@ public class Game {
                             return null;
                         }).filter(Objects::nonNull).toArray(ItemStack[]::new);
                         PlayerUtils.dropItem(player, location, stacks);
+                        GameUtils.sendBlockActionPacket(player, block, new int[]{1, 1});
+                        blockLocation.getWorld().playSound(blockLocation, Sound.BLOCK_CHEST_OPEN, 0.5f, 1);
+                        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+                            blockLocation.getWorld().playSound(blockLocation, Sound.BLOCK_CHEST_CLOSE, 0.5f, 1);
+                            GameUtils.sendBlockActionPacket(player, block, new int[]{1, 0});
+                        }, 20);
                     }
                 }
             }

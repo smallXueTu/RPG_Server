@@ -4,14 +4,16 @@ import cn.LTCraft.core.Config;
 import io.lumine.utils.config.file.YamlConfiguration;
 import org.bukkit.Location;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Angel、 on 2022/7/15 23:35
  */
 public class ChestMobSpawn extends AbstractMobSpawn {
-    private final Map<String, Long> tryOpenTimer = new HashMap<>();
+    protected final Map<String, Long> tryOpenTimer = new HashMap<>();
     public ChestMobSpawn(String insideName) {
         super(insideName);
     }

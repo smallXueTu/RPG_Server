@@ -19,8 +19,8 @@ import java.util.Map;
 
 /**
  * 抽象属性
- * 目前实现Attribute接口的类只有这个
- * 属于Attribute的必定可强转为AbstractAttribute
+ * 目前实现{@link Attribute}接口的类只有这个
+ * 属于{@link Attribute}的必定可强转为{@link AbstractAttribute}
  */
 public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfaces.Attribute {
     public final static RandomValue negative = new RandomValue(-1);

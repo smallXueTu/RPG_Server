@@ -81,7 +81,7 @@ public class LTTSCommand implements CommandExecutor, Listener {
                 break;
             case "ccs"://创建箱子刷怪点
                 nextId = Integer.parseInt(args[1]);
-                map = new HashMap<>();
+                LTTSCommand.map = new HashMap<>();
                 createChestSpawn = 1;
                 sender.sendMessage("§a请放置箱子来设置箱子刷怪点！");
                 break;
@@ -89,7 +89,6 @@ public class LTTSCommand implements CommandExecutor, Listener {
                 createChestSpawn = 0;
                 Config.getInstance().getChestSpawnYaml().set("初级宝箱守卫者" + nextId++, LTTSCommand.map);
                 Config.getInstance().save();
-                LTTSCommand.map = new HashMap<>();
                 sender.sendMessage("§a已结束！");
                 break;
         }

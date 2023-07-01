@@ -1,13 +1,21 @@
 package cn.LTCraft.core.utils;
 
+import cn.LTCraft.core.Main;
 import cn.ltcraft.item.base.subAttrbute.PotionAttribute;
 import cn.ltcraft.item.base.subAttrbute.PotionMap;
 import cn.ltcraft.item.base.subAttrbute.SkillMap;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import net.minecraft.server.v1_12_R1.MaterialLiquid;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 public class GameUtils {
@@ -171,6 +179,70 @@ public class GameUtils {
                 return "§a";//浅绿色
             default:
                 return "";
+        }
+    }
+
+    /**
+     * 获取方块旁边最适合的掉落物
+     * @param blockLocation 掉落的方块
+     * @param entity 为谁掉落
+     */
+    public static Location dropNextToTheBlock(Location blockLocation, Location entity){
+        WorldUtils.SIDE side = WorldUtils.getForDirection(blockLocation, entity);
+        Location location = WorldUtils.getSideBlock(blockLocation, side).getLocation().add(0.5, 0.5, 0.5);
+        Block blockAt = location.getWorld().getBlockAt(location);
+
+        if (blockAt.getType() != Material.AIR){
+            int blockCount = 0;
+            location = WorldUtils.getSide(blockLocation, WorldUtils.SIDE.UP).add(0.5, 0.5, 0.5);
+            double minDistance = entity.distance(location);
+            for (WorldUtils.SIDE value : WorldUtils.SIDE.values()) {
+                Block sideBlock = WorldUtils.getSideBlock(blockLocation, value);
+                if (sideBlock.getType() != Material.AIR){
+                    blockCount++;
+                    continue;//TODO 判断是否为可穿越方块
+                }
+                Location sideBlockLocation = sideBlock.getLocation().add(0.5, 0.5, 0.5);
+                if (entity.distance(sideBlockLocation) < minDistance) {
+                    location = sideBlockLocation;
+                    minDistance = entity.distance(sideBlockLocation);
+                }
+            }
+            if (blockCount >= 6){//六个面全是 todo 斜面等
+                return entity.clone();
+            }
+        }
+        return location;
+    }
+
+    /**
+     * 发送方块动作包
+     * @param player 玩家
+     * @param block 块
+     * @param action 动作信息 [根据方块, 根据方块]
+     */
+    public static void sendBlockActionPacket(Player player, Block block, int[] action){
+        Location blockLocation = block.getLocation();
+        PacketContainer blockPacket = Main.getProtocolManager().createPacket(PacketType.Play.Server.BLOCK_ACTION);
+        blockPacket.getBlockPositionModifier().write(0, new com.comphenix.protocol.wrappers.BlockPosition(blockLocation.getBlockX(), blockLocation.getBlockY(), blockLocation.getBlockZ()));
+        blockPacket.getIntegers().write(0, action[0]);
+        blockPacket.getIntegers().write(1, action[1]);
+        blockPacket.getBlocks().write(0, block.getType());
+        sendProtocolLibPacket(blockPacket, player);
+    }
+
+    /**
+     * 发送包
+     * @param packet 包
+     * @param players 玩家
+     */
+    public static void sendProtocolLibPacket(PacketContainer packet, Player... players){
+        try {
+            for (Player player : players) {
+                Main.getProtocolManager().sendServerPacket(player, packet, false);
+            }
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 }
