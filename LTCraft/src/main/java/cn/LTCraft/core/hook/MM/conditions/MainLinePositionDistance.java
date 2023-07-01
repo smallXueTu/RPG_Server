@@ -34,7 +34,7 @@ public class MainLinePositionDistance extends SkillCondition implements IEntityC
         if (bukkitEntity instanceof Player){
             Player player = (Player) bukkitEntity;
             Home mainline = Teleport.getInstance().getPlayerHomes().get(player.getName()).get("mainline");
-            return mainline.getLocation().distance(location) <= range;
+            return mainline.getLocation().distance(location) >= range;
         }
         return false;
     }
