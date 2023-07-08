@@ -96,6 +96,7 @@ public class Game {
             this.add("t2");
             this.add("t3");
             this.add("t4");
+            this.add("t5");
             this.add("f1");
             this.add("f2");
             this.add("f3");
@@ -300,12 +301,16 @@ public class Game {
         String type = demand.split(":")[0];
         demand = demand.length() == type.length()?demand:demand.substring(type.length() + 1);
         double[][] poses;
+        PlayerData playerData;
         World world = player.getWorld();
         boolean sign = true;
         switch (type){
             case "BQTag":
-                PlayerData playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
+                playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
                 return playerData.hasTag(demand);
+            case "NonBQTag":
+                playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
+                return !playerData.hasTag(demand);
             case "BQCondition":
                 return PlayerUtils.satisfyBQCondition(player, demand);
             case "custom1":
@@ -366,12 +371,7 @@ public class Game {
                 PlayerUtils.castMMSkill(player, info[1]);
             break;
             case "BQEvent":
-                try {
-                    EventID eventID = new EventID(null, info[1]);
-                    BetonQuest.event(PlayerConverter.getID(player), eventID);
-                } catch (ObjectNotFoundException e) {
-                    Main.getInstance().getLogger().warning("找不到BQEvent：" + info[1]);
-                }
+                PlayerUtils.execBQEvent(player, info[1]);
             break;
             case "none"://无
             break;

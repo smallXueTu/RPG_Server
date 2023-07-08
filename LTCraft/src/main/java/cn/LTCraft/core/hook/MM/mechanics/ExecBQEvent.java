@@ -1,6 +1,7 @@
 package cn.LTCraft.core.hook.MM.mechanics;
 
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.utils.PlayerUtils;
 import io.lumine.xikage.mythicmobs.adapters.AbstractEntity;
 import io.lumine.xikage.mythicmobs.io.MythicLineConfig;
 import io.lumine.xikage.mythicmobs.skills.ITargetedEntitySkill;
@@ -15,7 +16,6 @@ import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 public class ExecBQEvent extends SkillMechanic implements ITargetedEntitySkill {
     private String event = "";
-    private EventID eventID = null;
     public ExecBQEvent(String skill, MythicLineConfig mlc){
         super(skill, mlc);
         event = mlc.getString(new String[]{"event", "e",}, "");
@@ -23,13 +23,8 @@ public class ExecBQEvent extends SkillMechanic implements ITargetedEntitySkill {
     @Override
     public boolean castAtEntity(SkillMetadata skillMetadata, AbstractEntity abstractEntity) {
         if (abstractEntity.isPlayer()){
-            try {
-                eventID = new EventID((ConfigPackage)null, event);
-            } catch (ObjectNotFoundException e) {
-                Main.getInstance().getLogger().warning("找不到BQEvent：" + event);
-            }
             Player player = (Player) abstractEntity.getBukkitEntity();
-            BetonQuest.event(PlayerConverter.getID(player), eventID);
+            PlayerUtils.execBQEvent(player, event);
             return true;
         }
         return false;

@@ -126,6 +126,13 @@ t4火焰粒子门2:
     - effect:particlering{particle=flame;amount=50;speed=0;hS=5;vS=0.2;r=5} @PlayersInRadius{r=10}
     - effect:particlering{particle=flame;amount=200;speed=3;hS=5;vS=0.2;r=3} @PlayersInRadius{r=10}
     - effect:particlering{particle=flame;amount=200;speed=3;hS=5;vS=0.2;r=3} @PlayersInRadius{r=10}
+触发T4对话2:
+  Skills:
+    - message{m="&d<trigger.name>&r>> &6终于集齐恶魔套装了，赶紧回去看看如何从恶魔古堡出去找翟纳若证明自己吧！"} @Self
+    - delay 20
+    - teleportto{c=-379.0,36,-702.5;w=t4}
+    - delay 60
+    - message{m="&d<trigger.name>&r>> &6这看起来像一个出口，先下去看看吧！"} @Self
 触发T4完结:
   Skills:
     - message{m="&e噗通(落入水中)..."} @Self
@@ -142,10 +149,11 @@ t4火焰粒子门2:
     - message{m="&d<trigger.name>&r>> &6害怕又期待..."} @Self
     - delay 60
     - execBQEvent{e=添加毕业T4标签}
-    - execBQEvent{e=击杀古堡守护者进入恶魔古堡}
+    - execBQEvent{e=保存主线位置到T5进度1}
     - teleportto{c=1161.5,70,-1199.5;w=t5}
+    - delay 60
     - message{m="&d<trigger.name>&r>> &6这是哪里！"} @Self
     - delay 20
     - message{m="&d<trigger.name>&r>> &6看这建筑，我不会掉入末地了吧！"} @Self
     - delay 20
-    - message{m="&d<trigger.name>&r>> &6真实倒霉，先看看怎么回去吧..."} @Self
+    - message{m="&d<trigger.name>&r>> &6真是倒霉，先看看怎么回去吧..."} @Self

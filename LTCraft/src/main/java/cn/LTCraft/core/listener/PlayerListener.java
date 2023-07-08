@@ -604,7 +604,8 @@ public class PlayerListener  implements Listener {
                                 sign = true;
                             }
                         }
-                        if (sign) {
+                        if (sign && !Cooling.isCooling(player, airDoor.getConfigLine())) {
+                            Cooling.cooling(player, airDoor.getConfigLine(), 1);
                             if (Game.demand(player, airDoor.getDemand())) {
                                 Game.execute(player, airDoor.getSuccess());
                             } else {

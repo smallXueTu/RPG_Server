@@ -64,6 +64,7 @@ Icons:
     actions:
       all:
         - 'LTExchange: 高级武器锻造图纸'
+        - 'ExecuteBQEvent: 添加获得恶魔装备目标'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
   '高级盔甲锻造图纸':
     display:
@@ -72,6 +73,7 @@ Icons:
       name: "&e高级盔甲锻造图纸"
       lore:
       - "&3<<&e兑换高级盔甲锻造图纸×1"
+      - 'ExecuteBQEvent: 添加获得恶魔装备目标'
       - "&3>>&e需要：高级盔甲锻造图纸&e碎片×10"
     actions:
       all:

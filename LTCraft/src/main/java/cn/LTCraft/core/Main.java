@@ -289,6 +289,7 @@ public class Main extends JavaPlugin {
         TrMenu instance = TrMenu.INSTANCE;
         ActionHandle actionHandle = instance.getActionHandle();
         actionHandle.register(new LTExchange(actionHandle));
+        actionHandle.register(new ExecuteBQEvent(actionHandle));
         actionHandle.register(new GetClutterItem(actionHandle));
         actionHandle.register(new OpenCoreGui(actionHandle));
         actionHandle.register(new TackGoldCoins(actionHandle));

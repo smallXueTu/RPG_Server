@@ -42,6 +42,7 @@ import org.bukkit.scoreboard.Team;
 import org.bukkit.util.Vector;
 import pl.betoncraft.betonquest.BetonQuest;
 import pl.betoncraft.betonquest.ConditionID;
+import pl.betoncraft.betonquest.EventID;
 import pl.betoncraft.betonquest.ObjectNotFoundException;
 import pl.betoncraft.betonquest.config.ConfigPackage;
 import pl.betoncraft.betonquest.utils.PlayerConverter;
@@ -140,6 +141,22 @@ public class PlayerUtils {
     public static boolean satisfyMMCondition(Player player, String condition){
         SkillCondition skillCondition = SkillCondition.getCondition(condition);
         return skillCondition.evaluateEntity(BukkitAdapter.adapt(player));
+    }
+
+    /**
+     * 执行BQ事件
+     * @param player 玩家
+     * @param event 事件
+     */
+    public static void execBQEvent(Player player, String event){
+        EventID eventID;
+        try {
+            eventID = new EventID(null, event);
+        } catch (ObjectNotFoundException e) {
+            Main.getInstance().getLogger().warning("找不到BQEvent：" + event);
+            return;
+        }
+        BetonQuest.event(PlayerConverter.getID(player), eventID);
     }
 
     /**

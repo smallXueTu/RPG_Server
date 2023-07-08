@@ -40,7 +40,7 @@
   x: -379
   cooling: 10
   y: 8
-  range: 26
+  range: 100
   z: -861.5
   maxMobs: 12
   locations:

@@ -38,3 +38,14 @@
     PreventSunburn: true
   Drops:
     - skillapi-exp 30
+t5对话1:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    Despawn: false
+    Invincible: true
+  Skills:
+#    - airDoor{location=-1228;f=false;direction=Z;d=BQTag:default.已击杀古堡守护者;mess=§c你需要击杀古堡守护者才能通过这道门！;} @Self ~onSpawn
+    - airDoor{location=-1228;f=false;direction=Z;d=NonBQTag:default.已触发T5对话1;fail=none;success=skill:T5对话1} @Self ~onSpawn

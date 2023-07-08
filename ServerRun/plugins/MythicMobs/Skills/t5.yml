@@ -1,0 +1,4 @@
+T5对话1:
+  Skills:
+    - message{m="&d<trigger.name>&r>> &6这前面好像有一个宝箱，看着还被封印的样子。不知道打开会不会有什么危险。。。"} @Self
+    - execBQEvent{e=添加已触发T5对话1标签}
