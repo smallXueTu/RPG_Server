@@ -14,8 +14,10 @@ import java.util.Map;
  */
 public class ChestMobSpawn extends AbstractMobSpawn {
     protected final Map<String, Long> tryOpenTimer = new HashMap<>();
+    protected final String quality;
     public ChestMobSpawn(String insideName) {
         super(insideName);
+        quality = config.getString("品质", "普通");
     }
 
     public Map<String, Long> getTryOpenTimer() {
@@ -30,5 +32,9 @@ public class ChestMobSpawn extends AbstractMobSpawn {
     @Override
     public Location getAddLocation(Location location) {
         return location.add(0.5, 1, 0.5);
+    }
+
+    public String getQuality() {
+        return quality;
     }
 }

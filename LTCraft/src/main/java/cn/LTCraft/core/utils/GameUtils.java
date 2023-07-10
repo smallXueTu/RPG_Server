@@ -157,6 +157,8 @@ public class GameUtils {
      */
     public static String getLevelPrefix(String level){
         switch (level){
+            case "无品质":
+            case "未知":
             case "入门":
             case "初级":
             case "普通":
@@ -243,6 +245,25 @@ public class GameUtils {
             }
         } catch (InvocationTargetException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取世界称呼
+     */
+    public static String getWorldName(String worldName){
+        switch (worldName){
+            case "dp":
+            return "地皮世界";
+            case "jm":
+            return "居民世界";
+            case "world":
+            case "zc":
+            return "主城";
+            case "t5":
+            return "末地之城";
+            default:
+            return "未命名";
         }
     }
 }

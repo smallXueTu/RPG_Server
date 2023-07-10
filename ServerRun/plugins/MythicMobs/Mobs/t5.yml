@@ -1,6 +1,6 @@
-初级宝箱守卫者:
+T5普通宝箱守卫者:
   Type: Skeleton
-  Display: '&6初级宝箱守卫者'
+  Display: '&6普通宝箱守卫者'
   Health: 1500
   Damage: 6
   Equipment:
@@ -18,7 +18,7 @@
     PreventSunburn: true
   Drops:
     - skillapi-exp 30
-中级宝箱守卫者:
+T5中级宝箱守卫者:
   Type: Skeleton
   Display: '&6中级宝箱守卫者'
   Health: 1500

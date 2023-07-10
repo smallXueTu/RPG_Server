@@ -87,7 +87,7 @@ public class LTTSCommand implements CommandExecutor, Listener {
                 break;
             case "cccs"://创建箱子刷怪点
                 createChestSpawn = 0;
-                Config.getInstance().getChestSpawnYaml().set("初级宝箱守卫者" + nextId++, LTTSCommand.map);
+                Config.getInstance().getChestSpawnYaml().set("普通宝箱守卫者" + nextId++, LTTSCommand.map);
                 Config.getInstance().save();
                 sender.sendMessage("§a已结束！");
                 break;
@@ -104,7 +104,7 @@ public class LTTSCommand implements CommandExecutor, Listener {
         Location location = block.getLocation();
         switch (createChestSpawn){
             case 1:
-                map.put("mobName", "初级宝箱守卫者");
+                map.put("mobName", "普通宝箱守卫者");
                 map.put("world", "t5");
                 map.put("x", location.getBlockX());
                 map.put("y", location.getBlockY());

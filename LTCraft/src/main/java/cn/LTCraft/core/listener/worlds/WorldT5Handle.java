@@ -18,7 +18,9 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
@@ -56,6 +58,14 @@ public class WorldT5Handle implements WorldHandle{
     }
 
     @Override
+    public void onEntitySpawn(EntitySpawnEvent event) {
+        EntityType entityType = event.getEntityType();
+        if (entityType == EntityType.ENDER_PEARL) {//末影珍珠
+//            entityType.
+        }
+    }
+
+    @Override
     public void onUseItemEvent(PacketEvent event) {
         PacketContainer packet = event.getPacket();
         BlockPosition pos = packet.getBlockPositionModifier().read(0);
@@ -83,5 +93,11 @@ public class WorldT5Handle implements WorldHandle{
             GameUtils.sendProtocolLibPacket(blockPacket, event.getPlayer());
             event.setCancelled(true);
         }
+    }
+
+    @Override
+    public void onBlockPlaceEvent(PacketEvent event) {
+        WorldHandle.super.onBlockPlaceEvent(event);
+        Player player = event.getPlayer();
     }
 }

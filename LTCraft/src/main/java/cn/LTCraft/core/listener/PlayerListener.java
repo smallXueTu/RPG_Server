@@ -29,6 +29,9 @@ import cn.ltcraft.item.utils.Utils;
 import cn.ltcraft.love.Love;
 import cn.ltcraft.teleport.Home;
 import cn.ltcraft.teleport.Teleport;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.event.PlayerAccountChangeEvent;
 import com.sucy.skill.api.event.PlayerLevelUpEvent;
@@ -40,7 +43,9 @@ import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.Disguise;
 import net.milkbowl.vault.economy.Economy;
 import net.minecraft.server.v1_12_R1.DamageSource;
+import net.minecraft.server.v1_12_R1.EnumHand;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -65,6 +70,7 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import pl.betoncraft.betonquest.BetonQuest;
 import pl.betoncraft.betonquest.database.PlayerData;
@@ -72,9 +78,18 @@ import pl.betoncraft.betonquest.utils.PlayerConverter;
 
 import java.util.*;
 
-public class PlayerListener  implements Listener {
-    public static Map<String, String[]> signEdit = new HashMap<>();
 
+public class PlayerListener  implements Listener {
+    private static PlayerListener instance;
+
+    public static PlayerListener getInstance() {
+        return instance;
+    }
+
+    public static Map<String, String[]> signEdit = new HashMap<>();
+    public PlayerListener(){
+        instance = this;
+    }
     /**
      * 玩家职业更新事件
      * @param event .
@@ -341,7 +356,6 @@ public class PlayerListener  implements Listener {
             }
         }else if (Game.rpgWorlds.contains(player.getWorld().getName())){
             if (
-                    event.getCause() == PlayerTeleportEvent.TeleportCause.ENDER_PEARL ||
                     event.getCause() == PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT
             ){
                 event.setCancelled(true);
@@ -799,6 +813,34 @@ public class PlayerListener  implements Listener {
         if (Log4jFixerUtils.match(item.getItemMeta().getDisplayName())) {
             event.setResult(null);
             if (event.getInventory().getViewers().size() > 0)Main.getInstance().getLogger().warning("发现恶意玩家：" + event.getInventory().getViewers().toString());
+        }
+    }
+
+    /**
+     * 玩家方块放置，可能是玩家使用物品
+     */
+    public void onBlockPlaceEvent(PacketEvent event) {
+        if (event.getPacketType() == PacketType.Play.Client.BLOCK_PLACE) {
+            Player player = event.getPlayer();
+            PlayerInventory inventory = player.getInventory();
+            String worldName = player.getWorld().getName();
+            if (Game.rpgWorlds.contains(worldName)) {
+                PacketContainer packet = event.getPacket();
+                EnumHand hand = packet.getEnumModifier(EnumHand.class, 0).read(0);
+                if (hand == null)return;
+                ItemStack itemStack = hand == EnumHand.MAIN_HAND? inventory.getItemInMainHand() : inventory.getItemInOffHand();
+                if (itemStack != null && itemStack.getType() == Material.ENDER_PEARL){
+                    LTItem ltItems = Utils.getLTItems(itemStack);
+                    if (ltItems instanceof cn.ltcraft.item.items.Material){
+                        String worlds = ((cn.ltcraft.item.items.Material) ltItems).getConfig().getString("可使用世界");
+                        if (StringUtils.isNotEmpty(worlds) && Arrays.stream(worlds.split(",")).anyMatch(world -> world.equalsIgnoreCase(worldName))) {
+                            return;
+                        }
+                    }
+                    event.setCancelled(true);
+                    player.updateInventory();
+                }
+            }
         }
     }
 }

@@ -145,7 +145,7 @@ public class TreasureChestTask implements TickEntity, Listener {
                             PacketContainer metadataPacket = Main.getProtocolManager().createPacket(PacketType.Play.Server.ENTITY_METADATA);
                             metadataPacket.getIntegers().write(0, id);
                             WrappedDataWatcher dataWatcher = new WrappedDataWatcher();
-                            dataWatcher.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(2, WrappedDataWatcher.Registry.get(String.class)), "黄色宝箱符文");
+                            dataWatcher.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(2, WrappedDataWatcher.Registry.get(String.class)), mobSpawn.getQuality() + "宝箱符文");
                             dataWatcher.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(11, WrappedDataWatcher.Registry.get(Byte.class)), (byte)25);
                             metadataPacket.getWatchableCollectionModifier().write(0, dataWatcher.getWatchableObjects());
                             GameUtils.sendProtocolLibPacket(metadataPacket, player);//发送数据包
