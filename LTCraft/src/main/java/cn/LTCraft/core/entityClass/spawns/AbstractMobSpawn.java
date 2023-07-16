@@ -46,8 +46,13 @@ public abstract class AbstractMobSpawn implements TickEntity {
     protected boolean closed = false;
     protected final MythicConfig config;
     protected int spawnRange = 1;
+    /**
+     * 这个刷怪点的key
+     */
+    protected final String key;
     public AbstractMobSpawn(String insideName){
         this.insideName = insideName;
+        key = GameUtils.spawnLocationString(getOriginLocation());
         config = new MythicConfig(insideName, getYamlConfig());
         World world = Bukkit.getWorld(config.getString("world"));
         mobName = config.getString("mobName");
@@ -208,6 +213,10 @@ public abstract class AbstractMobSpawn implements TickEntity {
     @Override
     public int getTickRate() {
         return 20;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     @Override

@@ -290,17 +290,6 @@ public class Utils {
                 String[] split1;
                 EntityDamageByEntityEvent event;
                 switch (split[0]){
-                    case "MMSkill":
-                        PlayerUtils.castMMSkill(player, split[1]);
-                        break;
-                    case "ClassSkill":
-                        PlayerUtils.castClassSkill(player, split[1], null);
-                        break;
-                    case "cmd":
-                        cmd = split[1];
-                        cmd = cmd.replace("%player%", player.getName());
-                        Bukkit.getServer().dispatchCommand(player, cmd);
-                        break;
                     case "use":
                         count = UseItemEffect.onUse(player, split[1]);
                         break;
@@ -316,11 +305,6 @@ public class Utils {
                         int tick = Integer.parseInt(split1[1]);
                         event = (EntityDamageByEntityEvent) objects[0];
                         Temp.addArmorBreaking(event.getEntity(), new Temp.ArmorBreaking(aDouble, tick));
-                        break;
-                    case "增加橙币":
-                        number = Integer.parseInt(split[1]);
-                        cn.LTCraft.core.Main.getInstance().getEconomy().withdrawPlayer(player, number);
-                        player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1, 1);
                     break;
                     case "刺杀":
                         cooling = 0;
@@ -347,6 +331,10 @@ public class Utils {
                         cmd = split[1].replace("%player%", player.getName());
                         PlayerUtils.sudoExec(player, cmd);
                         break;
+                    default:
+                        if (!GameUtils.executeAction(player, s)) {
+                            return;
+                        }
                 }
                 if (split.length >= 4){
                     switch (split[3]){

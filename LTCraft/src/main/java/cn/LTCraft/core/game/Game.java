@@ -459,46 +459,7 @@ public class Game {
                     return;//这个箱子不不存在守卫者
                 }
                 event.setCancelled(true);
-                PlayerConfig playerConfig = PlayerConfig.getPlayerConfig(player);
-                YamlConfiguration tempConfig = playerConfig.getTempConfig();
-                List<String> openedChest = (List<String>) tempConfig.getList("已打开箱子", new ArrayList<>());
-                if (openedChest.contains(key)) {//已经打开过不允许再次打开
-                    player.sendMessage("§c这个箱子你已经打开过了！");
-                    return;
-                }
-                Long aLong = chestMobSpawn.getTryOpenTimer().get(player.getName());
-                if (aLong == null || aLong < System.currentTimeMillis()){//玩家未点击过或者点击已经过期
-//                    for (int i = 0; i < chestMobSpawn.getMobSize(); i++) {
-//                        chestMobSpawn.spawnMob();
-//                    }
-                    GlobalRefresh.scheduleTaskRuns(chestMobSpawn::spawnMob, 1L, chestMobSpawn.getMaxMobs(), true);
-                    player.sendMessage("§c箱子的守卫者出来了，在120s内将他们一网打尽！即可拿走战利品！");
-                    chestMobSpawn.getTryOpenTimer().put(player.getName(), System.currentTimeMillis() + 120 * 1000);
-                }else {
-                    if (chestMobSpawn.getMobSize() > 0){
-                        player.sendMessage("§c你必须清理掉所有的战利品守卫者才能打开它！");
-                    }else {
-                        openedChest.add(key);
-                        tempConfig.set("已打开箱子", openedChest);
-                        LootBag dropTable = chestMobSpawn.getDropTable(player);
-                        Location location = GameUtils.dropNextToTheBlock(blockLocation, player.getLocation());
-                        ItemStack[] stacks = dropTable.getDrops().stream().map(drop -> {
-                            if (drop instanceof IItemDrop) {
-                                IItemDrop iItemDrop = (IItemDrop) drop;
-                                AbstractItemStack itemDropDrop = iItemDrop.getDrop(new DropMetadata(null, BukkitAdapter.adapt(player)));
-                                return BukkitAdapter.adapt(itemDropDrop);
-                            }
-                            return null;
-                        }).filter(Objects::nonNull).toArray(ItemStack[]::new);
-                        PlayerUtils.dropItem(player, location, stacks);
-                        GameUtils.sendBlockActionPacket(player, block, new int[]{1, 1});
-                        blockLocation.getWorld().playSound(blockLocation, Sound.BLOCK_CHEST_OPEN, 0.5f, 1);
-                        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
-                            blockLocation.getWorld().playSound(blockLocation, Sound.BLOCK_CHEST_CLOSE, 0.5f, 1);
-                            GameUtils.sendBlockActionPacket(player, block, new int[]{1, 0});
-                        }, 20);
-                    }
-                }
+                chestMobSpawn.attemptToOpen(player, block);
             }
         }
     }

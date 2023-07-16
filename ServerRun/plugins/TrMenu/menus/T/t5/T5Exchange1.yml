@@ -1,0 +1,81 @@
+Title: '§lT5兑换菜单'
+
+Title-Update: -1
+
+Layout:
+  - - '#       #'
+    - '#   `魔金之锤`   #'
+    - '#   `高级武器锻造图纸`   #'
+    - '#   `高级盔甲锻造图纸`   #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '魔金之锤':
+    display:
+      material: 257
+      shiny: 'true'
+      name: "&e魔金之锤"
+      lore:
+      - "&3<<&e兑换魔金之锤×1"
+      - "&3>>&e需要：能量&e水晶×20"
+      - "&3>>&e需要：力量&e水晶×20"
+    actions:
+      all:
+        - 'LTExchange: 魔金之锤'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '高级武器锻造图纸':
+    display:
+      material: 339
+      shiny: 'true'
+      name: "&e高级武器锻造图纸"
+      lore:
+      - "&3<<&e兑换高级武器锻造图纸×1"
+      - "&3>>&e需要：高级武器锻造图纸&e碎片×10"
+    actions:
+      all:
+        - 'LTExchange: 高级武器锻造图纸'
+        - 'ExecuteBQEvent: 添加获得恶魔装备目标'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '高级盔甲锻造图纸':
+    display:
+      material: 339
+      shiny: 'true'
+      name: "&e高级盔甲锻造图纸"
+      lore:
+      - "&3<<&e兑换高级盔甲锻造图纸×1"
+      - 'ExecuteBQEvent: 添加获得恶魔装备目标'
+      - "&3>>&e需要：高级盔甲锻造图纸&e碎片×10"
+    actions:
+      all:
+        - 'LTExchange: 高级盔甲锻造图纸'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'

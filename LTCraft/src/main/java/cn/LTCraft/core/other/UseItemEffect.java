@@ -90,6 +90,9 @@ public class UseItemEffect {
                     case "t4":
                         menuName = "T4Exchange1";
                         break;
+                    case "t5":
+                        menuName = "T5Exchange1";
+                        break;
                     case "f1":
                         menuName = "F1";
                         break;

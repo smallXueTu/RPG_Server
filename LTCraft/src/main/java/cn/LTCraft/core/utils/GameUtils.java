@@ -1,6 +1,7 @@
 package cn.LTCraft.core.utils;
 
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.other.UseItemEffect;
 import cn.ltcraft.item.base.subAttrbute.PotionAttribute;
 import cn.ltcraft.item.base.subAttrbute.PotionMap;
 import cn.ltcraft.item.base.subAttrbute.SkillMap;
@@ -264,6 +265,34 @@ public class GameUtils {
             return "末地之城";
             default:
             return "未命名";
+        }
+    }
+    public static void executeAction(Player player, String actionInfo, Object... args){
+        for (String s : actionInfo.split("&")) {
+            String[] split = s.split(":");
+            switch (split[0]) {
+                case "MMSkill":
+                    PlayerUtils.castMMSkill(player, split[1]);
+                    break;
+                case "ClassSkill":
+                    PlayerUtils.castClassSkill(player, split[1], null);
+                    break;
+                case "cmd":
+                    String cmd = split[1];
+                    cmd = cmd.replace("%player%", player.getName());
+                    Bukkit.getServer().dispatchCommand(player, cmd);
+                    break;
+                case "message":
+                    player.sendMessage(split[1]);
+                    break;
+                case "增加橙币":
+                    int number = Integer.parseInt(split[1]);
+                    cn.LTCraft.core.Main.getInstance().getEconomy().withdrawPlayer(player, number);
+                    player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1, 1);
+                    break;
+                case "none":
+                    break;
+            }
         }
     }
 }
