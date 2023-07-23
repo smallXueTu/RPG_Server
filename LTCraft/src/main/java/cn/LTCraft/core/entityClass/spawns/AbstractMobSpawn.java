@@ -52,7 +52,6 @@ public abstract class AbstractMobSpawn implements TickEntity {
     protected final String key;
     public AbstractMobSpawn(String insideName){
         this.insideName = insideName;
-        key = GameUtils.spawnLocationString(getOriginLocation());
         config = new MythicConfig(insideName, getYamlConfig());
         World world = Bukkit.getWorld(config.getString("world"));
         mobName = config.getString("mobName");
@@ -61,6 +60,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
         spawnRange = config.getInteger("spawnRange", 1);
         location = getAddLocation(new Location(world, config.getDouble("x"), config.getDouble("y"), config.getDouble("z")));
         originLocation = new Location(world, config.getDouble("x"), config.getDouble("y"), config.getDouble("z"));
+        key = GameUtils.spawnLocationString(getOriginLocation());
         abstractLocation = BukkitAdapter.adapt(location);
         maxMobs = config.getInteger("maxMobs", 3);
         mobs = new ActiveMob[maxMobs];

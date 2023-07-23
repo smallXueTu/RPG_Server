@@ -10,7 +10,8 @@ T5宝箱守卫者1:
   - 1149:72:-1239:t5
   - 1149:72:-1239:t5
   spawnRange: 1
-  dropTable: T5普通宝箱掉落
+  dropTable: T5普通终极图纸掉落
+  尝试打开动作: MMSkill:第一次打开T5宝箱
   品质: 普通
 T5宝箱守卫者2:
   mobName: T5普通宝箱守卫者

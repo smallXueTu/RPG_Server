@@ -4,3 +4,7 @@ T5对话1:
     - delay 20
     - message{m="&d<trigger.name>&r>> &6看来这个地方还存在很多这样的箱子，还是多观察观察周围和角落吧。。。"} @Self
     - execBQEvent{e=添加已触发T5对话1标签}
+第一次打开T5宝箱:
+  Skills:
+    - message{m="&c箱子的守卫者出来了，在120s内将他们一网打尽！即可拿走战利品！"} @Self
+    - message{m="&d<trigger.name>&r>> &6哎呀，居然还有守卫者，这箱子肯定有什么好东西，先解决他们再说吧！"} @Self

@@ -44,7 +44,6 @@ public class ChestMobSpawn extends AbstractMobSpawn {
         unableToOpenAction = config.getString("无法打开动作", "message:§c你必须清理掉所有的战利品守卫者才能打开它！");
         actionAlreadyOpened = config.getString("已经打开动作", "message:§c这个箱子你已经打开过了！");
     }
-
     public Map<String, Long> getTryOpenTimer() {
         return tryOpenTimer;
     }

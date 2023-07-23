@@ -31,7 +31,6 @@ public class LTTSCommand implements CommandExecutor, Listener {
     public LTTSCommand(){
         plugin = Main.getInstance();
         plugin.getCommand("ltts").setExecutor(this);
-        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     @Override
@@ -79,52 +78,7 @@ public class LTTSCommand implements CommandExecutor, Listener {
                 TimerSpawnManager.getInstance().reload();
                 sender.sendMessage("§a重载完成！");
                 break;
-            case "ccs"://创建箱子刷怪点
-                nextId = Integer.parseInt(args[1]);
-                LTTSCommand.map = new HashMap<>();
-                createChestSpawn = 1;
-                sender.sendMessage("§a请放置箱子来设置箱子刷怪点！");
-                break;
-            case "cccs"://创建箱子刷怪点
-                createChestSpawn = 0;
-                Config.getInstance().getChestSpawnYaml().set("普通宝箱守卫者" + nextId++, LTTSCommand.map);
-                Config.getInstance().save();
-                sender.sendMessage("§a已结束！");
-                break;
         }
         return true;
-    }
-    private static int createChestSpawn = 0;
-    private static int nextId = 5;
-    private static HashMap<String, Object> map = new HashMap<>();
-    @EventHandler
-    public void onBlockPlace(BlockPlaceEvent event){
-        Block block = event.getBlock();
-        Player player = event.getPlayer();
-        Location location = block.getLocation();
-        switch (createChestSpawn){
-            case 1:
-                map.put("mobName", "普通宝箱守卫者");
-                map.put("world", "t5");
-                map.put("x", location.getBlockX());
-                map.put("y", location.getBlockY());
-                map.put("z", location.getBlockZ());
-                map.put("maxMobs", 0);
-                map.put("locations", new ArrayList<String>());
-                map.put("spawnRange", 1);
-                map.put("dropTable", "普通宝箱掉落");
-                createChestSpawn++;
-                player.sendMessage("§a请放置方块来设置刷怪点。");
-                break;
-            case 2:
-                List<String> list = ((List<String>) map.get("locations"));
-                int anInt = (int)map.get("maxMobs");
-                list.add(GameUtils.spawnLocationString(location));
-                map.put("locations", list);
-                map.put("maxMobs", anInt + 1);
-                event.setCancelled(true);
-                break;
-        }
-
     }
 }
