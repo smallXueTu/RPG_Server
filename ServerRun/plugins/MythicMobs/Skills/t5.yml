@@ -4,7 +4,13 @@ T5对话1:
     - delay 20
     - message{m="&d<trigger.name>&r>> &6看来这个地方还存在很多这样的箱子，还是多观察观察周围和角落吧。。。"} @Self
     - execBQEvent{e=添加已触发T5对话1标签}
+    - execBQEvent{e=等待获得终极武器图纸}
 第一次打开T5宝箱:
   Skills:
     - message{m="&c箱子的守卫者出来了，在120s内将他们一网打尽！即可拿走战利品！"} @Self
     - message{m="&d<trigger.name>&r>> &6哎呀，居然还有守卫者，这箱子肯定有什么好东西，先解决他们再说吧！"} @Self
+T5对话2:
+  Skills:
+    - message{m="&d<trigger.name>&r>> &6好像捡到了一张锻造图纸，应该跟高级武器一样的流程，还是先继续收集一下材料吧！"} @Self
+    - delay 20
+    - message{m="&d<trigger.name>&r>> &6这周围好像有好多隐蔽的箱子，还是小心点不要错过吧！"} @Self

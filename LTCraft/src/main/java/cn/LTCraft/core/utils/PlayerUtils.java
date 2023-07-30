@@ -19,6 +19,10 @@ import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
 import io.lumine.xikage.mythicmobs.io.MythicConfig;
 import io.lumine.xikage.mythicmobs.skills.SkillCondition;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.chat.ComponentSerializer;
 import net.minecraft.server.v1_12_R1.*;
 import org.anjocaido.groupmanager.GroupManager;
 import org.anjocaido.groupmanager.data.Group;
@@ -29,6 +33,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftItem;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftMetaBook;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -36,6 +41,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
@@ -403,5 +409,42 @@ public class PlayerUtils {
         if (!op)player.setOp(true);
         Bukkit.dispatchCommand(player, command);
         if (!op)player.setOp(false);
+    }
+
+    /**
+     * 让玩家打开一本书
+     * @param player 玩家
+     * @param title 标题
+     * @param pageContents 内容
+     */
+    public static void openBook(Player player, String title, List<String> pageContents) {
+        openBook(player, title, pageContents, "LTCraft");
+    }
+
+    /**
+     * 让玩家打开一本书
+     * @param player 玩家
+     * @param title 标题
+     * @param pageContents 内容
+     * @param author 作者
+     */
+    public static void openBook(Player player, String title, List<String> pageContents, String author) {
+        ItemStack book = new ItemStack(Material.WRITTEN_BOOK, 1);
+        BookMeta bookMeta = (BookMeta)book.getItemMeta();
+        for (String content : pageContents) {
+            bookMeta.addPage(content);
+        }
+        bookMeta.setTitle(title);
+        bookMeta.setAuthor(author);
+        book.setItemMeta(bookMeta);
+        int slot = player.getInventory().getHeldItemSlot();
+        ItemStack old = player.getInventory().getItem(slot);
+        player.getInventory().setItem(slot, book);
+        ByteBuf buf = Unpooled.buffer(256);
+        buf.setByte(0, 0);
+        buf.writerIndex(1);
+        PacketPlayOutCustomPayload packet = new PacketPlayOutCustomPayload("MC|BOpen", new PacketDataSerializer(buf));
+        ((CraftPlayer)player).getHandle().playerConnection.sendPacket(packet);
+        player.getInventory().setItem(slot, old);
     }
 }

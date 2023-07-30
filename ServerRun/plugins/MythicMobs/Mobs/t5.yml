@@ -1,14 +1,14 @@
 T5普通宝箱守卫者:
   Type: Skeleton
   Display: '&6普通宝箱守卫者'
-  Health: 1500
-  Damage: 6
+  Health: 2000
+  Damage: 8
   Equipment:
-    - 暗魔:HAND
+    - 末地之刃:HAND
   Disguise:
     Type: Player
-    Skin: '&6恶魔力量原体'
-    Player: '&6恶魔力量原体'
+    Skin: '&6T5普通宝箱守卫者'
+    Player: '&6T5普通宝箱守卫者'
   Options:
     FollowRange: 8
     MovementSpeed: 0.35
@@ -21,14 +21,14 @@ T5普通宝箱守卫者:
 T5中级宝箱守卫者:
   Type: Skeleton
   Display: '&6中级宝箱守卫者'
-  Health: 1500
-  Damage: 6
+  Health: 3000
+  Damage: 10
   Equipment:
-    - 暗魔:HAND
+    - 末地之刃:HAND
   Disguise:
     Type: Player
-    Skin: '&6恶魔力量原体'
-    Player: '&6恶魔力量原体'
+    Skin: '&6T5中级宝箱守卫者'
+    Player: '&6T5中级宝箱守卫者'
   Options:
     FollowRange: 8
     MovementSpeed: 0.35

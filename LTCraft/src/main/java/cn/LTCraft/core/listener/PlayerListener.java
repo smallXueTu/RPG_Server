@@ -24,6 +24,7 @@ import cn.LTCraft.core.task.ClientCheckTask;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.utils.*;
+import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.utils.Utils;
 import cn.ltcraft.love.Love;
@@ -205,23 +206,27 @@ public class PlayerListener  implements Listener {
                 return;
             }
             ItemStack itemInMainHand = event.getPlayer().getInventory().getItemInMainHand();
-            if (itemInMainHand != null && itemInMainHand.hasItemMeta() && itemInMainHand.getItemMeta().hasDisplayName() && itemInMainHand.getItemMeta().getDisplayName().endsWith("图纸")) {
-                ItemFrame frame = (ItemFrame) entity;
-                BlockFace attachedFace = frame.getAttachedFace();
-                Location add = entity.getLocation().add(attachedFace.getModX(), attachedFace.getModY(), attachedFace.getModZ());
-                Block blockAt = entity.getWorld().getBlockAt(add);
-                if (blockAt.getType() == Material.GLASS){
-                    FakeBlock[] blocks = SmeltingFurnace.check(blockAt.getLocation(), entity.getLocation());
-                    if (blocks.length > 0){
-                        player.sendMessage("§c多方块结构错误，请对应闪动的方块来摆放对应的方块！");
-                        new FlashingBlock(player, blocks);
-                    }else {
-                        if (SmeltingFurnace.getSmeltingFurnaceMap().values().stream().anyMatch(smeltingFurnace -> smeltingFurnace.getLocation().distance(blockAt.getLocation()) < 3)) {
-                            return;
+            LTItem ltItem = Utils.getLTItems(itemInMainHand);
+            if (ltItem instanceof ConfigurableLTItem) {
+                ConfigurableLTItem configurableLTItem = (ConfigurableLTItem) ltItem;
+                String forgingType = configurableLTItem.getConfig().getString("锻造类型");
+                SmeltingFurnaceDrawing smeltingFurnaceDrawing = SmeltingFurnaceDrawing.getSmeltingFurnaceDrawing(forgingType);
+                if (smeltingFurnaceDrawing != null) {
+                    ItemFrame frame = (ItemFrame) entity;
+                    BlockFace attachedFace = frame.getAttachedFace();
+                    Location add = entity.getLocation().add(attachedFace.getModX(), attachedFace.getModY(), attachedFace.getModZ());
+                    Block blockAt = entity.getWorld().getBlockAt(add);
+                    if (blockAt.getType() == Material.GLASS) {
+                        FakeBlock[] blocks = SmeltingFurnace.check(blockAt.getLocation(), entity.getLocation());
+                        if (blocks.length > 0) {
+                            player.sendMessage("§c多方块结构错误，请对应闪动的方块来摆放对应的方块！");
+                            new FlashingBlock(player, blocks);
+                        } else {
+                            if (SmeltingFurnace.getSmeltingFurnaceMap().values().stream().anyMatch(smeltingFurnace -> smeltingFurnace.getLocation().distance(blockAt.getLocation()) < 3)) {
+                                return;
+                            }
+                            new SmeltingFurnace(player, blockAt.getLocation(), entity, smeltingFurnaceDrawing);
                         }
-                        LTItem ltItems = Utils.getLTItems(itemInMainHand);
-                        String name = ltItems == null? cn.LTCraft.core.utils.Utils.clearColor(itemInMainHand.getItemMeta().getDisplayName()):ltItems.getName();
-                        new SmeltingFurnace(player, blockAt.getLocation(), entity, SmeltingFurnaceDrawing.getSmeltingFurnaceDrawing(name));
                     }
                 }
             }

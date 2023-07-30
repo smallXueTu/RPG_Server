@@ -332,9 +332,8 @@ public class Utils {
                         PlayerUtils.sudoExec(player, cmd);
                         break;
                     default:
-                        if (!GameUtils.executeAction(player, s)) {
-                            return;
-                        }
+                        GameUtils.executeAction(player, s);
+                        return;
                 }
                 if (split.length >= 4){
                     switch (split[3]){

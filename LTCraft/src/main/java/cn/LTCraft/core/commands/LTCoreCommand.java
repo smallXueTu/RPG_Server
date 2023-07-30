@@ -8,15 +8,23 @@ import cn.LTCraft.core.task.LTCraftRestartRunnable;
 import cn.LTCraft.core.utils.ClientUtils;
 import cn.LTCraft.core.utils.FileUtil;
 import cn.LTCraft.core.utils.PlayerUtils;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftMetaBook;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.BookMeta;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -92,8 +100,6 @@ public class LTCoreCommand implements CommandExecutor {
                         craftPlayer.setFlySpeed(Float.parseFloat(args[2]));
                     break;
                 }
-                break;
-            case "test":
                 break;
             case "entities":
                 Player target;
