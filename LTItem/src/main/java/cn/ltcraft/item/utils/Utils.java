@@ -293,6 +293,9 @@ public class Utils {
                     case "use":
                         count = UseItemEffect.onUse(player, split[1]);
                         break;
+                    case "openBook":
+                        PlayerUtils.openBook(player, ltItem.getConfig().getString("书标题"), ltItem.getConfig().getStringList("书内容"), ltItem.getConfig().getString("书作者", "LTCraft"));
+                        break;
                     case "增加金币":
                         number = Integer.parseInt(split[1]);
                         cn.LTCraft.core.dataBase.bean.PlayerInfo playerInfo = cn.LTCraft.core.entityClass.PlayerConfig.getPlayerConfig(player).getPlayerInfo();
