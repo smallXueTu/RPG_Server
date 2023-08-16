@@ -30,6 +30,7 @@ public class CertifierBelt extends Ornament implements TickItem, DamageItem, Att
      */
     @Override
     public void doTick(long tick, Player player, int invIndex) {
+        if (invIndex < 41)return;
         Long last = Temp.lastBattleTime.getOrDefault(player, 0L);
         if (tick - last > 20 * 10){
             if (!player.hasPotionEffect(PotionEffectType.SPEED)){
