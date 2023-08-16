@@ -59,13 +59,9 @@ public class GameUtils {
         if (skills == null)return map;
         String[] ss = skills.split("&");
         for (String s : ss) {
-            try {
-                String[] sInfo = s.split(":");
-                if (sInfo.length < 2)continue;
-                map.put(sInfo[0], Double.parseDouble(sInfo[1]));
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+            String[] sInfo = s.split(":");
+            if (sInfo.length < 2)continue;
+            map.put(sInfo[0], Double.parseDouble(sInfo[1]));
         }
         return map;
     }
