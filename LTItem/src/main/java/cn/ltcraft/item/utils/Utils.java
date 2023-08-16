@@ -9,6 +9,7 @@ import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.items.GemsStone;
 import cn.ltcraft.item.objs.ItemObjs;
+import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
@@ -22,6 +23,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -147,6 +149,9 @@ public class Utils {
         }
         if (configurableLTItems.getConfig().getBoolean("不可叠加")){
             ltAttribute.setString("sign", String.valueOf(UUID.randomUUID()));
+        }
+        if (configurableLTItems.getConfig().contains("json")){
+            ltAttribute.setString("json", configurableLTItems.getConfig().getString("json"));
         }
         all.set("ltAttribute", ltAttribute);
         net.minecraft.server.v1_12_R1.ItemStack handle = new net.minecraft.server.v1_12_R1.ItemStack(CraftMagicNumbers.getItem(itemStack.getType()), 1, 0);
@@ -336,7 +341,7 @@ public class Utils {
                         break;
                     default:
                         GameUtils.executeAction(player, s);
-                        return;
+                        break;
                 }
                 if (split.length >= 4){
                     switch (split[3]){

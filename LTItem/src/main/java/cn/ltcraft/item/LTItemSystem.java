@@ -69,7 +69,8 @@ public class LTItemSystem extends JavaPlugin {
                     try {
                         Method method = v.getMethod("get", MemoryConfiguration.class);
                         ItemObjs.putLTItem(f.getName().substring(0, f.getName().length() - 4), (LTItem) method.invoke(null, YamlConfiguration.loadConfiguration(f)));
-                    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                    } catch (Exception e) {
+                        getLogger().warning("无法加载" + k + ":" + f.getName());
                         e.printStackTrace();
                     }
                 }
