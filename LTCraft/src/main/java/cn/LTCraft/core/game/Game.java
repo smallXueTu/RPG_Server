@@ -628,6 +628,7 @@ public class Game {
                 itemStacks = ObjectArrays.concat(itemStacks, PlayerAttribute.getPlayerAttribute(player).getOrnaments(), ItemStack.class);
                 for (int i = 0; i < itemStacks.length; i++) {
                     ItemStack itemStack = itemStacks[i];
+                    if (itemStack == null)continue;
                     NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
                     LTItem ltItem = cn.ltcraft.item.utils.Utils.getLTItems(nbt);
                     if (ltItem != null && ltItem.binding()) {
@@ -656,8 +657,11 @@ public class Game {
                             int finalI1 = i;
                             ItemStack finalItemStack = itemStack;
                             ItemActions.add(() -> {
-                                if (inventory.getItem(finalI1) != null && inventory.getItem(finalI1).isSimilar(finalItemStack)) {
-                                    inventory.setItem(finalI1, finalItemStack);
+                                if (inventory.getItem(finalI1) != null) {
+                                    LTItem current = cn.ltcraft.item.utils.Utils.getLTItems(inventory.getItem(finalI1));
+                                    if (current.getType().equals(ltItem.getType()) && current.getName().equals(ltItem.getName())) {
+                                        inventory.setItem(finalI1, finalItemStack);
+                                    }
                                 }
                             });
                         }else if (i >= 41){
