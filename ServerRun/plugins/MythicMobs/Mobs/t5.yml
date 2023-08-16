@@ -10,7 +10,7 @@ T5普通宝箱守卫者:
     Skin: '&6T5普通宝箱守卫者'
     Player: '&6T5普通宝箱守卫者'
   Options:
-    FollowRange: 8
+    FollowRange: 16
     MovementSpeed: 0.35
     UseThreatTable: true
     PreventOtherDrops: true
@@ -30,14 +30,76 @@ T5中级宝箱守卫者:
     Skin: '&6T5中级宝箱守卫者'
     Player: '&6T5中级宝箱守卫者'
   Options:
-    FollowRange: 8
+    FollowRange: 16
     MovementSpeed: 0.35
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 30
+    - skillapi-exp 50
+T5高级宝箱守卫者:
+  Type: Skeleton
+  Display: '&6高级宝箱守卫者'
+  Health: 4000
+  Damage: 20
+  Equipment:
+    - 末地之刃:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6T5高级宝箱守卫者'
+    Player: '&6T5高级宝箱守卫者'
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 80
+T5史诗宝箱守卫者:
+  Type: Skeleton
+  Display: '&6史诗宝箱守卫者'
+  Health: 4000
+  Damage: 20
+  Equipment:
+    - 末地之刃:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6T5史诗宝箱守卫者'
+    Player: '&6T5史诗宝箱守卫者'
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 80
+魔影行者:
+  Type: Skeleton
+  Display: '&6魔影行者'
+  Health: 6000
+  Damage: 20
+  Equipment:
+    - 末地之刃:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6魔影行者'
+    Player: '&6魔影行者'
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 100
+    - ltitem 材料:末地之城珍珠 1
+    - ltitem 材料:末影药剂 1
 t5对话1:
   Type: armor_stand
   Options:

@@ -28,6 +28,9 @@
 恶魔盔甲:
   match: "恶魔盔甲"
   texture: "t4/恶魔盔甲"
+末影盔甲:
+  match: "末影盔甲"
+  texture: "t5/末影盔甲"
 test:
   match: "TestArmor"
   texture: "test"

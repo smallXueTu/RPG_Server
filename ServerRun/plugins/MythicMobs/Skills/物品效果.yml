@@ -3,19 +3,19 @@
   Skills:
     - message{m="&f*&7恢复成功"} @self
     - heal{a=8} @self
-    - delay 199
-    - message{cooldown=10;m="&f*&7你可以再次使用生命药水"} @self
 中型生命药效:
   Cooldown: 10
   Skills:
     - message{m="&f*&7恢复成功"} @self
     - heal{a=20} @self
-    - delay 199
-    - message{cooldown=10;m="&f*&7你可以再次使用生命药水"} @self
 大瓶生命药效:
   Cooldown: 10
   Skills:
     - message{m="&f*&7恢复成功"} @self
     - heal{a=60} @self
-    - delay 199
-    - message{cooldown=10;m="&f*&7你可以再次使用生命药水"} @self
+末影药剂药效:
+  Cooldown: 10
+  Skills:
+    - message{m="&f*&7使用成功"} @self
+    - heal{a=20} @self
+    - potion{type=SPEED;d=2000;lvl=2} @self

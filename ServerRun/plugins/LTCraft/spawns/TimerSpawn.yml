@@ -207,3 +207,14 @@
   maxMobs: 1
   locations: []
   spawnRange: 1
+魔影行者:
+  mobName: 魔影行者
+  world: t5
+  x: 1086.5
+  cooling: 60
+  y: 104
+  range: 16
+  z: -1222
+  maxMobs: 1
+  locations: []
+  spawnRange: 1

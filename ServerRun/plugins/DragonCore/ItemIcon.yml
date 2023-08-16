@@ -237,6 +237,42 @@
 末地水晶:
   match: "末地水晶"
   texture: "t5/末地水晶.png"
+幻影膜:
+  match: "幻影膜"
+  texture: "t5/幻影膜.png"
+末之金:
+  match: "末之金"
+  texture: "t5/末之金.png"
+神秘的手册:
+  match: "神秘的手册"
+  texture: "t5/神秘的手册.png"
+末影吊坠:
+  match: "末影吊坠"
+  texture: "t5/末影吊坠.png"
+末影磨石:
+  match: "末影磨石"
+  texture: "t5/末影磨石.png"
+末影之甲碎片:
+  match: "末影之甲碎片"
+  texture: "t5/末影之甲碎片.png"
+末影头盔:
+  match: "末影头盔"
+  texture: "t5/末影头盔.png"
+末影胸甲:
+  match: "末影胸甲"
+  texture: "t5/末影胸甲.png"
+末影护膝:
+  match: "末影护膝"
+  texture: "t5/末影护膝.png"
+末影战靴:
+  match: "末影战靴"
+  texture: "t5/末影战靴.png"
+末影腰带:
+  match: "末影腰带"
+  texture: "t5/末影腰带.png"
+末影药剂:
+  match: "末影药剂"
+  texture: "t5/末影药剂.png"
 #---------------------- f1 ----------------------
 觉醒知识卷轴章节:
   match: "觉醒知识卷轴章节"

@@ -4,9 +4,9 @@ Title-Update: -1
 
 Layout:
   - - '#       #'
-    - '#   `魔金之锤`   #'
-    - '#   `高级武器锻造图纸`   #'
-    - '#   `高级盔甲锻造图纸`   #'
+    - '# `末影头盔``末影胸甲` `末影护膝``末影战靴` #'
+    - '#       #'
+    - '#       #'
     - '#       #'
 
 PlayerInventory:
@@ -40,42 +40,51 @@ Icons:
       name: "&d旁白君"
     actions:
       all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
-  '魔金之锤':
+  '末影头盔':
     display:
-      material: 257
+      material: 306
       shiny: 'true'
-      name: "&e魔金之锤"
+      name: "&e末影头盔"
       lore:
-      - "&3<<&e兑换魔金之锤×1"
-      - "&3>>&e需要：能量&e水晶×20"
-      - "&3>>&e需要：力量&e水晶×20"
+      - "&3<<&e兑换末影头盔×1"
+      - "&3>>&e需要：末影之甲&e碎片×20"
     actions:
       all:
-        - 'LTExchange: 魔金之锤'
+        - 'LTExchange: 末影头盔'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
-  '高级武器锻造图纸':
+  '末影胸甲':
     display:
-      material: 339
+      material: 307
       shiny: 'true'
-      name: "&e高级武器锻造图纸"
+      name: "&e末影胸甲"
       lore:
-      - "&3<<&e兑换高级武器锻造图纸×1"
-      - "&3>>&e需要：高级武器锻造图纸&e碎片×10"
+      - "&3<<&e兑换末影胸甲×1"
+      - "&3>>&e需要：末影之甲&e碎片×32"
     actions:
       all:
-        - 'LTExchange: 高级武器锻造图纸'
-        - 'ExecuteBQEvent: 添加获得恶魔装备目标'
+        - 'LTExchange: 末影胸甲'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
-  '高级盔甲锻造图纸':
+  '末影护膝':
     display:
-      material: 339
+      material: 307
       shiny: 'true'
-      name: "&e高级盔甲锻造图纸"
+      name: "&e末影护膝"
       lore:
-      - "&3<<&e兑换高级盔甲锻造图纸×1"
-      - 'ExecuteBQEvent: 添加获得恶魔装备目标'
-      - "&3>>&e需要：高级盔甲锻造图纸&e碎片×10"
+      - "&3<<&e兑换末影护膝×1"
+      - "&3>>&e需要：末影之甲&e碎片×28"
     actions:
       all:
-        - 'LTExchange: 高级盔甲锻造图纸'
+        - 'LTExchange: 末影护膝'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '末影战靴':
+    display:
+      material: 307
+      shiny: 'true'
+      name: "&e末影战靴"
+      lore:
+      - "&3<<&e兑换末影战靴×1"
+      - "&3>>&e需要：末影之甲&e碎片×16"
+    actions:
+      all:
+        - 'LTExchange: 末影战靴'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
