@@ -6,7 +6,7 @@ import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.GameUtils;
 import cn.LTCraft.core.utils.PlayerUtils;
-import cn.ltcraft.item.utils.Utils;
+import cn.LTCraft.core.utils.Utils;
 import io.lumine.utils.config.file.YamlConfiguration;
 import io.lumine.xikage.mythicmobs.adapters.AbstractItemStack;
 import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
@@ -21,6 +21,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Angel、 on 2022/7/15 23:35
@@ -114,6 +115,10 @@ public class ChestMobSpawn extends AbstractMobSpawn {
                     return null;
                 }).filter(Objects::nonNull).toArray(ItemStack[]::new);
                 PlayerUtils.dropItem(player, location, stacks);
+                List<String> itemNames = Arrays.stream(stacks).map(stack ->
+                    Utils.clearColor(stack.getItemMeta().getDisplayName()) + "×" + stack.getAmount()
+                ).collect(Collectors.toList());
+                player.sendMessage("§e打开宝箱获得了§a" + (String.join("§e, §a", itemNames)) + "§e。");
                 GameUtils.sendBlockActionPacket(player, block, new int[]{1, 1});
                 blockLocation.getWorld().playSound(blockLocation, Sound.BLOCK_CHEST_OPEN, 0.5f, 1);
                 Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
