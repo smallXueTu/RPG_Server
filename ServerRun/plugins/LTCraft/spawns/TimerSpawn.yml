@@ -218,3 +218,15 @@
   maxMobs: 1
   locations: []
   spawnRange: 1
+魔影守卫者:
+  mobName: 魔影守卫者
+  world: t5
+  x: 1057.5
+  cooling: 60
+  y: 103
+  range: 16
+  z: -1228.5
+  maxMobs: 1
+  showText: false
+  locations: []
+  spawnRange: 1

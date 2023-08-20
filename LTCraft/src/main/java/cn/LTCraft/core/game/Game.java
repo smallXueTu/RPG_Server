@@ -52,6 +52,8 @@ import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -349,16 +351,16 @@ public class Game {
         String[] info = type.split(":");
         switch (info[0]){
             case "弹开":
-                PlayerMoveEvent event = (PlayerMoveEvent)args[0];
-                double x = event.getFrom().getX() - event.getTo().getX();
-                double z = event.getFrom().getZ() - event.getTo().getZ();
+                Cancellable event = (Cancellable)args[0];
+                double x = ((Location) args[1]).getX() - ((Location) args[2]).getX();
+                double z = ((Location) args[1]).getZ() - ((Location) args[2]).getZ();
                 double f = Math.sqrt(x * x + z * z);
                 if(f > 0) {
                     f = 1 / f;
                     CraftPlayer craftPlayer = (CraftPlayer)player;
                     craftPlayer.setMomentum(new Vector(x * f * 2, 0.1, z * f * 2));
                 }
-                player.sendMessage(((AirDoor)args[1]).getMessage());
+                player.sendMessage(((AirDoor)args[3]).getMessage());
                 event.setCancelled(true);
             break;
             case "烧死":
@@ -549,6 +551,14 @@ public class Game {
                 return "无";
         }
     }
+
+    /**
+     * 获取锻造结果
+     * @param equipment 装备
+     * @param material 材料
+     * @param player 玩家
+     * @return 锻造结果
+     */
     public static ItemStack getForgingResult(ItemStack equipment, ItemStack material, Player player){
         LTItem ltItem = cn.ltcraft.item.utils.Utils.getLTItems(equipment);
         LTItem LTm = cn.ltcraft.item.utils.Utils.getLTItems(material);
@@ -578,6 +588,14 @@ public class Game {
         }
         return null;
     }
+
+    /**
+     * 开始锻造
+     * @param equipment  装备
+     * @param material 材料
+     * @param player 锻造玩家
+     * @return 是否成功
+     */
     public static boolean startForging(ItemStack equipment, ItemStack material, Player player){
         LTItem ltItem = cn.ltcraft.item.utils.Utils.getLTItems(equipment);
         LTItem LTm = cn.ltcraft.item.utils.Utils.getLTItems(material);
@@ -601,6 +619,55 @@ public class Game {
         return false;
     }
 
+    /**
+     * 尝试通过空气门
+     * @param player 玩家
+     * @param from 从哪里
+     * @param to 到哪里
+     * @param event 可取消的事件
+     * @return 是否通过了
+     */
+    public static boolean tryAdoptAirDoor(Player player, Location from, Location to, Cancellable event){
+        boolean sign = false;
+        AirDoor airDoor = null;
+        synchronized (AirDoor.getAirDoors()) {
+            for (Iterator<AirDoor> iterator = AirDoor.getAirDoors().iterator(); iterator.hasNext(); ) {
+                airDoor = iterator.next();
+                if (airDoor.getBukkitEntity().isDead()) {
+                    iterator.remove();
+                    continue;
+                }
+                Location location = airDoor.getBukkitEntity().getLocation().clone();
+                Location playerLocation = player.getLocation().clone();
+                if (Math.abs(location.getY() - playerLocation.getY()) > airDoor.getYDistance())continue;
+                location.setY(location.getY());
+                if (airDoor.getBukkitEntity().getWorld() != player.getWorld() || location.distance(playerLocation) > airDoor
+                        .getDistance())
+                    continue;
+                double fLocation = airDoor.getCheckDirection() == WorldUtils.COORDINATE.X ? from.getX() : airDoor.getCheckDirection() == WorldUtils.COORDINATE.Z ? from.getZ() : from.getY();
+                double tLocation = airDoor.getCheckDirection() == WorldUtils.COORDINATE.X ? to.getX() : airDoor.getCheckDirection() == WorldUtils.COORDINATE.Z ? to.getZ() : to.getY();
+                if (airDoor.isForward()) {
+                    if (fLocation <= airDoor.getLocation() && tLocation > airDoor.getLocation()) {
+                        sign = true;
+                    }
+                } else {
+                    if (fLocation >= airDoor.getLocation() && tLocation < airDoor.getLocation()) {
+                        sign = true;
+                    }
+                }
+                if (sign && !Cooling.isCooling(player, airDoor.getConfigLine())) {
+                    Cooling.cooling(player, airDoor.getConfigLine(), 1);
+                    if (Game.demand(player, airDoor.getDemand())) {
+                        Game.execute(player, airDoor.getSuccess());
+                    } else {
+                        Game.execute(player, airDoor.getFail(), event, from, to, airDoor);
+                        break;
+                    }
+                }
+            }
+        }
+        return !sign;
+    }
     private static final List<ItemAction> ItemActions = new ArrayList<>();
     /**
      * tick装备

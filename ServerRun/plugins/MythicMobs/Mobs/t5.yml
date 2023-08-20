@@ -100,6 +100,51 @@ T5史诗宝箱守卫者:
     - skillapi-exp 100
     - ltitem 材料:末地之城珍珠 1
     - ltitem 材料:末影药剂 1
+魔影守卫者:
+  Type: Skeleton
+  Display: '&6魔影守卫者'
+  Health: 6000
+  Damage: 30
+  Equipment:
+    - 末地之刃:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6魔影守卫者'
+    Player: '&6魔影守卫者'
+  Options:
+    FollowRange: 26
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 100
+    - ltitem 材料:末地之城珍珠 1
+    - ltitem 材料:末影药剂 1
+  Skills:
+    - addBQTag{t=default.已击败末影守卫者} @trigger ~onDeath
+末影卫士:
+  Type: Skeleton
+  Display: '&6末影卫士'
+  Health: 1500
+  Damage: 10
+  Equipment:
+    - 末地之刃:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6末影卫士'
+    Player: '&6末影卫士'
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 50
+    - ltitem 材料:末地之城珍珠 1
 t5对话1:
   Type: armor_stand
   Options:
@@ -122,3 +167,14 @@ t5主线保护门1:
   Skills:
 #    - skill{s=t5主线保护门1} @Self ~onTimer:15
     - airDoor{location=-1242;f=false;direction=Z;d=BQCondition:default.已拥有神秘的手册;mess=§c请至少打开一个神秘宝箱并获得神秘的手册！;} @Self ~onSpawn
+t5主线保护门2:
+  Type: armor_stand
+  Options:
+    HasArms: true
+    Marker: true
+    Invisible: true
+    Despawn: false
+    Invincible: true
+  Skills:
+#    - skill{s=t5主线保护门1} @Self ~onTimer:15
+    - airDoor{location=1034;f=false;direction=X;distance=32;d=BQCondition:default.已击败末影守卫者;mess=§l§e[末影守卫者]§c你只能从我的尸体上踏过去！;} @Self ~onSpawn

@@ -366,6 +366,9 @@ public class PlayerListener  implements Listener {
                 event.setCancelled(true);
                 return;
             }
+            if (Game.tryAdoptAirDoor(player, event.getFrom(), event.getTo(), event)) {
+
+            }
         }
         if (
                 event.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL ||
@@ -601,51 +604,21 @@ public class PlayerListener  implements Listener {
                         event.setCancelled(true);
                     }
                 }
-                boolean sign = false;
-                AirDoor airDoor = null;
-                synchronized (AirDoor.getAirDoors()) {
-                    for (Iterator<AirDoor> iterator = AirDoor.getAirDoors().iterator(); iterator.hasNext(); ) {
-                        airDoor = iterator.next();
-                        if (airDoor.getBukkitEntity().isDead()) {
-                            iterator.remove();
-                            continue;
-                        }
-                        if (airDoor.getBukkitEntity().getWorld() != player.getWorld() || airDoor.getBukkitEntity().getLocation().distance(player.getLocation()) > airDoor.getDistance())
-                            continue;
-                        double fLocation = airDoor.getCheckDirection() == WorldUtils.COORDINATE.X ? from.getX() : airDoor.getCheckDirection() == WorldUtils.COORDINATE.Z ? from.getZ() : from.getY();
-                        double tLocation = airDoor.getCheckDirection() == WorldUtils.COORDINATE.X ? to.getX() : airDoor.getCheckDirection() == WorldUtils.COORDINATE.Z ? to.getZ() : to.getY();
-                        if (airDoor.isForward()) {
-                            if (fLocation <= airDoor.getLocation() && tLocation > airDoor.getLocation()) {
-                                sign = true;
+                if (Game.tryAdoptAirDoor(player, event.getFrom(), event.getTo(), event)) {
+                    boolean sign = false;
+                    if (player.getWorld().getName().equals("t3") && new Location(player.getWorld(), 198, 9, 474).distance(player.getLocation()) < 100) {
+                        Block block = player.getWorld().getBlockAt(event.getTo());
+                        if (Game.burningBlocks.contains(block.getTypeId())) {
+                            sign = false;
+                            for (ItemStack armorContent : ((Player) player).getInventory().getArmorContents()) {
+                                if (armorContent == null || armorContent.getItemMeta() == null || !armorContent.getItemMeta().getDisplayName().startsWith("§6虚空寒冰"))
+                                    sign = true;
                             }
-                        } else {
-                            if (fLocation >= airDoor.getLocation() && tLocation < airDoor.getLocation()) {
-                                sign = true;
+                            if (sign) {
+                                ((CraftPlayer) player).getHandle().setHealth(0);
+                                ((CraftPlayer) player).getHandle().getCombatTracker().trackDamage(DamageSource.BURN, 0f, 0f);
+                                ((CraftPlayer) player).getHandle().die(DamageSource.BURN);
                             }
-                        }
-                        if (sign && !Cooling.isCooling(player, airDoor.getConfigLine())) {
-                            Cooling.cooling(player, airDoor.getConfigLine(), 1);
-                            if (Game.demand(player, airDoor.getDemand())) {
-                                Game.execute(player, airDoor.getSuccess());
-                            } else {
-                                Game.execute(player, airDoor.getFail(), event, airDoor);
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (player.getWorld().getName().equals("t3") && new Location(player.getWorld(), 198, 9, 474).distance(player.getLocation()) < 100) {
-                    Block block = player.getWorld().getBlockAt(event.getTo());
-                    if (Game.burningBlocks.contains(block.getTypeId())) {
-                        sign = false;
-                        for (ItemStack armorContent : ((Player) player).getInventory().getArmorContents()) {
-                            if (armorContent == null || armorContent.getItemMeta() == null || !armorContent.getItemMeta().getDisplayName().startsWith("§6虚空寒冰"))
-                                sign = true;
-                        }
-                        if (sign) {
-                            ((CraftPlayer) player).getHandle().setHealth(0);
-                            ((CraftPlayer) player).getHandle().getCombatTracker().trackDamage(DamageSource.BURN, 0f, 0f);
-                            ((CraftPlayer) player).getHandle().die(DamageSource.BURN);
                         }
                     }
                 }

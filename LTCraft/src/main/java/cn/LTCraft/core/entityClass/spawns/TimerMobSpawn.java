@@ -27,9 +27,25 @@ import org.bukkit.World;
 import java.util.List;
 
 public class TimerMobSpawn extends AbstractMobSpawn {
-    protected final Hologram hologram;
+    /**
+     * 悬浮字对象
+     */
+    protected Hologram hologram = null;
+    /**
+     * 内部计时器
+     */
     protected int timer = 0;
+    /**
+     * 是否展示悬浮字
+     */
+    protected boolean showText = true;
+    /**
+     * 怪物范围
+     */
     protected int range = 0;
+    /**
+     * 冷却时间
+     */
     protected int cooling = 0;
     public TimerMobSpawn(String insideName){
         super(insideName);
@@ -43,42 +59,45 @@ public class TimerMobSpawn extends AbstractMobSpawn {
             location = new Location(world, config.getDouble("x"), config.getDouble("y") + 1 + mm.getDrops().size() * 0.3, config.getDouble("z"));
         cooling = config.getInteger("cooling", 10);
         range = config.getInteger("range", 16);
-        hologram = HologramsAPI.createHologram(main, location);
-        HologramsAPI.registerPlaceholder(main, "LTSpawn:" + insideName + ":colling", 1, () -> {
-            if (mobSize >= maxMobs)
-                return "怪物已达最大数量！";
-            else
-                return Math.max(0, cooling - timer) +"S刷新！";
-        });
-        HologramsAPI.registerPlaceholder(main, "LTSpawn:" + insideName + ":mobCount", 1, () -> String.valueOf(mobSize));
-        hologram.appendTextLine("§a=========[" + insideName + "§a]=========");
-        hologram.appendTextLine("§6名字:§3"+ mobName +"§d还有:LTSpawn:"+insideName+":colling");
-        hologram.appendTextLine("§e当前怪物数量:LTSpawn:"+insideName+":mobCount/" + maxMobs);
-        if (mm.getConfig().getBoolean("团队"))hologram.appendTextLine("§c这个怪物需要多人配合击杀！");
-        for (int i = 0; i < mm.getDrops().size(); i++) {
-            String drop = mm.getDrops().get(i);
-            String[] drops = MythicLineConfig.unparseBlock(drop).split(" ");
-            if (drops[0].startsWith("ltitem")){
-                hologram.appendTextLine("§e掉落:" + ClutterItem.spawnClutterItem(drops[1], ClutterItem.ItemSource.LTCraft) + "×" + (drops.length >= 3?drops[2]:1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 4?drops[3]:"1") * 100) + "%");
-            }else if (drops[0].startsWith("goldCoinsDrop")){
-                hologram.appendTextLine("§e掉落:" + drops[1].split(":")[0] + "×" + (drops.length >= 3?drops[2]:1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 4?drops[3]:"1") * 100) + "%");
-            }else if (drops[0].startsWith("goldCoins")){
-                hologram.appendTextLine("§e掉落:金币×" + (drops.length >= 2?drops[1]:1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 3?drops[2]:"1") * 100) + "%");
-            }else if (drops[0].startsWith("skillapi-exp")){
-                hologram.appendTextLine("§e掉落:经验×" + (drops.length >= 2?drops[1]:1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 3?drops[2]:"1") * 100) + "%");
-            }else if (drops[0].startsWith("ParticipateInSAPExp")){
-                hologram.appendTextLine("§e参与掉落:经验×" + drops[1].split("%")[0] + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1?drops[1].split("%")[1]:"1") * 100) + "%");
-            }else if (drops[0].startsWith("ParticipateInDrop")){
-                hologram.appendTextLine("§e参与掉落:" + drops[1].split("%")[0] + "×" + (drops.length >= 3?drops[2]:1) + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1?drops[1].split("%")[1]:"1") * 100) + "%");
-            }else if (drops[0].startsWith("ParticipateInGoldCoinsDrop")){
-                hologram.appendTextLine("§e参与掉落:金币×" + drops[1].split("%")[0] + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1?drops[1].split("%")[1]:"1") * 100) + "%");
-            }else if (drops[0].startsWith("PseudorandomDrop")){
-                hologram.appendTextLine("§e伪随机掉落:" + drops[1].split("%")[0] + "×" + (drops.length >= 3?drops[2]:1) + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1?drops[1].split("%")[1]:"1") * 100) + "%");
-            }else if (drops.length >= 3) {
-                hologram.appendTextLine("§e掉落:" + drops[0] + "×" + drops[1] + " " + Utils.formatNumber(Double.parseDouble(drops[2]) * 100) + "%");
+        showText = config.getBoolean("showText", true);
+        if (showText) {
+            hologram = HologramsAPI.createHologram(main, location);
+            HologramsAPI.registerPlaceholder(main, "LTSpawn:" + insideName + ":colling", 1, () -> {
+                if (mobSize >= maxMobs)
+                    return "怪物已达最大数量！";
+                else
+                    return Math.max(0, cooling - timer) + "S刷新！";
+            });
+            HologramsAPI.registerPlaceholder(main, "LTSpawn:" + insideName + ":mobCount", 1, () -> String.valueOf(mobSize));
+            hologram.appendTextLine("§a=========[" + insideName + "§a]=========");
+            hologram.appendTextLine("§6名字:§3" + mobName + "§d还有:LTSpawn:" + insideName + ":colling");
+            hologram.appendTextLine("§e当前怪物数量:LTSpawn:" + insideName + ":mobCount/" + maxMobs);
+            if (mm.getConfig().getBoolean("团队")) hologram.appendTextLine("§c这个怪物需要多人配合击杀！");
+            for (int i = 0; i < mm.getDrops().size(); i++) {
+                String drop = mm.getDrops().get(i);
+                String[] drops = MythicLineConfig.unparseBlock(drop).split(" ");
+                if (drops[0].startsWith("ltitem")) {
+                    hologram.appendTextLine("§e掉落:" + ClutterItem.spawnClutterItem(drops[1], ClutterItem.ItemSource.LTCraft) + "×" + (drops.length >= 3 ? drops[2] : 1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 4 ? drops[3] : "1") * 100) + "%");
+                } else if (drops[0].startsWith("goldCoinsDrop")) {
+                    hologram.appendTextLine("§e掉落:" + drops[1].split(":")[0] + "×" + (drops.length >= 3 ? drops[2] : 1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 4 ? drops[3] : "1") * 100) + "%");
+                } else if (drops[0].startsWith("goldCoins")) {
+                    hologram.appendTextLine("§e掉落:金币×" + (drops.length >= 2 ? drops[1] : 1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 3 ? drops[2] : "1") * 100) + "%");
+                } else if (drops[0].startsWith("skillapi-exp")) {
+                    hologram.appendTextLine("§e掉落:经验×" + (drops.length >= 2 ? drops[1] : 1) + " " + Utils.formatNumber(Double.parseDouble(drops.length >= 3 ? drops[2] : "1") * 100) + "%");
+                } else if (drops[0].startsWith("ParticipateInSAPExp")) {
+                    hologram.appendTextLine("§e参与掉落:经验×" + drops[1].split("%")[0] + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1 ? drops[1].split("%")[1] : "1") * 100) + "%");
+                } else if (drops[0].startsWith("ParticipateInDrop")) {
+                    hologram.appendTextLine("§e参与掉落:" + drops[1].split("%")[0] + "×" + (drops.length >= 3 ? drops[2] : 1) + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1 ? drops[1].split("%")[1] : "1") * 100) + "%");
+                } else if (drops[0].startsWith("ParticipateInGoldCoinsDrop")) {
+                    hologram.appendTextLine("§e参与掉落:金币×" + drops[1].split("%")[0] + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1 ? drops[1].split("%")[1] : "1") * 100) + "%");
+                } else if (drops[0].startsWith("PseudorandomDrop")) {
+                    hologram.appendTextLine("§e伪随机掉落:" + drops[1].split("%")[0] + "×" + (drops.length >= 3 ? drops[2] : 1) + " " + Utils.formatNumber(Double.parseDouble(drops[1].split("%").length > 1 ? drops[1].split("%")[1] : "1") * 100) + "%");
+                } else if (drops.length >= 3) {
+                    hologram.appendTextLine("§e掉落:" + drops[0] + "×" + drops[1] + " " + Utils.formatNumber(Double.parseDouble(drops[2]) * 100) + "%");
+                }
             }
+            hologram.setAllowPlaceholders(true);
         }
-        hologram.setAllowPlaceholders(true);
     }
     public boolean doTick(long tick){
         if (!super.doTick(tick))return false;
@@ -95,15 +114,17 @@ public class TimerMobSpawn extends AbstractMobSpawn {
                 }
             }
         }
-        if (lastSize != mobSize || lastTimer != timer) {
+        if ((lastSize != mobSize || lastTimer != timer) && hologram != null) {
             ((CraftHologram) hologram).refreshSingleLines();///????
         }
         return true;
     }
     public void close(){
         super.close();
-        hologram.setAllowPlaceholders(false);
-        hologram.delete();
+        if (hologram != null){
+            hologram.setAllowPlaceholders(false);
+            hologram.delete();
+        }
         HologramsAPI.unregisterPlaceholder(Main.getInstance(), "LTSpawn:" + insideName + ":colling");
         HologramsAPI.unregisterPlaceholder(Main.getInstance(), "LTSpawn:" + insideName + ":mobCount");
     }

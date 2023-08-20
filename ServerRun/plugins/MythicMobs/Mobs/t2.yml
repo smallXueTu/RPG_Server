@@ -567,7 +567,7 @@ BOSS-魔塔统治者-资格分身:
     - message{cooldown=50;m="<mob.name>&d>><&co> &c就这点实力请不要来侮辱镇魔塔了！"} @PlayersInRadius{r=20} ~onCombat <100% 0.3
     - message{cooldown=30;m="<mob.name>&d>><&co> &c无知的证明者，我会撕碎你的皮囊！然后捏碎你的骸骨！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
     - message{cooldown=50;m="<mob.name>&d>><&co> &c这里岂是你这种令人作呕的人能来这种地方？Hahaah，你还是继续颓废下去吧！"} @PlayersInRadius{r=20} ~onCombat <80% 0.1
-    - message{m="<mob.name>&d>><&co> &c很强的证明者，恭喜你，你获得了挑战我真身的资格，捡起挑战券去下一层挑战我吧 <trigger.name>!"} @PlayersInRadius{r=20} ~onDeath
+    - message{m="<mob.name>&d>><&co> &c很强的证明者，恭喜你，你获得了挑战我真身的资格，捡起挑战券去下一层挑战我吧 <trigger.name>!"} @trigger ~onDeath
 #    - message{m="<mob.name>&d>><&co> &c丢尽证明者的脸，你简直侮辱了这个魔塔, <trigger.name>!"} @PlayersInRadius{r=40} ~onPlayerKill >0 1
   Options:
     FollowRange: 15
@@ -601,7 +601,7 @@ BOSS-魔塔统治者:
     - message{cooldown=50;m="<mob.name>&d>><&co> &c就这点实力请不要来侮辱镇魔塔了！"} @PlayersInRadius{r=20} ~onCombat <100% 0.3
     - message{cooldown=30;m="<mob.name>&d>><&co> &c无知的证明者，我会撕碎你的皮囊！然后捏碎你的骸骨！"} @PlayersInRadius{r=20} ~onCombat <50% 0.1
     - message{cooldown=50;m="<mob.name>&d>><&co> &c这里岂是你这种令人作呕的人能来这种地方？Hahaah，你还是继续颓废下去吧！"} @PlayersInRadius{r=20} ~onCombat <80% 0.1
-    - message{m="<mob.name>&d>><&co> &c丢尽证明者的脸，你简直侮辱了这个魔塔，你怎么可能击败我的分身的！ <trigger.name>!"} @PlayersInRadius{r=40} ~onPlayerKill >0 1
+    - message{m="<mob.name>&d>><&co> &c丢尽证明者的脸，你简直侮辱了这个魔塔，你怎么可能击败我的分身的！ <trigger.name>!"} @trigger ~onPlayerKill >0 1
   Options:
     FollowRange: 15
     MovementSpeed: 0.3

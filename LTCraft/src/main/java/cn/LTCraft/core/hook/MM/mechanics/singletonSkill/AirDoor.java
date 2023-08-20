@@ -17,15 +17,32 @@ public class AirDoor extends SkillMechanic implements ITargetedEntitySkill {
     private boolean forward = true;//监听前进还是后退
     private final WorldUtils.COORDINATE checkDirection;//X还是Z还是Z
     private double location = 0;
+    /**
+     * 距离限制，在yDistance线满足后计算
+     */
     private double distance = 10;
+    /**
+     * 高度限制
+     */
+    private double yDistance = 3;
+    /**
+     * 处决
+     */
     private String demand = "";
     private String message = "";
+    /**
+     * 失败信息
+     */
     private String fail = "";
+    /**
+     * 成功信息
+     */
     private String success = "";
     public AirDoor(String skill, MythicLineConfig mlc){
         super(skill, mlc);
         location = mlc.getInteger(new String[]{"location", "l"}, 0);
         distance = mlc.getDouble(new String[]{"distance", "di"}, 10);
+        yDistance = mlc.getDouble(new String[]{"yDistance", "di"}, 3);
         forward = mlc.getBoolean(new String[]{"forward", "f"}, true);
         checkDirection = WorldUtils.COORDINATE.valueOf(mlc.getString(new String[]{"direction"}, "X"));
         demand = mlc.getString(new String[]{"demand", "d"}, "");
@@ -88,5 +105,8 @@ public class AirDoor extends SkillMechanic implements ITargetedEntitySkill {
 
     public double getDistance() {
         return distance;
+    }
+    public double getYDistance() {
+        return yDistance;
     }
 }

@@ -19,3 +19,4 @@
     - message{m="&f*&7使用成功"} @self
     - heal{a=20} @self
     - potion{type=SPEED;d=2000;lvl=2} @self
+    - potion{type=FAST_DIGGING;d=2000;lvl=2} @self

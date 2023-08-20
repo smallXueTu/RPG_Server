@@ -10,6 +10,7 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.reflect.StructureModifier;
 import com.comphenix.protocol.wrappers.BlockPosition;
 import com.comphenix.protocol.wrappers.WrappedBlockData;
+import com.google.common.collect.ObjectArrays;
 import io.lumine.utils.tasks.Scheduler;
 import net.minecraft.server.v1_12_R1.EnumHand;
 import net.minecraft.server.v1_12_R1.PacketPlayInBlockDig;
@@ -26,7 +27,10 @@ import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.IntFunction;
+import java.util.stream.Stream;
 
 import static net.minecraft.server.v1_12_R1.PacketPlayInBlockDig.EnumPlayerDigType.START_DESTROY_BLOCK;
 
@@ -34,7 +38,12 @@ import static net.minecraft.server.v1_12_R1.PacketPlayInBlockDig.EnumPlayerDigTy
  * Created by Angel、 on 2023/6/28 20:21
  */
 public class WorldT5Handle implements WorldHandle{
-    private final static Vector[] door1Vector1 = WorldUtils.getVectors(new Vector(1078, 108, -1209), new Vector(1078, 103, -1207));
+    private final static List<DoorVectorInfo> doorVectors = new ArrayList<DoorVectorInfo>(){
+        {
+            add(new DoorVectorInfo(67, -76,WorldUtils.getVectors(new Vector(1078, 108, -1209), new Vector(1078, 103, -1207))));
+            add(new DoorVectorInfo(64, -79,WorldUtils.getVectors(new Vector(1034, 108, -1251), new Vector(1034, 103, -1249))));
+        }
+    };
     @Override
     public String getWorldName() {
         return "t5";
@@ -43,17 +52,19 @@ public class WorldT5Handle implements WorldHandle{
     @Override
     public void onChunkSend(ChunkSendEvent event) {
         Chunk chunk = event.getChunk();
-        if (chunk.getX() == 67 && chunk.getZ() == -76){//发送堵塞的块
-            Player player = event.getPlayer();
-            PacketContainer blockPacket = Main.getProtocolManager().createPacket(PacketType.Play.Server.BLOCK_CHANGE);
-            blockPacket.getBlockData().write(0, WrappedBlockData.createData(Material.QUARTZ_BLOCK, 2));//石英柱
-            List<PacketContainer> packetContainers = new ArrayList<>();
-            for (Vector vector : door1Vector1) {
-                PacketContainer packetContainer = blockPacket.shallowClone();
-                packetContainer.getBlockPositionModifier().write(0, new BlockPosition(vector.getBlockX(), vector.getBlockY(), vector.getBlockZ()));
-                packetContainers.add(packetContainer);
+        for (DoorVectorInfo doorVector : doorVectors) {
+            if (chunk.getX() == doorVector.getChunkX() && chunk.getZ() == doorVector.getChunkZ()){//发送堵塞的块
+                Player player = event.getPlayer();
+                PacketContainer blockPacket = Main.getProtocolManager().createPacket(PacketType.Play.Server.BLOCK_CHANGE);
+                blockPacket.getBlockData().write(0, WrappedBlockData.createData(Material.QUARTZ_BLOCK, 2));//石英柱
+                List<PacketContainer> packetContainers = new ArrayList<>();
+                for (Vector vector : doorVector.getVectors()) {
+                    PacketContainer packetContainer = blockPacket.shallowClone();
+                    packetContainer.getBlockPositionModifier().write(0, new BlockPosition(vector.getBlockX(), vector.getBlockY(), vector.getBlockZ()));
+                    packetContainers.add(packetContainer);
+                }
+                Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> packetContainers.forEach(packetContainer -> GameUtils.sendProtocolLibPacket(packetContainer, player)), 20);
             }
-            Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> packetContainers.forEach(packetContainer -> GameUtils.sendProtocolLibPacket(packetContainer, player)), 20);
         }
     }
 
@@ -69,10 +80,11 @@ public class WorldT5Handle implements WorldHandle{
     public void onUseItemEvent(PacketEvent event) {
         PacketContainer packet = event.getPacket();
         BlockPosition pos = packet.getBlockPositionModifier().read(0);
-        if (Arrays.stream(door1Vector1).anyMatch(vector ->
+        Vector[] vectors = doorVectors.stream().flatMap(doorVectorInfo -> Arrays.stream(doorVectorInfo.getVectors())).toArray(Vector[]::new);
+        if (Arrays.stream(vectors).anyMatch(vector ->
                 vector.getBlockX() == pos.getX() &&
-                vector.getBlockY() == pos.getY() &&
-                vector.getBlockZ() == pos.getZ()
+                        vector.getBlockY() == pos.getY() &&
+                        vector.getBlockZ() == pos.getZ()
         )) {
             event.setCancelled(true);
         }
@@ -82,7 +94,8 @@ public class WorldT5Handle implements WorldHandle{
     public void onBlockDigEvent(PacketEvent event) {
         PacketContainer packet = event.getPacket();
         BlockPosition pos = packet.getBlockPositionModifier().read(0);
-        if (Arrays.stream(door1Vector1).anyMatch(vector ->
+        Vector[] vectors = doorVectors.stream().flatMap(doorVectorInfo -> Arrays.stream(doorVectorInfo.getVectors())).toArray(Vector[]::new);
+        if (Arrays.stream(vectors).anyMatch(vector ->
                 vector.getBlockX() == pos.getX() &&
                         vector.getBlockY() == pos.getY() &&
                         vector.getBlockZ() == pos.getZ()
@@ -99,5 +112,30 @@ public class WorldT5Handle implements WorldHandle{
     public void onBlockPlaceEvent(PacketEvent event) {
         WorldHandle.super.onBlockPlaceEvent(event);
         Player player = event.getPlayer();
+    }
+
+    /**
+     * 门坐标信息
+     */
+    private static class DoorVectorInfo{
+        private int chunkX;
+        private int chunkZ;
+        private Vector[] vectors;
+        private DoorVectorInfo(int chunkX, int chunkZ, Vector[] vectors){
+            this.chunkX = chunkX;
+            this.chunkZ = chunkZ;
+            this.vectors = vectors;
+        }
+        public int getChunkX() {
+            return chunkX;
+        }
+
+        public int getChunkZ() {
+            return chunkZ;
+        }
+
+        public Vector[] getVectors() {
+            return vectors;
+        }
     }
 }
