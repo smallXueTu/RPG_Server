@@ -96,6 +96,8 @@ T5史诗宝箱守卫者:
     PreventOtherDrops: true
     AlwaysShowName: true
     PreventSunburn: true
+  Skills:
+    - execBQEvent{t=default.保存主线位置到T5进度6} @trigger ~onDeath
   Drops:
     - skillapi-exp 100
     - ltitem 材料:末地之城珍珠 1
@@ -145,6 +147,7 @@ T5史诗宝箱守卫者:
   Drops:
     - skillapi-exp 50
     - ltitem 材料:末地之城珍珠 1
+    - ltitem 材料:末影之城烈焰粉 0.5
 t5对话1:
   Type: armor_stand
   Options:
@@ -166,7 +169,7 @@ t5主线保护门1:
     Invincible: true
   Skills:
 #    - skill{s=t5主线保护门1} @Self ~onTimer:15
-    - airDoor{location=-1242;f=false;direction=Z;d=BQCondition:default.已拥有神秘的手册;mess=§c请至少打开一个神秘宝箱并获得神秘的手册！;} @Self ~onSpawn
+    - airDoor{location=-1242;f=false;direction=Z;d=BQCondition:default.已拥有神秘的手册;mess=§c请至少打开一个神秘宝箱并获得神秘的手册！;success=BQEvent:保存主线位置到T5进度2} @Self ~onSpawn
 t5主线保护门2:
   Type: armor_stand
   Options:

@@ -5,7 +5,7 @@ Title-Update: -1
 Layout:
   - - '#       #'
     - '# `末影头盔``末影胸甲` `末影护膝``末影战靴` #'
-    - '#       #'
+    - '# `末影之城之眼`     #'
     - '#       #'
     - '#       #'
 
@@ -43,12 +43,11 @@ Icons:
   '末影头盔':
     display:
       material: 306
-      shiny: 'true'
       name: "&e末影头盔"
       lore:
       - "&3<<&e兑换末影头盔×1"
       - "&3>>&e需要：末影之甲&e碎片×20"
-      - "&3>>&e需要：末影&元素×20"
+      - "&3>>&e需要：末影&e元素×20"
     actions:
       all:
         - 'LTExchange: 末影头盔'
@@ -56,39 +55,48 @@ Icons:
   '末影胸甲':
     display:
       material: 307
-      shiny: 'true'
       name: "&e末影胸甲"
       lore:
       - "&3<<&e兑换末影胸甲×1"
       - "&3>>&e需要：末影之甲&e碎片×32"
-      - "&3>>&e需要：末影&元素×32"
+      - "&3>>&e需要：末影&e元素×32"
     actions:
       all:
         - 'LTExchange: 末影胸甲'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
   '末影护膝':
     display:
-      material: 307
-      shiny: 'true'
+      material: 308
       name: "&e末影护膝"
       lore:
       - "&3<<&e兑换末影护膝×1"
       - "&3>>&e需要：末影之甲&e碎片×28"
-      - "&3>>&e需要：末影&元素×28"
+      - "&3>>&e需要：末影&e元素×28"
     actions:
       all:
         - 'LTExchange: 末影护膝'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
   '末影战靴':
     display:
-      material: 307
-      shiny: 'true'
+      material: 309
       name: "&e末影战靴"
       lore:
-      - "&3<<&e兑换末影战靴×1"
-      - "&3>>&e需要：末影之甲&e碎片×16"
-      - "&3>>&e需要：末影&元素×16"
+        - "&3<<&e兑换末影战靴×1"
+        - "&3>>&e需要：末影之甲&e碎片×16"
+        - "&3>>&e需要：末影&e元素×16"
     actions:
       all:
         - 'LTExchange: 末影战靴'
+        - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '末影之城之眼':
+    display:
+      material: 381
+      name: "&e末影之城之眼"
+      lore:
+        - "&3<<&e兑换末影之城之眼×1"
+        - "&3>>&e需要：影之城&e珍珠×1"
+        - "&3>>&e需要：末影之城&e烈焰粉×1"
+    actions:
+      all:
+        - 'LTExchange: 末影之城之眼'
         - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'

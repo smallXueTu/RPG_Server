@@ -43,7 +43,6 @@ Icons:
   '魔金之锤':
     display:
       material: 257
-      shiny: 'true'
       name: "&e魔金之锤"
       lore:
       - "&3<<&e兑换魔金之锤×1"
@@ -56,7 +55,6 @@ Icons:
   '高级武器锻造图纸':
     display:
       material: 339
-      shiny: 'true'
       name: "&e高级武器锻造图纸"
       lore:
       - "&3<<&e兑换高级武器锻造图纸×1"
@@ -69,7 +67,6 @@ Icons:
   '高级盔甲锻造图纸':
     display:
       material: 339
-      shiny: 'true'
       name: "&e高级盔甲锻造图纸"
       lore:
       - "&3<<&e兑换高级盔甲锻造图纸×1"
