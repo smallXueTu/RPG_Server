@@ -1,3 +1,25 @@
+普通-末影行者:
+  Type: Skeleton
+  Display: '&e【普通】&6末影行者'
+  Health: 1000
+  Damage: 6
+  Equipment:
+    - 末地之刃:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【高级】&6末影行者'
+    Player: '&e【高级】&6末影行者'
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 10
+    - 末影元素 1 1
+    - ltitem 初级末影行者战刃 1 0.2
 T5普通宝箱守卫者:
   Type: Skeleton
   Display: '&6普通宝箱守卫者'
@@ -18,6 +40,28 @@ T5普通宝箱守卫者:
     PreventSunburn: true
   Drops:
     - skillapi-exp 30
+中级-末影行者:
+  Type: Skeleton
+  Display: '&e【中级】&6末影行者'
+  Health: 1500
+  Damage: 8
+  Equipment:
+    - 末地之刃:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【高级】&6末影行者'
+    Player: '&e【高级】&6末影行者'
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 15
+    - 末影元素 1 1
+    - ltitem 中级末影行者战刃 1 0.2
 T5中级宝箱守卫者:
   Type: Skeleton
   Display: '&6中级宝箱守卫者'
@@ -37,7 +81,29 @@ T5中级宝箱守卫者:
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 50
+    - skillapi-exp 40
+高级-末影行者:
+  Type: Skeleton
+  Display: '&e【高级】&6末影行者'
+  Health: 2000
+  Damage: 15
+  Equipment:
+    - 末地之刃:HAND
+  Disguise:
+    Type: Player
+    Skin: '&e【高级】&6末影行者'
+    Player: '&e【高级】&6末影行者'
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 20
+    - 末影元素 1 1
+    - ltitem 高级末影行者战刃 1 0.2
 T5高级宝箱守卫者:
   Type: Skeleton
   Display: '&6高级宝箱守卫者'
@@ -57,7 +123,7 @@ T5高级宝箱守卫者:
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 80
+    - skillapi-exp 50
 T5史诗宝箱守卫者:
   Type: Skeleton
   Display: '&6史诗宝箱守卫者'
@@ -77,7 +143,7 @@ T5史诗宝箱守卫者:
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 80
+    - skillapi-exp 60
 魔影行者:
   Type: Skeleton
   Display: '&6魔影行者'
@@ -99,7 +165,7 @@ T5史诗宝箱守卫者:
   Skills:
     - execBQEvent{t=default.保存主线位置到T5进度6} @trigger ~onDeath
   Drops:
-    - skillapi-exp 100
+    - skillapi-exp 80
     - ltitem 材料:末地之城珍珠 1
     - ltitem 材料:末影药剂 1
 魔影守卫者:
@@ -108,7 +174,7 @@ T5史诗宝箱守卫者:
   Health: 6000
   Damage: 30
   Equipment:
-    - 末地之刃:HAND
+    - 末地之剑:HAND
   Disguise:
     Type: Player
     Skin: '&6魔影守卫者'
@@ -121,7 +187,7 @@ T5史诗宝箱守卫者:
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 100
+    - skillapi-exp 80
     - ltitem 材料:末地之城珍珠 1
     - ltitem 材料:末影药剂 1
   Skills:
@@ -145,7 +211,7 @@ T5史诗宝箱守卫者:
     AlwaysShowName: true
     PreventSunburn: true
   Drops:
-    - skillapi-exp 50
+    - skillapi-exp 20
     - ltitem 材料:末地之城珍珠 1
     - ltitem 材料:末影之城烈焰粉 0.5
 t5对话1:

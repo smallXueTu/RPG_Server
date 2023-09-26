@@ -235,7 +235,7 @@ public class PlayerListener  implements Listener {
     @EventHandler
     public void onBucketFillEvent(PlayerBucketFillEvent event){
         Player player = event.getPlayer();
-        if (Game.rpgWorlds.contains(player.getWorld().getName())){
+        if (!player.isOp() && Game.rpgWorlds.contains(player.getWorld().getName())){
             ItemStack itemStack = player.getInventory().getItemInMainHand();
             event.setCancelled(true);
             Material material = event.getBlockClicked().getType() == Material.LAVA || event.getBlockClicked().getType() == Material.STATIONARY_LAVA?Material.LAVA_BUCKET:Material.WATER_BUCKET;
@@ -250,7 +250,7 @@ public class PlayerListener  implements Listener {
     @EventHandler
     public void onBucketEmptyEvent(PlayerBucketEmptyEvent event){
         Player player = event.getPlayer();
-        if (Game.rpgWorlds.contains(player.getWorld().getName())){
+        if (!player.isOp() && Game.rpgWorlds.contains(player.getWorld().getName())){
             event.setCancelled(true);
         }
     }

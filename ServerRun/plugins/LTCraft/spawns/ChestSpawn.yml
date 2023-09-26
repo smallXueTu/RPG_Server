@@ -312,7 +312,7 @@ T5高级守卫者23:
   z: -1172
   maxMobs: 1
   locations:
-    - 1067.5:104:-1171.5:t5
+  - 1067.5:104:-1171.5:t5
   spawnRange: 1
   dropTable: T5高级宝箱掉落
   品质: 高级
@@ -324,8 +324,19 @@ T5高级守卫者24:
   z: -1180
   maxMobs: 1
   locations:
-    - 1052.5:104:-1179.5:t5
+  - 1052.5:104:-1179.5:t5
   spawnRange: 1
   dropTable: T5高级宝箱掉落
   品质: 高级
-
+T5高级守卫者25:
+  mobName: T5高级宝箱守卫者
+  world: t5
+  x: 1083
+  y: 103
+  z: -1184
+  maxMobs: 2
+  locations:
+  - 1088:103:-1186:t5
+  - 1089:103:-1180:t5
+  spawnRange: 1
+  dropTable: T5高级宝箱掉落

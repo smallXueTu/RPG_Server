@@ -118,7 +118,9 @@ public class AllListener implements Listener {
             }
             double originalDamage = ((CraftPlayer) damagerPlayer).getHandle().getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).getValue();
             EntityPlayer handle = ((CraftPlayer) damagerPlayer).getHandle();
-            originalDamage += EnchantmentManager.a(handle.getItemInMainHand(), ((EntityLiving) ((CraftEntity) entity).getHandle()).getMonsterType());
+            if (entity instanceof LivingEntity) {
+                originalDamage += EnchantmentManager.a(handle.getItemInMainHand(), ((EntityLiving) ((CraftEntity) entity).getHandle()).getMonsterType());
+            }
             PlayerAttribute damagerAttribute = PlayerAttribute.getPlayerAttribute(damagerPlayer);
             //设置伤害
             double p = Math.min(event.getDamage() / originalDamage, 1.2);
