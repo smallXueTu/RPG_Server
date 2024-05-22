@@ -74,3 +74,54 @@
   Drops:
     - skillapi-exp 30
     - 凝固冷却液 1 1
+远古炽火制炉师:
+  Type: Skeleton
+  Display: '&6远古炽火制炉师'
+  Health: 2000
+  Damage: 30
+  Equipment:
+    - 锻造锤:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6远古炽火制炉师'
+    Player: '&6远古炽火制炉师'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 远古原石 1 0.5
+    - ltitem 材料:远古之火 1 0.5
+进阶远古锻造师:
+  Type: Skeleton
+  Display: '&6进阶远古锻造师'
+  Health: 2000
+  Damage: 30
+  Equipment:
+    - 锻造锤:HAND
+  Disguise:
+    Type: Player
+    Skin: '&6进阶远古锻造师'
+    Player: '&6进阶远古锻造师'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  Options:
+    FollowRange: 10
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - 进阶核心 1 0.5

@@ -99,6 +99,9 @@ public class UseItemEffect {
                     case "f2":
                         menuName = "F2";
                         break;
+                    case "f3":
+                        menuName = "F3";
+                        break;
                     default:
                         player.sendMessage("§c附近没有可交易资源。");
                         break;

@@ -133,7 +133,6 @@ public class Main extends JavaPlugin {
         Main.getInstance().registerPacket(new WorldPacketAdapter(this));
 
         new CommandLoader();
-
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
             PlaceholderAPI.registerExpansion(new LTExpansion());
             if (getEvnMode() == EnvironmentMode.PRODUCTION){

@@ -123,6 +123,7 @@ public class Command implements CommandExecutor {
                                     yamlConfiguration.set("右键动作", "无");
                                     yamlConfiguration.set("左键动作", "无");
                                     yamlConfiguration.set("捡起动作", "无");
+                                    yamlConfiguration.set("放置注入属性", "无");
                                     yamlConfiguration.set("显示名字", "§6" + args[2]);
                                     yamlConfiguration.set("说明", new ArrayList<>());
                                     yamlConfiguration.save(file);

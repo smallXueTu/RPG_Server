@@ -6,6 +6,7 @@ import cn.LTCraft.core.entityClass.ClutterItem;
 import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.GameUtils;
+import cn.LTCraft.core.utils.MathUtils;
 import cn.LTCraft.core.utils.Utils;
 import cn.LTCraft.core.utils.WorldUtils;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
@@ -72,7 +73,8 @@ public class TimerMobSpawn extends AbstractMobSpawn {
             hologram.appendTextLine("§a=========[" + insideName + "§a]=========");
             hologram.appendTextLine("§6名字:§3" + mobName + "§d还有:LTSpawn:" + insideName + ":colling");
             hologram.appendTextLine("§e当前怪物数量:LTSpawn:" + insideName + ":mobCount/" + maxMobs);
-            if (mm.getConfig().getBoolean("团队")) hologram.appendTextLine("§c这个怪物需要多人配合击杀！");
+            if (mm.getConfig().getBoolean("团队")) hologram.appendTextLine("§c这个怪物需要多人配合击`杀！");
+            if (mm.getConfig().getInteger("护甲", 0) > 0) hologram.appendTextLine("§6护甲:" + mm.getConfig().getInteger("护甲", 0) + "(" + Utils.formatNumber(MathUtils.getInjuryFreePercentage(mm.getConfig().getInteger("护甲", 0)) * 100, 2) + "%)");
             for (int i = 0; i < mm.getDrops().size(); i++) {
                 String drop = mm.getDrops().get(i);
                 String[] drops = MythicLineConfig.unparseBlock(drop).split(" ");
@@ -107,7 +109,7 @@ public class TimerMobSpawn extends AbstractMobSpawn {
             if (
                 timer++ >= cooling
                 &&
-                location.getWorld().getPlayers().stream().anyMatch(player -> player.getLocation().distance(location) <= range)
+                location.getWorld().getPlayers().stream().anyMatch(player -> player.getLocation().distance(location) <= range * 2)
             ) {
                 if (spawnMob()) {
                     timer = 0;

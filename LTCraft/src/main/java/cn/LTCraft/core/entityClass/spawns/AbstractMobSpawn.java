@@ -46,6 +46,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
     protected boolean closed = false;
     protected final MythicConfig config;
     protected int spawnRange = 1;
+    protected int lastIndex = 0;
     /**
      * 这个刷怪点的key
      */
@@ -70,6 +71,7 @@ public abstract class AbstractMobSpawn implements TickEntity {
             this.locations[i] = GameUtils.spawnLocation(locations.get(i));
         }
         GlobalRefresh.addTickEntity(this);
+        lastIndex = maxMobs;
     }
     public boolean doTick(long tick){
         if (closed)return false;
@@ -173,11 +175,16 @@ public abstract class AbstractMobSpawn implements TickEntity {
     }
 
     public int getIndex(){
-        for (int i = mobs.length - 1; i >= 0; i--) {
+        int loopCount = 0;
+        for (int i = lastIndex - 1; i >= 0; i--) {
             ActiveMob mob = mobs[i];
             if (mob == null || mob.isDead() || mob.getEntity().getBukkitEntity().isDead()){
+                lastIndex = i;
+                if (lastIndex <= 0)lastIndex = maxMobs;
                 return i;
             }
+            if (i == 0) i = maxMobs;
+            if (loopCount++ > maxMobs)break;
         }
         return -1;
     }

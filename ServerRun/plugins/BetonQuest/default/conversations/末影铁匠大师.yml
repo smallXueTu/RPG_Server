@@ -1,0 +1,75 @@
+quester: '末影铁匠大师'
+first: '拥有终极武器图纸,满足条件,清理干净,介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你怎么来这里了，我已经好就没在这里见到过人了。'
+    conditions: ''
+    pointer: '介绍情况'
+    events: ''
+  '清理干净':
+    text: '你不完成我的击杀要求我很难帮你...'
+    conditions: '开始击杀末影僵尸'
+    pointer: '好的'
+    events: ''
+  '提出条件':
+    text: '&a你：我是一名证明者....然后已不小心掉到这个鬼地方了。\n&a对了，你就是手册上所指的铁匠大师吧。我想出去只能靠你了。\n末影铁匠大师：那你运气挺好的，我在这里面隐居怎么久都没人发现，居然被你找到了。\n既然提到我的称号，那你肯定想制作终极装备来逃离这个地方吧。我也不白帮你。\n外面的几只僵尸一直在嚎叫，你帮我清理30只吧！'
+    conditions: ''
+    pointer: '没有问题'
+    events: ''
+  '满足条件':
+    text: '你做的很棒，我先看看一下你刚刚提到的手册内容。'
+    conditions: '已击杀30只末影僵尸'
+    pointer: '给他手册'
+    events: ''
+  '看了手册':
+    text: '你的手册好像缺少了五张关键内容，你需要击杀§e“魔影守卫者“§r去获得这些内容，在你来的路上你应该注意到过。'
+    conditions: ''
+    pointer: '我已经有了,我现在去获取'
+    events: ''
+  '拥有终极武器图纸':
+    text: '图纸和完整的手册你都有了，还不快去锻造武器！'
+    conditions: '拥有终极武器图纸'
+    pointer: '我试试'
+    events: ''
+  '赐予神秘的末地使者':
+    text: '很好，我刚刚看了完整的内容，书中所指的锻造大师也可以是你自己。\n这样吧，我给你一张图纸，我会在这张图纸中详细说明锻造过程的。\n那么接下来就需要你亲自操盘了~'
+    conditions: ''
+    pointer: '我试试'
+    events: '拿走五张图纸和残缺神秘手册,赐予完整的神秘手册,赐予终极武器锻造图纸'
+player_options:
+  '介绍情况':
+    text: '向他介绍情况...'
+    conditions: ''
+    pointer: '提出条件'
+    events: ''
+  '好的':
+    text: '好的...'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '没有问题':
+    text: '没有问题！'
+    conditions: ''
+    pointer: ''
+    events: '添加开始击杀30只末影僵尸,添加开始击杀末影僵尸标签,保存主线位置到T5进度7'
+  '给他手册':
+    text: '给他手册'
+    conditions: ''
+    pointer: '看了手册'
+    events: ''
+  '我已经有了':
+    text: '我已经有了'
+    conditions: '已拥有五张失落的手册内容'
+    pointer: '赐予神秘的末地使者'
+    events: ''
+  '我现在去获取':
+    text: '我现在去获取'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '我试试':
+    text: '那我去试试！'
+    conditions: ''
+    pointer: ''
+    events: ''

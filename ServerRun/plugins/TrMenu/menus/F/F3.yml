@@ -1,0 +1,79 @@
+Title: '§lF2兑换菜单'
+
+Title-Update: -1
+
+Layout:
+  - - '#   `进阶锻造熔炉`   #'
+    - '#  `进阶燃料`    #'
+    - '#  `进阶熔炼石`    #'
+    - '#       #'
+    - '#       #'
+
+PlayerInventory:
+  - - '         '
+    - '         '
+    - '         '
+    - '         '
+
+Options:
+  Arguments: false
+  Default-Arguments: [ ]
+  Default-Layout: 0
+  Hide-Player-Inventory: false
+  Min-Click-Delay: 200
+Events:
+  Open:
+    - condition: 'perm *trmenu.use'
+      actions:
+        - 'sound: BLOCK_CHEST_OPEN-1-0'
+      deny:
+        - 'sound: ENTITY_ITEM_BREAK-1-0'
+        - 'title: `&c&lPermission Required` `&7&lYou need permission &6&ltrmenu.use &7&lto open this menu` 15 20 15'
+        - 'return'
+  Close:
+    - 'sound: BLOCK_CHEST_CLOSE-1-0'
+
+Icons:
+  '#':
+    display:
+      material: Pink Stained Glass Pane
+      name: "&d旁白君"
+    actions:
+      all: 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '进阶锻造熔炉':
+    display:
+      material: 61
+      name: "&6进阶锻造熔炉"
+      lore:
+        - "&3<<&e兑换进阶锻造熔炉×1"
+        - "&3>>&e需要：熔炉×1"
+        - "&3>>&e需要：远古&e原石×8"
+        - "&3>>&e需要：远古&e之火×8"
+    actions:
+      all:
+       - 'LTExchange: 进阶锻造熔炉'
+       - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '进阶燃料':
+    display:
+      material: 263
+      name: "&6进阶燃料"
+      lore:
+        - "&3<<&e兑换进阶燃料×1"
+        - "&3>>&e需要：初级&e燃料×1"
+        - "&3>>&e需要：进阶&e核心×1"
+    actions:
+      all:
+       - 'LTExchange: 进阶燃料'
+       - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'
+  '进阶熔炼石':
+    display:
+      material: 337
+      name: "&6进阶熔炼石"
+      lore:
+        - "&3<<&e兑换进阶熔炼石×1"
+        - "&3>>&e需要：通用&e熔炼石×1"
+        - "&3>>&e需要：进阶&e核心×1"
+    actions:
+      all:
+       - 'LTExchange: 进阶熔炼石'
+       - 'sound: BLOCK_NOTE_BLOCK_PLING-1-2'

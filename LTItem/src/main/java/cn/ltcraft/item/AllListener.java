@@ -25,7 +25,13 @@ import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlockEntityState;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlockState;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
@@ -35,6 +41,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -47,6 +54,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -409,6 +417,40 @@ public class AllListener implements Listener {
     public void onCombustEvent(EntityCombustEvent event){
         if (event.getEntity() instanceof Player) {
             TriggerAction.onCombust(((Player) event.getEntity()), event);
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event){
+        ItemStack itemStack = event.getItemInHand();
+        NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
+        LTItem ltItem = Utils.getLTItems(nbt);
+        if (ltItem instanceof cn.ltcraft.item.items.Material){
+            cn.ltcraft.item.items.Material material = (cn.ltcraft.item.items.Material) ltItem;
+            if (material.getConfig().contains("放置注入属性")){//todo
+                Block block = event.getBlockPlaced();
+                if (block.getState() instanceof CraftBlockEntityState){
+//                    ConfigurationSection section = material.getConfig().getConfigurationSection("放置注入属性");
+//                    CraftBlockEntityState<?> blockState = (CraftBlockEntityState<?>) block.getState();
+//                    NBTTagCompound snapshotNBT = blockState.getSnapshotNBT();
+//                    for (String key : section.getKeys(false)) {
+//                        snapshotNBT.setString(key, section.getString(key));
+//                    }
+////                    try {
+////                        Method getTileEntity = CraftBlockEntityState.class.getDeclaredMethod("getTileEntity");
+////                        getTileEntity.setAccessible(true);
+////                        TileEntity tileEntity = ((TileEntity) getTileEntity.invoke(blockState));
+////                        tileEntity.save(snapshotNBT);
+////                    }catch (Exception exception){
+////                        exception.printStackTrace();
+////                    }
+//                    Location location = block.getLocation();
+//                    Bukkit.getScheduler().runTaskLater(LTItemSystem.getInstance(), () -> {
+//                        TileEntity tileEntity = ((CraftWorld) location.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+//                        tileEntity.load(snapshotNBT);
+//                    }, 10L);
+                }
+            }
         }
     }
 }

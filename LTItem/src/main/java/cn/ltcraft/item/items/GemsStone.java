@@ -23,6 +23,11 @@ public class GemsStone extends AbstractAttribute implements ConfigurableLTItem {
     public static void initItems(){
         gemsStones.put("永恒水晶", EternalCrystal.class);
         gemsStones.put("高级永恒水晶", EternalCrystal.class);
+        gemsStones.put("武器精髓", EssenceOfWeapons.class);
+        gemsStones.put("盔甲精髓", EssenceOfArmor.class);
+        gemsStones.put("初级武器经验水晶", WeaponExpCrystal.class);
+        gemsStones.put("中级武器经验水晶", WeaponExpCrystal.class);
+        gemsStones.put("高级武器经验水晶", WeaponExpCrystal.class);
     }
     public static GemsStone get(MemoryConfiguration configuration){
         if (gemsStones.containsKey(configuration.getString("名字"))){
@@ -153,36 +158,11 @@ public class GemsStone extends AbstractAttribute implements ConfigurableLTItem {
     }
 
     /**
-     * 为什么提供两个参数？
-     * 第一个参数已经包括了第二个参数，处理宝石逻辑 的时候 处理的代码块已经有NBT对象了
-     * 直接传递过来不用这里再去获取了
+     * 将宝石安装到指定物品
      * @param itemStack 物品堆
-     * @param nbtTagCompound nbt
      * @return 处理后的 如果返回null则不用处理
      */
-    public Object generalInstallOn(ItemStack itemStack, NBTTagCompound nbtTagCompound){
-        Class<? extends GemsStone> aClass = this.getClass();
-        Class<?> superclass = aClass.getSuperclass();
-        if (superclass == GemsStone.class) {
-            NBTTagCompound nbt = installOn(nbtTagCompound);
-            if (nbtTagCompound != nbt){
-                return nbt;
-            }
-            return installOn(itemStack);
-        }
+    public ItemStack installOn(ItemStack itemStack){
         return null;
-    }
-    protected ItemStack installOn(ItemStack itemStack){
-        return itemStack;
-    }
-
-    /**
-     * 一个物品安装了它
-     * 用于子类处理逻辑
-     * @param nbtTagCompound nbt
-     * @return 安装完成后的
-     */
-    protected NBTTagCompound installOn(NBTTagCompound nbtTagCompound){
-        return nbtTagCompound;
     }
 }

@@ -4,9 +4,12 @@ import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.other.UseItemEffect;
 import cn.LTCraft.core.entityClass.Cooling;
 import cn.LTCraft.core.utils.*;
+import cn.hutool.core.util.ObjectUtil;
 import cn.ltcraft.item.base.*;
+import cn.ltcraft.item.base.interfaces.Attribute;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
+import cn.ltcraft.item.base.interfaces.Upgradeable;
 import cn.ltcraft.item.items.GemsStone;
 import cn.ltcraft.item.objs.ItemObjs;
 import com.google.gson.Gson;
@@ -29,7 +32,8 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 public class Utils {
-    private static final List<String> list = Arrays.asList("近战", "远程", "通用");
+    // 武器
+    private static final List<String> weaponTypes = Arrays.asList("近战", "远程", "通用");
 
     /**
      * 获取一个NBT内的json标签
@@ -54,6 +58,62 @@ public class Utils {
 
         }
         return new HashMap<>();
+    }
+    /**
+     * 获取装备等级
+     * @param nbt 装备的NBT
+     * @return 等级
+     */
+    public static int getEquipmentLevel(NBTTagCompound nbt){
+        if(nbt.hasKey("ltAttribute")){
+            NBTTagCompound nbtTagCompound = nbt.getCompound("ltAttribute");
+            if (nbtTagCompound.hasKey("level"))
+                return nbtTagCompound.getInt("level");
+        }
+        return 0;
+    }
+    /**
+     * 设置装备等级
+     * @param nbt 装备的NBT
+     * @param level 等级
+     * @return 是否成功
+     */
+    public static boolean setEquipmentLevel(NBTTagCompound nbt, int level){
+        if(nbt.hasKey("ltAttribute")){
+            NBTTagCompound nbtTagCompound = nbt.getCompound("ltAttribute");
+            nbtTagCompound.setInt("level", level);
+            return true;
+        }else {
+            return false;
+        }
+    }
+    /**
+     * 获取装备最高等级
+     * @param nbt 装备的NBT
+     * @return 等级
+     */
+    public static int getEquipmentMaxLevel(NBTTagCompound nbt){
+        if(nbt.hasKey("ltAttribute")){
+            NBTTagCompound nbtTagCompound = nbt.getCompound("ltAttribute");
+            if (nbtTagCompound.hasKey("maxLevel"))
+                return nbtTagCompound.getInt("maxLevel");
+        }
+        return 0;
+    }
+    /**
+     * 设置装备最高等级
+     * @param nbt 装备的NBT
+     * @param level 等级
+     * @return 是否成功
+     */
+    public static boolean setEquipmentMaxLevel(NBTTagCompound nbt, int level){
+        if(nbt.hasKey("ltAttribute")){
+            NBTTagCompound nbtTagCompound = nbt.getCompound("ltAttribute");
+            nbtTagCompound.setInt("maxLevel", level);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     /**
@@ -93,10 +153,10 @@ public class Utils {
     }
 
     /**
-     * @see Utils#list
+     * @see Utils#weaponTypes
      */
     public static boolean isWeapon(String type){
-        return list.contains(type);
+        return weaponTypes.contains(type);
     }
 
     /**
@@ -229,20 +289,22 @@ public class Utils {
                 loreStr = loreStr.replace("%binding%", ItemUtils.getBinding(itemStack));
             }
         }
+        if (abstractAttribute instanceof Upgradeable && (loreStr.contains("%maxLevel%") || loreStr.contains("%level%"))){
+            NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
+            loreStr = loreStr.replace("%maxLevel%", getEquipmentMaxLevel(nbt) + "");
+            loreStr = loreStr.replace("%level%", getEquipmentLevel(nbt) + "");
+        }
         List<String> list = Arrays.asList(loreStr.split("\n"));
         itemMeta.setLore(list);
         itemStack.setItemMeta(itemMeta);
         /*
          * 安装宝石
          */
-        NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
         for (String s : set) {
             GemsStone gemstone = ItemObjs.getGemstone(s);
-            Object o = gemstone.generalInstallOn(itemStack, nbt);
-            if (o instanceof ItemStack){
-                itemStack = ((ItemStack) o);
-            }else if(o instanceof NBTTagCompound){
-                itemStack = ItemUtils.setNBT(itemStack, nbt);
+            ItemStack result = gemstone.installOn(itemStack);
+            if (ObjectUtil.isNotEmpty(result)) {
+                itemStack = result;
             }
         }
         return itemStack.clone();
@@ -266,6 +328,12 @@ public class Utils {
                 aicla.addAttribute(gemsStone);
             }
         }
+
+        if (aicla instanceof Upgradeable){
+            Attribute attribute = ((Upgradeable) aicla).calculateAttributes(nbt);
+            attribute.addAttribute(attribute);
+        }
+
         aicla.addAttribute(new JsonAttribute(json));
         return aicla;
     }
@@ -323,7 +391,7 @@ public class Utils {
                         LivingEntity entity = ((LivingEntity) event.getEntity());
                         Location location = entity.getLocation();
                         ActiveMob mythicMob = EntityUtils.getMythicMob(entity);
-                        if (mythicMob != null && (mythicMob.getType().getInternalName().endsWith("护卫") || mythicMob.getType().getInternalName().endsWith("士兵")) && location.distance(player.getLocation()) < 2.5 && mythicMob.getEntity().getTarget() == null){
+                        if (mythicMob != null && (mythicMob.getType().getInternalName().endsWith("护卫") || mythicMob.getType().getInternalName().endsWith("士兵")) && location.distance(player.getLocation()) < 3 && mythicMob.getEntity().getTarget() == null){
                             if (MathUtils.getMinAngle(location.getYaw(), player.getLocation().getYaw()) < 90) {
                                 //满足再背后要求
                                 int max = Integer.parseInt(split[1]);
@@ -358,6 +426,10 @@ public class Utils {
             }
         }
     }
+
+    /**
+     * 获取最大镶嵌
+     */
     public static int getMaxSet(String quality){
         switch (cn.LTCraft.core.utils.Utils.clearColor(quality)){
             case "中级":
@@ -375,6 +447,27 @@ public class Utils {
                 return 10;
             default:
                 return 3;
+        }
+    }
+
+    /**
+     * 获取最大等级
+     */
+    public static int getMaxLevel(String quality){
+        switch (cn.LTCraft.core.utils.Utils.clearColor(quality)){
+            case "终极":
+                return 30;
+            case "史诗":
+                return 50;
+            case "神话":
+            case "至臻":
+                return 80;
+            case "中级":
+            case "高级":
+            case "稀有":
+            case "传说":
+            default:
+                return 0;
         }
     }
 }

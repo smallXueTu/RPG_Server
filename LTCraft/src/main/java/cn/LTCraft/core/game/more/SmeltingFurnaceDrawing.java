@@ -20,7 +20,7 @@ public class SmeltingFurnaceDrawing extends MemoryConfiguration {
         YamlConfiguration drawingYaml = Config.getInstance().getDrawingYaml();
         if (drawingYaml.contains(name)){
             MythicConfig mythicConfig = new MythicConfig(name, drawingYaml);
-            if (mythicConfig.getString("parent")!=null){
+            if (mythicConfig.getString("parent") != null){
                 MythicConfig parent = new MythicConfig(mythicConfig.getString("parent"), drawingYaml);
                 drawing = new SmeltingFurnaceDrawing(name, mythicConfig, parent);
             }else {

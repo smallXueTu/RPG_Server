@@ -246,6 +246,9 @@
 神秘的手册:
   match: "神秘的手册"
   texture: "t5/神秘的手册.png"
+完整的神秘手册:
+  match: "完整的神秘手册"
+  texture: "t5/神秘的手册.png"
 末影吊坠:
   match: "末影吊坠"
   texture: "t5/末影吊坠.png"
@@ -317,6 +320,12 @@
 通用要素:
   match: "通用要素"
   texture: "f3/通用要素.png"
+远古原石:
+  match: "远古原石"
+  texture: "f3/远古原石.png"
+进阶核心:
+  match: "进阶核心"
+  texture: "f3/进阶核心.png"
 #---------------------- 药剂 ----------------------
 小型生命药剂:
   match: "小型生命药剂"
@@ -412,12 +421,18 @@
   match: "管理员之戒"
   texture: "全局/管理员之戒.png"
 #---------------------- 锻造 ----------------------
-熔炼石:
-  match: "熔炼石"
-  texture: "锻造/熔炼石.png"
-燃料:
-  match: "燃料"
-  texture: "锻造/燃料.png"
+通用熔炼石:
+  match: "通用熔炼石"
+  texture: "锻造/通用熔炼石.png"
+进阶熔炼石:
+  match: "进阶熔炼石"
+  texture: "锻造/进阶熔炼石.png"
+初级燃料:
+  match: "初级燃料"
+  texture: "锻造/初级燃料.png"
+进阶燃料:
+  match: "进阶燃料"
+  texture: "锻造/进阶燃料.png"
 急速冷却液:
   match: "急速冷却液"
   texture: "锻造/急速冷却液.png"

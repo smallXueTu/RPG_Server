@@ -68,9 +68,13 @@ public class DragonCoreListener implements Listener {
                         if (itemStack !=null && itemStack.getType() != Material.AIR) {
                             DragonCoreUtil.getItemStack(player, "材料格子", itemStack1 -> {
                                 if (itemStack1 != null && itemStack1.getType() != Material.AIR) {
-                                    Game.startForging(itemStack, itemStack1, player);
                                     DragonCoreUtil.setItemStack(player, "装备格子", new ItemStack(Material.AIR), null);
                                     DragonCoreUtil.setItemStack(player, "材料格子", new ItemStack(Material.AIR), null);
+                                    if (Game.startForging(itemStack, itemStack1, player)) {
+
+                                    }else {
+
+                                    }
                                 }
                             });
                         }

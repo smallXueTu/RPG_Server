@@ -117,7 +117,7 @@ t4火焰粒子门1:
     Player: '&6恶魔能量原体'
   Options:
     FollowRange: 8
-    MovementSpeed: 0.35
+    MovementSpeed: 0.3
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true
@@ -141,7 +141,7 @@ t4火焰粒子门1:
     Player: '&6恶魔力量原体'
   Options:
     FollowRange: 8
-    MovementSpeed: 0.35
+    MovementSpeed: 0.3
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true
@@ -166,7 +166,7 @@ t4火焰粒子门1:
     Player: '&6古堡统治者-雷电之主'
   Options:
     FollowRange: 8
-    MovementSpeed: 0.35
+    MovementSpeed: 0.3
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true
@@ -193,7 +193,7 @@ t4火焰粒子门1:
     Player: '&6古堡统治者-恶魔之主'
   Options:
     FollowRange: 8
-    MovementSpeed: 0.35
+    MovementSpeed: 0.3
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true
@@ -220,7 +220,7 @@ t4火焰粒子门1:
     Player: '&6古堡统治者-火魔之主'
   Options:
     FollowRange: 8
-    MovementSpeed: 0.35
+    MovementSpeed: 0.3
     UseThreatTable: true
     PreventOtherDrops: true
     AlwaysShowName: true

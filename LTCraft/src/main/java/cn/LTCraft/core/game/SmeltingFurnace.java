@@ -8,6 +8,9 @@ import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.other.exceptions.SmeltingFurnaceErrorException;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.*;
+import cn.hutool.core.util.ObjectUtil;
+import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
+import cn.ltcraft.item.base.interfaces.LTItem;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.gmail.filoghost.holographicdisplays.api.line.HologramLine;
@@ -17,11 +20,14 @@ import com.gmail.filoghost.holographicdisplays.object.line.CraftHologramLine;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
 import net.minecraft.server.v1_12_R1.DamageSource;
+import org.apache.commons.lang.ObjectUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
 import org.bukkit.block.Furnace;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftFurnace;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftItem;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.entity.*;
@@ -144,6 +150,10 @@ public class SmeltingFurnace implements TickEntity {
      * 最近的异常
      */
     private SmeltingFurnaceErrorException lastException = null;
+    /**
+     * 等级
+     */
+    private Level level;
 
     public SmeltingFurnace(Player player, Location location, Entity itemFrame, SmeltingFurnaceDrawing drawing){
         this.location = location;
@@ -178,6 +188,7 @@ public class SmeltingFurnace implements TickEntity {
         furnaces = getFurnaces(location, itemFrame);
         anvils = getAnvils(location, itemFrame);
         chest = WorldUtils.getSideBlock(location, WorldUtils.SIDE.UP);
+        level = Level.getByName(drawing.getString("level"));
     }
     public Player getPlayer() {
         return player;
@@ -201,7 +212,7 @@ public class SmeltingFurnace implements TickEntity {
             updateProcess();
             if (age % 20 == 0){
                 add = 20;//每20s检查一次错误 所以要等于20
-                FakeBlock[] check = check(location, itemFrame);
+                FakeBlock[] check = check(getLevel(), location, itemFrame);
                 if (check.length > 0){
                     throw new SmeltingFurnaceErrorException("熔炼坛结构被破坏！", SmeltingFurnaceErrorException.Type.STRUCTURE);
                 }
@@ -511,7 +522,9 @@ public class SmeltingFurnace implements TickEntity {
                             cleanFurnaces();
                             inventory.clear();
                         } else {
-                            lines.add(hologram.appendTextLine("§a熔炼已完成，等待玩家靠近！"));
+                            if (!ObjectUtil.equals("§a熔炼已完成，等待玩家靠近！", lines.get(0).getText())) {
+                                lines.add(hologram.appendTextLine("§a熔炼已完成，等待玩家靠近！"));
+                            }
                         }
                     }else {
                         waitingTime++;
@@ -703,11 +716,14 @@ public class SmeltingFurnace implements TickEntity {
         }
         if (done)return;
         ItemStack itemStack = ((ItemFrame) itemFrameEntity).getItem();
-        String name;
-        if (itemStack == null || !itemStack.hasItemMeta() || (name = itemStack.getItemMeta().getDisplayName()) == null){
+        LTItem ltItem = cn.ltcraft.item.utils.Utils.getLTItems(itemStack);
+        if (ltItem == null || !(ltItem instanceof ConfigurableLTItem)){
             throw new SmeltingFurnaceErrorException("找不到图纸！", SmeltingFurnaceErrorException.Type.DRAWING_ABNORMAL, 60, true);
         }
-        if (!Utils.clearColor(name).equals(this.drawing.getName())) {
+        ConfigurableLTItem configurableLTItem = (ConfigurableLTItem) ltItem;
+        String forgingType = configurableLTItem.getConfig().getString("锻造类型");
+
+        if (ObjectUtil.notEqual(forgingType, this.drawing.getName())) {
             throw new SmeltingFurnaceErrorException("现在图纸与开始图纸不符合！", SmeltingFurnaceErrorException.Type.DRAWING_ABNORMAL, 60, true);
         }
     }
@@ -830,7 +846,7 @@ public class SmeltingFurnace implements TickEntity {
      * @return 等级
      */
     public Level getLevel(){
-        return Level.CURRENCY;//目前只实现通用
+        return level;
     }
 
     /**
@@ -991,7 +1007,8 @@ public class SmeltingFurnace implements TickEntity {
      * TODO: 优化 它！
      * @return 错误的方块
      */
-    public static FakeBlock[] check(Location location, Location itemFrame){
+    public static FakeBlock[] check(Level level, Location location, Location itemFrame){
+        // 不符合多方块结构的块
         List<FakeBlock> blocks = new ArrayList<>();
         Block block;
         //背向
@@ -1043,9 +1060,21 @@ public class SmeltingFurnace implements TickEntity {
                 stones.add(WorldUtils.getSideBlock(bottom.getLocation(), WorldUtils.SIDE.UP));
                 if (side != entrance.getId())stones.add(WorldUtils.getSideBlock(bottom.getLocation(), WorldUtils.SIDE.UP, 2));
             }
-            if (side != entrance.getId() && ((furnace.getType() != Material.FURNACE && furnace.getType() != Material.BURNING_FURNACE) || furnace.getData() != reverses.get(side))){
-                blocks.add(new FakeBlock(furnace.getLocation(), Material.FURNACE, (byte) (int) reverses.get(side)));
+            if (side != entrance.getId()) {
+                if (// 盘点是否为熔炉
+                        (furnace.getType() != Material.FURNACE && furnace.getType() != Material.BURNING_FURNACE)
+                        || furnace.getData() != reverses.get(side)
+                ) {
+                    blocks.add(new FakeBlock(furnace.getLocation(), Material.FURNACE, (byte) (int) reverses.get(side)));
+                }else {
+                    CraftFurnace craftFurnace = (CraftFurnace) furnace.getState();
+                    // 是熔炉判断通过后再盘点是否为对应等级熔炉
+                    if (!Objects.isNull(level.getFuelName()) && !Objects.equals(level.getFuelName(), craftFurnace.getCustomName())) {
+                        blocks.add(new FakeBlock(furnace.getLocation(), Material.FURNACE, (byte) (int) reverses.get(side), level.getFuelName()));
+                    }
+                }
             }
+
             if(side != entrance.getId()){
                 assert anvil != null;
                 if (anvil.getType() != Material.ANVIL){
@@ -1117,23 +1146,19 @@ public class SmeltingFurnace implements TickEntity {
     }
 
     public static enum Level{
-        CURRENCY("通用", "初级燃料:10", "通用熔炼石:30", 1000),
-        ADVANCED("进阶", "高级燃料:10", "进阶熔炼石:30", 2000),
-        LEGEND("传说", "传说燃料:10", "传说熔炼石:30", 3000),
-        CHAOS("混沌", "混沌燃料:10", "混沌熔炼石:30", 4000);
-        private static final Map<String, Level> map = new HashMap<>();
-        static {
-            for (Level value : values()) {
-                map.put(value.getName(), value);
-            }
-        }
+        CURRENCY("通用", "初级燃料:10", null, "通用熔炼石:30", 1000),
+        ADVANCED("进阶", "进阶燃料:10", "§6进阶锻造熔炉", "进阶熔炼石:30", 2000),
+        LEGEND("传说", "传说燃料:10", "§6暂无", "传说熔炼石:30", 3000),
+        CHAOS("混沌", "混沌燃料:10", "§6暂无","混沌熔炼石:30", 4000);
         private final String name;
         private final String fuel;
+        private final String fuelName;
         private final String smeltingStone;
         private final int time;
-        Level(String name, String fuel, String smeltingStone, int time){
+        Level(String name, String fuel, String fuelName, String smeltingStone, int time){
             this.name = name;
             this.fuel = fuel;
+            this.fuelName = fuelName;
             this.smeltingStone = smeltingStone;
             this.time = time;
         }
@@ -1146,6 +1171,10 @@ public class SmeltingFurnace implements TickEntity {
             return fuel;
         }
 
+        public String getFuelName() {
+            return fuelName;
+        }
+
         public int getTime() {
             return time;
         }
@@ -1155,7 +1184,12 @@ public class SmeltingFurnace implements TickEntity {
         }
 
         public static Level getByName(String name){
-            return map.get(name);
+            for (Level value : values()) {
+                if (Objects.equals(name, value.getName())){
+                    return value;
+                }
+            }
+            return CURRENCY;
         }
     }
 }

@@ -25,9 +25,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_12_R1.util.CraftMagicNumbers;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -106,7 +108,7 @@ public class TreasureChestTask implements TickEntity, Listener {
     @EventHandler
     public void onChunkSend(ChunkSendEvent event){
         Chunk chunk = event.getChunk();
-        if (chestSpawnManager.getSpawns().keySet().stream().noneMatch(key -> key.endsWith(chunk.getWorld().getName()))) {//没有直接return，尽可能节省性能
+        if (chestSpawnManager.getSpawns().keySet().stream().noneMatch(key -> key.endsWith(chunk.getWorld().getName())) && false) {//没有直接return，尽可能节省性能
             return;
         }
         PacketEvent packetEvent = event.getPacketEvent();
@@ -118,6 +120,15 @@ public class TreasureChestTask implements TickEntity, Listener {
             if (nbtBase instanceof NbtCompound){
                 NbtCompound nbtCompound = (NbtCompound) nbtBase;
                 if (nbtCompound.containsKey("id")){
+                    if (nbtCompound.getString("id").equals("minecraft:furnace")) {
+                        int x = nbtCompound.getInteger("x");
+                        int y = nbtCompound.getInteger("y");
+                        int z = nbtCompound.getInteger("z");
+                        Block blockAt = world.getBlockAt(x, y, z);
+                        blockAt.getState().update();
+//                        IBlockData iblockdata = CraftMagicNumbers.getBlock(blockAt).fromLegacyData(blockAt.getData());
+//                        ((CraftWorld) world).getHandle().notify(new BlockPosition(x, y, z), iblockdata, iblockdata, 3);
+                    }
                     if (nbtCompound.getString("id").equals("minecraft:chest")) {
                         int x = nbtCompound.getInteger("x");
                         int y = nbtCompound.getInteger("y");

@@ -83,7 +83,7 @@ public class LTCSCommand implements CommandExecutor, Listener {
                 break;
             case "ccs"://创建箱子刷怪点
                 nextId = Integer.parseInt(args[1]);
-                map = new HashMap<>();
+                LTCSCommand.map = new HashMap<>();
                 createChestSpawn = 1;
                 sender.sendMessage("§a请放置箱子来设置箱子刷怪点！");
                 break;

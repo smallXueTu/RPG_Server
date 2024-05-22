@@ -81,7 +81,7 @@
   x: -351.5
   cooling: 10
   y: 36
-  range: 26
+  range: 32
   z: -759.0
   maxMobs: 4
   locations:
@@ -96,7 +96,7 @@
   x: -406.5
   cooling: 10
   y: 36
-  range: 16
+  range: 32
   z: -759.0
   maxMobs: 4
   locations:
@@ -146,8 +146,8 @@
   world: t4
   x: -379.0
   cooling: 30
-  y: 35
-  range: 16
+  y: 35.2
+  range: 32
   z: -659.5
   maxMobs: 1
   locations: []
@@ -158,7 +158,7 @@
   x: -346.5
   cooling: 30
   y: 34
-  range: 16
+  range: 32
   z: -672.5
   maxMobs: 1
   locations: []
@@ -169,7 +169,7 @@
   x: -411.5
   cooling: 30
   y: 34
-  range: 16
+  range: 32
   z: -672.5
   maxMobs: 1
   locations: []
@@ -230,3 +230,25 @@
   showText: false
   locations: []
   spawnRange: 1
+远古炽火制炉师:
+  mobName: 远古炽火制炉师
+  world: f3
+  x: -88.5
+  cooling: 60
+  y: 22
+  range: 16
+  z: 49.5
+  maxMobs: 2
+  locations: []
+  spawnRange: 5
+进阶远古锻造师:
+  mobName: 进阶远古锻造师
+  world: f3
+  x: -52.5
+  cooling: 60
+  y: 21
+  range: 16
+  z: 50.5
+  maxMobs: 2
+  locations: []
+  spawnRange: 5

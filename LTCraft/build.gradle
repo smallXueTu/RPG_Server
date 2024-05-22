@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
 
 group 'cn.ltcraft'
@@ -10,5 +10,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.baomidou:mybatis-plus:3.5.1'
+    implementation 'com.baomidou:mybatis-plus:3.5.1'
+    implementation 'cn.hutool:hutool-all:5.8.26'
 }

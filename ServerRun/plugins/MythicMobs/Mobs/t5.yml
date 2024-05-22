@@ -163,7 +163,7 @@ T5史诗宝箱守卫者:
     AlwaysShowName: true
     PreventSunburn: true
   Skills:
-    - execBQEvent{t=default.保存主线位置到T5进度6} @trigger ~onDeath
+    - execBQEvent{e=保存主线位置到T5进度6} @trigger ~onDeath
   Drops:
     - skillapi-exp 80
     - ltitem 材料:末地之城珍珠 1
@@ -190,6 +190,7 @@ T5史诗宝箱守卫者:
     - skillapi-exp 80
     - ltitem 材料:末地之城珍珠 1
     - ltitem 材料:末影药剂 1
+    - 失落的手册内容 1 1
   Skills:
     - addBQTag{t=default.已击败末影守卫者} @trigger ~onDeath
 末影卫士:
@@ -213,7 +214,25 @@ T5史诗宝箱守卫者:
   Drops:
     - skillapi-exp 20
     - ltitem 材料:末地之城珍珠 1
-    - ltitem 材料:末影之城烈焰粉 0.5
+    - 末影之城烈焰粉 1 0.5
+末影僵尸:
+  Type: Zombie
+  Display: '&6末影僵尸'
+  Health: 3000
+  Damage: 20
+  Equipment:
+#    - 末地之剑:HAND
+  Options:
+    FollowRange: 26
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 30
+    - ltitem 材料:末地之城珍珠 1
+    - 末影之城烈焰粉 1 0.5
 t5对话1:
   Type: armor_stand
   Options:

@@ -214,6 +214,16 @@
   width: 2
   # 对于obj模型可采用缩放功能
   scale: 0.8
+#---------------------- t5 ----------------------
+末影僵尸:
+  entity: "末影僵尸"
+  model: "t5/末影僵尸/model.json"
+  texture: "t5/末影僵尸/texture.png"
+  animation: "t5/末影僵尸/model.animation.json"
+  height: 1.8
+  width: 0.5
+  # 对于obj模型可采用缩放功能
+  scale: 1
 #---------------------- 全局 ----------------------
 退出:
   entity: "退出"

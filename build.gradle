@@ -2,15 +2,15 @@ import java.util.function.Function
 import java.util.stream.Collectors
 
 plugins {
-    id 'java'
+    id 'java-library'
     id 'idea'
     id 'application'
-    id "org.jetbrains.kotlin.jvm" version "1.6.10"
+//    id "org.jetbrains.kotlin.jvm" version "1.6.10"
 }
 repositories {
     mavenCentral()
 }
-apply plugin: "org.jetbrains.kotlin.jvm"
+//apply plugin: "org.jetbrains.kotlin.jvm"
 apply plugin: 'idea'
 apply plugin: 'application'
 group 'cn.ltcraft'
@@ -19,9 +19,21 @@ version '0.0.1'
 mainClassName = "cn.ltcraft.rpg.Main"
 dependencies {
     implementation fileTree(dir: 'ServerRun/', includes: ['spigot-1.12.2.jar'])
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+}
+
+def fileList(File dir, files) {
+    dir.eachFile { File file ->
+        if (file.isDirectory()) {
+            fileList(file, files) // 递归调用以处理子目录
+        } else {
+            files.add(file)
+        }
+    }
 }
 subprojects {
-    apply plugin: 'java'
+    apply plugin: 'java-library'
     apply plugin: 'idea'
 
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
@@ -29,7 +41,6 @@ subprojects {
     repositories {
         mavenCentral()
     }
-
     /*
      TODO 更好的模块依赖处理方式 编写自定义插件加载器
      添加通用依赖
@@ -44,8 +55,14 @@ subprojects {
         implementation fileTree(dir: '../ServerRun/', includes: ['spigot-1.12.2.jar'])
         implementation fileTree(dir: '../ServerRun/plugins/', includes: ['*.jar']/*, excludes: submodulesJar*/)
         implementation fileTree(dir: '../ServerRun/plugins/PlaceholderAPI/expansions/', includes: ['*.jar'])
-        implementation fileTree(dir: '../ServerRun/libs/', includes: ['*.jar'])
+//        implementation fileTree(dir: '../ServerRun/libs/', includes: ['*.jar'])
         implementation fileTree(dir: '../ServerRun/plugins/PxTools/lib', includes: ['*.jar'])
+        compileOnly 'org.projectlombok:lombok:1.18.32'
+        annotationProcessor 'org.projectlombok:lombok:1.18.32'
+
+        ArrayList<File> fileArr = new ArrayList<File>()
+        fileList(new File(project.rootDir.getAbsolutePath() + '/ServerRun/libs/'), fileArr)
+        implementation files(fileArr)
 //        for(Project submodule : parent.getSubprojects()){
 //            if (name != submodule.getName())implementation submodule
 //        }

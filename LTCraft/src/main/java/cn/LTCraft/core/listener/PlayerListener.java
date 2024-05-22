@@ -24,6 +24,8 @@ import cn.LTCraft.core.task.ClientCheckTask;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.utils.*;
+import cn.hutool.core.util.ObjUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.utils.Utils;
@@ -43,13 +45,15 @@ import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.Disguise;
 import net.milkbowl.vault.economy.Economy;
-import net.minecraft.server.v1_12_R1.DamageSource;
-import net.minecraft.server.v1_12_R1.EnumHand;
-import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.*;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.bukkit.*;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
@@ -217,9 +221,13 @@ public class PlayerListener  implements Listener {
                     Location add = entity.getLocation().add(attachedFace.getModX(), attachedFace.getModY(), attachedFace.getModZ());
                     Block blockAt = entity.getWorld().getBlockAt(add);
                     if (blockAt.getType() == Material.GLASS) {
-                        FakeBlock[] blocks = SmeltingFurnace.check(blockAt.getLocation(), entity.getLocation());
+                        SmeltingFurnace.Level level = SmeltingFurnace.Level.getByName(smeltingFurnaceDrawing.getString("level"));
+                        FakeBlock[] blocks = SmeltingFurnace.check(level, blockAt.getLocation(), entity.getLocation());
                         if (blocks.length > 0) {
                             player.sendMessage("§c多方块结构错误，请对应闪动的方块来摆放对应的方块！");
+                            if (Arrays.stream(blocks).anyMatch(block -> ObjectUtil.isNotEmpty(block.getName()))) {
+                                player.sendMessage("§c如果结构摆放正常，请检查熔炉是否为：" + level.getFuelName());
+                            }
                             new FlashingBlock(player, blocks);
                         } else {
                             if (SmeltingFurnace.getSmeltingFurnaceMap().values().stream().anyMatch(smeltingFurnace -> smeltingFurnace.getLocation().distance(blockAt.getLocation()) < 3)) {
@@ -305,6 +313,20 @@ public class PlayerListener  implements Listener {
                 signEdit.remove(player.getName());
             }
         }
+//        if (block != null){
+//            BlockState blockState = block.getState();
+//            if (blockState != null){
+//                blockState.update();
+//                NBTTagCompound nbttagcompound = new NBTTagCompound();
+//                nbttagcompound.setString("id", "minecraft:chest");
+//                nbttagcompound.setInt("x", block.getX());
+//                nbttagcompound.setInt("y", block.getY());
+//                nbttagcompound.setInt("z", block.getZ());
+//                nbttagcompound.setString("CustomName", "§6进阶锻造熔炉");
+//                PacketPlayOutTileEntityData packet = new PacketPlayOutTileEntityData(new BlockPosition(block.getX(), block.getY(), block.getZ()), 9, nbttagcompound);
+//                ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+//            }
+//        }
     }
 
     /**

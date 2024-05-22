@@ -12,6 +12,7 @@ import cn.LTCraft.core.other.exceptions.BlockCeilingException;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.task.PlayerClass;
 import cn.LTCraft.core.utils.*;
+import cn.hutool.core.util.ObjectUtil;
 import cn.ltcraft.item.base.AICLA;
 import cn.ltcraft.item.base.AbstractAttribute;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
@@ -20,6 +21,7 @@ import cn.ltcraft.item.base.interfaces.actions.TickItem;
 import cn.ltcraft.item.items.Armor;
 import cn.ltcraft.item.items.BaseWeapon;
 import cn.ltcraft.item.items.GemsStone;
+import cn.ltcraft.item.items.gemsstones.ConsumeGemstones;
 import cn.ltcraft.item.objs.PlayerAttribute;
 import cn.ltcraft.teleport.Teleport;
 import cn.ltcraft.teleport.Warp;
@@ -560,24 +562,45 @@ public class Game {
      * @return 锻造结果
      */
     public static ItemStack getForgingResult(ItemStack equipment, ItemStack material, Player player){
-        LTItem ltItem = cn.ltcraft.item.utils.Utils.getLTItems(equipment);
-        LTItem LTm = cn.ltcraft.item.utils.Utils.getLTItems(material);
-        if (LTm instanceof GemsStone){
-            if (ltItem instanceof AICLA){
-                AICLA aicla = (AICLA)ltItem;
+        LTItem equipmentLTItem = cn.ltcraft.item.utils.Utils.getLTItems(equipment);
+        LTItem materialLTItem = cn.ltcraft.item.utils.Utils.getLTItems(material);
+        if (materialLTItem instanceof GemsStone){
+            // 是否属于可镶嵌物品
+            if (equipmentLTItem instanceof AICLA){
+                AICLA aicla = (AICLA)equipmentLTItem;
                 ItemStack result = equipment.clone();
-                NBTTagCompound nbt = ItemUtils.getNBT(result);
-                if (nbt == null)return null;
-                Map<String, Object> stringMap = cn.ltcraft.item.utils.Utils.getStringMap(nbt);
-                String name = LTm.getName();
-                List<String> list = stringMap.get("gemstones") == null?new ArrayList<>():(List<String>)stringMap.get("gemstones");
-                if (list.size() >= aicla.getMaxSet())return null;
-                list.add(name);
-                stringMap.put("gemstones", list);
-                result = cn.ltcraft.item.utils.Utils.setStringMap(result, stringMap);
-                aicla = cn.ltcraft.item.utils.Utils.calculationAttr(aicla.clone(), result);
-                result = cn.ltcraft.item.utils.Utils.updateItem(result, aicla, aicla.getConfig().getStringList("说明"));
-                return result;
+                if (materialLTItem instanceof ConsumeGemstones){// 消耗物品 不占用宝石格子
+                    ItemStack installResult = ((GemsStone) materialLTItem).installOn(result);
+                    if (ObjectUtil.isNotEmpty(installResult)){
+                        aicla = cn.ltcraft.item.utils.Utils.calculationAttr(aicla.clone(), installResult);
+                        ItemStack updateItem = cn.ltcraft.item.utils.Utils.updateItem(installResult, aicla, aicla.getConfig().getStringList("说明"));
+                        if (((ConsumeGemstones) materialLTItem).installSuccess()){
+                            // 成功 返回安装结果
+                            return updateItem;
+                        }else {
+                            // 失败，返回旧的物品 但lore是成功，防止玩家发现失败了
+                            ItemMeta itemMeta = equipment.getItemMeta();
+                            itemMeta.setLore(updateItem.getItemMeta().getLore());
+                            equipment.setItemMeta(itemMeta);
+                            return equipment;
+                        }
+                    }else {
+                        return null;
+                    }
+                }else {
+                    NBTTagCompound nbt = ItemUtils.getNBT(result);
+                    if (nbt == null) return null;
+                    Map<String, Object> stringMap = cn.ltcraft.item.utils.Utils.getStringMap(nbt);
+                    String name = materialLTItem.getName();
+                    List<String> list = stringMap.get("gemstones") == null ? new ArrayList<>() : (List<String>) stringMap.get("gemstones");
+                    if (list.size() >= aicla.getMaxSet()) return null;
+                    list.add(name);
+                    stringMap.put("gemstones", list);
+                    result = cn.ltcraft.item.utils.Utils.setStringMap(result, stringMap);
+                    aicla = cn.ltcraft.item.utils.Utils.calculationAttr(aicla.clone(), result);
+                    result = cn.ltcraft.item.utils.Utils.updateItem(result, aicla, aicla.getConfig().getStringList("说明"));
+                    return result;
+                }
             }
         }else if (material != null && material.getType()  == Material.ENCHANTED_BOOK){
             ItemStack result = equipment.clone();
@@ -605,8 +628,14 @@ public class Game {
                     PlayerUtils.addBQTag(player, "default.宝石镶嵌");
                 }
                 player.playSound(player.getLocation(), "block.anvil.use", SoundCategory.BLOCKS, 2, 1);
-                return true;
             }
+
+            if (LTm instanceof ConsumeGemstones){
+                if (!((ConsumeGemstones) LTm).installSuccess()) {
+                    return false;
+                }
+            }
+            return true;
         }else if (material != null && material.getType()  == Material.ENCHANTED_BOOK){
             ItemMeta meta = material.getItemMeta();
             EnchantmentStorageMeta storageMeta = (EnchantmentStorageMeta) meta;

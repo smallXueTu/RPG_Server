@@ -5,10 +5,20 @@ import cn.LTCraft.core.game.more.tickEntity.TickEntity;
 import cn.LTCraft.core.task.GlobalRefresh;
 import cn.LTCraft.core.utils.GameUtils;
 import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.BlockPosition;
 import com.comphenix.protocol.wrappers.WrappedBlockData;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import net.minecraft.server.v1_12_R1.IBlockData;
+import net.minecraft.server.v1_12_R1.IChatBaseComponent;
+import net.minecraft.server.v1_12_R1.PacketPlayOutBlockChange;
+import net.minecraft.server.v1_12_R1.TileEntity;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_12_R1.util.CraftMagicNumbers;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.InvocationTargetException;
@@ -33,6 +43,7 @@ public class FlashingBlock implements TickEntity {
                 PacketContainer blockPacket = Main.getProtocolManager().createPacket(PacketType.Play.Server.BLOCK_CHANGE);
                 blockPacket.getBlockPositionModifier().write(0, new BlockPosition(fakeBlock.getBlockX(), fakeBlock.getBlockY(), fakeBlock.getBlockZ()));
                 blockPacket.getBlockData().write(0, WrappedBlockData.createData(fakeBlock.getType(), fakeBlock.getData()));
+
                 GameUtils.sendProtocolLibPacket(blockPacket, player);
             }
         }else {
@@ -46,6 +57,8 @@ public class FlashingBlock implements TickEntity {
         age++;
         return true;
     }
+
+
 
     @Override
     public int getTickRate() {
