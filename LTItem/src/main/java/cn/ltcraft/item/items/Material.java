@@ -3,6 +3,7 @@ package cn.ltcraft.item.items;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.actions.TickItem;
+import cn.ltcraft.item.enums.ItemQuality;
 import cn.ltcraft.item.items.materials.Infernal;
 import cn.ltcraft.item.utils.Utils;
 import org.bukkit.configuration.MemoryConfiguration;
@@ -41,6 +42,7 @@ public class Material implements ConfigurableLTItem {
     private List<String> lore;
     private final MemoryConfiguration config;
     protected boolean binding = false;
+    protected ItemQuality quality = ItemQuality.NONE;
     public Material(MemoryConfiguration configuration){
         config = configuration;
         init();
@@ -49,7 +51,14 @@ public class Material implements ConfigurableLTItem {
         name = config.getString("名字");
         binding = config.getBoolean("绑定", false);
         lore = config.getStringList("说明");
+        quality = ItemQuality.ofQuality(config.getString("品质", ""));
     }
+
+    @Override
+    public ItemQuality getQuality() {
+        return quality;
+    }
+
     @Override
     public cn.ltcraft.item.base.ItemTypes getType() {
         return ItemTypes.Material;

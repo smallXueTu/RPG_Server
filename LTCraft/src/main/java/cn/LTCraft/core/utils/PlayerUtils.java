@@ -244,20 +244,36 @@ public class PlayerUtils {
         if (Cooling.isCooling(player, "ClassSkill")) {
             return;
         }
-        MythicConfig classAtt = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
-        Set<String> skills = classAtt.getKeys("skills");
-        if (skills==null || !skills.contains(skillName)){
-            player.sendMessage("§c你还没学习" + skillName + "技能！");
-            return;
-        }
 
-        if (BaseSkill.getSkill(skillName) != null){
-            BaseSkill skill = BaseSkill.getSkillObj(skillName, player, classAtt.getInteger("skills." + skillName + ".level"), classAtt.getInteger("skills." + skillName + ".awakenLevel"), classAtt.getInteger("skills." + skillName + ".awakenLevel") > 0);
-            if (skill!=null){
-                skill.cast(target);
-                if (Game.getClassSkill(PlayerClass.byName(clazz.getName())).equals(skillName)) {
-                    Cooling.cooling(player, "ClassSkill", 50 - Math.min(level, 60) / 3, "职业主动技能剩余冷却时间：%s%S");
-                }
+
+        Class<? extends BaseSkill> aClass = BaseSkill.getSkill(skillName);
+        if (aClass == null) return;
+        boolean needToLearn = true;
+        try {
+            Method needToLearnMethod = aClass.getMethod("needToLearn");
+            needToLearn = ((boolean) needToLearnMethod.invoke(null));
+        }catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            //忽略
+        }
+        MythicConfig classAtt = PlayerConfig.getPlayerConfig(player).getClassAttConfig();
+        // 技能需要学习
+        if (needToLearn){
+            Set<String> skills = classAtt.getKeys("skills");
+            if (skills==null || !skills.contains(skillName)){
+                player.sendMessage("§c你还没学习" + skillName + "技能！");
+                return;
+            }
+        }
+        BaseSkill skill;
+        if (needToLearn) {
+            skill = BaseSkill.getSkillObj(skillName, player, classAtt.getInteger("skills." + skillName + ".level"), classAtt.getInteger("skills." + skillName + ".awakenLevel"), classAtt.getInteger("skills." + skillName + ".awakenLevel") > 0);
+        }else {
+            skill = BaseSkill.getSkillObj(skillName, player, 0, 0, false);
+        }
+        if (skill!=null){
+            skill.cast(target);
+            if (Game.getClassSkill(PlayerClass.byName(clazz.getName())).equals(skillName)) {
+                Cooling.cooling(player, "ClassSkill", 50 - Math.min(level, 60) / 3, "职业主动技能剩余冷却时间：%s%S");
             }
         }
     }

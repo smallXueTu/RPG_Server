@@ -9,9 +9,9 @@ import cn.LTCraft.core.utils.MathUtils;
  */
 public interface ConsumeGemstones {
     /**
-     * 是否安装成功
+     * 计算几率是否安装成功
      */
-    default boolean installSuccess(){
+    default boolean rateCompute(){
         return MathUtils.ifAdopt(getRate());
     }
 

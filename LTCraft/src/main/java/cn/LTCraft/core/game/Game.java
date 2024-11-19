@@ -23,6 +23,7 @@ import cn.ltcraft.item.items.BaseWeapon;
 import cn.ltcraft.item.items.GemsStone;
 import cn.ltcraft.item.items.gemsstones.ConsumeGemstones;
 import cn.ltcraft.item.objs.PlayerAttribute;
+import cn.ltcraft.item.objs.StoneInstallResult;
 import cn.ltcraft.teleport.Teleport;
 import cn.ltcraft.teleport.Warp;
 import com.comphenix.protocol.PacketType;
@@ -301,43 +302,60 @@ public class Game {
      * @param demand .
      * @return 如果通过 true
      */
-    public static boolean demand(Player player, String demand){
-        String type = demand.split(":")[0];
-        demand = demand.length() == type.length()?demand:demand.substring(type.length() + 1);
-        double[][] poses;
-        PlayerData playerData;
-        World world = player.getWorld();
-        boolean sign = true;
-        switch (type){
-            case "BQTag":
-                playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
-                return playerData.hasTag(demand);
-            case "NonBQTag":
-                playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
-                return !playerData.hasTag(demand);
-            case "BQCondition":
-                return PlayerUtils.satisfyBQCondition(player, demand);
-            case "custom1":
-                poses = new double[][]{{262.5, 9.5, 159.5}, {258.5, 9.5, 159.5}, {258.5, 9.5, 137.5}, {260.5, 9.5, 137.5}};
-                for (double[] pos : poses) {
-                    if (world.getNearbyEntities(new Location(world, pos[0], pos[1], pos[2]), 0.5, 1, 0.5).stream().noneMatch(entity -> Temp.playerDropItem.getOrDefault(entity, "").equals(player.getName()))){
-                        sign = false;
-                        break;
+    public static boolean demand(Player player, String demands){
+        for (String demand : demands.split(",")) {
+            String type = demand.split(":")[0];
+            demand = demand.length() == type.length()?demand:demand.substring(type.length() + 1);
+            double[][] poses;
+            PlayerData playerData;
+            World world = player.getWorld();
+            boolean sign = true;
+            switch (type){
+                case "BQTag":
+                    playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
+                    if (playerData.hasTag(demand)) {
+                        return true;
                     }
-                }
-                return sign;
-            case "custom2":
-                poses =  new double[][]{
-                        {137.5, 5.5, 480.5}, {135.5, 5.5, 480.5}, {132.5, 5.5, 477.5},
-                        {132.5, 5.5, 473.5}, {132.5, 5.5, 469.5}, {135.5, 5.5, 466.5}, {137, 5.5, 466.5},
-                };
-                for (double[] pos : poses) {
-                    if (world.getNearbyEntities(new Location(world, pos[0], pos[1], pos[2]), 0.5, 1, 0.5).stream().noneMatch(entity -> Temp.playerDropItem.getOrDefault(entity, "").equals(player.getName()))){
-                        sign = false;
-                        break;
+                    break;
+                case "NonBQTag":
+                    playerData = BetonQuest.getInstance().getPlayerData(PlayerConverter.getID(player));
+                    if (!playerData.hasTag(demand)) {
+                        return true;
                     }
-                }
-                return sign;
+                    break;
+                case "BQCondition":
+                    if (PlayerUtils.satisfyBQCondition(player, demand)){
+                        return true;
+                    }
+                    break;
+                case "custom1"://自定义1 t3谜团
+                    poses = new double[][]{{262.5, 9.5, 159.5}, {258.5, 9.5, 159.5}, {258.5, 9.5, 137.5}, {260.5, 9.5, 137.5}};
+                    for (double[] pos : poses) {
+                        if (world.getNearbyEntities(new Location(world, pos[0], pos[1], pos[2]), 0.5, 1, 0.5).stream().noneMatch(entity -> Temp.playerDropItem.getOrDefault(entity, "").equals(player.getName()))){
+                            sign = false;
+                            break;
+                        }
+                    }
+                    if (sign){
+                        return true;
+                    }
+                    break;
+                case "custom2"://自定义2 t3谜团
+                    poses =  new double[][]{
+                            {137.5, 5.5, 480.5}, {135.5, 5.5, 480.5}, {132.5, 5.5, 477.5},
+                            {132.5, 5.5, 473.5}, {132.5, 5.5, 469.5}, {135.5, 5.5, 466.5}, {137, 5.5, 466.5},
+                    };
+                    for (double[] pos : poses) {
+                        if (world.getNearbyEntities(new Location(world, pos[0], pos[1], pos[2]), 0.5, 1, 0.5).stream().noneMatch(entity -> Temp.playerDropItem.getOrDefault(entity, "").equals(player.getName()))){
+                            sign = false;
+                            break;
+                        }
+                    }
+                    if (sign){
+                        return true;
+                    }
+                    break;
+            }
         }
         return false;
     }
@@ -570,20 +588,26 @@ public class Game {
                 AICLA aicla = (AICLA)equipmentLTItem;
                 ItemStack result = equipment.clone();
                 if (materialLTItem instanceof ConsumeGemstones){// 消耗物品 不占用宝石格子
-                    ItemStack installResult = ((GemsStone) materialLTItem).installOn(result);
-                    if (ObjectUtil.isNotEmpty(installResult)){
-                        aicla = cn.ltcraft.item.utils.Utils.calculationAttr(aicla.clone(), installResult);
-                        ItemStack updateItem = cn.ltcraft.item.utils.Utils.updateItem(installResult, aicla, aicla.getConfig().getStringList("说明"));
-                        if (((ConsumeGemstones) materialLTItem).installSuccess()){
-                            // 成功 返回安装结果
-                            return updateItem;
-                        }else {
-                            // 失败，返回旧的物品 但lore是成功，防止玩家发现失败了
-                            ItemMeta itemMeta = equipment.getItemMeta();
-                            itemMeta.setLore(updateItem.getItemMeta().getLore());
-                            equipment.setItemMeta(itemMeta);
-                            return equipment;
+                    GemsStone gemsStone = (GemsStone) materialLTItem;
+                    ConsumeGemstones consumeGemstones = (ConsumeGemstones) materialLTItem;
+                    StoneInstallResult stoneInstallResult = gemsStone.installOn(result, material.getAmount());
+                    if (stoneInstallResult.isSuccess()){
+                        aicla = cn.ltcraft.item.utils.Utils.calculationAttr(aicla.clone(), stoneInstallResult.getResultItemStack());
+                        ItemStack updateItem = cn.ltcraft.item.utils.Utils.updateItem(stoneInstallResult.getResultItemStack(), aicla, aicla.getConfig().getStringList("说明"));
+                        if (consumeGemstones.getRate() < 1){
+                            // 有几率 隐藏属性
+                            ItemMeta itemMeta = updateItem.getItemMeta();
+                            List<String> lores = new ArrayList<>();
+                            for (int i = 0; i < aicla.getLore().size(); i++) {
+                                String s = aicla.getLore().get(i);
+                                s = s.replaceAll("%.+%", "???");
+                                lores.add(s);
+                            }
+                            itemMeta.setLore(lores);
+                            updateItem.setItemMeta(itemMeta);
                         }
+                        PlayerConfig.getPlayerConfig(player).getConfig().set("锻造消耗", stoneInstallResult.getConsumption());
+                        return updateItem;
                     }else {
                         return null;
                     }
@@ -594,11 +618,19 @@ public class Game {
                     String name = materialLTItem.getName();
                     List<String> list = stringMap.get("gemstones") == null ? new ArrayList<>() : (List<String>) stringMap.get("gemstones");
                     if (list.size() >= aicla.getMaxSet()) return null;
-                    list.add(name);
+                    int consumption = 0;
+                    for (; consumption < material.getAmount(); consumption++) {
+                        list.add(name);
+                        if (list.size() >= aicla.getMaxSet()){
+                            consumption++;
+                            break;
+                        }
+                    }
                     stringMap.put("gemstones", list);
                     result = cn.ltcraft.item.utils.Utils.setStringMap(result, stringMap);
                     aicla = cn.ltcraft.item.utils.Utils.calculationAttr(aicla.clone(), result);
                     result = cn.ltcraft.item.utils.Utils.updateItem(result, aicla, aicla.getConfig().getStringList("说明"));
+                    PlayerConfig.getPlayerConfig(player).getConfig().set("锻造消耗", consumption);
                     return result;
                 }
             }
@@ -607,6 +639,7 @@ public class Game {
             ItemMeta meta = material.getItemMeta();
             EnchantmentStorageMeta storageMeta = (EnchantmentStorageMeta) meta;
             result.addUnsafeEnchantments(storageMeta.getStoredEnchants());
+            PlayerConfig.getPlayerConfig(player).getConfig().set("锻造消耗", 1);
             return result;
         }
         return null;
@@ -628,12 +661,6 @@ public class Game {
                     PlayerUtils.addBQTag(player, "default.宝石镶嵌");
                 }
                 player.playSound(player.getLocation(), "block.anvil.use", SoundCategory.BLOCKS, 2, 1);
-            }
-
-            if (LTm instanceof ConsumeGemstones){
-                if (!((ConsumeGemstones) LTm).installSuccess()) {
-                    return false;
-                }
             }
             return true;
         }else if (material != null && material.getType()  == Material.ENCHANTED_BOOK){

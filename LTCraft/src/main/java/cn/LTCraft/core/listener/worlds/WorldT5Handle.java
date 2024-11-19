@@ -40,8 +40,8 @@ import static net.minecraft.server.v1_12_R1.PacketPlayInBlockDig.EnumPlayerDigTy
 public class WorldT5Handle implements WorldHandle{
     private final static List<DoorVectorInfo> doorVectors = new ArrayList<DoorVectorInfo>(){
         {
-            add(new DoorVectorInfo(67, -76,WorldUtils.getVectors(new Vector(1078, 108, -1209), new Vector(1078, 103, -1207))));
-            add(new DoorVectorInfo(64, -79,WorldUtils.getVectors(new Vector(1034, 108, -1251), new Vector(1034, 103, -1249))));
+            add(new DoorVectorInfo(67, -76, WorldUtils.getVectors(new Vector(1078, 108, -1209), new Vector(1078, 103, -1207))));
+            add(new DoorVectorInfo(64, -79, WorldUtils.getVectors(new Vector(1034, 108, -1251), new Vector(1034, 103, -1249))));
         }
     };
     @Override

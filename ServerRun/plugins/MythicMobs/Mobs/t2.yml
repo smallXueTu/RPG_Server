@@ -321,6 +321,10 @@
     - 暗影胸甲:3
 #    - 暗影头盔 LEGGINGS
 #    - 暗影头盔 BOOTS
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【高级】&6暗影人'
@@ -348,6 +352,10 @@
     - 暗影胸甲:3
   #    - 暗影头盔 LEGGINGS
   #    - 暗影头盔 BOOTS
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【高级】&6暗影使者'
@@ -380,6 +388,10 @@
     Type: Player
     Skin: '&e【恶魔】&6武器缴械者'
     Player: '&e【恶魔】&6武器缴械者'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Options:
     FollowRange: 6
     MovementSpeed: 0.3
@@ -410,6 +422,10 @@
     - 暗黑护腿:2
     - 暗黑头盔:HEAD
     - 暗黑胸甲:3
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【恶魔】&6装备缴械者'
@@ -453,6 +469,10 @@
     - 地狱淬火护腿:2
     - 地狱淬火头盔:HEAD
     - 地狱淬火胸甲:3
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【地狱】&6地狱之主'
@@ -483,6 +503,10 @@
     Type: Player
     Skin: '&e【地狱】&6地狱护者'
     Player: '&e【地狱】&6地狱护者'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Skills:
   Options:
     FollowRange: 6
@@ -503,6 +527,10 @@
     - 地狱之镰:HAND
     - 地狱钢铁胸甲:3
     - 地狱钢铁护腿:2
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【地狱】&6地狱卫者'
@@ -529,6 +557,10 @@
     - 地狱钢铁靴子:1
     - 地狱钢铁胸甲:3
     - 地狱钢铁护腿:2
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【地狱】&6地狱统治者'
@@ -555,6 +587,10 @@ BOSS-魔塔统治者-资格分身:
     - FIRE_TICK 0
   Equipment:
     - 地狱之镰:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【BOSS】&6魔塔统治者'
@@ -589,6 +625,10 @@ BOSS-魔塔统治者:
     - FIRE_TICK 0
   Equipment:
     - 地狱之镰:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【BOSS】&6魔塔统治者'
@@ -619,6 +659,10 @@ BOSS-魔塔统治者:
   Damage: 3
   Equipment:
     - 水之法杖:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【水魔】&6元素入侵者'
@@ -644,6 +688,10 @@ BOSS-魔塔统治者:
   Damage: 5
   Equipment:
     - 大地法杖:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【土魔】&6元素入侵者'
@@ -665,6 +713,10 @@ BOSS-魔塔统治者:
   Damage: 1
   Equipment:
     - 280:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【木魔】&6元素入侵者'
@@ -686,6 +738,10 @@ BOSS-魔塔统治者:
   Damage: 6
   Equipment:
     - 火之法杖:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   DamageModifiers:
     - FIRE 0
     - LAVA 0
@@ -716,6 +772,10 @@ BOSS-魔塔统治者:
   Damage: 6
   Equipment:
     - 铁棍:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【钢魔】&6元素入侵者'
@@ -739,6 +799,10 @@ BOSS-魔塔统治者:
   Damage: 3
   Equipment:
     - 元素之刃:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   DamageModifiers:
     - FIRE 0
     - LAVA 0
@@ -768,6 +832,10 @@ BOSS-魔塔统治者:
   Damage: 2
   Equipment:
     - 元素之刃:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&6木洞神秘商人'
@@ -1010,6 +1078,10 @@ BOSS-恶火圣殿统治者:
     - FIRE_TICK 0
   Equipment:
     - 焱火三尺:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Options:
     FollowRange: 16
     MovementSpeed: 0.5

@@ -1,8 +1,7 @@
 package cn.ltcraft.item.items;
 
 import cn.ltcraft.item.base.ItemTypes;
-import cn.ltcraft.item.items.materials.Infernal;
-import cn.ltcraft.item.items.weapon.MyriadPeopleDeath;
+import cn.ltcraft.item.items.weapon.ultimate.*;
 import org.bukkit.configuration.MemoryConfiguration;
 
 import java.lang.reflect.Constructor;
@@ -15,12 +14,12 @@ public class MeleeWeapon extends BaseWeapon{
 
     public static void initItems(){
         materials.put("万人斩-末界的咆哮", MyriadPeopleDeath.class);
-        materials.put("死亡之舞", MeleeWeapon.class);
-        materials.put("尼尔巴斯的饮血镰", MeleeWeapon.class);
-        materials.put("死亡黑狼图腾", MeleeWeapon.class);
-        materials.put("流星锤", MeleeWeapon.class);
-        materials.put("幽灵手弩", MeleeWeapon.class);
-        materials.put("流光星陨刃", MeleeWeapon.class);
+        materials.put("尼尔巴斯的饮血镰", BloodDrinkingScytheOfNilbas.class);
+        materials.put("死亡之舞", DanceOfDeath.class);
+        materials.put("死亡黑狼图腾", BlackWolfTotem.class);
+        materials.put("流星锤", MeteorHammer.class);
+        materials.put("幽灵手弩", GhostHandCrossbow.class);
+        materials.put("流光星陨刃", StarfallBlade.class);
     }
     public static MeleeWeapon get(MemoryConfiguration configuration){
         if (materials.containsKey(configuration.getString("名字"))){

@@ -2,6 +2,7 @@ package cn.ltcraft.item.items;
 
 import cn.LTCraft.core.utils.GameUtils;
 import cn.ltcraft.item.base.*;
+import cn.ltcraft.item.enums.ItemQuality;
 import cn.ltcraft.item.items.materials.Infernal;
 import cn.ltcraft.item.utils.Utils;
 import org.bukkit.configuration.MemoryConfiguration;
@@ -40,6 +41,7 @@ public class Armor extends AICLA {
         PVEInjuredSkill = GameUtils.analyticalSkill(config.getString("PVE受伤技能"));
         PVPInjuredSkill = GameUtils.analyticalSkill(config.getString("PVP受伤技能"));
         potion = GameUtils.analyticalPotion(config.getString("药水效果"));
+        quality = ItemQuality.ofQuality(config.getString("品质", ""));
     }
     @Override
     public ItemTypes getType() {

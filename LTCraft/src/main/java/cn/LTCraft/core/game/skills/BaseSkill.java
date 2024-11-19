@@ -18,6 +18,7 @@ public abstract class BaseSkill implements Skill{
         classMap.put("能量护盾", EnergyShield.class);
         classMap.put("缴械", Disarm.class);
         classMap.put("行刺之道", TheWayOfAssassination.class);
+        classMap.put("寻找宝箱", FindChest.class);
     }
 
     public static Class<? extends BaseSkill> getSkill(String skillName){
@@ -86,5 +87,9 @@ public abstract class BaseSkill implements Skill{
     @Override
     public boolean cast() {
         return cast(null);
+    }
+
+    public static boolean needToLearn(){
+        return true;
     }
 }

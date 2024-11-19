@@ -6,6 +6,7 @@ import cn.ltcraft.item.base.interfaces.Attribute;
 import cn.ltcraft.item.base.subAttrbute.PotionAttribute;
 import cn.ltcraft.item.base.subAttrbute.PotionMap;
 import cn.ltcraft.item.base.subAttrbute.SkillMap;
+import cn.ltcraft.item.enums.ItemQuality;
 import cn.ltcraft.item.items.Armor;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import org.bukkit.entity.Entity;
@@ -137,6 +138,10 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
      * 药水效果
      */
     protected Map<PotionEffectType, PotionAttribute> potion = new PotionMap<>();
+    /**
+     * 品质
+     */
+    protected ItemQuality quality = ItemQuality.NONE;
 
     /**
      * 获取伤害
@@ -769,6 +774,20 @@ public abstract class AbstractAttribute implements cn.ltcraft.item.base.interfac
      */
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+
+    /**
+     * 获取品质
+     */
+    public ItemQuality getQuality() {
+        return quality;
+    }
+
+    /**
+     * 设置品质
+     */
+    public void setQuality(ItemQuality quality) {
+        this.quality = quality;
     }
 
     public void addAttribute(cn.ltcraft.item.base.interfaces.Attribute attribute){

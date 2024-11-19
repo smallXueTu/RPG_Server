@@ -7,6 +7,10 @@
     Type: Player
     Skin: '&e【初级】&6试炼士兵'
     Player: '&e【初级】&6试炼士兵'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Equipment:
     - 267 HAND
   Options:
@@ -29,6 +33,10 @@
     Type: Player
     Skin: '&e【中级】&6试炼士兵'
     Player: '&e【中级】&6试炼士兵'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Equipment:
     - 267 HAND
   Options:
@@ -51,6 +59,10 @@
     Type: Player
     Skin: '&e【高级】&6试炼士兵'
     Player: '&e【高级】&6试炼士兵'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Equipment:
     - 267 HAND
     - 267 OFFHAND
@@ -77,6 +89,10 @@
     Type: Player
     Skin: '&e【觉醒】&6试炼士兵'
     Player: '&e【觉醒】&6试炼士兵'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Equipment:
     - 267 HAND
     - 267 OFFHAND

@@ -44,7 +44,7 @@ public class GlobalRefresh {
          */
         if (tick % 6000 == 0){
             Teleport.getInstance().save();
-            Temp.dropCount = new HashMap<>();
+            Temp.dropCount.clear();
         }
     }
     public static void init(Main plugin) {

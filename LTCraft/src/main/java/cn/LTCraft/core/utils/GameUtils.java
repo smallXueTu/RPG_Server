@@ -258,7 +258,7 @@ public class GameUtils {
             case "zc":
             return "主城";
             case "t5":
-            return "末地之城";
+            return "末影之城";
             default:
             return "未命名";
         }

@@ -6,6 +6,7 @@ import cn.LTCraft.core.utils.GameUtils;
 import cn.ltcraft.item.base.AbstractAttribute;
 import cn.ltcraft.item.base.ItemTypes;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
+import cn.ltcraft.item.enums.ItemQuality;
 import cn.ltcraft.item.items.ornaments.BlackIronFireEatingRing;
 import cn.ltcraft.item.items.ornaments.CertifierBelt;
 import cn.ltcraft.item.utils.Utils;
@@ -122,6 +123,7 @@ public class Ornament extends AbstractAttribute implements ConfigurableLTItem {
             PVECriticalRate = Double.parseDouble(criticalSplit[1]);
         }
         lore = config.getStringList("说明");
+        quality = ItemQuality.ofQuality(config.getString("品质", ""));
     }
     @Override
     public ItemTypes getType() {

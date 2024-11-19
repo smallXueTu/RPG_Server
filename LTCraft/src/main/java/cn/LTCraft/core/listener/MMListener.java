@@ -42,6 +42,8 @@ public class MMListener implements Listener {
             event.register(new HasItem(event.getConfig().getLine(), event.getConfig()));
         }else if (event.getConditionName().equalsIgnoreCase("HasBQTag")){
             event.register(new HasBQTag(event.getConfig().getLine(), event.getConfig()));
+        }else if (event.getConditionName().equalsIgnoreCase("HandQuality")){
+            event.register(new HandQuality(event.getConfig().getLine(), event.getConfig()));
         }else if (event.getConditionName().equalsIgnoreCase("IsSilence")){
             event.register(new IsSilence(event.getConfig().getLine(), event.getConfig()));
         }else if (event.getConditionName().equalsIgnoreCase("LTWearing")){

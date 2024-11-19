@@ -65,6 +65,7 @@ test:
     Player: 'test'
   Skills:
 #    - dropGoldCoins{c=500;r=2;forcesync=true;d=5金币} @SelfLocation ~onDeath
+    - skill{s=冰寒无双} @Self ~onTimer:15
   Options:
     FollowRange: 32
     MovementSpeed: -1
@@ -75,3 +76,14 @@ test:
   Equipment:
     - 292 HAND
     - 268 OFFHAND
+环绕粒子线:
+  Type: Armor_Stand
+  Display: ''
+  Health: 100
+  Damage: 0
+  Skills:
+    - skill{s=环绕粒子线} @Self ~onSpawn
+  Options:
+    Invisible: true
+    Master: true
+    HasGravity: true

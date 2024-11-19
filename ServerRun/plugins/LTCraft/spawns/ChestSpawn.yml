@@ -55,7 +55,7 @@ T5宝箱守卫者4:
   spawnRange: 1
   dropTable: T5普通宝箱掉落
   品质: 普通
-普通宝箱守卫者5:
+T5宝箱守卫者5:
   mobName: T5普通宝箱守卫者
   world: t5
   x: 1077
@@ -189,7 +189,7 @@ T5宝箱守卫者14:
   spawnRange: 1
   dropTable: T5普通宝箱掉落
   品质: 中级
-中级宝箱守卫者15:
+T5宝箱守卫者15:
   mobName: T5中级宝箱守卫者
   world: t5
   x: 1136
@@ -341,7 +341,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5高级宝箱掉落
   品质: 高级
-高级宝箱守卫者26:
+T5宝箱守卫者26:
   mobName: T5高级宝箱守卫者
   world: t5
   x: 1144
@@ -355,7 +355,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5高级宝箱掉落
   品质: 高级
-普通宝箱守卫者27:
+T5宝箱守卫者27:
   mobName: T5普通宝箱守卫者
   world: t5
   x: 1056
@@ -368,7 +368,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5普通宝箱掉落
   品质: 普通
-普通宝箱守卫者28:
+T5宝箱守卫者28:
   mobName: T5普通宝箱守卫者
   world: t5
   x: 1036
@@ -382,7 +382,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5普通宝箱掉落
   品质: 普通
-普通宝箱守卫者29:
+T5宝箱守卫者29:
   mobName: T5普通宝箱守卫者
   world: t5
   x: 1038
@@ -396,7 +396,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5普通宝箱掉落
   品质: 普通
-普通宝箱守卫者30:
+T5宝箱守卫者30:
   mobName: T5普通宝箱守卫者
   world: t5
   x: 1056
@@ -409,7 +409,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5普通宝箱掉落
   品质: 普通
-普通宝箱守卫者31:
+T5宝箱守卫者31:
   mobName: T5普通宝箱守卫者
   world: t5
   x: 1088
@@ -423,7 +423,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5普通宝箱掉落
   品质: 普通
-普通宝箱守卫者32:
+T5宝箱守卫者32:
   mobName: T5普通宝箱守卫者
   world: t5
   x: 1108
@@ -436,7 +436,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5普通宝箱掉落
   品质: 普通
-普通宝箱守卫者33:
+T5宝箱守卫者33:
   mobName: T5中级宝箱守卫者
   world: t5
   x: 1098
@@ -449,7 +449,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5中级宝箱掉落
   品质: 中级
-普通宝箱守卫者34:
+T5宝箱守卫者34:
   mobName: T5中级宝箱守卫者
   world: t5
   x: 1121
@@ -463,7 +463,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5中级宝箱掉落
   品质: 中级
-普通宝箱守卫者35:
+T5宝箱守卫者35:
   mobName: T5中级宝箱守卫者
   world: t5
   x: 1119
@@ -477,7 +477,7 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5中级宝箱掉落
   品质: 中级
-普通宝箱守卫者36:
+T5宝箱守卫者36:
   mobName: T5中级宝箱守卫者
   world: t5
   x: 1151
@@ -491,3 +491,45 @@ T5高级守卫者25:
   spawnRange: 1
   dropTable: T5中级宝箱掉落
   品质: 中级
+T5宝箱守卫者37:
+  mobName: T5高级宝箱守卫者
+  world: t5
+  x: 1053
+  y: 110
+  z: -1186
+  maxMobs: 3
+  locations:
+  - 1058:103:-1190:t5
+  - 1053:103:-1190:t5
+  - 1048:103:-1190:t5
+  spawnRange: 1
+  dropTable: T5高级宝箱掉落
+  品质: 高级
+T5宝箱守卫者38:
+  mobName: T5高级宝箱守卫者
+  world: t5
+  x: 1034
+  y: 103
+  z: -1187
+  maxMobs: 3
+  locations:
+  - 1037:103:-1191:t5
+  - 1037:103:-1194:t5
+  - 1037:103:-1188:t5
+  spawnRange: 1
+  dropTable: T5高级宝箱掉落
+  品质: 高级
+T5宝箱守卫者39:
+  mobName: T5高级宝箱守卫者
+  world: t5
+  x: 1028
+  y: 115
+  z: -1149
+  maxMobs: 3
+  locations:
+  - 1026:115:-1151:t5
+  - 1026:115:-1149:t5
+  - 1026:115:-1147:t5
+  spawnRange: 1
+  dropTable: T5高级宝箱掉落
+  品质: 高级

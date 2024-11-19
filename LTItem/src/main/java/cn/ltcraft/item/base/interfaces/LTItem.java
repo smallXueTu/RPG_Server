@@ -1,6 +1,7 @@
 package cn.ltcraft.item.base.interfaces;
 
 import cn.ltcraft.item.base.ItemTypes;
+import cn.ltcraft.item.enums.ItemQuality;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -38,8 +39,13 @@ public interface LTItem {
     ItemStack generate(int count);
 
     /**
-     * 判断指定玩家是否可以使用此武器
+     * 判断指定玩家是否可以使用此物品
      * @return 是否绑定
      */
     boolean binding();
+
+    /**
+     * 获取物品品质
+     */
+    ItemQuality getQuality();
 }

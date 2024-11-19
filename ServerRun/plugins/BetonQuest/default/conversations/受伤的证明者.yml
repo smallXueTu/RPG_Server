@@ -1,0 +1,40 @@
+quester: '沙威玛传奇'
+first: '加油,介绍'
+stop: 'false'
+NPC_options:
+  '介绍':
+    text: '你也是一位证明者吧，我在上这个楼梯的时候不小心掉了下来，腿摔断了。\n在这个地方，恐怕也没人能带我走出这里了，我也不抱有希望了，期望你帮我完成最后的心愿。\n这条路也算我帮你铺好了。'
+    conditions: ''
+    pointer: '我只是想出去,算了'
+    events: ''
+  '这是唯一的办法':
+    text: '证明者，你要是想从这里出去，这是唯一的办法，因为上面传送装置已经被我拿到了。\n这几乎要了我的命，以至于我从上面摔了下来。'
+    conditions: ''
+    pointer: '什么心愿'
+    events: ''
+  '心愿':
+    text: '要不是外面的怪物打扰我我也不从这里摔下来，你能帮我击杀几只外面的怪物就行了'
+    conditions: ''
+    pointer: '当然可以'
+    events: ''
+  '当然可以':
+    text: '证明者，这怪物可不好击杀，他拥有特殊的末影之盾'
+    conditions: ''
+    pointer: '当然可以'
+    events: ''
+player_options:
+  '当然可以':
+    text: '当然可以。'
+    conditions: ''
+    pointer: ''
+    events: ''
+  '什么心愿':
+    text: '什么心愿？'
+    conditions: ''
+    pointer: '心愿'
+    events: ''
+  '算了':
+    text: '算了，我可没有闲时间。'
+    conditions: ''
+    pointer: '这是唯一的办法'
+    events: ''

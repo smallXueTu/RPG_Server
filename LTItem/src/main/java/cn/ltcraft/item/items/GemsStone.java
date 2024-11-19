@@ -6,7 +6,9 @@ import cn.LTCraft.core.utils.GameUtils;
 import cn.LTCraft.core.utils.ItemUtils;
 import cn.ltcraft.item.base.*;
 import cn.ltcraft.item.base.interfaces.ConfigurableLTItem;
+import cn.ltcraft.item.enums.ItemQuality;
 import cn.ltcraft.item.items.gemsstones.*;
+import cn.ltcraft.item.objs.StoneInstallResult;
 import cn.ltcraft.item.utils.Utils;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.configuration.MemoryConfiguration;
@@ -112,6 +114,7 @@ public class GemsStone extends AbstractAttribute implements ConfigurableLTItem {
             PVECriticalRate = Double.parseDouble(criticalSplit[1]);
         }
         lore = config.getStringList("说明");
+        quality = ItemQuality.ofQuality(config.getString("品质", ""));
     }
     @Override
     public ItemTypes getType() {
@@ -162,7 +165,10 @@ public class GemsStone extends AbstractAttribute implements ConfigurableLTItem {
      * @param itemStack 物品堆
      * @return 处理后的 如果返回null则不用处理
      */
-    public ItemStack installOn(ItemStack itemStack){
+    public final StoneInstallResult installOn(ItemStack itemStack){
+        return installOn(itemStack, 1);
+    }
+    public StoneInstallResult installOn(ItemStack itemStack, int installCount){
         return null;
     }
 }

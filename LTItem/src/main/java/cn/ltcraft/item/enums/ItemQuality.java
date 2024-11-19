@@ -1,5 +1,6 @@
 package cn.ltcraft.item.enums;
 
+import cn.LTCraft.core.utils.GameUtils;
 import cn.hutool.core.util.ObjectUtil;
 import lombok.Getter;
 
@@ -34,6 +35,11 @@ public enum ItemQuality {
                 return value;
             }
         }
-        return null;
+        return NONE;
+    }
+
+    @Override
+    public String toString() {
+        return GameUtils.getLevelPrefix(name) + name;
     }
 }

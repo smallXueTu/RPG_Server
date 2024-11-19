@@ -38,7 +38,7 @@ public class Temp {
     /**
      * 垃圾计数器
      */
-    public static Map<Player, Integer> dropCount = new HashMap<>();
+    public static final Map<Player, Integer> dropCount = new HashMap<>();
     /**
      * 最后战斗时间
      */

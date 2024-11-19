@@ -1,7 +1,9 @@
 package cn.LTCraft.core.listener;
 
 import cn.LTCraft.core.Main;
+import cn.LTCraft.core.entityClass.PlayerConfig;
 import cn.LTCraft.core.game.Game;
+import cn.LTCraft.core.other.Temp;
 import cn.LTCraft.core.utils.DragonCoreUtil;
 import cn.LTCraft.core.utils.PlayerUtils;
 import cn.ltcraft.item.objs.PlayerAttribute;
@@ -12,6 +14,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DragonCoreListener implements Listener {
 
@@ -25,15 +30,15 @@ public class DragonCoreListener implements Listener {
                     DragonCoreUtil.setItemStack(player, "结果格子", new ItemStack(Material.AIR), null, true);
                     return;
                 }
-                if (event.getItemStack().getAmount() > 1){
-                    player.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {
-                        ItemStack itemStack = event.getItemStack().clone();
-                        ItemStack itemStack2 = event.getItemStack().clone();
-                        itemStack.setAmount(1);
-                        itemStack2.setAmount(itemStack2.getAmount() - 1);
-                        DragonCoreUtil.setItemStack(player, "材料格子", itemStack, (ignore) -> PlayerUtils.securityAddItem(player, itemStack2));
-                    }, 1);
-                }
+//                if (event.getItemStack().getAmount() > 1){
+//                    player.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {
+//                        ItemStack itemStack = event.getItemStack().clone();
+//                        ItemStack itemStack2 = event.getItemStack().clone();
+//                        itemStack.setAmount(1);
+//                        itemStack2.setAmount(itemStack2.getAmount() - 1);
+//                        DragonCoreUtil.setItemStack(player, "材料格子", itemStack, (ignore) -> PlayerUtils.securityAddItem(player, itemStack2));
+//                    }, 1);
+//                }
                 DragonCoreUtil.getItemStack(player, "装备格子", itemStack -> {
                     ItemStack forgingResult = Game.getForgingResult(itemStack, event.getItemStack(), player);
                     if (forgingResult != null){
@@ -69,9 +74,10 @@ public class DragonCoreListener implements Listener {
                             DragonCoreUtil.getItemStack(player, "材料格子", itemStack1 -> {
                                 if (itemStack1 != null && itemStack1.getType() != Material.AIR) {
                                     DragonCoreUtil.setItemStack(player, "装备格子", new ItemStack(Material.AIR), null);
-                                    DragonCoreUtil.setItemStack(player, "材料格子", new ItemStack(Material.AIR), null);
+                                    int consumption = PlayerConfig.getPlayerConfig(player).getConfig().getInt("锻造消耗", 64);
                                     if (Game.startForging(itemStack, itemStack1, player)) {
-
+                                        itemStack1.setAmount(itemStack1.getAmount() - consumption);
+                                        DragonCoreUtil.setItemStack(player, "材料格子", itemStack1, null);
                                     }else {
 
                                     }

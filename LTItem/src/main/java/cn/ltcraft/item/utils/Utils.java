@@ -12,6 +12,7 @@ import cn.ltcraft.item.base.interfaces.LTItem;
 import cn.ltcraft.item.base.interfaces.Upgradeable;
 import cn.ltcraft.item.items.GemsStone;
 import cn.ltcraft.item.objs.ItemObjs;
+import cn.ltcraft.item.objs.StoneInstallResult;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
@@ -67,24 +68,71 @@ public class Utils {
     public static int getEquipmentLevel(NBTTagCompound nbt){
         if(nbt.hasKey("ltAttribute")){
             NBTTagCompound nbtTagCompound = nbt.getCompound("ltAttribute");
-            if (nbtTagCompound.hasKey("level"))
-                return nbtTagCompound.getInt("level");
+            return Math.max(0, nbtTagCompound.getInt("level"));
+        }
+        return 0;
+    }
+
+    /**
+     * 获取升级经验
+     */
+    public static int getUpExp(int level){
+        return Math.max(1, level) * 2;
+    }
+    /**
+     * 获取装备经验
+     * @param nbt 装备的NBT
+     * @return 经验
+     */
+    public static int getEquipmentExp(NBTTagCompound nbt){
+        if(nbt.hasKey("ltAttribute")){
+            NBTTagCompound nbtTagCompound = nbt.getCompound("ltAttribute");
+            return Math.max(0, nbtTagCompound.getInt("exp"));
         }
         return 0;
     }
     /**
-     * 设置装备等级
+     * 增加装备经验
      * @param nbt 装备的NBT
-     * @param level 等级
-     * @return 是否成功
+     * @param exp 经验
+     * @return 返回剩余经验
      */
-    public static boolean setEquipmentLevel(NBTTagCompound nbt, int level){
+    public static int addEquipmentExp(NBTTagCompound nbt, int exp){
         if(nbt.hasKey("ltAttribute")){
             NBTTagCompound nbtTagCompound = nbt.getCompound("ltAttribute");
-            nbtTagCompound.setInt("level", level);
-            return true;
+            // 原始等级
+            int primitiveLevel = Math.max(1, nbtTagCompound.getInt("level"));
+            int primitiveExp = Math.max(0, nbtTagCompound.getInt("exp"));
+            int maxLevel = Math.max(1, nbtTagCompound.getInt("maxLevel"));
+            //原石等级已经大于最大等级
+            if (primitiveLevel >= maxLevel){
+                return exp;
+            }
+            //升级所需经验
+            int upExp = getUpExp(primitiveLevel);
+            // 可以升级
+            if (primitiveExp + exp >= upExp){
+                //升级后剩余的经验
+                int redundantExp = exp - (upExp - primitiveExp);
+                nbtTagCompound.setInt("level", primitiveLevel + 1);
+                int nextLevel = primitiveLevel + 1;
+                // 剩余经验大于下一级
+                while(redundantExp >= getUpExp(nextLevel)){
+                    if(nextLevel >= maxLevel){
+                        nbtTagCompound.setInt("exp", 0);
+                        return redundantExp;
+                    }
+                    redundantExp -= getUpExp(nextLevel++);
+                    nbtTagCompound.setInt("level", nextLevel);
+                }
+                nbtTagCompound.setInt("exp", redundantExp);
+            }else {
+                //经验不够
+                nbtTagCompound.setInt("exp", primitiveExp + exp);
+            }
+            return 0;
         }else {
-            return false;
+            return exp;
         }
     }
     /**
@@ -95,8 +143,7 @@ public class Utils {
     public static int getEquipmentMaxLevel(NBTTagCompound nbt){
         if(nbt.hasKey("ltAttribute")){
             NBTTagCompound nbtTagCompound = nbt.getCompound("ltAttribute");
-            if (nbtTagCompound.hasKey("maxLevel"))
-                return nbtTagCompound.getInt("maxLevel");
+            return Math.max(1, nbtTagCompound.getInt("maxLevel"));
         }
         return 0;
     }
@@ -261,14 +308,16 @@ public class Utils {
         String loreStr = loreStrB.toString().replace("&", "§");
         Class<AbstractAttribute> abstractAttributeClass = AbstractAttribute.class;
         Field[] declaredFields = abstractAttributeClass.getDeclaredFields();
-        if (abstractAttribute != null) {
+        if (abstractAttribute != null && loreStr.contains("%")) {
             for (Field declaredField : declaredFields) {
-                try {
+                if (loreStr.contains("%" + declaredField.getName() + "%")) {
+                    try {
                     declaredField.setAccessible(true);
                     Object value = declaredField.get(abstractAttribute);
                     loreStr = loreStr.replace("%" + declaredField.getName() + "%", value instanceof Double ? cn.LTCraft.core.utils.Utils.formatNumber((double) value) : value.toString());
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -278,35 +327,33 @@ public class Utils {
             loreStr = loreStr.replace("%maxSet%", aicla.getMaxSet() + "");
             loreStr = loreStr.replace("%set%", set.size() + "");
         }
-        if (abstractAttribute instanceof ConfigurableLTItem && loreStr.contains("%quality%")){
-            ConfigurableLTItem configurableLTItems = (ConfigurableLTItem) abstractAttribute;
-            String level = configurableLTItems.getConfig().getString("品质", "无品质");
-            loreStr = loreStr.replace("%quality%", GameUtils.getLevelPrefix(level) + level + "");
-        }
         if (abstractAttribute instanceof ConfigurableLTItem && loreStr.contains("%binding%")){
             ConfigurableLTItem configurableLTItems = (ConfigurableLTItem) abstractAttribute;
             if ( configurableLTItems.binding()) {
                 loreStr = loreStr.replace("%binding%", ItemUtils.getBinding(itemStack));
             }
         }
-        if (abstractAttribute instanceof Upgradeable && (loreStr.contains("%maxLevel%") || loreStr.contains("%level%"))){
+        if (abstractAttribute instanceof Upgradeable && (loreStr.contains("%maxLevel%") || loreStr.contains("%level%") || loreStr.contains("%exp%") || loreStr.contains("%upExp%"))){
             NBTTagCompound nbt = ItemUtils.getNBT(itemStack);
             loreStr = loreStr.replace("%maxLevel%", getEquipmentMaxLevel(nbt) + "");
-            loreStr = loreStr.replace("%level%", getEquipmentLevel(nbt) + "");
+            int level = getEquipmentLevel(nbt);
+            loreStr = loreStr.replace("%level%", level + "");
+            loreStr = loreStr.replace("%exp%", getEquipmentExp(nbt) + "");
+            loreStr = loreStr.replace("%upExp%", getUpExp(level) + "");
         }
         List<String> list = Arrays.asList(loreStr.split("\n"));
         itemMeta.setLore(list);
         itemStack.setItemMeta(itemMeta);
-        /*
-         * 安装宝石
-         */
-        for (String s : set) {
-            GemsStone gemstone = ItemObjs.getGemstone(s);
-            ItemStack result = gemstone.installOn(itemStack);
-            if (ObjectUtil.isNotEmpty(result)) {
-                itemStack = result;
-            }
-        }
+//        /*
+//         * 安装宝石
+//         */
+//        for (String s : set) {
+//            GemsStone gemstone = ItemObjs.getGemstone(s);
+//            StoneInstallResult stoneInstallResult = gemstone.installOn(itemStack);
+//            if (stoneInstallResult.isSuccess()) {
+//                itemStack = stoneInstallResult.getResultItemStack();
+//            }
+//        }
         return itemStack.clone();
     }
 
@@ -331,10 +378,10 @@ public class Utils {
 
         if (aicla instanceof Upgradeable){
             Attribute attribute = ((Upgradeable) aicla).calculateAttributes(nbt);
-            attribute.addAttribute(attribute);
+            aicla.addAttribute(attribute);
         }
 
-        aicla.addAttribute(new JsonAttribute(json));
+        if (!json.isEmpty())aicla.addAttribute(new JsonAttribute(json));
         return aicla;
     }
     public static void action(Player player, ConfigurableLTItem ltItem, String key, Object ...objects){

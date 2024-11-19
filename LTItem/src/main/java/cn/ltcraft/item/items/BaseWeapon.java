@@ -4,6 +4,7 @@ import cn.LTCraft.core.entityClass.Additional;
 import cn.LTCraft.core.entityClass.RandomValue;
 import cn.LTCraft.core.utils.GameUtils;
 import cn.ltcraft.item.base.*;
+import cn.ltcraft.item.enums.ItemQuality;
 import cn.ltcraft.item.utils.Utils;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -77,6 +78,7 @@ public abstract class BaseWeapon extends AICLA {
         }
         lore = config.getStringList("说明");
         maxSet = config.getInt("宝石槽位", Utils.getMaxSet(config.getString("品质", "")));
+        quality = ItemQuality.ofQuality(config.getString("品质", ""));
     }
     @Override
     public String getName() {

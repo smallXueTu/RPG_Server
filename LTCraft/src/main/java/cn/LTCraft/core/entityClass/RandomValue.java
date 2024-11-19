@@ -48,12 +48,12 @@ public class RandomValue {
     }
 
     public boolean isRandom(){
-        return diff == 0;
+        return diff != 0;
     }
     @Override
     public String toString() {
-        if (isRandom())return min + "";
-        return min + "-" + max;
+        if (isRandom())return Utils.formatNumber(min) + "-" + Utils.formatNumber(max);
+        return Utils.formatNumber(min) + "";
     }
 
     @Override

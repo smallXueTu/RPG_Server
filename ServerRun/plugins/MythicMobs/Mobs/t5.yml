@@ -4,13 +4,17 @@
   Health: 1000
   Damage: 6
   Equipment:
-    - 末地之刃:HAND
+    - 末影之刃:HAND
   Disguise:
     Type: Player
-    Skin: '&e【高级】&6末影行者'
-    Player: '&e【高级】&6末影行者'
+    Skin: '&e【普通】&6末影行者'
+    Player: '&e【普通】&6末影行者'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Options:
-    FollowRange: 16
+    FollowRange: 8
     MovementSpeed: 0.35
     UseThreatTable: true
     PreventOtherDrops: true
@@ -26,11 +30,15 @@ T5普通宝箱守卫者:
   Health: 2000
   Damage: 8
   Equipment:
-    - 末地之刃:HAND
+    - 末影之刃:HAND
   Disguise:
     Type: Player
     Skin: '&6T5普通宝箱守卫者'
     Player: '&6T5普通宝箱守卫者'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Options:
     FollowRange: 16
     MovementSpeed: 0.35
@@ -46,13 +54,17 @@ T5普通宝箱守卫者:
   Health: 1500
   Damage: 8
   Equipment:
-    - 末地之刃:HAND
+    - 末影之刃:HAND
   Disguise:
     Type: Player
-    Skin: '&e【高级】&6末影行者'
-    Player: '&e【高级】&6末影行者'
+    Skin: '&e【中级】&6末影行者'
+    Player: '&e【中级】&6末影行者'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Options:
-    FollowRange: 16
+    FollowRange: 8
     MovementSpeed: 0.35
     UseThreatTable: true
     PreventOtherDrops: true
@@ -68,11 +80,15 @@ T5中级宝箱守卫者:
   Health: 3000
   Damage: 10
   Equipment:
-    - 末地之刃:HAND
+    - 末影之刃:HAND
   Disguise:
     Type: Player
     Skin: '&6T5中级宝箱守卫者'
     Player: '&6T5中级宝箱守卫者'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Options:
     FollowRange: 16
     MovementSpeed: 0.35
@@ -88,13 +104,17 @@ T5中级宝箱守卫者:
   Health: 2000
   Damage: 15
   Equipment:
-    - 末地之刃:HAND
+    - 末影之刃:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&e【高级】&6末影行者'
     Player: '&e【高级】&6末影行者'
   Options:
-    FollowRange: 16
+    FollowRange: 8
     MovementSpeed: 0.35
     UseThreatTable: true
     PreventOtherDrops: true
@@ -107,10 +127,14 @@ T5中级宝箱守卫者:
 T5高级宝箱守卫者:
   Type: Skeleton
   Display: '&6高级宝箱守卫者'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Health: 4000
   Damage: 20
   Equipment:
-    - 末地之刃:HAND
+    - 末影之刃:HAND
   Disguise:
     Type: Player
     Skin: '&6T5高级宝箱守卫者'
@@ -130,7 +154,11 @@ T5史诗宝箱守卫者:
   Health: 4000
   Damage: 20
   Equipment:
-    - 末地之刃:HAND
+    - 末影之刃:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&6T5史诗宝箱守卫者'
@@ -150,11 +178,15 @@ T5史诗宝箱守卫者:
   Health: 6000
   Damage: 20
   Equipment:
-    - 末地之刃:HAND
+    - 末影之刃:HAND
   Disguise:
     Type: Player
     Skin: '&6魔影行者'
     Player: '&6魔影行者'
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Options:
     FollowRange: 16
     MovementSpeed: 0.35
@@ -166,7 +198,7 @@ T5史诗宝箱守卫者:
     - execBQEvent{e=保存主线位置到T5进度6} @trigger ~onDeath
   Drops:
     - skillapi-exp 80
-    - ltitem 材料:末地之城珍珠 1
+    - ltitem 材料:末影之城珍珠 1
     - ltitem 材料:末影药剂 1
 魔影守卫者:
   Type: Skeleton
@@ -174,7 +206,11 @@ T5史诗宝箱守卫者:
   Health: 6000
   Damage: 30
   Equipment:
-    - 末地之剑:HAND
+    - 末影之剑:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Disguise:
     Type: Player
     Skin: '&6魔影守卫者'
@@ -188,7 +224,7 @@ T5史诗宝箱守卫者:
     PreventSunburn: true
   Drops:
     - skillapi-exp 80
-    - ltitem 材料:末地之城珍珠 1
+    - ltitem 材料:末影之城珍珠 1
     - ltitem 材料:末影药剂 1
     - 失落的手册内容 1 1
   Skills:
@@ -199,7 +235,7 @@ T5史诗宝箱守卫者:
   Health: 1500
   Damage: 10
   Equipment:
-    - 末地之刃:HAND
+    - 末影之刃:HAND
   Disguise:
     Type: Player
     Skin: '&6末影卫士'
@@ -213,7 +249,38 @@ T5史诗宝箱守卫者:
     PreventSunburn: true
   Drops:
     - skillapi-exp 20
-    - ltitem 材料:末地之城珍珠 1
+    - ltitem 材料:末影之城珍珠 1
+    - 末影之城烈焰粉 1 0.5
+末影守卫者-最后的防线:
+  Type: Skeleton
+  Display: '&6末影守卫者-最后的防线'
+  Health: 1500
+  Damage: 10
+  Equipment:
+    - 末影之刃:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
+  Disguise:
+    Type: Player
+    Skin: '&6末影守卫者-最后的防线'
+    Player: '&6末影守卫者-最后的防线'
+  Skills:
+    - skill{s=末影守卫者粉碎攻击} @Self <80% ~onDamaged
+    - message{cooldown=50;m="<mob.name>&d>><&co> &c休想接近我们的统治者，除非你从我们的身体上踏过去！"} @PlayersInRadius{r=20} ~onCombat <100% 0.3
+    - skill{s=末影守卫者惊讶}  @Target ~onCombat <50%
+    - skill{s=末影守卫者嘲讽;sync=true} ~onDamaged
+  Options:
+    FollowRange: 16
+    MovementSpeed: 0.35
+    UseThreatTable: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+  Drops:
+    - skillapi-exp 20
+    - ltitem 材料:末影之城珍珠 1
     - 末影之城烈焰粉 1 0.5
 末影僵尸:
   Type: Zombie
@@ -221,7 +288,7 @@ T5史诗宝箱守卫者:
   Health: 3000
   Damage: 20
   Equipment:
-#    - 末地之剑:HAND
+#    - 末影之剑:HAND
   Options:
     FollowRange: 26
     MovementSpeed: 0.35
@@ -231,7 +298,7 @@ T5史诗宝箱守卫者:
     PreventSunburn: true
   Drops:
     - skillapi-exp 30
-    - ltitem 材料:末地之城珍珠 1
+    - ltitem 材料:末影之城珍珠 1
     - 末影之城烈焰粉 1 0.5
 t5对话1:
   Type: armor_stand
@@ -254,7 +321,7 @@ t5主线保护门1:
     Invincible: true
   Skills:
 #    - skill{s=t5主线保护门1} @Self ~onTimer:15
-    - airDoor{location=-1242;f=false;direction=Z;d=BQCondition:default.已拥有神秘的手册;mess=§c请至少打开一个神秘宝箱并获得神秘的手册！;success=BQEvent:保存主线位置到T5进度2} @Self ~onSpawn
+    - airDoor{location=-1242;f=false;direction=Z;d=BQCondition:default.已拥有神秘的手册,BQCondition:default.已拥有完整的神秘手册;mess=§c请至少打开一个神秘宝箱并获得神秘的手册！;success=BQEvent:保存主线位置到T5进度2} @Self ~onSpawn
 t5主线保护门2:
   Type: armor_stand
   Options:

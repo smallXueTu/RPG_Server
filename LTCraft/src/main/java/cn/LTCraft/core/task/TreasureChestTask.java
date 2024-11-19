@@ -120,15 +120,15 @@ public class TreasureChestTask implements TickEntity, Listener {
             if (nbtBase instanceof NbtCompound){
                 NbtCompound nbtCompound = (NbtCompound) nbtBase;
                 if (nbtCompound.containsKey("id")){
-                    if (nbtCompound.getString("id").equals("minecraft:furnace")) {
-                        int x = nbtCompound.getInteger("x");
-                        int y = nbtCompound.getInteger("y");
-                        int z = nbtCompound.getInteger("z");
-                        Block blockAt = world.getBlockAt(x, y, z);
-                        blockAt.getState().update();
-//                        IBlockData iblockdata = CraftMagicNumbers.getBlock(blockAt).fromLegacyData(blockAt.getData());
-//                        ((CraftWorld) world).getHandle().notify(new BlockPosition(x, y, z), iblockdata, iblockdata, 3);
-                    }
+//                    if (nbtCompound.getString("id").equals("minecraft:furnace")) {
+//                        int x = nbtCompound.getInteger("x");
+//                        int y = nbtCompound.getInteger("y");
+//                        int z = nbtCompound.getInteger("z");
+//                        Block blockAt = world.getBlockAt(x, y, z);
+//                        blockAt.getState().update();
+////                        IBlockData iblockdata = CraftMagicNumbers.getBlock(blockAt).fromLegacyData(blockAt.getData());
+////                        ((CraftWorld) world).getHandle().notify(new BlockPosition(x, y, z), iblockdata, iblockdata, 3);
+//                    }
                     if (nbtCompound.getString("id").equals("minecraft:chest")) {
                         int x = nbtCompound.getInteger("x");
                         int y = nbtCompound.getInteger("y");

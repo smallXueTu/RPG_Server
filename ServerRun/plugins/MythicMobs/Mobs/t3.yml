@@ -38,6 +38,10 @@ t3火焰粒子门3:
   Damage: 10
   Equipment:
     - 虚空剑:HAND
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Options:
     FollowRange: 16
     MovementSpeed: 0.3
@@ -126,6 +130,10 @@ t3火焰粒子门3:
     MovementSpeed: 0.3
     AlwaysShowName: true
     PreventOtherDrops: true
+  AIGoalSelectors:
+    - clear
+    - meleeattack
+    - randomstroll
   Equipment:
     - 虚焱弓 HAND
   Disguise:
